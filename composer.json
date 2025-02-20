@@ -1,0 +1,66 @@
+{
+  "name": "fakhr/cms",
+  "type": "project",
+  "description": "the New CMS 2023",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Ahmed fakhr",
+      "email": "spcialist@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.0 || ^8.2",
+    "ext-curl": "*",
+    "ext-intl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "codeigniter4/framework": "^4.4",
+    "codeigniter4/settings": "^2.2",
+    "codeigniter4/shield": "^1.0",
+    "laminas/laminas-escaper": "2.9",
+    "mailjet/mailjet-apiv3-php": "^1.5",
+    "mpdf/mpdf": "8.1.6",
+    "nesbot/carbon": "2.*",
+    "phpoffice/phpspreadsheet": "^1.15",
+    "predis/predis": "2.2",
+    "psr/log": "^1.1"
+  },
+  "suggest": {
+    "ext-curl": "If you use CURLRequest class",
+    "ext-imagick": "If you use Image class ImageMagickHandler",
+    "ext-gd": "If you use Image class GDHandler",
+    "ext-exif": "If you run Image class tests",
+    "ext-simplexml": "If you format XML",
+    "ext-mysqli": "If you use MySQL",
+    "ext-oci8": "If you use Oracle Database",
+    "ext-pgsql": "If you use PostgreSQL",
+    "ext-sqlsrv": "If you use SQL Server",
+    "ext-sqlite3": "If you use SQLite3",
+    "ext-memcache": "If you use Cache class MemcachedHandler with Memcache",
+    "ext-memcached": "If you use Cache class MemcachedHandler with Memcached",
+    "ext-redis": "If you use Cache class RedisHandler",
+    "ext-dom": "If you use TestResponse",
+    "ext-libxml": "If you use TestResponse",
+    "ext-xdebug": "If you use CIUnitTestCase::assertHeaderEmitted()",
+    "ext-fileinfo": "Improves mime type detection for files",
+    "ext-readline": "Improves CLI::input() usability"
+  },
+  "config": {
+    "platform-check": false,
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "require-dev": {
+    "kint-php/kint": "^5.0.3",
+    "codeigniter/coding-standard": "^1.5",
+    "fakerphp/faker": "*",
+    "stichoza/google-translate-php": "*"
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}

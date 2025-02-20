@@ -1,0 +1,48 @@
+<?php
+
+
+use Modules\Users\Controllers\AdminUsers;
+use Modules\Users\Controllers\Users;
+
+if (!isset($routes)) {
+    $routes = \Config\Services::routes(true);
+}
+
+/*** Route for Users Admin ***/
+
+$routes->group('dt_admin', ['namespace' => 'Modules\Users\Controllers',
+    'filter' => 'admin_filter'], static function ($routes) {
+
+  //  example of permissions $routes->get('users', [AdminUsers::class, 'index'], ['filter' => 'admin_filter']);
+    $routes->match(['get', 'post'], 'users',  [AdminUsers::class, 'index']);
+    $routes->post('users/index', [AdminUsers::class, 'index']);
+
+    $routes->match(['get', 'post'], 'users/add',  [AdminUsers::class, 'add']);
+
+    $routes->match(['get', 'post'], 'users/edit/(:num)',  [AdminUsers::class, 'edit/$1']);
+
+    $routes->post('users/show/(:num)', [AdminUsers::class, 'show/$1']);
+
+    $routes->post('users/edit', [AdminUsers::class, 'edit']);
+
+    $routes->post('users/switchToggle', [AdminUsers::class, 'switchToggle']);
+
+    $routes->post('users/delete', [AdminUsers::class, 'delete']);
+
+});
+
+/*** Route for Users Site ***/
+
+$routes->group('/', ['namespace' => 'Modules\Users\Controllers'], static function ($routes) {
+    $routes->get('users', [Users::class, 'index']);
+    $routes->post('users/show/(:num)', [Users::class, 'show/$1']);
+    $routes->get('users/add', [Users::class, 'add']);
+    $routes->get('users/edit/(:num)', [Users::class, 'edit/$1']);
+    $routes->get('users/delete/(:num)', [Users::class, 'delete/$1']);
+});
+
+/*** Route for Users api ***/
+/*
+$routes->group('api', ['namespace' => 'App\API\v1'], static function ($routes) {
+    $routes->resource('users');
+});*/

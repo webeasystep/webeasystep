@@ -1,0 +1,618 @@
+[
+        {
+            "id": 523,
+            "question": "ما هو المصطلح الذي يطلق على رسائل البريد الإلكتروني غير المرغوب فيها؟",
+            "options": ["phishing", "spam", "inbox", "virus"],
+            "correct_answer": "spam",
+            "standard": 7
+        },
+        {
+            "id": 524,
+            "question": "في أي مجال من المجالات التالية تستخدم لغة JavaScript بشكل أساسي؟",
+            "options": ["الويب", "تطوير تطبيقات الجوال", "تطوير الألعاب", "غير ذلك"],
+            "correct_answer": "الويب",
+            "standard": 5
+        },
+        {
+            "id": 525,
+            "question": "إلى أي تصنيف تنتمي البرمجية الخبيثة المعروفة باسم حصان طروادة (Trojan)؟",
+            "options": ["الديدان", "برامج التجسس", "البرامج الخبيثة", "الفيروسات"],
+            "correct_answer": "البرامج الخبيثة",
+            "standard": 7
+        },
+        {
+            "id": 526,
+            "question": "ما هو الترتيب الصحيح للشبكات من الأصغر إلى الأكبر من حيث المساحة الجغرافية التي تغطيها؟",
+            "options": ["Lan, Wan, Man, Pan", "Wan, Man, Lan, Pan", "Man, Wan, Lan,pan", "Pan, Lan, Man, Wan"],
+            "correct_answer": "Pan, Lan, Man, Wan",
+            "standard": 4
+        },
+        {
+            "id": 527,
+            "question": "في أي طبقة من نموذج OSI يعمل جهاز المبدل (Switch) بشكل أساسي؟",
+            "options": ["Physical", "Data link", "Transport", "Network"],
+            "correct_answer": "Data link",
+            "standard": 4
+        },
+        {
+            "id": 528,
+            "question": "في أي طبقة من نموذج OSI تقع خاصية الاعتمادية (Reliability) في الاتصال بالشبكات؟",
+            "options": ["Physical", "Data link", "Transport", "Network"],
+            "correct_answer": "Transport",
+            "standard": 4
+        },
+        {
+            "id": 529,
+            "question": "أي من الخيارات التالية يعتبر منصة للتعليم المفتوح؟",
+            "options": ["رواق", "نور", "مسك", "غير ذلك"],
+            "correct_answer": "رواق",
+            "standard": 11
+        },
+        {
+            "id": 530,
+            "question": "أين يتم تحميل نظام التشغيل من القرص الصلب عند بدء تشغيل الحاسب؟",
+            "options": ["RAM", "ROM", "CPU", "BIOS"],
+            "correct_answer": "RAM",
+            "standard": 3
+        },
+        {
+            "id": 531,
+            "question": "ما هي الرموز المستخدمة في النظام الست عشري؟",
+            "options": ["(0-F, 10)", "(F-A , 10-0)", "(A-F, 9-0 )", "(F-A, 0-10)"],
+            "correct_answer": "(0-9, A-F)",
+            "standard": 1
+        },
+        {
+            "id": 532,
+            "question": "ما هو الاختصار الذي يستخدم لفتح مدير المهام (Task Manager) في نظام التشغيل ويندوز؟",
+            "options": ["Ctrl+Alt+Del", "Ctrl+shift+Esc", "Ctrl+shift+Del", "Ctrl+Alt+Esc"],
+            "correct_answer": "Ctrl+shift+Esc",
+            "standard": 9
+        },
+        {
+            "id": 533,
+            "question": "ما هو الاختصار الذي يستخدم للصق (Paste) في لوحة المفاتيح؟",
+            "options": ["Ctrl+V", "Ctrl+X", "Ctrl+C", "Ctrl+W"],
+            "correct_answer": "Ctrl+V",
+            "standard": 9
+        },
+        {
+            "id": 534,
+            "question": "أي من المواقع التالية يعتبر منصة تعليمية لتعليم لغات تطوير الويب والبرمجة؟",
+            "options": ["W3Schools", "Khan academy", "Coursera", "edX"],
+            "correct_answer": "W3Schools",
+            "standard": 11
+        },
+        {
+            "id": 535,
+            "question": "أي من الأجهزة التالية يعتبر وحدة إدخال وإخراج في نفس الوقت؟",
+            "options": ["شاشة اللمس", "الكاميرا", "السماعات", "لوحة المفاتيح"],
+            "correct_answer": "شاشة اللمس",
+            "standard": 3
+        },
+        {
+            "id": 536,
+            "question": "ما هي الطريقة التي تستخدم لتبسيط المعلومات النصية وتحويلها إلى رسوم تفاعلية؟",
+            "options": ["العروض التقديمية", "الفيديو", "الإنفوجرافيك", "غير ذلك"],
+            "correct_answer": "الإنفوجرافيك",
+            "standard": 9
+        },
+        {
+            "id": 537,
+            "question": "ما هي الخطوة الثالثة في دورة عمل المعالج (CPU)؟",
+            "options": ["execute", "Fetch", "decode", "Process"],
+            "correct_answer": "execute",
+            "standard": 3
+        },
+        {
+            "id": 538,
+            "question": "إذا أردت ربط أجهزة معلمي المدرسة بشبكة محلية مكونة من خمسة أجهزة بطريقة غير مركزية، فأي من أنواع الشبكات التالية هو الأفضل؟",
+            "options": ["هرمية", "النطاق العريض", "الند للند", "الخادم والزبون"],
+            "correct_answer": "الند للند",
+            "standard": 4
+        },
+        {
+            "id": 539,
+            "question": "ما هي لغة البرمجة التي يتم تدريسها لطلاب الصف الثالث المتوسط في مادة المهارات الرقمية في السعودية؟",
+            "options": ["سكراتش", "بايثون", "فيجوال بيسك", "جافا"],
+            "correct_answer": "سكراتش",
+            "standard": 13
+        },
+        {
+            "id": 540,
+            "question": "ما هو العلم الذي يهتم بإخفاء الرسائل (البيانات) وتعتيمها أثناء نقلها أو تبادلها على الشبكة؟",
+            "options": ["Encryption", "DE Encryption", "Steganography", "غير ذلك"],
+            "correct_answer": "Steganography",
+            "standard": 7
+        },
+        {
+            "id": 541,
+            "question": "في لغة SQL، ما هو تأثير الكود الآتي: SELECT * FROM teacher ORDER BY name DESC؟",
+            "options": ["جلب أسماء المعلمين تنازليا", "جلب بيانات المعلمين", "جلب بيانات المعلمين حسب الاسم تصاعديا", "جلب بيانات المعلمين حسب الاسم تنازليا"],
+            "correct_answer": "جلب بيانات المعلمين حسب الاسم تنازليا",
+            "standard": 6
+        },
+        {
+            "id": 542,
+            "question": "أي من الخيارات التالية لا يعتبر من أهداف مبادرة إنتل للتعليم؟",
+            "options": ["تعويد المعلمين لمناهج المتمركز", "تدريب الطلاب على مهارات القرن 21", "أن يتعلم الطلاب التخطيط والإدارة لمشروعاتهم التجارية الخاصة", "تدريب الطلاب على مهارات القرن ۲۱"],
+            "correct_answer": "أن يتعلم الطلاب التخطيط والإدارة لمشروعاتهم التجارية الخاصة",
+            "standard": 11
+        },
+        {
+            "id": 543,
+            "question": "لتحويل عرض تقديمي في برنامج PowerPoint من عرض خطي إلى عرض تشعبي (غير خطي)، ما هي الميزة التي نستخدمها؟",
+            "options": ["أزرار الإجراءات", "عرض الشرائح", "تصميم", "غير ذلك"],
+            "correct_answer": "أزرار الإجراءات",
+            "standard": 9
+        },
+        {
+            "id": 544,
+            "question": "أي من الخيارات التالية يعتبر متصفح ويب؟",
+            "options": ["Yahoo", "Google", "Microsoft Edge", "SQL server"],
+            "correct_answer": "Microsoft Edge",
+            "standard": 9
+        },
+        {
+            "id": 545,
+            "question":"أي مما يلي لا يعتبر لغة برمجة أو نظام إدارة قواعد بيانات؟",
+            "options": ["python", "C", "SQL server", "غير ذلك"],
+            "correct_answer": "غير ذلك",
+            "standard": 5
+        },
+        {
+            "id": 546,
+            "question": "أي من التقنيات التالية تستخدم في أجهزة Google Chromebook؟",
+            "options": ["النانو", "نظام التشغيل", "الواقع المعزز", "الحوسبة السحابية"],
+            "correct_answer": "الحوسبة السحابية",
+            "standard": 9
+        },
+        {
+            "id": 547,
+            "question":"في التشفير باستخدام المفتاح العام والخاص، أي مفتاح يستخدمه المستقبل لفك تشفير الرسالة؟",
+            "options": ["المفتاح العام", "المفتاح الخاص", "التوقيع الرقمي", "غير ذلك"],
+            "correct_answer": "المفتاح الخاص",
+            "standard": 7
+        },
+        {
+            "id": 548,
+            "question": "أي من البروتوكولات التالية يعتبر عالي الأمان في نقل البيانات؟",
+            "options": ["TLC", "FTP", "DLC", "HTTPS"],
+            "correct_answer":"HTTPS",
+            "standard": 7
+        },
+        {
+            "id": 549,
+            "question": "في أي مجال يمكن الاستفادة من موقع Google Sites بشكل أساسي؟",
+            "options": ["ملف إنجاز", "تجميع برنامج", "تطبيق", "مكتبة رقمية"],
+            "correct_answer":"ملف إنجاز",
+            "standard": 11
+        },
+        {
+            "id": 550,
+            "question": "أي من المسجلات التالية في وحدة المعالجة المركزية (CPU) يحتوي على عنوان التعليمة التالية التي سيتم تنفيذها؟",
+            "options": ["Program Counter", "Instruction Register", "Decoder", "Accumulator Register"],
+            "correct_answer": "Program Counter",
+            "standard": 3
+        },
+        {
+            "id": 551,
+            "question": "أي من البرامج التالية تستخدم لإنشاء عروض تقديمية تفاعلية؟",
+            "options": ["Prezi", "PowerPoint", "Microsoft word", "Adobe animate"],
+            "correct_answer": "Prezi",
+            "standard": 9
+        },
+        {
+            "id": 552,
+            "question": "أي من البرامج التالية يستخدم عادة لإدارة معامل الحاسب والتحكم بها عن بعد؟",
+            "options": ["Net Support", "Google classroom", "Microsoft teams", "Zoom"],
+            "correct_answer": "Net Support",
+            "standard": 9
+        },
+        {
+            "id": 553,
+            "question": "أي من الخيارات التالية يعتبر من الوظائف الرئيسية لطبقة الشبكة (Network Layer) في نموذج OSI؟",
+            "options": ["اختيار مسار إرسال البيانات", "تشفير البيانات المراد إرسالها", "ضمان سلامة نقل البيانات", "غير ذلك"],
+            "correct_answer": "اختيار مسار إرسال البيانات",
+            "standard": 4
+        },
+        {
+            "id": 554,
+            "question": "أي من بروتوكولات الإنترنت التالية يستخدم لجلب صفحة ويب من خادم وزارة التعليم إلى جهاز الحاسب الآلي الخاص بمدير المدرسة؟",
+            "options": ["HTTP", "SMTP", "FTP", "غير ذلك"],
+            "correct_answer": "HTTP",
+            "standard": 4
+        },
+        {
+            "id": 555,
+            "question": "أي من الإضافات التالية تستخدم لمنع ظهور النوافذ المنبثقة المزعجة في المتصفحات؟",
+            "options": ["AdBlock", "جدار الحماية", "تغيير المتصفح", "غير ذلك"],
+            "correct_answer": "AdBlock",
+            "standard": 9
+        },
+        {
+            "id": 556,
+            "question": "أي من كلمات المرور التالية تعتبر الأقوى والأكثر أمانًا؟",
+            "options": ["12345", "Sh667", "AT1234", "Sh@667"],
+            "correct_answer": "Sh@667",
+            "standard": 7
+        },
+        {
+            "id": 557,
+            "question": "من أمثلة الدوائر التتابعية (التسلسلية):",
+            "options": ["الجوامع", "المسجلات", "المفرق", "فاك الشفرة"],
+            "correct_answer": "المسجلات",
+            "standard": 2
+        },
+        {
+            "id": 558,
+            "question": "ما هو ناتج جمع العددين 100 + 110 في النظام الثنائي؟",
+            "options": ["1011", "1100", "1010", "1000"],
+            "correct_answer": "1010",
+            "standard": 1
+        },
+        {
+            "id": 559,
+            "question": "ما هي الوظيفة الأساسية لوحدة المعالجة المركزية (CPU)؟",
+            "options": ["تحويل التيار الكهربائي", "إظهار المعلومات للمستخدم والحساب", "القيام بعمليات المعالجة", "إظهار المعلومات للجهاز"],
+            "correct_answer": "القيام بعمليات المعالجة",
+            "standard": 3
+        },
+        {
+            "id": 560,
+            "question": "ما هو الترتيب الصحيح للعمليات التي تنفذها وحدة المعالجة المركزية (CPU)؟",
+            "options": ["جلب-تنفيذ- تفسير", "جلب-تفسير - تنفيذ", "تفسير-جلب-تنفيذ", "تنفيذ- جلب-تفسير"],
+            "correct_answer": "جلب-تفسير - تنفيذ",
+            "standard": 3
+        },
+        {
+            "id": 561,
+            "question": "ما هو المصطلح الذي يطلق على الزمن المستغرق في تبادل البيانات بين المعالج والقرص الصلب؟",
+            "options": ["زمن الوصول", "زمن البحث", "زمن نقل البيانات", "زمن الاسترجاع"],
+            "correct_answer": "زمن نقل البيانات",
+            "standard": 3
+        },
+        {
+            "id": 562,
+            "question": "كيف تكون سعة الذاكرة الرئيسية (RAM) مقارنة بسعة الذاكرة الخارجية (مثل القرص الصلب)؟",
+            "options": ["أكبر", "أقل", "تساويها", "غير محدد"],
+            "correct_answer": "أقل",
+            "standard": 3
+        },
+        {
+            "id": 563,
+            "question": "أين يتم تخزين نتيجة عملية حسابية بشكل مؤقت داخل المعالج؟",
+            "options": ["وحدة الحساب والمنطق", "ناقل البيانات", "الذاكرة الرئيسية", "المسجلات (Registers)"],
+            "correct_answer": "المسجلات (Registers)",
+            "standard": 3
+        },
+        {
+            "id": 564,
+            "question": "بأي وحدة قياس تقاس سرعة وحدة المعالجة المركزية (CPU)؟",
+            "options": ["الجيجاهرتز", "النبضة", "تردد الساعة", "الشحنة"],
+            "correct_answer": "الجيجاهرتز",
+            "standard": 3
+        },
+        {
+            "id": 565,
+            "question":"بأي وحدة قياس تقاس دورة العمليات في المعالج؟",
+            "options": ["الجيجاهرتز", "النبضة", "تردد الساعة", "الشحنة"],
+            "correct_answer": "النبضة",
+            "standard": 3
+        },
+        {
+            "id": 566,
+            "question": "في الحاسب، أي من الأجهزة التالية يتم توصيله عادةً بمنفذ PS/2؟",
+            "options": ["الفأرة", "الشاشة", "السماعات", "الميكروفون"],
+            "correct_answer": "الفأرة",
+            "standard": 3
+        },
+        {
+            "id": 567,
+            "question": "أي من الأجهزة التالية يتم توصيلها عادة بمنفذ VGA في الحاسب؟",
+            "options": ["الفأرة", "الشاشة", "السماعات", "الميكروفون"],
+            "correct_answer": "الشاشة",
+            "standard": 3
+        },
+        {
+            "id": 568,
+            "question": "أي من الخيارات التالية لا تعتبر من وحدات المعالج المركزية (CPU)؟",
+            "options": ["وحدة التخزين", "وحدة التحكم", "وحدة الحساب والمنطق", "وحدة المسجلات"],
+            "correct_answer": "وحدة التخزين",
+            "standard": 3
+        },
+        {
+            "id": 569,
+            "question": "ما هي سعة التخزين التقريبية في القرص المضغوط القابل لإعادة الكتابة (CD-RW)؟",
+            "options": ["4.7MB", "700MB", "4.7GB", "700GB"],
+            "correct_answer":"700MB",
+            "standard": 3
+        },
+        {
+            "id": 570,
+            "question": "أي من أنواع الذواكر التالية تعتبر الأسرع في الوصول إلى البيانات؟",
+            "options": ["ذاكرة الوصول العشوائي", "ذاكرة المسجلات", "ذاكرة القراءة فقط", "الذاكرة المخبأة"],
+            "correct_answer": "ذاكرة المسجلات",
+            "standard": 3
+        },
+        {
+            "id": 571,
+            "question": "أي من أنواع الذاكرة التالية يقع جزء منها داخل شريحة المعالج وجزء آخر على اللوحة الأم؟",
+            "options": ["ذاكرة الكاش", "ذاكرة RAM", "ذاكرة ROM", "ذاكرة الفلاش"],
+            "correct_answer": "ذاكرة الكاش",
+            "standard": 3
+        },
+        {
+            "id": 572,
+            "question": "ما هو المكون الذي يستخدم لتبريد المعالج ويتكون من شريحة معدنية ملتصقة بالمعالج؟",
+            "options": ["المشتت الحراري", "المعالج", "مولد الطاقة", "المكثف"],
+            "correct_answer": "المشتت الحراري",
+            "standard": 3
+        },
+        {
+            "id": 573,
+            "question":"أي من الخيارات التالية تعتبر من طرق التبريد المستخدمة في المعالج؟",
+            "options": ["التبريد بالماء", "المشتت الحراري", "التبريد بالهواء", "جميع ما سبق"],
+            "correct_answer": "جميع ما سبق",
+            "standard": 3
+        },
+        {
+            "id": 574,
+            "question": "عندما تمر البيانات إلى المعالج لتنفيذها، أين يتم حفظها بشكل مؤقت قبل المعالجة؟",
+            "options": ["وحدة التحكم", "وحدة التخزين", "وحدة الحساب والمنطق", "وحدة المسجلات"],
+            "correct_answer": "وحدة المسجلات",
+            "standard": 3
+        },
+        {
+            "id": 575,
+            "question":"أين يوجد برنامج الإقلاع (Booting) في نظام الحاسب؟",
+            "options": ["ذاكرة ROM", "ذاكرة RAM", "ذاكرة الكاش", "ذاكرة الروم الثابتة"],
+            "correct_answer": "ذاكرة ROM",
+            "standard": 3
+        },
+        {
+            "id": 576,
+            "question":"بأي طريقة تخزن ذاكرة الوصول العشوائي الديناميكية (DRAM) المعلومات؟",
+            "options": ["بيانات", "أشعة", "شحنات", "موجات كهرومغناطيسية"],
+            "correct_answer": "شحنات",
+            "standard": 3
+        },
+        {
+            "id": 577,
+            "question": "أي من المسجلات التالية في وحدة المعالجة المركزية (CPU) يقوم بتخزين نتائج العمليات الحسابية والمنطقية؟",
+            "options": ["instruction register", "Accumulator register", "Program Counter", "instruction decoder"],
+            "correct_answer": "Accumulator register",
+            "standard": 3
+        },
+        {
+            "id": 578,
+            "question": "كيف تكون سرعة الوصول إلى البيانات في الذاكرة الثانوية (مثل القرص الصلب) مقارنة بالذاكرة الرئيسية (RAM)؟",
+            "options": ["أسرع من الذاكرة الرئيسة", "أبطأ من الذاكرة الرئيسة", "مساوية لسرعة الذاكرة الرئيسية", "لا علاقة"],
+            "correct_answer": "أبطأ من الذاكرة الرئيسة",
+            "standard": 3
+        },
+        {
+            "id": 579,
+            "question":"أي من الأزمنة التالية يعتبر الأطول في عملية الوصول للبيانات من الذاكرة؟",
+            "options": ["زمن الوصول", "زمن نقل البيانات", "زمن البحث", "زمن الاسترجاع"],
+            "correct_answer": "زمن الوصول",
+            "standard": 3
+        },
+        {
+            "id": 580,
+            "question": "ما هو الإصدار الأحدث والأسرع من الناقل التسلسلي العالمي (USB)؟",
+            "options": ["USB3", "USB2", "USB-A", "USB-C"],
+            "correct_answer": "USB3",
+            "standard": 3
+        },
+        {
+            "id": 581,
+            "question": "أي من المسجلات التالية في وحدة المعالجة المركزية (CPU) يحتوي على عنوان التعليمات التالية التي سيتم تنفيذها؟",
+            "options": ["instruction register", "Program Counter", "instruction decoder", "Accumulator register"],
+            "correct_answer": "Program Counter",
+            "standard": 3
+        },
+        {
+            "id": 582,
+            "question": "ما هو نوع الشبكة الذي يوجد به مستودع مركزي ونظام حماية مركزي، ويتم الدخول إلى الملفات والأجهزة المتصلة من خلال تصريح معين؟",
+            "options": ["شبكة الخادم والعميل", "شبكة الند للند", "شبكة محلية", "شبكة عالمية"],
+            "correct_answer": "شبكة الخادم والعميل",
+            "standard": 4
+        },
+        {
+            "id": 583,
+            "question": "أي من أنواع الشبكات التالية تستخدم عادةً لربط فروع شركة داخل مدينة واحدة مثل الدمام؟",
+            "options": ["PAN", "MAN", "LAN", "WAN"],
+            "correct_answer": "MAN",
+            "standard": 4
+        },
+        {
+            "id": 584,
+            "question": "أي من أنواع التوصيل الشبكي التالية تصف مجموعة أجهزة متصلة مع بعضها على التوالي والإشارة تسير في اتجاه واحد؟",
+            "options": ["RING Topology", "BUS Topology", "STAR Topology", "MESH Topology"],
+            "correct_answer": "RING Topology",
+            "standard": 4
+        },
+        {
+            "id": 585,
+            "question": "أي من الأجهزة التالية عند استلامه لرسالة من أحد منافذه يقوم بإرسالها إلى جميع المنافذ الأخرى؟",
+            "options": ["الموجه (Router)", "المبدل (Switch)", "الموزع (Hub)", "مفتاح المرور"],
+            "correct_answer": "الموزع (Hub)",
+            "standard": 4
+        },
+        {
+            "id": 586,
+            "question": "أي من أنواع التوصيل الشبكي التالية تكون أجهزة الحاسب فيها مربوطة بنقطة اتصال مركزية مثل Hub أو Switch؟",
+            "options": ["STAR Topology", "MESH Topology", "BUS Topology", "RING Topology"],
+            "correct_answer": "STAR Topology",
+            "standard": 4
+        },
+        {
+            "id": 587,
+            "question": "أي من الأجهزة التالية يعتبر الأذكى في عملية الربط الشبكي؟",
+            "options": ["الموجه (Router)", "المبدل (Switch)", "الموزع (Hub)", "جهاز الجسر (Gateway)"],
+            "correct_answer": "المبدل (Switch)",
+            "standard": 4
+        },
+        {
+            "id": 588,
+            "question": "ما هي وظيفة المقاوم الطرفي (terminator) الموجود في نهاية تصميم شبكة Bus؟",
+            "options": ["توزيع الإشارة", "توسيع الإشارة", "تردد (امتصاص) الإشارة", "فتح الإشارة"],
+            "correct_answer": "تردد (امتصاص) الإشارة",
+            "standard": 4
+        },
+        {
+            "id": 589,
+            "question": "أي طبقة من نموذج OSI يكون فيها شكل البيانات على هيئة مقاطع (segments)؟",
+            "options": ["طبقة الشبكة (Network Layer)", "طبقة العرض (Presentation Layer)", "طبقة النقل (Transport Layer)", "الطبقة الفيزيائية (Physical Layer)"],
+            "correct_answer": "طبقة النقل (Transport Layer)",
+            "standard": 4
+        },
+        {
+            "id": 590,
+            "question":"أي طبقة من نموذج OSI يكون فيها شكل البيانات على هيئة إطارات (frames)؟",
+            "options": ["طبقة التطبيقات", "طبقة ربط البيانات (Data Link Layer)", "طبقة الجلسة", "طبقة البث"],
+            "correct_answer": "طبقة ربط البيانات (Data Link Layer)",
+            "standard": 4
+        },
+        {
+            "id": 591,
+            "question":"أي طبقة من نموذج OSI يتم فيها تحديد المكونات الميكانيكية والكهربائية وتستخدم فيها الكابلات والموصلات؟",
+            "options": ["طبقة الشبكة (Network Layer)", "طبقة العرض (Presentation Layer)", "الطبقة الفيزيائية (Physical Layer)", "طبقة النقل (Transport Layer)"],
+            "correct_answer": "الطبقة الفيزيائية (Physical Layer)",
+            "standard": 4
+        },
+        {
+            "id": 592,
+            "question": "من أي طبقتين فرعيتين تتكون طبقة ربط البيانات (Data Link Layer) في نموذج OSI؟",
+            "options": ["مراقب MAC", "مراقب LLC", "مراقب MAC ومراقب LLC", "مراقب IP"],
+            "correct_answer": "مراقب MAC ومراقب LLC",
+            "standard": 4
+        },
+        {
+            "id": 593,
+            "question": "ما هو المصطلح الذي يطلق على عملية تعتيم أو إخفاء محتوى ملف باستخدام خوارزمية معينة؟",
+            "options": ["Hash", "Compressing", "Cryptography", "Encoding"],
+            "correct_answer": "Cryptography",
+            "standard": 7
+        },
+        {
+            "id": 594,
+            "question":"ما هو المصطلح الذي يطلق على الرسائل المزعجة وغير المرغوب فيها التي تصل إلى البريد الإلكتروني؟",
+            "options": ["Email", "Virus", "Spam", "Phishing"],
+            "correct_answer": "Spam",
+            "standard": 7
+        },
+        {
+            "id": 595,
+            "question": "ما هو نوع الشبكة المحلية التي تتكون فيها الأجهزة من نظراء، أي أن كل جهاز يعمل كعميل وخادم في نفس الوقت؟",
+            "options": ["WAN", "Internet", "Peer-to-peer", "Client-Server"],
+            "correct_answer": "Peer-to-peer",
+            "standard": 4
+        },
+        {
+            "id": 596,
+            "question": "ما هو المصطلح الذي يطلق على عدد العمليات التي يتم تنفيذها في وحدة المعالجة المركزية (CPU) خلال ثانية واحدة؟",
+            "options": ["Response Time", "Throughput", "Processor Speed", "Transfer rate"],
+            "correct_answer": "Processor Speed",
+            "standard": 3
+        },
+        {
+            "id": 597,
+            "question":"عند إنشاء شبكة حاسب محلية في المدرسة، أي من الأجهزة التالية لا يتم استخدامه بشكل أساسي؟",
+            "options": ["Switch", "Router", "Bridge", "Access Point"],
+            "correct_answer": "Bridge",
+            "standard": 4
+        },
+        {
+            "id": 598,
+            "question": "إذا أراد المعلم الحصول على دورات مجانية لتطوير مهاراته، فما هي المنصات التعليمية المفتوحة التي يمكنه استخدامها؟",
+            "options": ["YouTube", "Microsoft Learn", "MOOCs", "Google Classroom"],
+            "correct_answer": "MOOCs",
+            "standard": 11
+        },
+        {
+            "id": 599,
+            "question": "ما هو المصطلح الذي يطلق على العيب البرمجي في نظام التشغيل الذي يسمح لغير المخولين بالدخول إلى النظام بدون كلمة مرور؟",
+            "options": ["Malware", "Vulnerability", "Threat", "Exploit"],
+            "correct_answer":"Vulnerability",
+            "standard": 7
+        },
+        {
+            "id": 600,
+            "question": "ما هو المصطلح الذي يطلق على الطابور الذي يحتوي على العمليات الجاهزة للتنفيذ في نظام التشغيل؟",
+            "options": ["Ready Queue", "Waiting Queue", "Blocked Queue", "Running Queue"],
+            "correct_answer": "Ready Queue",
+            "standard": 8
+        },
+        {
+            "id": 601,
+            "question": "ما الذي يحتويه ملف الإنجاز (Portfolio) عادةً؟",
+            "options": ["Student Data", "Syllabus", "Teacher’s Notes", "Student’s Work Sample"],
+            "correct_answer": "Student’s Work Sample",
+            "standard": 11
+        },
+        {
+            "id": 602,
+            "question": "إذا كان لديك طابور (Queue) يحتوي على عنصرين X و Y، وتمت إضافة العنصر Z، فما هو شكل الطابور بعد الإضافة؟",
+            "options": ["X-Y-Z", "Y-Z-X", "Z-X-Y", "X-Z-Y"],
+            "correct_answer": "X-Y-Z",
+            "standard": 5
+        },
+        {
+            "id": 603,
+            "question": "أي من هياكل البيانات التالية يمثل طابور المرضى في طوارئ المستشفى بشكل أفضل؟",
+            "options": ["LIFO", "Priority Queue", "Queue", "Stack"],
+            "correct_answer": "Priority Queue",
+            "standard": 5
+        },
+        {
+            "id": 604,
+            "question": "أي من الخيارات التالية يعتبر مثالًا على برنامج يستخدم لإنشاء فصول افتراضية متزامنة (تفاعلية في الوقت الفعلي)؟",
+            "options": ["Zoom & Google Meet", "Google Classroom", "Edmodo", "MOODLE"],
+            "correct_answer": "Zoom & Google Meet",
+            "standard": 9
+        },
+        {
+            "id": 605,
+            "question":"أي نوع من التقويم يستخدم لتحسين عملية التعلم أثناء الدرس؟",
+            "options": ["Summative", "Diagnostic", "Formative", "Normative"],
+            "correct_answer": "Formative",
+            "standard": 12
+        },
+        {
+            "id": 606,
+            "question": "أي من أنظمة التشغيل التالية يعتبر نظامًا متعدد المستخدمين والمهام؟",
+            "options": ["Windows", "Linux", "DOS", "Mac OS"],
+            "correct_answer": "Linux",
+            "standard": 8
+        },
+        {
+            "id": 607,
+            "question": "لنفترض أن لديك مكدس (Stack) يتكون من ثلاث خانات، وهو ممتلئ حاليًا بثلاثة عناصر. إذا قمت بإضافة عنصر آخر إلى هذا المكدس، فماذا سيحدث؟",
+            "options": ["Underflow", "Empty", "Overflow", "Full"],
+            "correct_answer": "Overflow",
+            "standard": 5
+        },
+        {
+            "id": 608,
+            "question": "إذا كانت العلاقة بين 'طفل' و 'شاب' هي علاقة تطور ونمو، فما هي العلاقة المشابهة في علوم الحاسب؟",
+            "options": ["Data Security", "Router & Modems", "Algorithm & Programming", "Network Devices"],
+            "correct_answer": "Algorithm & Programming",
+            "standard": 15
+        },
+        {
+            "id": 609,
+            "question": "ما هي الأجزاء الرئيسية الثلاثة التي يتكون منها نظام التشغيل يونكس (Unix)؟",
+            "options": ["Shell, Kernel, Utility", "Shell, Programs, Processor", "Shell, Kernel, Devices", "Shell, Memory, Data"],
+            "correct_answer": "Shell, Kernel, Utility",
+            "standard": 8
+        },
+        {
+            "id": 610,
+            "question": "أي من الخيارات التالية تعتبر منصة للدروس الجماعية الإلكترونية؟",
+            "options": ["Blackboard", "Canvas", "MOOCs", "Edmodo"],
+            "correct_answer": "MOOCs",
+            "standard": 11
+        }
+]

@@ -1,0 +1,1683 @@
+[
+  {
+    "id": 739,
+    "question": "في أي طبقة من نموذج OSI تعمل تقنية Token Ring بشكل رئيسي؟",
+    "options": [
+      "طبقة الجلسة (Session Layer)",
+      "طبقة الشبكة (Network Layer)",
+      "الطبقة الفيزيائية (Physical Layer)",
+      "طبقة ربط البيانات (Data Link Layer)"
+    ],
+    "correct_answer": "طبقة ربط البيانات (Data Link Layer)",
+    "standard": 4
+  },
+  {
+    "id": 740,
+    "question": "في أي طبقة من نموذج OSI تعمل تقنية X.25؟",
+    "options": [
+      "طبقة الجلسة (Session Layer)",
+      "طبقة الشبكة (Network Layer)",
+      "الطبقة الفيزيائية (Physical Layer)",
+      "طبقة ربط البيانات (Data Link Layer)"
+    ],
+    "correct_answer": "طبقة الشبكة (Network Layer)",
+    "standard": 4
+  },
+  {
+    "id": 741,
+    "question": "ما هي وحدة البيانات (PDU) المستخدمة في طبقة ربط البيانات (Data Link Layer) في نموذج OSI؟",
+    "options": [
+      "SEGMENT",
+      "PACKET",
+      "BIT",
+      "FRAME"
+    ],
+    "correct_answer": "FRAME",
+    "standard": 4
+  },
+  {
+    "id": 742,
+    "question": "لنفترض أن جهازًا محمولًا يرسل ملفًا نصيًا باستخدام نظام التراسل ASCII، لكن الجهاز المستقبل يعمل بنظام EBCDIC. في أي طبقة من طبقات OSI يتم ضمان تحويل الملف إلى الصيغة الصحيحة والمفهومة؟",
+    "options": [
+      "طبقة الجلسة (Session Layer)",
+      "طبقة الشبكة (Network Layer)",
+      "الطبقة الفيزيائية (Physical Layer)",
+      "طبقة العرض (Presentation Layer)"
+    ],
+    "correct_answer": "طبقة العرض (Presentation Layer)",
+    "standard": 4
+  },
+  {
+    "id": 743,
+    "question": "عند إرسال بريد إلكتروني، أي من البروتوكولات التالية يفضل استخدامه لضمان وصول الرسالة بشكل موثوق؟",
+    "options": [
+      "TCP",
+      "UDP",
+      "DNS",
+      "IGRP"
+    ],
+    "correct_answer": "TCP",
+    "standard": 4
+  },
+  {
+    "id": 744,
+    "question": "أي من الخيارات التالية يمثل الوظيفة الأساسية لجهاز الجسر (Bridge)؟",
+    "options": [
+      "Path Selection and Frames Switching",
+      "Path Selection and Packet Switching",
+      "Path Selection and Data Switching",
+      "Path Selection and Bit Switching"
+    ],
+    "correct_answer": "Path Selection and Frames Switching",
+    "standard": 4
+  },
+  {
+    "id": 745,
+    "question": "أي من الخيارات التالية يمثل الوظيفة الأساسية لجهاز المجمع (HUB)؟",
+    "options": [
+      "Path Selection and Frames Switching",
+      "Path Selection and Packet Switching",
+      "Path Selection and Data Switching",
+      "Path Selection and Bit Switching"
+    ],
+    "correct_answer": "Path Selection and Bit Switching",
+    "standard": 4
+  },
+  {
+    "id": 746,
+    "question": "في نموذج TCP/IP، في أي طبقة يعمل جهاز الجسر (Bridge) بشكل أساسي؟",
+    "options": [
+      "الشبكة (Internet)",
+      "ربط البيانات (Data Link)",
+      "الطبقة المادية (Physical)",
+      "الوصول للشبكة (Network Access)"
+    ],
+    "correct_answer": "ربط البيانات (Data Link)",
+    "standard": 4
+  },
+  {
+    "id": 747,
+    "question": "وفقًا لنموذج TCP/IP، أي من البروتوكولات التالية يعمل في طبقة النقل (Transport Layer)؟",
+    "options": [
+      "FTP",
+      "KMP",
+      "TCP",
+      "SMTP"
+    ],
+    "correct_answer": "TCP",
+    "standard": 4
+  },
+  {
+    "id": 748,
+    "question": "أي من الخيارات التالية يمثل الوظيفة الأساسية لجهاز الموجه (Router)؟",
+    "options": [
+      "Path Selection and Frames Switching",
+      "Path Selection and Packet Switching",
+      "Path Selection and Data Switching",
+      "Path Selection and Bit Switching"
+    ],
+    "correct_answer": "Path Selection and Packet Switching",
+    "standard": 4
+  },
+  {
+    "id": 749,
+    "question": "ما هي وحدة البيانات (PDU) المستخدمة في طبقة ربط البيانات (Data Link Layer) في نموذج OSI؟",
+    "options": [
+      "Segment",
+      "Packet",
+      "Bit",
+      "Frame"
+    ],
+    "correct_answer": "Frame",
+    "standard": 4
+  },
+  {
+    "id": 750,
+    "question": "في نموذج OSI، ما هي الطبقة الأولى (الأدنى)؟",
+    "options": [
+      "طبقة الجلسة (Session Layer)",
+      "طبقة الشبكة (Network Layer)",
+      "الطبقة الفيزيائية (Physical Layer)",
+      "طبقة ربط البيانات (Data Link Layer)"
+    ],
+    "correct_answer": "الطبقة الفيزيائية (Physical Layer)",
+    "standard": 4
+  },
+  {
+    "id": 751,
+    "question": "في نموذج OSI، في أي طبقة يعمل جهاز المبدل (Switch) بشكل أساسي؟",
+    "options": [
+      "طبقة الجلسة (Session Layer)",
+      "طبقة الشبكة (Network Layer)",
+      "الطبقة الفيزيائية (Physical Layer)",
+      "طبقة النقل (Transport Layer)"
+    ],
+    "correct_answer": "طبقة ربط البيانات (Data Link Layer)",
+    "standard": 4
+  },
+  {
+    "id": 752,
+    "question": "ما هي وحدة البيانات (PDU) المستخدمة في طبقة النقل (Transport Layer) في نموذج OSI؟",
+    "options": [
+      "Segment",
+      "Packets",
+      "Bits",
+      "Frame"
+    ],
+    "correct_answer": "Segment",
+    "standard": 4
+  },
+  {
+    "id": 753,
+    "question": "في نموذج OSI، ما هي الطبقة الرابعة؟",
+    "options": [
+      "طبقة الجلسة (Session Layer)",
+      "طبقة الشبكة (Network Layer)",
+      "الطبقة الفيزيائية (Physical Layer)",
+      "طبقة النقل (Transport Layer)"
+    ],
+    "correct_answer": "طبقة النقل (Transport Layer)",
+    "standard": 4
+  },
+  {
+    "id": 754,
+    "question": "وفقًا لنموذج TCP/IP، أي من البروتوكولات التالية يعمل في طبقة التطبيق (Application Layer)؟",
+    "options": [
+      "TCP",
+      "ICMP",
+      "FTP",
+      "UDP"
+    ],
+    "correct_answer": "FTP",
+    "standard": 4
+  },
+  {
+    "id": 755,
+    "question": "في نموذج OSI، في أي طبقة يعمل جهاز المجمع (HUB) بشكل أساسي؟",
+    "options": [
+      "طبقة الشبكة (Network Layer)",
+      "طبقة ربط البيانات (Data Link Layer)",
+      "طبقة التطبيق (Application Layer)",
+      "الطبقة الفيزيائية (Physical Layer)"
+    ],
+    "correct_answer": "الطبقة الفيزيائية (Physical Layer)",
+    "standard": 4
+  },
+  {
+    "id": 756,
+    "question": "في نموذج TCP/IP، في أي طبقة يعمل جهاز المجمع (HUB) بشكل أساسي؟",
+    "options": [
+      "الشبكة (Internet)",
+      "ربط البيانات (Data Link)",
+      "الطبقة المادية (Physical)",
+      "الوصول للشبكة (Network Access)"
+    ],
+    "correct_answer": "الوصول للشبكة (Network Access)",
+    "standard": 4
+  },
+  {
+    "id": 757,
+    "question": "في نموذج TCP/IP، في أي طبقة يعمل جهاز المبدل (Switch) بشكل أساسي؟",
+    "options": [
+      "الطبقة الفيزيائية",
+      "طبقة ربط البيانات",
+      "طبقة الشبكة",
+      "الإنترنت"
+    ],
+    "correct_answer": "الوصول للشبكة (Network Access)",
+    "standard": 4
+  },
+  {
+    "id": 758,
+    "question": "في نموذج OSI، في أي طبقة يعمل جهاز المبدل (Switch) بشكل أساسي؟",
+    "options": [
+      "الطبقة الفيزيائية",
+      "طبقة ربط البيانات",
+      "طبقة الشبكة",
+      "الإنترنت"
+    ],
+    "correct_answer": "طبقة ربط البيانات (Data Link Layer)",
+    "standard": 4
+  },
+  {
+    "id": 759,
+    "question": "في نموذج TCP/IP، في أي طبقة يعمل جهاز الجسر (Bridge) بشكل أساسي؟",
+    "options": [
+      "الطبقة الفيزيائية",
+      "طبقة التطبيق",
+      "طبقة الشبكة",
+      "الإنترنت"
+    ],
+    "correct_answer": "الوصول للشبكة (Network Access)",
+    "standard": 4
+  },
+  {
+    "id": 760,
+    "question": "في نموذج OSI، في أي طبقة يعمل جهاز الجسر (Bridge) بشكل أساسي؟",
+    "options": [
+      "الطبقة الفيزيائية",
+      "طبقة التطبيق",
+      "طبقة الشبكة",
+      "طبقة ربط البيانات"
+    ],
+    "correct_answer": "طبقة ربط البيانات (Data Link Layer)",
+    "standard": 4
+  },
+  {
+    "id": 761,
+    "question": "في نموذج TCP/IP، ما هي الطبقة الثالثة؟",
+    "options": [
+      "طبقة الجلسة (Session Layer)",
+      "طبقة الشبكة (Network Layer)",
+      "الطبقة الفيزيائية (Physical Layer)",
+      "طبقة النقل (Transport Layer)"
+    ],
+    "correct_answer": "الشبكة (Internet)",
+    "standard": 4
+  },
+  {
+    "id": 762,
+    "question": "في نموذج OSI، ما هي الطبقة الثالثة؟",
+    "options": [
+      "طبقة الجلسة (Session Layer)",
+      "طبقة الشبكة (Network Layer)",
+      "الإنترنت (Internet)",
+      "طبقة النقل (Transport Layer)"
+    ],
+    "correct_answer": "طبقة الشبكة (Network Layer)",
+    "standard": 4
+  },
+  {
+    "id": 763,
+    "question": "في نموذج OSI، في أي طبقة يعمل جهاز الموجه (Router) بشكل أساسي؟",
+    "options": [
+      "طبقة الجلسة (Session Layer)",
+      "طبقة الشبكة (Network Layer)",
+      "الطبقة الفيزيائية (Physical Layer)",
+      "طبقة النقل (Transport Layer)"
+    ],
+    "correct_answer": "طبقة الشبكة (Network Layer)",
+    "standard": 4
+  },
+  {
+    "id": 764,
+    "question": "في نموذج TCP/IP، في أي طبقة يعمل جهاز الموجه (Router) بشكل أساسي؟",
+    "options": [
+      "طبقة الجلسة (Session Layer)",
+      "طبقة الشبكة (Network Layer)",
+      "الإنترنت (Internet)",
+      "طبقة النقل (Transport Layer)"
+    ],
+    "correct_answer": "الشبكة (Internet)",
+    "standard": 4
+  },
+  {
+    "id": 765,
+    "question": "ما هي وحدة البيانات (PDU) المستخدمة في الطبقة الفيزيائية (Physical Layer) في نموذج OSI؟",
+    "options": [
+      "Bits",
+      "Packet",
+      "Frame",
+      "Segment"
+    ],
+    "correct_answer": "Bits",
+    "standard": 4
+  },
+  {
+    "id": 766,
+    "question": "ما هي وحدة البيانات (PDU) المستخدمة في طبقة النقل (Transport Layer) في نموذج OSI؟",
+    "options": [
+      "Bits",
+      "Packet",
+      "Frame",
+      "Segment"
+    ],
+    "correct_answer": "Segment",
+    "standard": 4
+  },
+  {
+    "id": 767,
+    "question": "ما هو الترتيب الصحيح لعملية إرسال البيانات بين طبقات OSI في جهاز المرسل؟",
+    "options": [
+      "التطبيقات - التقديم - الجلسة - النقل - الشبكة - ربط البيانات - الفيزيائية",
+      "ربط البيانات - الفيزيائية - التقديم - التطبيقات - الشبكة",
+      "التقديم - التطبيقات - النقل - الفيزيائية - ربط البيانات",
+      "ربط البيانات – الشبكة - التطبيقات - التقديم - النقل - الفيزياية - الجلسة"
+    ],
+    "correct_answer": "التطبيقات - التقديم - الجلسة - النقل - الشبكة - ربط البيانات - الفيزيائية",
+    "standard": 4
+  },
+  {
+    "id": 768,
+    "question": "ما هي وحدة البيانات (PDU) المستخدمة في طبقة الجلسة (Session Layer) في نموذج OSI؟",
+    "options": [
+      "Bit",
+      "Packet",
+      "Data",
+      "Segment"
+    ],
+    "correct_answer": "Data",
+    "standard": 4
+  },
+  {
+    "id": 769,
+    "question": "ما هي وحدة البيانات (PDU) المستخدمة في طبقة العرض (Presentation Layer) في نموذج OSI؟",
+    "options": [
+      "Bit",
+      "Packet",
+      "Frame",
+      "Data"
+    ],
+    "correct_answer": "Data",
+    "standard": 4
+  },
+  {
+    "id": 770,
+    "question": "ما هي وحدة البيانات (PDU) المستخدمة في طبقة التطبيقات (Application Layer) في نموذج OSI؟",
+    "options": [
+      "Data",
+      "Packet",
+      "Frame",
+      "Segment"
+    ],
+    "correct_answer": "Data",
+    "standard": 4
+  },
+  {
+    "id": 771,
+    "question": "أي من البروتوكولات التالية يستخدم لضمان سلامة نقل البيانات (المظاريف) في الشبكة؟",
+    "options": [
+      "IP",
+      "URL",
+      "FTP",
+      "TCP"
+    ],
+    "correct_answer": "TCP",
+    "standard": 4
+  },
+  {
+    "id": 772,
+    "question": "أي من الأجهزة التالية يوجد في طبقة الشبكة (Network Layer) ويعمل على اختيار أفضل مسار لتمرير البيانات؟",
+    "options": [
+      "Switch",
+      "Router",
+      "Bridge",
+      "HUB"
+    ],
+    "correct_answer": "Router",
+    "standard": 4
+  },
+  {
+    "id": 773,
+    "question": "أي من البروتوكولات التالية يسمح لجهاز الحاسب بإرسال واستقبال المحادثات الصوتية عبر الإنترنت؟",
+    "options": [
+      "SOU",
+      "VOIP",
+      "NAT",
+      "TAC"
+    ],
+    "correct_answer": "VOIP",
+    "standard": 4
+  },
+  {
+    "id": 774,
+    "question": "أي من الخدمات التالية في شبكات Windows مسؤولة عن توزيع عناوين IP للأجهزة العميلة بشكل تلقائي؟",
+    "options": [
+      "SMTP",
+      "DHCP",
+      "NDS",
+      "NAT"
+    ],
+    "correct_answer": "DHCP",
+    "standard": 4
+  },
+  {
+    "id": 775,
+    "question": "ما هو المصطلح الذي يطلق على برنامج الحماية الذي يمكن تحميله على الشبكة للكشف عن الاختراقات ومنعها؟",
+    "options": [
+      "ATM",
+      "SDM",
+      "IOS",
+      "IDS"
+    ],
+    "correct_answer": "IDS",
+    "standard": 7
+  },
+  {
+    "id": 776,
+    "question": "أي من بروتوكولات التوجيه التالية يعتمد على حالة الوصلة (Link State Routing Protocol)؟",
+    "options": [
+      "RIP",
+      "OSPF",
+      "EGRP",
+      "IGRP"
+    ],
+    "correct_answer": "OSPF",
+    "standard": 4
+  },
+  {
+    "id": 777,
+    "question": "ما هو نوع التوجيه (Routing) الذي يتم فيه إدخال معلومات جدول التوجيه (Routing Table) تلقائيًا؟",
+    "options": [
+      "Dynamic",
+      "Static",
+      "Standard",
+      "Interior"
+    ],
+    "correct_answer": "Dynamic",
+    "standard": 4
+  },
+  {
+    "id": 778,
+    "question": "إذا كان خط اشتراك DSL يعمل بسرعة 2048 كيلوبت في الثانية، فما هو مقدار البيانات التي يستطيع نقلها في الثانية؟",
+    "options": [
+      "1024 كيلوبت",
+      "1024 كيلوبايت",
+      "2048 كيلوبت",
+      "2048 كيلوبايت"
+    ],
+    "correct_answer": "2048 كيلوبت",
+    "standard": 4
+  },
+  {
+    "id": 779,
+    "question": "ما هي العملية التي تقوم بإضافة رأس وتذييل لإنشاء إطار حول معلومات طبقة الشبكة في طبقة ربط البيانات؟",
+    "options": [
+      "ترميز الإشارة",
+      "تغليف البيانات",
+      "تعديل الإشارة",
+      "التحكم بالولوج للوسط"
+    ],
+    "correct_answer": "تغليف البيانات",
+    "standard": 4
+  },
+  {
+    "id": 780,
+    "question": "أي من التقنيات التالية لا تعتبر من تطبيقات الشبكات الواسعة (WAN)؟",
+    "options": [
+      "FDDI",
+      "Frame Relay",
+      "X.25",
+      "ATM"
+    ],
+    "correct_answer": "X.25",
+    "standard": 4
+  },
+  {
+    "id": 781,
+    "question": "بأي وحدة قياس تقاس سرعة الإنترنت عادةً؟",
+    "options": [
+      "Kbqs",
+      "kbps",
+      "kpbs",
+      "kqbs"
+    ],
+    "correct_answer": "kbps",
+    "standard": 4
+  },
+  {
+    "id": 782,
+    "question": "ما هو رقم المنفذ (Port) الخاص ببروتوكول HTTP؟",
+    "options": [
+      "110",
+      "80",
+      "23",
+      "443"
+    ],
+    "correct_answer": "80",
+    "standard": 4
+  },
+  {
+    "id": 783,
+    "question": "ما هو رقم المنفذ (Port) الخاص ببروتوكول HTTPS؟",
+    "options": [
+      "110",
+      "80",
+      "23",
+      "443"
+    ],
+    "correct_answer": "443",
+    "standard": 7
+  },
+  {
+    "id": 784,
+    "question": "عند إرسال بريد إلكتروني، أي من البروتوكولات التالية يفضل استخدامه لضمان وصول الرسالة بشكل موثوق؟",
+    "options": [
+      "TCP",
+      "UDP",
+      "Physical",
+      "Data Link"
+    ],
+    "correct_answer": "TCP",
+    "standard": 4
+  },
+  {
+    "id": 785,
+    "question": "ما هو البروتوكول الأساسي المستخدم في إرسال البريد الإلكتروني عبر TCP؟",
+    "options": [
+      "STP",
+      "SMTP",
+      "DNS",
+      "TELNET"
+    ],
+    "correct_answer": "SMTP",
+    "standard": 4
+  },
+  {
+    "id": 786,
+    "question": "ما هو الأمر المناسب للحصول على إعدادات TCP/IP على نظام Linux أو macOS؟",
+    "options": [
+      "If Config",
+      "Ping IP",
+      "IP Config",
+      "WinPctg"
+    ],
+    "correct_answer": "If Config",
+    "standard": 4
+  },
+  {
+    "id": 787,
+    "question": "ما هو نوع الكابل الذي يُستخدم عادةً لربط المجمع (HUB) مع الموجه (Router)؟",
+    "options": [
+      "Crossover",
+      "Straight",
+      "Rollover",
+      "Serial"
+    ],
+    "correct_answer": "Crossover",
+    "standard": 4
+  },
+  {
+    "id": 788,
+    "question": "ما هو نوع الهجوم المعلوم (Active Attack) الذي يحاول استغلال نقاط الضعف في الأنظمة الأمنية بهدف التغيير والتعديل؟",
+    "options": [
+      "إبطاء الشبكة",
+      "إطفاء الشبكة",
+      "محاولة الدخول والتغيير على الأنظمة الأمنية",
+      "تقنيات تحويل العناوين للشبكة"
+    ],
+    "correct_answer": "محاولة الدخول والتغيير على الأنظمة الأمنية",
+    "standard": 7
+  },
+  {
+    "id": 789,
+    "question": "أي من الأجهزة التالية لا يقوم بعزل أو فصل نطاقات التصادم (Collision Domains)؟",
+    "options": [
+      "المجمع (Hub)",
+      "الموجه (Router)",
+      "المبدل (Switch)",
+      "الجسر (Bridge)"
+    ],
+    "correct_answer": "المجمع (Hub)",
+    "standard": 4
+  },
+  {
+    "id": 790,
+    "question": "أي من بروتوكولات TCP/IP التالية مسؤولة بشكل أساسي عن نقل الملفات بين الأجهزة؟",
+    "options": [
+      "Telnet",
+      "FTP",
+      "SMTP",
+      "DNS"
+    ],
+    "correct_answer": "FTP",
+    "standard": 4
+  },
+  {
+    "id": 791,
+    "question": "إذا كان جهاز A لديه ذاكرة تبلغ 128 كيلوبت وجهاز B لديه ذاكرة تبلغ 16 كيلوبايت، فأي من العبارات التالية صحيحة؟",
+    "options": [
+      "ذاكرة جهاز A أصغر من ذاكرة جهاز B",
+      "ذاكرة جهاز A أكبر من ذاكرة جهاز B",
+      "لا يمكن المقارنة بين الذاكرتين",
+      "ذاكرة جهاز A تساوي ذاكرة جهاز B"
+    ],
+    "correct_answer": "ذاكرة جهاز A تساوي ذاكرة جهاز B",
+    "standard": 3
+  },
+  {
+    "id": 792,
+    "question": "أي من البروتوكولات التالية تعمل في طبقة النقل (Transport Layer) في نموذج TCP/IP؟",
+    "options": [
+      "FTP",
+      "KMP",
+      "TCP",
+      "SMTP"
+    ],
+    "correct_answer": "TCP",
+    "standard": 4
+  },
+  {
+    "id": 793,
+    "question": "إذا كان جهاز A لديه ذاكرة تبلغ 512 كيلوبت وجهاز B لديه ذاكرة تبلغ 512 كيلوبايت، فأي من العبارات التالية صحيحة؟",
+    "options": [
+      "ذاكرة جهاز A أصغر من ذاكرة جهاز B",
+      "ذاكرة جهاز A أكبر من ذاكرة جهاز B",
+      "لا يمكن المقارنة بين الذاكرتين",
+      "ذاكرة جهاز A تساوي ذاكرة جهاز B"
+    ],
+    "correct_answer": "ذاكرة جهاز A أصغر من ذاكرة جهاز B",
+    "standard": 3
+  },
+  {
+    "id": 794,
+    "question": "ما هي المسافة الإدارية (Administrative Distance) الافتراضية للواجهة المتصلة بشكل مباشر (Directly Connected Interface) في أجهزة التوجيه؟",
+    "options": [
+      "0",
+      "1",
+      "110",
+      "120"
+    ],
+    "correct_answer": "0",
+    "standard": 4
+  },
+  {
+    "id": 795,
+    "question": "إذا أرسل جهاز كمبيوتر بيانات إلى جميع عناوين الشبكة، فماذا تسمى عملية الإرسال هذه؟",
+    "options": [
+      "Unicast",
+      "Multicast",
+      "Broadcast",
+      "Anycast"
+    ],
+    "correct_answer": "Broadcast",
+    "standard": 4
+  },
+  {
+    "id": 796,
+    "question": "إذا أرسل جهاز كمبيوتر بيانات إلى جهاز كمبيوتر واحد فقط في الشبكة، فماذا تسمى عملية الإرسال هذه؟",
+    "options": [
+      "Unicast",
+      "Multicast",
+      "Broadcast",
+      "Anycast"
+    ],
+    "correct_answer": "Unicast",
+    "standard": 4
+  },
+  {
+    "id": 797,
+    "question": "ما هي المسافة الإدارية (Administrative Distance) الافتراضية لتقنيات التوجيه الساكن (Static Routing)؟",
+    "options": [
+      "1",
+      "9",
+      "110",
+      "120"
+    ],
+    "correct_answer": "1",
+    "standard": 4
+  },
+  {
+    "id": 798,
+    "question": "ما هو نوع التوجيه (Routing) الذي يتم فيه إدخال جدول التوجيه (Routing Table) يدويًا؟",
+    "options": [
+      "Dynamic",
+      "Static",
+      "Standard",
+      "Interior"
+    ],
+    "correct_answer": "Static",
+    "standard": 4
+  },
+  {
+    "id": 799,
+    "question": "ما هو نوع التوجيه (Routing) الذي يتم فيه إدخال معلومات جدول التوجيه (Routing Table) عن طريق بروتوكول RIP؟",
+    "options": [
+      "Dynamic",
+      "Static",
+      "Interior",
+      "Standard"
+    ],
+    "correct_answer": "Dynamic",
+    "standard": 4
+  },
+  {
+    "id": 800,
+    "question": "ما هو نوع التوجيه (Routing) الذي يتم فيه إدخال معلومات جدول التوجيه (Routing Table) تلقائيًا؟",
+    "options": [
+      "Dynamic",
+      "Static",
+      "Interior",
+      "Standard"
+    ],
+    "correct_answer": "Dynamic",
+    "standard": 4
+  },
+  {
+    "id": 801,
+    "question": "أي من خصائص الشبكة التالية تعرف بأنها قدرة النظام أو جزء منه على أداء مهماته تحت ظروف معينة لأطول فترة ممكنة من الزمن؟",
+    "options": [
+      "التوافرية أو استمرارية العمل (Availability)",
+      "الأمن (Security)",
+      "التكلفة (Cost)",
+      "الموثوقية أو الاعتمادية (Reliability)"
+    ],
+    "correct_answer": "التوافرية أو استمرارية العمل (Availability)",
+    "standard": 4
+  },
+  {
+    "id": 802,
+    "question": "ما هي المسافة الإدارية (Administrative Distance) الافتراضية لبروتوكول OSPF؟",
+    "options": [
+      "110",
+      "1",
+      "90",
+      "20"
+    ],
+    "correct_answer": "110",
+    "standard": 4
+  },
+  {
+    "id": 803,
+    "question": "ما هي المسافة الإدارية (Administrative Distance) الافتراضية لبروتوكول OSPF؟",
+    "options": [
+      "90",
+      "110",
+      "1",
+      "120"
+    ],
+    "correct_answer": "110",
+    "standard": 4
+  },
+  {
+    "id": 804,
+    "question": "أي من بروتوكولات TCP/IP التالية يستخدم للاتصال بأجهزة الكمبيوتر البعيدة عن بعد؟",
+    "options": [
+      "Telnet",
+      "FTP",
+      "SMTP",
+      "DNS"
+    ],
+    "correct_answer": "Telnet",
+    "standard": 4
+  },
+  {
+    "id": 805,
+    "question": "أي من بروتوكولات التوجيه التالية لا يُعد من بروتوكولات Distance Vector؟",
+    "options": [
+      "RIP",
+      "OSPF",
+      "EIGRP",
+      "IGRP"
+    ],
+    "correct_answer": "OSPF",
+    "standard": 4
+  },
+  {
+    "id": 806,
+    "question": "في أي طبقة من نموذج OSI يعمل Token Ring بشكل أساسي؟",
+    "options": [
+      "طبقة الجلسة",
+      "طبقة الشبكة",
+      "الطبقة الفيزيائية",
+      "طبقة ربط البيانات"
+    ],
+    "correct_answer": "طبقة ربط البيانات",
+    "standard": 4
+  },
+  {
+    "id": 807,
+    "question": "لماذا سميت اللوحة الأم بهذا الاسم؟",
+    "options": [
+      "مهمتها هي السماح والتنسيق لجميع الأجهزة بالتعاون وتناقل البيانات وتوصيل المعلومات لمختلف أجزائها عبر الناقل المحلي",
+      "القطعة التي توصل إليها جميع القطع الأخرى في الحاسب",
+      "تجمع غالبية مكونات الحاسب الداخلي",
+      "جميع ما سبق"
+    ],
+    "correct_answer": "جميع ما سبق",
+    "standard": 3
+  },
+  {
+    "id": 808,
+    "question": "أي مما يلي يعتبر من المكونات الأساسية للحاسب؟",
+    "options": [
+      "وحدة المعالجة",
+      "برامج العروض التقديمية",
+      "نظام التشغيل",
+      "الويندوز"
+    ],
+    "correct_answer": "وحدة المعالجة",
+    "standard": 3
+  },
+  {
+    "id": 809,
+    "question": "ما هو النظام المسؤول عن بدء تشغيل جهاز الحاسب والتحقق من سلامة مكوناته؟",
+    "options": [
+      "System",
+      "Register",
+      "BIOS",
+      "Control"
+    ],
+    "correct_answer": "BIOS",
+    "standard": 3
+  },
+  {
+    "id": 810,
+    "question": "ما هي الذاكرة التي يمكن إضافتها إلى منافذ التوسعة لتوسيع سعة الذاكرة الرئيسية (RAM)؟",
+    "options": [
+      "ذاكرة التخزين المؤقت (Cache Memory)",
+      "الذاكرة الافتراضية (Virtual Memory)",
+      "الذاكرة الممتدة (Extended Memory)",
+      "ذاكرة القراءة فقط (Read Only Memory)"
+    ],
+    "correct_answer": "الذاكرة الممتدة (Extended Memory)",
+    "standard": 3
+  },
+  {
+    "id": 811,
+    "question": "أي من الذاكرات التالية يتم مسح البيانات المخزنة فيها عند إيقاف تشغيل الحاسب؟",
+    "options": [
+      "القرص الصلب",
+      "القرص المدمج",
+      "ذاكرة القراءة فقط",
+      "ذاكرة الوصول العشوائي"
+    ],
+    "correct_answer": "ذاكرة الوصول العشوائي",
+    "standard": 3
+  },
+  {
+    "id": 812,
+    "question": "أين يتم تخزين العمليات التي يتم تنفيذها حاليًا في الحاسب؟",
+    "options": [
+      "المعالجة",
+      "التنفيذ",
+      "التحليل",
+      "جلب البيانات"
+    ],
+    "correct_answer": "المعالجة",
+    "standard": 3
+  },
+  {
+    "id": 813,
+    "question": "ما هي الذاكرة التي تعتمد على ترانزستورات كهربائية ومكثفات لتخزين البيانات بشكل مؤقت؟",
+    "options": [
+      "DRAM",
+      "SRAM",
+      "DDR RAM",
+      "SDRAM"
+    ],
+    "correct_answer": "DRAM",
+    "standard": 3
+  },
+  {
+    "id": 814,
+    "question": "أي مرحلة من مراحل دورة تنفيذ التعليمات في المعالج يتم فيها تنفيذ التعليمة الفعلية؟",
+    "options": [
+      "Store",
+      "Execute",
+      "Fetch",
+      "Decode"
+    ],
+    "correct_answer": "Execute",
+    "standard": 3
+  },
+  {
+    "id": 815,
+    "question": "أي من أنواع الذاكرة التالية يمكن برمجتها مرة واحدة فقط وبعد حفظ البيانات لا يمكن تعديلها؟",
+    "options": [
+      "PROM",
+      "ROM",
+      "EPROM",
+      "EEPROM"
+    ],
+    "correct_answer": "PROM",
+    "standard": 3
+  },
+  {
+    "id": 816,
+    "question": "ما هي الوظيفة الأساسية لوحدة المعالجة المركزية (CPU)؟",
+    "options": [
+      "إظهار المعلومات للمستخدم",
+      "إظهار معلومات الجهاز",
+      "تحويل التيار الكهربائي",
+      "القيام بعمليات المعالجة والحساب"
+    ],
+    "correct_answer": "القيام بعمليات المعالجة والحساب",
+    "standard": 3
+  },
+  {
+    "id": 817,
+    "question": "ما هو المصطلح الذي يطلق على اللوحة الرئيسية داخل صندوق الحاسب التي يتم تثبيت المكونات الإلكترونية عليها؟",
+    "options": [
+      "System Board",
+      "Arithmetic and logic Unit",
+      "Register",
+      "Control Unit"
+    ],
+    "correct_answer": "System Board",
+    "standard": 3
+  },
+  {
+    "id": 818,
+    "question": "أي من الذاكرات التالية تعمل كوسيط بين المعالج ومحرك الأقراص لتسريع عملية نقل البيانات؟",
+    "options": [
+      "RAM",
+      "DVD",
+      "BIOS",
+      "ROM"
+    ],
+    "correct_answer": "RAM",
+    "standard": 3
+  },
+  {
+    "id": 819,
+    "question": "أي من الوحدات التالية تستخدم لقياس سعة التخزين في الحاسب؟",
+    "options": [
+      "الجيجاهرتز",
+      "البوصة",
+      "الكيلوبايت",
+      "البايت"
+    ],
+    "correct_answer": "الكيلوبايت",
+    "standard": 3
+  },
+  {
+    "id": 820,
+    "question": "ما هو المصطلح الذي يطلق على المكونات المادية التي يمكن لمسها أو رؤيتها داخل أو خارج صندوق الحاسب؟",
+    "options": [
+      "الذاكرة",
+      "المكونات المادية",
+      "المعالج",
+      "المكونات البرمجية"
+    ],
+    "correct_answer": "المكونات المادية",
+    "standard": 3
+  },
+  {
+    "id": 821,
+    "question": "أي من الذواكر التالية تعتبر الأسرع؟",
+    "options": [
+      "Cashe",
+      "solid state disk",
+      "Registers",
+      "main memory"
+    ],
+    "correct_answer": "Registers",
+    "standard": 3
+  },
+  {
+    "id": 822,
+    "question": "أي من الخيارات التالية تعتبر الأكبر من حيث المساحة التخزينية؟",
+    "options": [
+      "القرص الصلب",
+      "Register",
+      "الذاكرة الرئيسية",
+      "الشريط"
+    ],
+    "correct_answer": "القرص الصلب",
+    "standard": 3
+  },
+  {
+    "id": 823,
+    "question": "ما هو جهاز التخزين الرئيسي في الكمبيوتر الذي يستخدم لتخزين نظام التشغيل والبرامج والملفات بشكل دائم؟",
+    "options": [
+      "DVD",
+      "Hard Disk",
+      "Flash Memory",
+      "CD"
+    ],
+    "correct_answer": "Hard Disk",
+    "standard": 3
+  },
+  {
+    "id": 824,
+    "question": "أي من الذاكرات التالية تستخدم عند تشغيل الكمبيوتر لأول مرة لتنفيذ برنامج بدء التشغيل (POST)؟",
+    "options": [
+      "ROM",
+      "Cash Memory",
+      "RAM",
+      "Register"
+    ],
+    "correct_answer": "ROM",
+    "standard": 3
+  },
+  {
+    "id": 825,
+    "question": "ما هي الذواكر الصغيرة والسريعة جدًا الموجودة داخل المعالج والتي تستخدم لحفظ الأرقام المراد معالجتها من قبل وحدة الحساب والمنطق؟",
+    "options": [
+      "Execute",
+      "Decode",
+      "Fetch",
+      "Register"
+    ],
+    "correct_answer": "Register",
+    "standard": 3
+  },
+  {
+    "id": 826,
+    "question": "أين يتم تخزين نتيجة العمليات الحسابية بشكل مؤقت في المعالج؟",
+    "options": [
+      "Register",
+      "Arithmetic and logic Unit",
+      "Control Unit",
+      "CPU"
+    ],
+    "correct_answer": "Register",
+    "standard": 3
+  },
+  {
+    "id": 827,
+    "question": "أي مما يلي لا يعتبر من وحدات المعالج المركزية (CPU)؟",
+    "options": [
+      "وحدة المسجلات",
+      "وحدة التحكم",
+      "وحدة التخزين",
+      "وحدة الحساب والمنطق"
+    ],
+    "correct_answer": "وحدة التخزين",
+    "standard": 3
+  },
+  {
+    "id": 828,
+    "question": "أي من الذاكرات التالية يتم مسح البيانات المخزنة فيها عند إيقاف تشغيل الحاسب؟",
+    "options": [
+      "ذاكرة القراءة العشوائية",
+      "القرص الصلب",
+      "القرص المدمج",
+      "ذاكرة الفلاش"
+    ],
+    "correct_answer": "ذاكرة القراءة العشوائية",
+    "standard": 3
+  },
+  {
+    "id": 829,
+    "question": "من أي قسمين رئيسيين يتكون الحاسب الشخصي؟",
+    "options": [
+      "وحدة المعالجة ووحدة الذاكرة",
+      "وحدات الإدخال ووحدات الإخراج",
+      "لوحة المفاتيح والشاشة",
+      "المكونات البرمجية والمكونات المادية"
+    ],
+    "correct_answer": "المكونات البرمجية والمكونات المادية",
+    "standard": 3
+  },
+  {
+    "id": 830,
+    "question": "أي من المنافذ التالية يسمح بتوصيل عدد كبير من ملحقات الحاسب وله القدرة على ربط 127 جهازًا من خلال كابل واحد؟",
+    "options": [
+      "Parallet Ports",
+      "Fire Wire",
+      "Universal Serial Bus",
+      "Network Ports"
+    ],
+    "correct_answer": "Universal Serial Bus",
+    "standard": 3
+  },
+  {
+    "id": 831,
+    "question": "أي من الذواكر التالية تعتبر الأكبر حجما؟",
+    "options": [
+      "Registers",
+      "solid state disk",
+      "Cache",
+      "main memory"
+    ],
+    "correct_answer": "solid state disk",
+    "standard": 3
+  },
+  {
+    "id": 832,
+    "question": "ماذا يطلق على البيانات المخزنة باسم معين على القرص الصلب؟",
+    "options": [
+      "New",
+      "Bios",
+      "File",
+      "Refresh"
+    ],
+    "correct_answer": "File",
+    "standard": 3
+  },
+  {
+    "id": 833,
+    "question": "ما هي القطعة الإلكترونية التي تتكون من العديد من الدوائر الرقمية المتكاملة؟",
+    "options": [
+      "القوالب",
+      "المشتت الحراري",
+      "الذاكرة",
+      "المعالج"
+    ],
+    "correct_answer": "المعالج",
+    "standard": 3
+  },
+  {
+    "id": 834,
+    "question": "من أي النواقل الرئيسية يتكون ناقل النظام (System Bus) في الحاسب؟",
+    "options": [
+      "الذاكرة - البيانات - العنوان",
+      "المسجل - البيانات - التخزين",
+      "التحكم - البيانات - العنوان",
+      "الواجهة - المعالج - الثقوب"
+    ],
+    "correct_answer": "التحكم - البيانات - العنوان",
+    "standard": 3
+  },
+  {
+    "id": 835,
+    "question": "ما هو المصطلح الذي يطلق على اللوحة الرئيسية داخل صندوق الحاسب التي يتم تثبيت المكونات الإلكترونية عليها؟",
+    "options": [
+      "Register",
+      "Mother Board",
+      "Control Unit",
+      "Arithmetic and logic Unit"
+    ],
+    "correct_answer": "Mother Board",
+    "standard": 3
+  },
+  {
+    "id": 836,
+    "question": "أي من أنواع الذاكرة المخبئية (Cache) التالية مبنية من خلايا الذاكرة الديناميكية (DRAM)؟",
+    "options": [
+      "L1 CACHE",
+      "L2 CACHE",
+      "L3 CACHE",
+      "L4 CACHE"
+    ],
+    "correct_answer": "L1 CACHE",
+    "standard": 3
+  },
+  {
+    "id": 837,
+    "question": "بأي وحدة قياس يتم قياس معدل انتقال البيانات من وإلى الذاكرة؟",
+    "options": [
+      "mb",
+      "bit",
+      "pps",
+      "kb"
+    ],
+    "correct_answer": "mb",
+    "standard": 3
+  },
+  {
+    "id": 838,
+    "question": "أي من وحدات المعالج التالية تقوم بتنفيذ العمليات الحسابية والمنطقية؟",
+    "options": [
+      "Arithmetic and logic Unit",
+      "Control Unit",
+      "Register",
+      "PC"
+    ],
+    "correct_answer": "Arithmetic and logic Unit",
+    "standard": 3
+  },
+  {
+    "id": 839,
+    "question": "أي من وحدات المعالج التالية تتحكم في عمل المعالج وفقًا لتعليمات البرنامج؟",
+    "options": [
+      "Arithmetic and logic Unit",
+      "Control Unit",
+      "Register",
+      "PC"
+    ],
+    "correct_answer": "Control Unit",
+    "standard": 3
+  },
+  {
+    "id": 840,
+    "question": "أي من أنواع الذاكرة المخبئية (Cache) التالية مبنية من خلايا الذاكرة الاستاتيكية (SRAM)؟",
+    "options": [
+      "L1 CACHE",
+      "L2 CACHE",
+      "L3 CACHE",
+      "L4 CACHE"
+    ],
+    "correct_answer": "L2 CACHE",
+    "standard": 3
+  },
+  {
+    "id": 841,
+    "question": "ما هي المجموعة من الأسلاك الدقيقة التي تربط وحدات الحاسب الآلي ببعضها وتسمح بتبادل البيانات؟",
+    "options": [
+      "Expansion Slots",
+      "Data Bus",
+      "Buses",
+      "Control Bus"
+    ],
+    "correct_answer": "Buses",
+    "standard": 3
+  },
+  {
+    "id": 842,
+    "question": "أي من أنواع الذاكرة المخبئية (Cache) التالية تتميز بصغر حجمها (128 كيلوبايت كحد أقصى) وسرعتها الفائقة، وتكون خاصة بالوحدة المركزية (Core)؟",
+    "options": [
+      "L1 CACHE",
+      "L2 CACHE",
+      "L3 CACHE",
+      "L4 CACHE"
+    ],
+    "correct_answer": "L1 CACHE",
+    "standard": 3
+  },
+  {
+    "id": 843,
+    "question": "أي من أنواع الذاكرة التالية غير قابلة لإعادة البرمجة أو التغيير على محتواها، ويتم استخدامها لتخزين المعلومات لمرة واحدة دون قبول التعديل عليها؟",
+    "options": [
+      "PROM",
+      "ROM",
+      "EPROM",
+      "EEPROM"
+    ],
+    "correct_answer": "PROM",
+    "standard": 3
+  },
+  {
+    "id": 844,
+    "question": "أي من الخيارات التالية يعتبر من وظائف نظام الإدخال والإخراج الأساسي (BIOS)؟",
+    "options": [
+      "إدارة مكونات الحاسب ومساعدة نظام التشغيل",
+      "بدء تشغيل الحاسب الآلي",
+      "تحميل نظام التشغيل إلى الذاكرة الرئيسية",
+      "جميع ما سبق"
+    ],
+    "correct_answer": "جميع ما سبق",
+    "standard": 3
+  },
+  {
+    "id": 845,
+    "question": "أي من المنافذ التالية يستخدم لتوصيل بعض الأجهزة مثل الكاميرا الرقمية والماسح الضوئي لتحسين نوعية الصور والأفلام؟",
+    "options": [
+      "Fire Wire",
+      "Parallet Ports",
+      "Universal Serial Bus",
+      "Network Ports"
+    ],
+    "correct_answer": "Fire Wire",
+    "standard": 3
+  },
+  {
+    "id": 846,
+    "question": "ما هي الشركة التي أنتجت أول حاسوب شخصي؟",
+    "options": [
+      "SDA",
+      "BMI",
+      "AMD",
+      "IBM"
+    ],
+    "correct_answer": "IBM",
+    "standard": 3
+  },
+  {
+    "id": 847,
+    "question": "أي من وحدات المعالج التالية تستخدم لحفظ البيانات الأولية قبل تنفيذ العمليات عليها؟",
+    "options": [
+      "Register",
+      "Control Unit",
+      "Arithmetic and logic Unit",
+      "PC"
+    ],
+    "correct_answer": "Register",
+    "standard": 3
+  },
+  {
+    "id": 848,
+    "question": "أي من الذاكرات التالية تعتبر ذاكرة متطايرة (Volatile Memory)؟",
+    "options": [
+      "Flash",
+      "RAM",
+      "ROM",
+      "BIOS"
+    ],
+    "correct_answer": "RAM",
+    "standard": 3
+  },
+  {
+    "id": 849,
+    "question": "من أي مكونين رئيسيين يتكون الحاسب؟",
+    "options": [
+      "Software – Memory",
+      "Software – Control",
+      "Hardware – Memory",
+      "Hardware – Software"
+    ],
+    "correct_answer": "Hardware – Software",
+    "standard": 3
+  },
+  {
+    "id": 850,
+    "question": "أي من أنواع الذاكرة التالية تعتبر ذاكرة غير ثابتة (Volatile) وتتطلب طاقة كهربائية باستمرار للحفاظ على البيانات؟",
+    "options": [
+      "DRAM",
+      "SRAM",
+      "DDR RAM",
+      "SDRAM"
+    ],
+    "correct_answer": "DRAM",
+    "standard": 3
+  },
+  {
+    "id": 851,
+    "question": "أي من وحدات المعالج التالية تقوم بفك رموز التعليمات ثم توجيهها إلى وحدة التحكم لتنفيذها؟",
+    "options": [
+      "Program Counter",
+      "Control Unit",
+      "Instruction Decoder",
+      "Instruction Register"
+    ],
+    "correct_answer": "Instruction Decoder",
+    "standard": 3
+  },
+  {
+    "id": 852,
+    "question": "ماذا يعني الاختصار CPU؟",
+    "options": [
+      "Central Processing Unit",
+      "Control Programming Unit",
+      "Center Point Unit",
+      "Control Processing Unit"
+    ],
+    "correct_answer": "Central Processing Unit",
+    "standard": 3
+  },
+  {
+    "id": 853,
+    "question": "أي من المكونات التالية تستخدم لتوصيل الميكروفون والسماعات بالحاسب؟",
+    "options": [
+      "Tuner",
+      "Graphic Card",
+      "Sound Card",
+      "Ferr"
+    ],
+    "correct_answer": "Sound Card",
+    "standard": 3
+  },
+  {
+    "id": 854,
+    "question": "أين يوجد نظام الإدخال والإخراج الأساسي (BIOS) في الحاسب؟",
+    "options": [
+      "BIOS",
+      "RAM",
+      "ALU",
+      "ROM",
+      "CACHE"
+    ],
+    "correct_answer": "ROM",
+    "standard": 3
+  },
+  {
+    "id": 855,
+    "question": "ما هو الترتيب الصحيح لعمليات وحدة المعالجة المركزية (CPU) عند تنفيذ التعليمات؟",
+    "options": [
+      "تفسير – جلب - تنفيذ",
+      "تنفيذ – جلب – تفسير",
+      "تفسير- تنفيذ – جلب",
+      "جلب – تفسير - تنفيذ"
+    ],
+    "correct_answer": "جلب – تفسير - تنفيذ",
+    "standard": 3
+  },
+  {
+    "id": 856,
+    "question": "متى يتم تخزين المعلومات في الذاكرة الرئيسية (Main Memory) أثناء تنفيذ التعليمات؟",
+    "options": [
+      "قبل التنفيذ",
+      "بين التنفيذ",
+      "بعد التنفيذ",
+      "أثناء التنفيذ"
+    ],
+    "correct_answer": "أثناء التنفيذ",
+    "standard": 3
+  },
+  {
+    "id": 857,
+    "question": "أي من المنافذ التالية تنقل البيانات بشكل متسلسل (bit by bit) الواحدة تلو الأخرى؟",
+    "options": [
+      "Network Ports",
+      "Serial Port",
+      "Universal Serial Bus",
+      "Parallet Ports"
+    ],
+    "correct_answer": "Serial Port",
+    "standard": 3
+  },
+  {
+    "id": 858,
+    "question": "ما هو المصطلح الذي يطلق على البرمجيات التي يستخدمها الحاسوب ليقوم بعمله على أكمل وجه، وتتضمن نظام التشغيل وبرامج التشغيل؟",
+    "options": [
+      "برمجيات الشبكة",
+      "برمجيات قاعدة البيانات",
+      "برمجيات النظم",
+      "برمجيات المستخدم"
+    ],
+    "correct_answer": "برمجيات النظم",
+    "standard": 8
+  },
+  {
+    "id": 859,
+    "question": "أي وحدة من وحدات الحاسب يمكن أن نطلق عليها (عقل الحاسب)؟",
+    "options": [
+      "المواجهة",
+      "التخزين",
+      "الذاكرة",
+      "المعالجة"
+    ],
+    "correct_answer": "المعالجة",
+    "standard": 3
+  },
+  {
+    "id": 860,
+    "question": "على أي تقنية تعتمد ذاكرة الفلاش (Flash Memory) في تخزين البيانات؟",
+    "options": [
+      "ضوئية",
+      "محورية",
+      "مجدولة",
+      "بصرية"
+    ],
+    "correct_answer": "محورية",
+    "standard": 3
+  },
+  {
+    "id": 861,
+    "question": "أين توجد ذاكرة الكاش (Cache Memory) في نظام الحاسب؟",
+    "options": [
+      "في الذاكرة العشوائية",
+      "بين الذاكرة العشوائية والمعالج",
+      "في الذاكرة القراءة فقط",
+      "في الذاكرة التخيلية"
+    ],
+    "correct_answer": "بين الذاكرة العشوائية والمعالج",
+    "standard": 3
+  },
+  {
+    "id": 862,
+    "question": "ما هو المصطلح الذي يطلق على مواقع التخزين الخاصة وعالية السرعة التي تستخدم لتخزين البيانات بشكل مؤقت داخل المعالج؟",
+    "options": [
+      "Control Unit",
+      "Register",
+      "Arithmetic and logic Unit",
+      "Control Processingt"
+    ],
+    "correct_answer": "Register",
+    "standard": 3
+  },
+  {
+    "id": 863,
+    "question": "ما هو الاختصار الصحيح للذاكرة العشوائية (RAM)؟",
+    "options": [
+      "Read Acting Meting",
+      "Random Access Memory",
+      "Read Access Memory",
+      "Random Aerrt Memory"
+    ],
+    "correct_answer": "Random Access Memory",
+    "standard": 3
+  },
+  {
+    "id": 864,
+    "question": "أي من المكونات التالية تستخدم منفذ VGA لتوصيلها بالحاسب؟",
+    "options": [
+      "الشاشة",
+      "الماسح الضوئي",
+      "الفأرة",
+      "السماعات"
+    ],
+    "correct_answer": "الشاشة",
+    "standard": 3
+  },
+  {
+    "id": 865,
+    "question": "ما هو الإصدار الأحدث والأسرع من الناقل التسلسلي العالمي (USB)؟",
+    "options": [
+      "USB2",
+      "USB-A",
+      "USB-C",
+      "USB3"
+    ],
+    "correct_answer": "USB3",
+    "standard": 3
+  },
+  {
+    "id": 866,
+    "question": "أين يجب حفظ البيانات بشكل مؤقت أثناء عملية معالجتها من قبل المعالج؟",
+    "options": [
+      "المشتت الحراري",
+      "RAM",
+      "المسجلات",
+      "ROM"
+    ],
+    "correct_answer": "RAM",
+    "standard": 3
+  },
+  {
+    "id": 867,
+    "question": "أي من الأسباب التالية ساهمت بشكل كبير في تطور المعالجات (CPU)؟",
+    "options": [
+      "زيادة حجم المعالج",
+      "تصنيع أشباه الموصلات",
+      "تنافس العديد من الشركات",
+      "تصغير المعالج"
+    ],
+    "correct_answer": "تصنيع أشباه الموصلات",
+    "standard": 3
+  },
+  {
+    "id": 868,
+    "question": "أي من وحدات الإدخال التالية تستخدم لإدخال البيانات النصية إلى الحاسب؟",
+    "options": [
+      "اللاقط",
+      "الطابعة",
+      "السماعات",
+      "لوحة المفاتيح"
+    ],
+    "correct_answer": "لوحة المفاتيح",
+    "standard": 3
+  },
+  {
+    "id": 869,
+    "question": "أي من أنواع الذاكرة التالية تعتبر الأسرع في الوصول للبيانات؟",
+    "options": [
+      "المسجلات",
+      "RAM",
+      "ROM",
+      "الذاكرة المخبئة"
+    ],
+    "correct_answer": "المسجلات",
+    "standard": 3
+  },
+  {
+    "id": 870,
+    "question": "كيف تكون سرعة الوصول إلى البيانات في الذاكرة العشوائية (RAM) مقارنة بالذاكرة الرئيسية؟",
+    "options": [
+      "مساوي لسرعة الذاكرة العشوائية",
+      "أبطأ من الذاكرة الرئيسية",
+      "أسرع من الذاكرة الرئيسية",
+      "لا يوجد فرق البيانات تصل بنفس السرعة"
+    ],
+    "correct_answer": "مساوي لسرعة الذاكرة العشوائية",
+    "standard": 3
+  },
+  {
+    "id": 871,
+    "question": "ما هي الوحدة المسؤولة عن التحكم بمسار البيانات داخل المعالج وتنسيق تبادلها بين أجزاء المعالج الداخلية؟",
+    "options": [
+      "CU",
+      "EPU",
+      "ALU",
+      "BUS UNIT"
+    ],
+    "correct_answer": "CU",
+    "standard": 3
+  },
+  {
+    "id": 872,
+    "question": "أي من أنواع الذاكرة التالية تُعرف بالذاكرة المتزامنة وتستخدم عادةً في ذاكرة الكاش (Cache)؟",
+    "options": [
+      "DRAM",
+      "DDR RAM",
+      "SDRAM",
+      "SRAM"
+    ],
+    "correct_answer": "SRAM",
+    "standard": 3
+  },
+  {
+    "id": 873,
+    "question": "ما هي الذاكرة التي تقع في المعالج أو بين المعالج والذاكرة الرئيسية وتستخدم لتسريع عمل الحاسب من خلال تخزين البيانات الأكثر استخدامًا؟",
+    "options": [
+      "RAM",
+      "ROM",
+      "Cash Memory",
+      "Register"
+    ],
+    "correct_answer": "Cash Memory",
+    "standard": 3
+  },
+  {
+    "id": 874,
+    "question": "أي من أنواع الذاكرة التالية قابلة للبرمجة ولكن يمكن مسح البيانات المخزنة فيها باستخدام جهاز خاص يعمل بالاعتماد على الأشعة فوق البنفسجية؟",
+    "options": [
+      "EPROM",
+      "ROM",
+      "EEPROM",
+      "PROM"
+    ],
+    "correct_answer": "EPROM",
+    "standard": 3
+  },
+  {
+    "id": 875,
+    "question": "أي من المسجلات التالية في وحدة المعالجة المركزية (CPU) يقوم بتخزين نتائج العمليات الحسابية والمنطقية؟",
+    "options": [
+      "Accumulator Register",
+      "Instruction Register",
+      "Memory Register",
+      "Program Register"
+    ],
+    "correct_answer": "Accumulator Register",
+    "standard": 3
+  },
+  {
+    "id": 876,
+    "question": "أي من وحدات الحاسب التالية تعتبر ثقوب التوسعة (Expansion Slots) جزءًا أساسيًا منها؟",
+    "options": [
+      "المواجهة",
+      "المعالجة",
+      "الذاكرة",
+      "التخزين"
+    ],
+    "correct_answer": "المواجهة",
+    "standard": 3
+  },
+  {
+    "id": 877,
+    "question": "ما هي العملية التي يتم فيها جلب التعليمات من الذاكرة إلى المعالج لتنفيذها؟",
+    "options": [
+      "Fetch",
+      "Decode",
+      "Execute",
+      "Store"
+    ],
+    "correct_answer": "Fetch",
+    "standard": 3
+  },
+  {
+    "id": 878,
+    "question": "أي من الخصائص التالية تسمح للمعالج بإنجاز رمز واحد في نفس الوقت والانتظار لمعالجة الأمر التالي، وتعتبر مفيدة في لغة التجميع؟",
+    "options": [
+      "Trap Flag",
+      "Interrupted Flag",
+      "System Flag",
+      "I/O Flag"
+    ],
+    "correct_answer": "Trap Flag",
+    "standard": 3
+  }
+]

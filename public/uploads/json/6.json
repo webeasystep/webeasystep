@@ -1,0 +1,310 @@
+[
+    {
+        "id": 611,
+        "question": "حول العدد ( 101101 ) من نظام الأرقام الثنائي إلى نظام الأرقام العشري:",
+        "options": ["45", "63", "34", "55"],
+        "correct_answer": "45",
+        "standard": 1
+    },
+    {
+        "id": 612,
+        "question": "حاصل ضرب العددين الثنائيين 111 * 10 يساوي:",
+        "options": ["1110", "1101", "1010", "1111"],
+        "correct_answer": "1110",
+        "standard": 1
+    },
+    {
+        "id": 613,
+        "question": "طبق نظرية دي مورجان على التعبير البوليني التالي Y= (A + B) +CD:",
+        "options": ["AB (C + D)", "AC (B+D)", "(A'B')(C+D)", "AB' (C+D)"],
+        "correct_answer": "(A'B')(C+D)",
+        "standard": 2
+    },
+    {
+        "id": 614,
+        "question": "أقل عدد من البتات اللازمة لتمثيل الرقم العشري 100 بالنظام الثنائي هو:",
+        "options": ["16", "12", "7", "8"],
+        "correct_answer": "7",
+        "standard": 1
+    },
+    {
+        "id": 615,
+        "question": "دائرة منطقية لها عدة مداخل وعدد المخارج يساوي مخرج واحد فقط:",
+        "options": ["الدارئح", "المبرمج", "القلابات", "الجامع الكامل"],
+        "correct_answer": "المبرمج",
+        "standard": 2
+    },
+    {
+        "id": 616,
+        "question": "تعتبر القلابات من نوع SR Flip Flop من أنواع الدوائر المنطقية:",
+        "options": ["التجميعية", "التتابعية", "التوافقية", "التفاضلية"],
+        "correct_answer": "التتابعية",
+        "standard": 2
+    },
+    {
+        "id": 617,
+        "question": "أسلوب يعيبه البطء إلا أنه يمتاز بانخفاض التكلفة هو:",
+        "options": ["النقل على التوالي", "النقل على التوازي", "النقل عبر المسجلات", "لا شيء مما سبق"],
+        "correct_answer": "النقل على التوالي",
+        "standard": 3
+    },
+    {
+        "id": 618,
+        "question": "الوحدة المسؤولة عن تنفيذ العمليات داخل المعالج:",
+        "options": ["وحدة الحساب والمنطق", "وحدة التحكم", "وحدة الذاكرة الرئيسة", "وحدة المسجلات"],
+        "correct_answer": "وحدة الحساب والمنطق",
+        "standard": 3
+    },
+    {
+        "id": 619,
+        "question": "يتم تنفيذ العمليات داخل المعالج:",
+        "options": ["Fetch - decode - execute", "Decode - fetch - execute", "Execute - fetch - decode", "Execute - decode - fetch"],
+        "correct_answer": "Fetch - decode - execute",
+        "standard": 3
+    },
+    {
+        "id": 620,
+        "question": "يتم تخزين نتيجة العملية الحسابية بشكل مؤقت في:",
+        "options": ["Register", "Alu", "Main Memory", "Hard Disk"],
+        "correct_answer": "Register",
+        "standard": 3
+    },
+    {
+        "id": 621,
+        "question": "يعمل DNS في طبقة:",
+        "options": ["التطبيقات", "الشبكة", "النقل", "الفيزيائية"],
+        "correct_answer": "التطبيقات",
+        "standard": 4
+    },
+    {
+        "id": 622,
+        "question": "الشبكة الموصلة بينك وبين جارك:",
+        "options": ["Lan", "Man", "Wan", "Tan"],
+        "correct_answer": "Lan",
+        "standard": 4
+    },
+    {
+        "id": 623,
+        "question": "يستخدم بروتوكول SMTP لنقل البيانات من خلال:",
+        "options": ["منفذ 110", "منفذ 25", "منفذ 143", "منفذ 43"],
+        "correct_answer": "منفذ 25",
+        "standard": 4
+    },
+    {
+        "id": 624,
+        "question": "بروتوكول الارتباط الشبكي هو:",
+        "options": ["Tcp", "IP", "http", "Dns"],
+        "correct_answer": "Tcp",
+        "standard": 4
+    },
+    {
+        "id": 625,
+        "question": "طبقة Session Layer مسؤولة عن:",
+        "options": ["تقسيم البيانات إلى قطع صغيرة.", "إنشاء وقطع الاتصال بين مستخدمي التطبيقات.", "التشفير وفك التشفير.", "نقل البيانات عبر الاسلاك."],
+        "correct_answer": "إنشاء وقطع الاتصال بين مستخدمي التطبيقات",
+        "standard": 4
+    },
+    {
+        "id": 626,
+        "question": "الفرق بين جهاز Switch وجهاز الـ Hub في:",
+        "options": ["يكرر الرسالة ويقوم بإعادة ارسالها الى كل الأجهزة", "تمييز الأجهزة فيرسل إلى الجهاز المطلوب", "بطيء ويحتاج الى إعادة التشغيل باستمرار", "لا شيء مما سبق"],
+        "correct_answer": "تمييز الأجهزة فيرسل إلى الجهاز المطلوب",
+        "standard": 4
+    },
+    {
+        "id": 627,
+        "question": "في الكلاس B يكون قناع الشبكة:",
+        "options": ["255, 255, 0, 0", "255, 255, 255,0", "255,0,0,0", "255, 0, 255, 0"],
+        "correct_answer": "255, 255, 0, 0",
+        "standard": 4
+    },
+    {
+        "id": 628,
+        "question": "بروتوكول يوفر نقلاً سريعاً للبيانات لكنه غير موثوق به:",
+        "options": ["Udp", "Tcp", "Ftp", "Ip"],
+        "correct_answer": "Udp",
+        "standard": 4
+    },
+    {
+        "id": 629,
+        "question": "يستعمل المكدس تقنية:",
+        "options": ["LIFO", "FIFO", "FOLI", "LLIL"],
+        "correct_answer": "LIFO",
+        "standard": 5
+    },
+    {
+        "id": 630,
+        "question": "دالة الإدخال في لغة C:",
+        "options": ["Scanf", "Cin", "Scanner", "printf"],
+        "correct_answer": "Scanf",
+        "standard": 5
+    },
+    {
+        "id": 631,
+        "question": "أول عملية تنفذ في المثال التالي: (4+2)*2/6+5",
+        "options": ["الجمع", "القسمة", "الأقواس", "الضرب"],
+        "correct_answer": "الأقواس",
+        "standard": 1
+    },
+    {
+        "id": 632,
+        "question": "ما ناتج تنفيذ الجملة البرمجية الآتية: For (int a =0 ; a<=6;a++)",
+        "options": ["0123456", "123456", "012356", "01234"],
+        "correct_answer": "0123456",
+        "standard": 5
+    },
+    {
+        "id": 633,
+        "question": "ناتج البرنامج التالي: Int x ; Int y ; X=3 ; Y = x++  ; Cout <<x<<y;",
+        "options": ["43", "33", "44", "34"],
+        "correct_answer": "43",
+        "standard": 5
+    },
+    {
+        "id": 634,
+        "question": "يسمى نظام التشغيل الذي يستعمل مفتاح واحد للتشفير وفك التشفير:",
+        "options": ["متزامن", "متماثل", "غير متزامن", "غير متماثل"],
+        "correct_answer": "متماثل",
+        "standard": 7
+    },
+    {
+        "id": 635,
+        "question": "شكل (المفتاح الرئيسي) في قواعد البيانات العلائقية:",
+        "options": ["مستطيل.", "معين.", "بيضاوي.", "محدد."],
+        "correct_answer": "معين",
+        "standard": 6
+    },
+    {
+        "id": 636,
+        "question": "لعرض جميع الأسماء التي تبدأ بحرف A من قاعدة بيانات الطلاب نستخدم الأمر:",
+        "options": ["Select*from student where name like 'A%';", "Select*from student where name='A';", "Select*from student where name like '%A';", "Select*from student where name='A%';"],
+        "correct_answer": "Select*from student where name like 'A%';",
+        "standard": 6
+    },
+    {
+        "id": 637,
+        "question": "العلاقة بين القسم والموظف:",
+        "options": ["M-1", "1-1", "M-M", "غير ذلك"],
+        "correct_answer": "M-1",
+        "standard": 6
+    },
+    {
+        "id": 638,
+        "question": "لغة UML هي اختصاراً لـ:",
+        "options": ["Unified Modeling Language", "User Modeling Language", "User Multi Language", "Unified Multi Language"],
+        "correct_answer": "Unified Modeling Language",
+        "standard": 5
+    },
+    {
+        "id": 639,
+        "question": "إذا كان لدينا بيانات مكرره نقوم بـ:",
+        "options": ["1NF", "2NF", "3NF", "4NF"],
+        "correct_answer": "2NF",
+        "standard": 6
+    },
+    {
+        "id": 640,
+        "question": "لحذف جدول بالكامل في لغة SQL نستخدم:",
+        "options": ["Drop", "Alter", "Delete", "Truncate"],
+        "correct_answer": "Drop",
+        "standard": 6
+    },
+    {
+        "id": 641,
+        "question": "من أنواع الحماية التي تحافظ على المعلومات من التغيير؟",
+        "options": ["التشفير", "الترخيص", "التجزئة", "VPN"],
+        "correct_answer": "التشفير",
+        "standard": 7
+    },
+    {
+        "id": 642,
+        "question": "برامج حاسوبية خبيثة تتكاثر باعتمادها على نفسها:",
+        "options": ["الفيروسات", "الديدان", "أحصنة طروادة", "لا شيء مما سبق"],
+        "correct_answer": "الديدان",
+        "standard": 7
+    },
+    {
+        "id": 643,
+        "question": "يسمى المفتاح المستخدم لفك التشفير في نظام التشفير غير المتماثل:",
+        "options": ["المفتاح العام.", "المفتاح الخاص.", "المفتاح السري.", "المفتاح المتماثل."],
+        "correct_answer": "المفتاح الخاص",
+        "standard": 7
+    },
+    {
+        "id": 644,
+        "question": "أكثر أنظمة التشغيل استقراراً:",
+        "options": ["ويندوز.", "لينكس.", "ماك.", "أندرويد"],
+        "correct_answer": "لينكس",
+        "standard": 8
+    },
+    {
+        "id": 645,
+        "question": "يتكون نظام يونيكس من ثلاثة أجزاء رئيسية منها:",
+        "options": ["النواة.", "الواجهة", "البرامج", "الملفات"],
+        "correct_answer": "النواة",
+        "standard": 8
+    },
+    {
+        "id": 646,
+        "question": "نوع نظام الملفات في ويندوز 8 هو:",
+        "options": ["ReFs", "NTFS", "Bat", "Sys"],
+        "correct_answer": "NTFS",
+        "standard": 8
+    },
+    {
+        "id": 647,
+        "question": "أحد أنواع تنسيقات الصور الذي يدعم الرسوم المتحركة هو:",
+        "options": ["GIF", "BMP", "JPEG", "PNG"],
+        "correct_answer": "GIF",
+        "standard": 9
+    },
+    {
+        "id": 648,
+        "question": "امتداد ملف برنامج وورد:",
+        "options": ["ppt", "Docx", "Xls", "mdb"],
+        "correct_answer": "Docx",
+        "standard": 9
+    },
+    {
+        "id": 649,
+        "question": "جميعها من مواقع محركات البحث ما عدا:",
+        "options": ["Google", "Yahoo", "Internet Explorer", "Bing"],
+        "correct_answer": "Internet Explorer",
+        "standard": 9
+    },
+    {
+        "id": 650,
+        "question": "مجموعة من العمليات الحسابية تنفذ بين عناوين الخلايا ويقوم المستخدم بكتابتها يدوياً:",
+        "options": ["الدالة.", "الصيغة.", "العملية.", "المخطط"],
+        "correct_answer": "الصيغة",
+        "standard": 9
+    },
+    {
+        "id": 651,
+        "question": "تسمية المواقع بالإنترنت الاختصار لموقع منظمة خيرية او هيئة:",
+        "options": ["Org", "Com", "Gov", "Edu"],
+        "correct_answer": "Org",
+        "standard": 9
+    },
+    {
+        "id": 652,
+        "question": "تعد أحد المكونات اللازمة لتكوين الحوسبة السحابية:",
+        "options": ["نظام الفرز.", "نظام الدخول.", "نظام التشغيل.", "نظام التشفير."],
+        "correct_answer": "نظام الدخول",
+        "standard": 9
+    },
+    {
+        "id": 653,
+        "question": "الفرز التنازلي في برنامج ال Word يكون:",
+        "options": ["ي - أ", "أ - ي", "ي", "أ"],
+        "correct_answer": "ي - أ",
+        "standard": 9
+    },
+    {
+        "id": 654,
+        "question": "للانتقال الى أول السطر في الوورد:",
+        "options": ["Home", "End", "Ctrl+E", "Ctrl+Home"],
+        "correct_answer": "Home",
+        "standard": 9
+    }
+]

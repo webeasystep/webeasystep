@@ -1,0 +1,251 @@
+/* Dropzone Styles */
+.fireupload {
+    border: 2px dashed #ccc;
+    padding: 1.25rem;
+    text-align: center;
+    position: relative;
+    min-height: 18.75rem;
+    max-height: 18.75rem;
+    overflow: auto;
+}
+
+.fireupload.dragover {
+    background-color: #e9ecef;
+    border-color: #6c757d;
+}
+
+/* Image Preview Styles */
+.preview {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.preview-item {
+    position: relative;
+    width: 6.25rem;
+    height: 6.25rem;
+    margin-right: 0.625rem;
+    margin-bottom: 0.625rem;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    border: 2px solid #ccc;
+    padding: 0.3125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.preview-item .remove-icon,
+.preview-item .zoom-icon,
+.preview-item .drag-drop-icon {
+    position: absolute;
+    top: 0.3125rem;
+    right: 0.3125rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #212529;
+    border-radius: 50%;
+    padding: 0.3125rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.preview-item .zoom-icon {
+    right: 1.875rem;
+}
+
+.preview-item .drag-drop-icon {
+    right: 3.4375rem;
+}
+
+.preview-item .remove-icon:hover,
+.preview-item .zoom-icon:hover,
+.preview-item .drag-drop-icon:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.preview-item .file-icon {
+    font-size: 2.5rem;
+    color: #007bff;
+}
+
+.preview-item .file-name-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #212529;
+    color: #fff;
+    padding: 0.3125rem;
+    font-size: 0.75rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: max-height 0.3s ease;
+    z-index: 1;
+    max-height: 1.0em;
+}
+
+.preview-item .file-name-label:hover {
+    max-height: none;
+    overflow: visible;
+    white-space: normal;
+    z-index: 2;
+}
+
+/* Add Icon Styles */
+.add-icon {
+    border: 2px dashed #ccc;
+    width: 6.25rem;
+    height: 6.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 0.625rem;
+    color: #ccc;
+    font-size: 1.875rem;
+}
+
+.add-icon.hidden {
+    display: none;
+}
+
+/* File Input Styles */
+.choose-file-input {
+    display: none;
+}
+
+.choose-file-label {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.choose-file-label:hover {
+    background-color: #0069d9;
+}
+
+.choose-file-label i {
+    margin-right: 0.3125rem;
+}
+
+/* Sortable Placeholder Styles */
+.sortable-placeholder {
+    border: 2px dashed #007bff;
+    background-color: #e9ecef;
+    opacity: 0.5;
+    width: 6.25rem;
+    height: 6.25rem;
+}
+
+/* Zoom Popup Styles */
+.zoom-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.zoom-popup .zoomed-image {
+    display: none;
+    max-height: 50vh;
+    max-width: 50vw;
+    object-fit: contain;
+}
+
+.zoom-popup .active-image {
+    display: block;
+}
+
+.zoom-popup .close-icon,
+.zoom-popup .nav-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1.875rem;
+    cursor: pointer;
+    padding: 0.625rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+.zoom-popup .close-icon {
+    position: absolute;
+    top: 5.625rem;
+    right: 19.625rem;
+    font-size: 1.5rem;
+    padding: 0.3125rem;
+    background-color: red;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+
+.zoom-popup .close-icon:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.zoom-popup .nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.zoom-popup .prev-icon {
+    left: 0.625rem;
+}
+
+.zoom-popup .next-icon {
+    right: 17.00rem;
+}
+
+/* Border Box Styles */
+.border-box {
+    border: 2px dashed #ccc;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Visual indicator for sortable */
+.sortable-chosen {
+    background-color: #f2f2f2;
+    transform: scale(1.1);
+    opacity: 0.8;
+    z-index: 1000;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.sortable-dragging {
+    transform: scale(1.1);
+    opacity: 0.6;
+    z-index: 1000;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}

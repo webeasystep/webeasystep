@@ -1,0 +1,434 @@
+[
+    {
+        "id": 409,
+        "question": "بتبسيط الدائرة المنطقية التالية يكون الناتج هو: F=A×B×C + A×B×C' + A×B'×C + A×B'×C' + A'×B'×C",
+        "options": ["A + B × C", "A + B' × C", "A + B × C'", "A' + B' × C"],
+        "correct_answer": "A + B' × C",
+        "standard": 2
+    },
+    {
+        "id": 410,
+        "question": "كم يكافئ الرقم (10) في النظام الست عشري:",
+        "options": ["A", "B", "C", "D"],
+        "correct_answer": "A",
+        "standard": 1
+    },
+    {
+        "id": 411,
+        "question": "مصفوفة حجمها K×N عند ضربها في مصفوفة M×N يكون الناتج:",
+        "options": ["لا يمكن ضربها", "M×K", "N×N", "N×M"],
+        "correct_answer": "لا يمكن ضربها",
+        "standard": 1
+    },
+    {
+        "id": 412,
+        "question": "مصفوفة حجمها K×N عند ضربها في مصفوفة N×M يكون الناتج:",
+        "options": ["لا يمكن ضربها", "K × M", "N*N", "M×N"],
+        "correct_answer": "K × M",
+        "standard": 1
+    },
+    {
+        "id": 413,
+        "question": "العبارة a ∧(a∨b) تكافئ:",
+        "options": ["a", "1", "0", "a∨(a∧b)"],
+        "correct_answer": "a",
+        "standard": 2
+    },
+    {
+        "id": 414,
+        "question": "ناتج تبسيط العبارة المنطقية (A+B)+(A+C) هو:",
+        "options": ["(A+B) + (A+C)", "(A+B)·(A+C)", "(A+B) + (C)", "(A+B)·(C)"],
+        "correct_answer": "(A+B) + (A+C)",
+        "standard": 2
+    },
+    {
+        "id": 415,
+        "question": "العبارة a∨(a∧b) تكافئ:",
+        "options": ["1", "0", "a∧(a∨b)", "a"],
+        "correct_answer": "a",
+        "standard": 2
+    },
+    {
+        "id": 416,
+        "question": "ناتج التبسيط للمعادلة: (A+B) * (A+C) هو:",
+        "options": ["A + (B * C)", "A * (B + C)", "ABC", "A + B + C"],
+        "correct_answer": "A + (B * C)",
+        "standard": 2
+    },
+    {
+        "id": 417,
+        "question": "المرجاح الذي يستعمل في بناء الريجستر",
+        "options": ["- المراجيح المتزامنة", "- مرجاح D", "- مرجاح NAND", "- مرجاح العواكس المنطقية"],
+        "correct_answer": "- مرجاح D",
+        "standard": 2
+    },
+    {
+        "id": 418,
+        "question": "يمكن تركيب قلاب (Flip-flop) بسيط من نوع (S-R) من خلال بوابة:",
+        "options": ["OR", "NAND", "AND", "XOR"],
+        "correct_answer": "NAND",
+        "standard": 2
+    },
+    {
+        "id": 419,
+        "question": "نوع من المسجلات يستخدم في العمليات الحسابية والمنطقية:",
+        "options": ["Accumulator", "Instruction", "Program Counter", "Index Register"],
+        "correct_answer": "Accumulator",
+        "standard": 3
+    },
+    {
+        "id": 420,
+        "question": "يحتوي على عنوان التعليمة التالية المفترض تنفيذها بعد استكمال تنفيذ التعليمة الحالية (الأمر التالي للتنفيذ):",
+        "options": ["Address Bus", "Program counter", "Instruction Register", "Instruction Decoder"],
+        "correct_answer": "Program counter",
+        "standard": 3
+    },
+    {
+        "id": 421,
+        "question": "ما الذي يحدد قوة أداء المعالج؟",
+        "options": ["عدد الوحدات العاملة", "مكونات المعالج", "حجم المعالج", "سرعة الناقل"],
+        "correct_answer": "عدد الوحدات العاملة",
+        "standard": 3
+    },
+    {
+        "id": 422,
+        "question": "طبقة النقل (Transport Layer) تهتم بـ:",
+        "options": ["ضمان وسلامة نقل البيانات", "توجيه البيانات على الشبكة", "تشفير البيانات", "إنشاء وإدارة الاتصال"],
+        "correct_answer": "ضمان وسلامة نقل البيانات",
+        "standard": 4
+    },
+    {
+        "id": 423,
+        "question": "عند إنشاء شبكة حاسب محلية فإن معلم الحاسب في المدرسة لن يحتاج إلى أحد هذه الأجهزة لا نقوم باستخدامه:",
+        "options": ["المودم", "السويتش", "بطاقة الشبكة", "الجسر"],
+        "correct_answer": "المودم",
+        "standard": 4
+    },
+    {
+        "id": 424,
+        "question": "بروتوكول يقوم بترجمة أسماء المواقع من حروف إلى أرقام عنوان (IP):",
+        "options": ["DNS", "SMTP", "FTP", "TCP"],
+        "correct_answer": "DNS",
+        "standard": 4
+    },
+    {
+        "id": 425,
+        "question": "من وظائف طبقة الشبكة Network layer في النموذج القياسي osi:",
+        "options": ["اختيار مسار إرسال البيانات", "تشفير البيانات المراد إرسالها", "ضمان سلامة نقل البيانات", "بدء التحاور بين وحدتين في الشبكة"],
+        "correct_answer": "اختيار مسار إرسال البيانات",
+        "standard": 4
+    },
+    {
+        "id": 426,
+        "question": "يسمى جهاز الشبكة الذي يقرأ عنوان الوجهة للرسالة ويستخدم المعلومات المخزنة في جدول الخاص لإعادة إرسال الرسالة إلى شبكة أخرى نحو وجهتها بـ:",
+        "options": ["بطاقة الشبكة", "جهاز الخادم Server", "الموجه Router Card", "جهاز الجسر Bridge"],
+        "correct_answer": "الموجه Router Card",
+        "standard": 4
+    },
+    {
+        "id": 427,
+        "question": "بروتوكول الشبكة الإنترنت الخاص بجلب صفحة وزارة التعليم إلى جهاز الحاسب الألي لمدير مدرسة هو:",
+        "options": ["FTP", "HTTP", "SMTP", "IMAP"],
+        "correct_answer": "HTTP",
+        "standard": 4
+    },
+    {
+        "id": 428,
+        "question": "من لغات البرمجة بالكائنات Oriented-language: لغة:",
+        "options": ["C", "Python", "Basic", "Assembly"],
+        "correct_answer": "Python",
+        "standard": 5
+    },
+    {
+        "id": 429,
+        "question": "المكون الذي لا يستخدم عند بناء شبكة في معمل الحاسب الآلي بمدرسة ثانوية هو:",
+        "options": ["جهاز مبدل Switch", "جهاز خادم Server", "بطاقة الشبكة Network", "جهاز الجسر Bridge"],
+        "correct_answer": "جهاز الجسر Bridge",
+        "standard": 4
+    },
+    {
+        "id": 430,
+        "question": "إذا أردت ربط أجهزة معلمي المدرسة بشبكة محلية مكونة من خمسة أجهزة بطريقة غير مركزية فإنه من الأفضل بناء شبكة:",
+        "options": ["هرمية", "الند للند", "النطاق العريض", "الخادم والزبون"],
+        "correct_answer": "الند للند",
+        "standard": 4
+    },
+    {
+        "id": 431,
+        "question": "نوع الشبكة التي تحتوي على جهاز مركزي ينظم الاتصال الأجهزة الأخرى ويؤدي تعطله إلى توقف الشبكة هو:",
+        "options": ["حلقي", "نجمي", "خطي", "شبكي"],
+        "correct_answer": "نجمي",
+        "standard": 4
+    },
+    {
+        "id": 432,
+        "question": "الخدمة التي تعمل على بروتوكول TCP/IP وتمكن من تنفيذ أوامر على جهاز بعيد على الشبكة هو:",
+        "options": ["Ping", "Telnet", "Traceroute", "IpConfig"],
+        "correct_answer": "Telnet",
+        "standard": 4
+    },
+    {
+        "id": 433,
+        "question": "البروتوكول الذي يقوم بتحويل اسم المجال من حروف إلى عنوان:",
+        "options": ["FTP", "URL", "DNS", "HTTP"],
+        "correct_answer": "DNS",
+        "standard": 4
+    },
+    {
+        "id": 434,
+        "question": "طابور يوجد به (3) خانات (x,y,z) لو أضفنا حرف (w) كيف يكون شكل الطابور:",
+        "options": ["head(w,y,z)tail", "head(x,y,w)tail", "head(w,x,y,z)tail", "head(x,y,z,w)tail"],
+        "correct_answer": "head(x,y,z,w)tail",
+        "standard": 5
+    },
+    {
+        "id": 435,
+        "question": "ما ناتج البرنامج التالي: int count=0; while(count<10) { System.out.print(\"*\"); count++; }",
+        "options": ["10 نجوم", "9 نجوم", "0 نجوم", "تكرار لا نهائي للنجمة"],
+        "correct_answer": "10 نجوم",
+        "standard": 5
+    },
+    {
+        "id": 436,
+        "question": "أفضل نوع لتخزين بيانات المرضى في الطوارئ:",
+        "options": ["queue", "Priority queue", "Stack", "Linked list"],
+        "correct_answer": "Priority queue",
+        "standard": 5
+    },
+    {
+        "id": 437,
+        "question": "نوع البيانات في الجملة Dim a as Boolean هو:",
+        "options": ["حرفي", "منطقي", "عددي", "تاريخ"],
+        "correct_answer": "منطقي",
+        "standard": 5
+    },
+    {
+        "id": 438,
+        "question": "عند كتابة هذه العبارة Dim Grades (9) As Integer بلغة الفيجوال بيسك فإن عدد عناصر المصفوفة Grades يساوي:",
+        "options": ["8", "10", "11", "9"],
+        "correct_answer": "10",
+        "standard": 5
+    },
+    {
+        "id": 439,
+        "question": "الإجراء الخاص بإدراج عنصر في مكدس Stack يسمى:",
+        "options": ["Create", "Push", "New", "Pop"],
+        "correct_answer": "Push",
+        "standard": 5
+    },
+    {
+        "id": 440,
+        "question": "هيكل بيانات واسع الاستخدام يتكون من مجموعة من الرؤوس المرتبطة:",
+        "options": ["Tree", "Stack", "Queue", "Graph"],
+        "correct_answer": "Tree",
+        "standard": 5
+    },
+    {
+        "id": 441,
+        "question": "إذا كان لدينا قطعة الكود الآتية ، حيث يتم طباعة كل عبارة أو رقم على سطر منفصل في عملية الإخراج بعدها يتم تنفيذ تغذية السطر Line Feed: فما الذي سيتم طباعته عند تنفيذ استدعاء (16): Void h (int n) if (n>=4) h(n/2) end if printin n End h",
+        "options": ["2", "16", "16 8 4 2", "4 2 8 16"],
+        "correct_answer": "16 8 4 2",
+        "standard": 5
+    },
+    {
+        "id": 442,
+        "question": "أفضل تراكيب البيانات المستخدمة في التحويل بين أنواع التعبيرات المختلفة Postfix prefix:",
+        "options": ["Link", "Stack", "Queue", "Heap"],
+        "correct_answer": "Stack",
+        "standard": 5
+    },
+    {
+        "id": 443,
+        "question": "ناتج 2 % 5:",
+        "options": ["2", "2.5", "1", "0"],
+        "correct_answer": "2",
+        "standard": 5
+    },
+    {
+        "id": 444,
+        "question": "نفي العبارة المنطقية: '2 is even AND -3 is negative' هو:",
+        "options": [
+            "2 is even AND -3 is not negative",
+            "2 is odd OR -3 is not negative",
+            "2 is not even OR -3 is not negative",
+            "2 is not even AND -3 is not negative"
+        ],
+        "correct_answer": "2 is not even OR -3 is not negative",
+        "standard": 2
+    },
+    {
+        "id": 445,
+        "question": "اللغة التي يستخدم فيها المفسر:",
+        "options": ["C++", "JAVA", "C", "Assembly"],
+        "correct_answer": "JAVA",
+        "standard": 5
+    },
+    {
+        "id": 446,
+        "question": "مفتاح مرشح كـ:",
+        "options": ["أسم الطالب – تخصص الطالب", "رقم الطالب – أسم الطالب", "رقم الهوية – أسم الطالب", "رقم الهوية – رقم الطالب"],
+        "correct_answer": "رقم الهوية – رقم الطالب",
+        "standard": 6
+    },
+    {
+        "id": 447,
+        "question": "هذا الشكل يدل:",
+        "options": ["صفة بسيطة", "صفة متعددة", "صفة مركبة", "صفة مشتقة"],
+        "correct_answer": "صفة متعددة",
+        "standard": 6
+    },
+    {
+        "id": 448,
+        "question": "نوع التطبيع في الجدول:",
+        "options": ["غير مطبع", "1 NF", "2 NF", "3 NF"],
+        "correct_answer": "غير مطبع",
+        "standard": 6
+    },
+    {
+        "id": 449,
+        "question": "اللغة الخاصة بتعريف المخطط الداخلي Internal Schema هي:",
+        "options": ["SDL", "VDL", "DML", "DDL"],
+        "correct_answer": "SDL",
+        "standard": 6
+    },
+    {
+        "id": 450,
+        "question": "للبحث عن دعم تقني لحماية البيانات الشخصية ومساعدة مقدمى الخدمات على التعامل مع البيانات بالمملكة يتم عن طريق:",
+        "options": ["هيئة الاتصالات وتقنية المعلومات", "هيئات الأمن", "مدينة الملك عبدالله الاقتصادية", "وزارة التجارة"],
+        "correct_answer": "هيئة الاتصالات وتقنية المعلومات",
+        "standard": 14
+    },
+    {
+        "id": 451,
+        "question": "علم إخفاء الرسائل (البيانات) وتعتيمها أثناء نقلها أو تبادلها على الشبكة يُسمى:",
+        "options": ["Steganography", "DE Encryption", "Encryption", "Data Masking"],
+        "correct_answer": "Steganography",
+        "standard": 7
+    },
+    {
+        "id": 452,
+        "question": "رسائل الايميل الغير مرغوب فيها تسمى:",
+        "options": ["spam", "phishing", "Inbox", "virus"],
+        "correct_answer": "spam",
+        "standard": 7
+    },
+    {
+        "id": 453,
+        "question": "من برامج إعداد الصوت برنامج:",
+        "options": ["Serif", "Gimp", "Audacity", "Pencil"],
+        "correct_answer": "Audacity",
+        "standard": 9
+    },
+    {
+        "id": 454,
+        "question": "من متصفحات الويب:",
+        "options": ["Google Chrome", "Yahoo", "Mozilla Firefox", "Microsoft Edge"],
+        "correct_answer": "Mozilla Firefox",
+        "standard": 9
+    },
+    {
+        "id": 455,
+        "question": "يوجد فيه جميع المهام التي تنتظر التنفيذ:",
+        "options": ["طابور المهام", "الطابور الجاهز", "طابور الجهاز", "طابور الانتظار"],
+        "correct_answer": "الطابور الجاهز",
+        "standard": 8
+    },
+    {
+        "id": 456,
+        "question": "من وسائل التواصل الاجتماعي تسمح بتدوينه 280 حرف:",
+        "options": ["تويتر", "فيس بوك", "انستقرام", "تيك توك"],
+        "correct_answer": "تويتر",
+        "standard": 9
+    },
+    {
+        "id": 457,
+        "question": "مرضى في مستشفى في غرفة الطوارئ يستخدم:",
+        "options": ["Stack", "Priority queue", "Queue", "غير ذلك"],
+        "correct_answer": "Priority queue",
+        "standard": 5
+    },
+    {
+        "id": 458,
+        "question": "طلاب في الصف الثاني ثانوي طلب معلميهم عمل تقرير حول عمارة الحاسب المحمول تنصح باستخدام برنامج:",
+        "options": ["معالجة النصوص", "عروض تقديمية", "قواعد بيانات", "جداول حسابية"],
+        "correct_answer": "معالجة النصوص",
+        "standard": 9
+    },
+    {
+        "id": 459,
+        "question": "برنامج يسمح للمعلم بتصميم فيديو تعليمي وإضافة نص وصوت:",
+        "options": ["Paint", "Moviemaker", "Audacity", "غير ذلك"],
+        "correct_answer": "Moviemaker",
+        "standard": 9
+    },
+    {
+        "id": 460,
+        "question": "قام أحد طلابك بجمع بيانات من الموظفين في المدرسة من إداريين ومعلمين (أرقام هواتف وعنوانين الفصول التي يدرسونها) في ملف وورد تنصحه:",
+        "options": ["إنشاء ملف اكسيل", "إنشاء قاعدة بيانات اكسس", "نشكره لاستخدام الوورد", "بوربوينت"],
+        "correct_answer": "إنشاء قاعدة بيانات اكسس",
+        "standard": 6
+    },
+    {
+        "id": 461,
+        "question": "من برامج الفصول الافتراضية:",
+        "options": ["WizIQ", "CourseLab", "Adobe Connect", "PowerPoint"],
+        "correct_answer": "WizIQ",
+        "standard": 11
+    },
+    {
+        "id": 462,
+        "question": "التقاء معلم مع طلابه في أي مكان وفي نفس الوقت:",
+        "options": ["افتراضي متزامن", "افتراضي غير متزامن", "فصل تفاعلي", "فصل تقليدي"],
+        "correct_answer": "افتراضي متزامن",
+        "standard": 11
+    },
+    {
+        "id": 463,
+        "question": "ماهي الفجوة الرقمية:",
+        "options": ["الشخص الذي لا يعرف الحاسب", "الشخص الذي لا يعرف المعلومات", "التفاوت في مقدار المعلومات والمهارات", "الشخص الذي لا يملك جهاز حاسب"],
+        "correct_answer": "التفاوت في مقدار المعلومات والمهارات",
+        "standard": 11
+    },
+    {
+        "id": 464,
+        "question": "ما هو الاختيار الخاطئ. أنتل تقوم بـ:",
+        "options": ["تدريب الطلاب التعلم بالمشروعات.", "تعويد المعلم على ممارسة التعلم وفق استخدام التقنيات", "أن يتعلم الطلاب التخطيط والإدارة لمشروعاتهم التجارية", "تدريب الطلاب على مهارة القرن 21"],
+        "correct_answer": "أن يتعلم الطلاب التخطيط والإدارة لمشروعاتهم التجارية",
+        "standard": 11
+    },
+    {
+        "id": 465,
+        "question": "أفضل طريقة لتعلم البرمجة:",
+        "options": ["حل المشكلات", "دراسة الحالة", "التعلم التعاوني", "النظري"],
+        "correct_answer": "حل المشكلات",
+        "standard": 12
+    },
+    {
+        "id": 466,
+        "question": "إذا أراد معلم من الطالب عدم العبث في برامج أخرى في المعمل فإنه:",
+        "options": ["تطبيق استراتيجية التعلم التعاوني", "استخدام برامج إدارة المعمل", "تحذيرهم من العبث", "معاقبتهم"],
+        "correct_answer": "استخدام برامج إدارة المعمل",
+        "standard": 12
+    },
+    {
+        "id": 467,
+        "question": "طريقة تعلم حديثة تعتمد على الطالب ويكون من واقعه:",
+        "options": ["العصف الذهني", "حل المشكلات", "التعلم الذاتي", "غير ذلك"],
+        "correct_answer": "حل المشكلات",
+        "standard": 12
+    },
+    {
+        "id": 468,
+        "question": "التقويم من أجل التعلم:",
+        "options": ["التشخيص", "البنائي - التكويني", "الختامي", "القبلي"],
+        "correct_answer": "البنائي - التكويني",
+        "standard": 12
+    },
+    {
+        "id": 469,
+        "question": "صياغة حل المسألة هو:",
+        "options": ["كتابة الخوارزم", "تحديد وكتابة خطوات الحل", "التمثيل البياني للخوارزم", "الخوارزمية المناسبة"],
+        "correct_answer": "تحديد وكتابة خطوات الحل",
+        "standard": 15
+    }
+]
