@@ -80,7 +80,8 @@ class AdminCourses extends BaseController
             }
         }
 
-        $data['course'] = $this->courses->getCourseById($id);
+        $data['course'] = $this->courses->find($id); // Fetch the page data by ID
+        $data['files'] = json_decode($data['course']->image, true);
         return view('form', $data);
     }
 

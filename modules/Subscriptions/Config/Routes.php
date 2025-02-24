@@ -27,7 +27,7 @@ $routes->group('dt_admin', [
 
     $routes->post('subscriptions/switchToggle', [AdminSubscriptions::class, 'switchToggle']);
 
-    $routes->get('subscriptions/delete', [AdminSubscriptions::class, 'delete']);
+    $routes->post('subscriptions/delete', [AdminSubscriptions::class, 'delete']);
 
 
 });

@@ -1,7 +1,7 @@
 <?php
 
-use Modules\Payments\Controllers\AdminPlans;
-use Modules\Payments\Controllers\Plans;
+use Modules\Payments\Controllers\AdminPayments;
+use Modules\Payments\Controllers\Payments;
 
 if (!isset($routes)) {
     $routes = \Config\Services::routes(true);
@@ -14,21 +14,21 @@ $routes->group('dt_admin', [
     'filter' => 'admin_filter' // Apply the filter to the entire group
 ], static function ($routes) {
     //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['get', 'post'], 'payments', [AdminPlans::class, 'index']);
+    $routes->match(['get', 'post'], 'payments', [AdminPayments::class, 'index']);
 
-    $routes->post('payments/index', [AdminPlans::class, 'index']);
+    $routes->post('payments/index', [AdminPayments::class, 'index']);
 
-    $routes->match(['get', 'post'], 'payments/add', [AdminPlans::class, 'add']);
+    $routes->match(['get', 'post'], 'payments/add', [AdminPayments::class, 'add']);
 
-    $routes->match(['get', 'post'], 'payments/edit/(:num)', [AdminPlans::class, 'edit/$1']);
+    $routes->match(['get', 'post'], 'payments/edit/(:num)', [AdminPayments::class, 'edit/$1']);
 
-    $routes->post('payments/show/(:num)', [AdminPlans::class, 'show/$1']);
+    $routes->post('payments/show/(:num)', [AdminPayments::class, 'show/$1']);
 
-    $routes->post('payments/edit', [AdminPlans::class, 'edit']);
+    $routes->post('payments/edit', [AdminPayments::class, 'edit']);
 
-    $routes->post('payments/switchToggle', [AdminPlans::class, 'switchToggle']);
+    $routes->post('payments/switchToggle', [AdminPayments::class, 'switchToggle']);
 
-    $routes->get('payments/delete', [AdminPlans::class, 'delete']);
+    $routes->post('payments/delete', [AdminPayments::class, 'delete']);
 
 
 });
@@ -38,8 +38,8 @@ $routes->group('/',
     ['namespace' => 'Modules\Payments\Controllers'],
     static function ($routes) {
 
-    $routes->get('payments', [Plans::class, 'index']);
-    $routes->post('payments/show/(:num)', [Plans::class, 'show/$1']);
+    $routes->get('payments', [Payments::class, 'index']);
+    $routes->post('payments/show/(:num)', [Payments::class, 'show/$1']);
 
 });
 

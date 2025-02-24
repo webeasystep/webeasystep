@@ -18,12 +18,9 @@ class AdminPages extends BaseController
         $this->pages = new PagesModel();
         $this->rules = [
             "page_link" => ['label' => lang("Pages.page_link"), 'rules' => "required"],
-            "title_ar" => ['label' => lang("Pages.title_ar"), 'rules' => "required"],
-            "title_en" => ['label' => lang("Pages.title_en"), 'rules' => "required"],
-            "desc_ar" => ['label' => lang("Pages.desc_ar"), 'rules' => "required"],
-            "desc_en" => ['label' => lang("Pages.desc_en"), 'rules' => "required"],
-            "content_ar" => ['label' => lang("Pages.content_ar"), 'rules' => "required"],
-            "content_en" => ['label' => lang("Pages.content_en"), 'rules' => "required"],
+            "title" => ['label' => lang("Pages.title"), 'rules' => "required"],
+            "desc" => ['label' => lang("Pages.desc"), 'rules' => "required"],
+            "content" => ['label' => lang("Pages.content"), 'rules' => "required"],
         ];
     }
 /**/
@@ -35,7 +32,7 @@ class AdminPages extends BaseController
 
         if ($this->request->isAJAX()) {
             $pagesModel = $this->pages
-                ->select('s1.id, prn.title_ar as main_parent ,s1.title_ar,  s1.images, s1.sort, s1.active, s1.show_home, s1.created_at,s1.updated_at')
+                ->select('s1.id, prn.title as main_parent ,s1.title,  s1.images, s1.sort, s1.active, s1.show_home, s1.created_at,s1.updated_at')
                 ->from('pages s1',true)
                 ->join('pages prn', 'prn.id = s1.parent_id', 'left')
                 ->groupBy(['s1.id'])
@@ -45,8 +42,8 @@ class AdminPages extends BaseController
             DtTable::changeColumn('gender', function ($data, $row) {
                 return "<strong style='background-color: #0c84ff'>{$data}</strong>";
             });
-            DtTable::searchableColumns(['s1.title_ar']);
-            DtTable::orderableColumns(['title_ar','desc_ar','images']);
+            DtTable::searchableColumns(['s1.title']);
+            DtTable::orderableColumns(['title','desc','images']);
             DtTable::setColumnSwitch('active');
             DtTable::setColumnSwitch('show_home');
             DtTable::setColumnImage('images');
@@ -69,7 +66,7 @@ class AdminPages extends BaseController
             // $this->rules['mobile'] = "required|is_unique[pages.mobile]";
 
             if ($this->validate($this->rules)) {
-                $id = $this->data_arr();
+                $id = $this->datar();
                 $this->fireUploader->upload_photos($this->pages, 'images', $id);
                 $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
                 return redirect()->to(ADMIN_URL . "pages");
@@ -92,7 +89,7 @@ class AdminPages extends BaseController
         $data['title'] = lang("Admin.add_data");
 
         if ($this->request->is('post')) {
-            $this->data_arr($id);
+            $this->datar($id);
             // if the profile photo is updated
             // $this->rules['mobile'] = "required|is_unique[pages.mobile,id,$id]";
             if ($this->request->getFile('images')) {
@@ -100,7 +97,7 @@ class AdminPages extends BaseController
             }
 
             if ($this->validate($this->rules)) {
-                $this->data_arr();
+                $this->datar();
                 $this->fireUploader->upload_photos($this->pages, 'images', $id);
                 if (!empty($id)) { // Check if $id is not empty
                     $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
@@ -121,7 +118,7 @@ class AdminPages extends BaseController
         return view('form', $data);
     }
 
-    function data_arr($id = NULL){
+    function datar($id = NULL){
         // add new page data
         $data = [
             'page_link' => $this->request->getPost('page_link', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
@@ -132,14 +129,9 @@ class AdminPages extends BaseController
         ];
 
         // Retrieve the supported locales
-        $locales = $this->request->config->supportedLocales;
-        foreach ($locales as $lng) {
-            foreach ($locales as $lng) {
-                $data["title_$lng"] = $this->request->getPost("title_$lng");
-                $data["desc_$lng"] = $this->request->getPost("desc_$lng");
-                $data["content_$lng"] = $this->request->getPost("content_$lng");
-            }
-        }
+        $data["title_"] = $this->request->getPost("title");
+        $data["desc"] = $this->request->getPost("desc");
+        $data["content"] = $this->request->getPost("content");
         // Save the data using the save method
         if ($id) {
             // Update the existing record

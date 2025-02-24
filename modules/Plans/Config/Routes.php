@@ -1,7 +1,7 @@
 <?php
 
-use Modules\Plans\Controllers\AdminSubscriptions;
-use Modules\Plans\Controllers\Subscriptions;
+use Modules\Plans\Controllers\AdminPlans;
+use Modules\Plans\Controllers\Plans;
 
 if (!isset($routes)) {
     $routes = \Config\Services::routes(true);
@@ -14,21 +14,21 @@ $routes->group('dt_admin', [
     'filter' => 'admin_filter' // Apply the filter to the entire group
 ], static function ($routes) {
     //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['get', 'post'], 'plans', [AdminSubscriptions::class, 'index']);
+    $routes->match(['get', 'post'], 'plans', [AdminPlans::class, 'index']);
 
-    $routes->post('plans/index', [AdminSubscriptions::class, 'index']);
+    $routes->post('plans/index', [AdminPlans::class, 'index']);
 
-    $routes->match(['get', 'post'], 'plans/add', [AdminSubscriptions::class, 'add']);
+    $routes->match(['get', 'post'], 'plans/add', [AdminPlans::class, 'add']);
 
-    $routes->match(['get', 'post'], 'plans/edit/(:num)', [AdminSubscriptions::class, 'edit/$1']);
+    $routes->match(['get', 'post'], 'plans/edit/(:num)', [AdminPlans::class, 'edit/$1']);
 
-    $routes->post('plans/show/(:num)', [AdminSubscriptions::class, 'show/$1']);
+    $routes->post('plans/show/(:num)', [AdminPlans::class, 'show/$1']);
 
-    $routes->post('plans/edit', [AdminSubscriptions::class, 'edit']);
+    $routes->post('plans/edit', [AdminPlans::class, 'edit']);
 
-    $routes->post('plans/switchToggle', [AdminSubscriptions::class, 'switchToggle']);
+    $routes->post('plans/switchToggle', [AdminPlans::class, 'switchToggle']);
 
-    $routes->get('plans/delete', [AdminSubscriptions::class, 'delete']);
+    $routes->post('plans/delete', [AdminPlans::class, 'delete']);
 
 
 });
@@ -38,8 +38,8 @@ $routes->group('/',
     ['namespace' => 'Modules\Plans\Controllers'],
     static function ($routes) {
 
-    $routes->get('plans', [Subscriptions::class, 'index']);
-    $routes->post('plans/show/(:num)', [Subscriptions::class, 'show/$1']);
+    $routes->get('plans', [Plans::class, 'index']);
+    $routes->post('plans/show/(:num)', [Plans::class, 'show/$1']);
 
 });
 

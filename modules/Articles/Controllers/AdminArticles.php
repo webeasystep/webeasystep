@@ -4,19 +4,19 @@ namespace Modules\Articles\Controllers;
 
 use App\Controllers\BaseController;
 use App\Libraries\DtTable;
-use Modules\Articles\Models\CoursesModel;
+use Modules\Articles\Models\ArticlesModel;
 use App\Libraries\FireUploader;
 
 class AdminArticles extends BaseController
 {
-    protected CoursesModel $articles;
+    protected ArticlesModel $articles;
     protected array $rules;
     protected FireUploader $fireUploader;
 
     public function __construct()
     {
         $this->fireUploader = new FireUploader();
-        $this->articles = new CoursesModel();
+        $this->articles = new ArticlesModel();
         $this->rules = [
             "title_ar" => ['label' => lang("Articles.title_ar"), 'rules' => "required"],
             "desc_ar" => ['label' => lang("Articles.desc_ar"), 'rules' => "required"],

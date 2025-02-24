@@ -28,7 +28,7 @@ $routes->group('dt_admin', [
 
     $routes->post('courses/switchToggle', [AdminCourses::class, 'switchToggle']);
 
-    $routes->get('courses/delete', [AdminCourses::class, 'delete']);
+    $routes->post('courses/delete', [AdminCourses::class, 'delete']);
 
 
 });

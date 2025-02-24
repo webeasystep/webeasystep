@@ -4,16 +4,16 @@ namespace Modules\Plans\Controllers;
 
 use App\Controllers\BaseController;
 use App\Libraries\DtTable;
-use Modules\Plans\Models\SubscriptionsModel;
+use Modules\Plans\Models\PlansModel;
 
 class AdminPlans extends BaseController
 {
-    protected SubscriptionsModel $plans;
+    protected PlansModel $plans;
     protected array $rules;
 
     public function __construct()
     {
-        $this->plans = new SubscriptionsModel();
+        $this->plans = new PlansModel();
         $this->rules = [
             "title" => ['label' => lang("Plans.title"), 'rules' => "required"],
             "price" => ['label' => lang("Plans.price"), 'rules' => "required|decimal"],

@@ -29,7 +29,7 @@ $routes->group('dt_admin', ['namespace' => 'Modules\ContactUs\Controllers',
 
     $routes->post('contact_us/switchToggle', [AdminContactUs::class, 'switchToggle']);
 
-    $routes->get('contact_us/delete', [AdminContactUs::class, 'delete']);
+    $routes->post('contact_us/delete', [AdminContactUs::class, 'delete']);
 
 
 

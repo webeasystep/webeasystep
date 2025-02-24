@@ -4,7 +4,7 @@ return [
     'courses_List' => "Courses List",
     'course_name' => "Course Name",
     'course_desc' => "Course Description",
-    'images' => "Images",
+    'image' => "Images",
     'sort' => "Sort",
     'price' => "Price",
     'is_free' => "Is Free",

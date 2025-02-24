@@ -125,13 +125,6 @@ class AdminUsers extends BaseController
             'status' => $this->request->getPost('status') ? 1 : 0,
         ];
 
-        // Retrieve the supported locales
-        $locales = $this->request->config->supportedLocales;
-        foreach ($locales as $locale) {
-            $address = 'address_' . $locale;
-            $data[$address] = $this->request->getPost($address);
-        }
-
         // Save the data using the save method
         if ($id) {
             // Update the existing record

@@ -55,6 +55,7 @@ class Autoload extends AutoloadConfig
         'Modules\Videos'   => ROOTPATH . 'modules/Videos',
         'Modules\Subscriptions'   => ROOTPATH . 'modules/Subscriptions',
         'Modules\Plans'   => ROOTPATH . 'modules/Plans',
+        'Modules\Payments'   => ROOTPATH . 'modules/Payments',
     ];
 
     /**

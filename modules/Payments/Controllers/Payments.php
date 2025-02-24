@@ -1,15 +1,15 @@
 <?php
 namespace Modules\Payments\Controllers;
 use App\Controllers\BaseController;
-use Modules\Payments\Models\PlansModel;
+use Modules\Payments\Models\PaymentsModel;
 
 class Payments extends BaseController
 {
-    public PlansModel $paymentsModel;
+    public PaymentsModel $paymentsModel;
 
     public function __construct()
     {
-        $this->paymentsModel = new PlansModel();
+        $this->paymentsModel = new PaymentsModel();
     }
 
     public function index(): string

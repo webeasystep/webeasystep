@@ -49,7 +49,7 @@ $ajaxUrl =  current_url() ;
             success: function(msg) {
                 // Handle success response
                 if (msg.status === 200) {
-                    dt_table.ajax.reload(null, false);
+                    dt_table.ajax.reload();
                     toastr.success(msg.html, 'تم بنجاح', {allowHtml: true});
                 } else {
                     console.log(msg.html)
@@ -76,7 +76,7 @@ $ajaxUrl =  current_url() ;
             data: {table,rows},
             success: function(response) {
                 // Handle success response
-                dt_table.ajax.reload(null, false);
+                dt_table.ajax.reload();
                 toastr.success(response.message, 'Success');
             },
             error: function(xhr, status, error) {
@@ -335,7 +335,7 @@ $ajaxUrl =  current_url() ;
                 {
                     text: 'تحديث',
                     action: function ( e, dt, node, config ) {
-                        dt_table.ajax.reload(null, false);  // null means no callback, false means do not reset paging
+                        dt_table.ajax.reload();
                     }
                 }
             ],
@@ -403,7 +403,7 @@ $ajaxUrl =  current_url() ;
     }
 
     $(document).on('change', '.custom-filter', function() {
-        dt_table.ajax.reload(null, false);
+        dt_table.ajax.reload();
     });
 </script>
 <style>

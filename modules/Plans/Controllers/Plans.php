@@ -1,15 +1,15 @@
 <?php
 namespace Modules\Plans\Controllers;
 use App\Controllers\BaseController;
-use Modules\Plans\Models\SubscriptionsModel;
+use Modules\Plans\Models\PlansModel;
 
 class Plans extends BaseController
 {
-    public SubscriptionsModel $plansModel;
+    public PlansModel $plansModel;
 
     public function __construct()
     {
-        $this->plansModel = new SubscriptionsModel();
+        $this->plansModel = new PlansModel();
     }
 
     public function index(): string

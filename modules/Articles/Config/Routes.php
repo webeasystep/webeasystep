@@ -1,7 +1,7 @@
 <?php
 
-use Modules\Articles\Controllers\AdminCourses;
-use Modules\Articles\Controllers\Courses;
+use Modules\Articles\Controllers\AdminArticles;
+use Modules\Articles\Controllers\Articles;
 
 if (!isset($routes)) {
     $routes = \Config\Services::routes(true);
@@ -14,21 +14,21 @@ $routes->group('dt_admin', [
     'filter' => 'admin_filter' // Apply the filter to the entire group
 ], static function ($routes) {
     //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['get', 'post'], 'articles', [AdminCourses::class, 'index']);
+    $routes->match(['get', 'post'], 'articles', [AdminArticles::class, 'index']);
 
-    $routes->post('articles/index', [AdminCourses::class, 'index']);
+    $routes->post('articles/index', [AdminArticles::class, 'index']);
 
-    $routes->match(['get', 'post'], 'articles/add', [AdminCourses::class, 'add']);
+    $routes->match(['get', 'post'], 'articles/add', [AdminArticles::class, 'add']);
 
-    $routes->match(['get', 'post'], 'articles/edit/(:num)', [AdminCourses::class, 'edit/$1']);
+    $routes->match(['get', 'post'], 'articles/edit/(:num)', [AdminArticles::class, 'edit/$1']);
 
-    $routes->post('articles/show/(:num)', [AdminCourses::class, 'show/$1']);
+    $routes->post('articles/show/(:num)', [AdminArticles::class, 'show/$1']);
 
-    $routes->post('articles/edit', [AdminCourses::class, 'edit']);
+    $routes->post('articles/edit', [AdminArticles::class, 'edit']);
 
-    $routes->post('articles/switchToggle', [AdminCourses::class, 'switchToggle']);
+    $routes->post('articles/switchToggle', [AdminArticles::class, 'switchToggle']);
 
-    $routes->get('articles/delete', [AdminCourses::class, 'delete']);
+    $routes->post('articles/delete', [AdminArticles::class, 'delete']);
 
 
 });
@@ -38,8 +38,8 @@ $routes->group('/',
     ['namespace' => 'Modules\Articles\Controllers'],
     static function ($routes) {
 
-    $routes->get('articles', [Courses::class, 'index']);
-    $routes->post('articles/show/(:num)', [Courses::class, 'show/$1']);
+    $routes->get('articles', [Articles::class, 'index']);
+    $routes->post('articles/show/(:num)', [Articles::class, 'show/$1']);
 
 });
 

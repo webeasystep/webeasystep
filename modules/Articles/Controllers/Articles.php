@@ -1,19 +1,19 @@
 <?php
 namespace Modules\Articles\Controllers;
 use App\Controllers\BaseController;
-use Modules\Articles\Models\CoursesModel;
+use Modules\Articles\Models\ArticlesModel;
 
 
 class Articles extends BaseController
 {
-    public CoursesModel $articlesModel;
+    public ArticlesModel $articlesModel;
 
     /**
      * Constructor.
      */
     public function __construct()
     {
-        $this->articlesModel = new CoursesModel();
+        $this->articlesModel = new ArticlesModel();
     }
 
 

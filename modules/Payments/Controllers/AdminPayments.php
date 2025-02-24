@@ -4,16 +4,16 @@ namespace Modules\Payments\Controllers;
 
 use App\Controllers\BaseController;
 use App\Libraries\DtTable;
-use Modules\Payments\Models\PlansModel;
+use Modules\Payments\Models\PaymentsModel;
 
 class AdminPayments extends BaseController
 {
-    protected PlansModel $payments;
+    protected PaymentsModel $payments;
     protected array $rules;
 
     public function __construct()
     {
-        $this->payments = new PlansModel();
+        $this->payments = new PaymentsModel();
         $this->rules = [
             "user_id" => ['label' => lang("Payments.user_id"), 'rules' => "required|integer"],
             "course_id" => ['label' => lang("Payments.course_id"), 'rules' => "required|integer"],

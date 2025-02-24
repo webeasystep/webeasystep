@@ -26,7 +26,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="images" class="col-sm-3 col-form-label"><?= lang("Courses.images") ?></label>
+                <label for="image" class="col-sm-3 col-form-label"><?= lang("Courses.image") ?></label>
                 <div class="col-sm-9">
                     <div class="fireupload" id="dropzone1"></div>
                     <small class="invalid-feedback"></small>
