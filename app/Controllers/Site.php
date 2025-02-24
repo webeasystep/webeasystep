@@ -17,7 +17,7 @@ class Site extends BaseController
     protected $config;
     private $rules = [
         //     'name' => ['rules' => 'required'],
-       'username' => ['rules' => 'required|alpha_numeric|is_unique[tb_users.username,id,{id}]'],
+        'username' => ['rules' => 'required|alpha_numeric|is_unique[tb_users.username,id,{id}]'],
         // 'email' => ['rules' => 'required|valid_email|is_unique[tb_users.email,id,{id}]'],
         //'mobile' => ['rules' => 'required'],
         //  'role' => ['rules' => 'required']
@@ -306,7 +306,6 @@ class Site extends BaseController
 
 
     }
-
 
 
 

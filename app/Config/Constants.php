@@ -108,9 +108,9 @@ defined('SITE_PATH') || define('SITE_PATH', ROOTPATH . 'public\site');
 
 
 defined('ADMIN_USER') or define('ADMIN_USER', 1); // highest automatically-assigned error code
-
 defined('MERCHANT_USER') or define('MERCHANT_USER', 1); // highest automatically-assigned error code
 defined('CLIENT_USER') or define('CLIENT_USER', 2); // highest automatically-assigned error code
+defined('DRIVER_USER') or define('DRIVER_USER', 3); // highest automatically-assigned error code
 
 defined('ORDER_DELETED') or define('ORDER_DELETED', 0); // highest automatically-assigned error code
 defined('ORDER_PENDING') or define('ORDER_PENDING', 1); // highest automatically-assigned error code
@@ -120,14 +120,10 @@ defined('ORDER_CANCEL') or define('ORDER_CANCELED', 4); // highest automatically
 defined('ORDER_FINISH') or define('ORDER_FINISHED', 5); // highest automatically-assigned error code
 defined('ORDER_HIDDEN') or define('ORDER_HIDDEN', 6); // highest automatically-assigned error code
 
-defined('PRIMARY_ORDER') or define('PRIMARY_ORDER', 1); // highest automatically-assigned error code
-defined('ADDITIONAL_ORDER') or define('ADDITIONAL_ORDER', 2); // highest automatically-assigned error code
-
-defined('HAS_PAID') or define('HAS_PAID', 1); // highest automatically-assigned error code
-defined('HAS_NOT_PAID') or define('HAS_NOT_PAID', 0); // highest automatically-assigned error code
-
-defined('RECORD_ATTEND') or define('RECORD_ATTEND', 1); // highest automatically-assigned error code
-defined('RECORD_LEAVE') or define('RECORD_LEAVE', 2); // highest automatically-assigned error code
-
 defined('YES') or define('YES', 1); // highest automatically-assigned error code
 defined('NO') or define('NO', 0); // highest automatically-assigned error code
+
+define('TWILIO_NEW_ORDER', 'HX9b685a0f61212afb7381dd67000c6927');
+define('TWILIO_RECEICED_ORDER', 'HX23c702f1e284aa010c5c0f3f01bea211');
+define('TWILIO_LOCATION_REQUEST', 'HXf92c7d1c3027e7a0a41a8d57a1a509a5');
+define('TWILIO_OTP', 'HX95a429340acbf6503151d675f1ffe000');

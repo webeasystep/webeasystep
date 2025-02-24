@@ -11,11 +11,11 @@ class RedisConfig
         'port'   => 6379,
         'persistent' => true,
     ];
-    public array $linux = [
+  /*  public array $linux = [
         'scheme' => 'unix',
         'path'   => '/home/fakhraho/.redis/redis.sock',
         'host'   => '127.0.0.1',
         'port'   => 6379,
         'persistent' => true,
-    ];
+    ];*/
 }

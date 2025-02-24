@@ -81,7 +81,7 @@ use Config\Database;
                         break; // Exit the loop after the first ten rows
                     }
                     ?>
-                    <a href="<?= base_url(ADMIN_URL.'contact_us/edit/'.$msg['id']) ?>" class="dropdown-item">
+                    <a href="<?= ADMIN_URL.'contact_us/edit/'.$msg['id'] ?>" class="dropdown-item">
                         <i class="fas fa-envelope mr-2"></i><?= $msg['contact_subject'] ?>
                         <span class="float-right text-muted text-sm"><?= $msg['created_at'] ?></span>
                     </a>

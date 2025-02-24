@@ -34,30 +34,33 @@ $routes->setAutoRoute(false);
 $routes->get('/', [Site::class, 'index']);
 
 $routes->get('lang/{locale}', [BaseController::class, 'langSwitch']);
-$routes->match(['get', 'post'], 'login', [Site::class, 'login']);
-$routes->match(['get', 'post'], 'logout', [Site::class, 'logout']);
-$routes->match(['get', 'post'], 'register', [Site::class, 'register']);
-
-$routes->match(['get', 'post'], 'forget_password', [Site::class, 'forget_password']);
-$routes->match(['get', 'post'], 'reset_password', [Site::class, 'reset_password']);
 
 
 service('auth')->routes($routes);
 
+
 // Site main routes
 $routes->group('site', ['namespace' => 'App\Controllers'], function ($routes) {
     $routes->get('/', 'Site::index');
-   // $routes->match(['get', 'post'], 'search', 'Site::search', ['filter' => 'site_filter']);
+
+    $routes->match(['get', 'post'], 'login', 'Site::login');
+    $routes->match(['get', 'post'], 'logout', 'Site::logout');
+    $routes->match(['get', 'post'], 'search', 'Site::search', ['filter' => 'site_filter']);
     // Add dynamic segments for order_id and driver_id in the take_order route
     $routes->get('take_order/(:num)/(:num)', 'Site::take_order/$1/$2', ['filter' => 'site_filter']);
-    $routes->match(['get', 'post'], 'search', [Site::class, 'search'], ['filter' => 'site_filter']);
+    $routes->get('register', 'Site::register');
+    $routes->post('register', 'Site::attemptRegister');
+
+    $routes->match(['get', 'post'], 'forget_password', 'Site::forget_password');
+    $routes->match(['get', 'post'], 'reset_password', 'Site::reset_password');
+
 });
 
 
 // admin main routes 'filter' => 'admin_filter',
 
 $routes->group('dt_admin', ['namespace' => 'App\Controllers'], static function ($routes) {
-    // $routes->get('/', [Admin::class, 'dashboard'], ['filter' => 'admin_filter']);
+   // $routes->get('/', [Admin::class, 'dashboard'], ['filter' => 'admin_filter']);
     $routes->get('/', [Admin::class, 'dashboard'], ['filter' => 'admin_filter']);
     $routes->get('dashboard', [Admin::class, 'dashboard'], ['filter' => 'admin_filter']);
     $routes->get('logout', [Admin::class, 'logout'], ['filter' => 'admin_filter']);

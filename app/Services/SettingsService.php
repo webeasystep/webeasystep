@@ -20,6 +20,7 @@ class SettingsService
         if (setting('App.average_driver_suggestion') == 0) {
             $this->db->query("CALL sp_insert_order_suggestions({$order_id}, {$merchant_id}, 'merchant_orders/add_order')");
         } else {
+
             $query = $this->db->query("CALL sp_fetch_order_suggestions($order_id, {$merchant_id});");
             $all_drivers = $query->getResultArray();
             $this->db->close(); // To handle stored procedure results correctly
@@ -40,6 +41,7 @@ class SettingsService
         }
     }
 
+    /* auto suggestion */
     function suggestions_worker($order_id) {
         $redis = Predis::getInstance()->getRedis();
 
@@ -70,7 +72,7 @@ class SettingsService
                 }
 
                 //   log_message("error","Adding driver ID: $driverId with count $acceptedOrdersCount for order ID: $orderId.");
-                $this->add_driver_to_order_suggestions($orderId, $driverId);
+             //   $this->add_driver_to_order_suggestions($orderId, $driverId);
 
                 // $this->order->add_order_log($orderId, ORDER_PENDING, /* merchant_id? */, __FUNCTION__);
 
@@ -81,43 +83,5 @@ class SettingsService
         $redis->del('order_data:' . $order_id);
     }
 
-    function accept_order($orderId, $driver_id) {
-        $redis = Predis::getInstance()->getRedis();
-        // Set the key in Redis with an expiration of 15 minutes (900 seconds)
-        if(!empty(setting('App.duration_between_two_accepted'))){
-            $in_minute_duration = setting('App.duration_between_two_accepted');
-            $this->set_driver_suggestion_hide($in_minute_duration,$driver_id);
-        }
-        if(setting('App.average_driver_suggestion') != 0){
-            if ($orderId) {
-                // Mark the order as accepted
-                $redis->hSet('accepted_orders', $orderId, $driver_id);
-                // Remove its data hash
-                $redis->del('order_data:' . $orderId);
-                log_message("error","Order {$orderId} has been marked as accepted.");
-            } else {
-                log_message("error","Invalid order ID provided.");
-            }
-        }
-
-    }
-
-    function add_driver_to_order_suggestions($order_id, $driver_id)
-    {
-        $data = [
-            'order_id' => $order_id,
-            'user_id' => $driver_id,
-            'driver_response' => 1
-        ];
-        $this->db->table('tborders_drivers_suggestions')->insert($data);
-        return $this->db->insertID();
-    }
-    function set_driver_suggestion_hide($in_minute_duration, $driver_id)
-    {
-        $this->db->table('users_drivers_details')
-            ->set('hide_suggestion_at', 'DATE_ADD(NOW(), INTERVAL ' . intval($in_minute_duration) . ' MINUTE)', FALSE)
-            ->where('user_id', $driver_id)
-            ->update();
-    }
 
 }

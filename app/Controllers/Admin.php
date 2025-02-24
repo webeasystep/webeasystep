@@ -65,7 +65,7 @@ class Admin extends BaseController
 
     public function login()
     {
-      //  echo password_hash('123456', PASSWORD_DEFAULT);exit;
+        //  echo password_hash('123456', PASSWORD_DEFAULT);exit;
         // If it's a POST request, we'll handle the login attempt
         if ($this->request->is('post')) {
             $rules = [
@@ -140,11 +140,11 @@ class Admin extends BaseController
 
             // Validate basics first since some password rules rely on these fields
             $rules = config('Validation')->registrationRules ?? [
-                    'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
-                    'email' => 'required|valid_email|is_unique[auth_identities.secret]',
-                    'password' => 'required',
-                    'password_confirm' => 'required|matches[password]',
-                ];
+                'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
+                'email' => 'required|valid_email|is_unique[auth_identities.secret]',
+                'password' => 'required',
+                'password_confirm' => 'required|matches[password]',
+            ];
 
             if (!$this->validate($rules)) {
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
@@ -309,7 +309,7 @@ class Admin extends BaseController
     private function recordLoginAttempt(
         string $identifier,
         bool $success,
-        $userId = null
+               $userId = null
     ): void
     {
         /** @var LoginModel $loginModel */

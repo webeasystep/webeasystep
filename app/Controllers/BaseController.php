@@ -53,7 +53,7 @@ class BaseController extends Controller
         return redirect()->back();
     }
 
-    function show_msg($type, $title, $text, $timeout = 3000)
+    function show_msg($type, $title, $text, $timeout = 2000)
     {
         $this->session->setFlashdata('msg_type', $type);
         $this->session->setFlashdata('msg_title', $title);

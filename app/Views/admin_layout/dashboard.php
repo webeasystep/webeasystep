@@ -89,26 +89,10 @@
 
         <div class="col-lg-3 col-6">
             <!-- small card -->
-            <div class="small-box bg-gradient-yellow">
-                <div class="inner">
-                    <h3><?=esc($all_orders)?></h3>
-                    <p><?= lang("Admin.all_orders") ?></p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-solid fa-receipt"></i>
-                </div>
-                <a href="<?= ADMIN_URL.'orders' ?>" class="small-box-footer">
-                    المزيد <i class="fas fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <!-- small card -->
             <div class="small-box bg-gradient-navy">
                 <div class="inner">
-                    <h3><?=esc($total_orders_today)?></h3>
-                    <p>مجموع الطلبات المنتهية اليوم</p>
+                    <h3><?=esc($markets_total)?></h3>
+                    <p>عدد المتاجر</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-solid fa-calendar-day"></i>
@@ -123,8 +107,8 @@
             <!-- small card -->
             <div class="small-box bg-gradient-purple">
                 <div class="inner">
-                    <h3><?=esc($attended_drivers)?></h3>
-                    <p>مجموع الحاضرين اليوم</p>
+                    <h3><?=esc($clients_total)?></h3>
+                    <p>عدد العملاء</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-solid fa-user-check"></i>

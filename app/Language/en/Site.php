@@ -23,4 +23,5 @@ return [
     'languages' => 'Home',
     'home' => 'Home',
     'contact_us' => 'Contact us',
+
 ];

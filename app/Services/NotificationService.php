@@ -35,7 +35,7 @@ class NotificationService
 
         ## handle push notification
         $user = $this->db->query("select user_type from users where id = {$notification_elements['recipient_id']} ")->getRow() ;
-        if($user->user_type == DRIVER_USER){
+        if($user->user_type == CLIENT_USER){
             send_driver_push($notification_data);
         }else{
             send_push_notification($notification_data);
