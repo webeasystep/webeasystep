@@ -1,7 +1,7 @@
 <?php
 
-use Modules\Plans\Controllers\AdminPlans;
-use Modules\Plans\Controllers\Plans;
+use Modules\CoursesSections\Controllers\AdminCoursesSections;
+use Modules\CoursesSections\Controllers\CoursesSections;
 
 if (!isset($routes)) {
     $routes = \Config\Services::routes(true);
@@ -10,36 +10,36 @@ if (!isset($routes)) {
 /*** Route for Sections Admin ***/
 
 $routes->group('dt_admin', [
-    'namespace' => 'Modules\Plans\Controllers',
+    'namespace' => 'Modules\CoursesSections\Controllers',
     'filter' => 'admin_filter' // Apply the filter to the entire group
 ], static function ($routes) {
     //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['get', 'post'], 'plans', [AdminPlans::class, 'index']);
+    $routes->match(['GET', 'POST'], 'courses_sections', [AdminCoursesSections::class, 'index']);
 
-    $routes->post('plans/index', [AdminPlans::class, 'index']);
+    $routes->post('courses_sections/index', [AdminCoursesSections::class, 'index']);
 
-    $routes->match(['get', 'post'], 'plans/add', [AdminPlans::class, 'add']);
+    $routes->match(['GET', 'POST'], 'courses_sections/add', [AdminCoursesSections::class, 'add']);
 
-    $routes->match(['get', 'post'], 'plans/edit/(:num)', [AdminPlans::class, 'edit/$1']);
+    $routes->match(['GET', 'POST'], 'courses_sections/edit/(:num)', [AdminCoursesSections::class, 'edit/$1']);
 
-    $routes->post('plans/show/(:num)', [AdminPlans::class, 'show/$1']);
+    $routes->post('courses_sections/show/(:num)', [AdminCoursesSections::class, 'show/$1']);
 
-    $routes->post('plans/edit', [AdminPlans::class, 'edit']);
+    $routes->post('courses_sections/edit', [AdminCoursesSections::class, 'edit']);
 
-    $routes->post('plans/switchToggle', [AdminPlans::class, 'switchToggle']);
+    $routes->post('courses_sections/switchToggle', [AdminCoursesSections::class, 'switchToggle']);
 
-    $routes->post('plans/delete', [AdminPlans::class, 'delete']);
+    $routes->post('courses_sections/delete', [AdminCoursesSections::class, 'delete']);
 
 
 });
 
-/*** Route for Plans Site ***/
+/*** Route for CoursesSections Site ***/
 $routes->group('/',
-    ['namespace' => 'Modules\Plans\Controllers'],
+    ['namespace' => 'Modules\CoursesSections\Controllers'],
     static function ($routes) {
 
-    $routes->get('plans', [Plans::class, 'index']);
-    $routes->post('plans/show/(:num)', [Plans::class, 'show/$1']);
+    $routes->get('courses_sections', [CoursesSections::class, 'index']);
+    $routes->post('courses_sections/show/(:num)', [CoursesSections::class, 'show/$1']);
 
 });
 
@@ -47,5 +47,5 @@ $routes->group('/',
 /*** Route for Sections api ***/
 /*
 $routes->group('api', ['namespace' => 'App\API\v1'], static function ($routes) {
-    $routes->resource('plans');
+    $routes->resource('courses_sections');
 });*/

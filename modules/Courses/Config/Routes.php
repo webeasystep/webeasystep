@@ -14,13 +14,13 @@ $routes->group('dt_admin', [
     'filter' => 'admin_filter' // Apply the filter to the entire group
 ], static function ($routes) {
     //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['get', 'post'], 'courses', [AdminCourses::class, 'index']);
+    $routes->match(['GET', 'POST'], 'courses', [AdminCourses::class, 'index']);
 
     $routes->post('courses/index', [AdminCourses::class, 'index']);
 
-    $routes->match(['get', 'post'], 'courses/add', [AdminCourses::class, 'add']);
+    $routes->match(['GET', 'POST'], 'courses/add', [AdminCourses::class, 'add']);
 
-    $routes->match(['get', 'post'], 'courses/edit/(:num)', [AdminCourses::class, 'edit/$1']);
+    $routes->match(['GET', 'POST'], 'courses/edit/(:num)', [AdminCourses::class, 'edit/$1']);
 
     $routes->post('courses/show/(:num)', [AdminCourses::class, 'show/$1']);
 

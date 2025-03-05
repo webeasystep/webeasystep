@@ -20,8 +20,8 @@ class AdminCourses extends BaseController
         $this->rules = [
             "course_name" => ['label' => lang("Courses.course_name"), 'rules' => "required"],
             "course_desc" => ['label' => lang("Courses.course_desc"), 'rules' => "required"],
+            "course_structure" => ['label' => 'Course Structure', 'rules' => "permit_empty|valid_json"],
             "price" => ['label' => lang("Courses.price"), 'rules' => "required|decimal"],
-            "is_free" => ['label' => lang("Courses.is_free"), 'rules' => "required"],
         ];
     }
 
@@ -70,6 +70,7 @@ class AdminCourses extends BaseController
         $data['title'] = lang("Admin.edit_data");
 
         if ($this->request->is('post')) {
+
             if ($this->validate($this->rules)) {
                 $this->fireUploader->upload_photos($this->courses, 'image', $id);
                 $id = $this->data_arr($id);
@@ -80,7 +81,19 @@ class AdminCourses extends BaseController
             }
         }
 
-        $data['course'] = $this->courses->find($id); // Fetch the page data by ID
+        $data['course'] = $this->courses->find($id);
+        // Decode JSON structure properly
+        // Properly decode JSON structure
+        if ($data['course'] && !empty($data['course']->course_structure)) {
+            $data['course']->course_structure = json_decode(
+                $data['course']->course_structure,
+                true, // Decode as associative array
+                512, // Depth
+                JSON_THROW_ON_ERROR // Force valid JSON
+            );
+        } else {
+            $data['course']->course_structure = ['sections' => []];
+        }
         $data['files'] = json_decode($data['course']->image, true);
         return view('form', $data);
     }
@@ -92,6 +105,7 @@ class AdminCourses extends BaseController
         $data = [
             'course_name' => $this->request->getPost('course_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             'course_desc' => $this->request->getPost('course_desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            'course_structure' => $this->request->getPost('course_structure') ?? null,
             'sort' => $this->request->getPost('sort', FILTER_SANITIZE_NUMBER_INT),
             'price' => $this->request->getPost('price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
             'is_free' => $this->request->getPost('is_free') ? '1' : '0', // Save switch value

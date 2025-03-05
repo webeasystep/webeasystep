@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6">
-            <a href="<?= ADMIN_URL . 'plans/add' ?>" class="btn btn-primary mb-1 add">
+            <a href="<?= ADMIN_URL . 'courses_sections/add' ?>" class="btn btn-primary mb-1 add">
                 <i class="fas fa-plus"></i><?= lang("Admin.add_data") ?>
             </a>
         </div>

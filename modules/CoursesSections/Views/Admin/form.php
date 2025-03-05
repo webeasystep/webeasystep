@@ -10,31 +10,31 @@
             <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>"/>
 
             <div class="form-group row">
-                <label for="title" class="col-sm-3 col-form-label"><?= lang("Plans.title") ?></label>
+                <label for="section_name" class="col-sm-3 col-form-label"><?= lang("CoursesSections.section_name") ?></label>
                 <div class="col-sm-9">
-                    <input type="text" name="title" value="<?= set_value('title', $plan->title ?? "") ?>" id="title" class="form-control">
+                    <input type="text" name="section_name" value="<?= set_value('section_name', $section->section_name ?? "") ?>" id="section_name" class="form-control">
                     <small class="invalid-feedback"></small>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="price" class="col-sm-3 col-form-label"><?= lang("Plans.price") ?></label>
+                <label for="section_desc" class="col-sm-3 col-form-label"><?= lang("CoursesSections.section_desc") ?></label>
                 <div class="col-sm-9">
-                    <input type="text" name="price" value="<?= set_value('price', $plan->price ?? "") ?>" id="price" class="form-control">
+                    <textarea name="section_desc" class="form-control" id="section_desc"><?= set_value('section_desc', $section->section_desc ?? "") ?></textarea>
                     <small class="invalid-feedback"></small>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="duration_days" class="col-sm-3 col-form-label"><?= lang("Plans.duration_days") ?></label>
+                <label for="sort" class="col-sm-3 col-form-label"><?= lang("CoursesSections.sort") ?></label>
                 <div class="col-sm-9">
-                    <input type="text" name="duration_days" value="<?= set_value('duration_days', $plan->duration_days ?? "") ?>" id="duration_days" class="form-control">
+                    <input type="text" class="form-control" id="sort" name="sort" value="<?= set_value('sort', $section->sort ?? 0) ?>">
                     <small class="invalid-feedback"></small>
                 </div>
             </div>
 
-            <a class="btn btn-secondary" href="<?= ADMIN_URL . 'plans' ?>"><?= lang("Admin.cancel") ?></a>
-            <button type="submit" id="" class="btn btn-primary"><?= lang("Admin.save") ?></button>
+            <a class="btn btn-secondary" href="<?= ADMIN_URL . 'courses_sections' ?>"><?= lang("Admin.cancel") ?></a>
+            <button type="submit" class="btn btn-primary"><?= lang("Admin.save") ?></button>
             <?= form_close(); ?>
         </div>
     </div>

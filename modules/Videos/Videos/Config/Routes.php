@@ -15,13 +15,13 @@ $routes->group('dt_admin', [
     'filter' => 'admin_filter' // Apply the filter to the entire group
 ], static function ($routes) {
     //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['get', 'post'], 'videos', [AdminVideos::class, 'index']);
+    $routes->match(['GET', 'POST'], 'videos', [AdminVideos::class, 'index']);
 
     $routes->post('videos/index', [AdminVideos::class, 'index']);
 
-    $routes->match(['get', 'post'], 'videos/add', [AdminVideos::class, 'add']);
+    $routes->match(['GET', 'POST'], 'videos/add', [AdminVideos::class, 'add']);
 
-    $routes->match(['get', 'post'], 'videos/edit/(:num)', [AdminVideos::class, 'edit/$1']);
+    $routes->match(['GET', 'POST'], 'videos/edit/(:num)', [AdminVideos::class, 'edit/$1']);
 
     $routes->post('videos/show/(:num)', [AdminVideos::class, 'show/$1']);
 
@@ -29,7 +29,7 @@ $routes->group('dt_admin', [
 
     $routes->post('videos/switchToggle', [AdminVideos::class, 'switchToggle']);
 
-    $routes->match(['get', 'post'], 'videos/delete', [AdminVideos::class, 'delete']);
+    $routes->match(['GET', 'POST'], 'videos/delete', [AdminVideos::class, 'delete']);
 });
 
 /*** Route for Videos Site ***/

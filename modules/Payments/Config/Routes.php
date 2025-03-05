@@ -14,13 +14,13 @@ $routes->group('dt_admin', [
     'filter' => 'admin_filter' // Apply the filter to the entire group
 ], static function ($routes) {
     //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['get', 'post'], 'payments', [AdminPayments::class, 'index']);
+    $routes->match(['GET', 'POST'], 'payments', [AdminPayments::class, 'index']);
 
     $routes->post('payments/index', [AdminPayments::class, 'index']);
 
-    $routes->match(['get', 'post'], 'payments/add', [AdminPayments::class, 'add']);
+    $routes->match(['GET', 'POST'], 'payments/add', [AdminPayments::class, 'add']);
 
-    $routes->match(['get', 'post'], 'payments/edit/(:num)', [AdminPayments::class, 'edit/$1']);
+    $routes->match(['GET', 'POST'], 'payments/edit/(:num)', [AdminPayments::class, 'edit/$1']);
 
     $routes->post('payments/show/(:num)', [AdminPayments::class, 'show/$1']);
 

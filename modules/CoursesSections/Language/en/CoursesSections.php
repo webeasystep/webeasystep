@@ -1,13 +1,8 @@
 <?php
 return [
-    'Plans' => "Plans",
-    'plans_List' => "Plans List",
-    'title' => "Title",
-    'price' => "Price",
-    'duration_days' => "Duration Days",
-    'created_at' => 'Created At',
-    'updated_at' => 'Updated At',
-    'status' => 'Status',
-    'active' => 'Active',
-    'done' => 'Done',
+    'section_name' => "Section Name",
+    'section_desc' => "Section Description",
+    'sections_List' => "Sections List",
+    'sort' => "Sort",
+    'created_at' => "Created At",
 ];

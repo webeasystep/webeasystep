@@ -1,13 +1,8 @@
 <?php
 return [
-    'Plans' => "الخطط",
-    'plans_List' => "قائمة الخطط",
-    'title' => "العنوان",
-    'price' => "السعر",
-    'duration_days' => "مدة الأيام",
-    'created_at' => 'تم الانشاء',
-    'updated_at' => 'تم التحديث',
-    'status' => 'الحالة',
-    'active' => 'التفعيل',
-    'done' => 'تم بنجاح',
+    'section_name' => "اسم القسم",
+    'section_desc' => "وصف القسم",
+    'sections_List' => "قائمة الأقسام",
+    'sort' => "الترتيب",
+    'created_at' => "تم الإنشاء",
 ];

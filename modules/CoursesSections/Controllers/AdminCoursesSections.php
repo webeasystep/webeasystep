@@ -1,41 +1,39 @@
 <?php
 
-namespace Modules\Plans\Controllers;
+namespace Modules\CoursesSections\Controllers;
 
 use App\Controllers\BaseController;
 use App\Libraries\DtTable;
-use Modules\Plans\Models\PlansModel;
+use Modules\CoursesSections\Models\CoursesSectionsModel;
 
-class AdminPlans extends BaseController
+class AdminCoursesSections extends BaseController
 {
-    protected PlansModel $plans;
+    protected CoursesSectionsModel $coursesSections;
     protected array $rules;
 
     public function __construct()
     {
-        $this->plans = new PlansModel();
+        $this->coursesSections = new CoursesSectionsModel();
         $this->rules = [
-            "title" => ['label' => lang("Plans.title"), 'rules' => "required"],
-            "price" => ['label' => lang("Plans.price"), 'rules' => "required|decimal"],
-            "duration_days" => ['label' => lang("Plans.duration_days"), 'rules' => "required|integer"],
+            "section_name" => ['label' => lang("CoursesSections.section_name"), 'rules' => "required"],
         ];
     }
 
     public function index()
     {
-        $data['title'] = lang('Plans.plans_List');
+        $data['title'] = lang('CoursesSections.sections_List');
 
         if ($this->request->isAJAX()) {
-            $plansModel = $this->plans
-                ->select('id, title, price, duration_days, created_at')
+            $coursesSectionsModel = $this->coursesSections
+                ->select('id, section_name, section_desc, sort, created_at')
                 ->orderBy('id', 'desc')
                 ->builder();
 
             DtTable::hideColumns(['id']);
-            DtTable::searchableColumns(['title', 'price', 'duration_days']);
-            DtTable::orderableColumns(['title', 'price', 'duration_days', 'created_at']);
-            $output = DtTable::tableRender($plansModel, false);
-            DtTable::setShowColumns("title,price,duration_days,created_at");
+            DtTable::searchableColumns(['section_name']);
+            DtTable::orderableColumns(['section_name', 'sort']);
+            $output = DtTable::tableRender($coursesSectionsModel, false);
+            DtTable::setShowColumns("section_name,section_desc,sort");
 
             return $this->response->setJSON($output);
         } else {
@@ -50,7 +48,7 @@ class AdminPlans extends BaseController
             if ($this->validate($this->rules)) {
                 $this->data_arr();
                 $this->show_msg('success', lang("Admin.add_operation"), lang("Admin.add_success"));
-                return redirect()->to(ADMIN_URL . "plans");
+                return redirect()->to(ADMIN_URL . "courses_sections");
             } else {
                 $this->show_msg('danger', lang("Admin.validation_errors"), validation_errors());
             }
@@ -66,24 +64,24 @@ class AdminPlans extends BaseController
             if ($this->validate($this->rules)) {
                 $this->data_arr($id);
                 $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
-                return redirect()->to(ADMIN_URL . "plans");
+                return redirect()->to(ADMIN_URL . "courses_sections");
             } else {
                 $this->show_msg('danger', lang("Admin.validation_errors"), validation_errors());
             }
         }
 
-        $data['plan'] = $this->plans->getPlanById($id);
+        $data['section'] = $this->coursesSections->find($id);
         return view('form', $data);
     }
 
     public function data_arr($id = NULL)
     {
-        $builder = $this->db->table('tb_plans');
+        $builder = $this->db->table('tb_courses_sections');
 
         $data = [
-            'title' => $this->request->getPost('title', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-            'price' => $this->request->getPost('price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
-            'duration_days' => $this->request->getPost('duration_days', FILTER_SANITIZE_NUMBER_INT),
+            'section_name' => $this->request->getPost('section_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            'section_desc' => $this->request->getPost('section_desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            'sort' => $this->request->getPost('sort', FILTER_SANITIZE_NUMBER_INT),
         ];
 
         if ($id) {

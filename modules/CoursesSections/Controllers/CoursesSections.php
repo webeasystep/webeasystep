@@ -1,25 +1,25 @@
 <?php
-namespace Modules\Plans\Controllers;
+namespace Modules\CoursesSections\Controllers;
 use App\Controllers\BaseController;
-use Modules\Plans\Models\PlansModel;
+use Modules\CoursesSections\Models\CoursesSectionsModel;
 
-class Plans extends BaseController
+class CoursesSections extends BaseController
 {
-    public PlansModel $plansModel;
+    public CoursesSectionsModel $coursesSectionsModel;
 
     public function __construct()
     {
-        $this->plansModel = new PlansModel();
+        $this->coursesSectionsModel = new CoursesSectionsModel();
     }
 
     public function index(): string
     {
         $data = [
-            'title' => lang('Plans.Plans'),
-            'plans' => $this->plansModel->paginate(10),
-            'pager' => $this->plansModel->pager,
+            'title' => lang('CoursesSections.Sections'),
+            'sections' => $this->coursesSectionsModel->orderBy('sort')->paginate(10),
+            'pager' => $this->coursesSectionsModel->pager,
         ];
 
-        return view('site/index', $data);
+        return view('Modules\CoursesSections\Views\Site\index', $data);
     }
 }

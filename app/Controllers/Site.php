@@ -40,6 +40,8 @@ class Site extends BaseController
         $data['page_name'] = 'home';
         $data['title'] = lang('Site.home');
         $data['trusted_markets'] = $this->db->query("select * from users where user_type = 1")->getNumRows();
+        $data['categories'] = $this->db->query("select * from tb_categories where active = 1")->getResultArray();
+        $data['courses'] = $this->db->query("select * from tb_courses where active = 1")->getResultArray();
         $data['about_us'] = $this->db->query("select * from pages where active ='1' and page_link = 'about_us' ")->getRowArray();
         $data['data'] = $data;
         echo MainView('site_layout/home', $data);

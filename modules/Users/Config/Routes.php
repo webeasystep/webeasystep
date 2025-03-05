@@ -14,12 +14,12 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Users\Controllers',
     'filter' => 'admin_filter'], static function ($routes) {
 
   //  example of permissions $routes->get('users', [AdminUsers::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['get', 'post'], 'users',  [AdminUsers::class, 'index']);
+    $routes->match(['GET', 'POST'], 'users',  [AdminUsers::class, 'index']);
     $routes->post('users/index', [AdminUsers::class, 'index']);
 
-    $routes->match(['get', 'post'], 'users/add',  [AdminUsers::class, 'add']);
+    $routes->match(['GET', 'POST'], 'users/add',  [AdminUsers::class, 'add']);
 
-    $routes->match(['get', 'post'], 'users/edit/(:num)',  [AdminUsers::class, 'edit/$1']);
+    $routes->match(['GET', 'POST'], 'users/edit/(:num)',  [AdminUsers::class, 'edit/$1']);
 
     $routes->post('users/show/(:num)', [AdminUsers::class, 'show/$1']);
 

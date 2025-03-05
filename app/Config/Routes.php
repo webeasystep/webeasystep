@@ -43,16 +43,16 @@ service('auth')->routes($routes);
 $routes->group('site', ['namespace' => 'App\Controllers'], function ($routes) {
     $routes->get('/', 'Site::index');
 
-    $routes->match(['get', 'post'], 'login', 'Site::login');
-    $routes->match(['get', 'post'], 'logout', 'Site::logout');
-    $routes->match(['get', 'post'], 'search', 'Site::search', ['filter' => 'site_filter']);
+    $routes->match(['GET', 'POST'], 'login', 'Site::login');
+    $routes->match(['GET', 'POST'], 'logout', 'Site::logout');
+    $routes->match(['GET', 'POST'], 'search', 'Site::search', ['filter' => 'site_filter']);
     // Add dynamic segments for order_id and driver_id in the take_order route
     $routes->get('take_order/(:num)/(:num)', 'Site::take_order/$1/$2', ['filter' => 'site_filter']);
     $routes->get('register', 'Site::register');
     $routes->post('register', 'Site::attemptRegister');
 
-    $routes->match(['get', 'post'], 'forget_password', 'Site::forget_password');
-    $routes->match(['get', 'post'], 'reset_password', 'Site::reset_password');
+    $routes->match(['GET', 'POST'], 'forget_password', 'Site::forget_password');
+    $routes->match(['GET', 'POST'], 'reset_password', 'Site::reset_password');
 
 });
 
@@ -65,11 +65,11 @@ $routes->group('dt_admin', ['namespace' => 'App\Controllers'], static function (
     $routes->get('dashboard', [Admin::class, 'dashboard'], ['filter' => 'admin_filter']);
     $routes->get('logout', [Admin::class, 'logout'], ['filter' => 'admin_filter']);
 
-    $routes->match(['get', 'post'], 'login', [Admin::class, 'login']);
-    $routes->match(['get', 'post'], 'register', [Admin::class, 'register']);
-    $routes->match(['get', 'post'], 'reset_password', [Admin::class, 'reset_password']);
-    $routes->match(['get', 'post'], 'forget_password', [Admin::class, 'forget_password']);
-    $routes->match(['get', 'post'], 'verify_magic_link', [Admin::class, 'verify_magic_link']);
+    $routes->match(['GET', 'POST'], 'login', [Admin::class, 'login']);
+    $routes->match(['GET', 'POST'], 'register', [Admin::class, 'register']);
+    $routes->match(['GET', 'POST'], 'reset_password', [Admin::class, 'reset_password']);
+    $routes->match(['GET', 'POST'], 'forget_password', [Admin::class, 'forget_password']);
+    $routes->match(['GET', 'POST'], 'verify_magic_link', [Admin::class, 'verify_magic_link']);
 
 });
 

@@ -12,12 +12,12 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Search\Controllers',
     'filter' => 'admin_filter'], static function ($routes) {
 
     //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['get', 'post'], 'search/orders_drivers_interactions',  [AdminSearch::class, 'orders_drivers_interactions']);
-    $routes->match(['get', 'post'], 'search/drivers_unpaid_orders',  [AdminSearch::class, 'drivers_unpaid_orders']);
+    $routes->match(['GET', 'POST'], 'search/orders_drivers_interactions',  [AdminSearch::class, 'orders_drivers_interactions']);
+    $routes->match(['GET', 'POST'], 'search/drivers_unpaid_orders',  [AdminSearch::class, 'drivers_unpaid_orders']);
 
-    $routes->match(['get', 'post'], 'search/add',  [AdminSearch::class, 'add']);
+    $routes->match(['GET', 'POST'], 'search/add',  [AdminSearch::class, 'add']);
 
-    $routes->match(['get', 'post'], 'search/edit/(:num)',  [AdminSearch::class, 'edit/$1']);
+    $routes->match(['GET', 'POST'], 'search/edit/(:num)',  [AdminSearch::class, 'edit/$1']);
 
     $routes->post('search/show/(:num)', [AdminSearch::class, 'show/$1']);
 
@@ -38,7 +38,7 @@ $routes->group('/', ['namespace' => 'Modules\search\Controllers'], static functi
 
     $routes->get('search', [Search::class, 'index']);
 
-    $routes->match(['get', 'post'], 'search',  [Search::class, 'index']);
+    $routes->match(['GET', 'POST'], 'search',  [Search::class, 'index']);
 });
 
 /*** Route for Sections api ***/

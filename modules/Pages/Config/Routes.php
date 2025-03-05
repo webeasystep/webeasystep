@@ -14,12 +14,12 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Pages\Controllers',
 
   //  example of permissions $routes->get('pages', [AdminPages::class, 'index'], ['filter' => 'admin_filter']);
 
-    $routes->match(['get', 'post'], 'pages',  [AdminPages::class, 'index']);
+    $routes->match(['GET', 'POST'], 'pages',  [AdminPages::class, 'index']);
     $routes->post('pages/index', [AdminPages::class, 'index']);
 
-    $routes->match(['get', 'post'], 'pages/add',  [AdminPages::class, 'add']);
+    $routes->match(['GET', 'POST'], 'pages/add',  [AdminPages::class, 'add']);
 
-    $routes->match(['get', 'post'], 'pages/edit/(:num)',  [AdminPages::class, 'edit/$1']);
+    $routes->match(['GET', 'POST'], 'pages/edit/(:num)',  [AdminPages::class, 'edit/$1']);
 
     $routes->post('pages/show/(:num)', [AdminPages::class, 'show/$1']);
 

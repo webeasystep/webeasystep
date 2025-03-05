@@ -37,28 +37,22 @@ class Admin extends BaseController
 
     public function dashboard(): string
     {
-
         $data['title'] = lang('Admin.dashboard');
         $data['menu'] = 'dashboard';
         $data['sub-menu'] = 'dashboard';
-
-        //  in_groups('admin')
-
         $data['section_name'] = "dashboard";
-        $query = $this->db->query("SELECT  COUNT(*) as all_orders  FROM  contact_us  ");
 
-        $result = $query->getRow();
+        // Fetch counts for each table
+        $tables = ['articles', 'tb_courses', 'tb_plans', 'tb_payments', 'tb_subscriptions', 'users'];
+        foreach ($tables as $table) {
+            $query = $this->db->query("SELECT COUNT(*) as count FROM $table");
+            $result = $query->getRow();
+            $data[$table] = $result->count ?? 0;
+        }
 
-        $data['all_orders'] = $result->all_orders ?? 0;
-        $data['pending_orders'] = $result->pending_orders ?? 0;
-        $data['accepted_orders'] = $result->accepted_orders ?? 0;
-        $data['taken_orders'] = $result->taken_orders ?? 0;
-        $data['canceled_orders'] = $result->canceled_orders ?? 0;
-        $data['finished_orders'] = $result->finished_orders ?? 0;
-        $data['total_orders_today'] = $result->total_add_orders ?? 0;
-        $data['attended_drivers'] = 11;
         return MainView('admin_layout/dashboard', $data);
     }
+
     //--------------------------------------------------------------------
     // Login/out
     //--------------------------------------------------------------------

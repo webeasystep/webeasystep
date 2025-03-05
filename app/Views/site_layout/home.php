@@ -33,113 +33,38 @@
 </div>
 <!-- /.untree_co-hero -->
 
-<!--  <div class="untree_co-section">
-    <div class="container">
-      <div class="row justify-content-center mb-3">
-        <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-          <h2 class="line-bottom text-center mb-4">تصفح الفئات الرئيسية</h2>
-        </div>
-      </div>
-      <div class="row align-items-stretch">
-        <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
-          <a href="#" class="category d-flex align-items-start h-100">
-            <div>
-              <i class="uil uil-atom"></i>
-            </div>
-            <div>
-              <h3>العلوم</h3>
-              <span>1,391 دورة</span>
-            </div>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-          <a href="#" class="category d-flex align-items-start h-100">
-            <div>
-              <i class="uil uil-briefcase"></i>
-            </div>
-            <div>
-              <h3>الأعمال</h3>
-              <span>3,234 دورة</span>
-            </div>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-          <a href="#" class="category d-flex align-items-start h-100">
-            <div>
-              <i class="uil uil-calculator"></i>
-            </div>
-            <div>
-              <h3>المحاسبة والتمويل</h3>
-              <span>931 دورة</span>
-            </div>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="#" class="category d-flex align-items-start h-100">
-            <div>
-              <i class="uil uil-pen"></i>
-            </div>
-            <div>
-              <h3>التصميم</h3>
-              <span>7,291 دورة</span>
-            </div>
-          </a>
-        </div>
+  <div class="untree_co-section">
+      <div class="container">
+          <div class="row justify-content-center mb-3">
+              <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                  <h2 class="line-bottom text-center mb-4">تصفح الفئات الرئيسية</h2>
+              </div>
+          </div>
+          <div class="row align-items-stretch">
+              <?php
+              foreach ($categories as $category):
+                  ?>
+                  <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
+                      <a href="<?= site_url('category/' . $category['slug']) ?>" class="category d-flex align-items-start h-100">
+                          <div>
+                              <i class="<?= esc($category['icon_class']) ?>"></i>
+                          </div>
+                          <div>
+                              <h3><?= esc($category['name_ar']) ?></h3>
+                              <span><?= esc($category['course_count']) ?> دورة</span>
+                          </div>
+                      </a>
+                  </div>
+              <?php endforeach; ?>
+          </div>
 
-        <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
-          <a href="#" class="category d-flex align-items-start h-100">
-            <div>
-              <i class="uil uil-music"></i>
-            </div>
-            <div>
-              <h3>الموسيقى</h3>
-              <span>9,114 دورة</span>
-            </div>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-          <a href="#" class="category d-flex align-items-start h-100">
-            <div>
-              <i class="uil uil-chart-pie"></i>
-            </div>
-            <div>
-              <h3>التسويق</h3>
-              <span>2,391 دورة</span>
-            </div>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-          <a href="#" class="category d-flex align-items-start h-100">
-            <div>
-              <i class="uil uil-camera"></i>
-            </div>
-            <div>
-              <h3>التصوير الفوتوغرافي</h3>
-              <span>7,991 دورة</span>
-            </div>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="#" class="category d-flex align-items-start h-100">
-            <div>
-              <i class="uil uil-circle-layer"></i>
-            </div>
-            <div>
-              <h3>الرسوم المتحركة</h3>
-              <span>6,491 دورة</span>
-            </div>
-          </a>
-        </div>
-
+          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="400">
+              <div class="col-lg-8 text-center">
+                  <p>لدينا المزيد من الفئات هنا. <a href="<?= site_url('categories') ?>">تصفح الكل</a></p>
+              </div>
+          </div>
       </div>
-
-      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="400">
-        <div class="col-lg-8 text-center">
-          <p>لدينا المزيد من الفئات هنا. <a href="#">تصفح الكل</a></p>
-        </div>
-      </div>
-    </div>
-  </div>-->
+  </div>
 
 <div id="bookNow" class="untree_co-section bg-light">
     <div class="container">
@@ -150,138 +75,27 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
-                <div class="custom-media">
-                    <a href="#"><img src="<?= base_url() ?>site/images/digital_tech.webp" alt="Image" class="img-fluid"></a>
-                    <div class="custom-media-body">
-                        <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                            <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                        </div>
-                        <h3>تقنية رقمية</h3>
-                        <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                            <div><span class="price">$00.00</span></div>
-                            <!-- Button trigger modal -->
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal" id="DigitalTech">سجل الآن</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
-                <div class="custom-media">
-                    <a href="#"><img src="<?= base_url() ?>site/images/iot_5.webp" alt="Image" class="img-fluid"></a>
-                    <div class="custom-media-body">
-                        <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                            <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                        </div>
-                        <h3>انترنت الاشياء</h3>
-                        <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                            <div><span class="price">$00.00</span></div>
-                            <!-- Internet of Things Course -->
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal" id="IoT">سجل
-                                الآن</a>
-
+            <?php
+            foreach ($courses as $course): ?>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
+                    <div class="custom-media">
+                        <a href="#"><img src="<?= base_url() ?>site/images/default_course.webp" alt="Course Image" class="img-fluid"></a>
+                        <div class="custom-media-body">
+                            <div class="d-flex justify-content-between pb-3">
+                                <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
+                                <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
+                            </div>
+                            <h3><?= esc($course['course_name']) ?></h3>
+                            <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
+                                <div><span class="price">$<?= esc(number_format($course['price'], 2)) ?></span></div>
+                                <!-- Button trigger modal -->
+                                <a href="<?= base_url('courses/show/'.$course['id']) ?>" class="btn btn-primary">تفاصيل</a>
+                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal" data-course="<?= esc($course['id']) ?>">سجل الآن</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
-                <div class="custom-media">
-                    <a href="#"><img src="<?= base_url() ?>site/images/data_science.webp" alt="Image" class="img-fluid"></a>
-                    <div class="custom-media-body">
-                        <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                            <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                        </div>
-                        <h3>علم البيانات</h3>
-                        <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                            <div><span class="price">$00.00</span></div>
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal" id="DataScience">سجل الآن</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
-                <div class="custom-media">
-                    <a href="#"><img src="<?= base_url() ?>site/images/cyper_security_1.webp" alt="Image" class="img-fluid"></a>
-                    <div class="custom-media-body">
-                        <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                            <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                        </div>
-                        <h3>الامن السيبراني</h3>
-                        <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                            <div><span class="price">$00.00</span></div>
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal" id="CyberSecurity">سجل الآن</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                <div class="custom-media">
-                    <a href="#"><img src="<?= base_url() ?>site/images/search.webp" alt="Image" class="img-fluid"></a>
-                    <div class="custom-media-body">
-                        <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                            <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                        </div>
-                        <h3>البحث ومصادر المعلومات</h3>
-                        <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                            <div><span class="price">$00.00</span></div>
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal" id="InfoSearch">سجل الآن</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                <div class="custom-media">
-                    <a href="#"><img src="<?= base_url() ?>site/images/digital_design3.webp" alt="Image" class="img-fluid"></a>
-                    <div class="custom-media-body">
-                        <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                            <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                        </div>
-                        <h3>التصميم الرقمي</h3>
-                        <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                            <div><span class="price">$00.00</span></div>
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal" id="DigitalDesign">سجل الآن</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                <div class="custom-media">
-                    <a href="#"><img src="<?= base_url() ?>site/images/ai.webp" alt="Image" class="img-fluid"></a>
-                    <div class="custom-media-body">
-                        <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                            <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                        </div>
-                        <h3>الذكاء الاصطناعي</h3>
-                        <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                            <div><span class="price">$00.00</span></div>
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal" id="AI">سجل الآن</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                <div class="custom-media">
-                    <a href="#"><img src="<?= base_url() ?>site/images/software_1.webp" alt="Image" class="img-fluid"></a>
-                    <div class="custom-media-body">
-                        <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                            <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                        </div>
-                        <h3>هندسة البرمجيات</h3>
-                        <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                            <div><span class="price">$00.00</span></div>
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal" id="SoftwareEng">سجل الآن</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

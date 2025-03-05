@@ -13,13 +13,13 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Settings\Controllers',
 
     //  example of Settings $routes->get('users', [AdminUsers::class, 'index'], ['filter' => 'admin_filter']);
 
-    $routes->match(['get', 'post'], 'settings',  [AdminSettings::class, 'index']);
+    $routes->match(['GET', 'POST'], 'settings',  [AdminSettings::class, 'index']);
 
     $routes->post('settings/index', [AdminSettings::class, 'index']);
 
-    $routes->match(['get', 'post'], 'settings/add',  [AdminSettings::class, 'add']);
+    $routes->match(['GET', 'POST'], 'settings/add',  [AdminSettings::class, 'add']);
 
-    $routes->match(['get', 'post'], 'settings/edit/(:num)',  [AdminSettings::class, 'edit/$1']);
+    $routes->match(['GET', 'POST'], 'settings/edit/(:num)',  [AdminSettings::class, 'edit/$1']);
 
     $routes->post('settings/show/(:num)', [AdminSettings::class, 'show/$1']);
 
@@ -27,10 +27,10 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Settings\Controllers',
 
     $routes->post('settings/switchToggle', [AdminSettings::class, 'switchToggle']);
 
-    $routes->match(['get', 'post'], 'settings/general_panel',  [AdminSettings::class, 'general_panel']);
-    $routes->match(['get', 'post'], 'settings/social_links_panel',  [AdminSettings::class, 'social_links_panel']);
-    $routes->match(['get', 'post'], 'settings/change_password_panel',  [AdminSettings::class, 'change_password_panel']);
-    $routes->match(['get', 'post'], 'settings/notifications_panel',  [AdminSettings::class, 'notifications_panel']);
+    $routes->match(['GET', 'POST'], 'settings/general_panel',  [AdminSettings::class, 'general_panel']);
+    $routes->match(['GET', 'POST'], 'settings/social_links_panel',  [AdminSettings::class, 'social_links_panel']);
+    $routes->match(['GET', 'POST'], 'settings/change_password_panel',  [AdminSettings::class, 'change_password_panel']);
+    $routes->match(['GET', 'POST'], 'settings/notifications_panel',  [AdminSettings::class, 'notifications_panel']);
 
 });
 

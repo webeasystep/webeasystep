@@ -4,6 +4,7 @@ return [
     'courses_List' => "قائمة الدورات",
     'course_name' => "اسم الدورة",
     'course_desc' => "وصف الدورة",
+    'course_structure' => "اقسام الدورات",
     'image' => "الصور",
     'sort' => "الترتيب",
     'price' => "السعر",

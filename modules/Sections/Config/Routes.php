@@ -13,13 +13,13 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Sections\Controllers',
     'filter' => 'admin_filter'], static function ($routes) {
 
   //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['get', 'post'], 'sections',  [AdminSections::class, 'index']);
+    $routes->match(['GET', 'POST'], 'sections',  [AdminSections::class, 'index']);
 
     $routes->post('sections/index', [AdminSections::class, 'index']);
 
-    $routes->match(['get', 'post'], 'sections/add',  [AdminSections::class, 'add']);
+    $routes->match(['GET', 'POST'], 'sections/add',  [AdminSections::class, 'add']);
 
-    $routes->match(['get', 'post'], 'sections/edit/(:num)',  [AdminSections::class, 'edit/$1']);
+    $routes->match(['GET', 'POST'], 'sections/edit/(:num)',  [AdminSections::class, 'edit/$1']);
 
     $routes->post('sections/show/(:num)', [AdminSections::class, 'show/$1']);
 

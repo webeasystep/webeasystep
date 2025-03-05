@@ -15,13 +15,13 @@ $routes->group('dt_admin', ['namespace' => 'Modules\ContactUs\Controllers',
     'filter' => 'admin_filter'], static function ($routes) {
 
     //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['get', 'post'], 'contact_us',  [AdminContactUs::class, 'index']);
+    $routes->match(['GET', 'POST'], 'contact_us',  [AdminContactUs::class, 'index']);
 
     $routes->post('contact_us/index', [AdminContactUs::class, 'index']);
 
-    $routes->match(['get', 'post'], 'contact_us/add',  [AdminContactUs::class, 'add']);
+    $routes->match(['GET', 'POST'], 'contact_us/add',  [AdminContactUs::class, 'add']);
 
-    $routes->match(['get', 'post'], 'contact_us/edit/(:num)',  [AdminContactUs::class, 'edit/$1']);
+    $routes->match(['GET', 'POST'], 'contact_us/edit/(:num)',  [AdminContactUs::class, 'edit/$1']);
 
     $routes->post('contact_us/show/(:num)', [AdminContactUs::class, 'show/$1']);
 
@@ -38,9 +38,9 @@ $routes->group('dt_admin', ['namespace' => 'Modules\ContactUs\Controllers',
 /*** Route for ContactUs Site ***/
 
 $routes->group('/', ['namespace' => 'Modules\ContactUs\Controllers'], static function ($routes) {
-    $routes->match(['get', 'post'], 'contact_us',  [ContactUs::class, 'index']);
-    $routes->match(['get', 'post'], 'contact_us',  [ContactUs::class, 'index']);
-    $routes->match(['get', 'post'], 'contact_us/subscribe',  [ContactUs::class, 'subscribe']);
+    $routes->match(['GET', 'POST'], 'contact_us',  [ContactUs::class, 'index']);
+    $routes->match(['GET', 'POST'], 'contact_us',  [ContactUs::class, 'index']);
+    $routes->match(['GET', 'POST'], 'contact_us/subscribe',  [ContactUs::class, 'subscribe']);
 
 });
 
