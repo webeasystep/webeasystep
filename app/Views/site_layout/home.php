@@ -89,7 +89,7 @@
                             <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
                                 <div><span class="price">$<?= esc(number_format($course['price'], 2)) ?></span></div>
                                 <!-- Button trigger modal -->
-                                <a href="<?= base_url('courses/show/'.$course['id']) ?>" class="btn btn-primary">تفاصيل</a>
+                                <a href="<?= base_url('courses/course_details/'.$course['slug']) ?>" class="btn btn-primary">تفاصيل</a>
                                 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal" data-course="<?= esc($course['id']) ?>">سجل الآن</a>
                             </div>
                         </div>

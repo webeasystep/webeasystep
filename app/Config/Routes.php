@@ -42,17 +42,16 @@ service('auth')->routes($routes);
 // Site main routes
 $routes->group('site', ['namespace' => 'App\Controllers'], function ($routes) {
     $routes->get('/', 'Site::index');
+    $routes->match(['GET', 'POST'], 'login', [Site::class, 'login']);
+    $routes->match(['GET', 'POST'], 'logout', [Site::class, 'logout']);
+    $routes->match(['GET', 'POST'], 'forget_password', [Site::class, 'forget_password']);
+    $routes->match(['GET', 'POST'], 'reset_password', [Site::class, 'reset_password']);
 
-    $routes->match(['GET', 'POST'], 'login', 'Site::login');
-    $routes->match(['GET', 'POST'], 'logout', 'Site::logout');
+    $routes->get('register', 'Site::register');
+    $routes->post('register', 'Site::attemptRegister');
     $routes->match(['GET', 'POST'], 'search', 'Site::search', ['filter' => 'site_filter']);
     // Add dynamic segments for order_id and driver_id in the take_order route
     $routes->get('take_order/(:num)/(:num)', 'Site::take_order/$1/$2', ['filter' => 'site_filter']);
-    $routes->get('register', 'Site::register');
-    $routes->post('register', 'Site::attemptRegister');
-
-    $routes->match(['GET', 'POST'], 'forget_password', 'Site::forget_password');
-    $routes->match(['GET', 'POST'], 'reset_password', 'Site::reset_password');
 
 });
 
