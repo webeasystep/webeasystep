@@ -2,18 +2,16 @@
 <?php $this->section('content'); ?>
 
 <style>
-    /* ====== KEEPING YOUR ORIGINAL DESIGN ====== */
-
-    /* ===== NAV & TOP BAR ===== */
+    /* ====== NAV & TOP BAR (Unchanged) ===== */
     .site-nav {
         position: relative !important;
         background: #fff !important; /* White nav background */
         border-radius: 0 0 12px 12px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        padding-bottom: 60px; /* more bottom padding for a balanced header */
+        padding-bottom: 60px;
     }
     .site-nav a {
-        color: #000 !important; /* Dark nav link text */
+        color: #000 !important;
     }
     .site-nav .site-navigation .site-menu > li > a:hover {
         color: #136ad5 !important;
@@ -22,7 +20,7 @@
     .site-nav .site-navigation .site-menu {
         display: flex;
         align-items: center;
-        justify-content: center; /* Center items horizontally */
+        justify-content: center;
     }
     .site-nav .site-navigation .site-menu > li {
         margin-right: 15px;
@@ -90,26 +88,20 @@
         font-size: 0.8rem;
         line-height: 1.4;
     }
+
+    /* Improved nav-buttons */
     .nav-buttons {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center; /* center the two buttons */
+        gap: 10px; /* spacing between buttons */
         margin-bottom: 20px;
     }
     .nav-buttons .btn {
-        flex: 1;
-        margin: 0 5px;
+        flex: 0 0 auto; /* don't stretch */
         white-space: nowrap;
-        padding: 10px 15px;
+        padding: 10px 20px;
         font-size: 0.9rem;
-    }
-    .nav-buttons .btn.btn-outline-secondary {
-        color: #6c757d;
-        border-color: #6c757d;
-    }
-    .nav-buttons .btn.btn-outline-secondary:hover {
-        color: #fff;
-        background-color: #6c757d;
-        border-color: #6c757d;
     }
 
     /* ===== ACCORDION (SECTION BLOCK) ===== */
@@ -117,6 +109,9 @@
         margin-top: 20px;
         max-height: 500px;
         overflow-y: auto;
+        /* For Arabic text, enforce RTL & right-aligned text */
+        direction: rtl;
+        text-align: right;
     }
     .videos-accordion .accordion-item {
         border: none;
@@ -139,7 +134,7 @@
         box-shadow: none;
         padding: 10px 15px;
         border-bottom: 1px solid #eee;
-        text-align: left;
+        text-align: right; /* align text to right for Arabic */
     }
     .videos-accordion .accordion-button:not(.collapsed) {
         color: #136ad5;
@@ -156,6 +151,7 @@
     }
     .videos-accordion .list-unstyled {
         margin-bottom: 0;
+        padding: 0;
     }
     .videos-accordion .list-unstyled li {
         margin-bottom: 6px;
@@ -167,6 +163,7 @@
         color: #555;
         font-size: 0.95rem;
         text-decoration: none;
+        text-align: right;
     }
     .videos-accordion .list-unstyled li a:hover,
     .videos-accordion .list-unstyled li a.active-video {
@@ -179,7 +176,7 @@
     .main-content {
         margin-top: 30px;
     }
-    .video-container {
+    .course-preview-video .video-container {
         position: relative;
         padding-bottom: 56.25%;
         height: 0;
@@ -188,25 +185,25 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         margin-bottom: 20px;
     }
-    .video-container iframe {
+    .course-preview-video .video-container iframe {
         position: absolute;
         top: 0; left: 0;
         width: 100%; height: 100%;
         border: none;
         border-radius: 7px;
     }
-    .main-content h2.lesson-title-main-video {
+    .lesson-title-main-video {
         font-size: 1.6rem;
         color: #333;
         margin-bottom: 10px;
         margin-top: 15px !important;
     }
-    .main-content p.course-description-text {
+    .course-description-text {
         color: #666;
         line-height: 1.7;
         margin-bottom: 25px;
     }
-    .main-content .btn.btn-primary.btn-block {
+    .btn.btn-primary.btn-block.mark-complete-button {
         padding: 14px 30px;
         font-size: 1.1rem;
         border-radius: 7px;
@@ -250,6 +247,7 @@
             <!-- Sidebar (col-lg-4) -->
             <div class="col-lg-4 sidebar">
                 <div class="user-info-block">
+                    <!-- Optional progress bar for overall course progress -->
                     <div class="progress mb-3">
                         <div class="progress-bar" role="progressbar"
                              style="width: <?= esc($course_progress) ?>%;"
@@ -258,6 +256,8 @@
                             <?= esc($course_progress) ?>%
                         </div>
                     </div>
+
+                    <!-- Previous / Next Buttons -->
                     <div class="nav-buttons">
                         <!-- Previous Button -->
                         <?php if ($prevLessonUrl): ?>
@@ -299,7 +299,7 @@
                                             <li class="mb-2">
                                                 <a href="<?= site_url('courses/course_view/' . $course->slug . '?lesson=' . $lesson['lesson_id']) ?>"
                                                    class="text-dark text-decoration-none
-                                                   <?= $lesson['lesson_id'] == $current_lesson_id ? 'active-video' : '' ?>">
+                           <?= $lesson['lesson_id'] == $current_lesson_id ? 'active-video' : '' ?>">
                                                     <?php if ($lesson['is_preview']): ?>
                                                         <span class="icon-play-circle-o mr-2" style="color:#6c757d;"></span>
                                                     <?php else: ?>
@@ -323,6 +323,7 @@
                 <h2 class="lesson-title-main-video mb-2">
                     <?= esc($lesson_title) ?>
                 </h2>
+
                 <!-- Video Preview -->
                 <div class="course-preview-video">
                     <div class="video-container">
@@ -338,16 +339,20 @@
 
                 <!-- Description below video -->
                 <p class="course-description-text">
-                    <?= esc($course_description) ?>
+                    <?= esc($lesson_desc) ?>
                 </p>
 
                 <!-- “Mark as Complete” Button -->
                 <form action="<?= site_url('courses/markLessonComplete') ?>" method="post">
+                    <!-- The lesson ID we want to mark complete -->
                     <input type="hidden" name="lesson_id" value="<?= esc($current_lesson_id) ?>">
+                    <!-- The slug for the current course -->
+                    <input type="hidden" name="slug" value="<?= esc($course->slug) ?>">
                     <button class="btn btn-primary btn-block mark-complete-button" type="submit">
                         MARK AS COMPLETE
                     </button>
                 </form>
+
             </div>
         </div>
     </div>

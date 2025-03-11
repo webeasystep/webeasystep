@@ -1706,3 +1706,21 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
     font-size: 18px;
   }
 }
+/* --- Additional RTL overrides for the new classes --- */
+
+/* Flip margin-right to margin-left */
+.course-sidebar .block-v1.course-features ul li span {
+  margin-left: 5px; /* was margin-right in LTR */
+  margin-right: 0; /* remove if set previously */
+}
+
+/* Flip the float direction for .video-time */
+.video-time {
+  float: left; /* was float: right in LTR */
+}
+
+/* If you want to flip .video-status margin-left to margin-right */
+.video-status {
+  margin-right: 10px; /* was margin-left in LTR */
+  margin-left: 0; /* remove if set previously */
+}

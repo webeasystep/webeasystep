@@ -1,4 +1,3 @@
---- START OF FILE site/course_details.php ---
 <?php $this->extend('site_layout/template'); ?>
 
 <?php $this->section('content'); ?>
