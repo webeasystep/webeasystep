@@ -2,49 +2,6 @@
 <?php $this->section('content'); ?>
 
 <style>
-    /* ====== NAV & TOP BAR (Unchanged) ===== */
-    .site-nav {
-        position: relative !important;
-        background: #fff !important; /* White nav background */
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        padding-bottom: 60px;
-    }
-    .site-nav a {
-        color: #000 !important;
-    }
-    .site-nav .site-navigation .site-menu > li > a:hover {
-        color: #136ad5 !important;
-        opacity: 1;
-    }
-    .site-nav .site-navigation .site-menu {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .site-nav .site-navigation .site-menu > li {
-        margin-right: 15px;
-    }
-    .site-nav .btn-book {
-        position: relative;
-        margin-left: 20px;
-        right: auto;
-    }
-    .top-bar {
-        background-color: #fff;
-        border-bottom: 1px solid #eee;
-        padding: 10px 0;
-    }
-    .top-bar a {
-        color: #777 !important;
-    }
-
-    /* ===== MAIN SECTION ===== */
-    .untree_co-section.bg-light {
-        padding-top: 60px;
-        padding-bottom: 60px;
-    }
-
     /* ===== SIDEBAR ===== */
     .sidebar {
         margin-bottom: 30px;
@@ -192,7 +149,7 @@
         border: none;
         border-radius: 7px;
     }
-    .lesson-title-main-video {
+    .video-title-main-video {
         font-size: 1.6rem;
         color: #333;
         margin-bottom: 10px;
@@ -295,17 +252,17 @@
                                  data-parent="#videoAccordion">
                                 <div class="accordion-body">
                                     <ul class="list-unstyled mb-0">
-                                        <?php foreach ($section['lessons'] as $lesson): ?>
+                                        <?php foreach ($section['videos'] as $video): ?>
                                             <li class="mb-2">
-                                                <a href="<?= site_url('courses/course_view/' . $course->slug . '?lesson=' . $lesson['lesson_id']) ?>"
+                                                <a href="<?= site_url('courses/course_view/' . $course->slug . '?video=' . $video['id']) ?>"
                                                    class="text-dark text-decoration-none
-                           <?= $lesson['lesson_id'] == $current_lesson_id ? 'active-video' : '' ?>">
-                                                    <?php if ($lesson['is_preview']): ?>
+                           <?= $video['id'] == $current_id ? 'active-video' : '' ?>">
+                                                    <?php if ($video['is_preview']): ?>
                                                         <span class="icon-play-circle-o mr-2" style="color:#6c757d;"></span>
                                                     <?php else: ?>
                                                         <span class="icon-lock mr-2" style="color:#dc3545;"></span>
                                                     <?php endif; ?>
-                                                    <?= esc($lesson['lesson_title']) ?>
+                                                    <?= esc($video['video_title']) ?>
                                                 </a>
                                             </li>
                                         <?php endforeach; ?>
@@ -320,32 +277,38 @@
             <!-- Main Content (col-lg-8) -->
             <div class="col-lg-8 main-content">
                 <!-- Title above video -->
-                <h2 class="lesson-title-main-video mb-2">
-                    <?= esc($lesson_title) ?>
+                <h2 class="video-title-main-video mb-2">
+                    <?= esc($video_title) ?>
                 </h2>
 
                 <!-- Video Preview -->
                 <div class="course-preview-video">
                     <div class="video-container">
-                        <iframe width="100%" height="315"
-                                src="<?= esc($video_url) ?>"
-                                title="<?= esc($lesson_title) ?>"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                        </iframe>
+                        <!-- Video Preview -->
+                        <div class="course-preview-video">
+                            <div class="video-container">
+                                <div style="position: relative; padding-top: 56.25%;">
+                                <iframe src="https://iframe.mediadelivery.net/embed/395633/<?=$video_id?>?autoplay=false"
+                                        loading="lazy" style="border: none; position: absolute; top: 0; height: 100%; width: 100%;"
+                                        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true">
+                                </iframe>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
                 <!-- Description below video -->
                 <p class="course-description-text">
-                    <?= esc($lesson_desc) ?>
+                    <?= esc($video_desc) ?>
                 </p>
 
                 <!-- “Mark as Complete” Button -->
                 <form action="<?= site_url('courses/markLessonComplete') ?>" method="post">
-                    <!-- The lesson ID we want to mark complete -->
-                    <input type="hidden" name="lesson_id" value="<?= esc($current_lesson_id) ?>">
+                    <!-- The video ID we want to mark complete -->
+                    <input type="hidden" name="id" value="<?= esc($current_id) ?>">
                     <!-- The slug for the current course -->
                     <input type="hidden" name="slug" value="<?= esc($course->slug) ?>">
                     <button class="btn btn-primary btn-block mark-complete-button" type="submit">

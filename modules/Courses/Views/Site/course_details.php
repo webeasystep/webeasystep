@@ -85,16 +85,16 @@
     .custom-accordion .accordion-body {
         padding: 15px 0;
     }
-    .lesson-list {
+    .video-list {
         list-style: none;
         padding-left: 0;
         margin-bottom: 0;
     }
-    .lesson-list li {
+    .video-list li {
         padding: 8px 0;
         border-bottom: 1px dashed #eee;
     }
-    .lesson-icon {
+    .video-icon {
         margin-right: 10px;
         color: #136ad5;
     }
@@ -135,19 +135,19 @@
                                 <div class="accordion-item">
                                     <h2 class="mb-0">
                                         <button class="btn btn-link <?= ($sectionIndex !== 0) ? 'collapsed' : '' ?>" type="button" data-toggle="collapse" data-target="#collapse<?= $sectionIndex + 1 ?>" aria-expanded="<?= ($sectionIndex === 0) ? 'true' : 'false' ?>" aria-controls="collapse<?= $sectionIndex + 1 ?>">
-                                            Section <?= $sectionIndex + 1 ?>: <?= esc($section['section_title'] ?? 'Section Title') ?> <span class="lesson-count">(<?= count($section['lessons'] ?? []) ?> Lessons)</span>
+                                            Section <?= $sectionIndex + 1 ?>: <?= esc($section['section_title'] ?? 'Section Title') ?> <span class="video-count">(<?= count($section['videos'] ?? []) ?> Lessons)</span>
                                         </button>
                                     </h2>
                                     <div id="collapse<?= $sectionIndex + 1 ?>" class="collapse <?= ($sectionIndex === 0) ? 'show' : '' ?>" aria-labelledby="headingOne" data-parent="#courseOutlineAccordion">
                                         <div class="accordion-body">
-                                            <ul class="lesson-list">
-                                                <?php if (is_array($section['lessons'] ?? [])) : ?>
-                                                    <?php foreach ($section['lessons'] as $lesson) : ?>
+                                            <ul class="video-list">
+                                                <?php if (is_array($section['videos'] ?? [])) : ?>
+                                                    <?php foreach ($section['videos'] as $video) : ?>
                                                         <li>
-                                                            <span class="lesson-icon"><span class="icon-play-circle-o"></span></span>
-                                                            <a href="<?= base_url('courses/course_view/'.$course->slug) ?>"><?= esc($lesson['lesson_title'] ?? 'Lesson Title') ?></a>
-                                                            <span class="video-time"><?= esc($lesson['video_duration'] ?? '0:00') ?></span>
-                                                            <span class="video-status <?= (isset($lesson['is_preview']) && $lesson['is_preview'] == 1) ? 'preview' : 'locked' ?>"><?= (isset($lesson['is_preview']) && $lesson['is_preview'] == 1) ? 'Preview' : 'Locked' ?></span>
+                                                            <span class="video-icon"><span class="icon-play-circle-o"></span></span>
+                                                            <a href="<?= base_url('courses/course_view/'.$course->slug) ?>"><?= esc($video['video_title'] ?? 'Lesson Title') ?></a>
+                                                            <span class="video-time"><?= esc($video['video_duration'] ?? '0:00') ?></span>
+                                                            <span class="video-status <?= (isset($video['is_preview']) && $video['is_preview'] == 1) ? 'preview' : 'locked' ?>"><?= (isset($video['is_preview']) && $video['is_preview'] == 1) ? 'Preview' : 'Locked' ?></span>
                                                         </li>
                                                     <?php endforeach; ?>
                                                 <?php endif; ?>
@@ -179,7 +179,7 @@
                         <h3 class="mb-3">Course Features</h3>
                         <ul class="course-features-list">
                             <li><span class="icon-clock-o"></span> Duration: <strong><?= esc($course->duration ?? 'N/A') ?></strong></li>
-                            <li><span class="icon-play-circle-o"></span> Video Lessons: <strong><?= esc($course->video_lessons_count ?? 'N/A') ?> Video Lessons</strong></li>
+                            <li><span class="icon-play-circle-o"></span> Video Lessons: <strong><?= esc($course->video_videos_count ?? 'N/A') ?> Video Lessons</strong></li>
                             <li><span class="icon-list"></span> Quizzes: <strong><?= esc($course->quizzes_count ?? 'N/A') ?> Quizzes</strong></li>
                             <li><span class="icon-certificate"></span> Certificate of Completion</li>
                             <li><span class="icon-infinity"></span> Lifetime Access</li>

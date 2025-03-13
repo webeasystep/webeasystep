@@ -41,13 +41,13 @@
             <!-- small card -->
             <div class="small-box bg-gradient-cyan">
                 <div class="inner">
-                    <h3><?= esc($tb_plans) ?></h3>
-                    <p><?= lang("Admin.plans") ?></p>
+                    <h3><?= esc($tb_enrollments) ?></h3>
+                    <p><?= lang("Admin.enrollments") ?></p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-solid fa-list"></i>
                 </div>
-                <a href="<?= ADMIN_URL . 'plans' ?>" class="small-box-footer">
+                <a href="<?= ADMIN_URL . 'enrollments' ?>" class="small-box-footer">
                     المزيد <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -73,13 +73,13 @@
             <!-- small card -->
             <div class="small-box bg-gradient-gray">
                 <div class="inner">
-                    <h3><?= esc($tb_subscriptions) ?></h3>
-                    <p><?= lang("Admin.subscriptions") ?></p>
+                    <h3><?= esc($tb_categories) ?></h3>
+                    <p><?= lang("Admin.categories") ?></p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-solid fa-user-plus"></i>
                 </div>
-                <a href="<?= ADMIN_URL . 'subscriptions' ?>" class="small-box-footer">
+                <a href="<?= ADMIN_URL . 'categories' ?>" class="small-box-footer">
                     المزيد <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>

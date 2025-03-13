@@ -47,7 +47,7 @@
                 <div class="col-6 col-lg-3 text-right">
                     <?php if (isset(auth()->user()->username)): ?>
                         <!-- Example: If user is logged in -->
-                        <a href="<?= site_url('dashboard') ?>" class="small mr-3">
+                        <a href="<?= site_url('courses/my_courses') ?>" class="small mr-3">
                             <span class="icon-user"></span>
                             <?= esc(auth()->user()->username) ?>
                         </a>

@@ -9,7 +9,7 @@
                 <h5 class="card-title mb-5"><?= lang('Auth.login') ?></h5>
                 <?= $this->include('admin_layout/admin_msg'); ?>
 
-                <form action="<?= base_url('login') ?>" method="post">
+                <form  method="post">
                     <?= csrf_field() ?>
 
                     <!-- Email -->

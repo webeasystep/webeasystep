@@ -5,7 +5,6 @@ namespace App\Filters;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
-use CodeIgniter\Session\Session;
 
 class SiteFilter implements FilterInterface
 {
@@ -15,14 +14,15 @@ class SiteFilter implements FilterInterface
         $session = service('session');
 
         // Check if the user is logged in
-        if (empty($_SESSION["user_id"])) {
+        if (!$auth->loggedIn()) {
             // Set flash data
             $session->setFlashdata('error', 'You must be logged in to view this page.');
-            // Redirect to login page
-            return redirect()->to('site/login');
-        }
-    }
 
+            // Redirect to login page
+            return redirect()->to('/site/login');
+        }
+
+    }
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
         // Usually nothing to do here

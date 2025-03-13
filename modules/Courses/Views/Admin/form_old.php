@@ -152,7 +152,7 @@
         <tr class="video-template">
             <td><input type="text" class="form-control video-name" placeholder="Video Name"></td>
             <td><input type="text" class="form-control video-desc" placeholder="Description"></td>
-            <td><input type="url" class="form-control video-link" placeholder="Video URL"></td>
+            <td><input type="url" class="form-control video-id" placeholder="Video URL"></td>
             <td><input type="number" class="form-control video-sort" placeholder="Sort" value="1"></td>
             <td>
                 <select class="form-control video-active">
@@ -239,10 +239,10 @@
 
                 $(this).find('.videos-container tbody > tr').each(function(videoIndex) {
                     section.videos.push({
-                        video_id: videoIndex + 1,
+                        id: videoIndex + 1,
                         video_name: $(this).find('.video-name').val(),
                         video_desc: $(this).find('.video-desc').val(),
-                        video_link: $(this).find('.video-link').val(),
+                        video_id: $(this).find('.video-id').val(),
                         sort: parseInt($(this).find('.video-sort').val()) || 1,
                         active: parseInt($(this).find('.video-active').val())
                     });
@@ -271,7 +271,7 @@
 
                             $video.find('.video-name').val(video.video_name);
                             $video.find('.video-desc').val(video.video_desc);
-                            $video.find('.video-link').val(video.video_link);
+                            $video.find('.video-id').val(video.video_id);
                             $video.find('.video-sort').val(video.sort);
                             $video.find('.video-active').val(video.active.toString());
                         });

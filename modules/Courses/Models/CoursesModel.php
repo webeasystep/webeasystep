@@ -18,7 +18,7 @@ class CoursesModel extends BaseModel
 
     // Additional table references
     protected $enrollmentsTable        = 'tb_enrollments';
-    protected $lessonCompletionsTable  = 'tb_lesson_completions';
+    protected $videoCompletionsTable  = 'tb_video_completions';
 
     /**
      * Fetch course by ID
@@ -134,15 +134,15 @@ class CoursesModel extends BaseModel
     /* ================== LESSON COMPLETION METHODS ================== */
 
     /**
-     * Mark a lesson as completed for a given enrollment
+     * Mark a video as completed for a given enrollment
      */
-    public function markLessonComplete(int $enrollmentId, int $lessonId)
+    public function markLessonComplete(int $enrollmentId, int $videoId)
     {
-        $builder = $this->db->table($this->lessonCompletionsTable);
+        $builder = $this->db->table($this->videoCompletionsTable);
 
         // Check if already completed
         $existing = $builder->where('enrollment_id', $enrollmentId)
-            ->where('lesson_id', $lessonId)
+            ->where('video_id', $videoId)
             ->get()
             ->getRow();
         if ($existing) {
@@ -152,7 +152,7 @@ class CoursesModel extends BaseModel
         // Otherwise, insert a new record
         $data = [
             'enrollment_id' => $enrollmentId,
-            'lesson_id'     => $lessonId,
+            'video_id'     => $videoId,
             'completed_at'  => date('Y-m-d H:i:s'),
         ];
         $builder->insert($data);
@@ -161,25 +161,25 @@ class CoursesModel extends BaseModel
     }
 
     /**
-     * Count how many lessons are completed for a given enrollment
+     * Count how many videos are completed for a given enrollment
      */
     public function countCompletedLessons(int $enrollmentId): int
     {
-        $builder = $this->db->table($this->lessonCompletionsTable);
+        $builder = $this->db->table($this->videoCompletionsTable);
         return $builder->where('enrollment_id', $enrollmentId)->countAllResults();
     }
     public function getCompletedLessonIDs(int $enrollmentId): array
     {
-        $builder = $this->db->table($this->lessonCompletionsTable);
-        $builder->select('lesson_id');
+        $builder = $this->db->table($this->videoCompletionsTable);
+        $builder->select('video_id');
         $builder->where('enrollment_id', $enrollmentId);
         $query = $builder->get();
 
-        $lessonIDs = [];
+        $videoIDs = [];
         foreach ($query->getResultArray() as $row) {
-            $lessonIDs[] = (int) $row['lesson_id'];
+            $videoIDs[] = (int) $row['video_id'];
         }
-        return $lessonIDs;
+        return $videoIDs;
     }
 
 }

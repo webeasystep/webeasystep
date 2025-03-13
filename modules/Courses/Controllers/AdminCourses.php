@@ -1,5 +1,4 @@
 <?php
-
 namespace Modules\Courses\Controllers;
 
 use App\Controllers\BaseController;
@@ -31,7 +30,7 @@ class AdminCourses extends BaseController
 
         if ($this->request->isAJAX()) {
             $coursesModel = $this->courses
-                ->select('id, course_name, course_desc, image, sort, price, is_free, created_at')
+                ->select('id, course_name,slug, image, sort, price, is_free, created_at')
                 ->orderBy('id', 'desc')
                 ->builder();
 
@@ -54,7 +53,8 @@ class AdminCourses extends BaseController
         $data['title'] = lang("Admin.add_data");
         if ($this->request->is('post')) {
             if ($this->validate($this->rules)) {
-                $id = $this->data_arr();
+                $id = $this->data_arr(); // Insert
+                // Handle file upload(s)
                 $this->fireUploader->upload_photos($this->courses, 'image', $id);
                 $this->show_msg('success', lang("Admin.add_operation"), lang("Admin.add_success"));
                 return redirect()->to(ADMIN_URL . "courses");
@@ -70,10 +70,9 @@ class AdminCourses extends BaseController
         $data['title'] = lang("Admin.edit_data");
 
         if ($this->request->is('post')) {
-
             if ($this->validate($this->rules)) {
                 $this->fireUploader->upload_photos($this->courses, 'image', $id);
-                $id = $this->data_arr($id);
+                $this->data_arr($id);
                 $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
                 return redirect()->to(ADMIN_URL . "courses");
             } else {
@@ -81,39 +80,45 @@ class AdminCourses extends BaseController
             }
         }
 
+        // Fetch existing course
         $data['course'] = $this->courses->find($id);
-        // Decode JSON structure properly
-        // Properly decode JSON structure
         if ($data['course'] && !empty($data['course']->course_structure)) {
+            // Decode as array
             $data['course']->course_structure = json_decode(
                 $data['course']->course_structure,
-                true, // Decode as associative array
-                512, // Depth
-                JSON_THROW_ON_ERROR // Force valid JSON
+                true,
+                512,
+                JSON_THROW_ON_ERROR
             );
         } else {
+            // If empty or not set, init with an empty sections array
             $data['course']->course_structure = ['sections' => []];
         }
-        $data['files'] = json_decode($data['course']->image, true);
+
+        // Existing images
+        $data['files'] = json_decode($data['course']->image ?? '[]', true);
+
         return view('form', $data);
     }
 
-    public function data_arr($id = NULL)
+    /**
+     * Insert/Update data in tb_courses
+     */
+    private function data_arr($id = null)
     {
         $builder = $this->db->table('tb_courses');
 
         $data = [
-            'course_name' => $this->request->getPost('course_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-            'course_desc' => $this->request->getPost('course_desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-            'course_structure' => $this->request->getPost('course_structure') ?? null,
-            'sort' => $this->request->getPost('sort', FILTER_SANITIZE_NUMBER_INT),
-            'price' => $this->request->getPost('price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
-            'is_free' => $this->request->getPost('is_free') ? '1' : '0', // Save switch value
+            'course_name'       => $this->request->getPost('course_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            'course_desc'       => $this->request->getPost('course_desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            'course_structure'  => $this->request->getPost('course_structure') ?? null, // JSON structure
+            'sort'              => $this->request->getPost('sort', FILTER_SANITIZE_NUMBER_INT),
+            'price'             => $this->request->getPost('price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
+            'is_free'           => $this->request->getPost('is_free') ? '1' : '0',
         ];
 
         if ($id) {
-            $builder->where('id', $id);
-            $builder->update($data);
+            $builder->where('id', $id)->update($data);
         } else {
             $builder->insert($data);
             $id = $this->db->insertID();

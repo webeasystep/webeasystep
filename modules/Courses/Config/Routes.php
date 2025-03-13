@@ -31,19 +31,21 @@ $routes->group('/', [
     // 1) List all courses (index)
     $routes->get('courses', [Courses::class, 'index']);
     // 2) Course details by slug
-    $routes->get('courses/course_details/(:any)', 'Courses::course_details/$1');
+    $routes->get('courses/course_details/(:any)', [Courses::class, 'course_details/$1']);
     // 3) Course "player" view
-    $routes->get('courses/course_view/(:any)', 'Courses::course_view/$1');
-    // 4) My Courses (enrolled)
-    $routes->get('courses/my_courses', 'Courses::my_courses');
+    $routes->get('courses/course_view/(:any)', [Courses::class, 'course_view/$1']);
+
     // 5) Show single course by ID (if you still use it)
     $routes->post('courses/show/(:num)', [Courses::class, 'show/$1']);
-    // === NEW Routes ===
-
-    // Enroll user in a course (POST to /courses/enroll/123)
-    $routes->post('courses/enroll/(:num)', 'Courses::enroll/$1');
-    // Mark a lesson as complete (POST to /courses/markLessonComplete)
-    $routes->post('courses/markLessonComplete', 'Courses::markLessonComplete');
+    // === NEW Routes with SiteFilter ===
+    $routes->group('', ['filter' => 'site_filter'], static function ($routes) {
+        // 4) My Courses (enrolled)
+        $routes->get('courses/my_courses', [Courses::class, 'my_courses']);
+        // Enroll user in a course (POST to /courses/enroll/123)
+        $routes->post('courses/enroll/(:num)', [Courses::class, 'enroll/$1']);
+        // Mark a video as complete (POST to /courses/markLessonComplete)
+        $routes->post('courses/markLessonComplete', [Courses::class, 'markLessonComplete']);
+    });
 });
 
 /*** Example API Routes (commented out) ***/
