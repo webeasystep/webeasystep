@@ -32,6 +32,7 @@ class PagesModel extends BaseModel
 
     public function getPage($slug): array
     {
+
         return (array) $this->where('page_link', $slug)->first();
     }
 

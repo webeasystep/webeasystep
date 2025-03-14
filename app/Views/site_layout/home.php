@@ -13,9 +13,7 @@
                     <div class="col-lg-6 text-center ">
                         <a href="#" data-fancybox data-aos="fade-up"
                            data-aos-delay="0" class="caption mb-4 d-inline-block">شاهد الفيديو</a>
-                        <a href="https://wa.me/201032863861" class="whatsapp-float" target="_blank" rel="noopener">
-                            <i class="fab fa-whatsapp"></i> <span style="padding: .2rem;">لديك استفسار؟  تحدث</span>
-                        </a>
+
                         <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">اصنع مستقبلك الرقمي</h1>
                         <p class="mb-3 small text-white" data-aos="fade-up" data-aos-delay="200">أول أكاديمية متخصصة في تدريس علوم الحاسب للطلبة وإعدادهم لوظائف المستقبل.</p>
                         <p class="mb-0" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-secondary">استكشف الدورات</a></p>

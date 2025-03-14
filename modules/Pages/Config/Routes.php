@@ -34,9 +34,9 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Pages\Controllers',
 /*** Route for Pages Site ***/
 
 $routes->group('/', ['namespace' => 'Modules\Pages\Controllers'], static function ($routes) {
-    $routes->add('pages/(:any)', [Pages::class, 'show']);
+    $routes->add('pages/(:any)', [Pages::class, 'view']);
     $routes->get('pages', [Pages::class, 'index']);
-    $routes->post('pages/show/(:num)', [Pages::class, 'show/$1']);
+    $routes->post('pages/view/(:num)', [Pages::class, 'view/$1']);
     $routes->get('pages/add', [Pages::class, 'add']);
     $routes->get('pages/edit/(:num)', [Pages::class, 'edit/$1']);
     $routes->get('pages/delete/(:num)', [Pages::class, 'delete/$1']);

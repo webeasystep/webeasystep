@@ -3,10 +3,20 @@
 
 <style>
     /* ===== SIDEBAR ===== */
-    .sidebar {
-        margin-bottom: 30px;
-        width: 320px; /* Wider sidebar to fit text */
-        padding-right: 30px;
+
+    /* Improved nav-buttons */
+    .nav-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* center the two buttons */
+        gap: 10px; /* spacing between buttons */
+        margin-bottom: 20px;
+    }
+    .nav-buttons .btn {
+        flex: 0 0 auto; /* don't stretch */
+        white-space: nowrap;
+        padding: 10px 20px;
+        font-size: 0.9rem;
     }
     .user-info-block {
         background-color: #fff;
@@ -33,33 +43,13 @@
         text-align: center;
         margin-bottom: 10px;
     }
-    .progress {
-        height: 6px; /* Thinner progress bar */
-        border-radius: 5px;
-        margin-bottom: 15px;
-        background-color: #e9ecef;
-    }
-    .progress-bar {
-        background-color: #007bff;
-        padding: 0 5px;
-        font-size: 0.8rem;
-        line-height: 1.4;
+    .sidebar {
+        margin-bottom: 30px;
+        width: 320px; /* Wider sidebar to fit text */
+        padding-right: 30px;
     }
 
-    /* Improved nav-buttons */
-    .nav-buttons {
-        display: flex;
-        align-items: center;
-        justify-content: center; /* center the two buttons */
-        gap: 10px; /* spacing between buttons */
-        margin-bottom: 20px;
-    }
-    .nav-buttons .btn {
-        flex: 0 0 auto; /* don't stretch */
-        white-space: nowrap;
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
+
 
     /* ===== ACCORDION (SECTION BLOCK) ===== */
     .videos-accordion {

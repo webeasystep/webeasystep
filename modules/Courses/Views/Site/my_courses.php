@@ -1,30 +1,6 @@
 <?php $this->extend('site_layout/template'); ?>
 <?php $this->section('content'); ?>
 
-<!-- Hero Banner -->
-<div class="untree_co-hero overlay" style="background-image: url('site/images/img-school-6-min.jpg');">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-12">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center">
-                        <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">
-                            <?= esc($title) ?>
-                        </h1>
-                        <div class="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                            <p><?= esc($desc) ?></p>
-                        </div>
-
-                        <p class="mb-0" data-aos="fade-up" data-aos-delay="300">
-                            <a href="<?= site_url('courses') ?>" class="btn btn-secondary">Explore More Courses</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- /.row -->
-    </div> <!-- /.container -->
-</div> <!-- /.untree_co-hero -->
-
 <!-- My Enrolled Courses Section -->
 <div class="untree_co-section bg-light">
     <div class="container">
@@ -45,12 +21,10 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card mb-4 shadow-sm">
                                     <!-- Course Image -->
-                                    <img
-                                            src="<?= base_url('uploads/' . $course->image) ?>"
-                                            class="card-img-top"
-                                            alt="<?= esc($course->course_name) ?>"
-                                            style="height: 200px; object-fit: cover;"
-                                    >
+                                    <img   alt="<?= esc($course->course_name) ?>"
+                                           style="height: 200px; object-fit: cover;" src="<?= thumb($course->image,170,249) ?>"
+                                           class="card-img-top">
+
                                     <div class="card-body">
                                         <!-- Course Title & Description -->
                                         <h5 class="card-title"><?= esc($course->course_name) ?></h5>

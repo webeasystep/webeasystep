@@ -29,17 +29,17 @@
                     <!-- “Have a question?” -->
                     <a href="#" class="small mr-3">
                         <span class="icon-question-circle-o mr-2"></span>
-                        <span class="d-none d-lg-inline-block">Have a question?</span>
+                        <span class="d-none d-lg-inline-block">هل لديك استفسار ؟</span>
                     </a>
                     <!-- Phone -->
-                    <a href="tel://1020123456" class="small mr-3" dir="ltr">
+                    <a href="tel://201032863861" class="small mr-3" dir="ltr">
                         <span class="icon-phone mr-2"></span>
-                        <span class="d-none d-lg-inline-block">10 20 123 456</span>
+                        <span class="d-none d-lg-inline-block">+201032863861</span>
                     </a>
                     <!-- Email -->
                     <a href="mailto:info@mydomain.com" class="small mr-3" dir="ltr">
                         <span class="icon-envelope mr-2"></span>
-                        <span class="d-none d-lg-inline-block">info@mydomain.com</span>
+                        <span class="d-none d-lg-inline-block">info@webeasystep.com</span>
                     </a>
                 </div>
 
@@ -51,16 +51,16 @@
                             <span class="icon-user"></span>
                             <?= esc(auth()->user()->username) ?>
                         </a>
-                        <a href="<?= site_url('logout') ?>" class="small">
-                            <span class="icon-lock"></span> Log Out
+                        <a href="<?= site_url('site/logout') ?>" class="small">
+                            <span class="icon-lock"></span> تسجيل الخروج
                         </a>
                     <?php else: ?>
                         <!-- If not logged in -->
-                        <a href="<?= site_url('login') ?>" class="small mr-3">
-                            <span class="icon-lock"></span> Log In
+                        <a href="<?= site_url('site/login') ?>" class="small mr-3">
+                            <span class="icon-lock"></span>تسجيل الدخول
                         </a>
-                        <a href="<?= site_url('register') ?>" class="small">
-                            <span class="icon-person"></span> Register
+                        <a href="<?= site_url('site/register') ?>" class="small">
+                            <span class="icon-person"></span>حساب جديد
                         </a>
                     <?php endif; ?>
                 </div>
@@ -75,37 +75,16 @@
                 <!-- Main Menu -->
                 <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
                     <li <?= current_url() == site_url() ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url() ?>">Home</a>
+                        <a href="<?= site_url() ?>">الرئيسية</a>
                     </li>
                     <li <?= current_url() == site_url('about') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('about') ?>">About</a>
-                    </li>
-                    <li class="has-children <?= current_url() == site_url('dropdown') ? 'active' : '' ?>">
-                        <a href="#">Dropdown</a>
-                        <ul class="dropdown">
-                            <li><a href="<?= site_url('elements') ?>">Elements</a></li>
-                            <li class="has-children">
-                                <a href="#">Menu Two</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">Sub Menu One</a></li>
-                                    <li><a href="#">Sub Menu Two</a></li>
-                                    <li><a href="#">Sub Menu Three</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Menu Three</a></li>
-                        </ul>
+                        <a href="<?= site_url('pages/about') ?>">عن الموقع</a>
                     </li>
                     <li <?= current_url() == site_url('staff') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('staff') ?>">Our Staff</a>
+                        <a href="<?= site_url('courses') ?>">الكورسات</a>
                     </li>
                     <li <?= current_url() == site_url('news') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('news') ?>">News</a>
-                    </li>
-                    <li <?= current_url() == site_url('gallery') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('gallery') ?>">Gallery</a>
-                    </li>
-                    <li <?= current_url() == site_url('contact') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('contact') ?>">Contact</a>
+                        <a href="<?= site_url('articles') ?>">المدونة</a>
                     </li>
                 </ul>
 
@@ -124,6 +103,9 @@
         </div>
     </div>
 </nav>
+<a href="https://wa.me/201032863861" class="whatsapp-float" target="_blank" rel="noopener">
+    <i class="fab fa-whatsapp"></i> <span style="padding: .2rem;">لديك استفسار؟  تحدث</span>
+</a>
 <?php if (current_url() != site_url()): ?>
     <style>
         /* ===== NAV & TOP BAR ===== */

@@ -16,7 +16,7 @@
                         <?= csrf_field() ?>
 
                         <p class="text-center"><?= lang('Auth.haveAccount') ?> <a
-                                    href="<?= url_to('login') ?>"><?= lang('Auth.login') ?></a></p>
+                                    href="<?= url_to('site/login') ?>"><?= lang('Auth.login') ?></a></p>
 
                         <!-- Email -->
                         <div class="form-group">

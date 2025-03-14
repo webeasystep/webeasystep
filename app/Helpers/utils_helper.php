@@ -59,7 +59,7 @@ if (!function_exists('thumb')) {
             }
 
             // Return the path to the thumbnail
-            return $thumbnailPath;
+            return base_url($thumbnailPath);
         }
 
         // If no image data or files are found, return a not found image

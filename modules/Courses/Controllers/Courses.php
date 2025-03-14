@@ -56,7 +56,7 @@ class Courses extends BaseController
     /**
      * Display the "course player" page with sections, videos, next/prev logic, etc.
      */
-    public function course_view(string $slug)
+    public function course_view(string $slug): string|RedirectResponse
     {
         // 1) Fetch the course by slug
         $course = $this->coursesModel->getCourseBySlug($slug);
@@ -158,7 +158,7 @@ class Courses extends BaseController
     /**
      * Enroll the current user in a course (requires user_id from auth).
      */
-    public function enroll(int $courseId)
+    public function enroll(int $courseId): RedirectResponse
     {
         $userId = auth()->user()->id;
         if (!$userId) {
@@ -179,7 +179,7 @@ class Courses extends BaseController
     /**
      * Mark a video as complete for the current user in the given course (via slug).
      */
-    public function markLessonComplete()
+    public function markLessonComplete(): RedirectResponse
     {
         $userId = auth()->user()->id;
         if (!$userId) {

@@ -128,7 +128,7 @@
 
                 <!-- Course Outline using a Custom Accordion (Bootstrap 4) -->
                 <div class="course-outline" data-aos="fade-up" data-aos-delay="400">
-                    <h2 class="section-title mb-4">Course Outline</h2>
+                    <h2 class="section-title mb-4">محتوى الكورس</h2>
                     <div class="custom-accordion" id="courseOutlineAccordion">
                         <?php if (is_array($structure) && !empty($structure)) : ?>
                             <?php foreach ($structure as $sectionIndex => $section) : ?>

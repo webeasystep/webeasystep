@@ -26,10 +26,8 @@ class Pages extends BaseController
 
         return view('index', $data);
     }
-    /**
-     * @throws \Exception
-     */
-    public function show($slug)
+
+    public function view($slug): string
     {
 
         // Get the page content from the database
@@ -41,12 +39,12 @@ class Pages extends BaseController
         }
 
         $data = [
-            'title' => $page['title_'.lang('site.lang')],
+            'title' => $page['title'],
             'page_info' => $page,
         ];
         //
         //  var_dump($this->modulePath);
-        return view('show', $data);
+        return view('site/show', $data);
         //echo view('Modules\pages\Views\site\view_page', $data);
     }
 

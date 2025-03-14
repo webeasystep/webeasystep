@@ -23,7 +23,7 @@
                         <div class="custom-media">
                             <!-- If you have a real image path, replace 'default_course.webp' accordingly -->
                             <a href="#">
-                                <img src="<?= thumb($course['image'],170,249) ?>" alt="Course Image" class="img-fluid">
+                                <img src="<?= thumb($course->image,170,249) ?>" alt="Course Image" class="img-fluid">
                             </a>
                             <div class="custom-media-body">
                                 <div class="d-flex justify-content-between pb-3">
@@ -39,16 +39,16 @@
                                 </div>
 
                                 <!-- Course Title -->
-                                <h3><?= esc($course['course_name']) ?></h3>
+                                <h3><?= esc($course->course_name) ?></h3>
 
                                 <!-- Price & Buttons -->
                                 <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
                                     <div>
-                                        <span class="price">$<?= esc(number_format($course['price'], 2)) ?></span>
+                                        <span class="price">$<?= esc(number_format($course->price, 2)) ?></span>
                                     </div>
                                     <!-- Details Link -->
-                                    <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>" class="btn btn-primary">
-                                        Details
+                                    <a href="<?= base_url('courses/course_details/' . $course->slug) ?>" class="btn btn-primary">
+                                        تفاصيل
                                     </a>
 
                                 </div>
