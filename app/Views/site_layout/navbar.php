@@ -103,9 +103,7 @@
         </div>
     </div>
 </nav>
-<a href="https://wa.me/201032863861" class="whatsapp-float" target="_blank" rel="noopener">
-    <i class="fab fa-whatsapp"></i> <span style="padding: .2rem;">لديك استفسار؟  تحدث</span>
-</a>
+
 <?php if (current_url() != site_url()): ?>
     <style>
         /* ===== NAV & TOP BAR ===== */

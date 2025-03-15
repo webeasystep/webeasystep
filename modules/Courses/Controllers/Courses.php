@@ -38,6 +38,7 @@ class Courses extends BaseController
     public function course_details(string $slug): string
     {
         $course = $this->coursesModel->getCourseBySlug($slug);
+
         if (!$course) {
             throw PageNotFoundException::forPageNotFound();
         }

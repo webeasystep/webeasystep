@@ -13,10 +13,13 @@
                     <div class="col-lg-6 text-center ">
                         <a href="#" data-fancybox data-aos="fade-up"
                            data-aos-delay="0" class="caption mb-4 d-inline-block">شاهد الفيديو</a>
-
+                        <a href="https://wa.me/201032863861" class="whatsapp-float" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i> <span style="padding: .2rem;">لديك استفسار؟  تحدث</span>
+                        </a>
                         <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">اصنع مستقبلك الرقمي</h1>
                         <p class="mb-3 small text-white" data-aos="fade-up" data-aos-delay="200">أول أكاديمية متخصصة في تدريس علوم الحاسب للطلبة وإعدادهم لوظائف المستقبل.</p>
-                        <p class="mb-0" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-secondary">استكشف الدورات</a></p>
+                        <p class="mb-0" data-aos="fade-up" data-aos-delay="300">
+                            <a href="<?= base_url('courses') ?>" class="btn btn-secondary">استكشف الدورات</a></p>
 
                     </div>
 
@@ -31,7 +34,7 @@
 </div>
 <!-- /.untree_co-hero -->
 
-  <div class="untree_co-section">
+<!--  <div class="untree_co-section">
       <div class="container">
           <div class="row justify-content-center mb-3">
               <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
@@ -40,30 +43,30 @@
           </div>
           <div class="row align-items-stretch">
               <?php
-              foreach ($categories as $category):
-                  ?>
+/*              foreach ($categories as $category):
+                  */?>
                   <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
-                      <a href="<?= site_url('category/' . $category['slug']) ?>" class="category d-flex align-items-start h-100">
+                      <a href="<?/*= site_url('category/' . $category['slug']) */?>" class="category d-flex align-items-start h-100">
                           <div>
-                              <i class="<?= esc($category['icon_class']) ?>"></i>
+                              <i class="<?/*= esc($category['icon_class']) */?>"></i>
                           </div>
                           <div>
-                              <h3><?= esc($category['name_ar']) ?></h3>
-                              <span><?= esc($category['course_count']) ?> دورة</span>
+                              <h3><?/*= esc($category['name_ar']) */?></h3>
+                              <span><?/*= esc($category['course_count']) */?> دورة</span>
                           </div>
                       </a>
                   </div>
-              <?php endforeach; ?>
+              <?php /*endforeach; */?>
           </div>
 
           <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="400">
               <div class="col-lg-8 text-center">
-                  <p>لدينا المزيد من الفئات هنا. <a href="<?= site_url('categories') ?>">تصفح الكل</a></p>
+                  <p>لدينا المزيد من الفئات هنا. <a href="<?/*= site_url('categories') */?>">تصفح الكل</a></p>
               </div>
           </div>
       </div>
   </div>
-
+-->
 <div id="bookNow" class="untree_co-section bg-light">
     <div class="container">
         <div class="row justify-content-center mb-5">
@@ -196,7 +199,7 @@
             <div class="col-lg-7">
                 <h2 class="text-white mb-3" data-aos="fade-up" data-aos-delay="0">سجّل الآن واستثمر في مستقبلك.</h2>
                 <p class="text-white h5 mb-4" data-aos="fade-up" data-aos-delay="100">انضم إلينا لتتقن علوم الحاسب وتكنولوجيا المعلومات من خلال منهج مصمم لتطوير القدرات وبناء الخبرات.</p>
-                <p><a href="#" class="btn btn-secondary" data-aos="fade-up" data-aos-delay="200">سجل الآن</a></p>
+                <p><a href="<?= base_url('site/register') ?>" class="btn btn-secondary" data-aos="fade-up" data-aos-delay="200">سجل الآن</a></p>
             </div>
         </div>
     </div>

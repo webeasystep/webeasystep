@@ -15,7 +15,7 @@
                             <h2 class="mb-3"><a href="#"><?= $article->title_ar ?></a></h2>
                             <div class="meta">
                                 <span class="icon-calendar mr-2"></span><span><?= date('F d, Y', strtotime($article->created_at)) ?></span>
-                                <span class="icon-person mr-2"></span>msarlink.com
+                                <span class="icon-person mr-2"></span>Ahmed fakhr
                             </div>
                             <p><?= $article->desc_ar ?></p>
                         </div>
