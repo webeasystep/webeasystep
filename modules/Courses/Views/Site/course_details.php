@@ -2,11 +2,6 @@
 <?php $this->section('content'); ?>
 
 <style>
-    /* RTL direction */
-    body {
-        direction: rtl;
-        text-align: right;
-    }
 
     .untree_co-section {
         padding-top: 80px;
