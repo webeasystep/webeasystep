@@ -7,45 +7,38 @@ if (!isset($routes)) {
     $routes = \Config\Services::routes(true);
 }
 
-/*** Route for Sections Admin ***/
-
+/*** Admin Routes for Payments ***/
 $routes->group('dt_admin', [
     'namespace' => 'Modules\Payments\Controllers',
-    'filter' => 'admin_filter' // Apply the filter to the entire group
+    'filter'    => 'admin_filter'
 ], static function ($routes) {
-    //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
+    // Example admin routes for managing payments
     $routes->match(['GET', 'POST'], 'payments', [AdminPayments::class, 'index']);
-
     $routes->post('payments/index', [AdminPayments::class, 'index']);
-
     $routes->match(['GET', 'POST'], 'payments/add', [AdminPayments::class, 'add']);
-
     $routes->match(['GET', 'POST'], 'payments/edit/(:num)', [AdminPayments::class, 'edit/$1']);
-
     $routes->post('payments/show/(:num)', [AdminPayments::class, 'show/$1']);
-
     $routes->post('payments/edit', [AdminPayments::class, 'edit']);
-
     $routes->post('payments/switchToggle', [AdminPayments::class, 'switchToggle']);
-
     $routes->post('payments/delete', [AdminPayments::class, 'delete']);
-
-
 });
 
-/*** Route for Payments Site ***/
-$routes->group('/',
-    ['namespace' => 'Modules\Payments\Controllers'],
-    static function ($routes) {
-
+/*** Site Routes for Payments ***/
+$routes->group('/', [
+    'namespace' => 'Modules\Payments\Controllers'
+], static function ($routes) {
+    // 1) Show list or index
     $routes->get('payments', [Payments::class, 'index']);
+    // 2) Possibly a "show" route if needed
     $routes->post('payments/show/(:num)', [Payments::class, 'show/$1']);
-
+    // 3) New route for purchasing a course (GET/POST)
+    //    This calls purchase($courseId) in your Payments controller
+    $routes->match(['GET', 'POST'], 'payments/purchase/(:num)', [Payments::class, 'purchase/$1']);
 });
 
-
-/*** Route for Sections api ***/
+/*** Example API Routes (commented out) ***/
 /*
 $routes->group('api', ['namespace' => 'App\API\v1'], static function ($routes) {
     $routes->resource('payments');
-});*/
+});
+*/

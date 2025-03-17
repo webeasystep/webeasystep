@@ -56,6 +56,7 @@ class Autoload extends AutoloadConfig
         'Modules\Subscriptions'   => ROOTPATH . 'modules/Subscriptions',
         'Modules\Plans'   => ROOTPATH . 'modules/Plans',
         'Modules\Payments'   => ROOTPATH . 'modules/Payments',
+        'Modules\Enrollments'   => ROOTPATH . 'modules/Enrollments',
         'Modules\CoursesSections'   => ROOTPATH . 'modules/CoursesSections',
     ];
 
