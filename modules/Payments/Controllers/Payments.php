@@ -76,7 +76,7 @@ class Payments extends BaseController
         ];
 
         // مثال لعرضها في صفحة ما
-        return view('site/complete_payment', $data);
+        return view('site/completed_payments', $data);
     }
 
     /**
@@ -85,7 +85,7 @@ class Payments extends BaseController
      * 2) دورة قائمة انتظار (waiting_list = 1)
      * 3) دورة مدفوعة
      */
-    public function purchase(int $courseId)
+    public function checkout(int $courseId)
     {
         // جلب بيانات الدورة
         $course = $this->coursesModel->find($courseId);

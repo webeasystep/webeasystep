@@ -39,11 +39,42 @@ class Site extends BaseController
 
         $data['page_name'] = 'home';
         $data['title'] = lang('Site.home');
-        $data['trusted_markets'] = $this->db->query("select * from users where user_type = 1")->getNumRows();
-        $data['categories'] = $this->db->query("select * from tb_categories where active = 1")->getResultArray();
-        $data['courses'] = $this->db->query("select * from tb_courses where active = 1")->getResultArray();
-        $data['about_us'] = $this->db->query("select * from pages where active ='1' and page_link = 'about_us' ")->getRowArray();
+
+        // Example queries
+        $data['trusted_markets'] = $this->db->table('users')->where('user_type', 1)->countAllResults();
+        $data['categories'] = $this->db->table('tb_categories')->where('active', 1)->get()->getResultArray();
+
+        // Fetch all active courses
+        $data['courses'] = $this->db->table('tb_courses')->where('active', 1)->get()->getResultArray();
+
+        // Pre-process each course: short_desc, lesson_count, etc.
+        foreach ($data['courses'] as &$course) {
+            // If short_desc is in DB, else fallback
+            $course['short_desc'] = $course['short_desc'] ?? '';
+
+            // Count lessons from the JSON structure
+            $lessonCount = 0;
+            if (!empty($course['course_structure'])) {
+                $structure = json_decode($course['course_structure'], true);
+                if (is_array($structure)) {
+                    foreach ($structure as $section) {
+                        if (!empty($section['videos'])) {
+                            $lessonCount += count($section['videos']);
+                        }
+                    }
+                }
+            }
+            $course['lesson_count'] = $lessonCount;
+        }
+        unset($course); // good practice after reference loops
+
+        // Possibly fetch an “about us” page, etc.
+        $data['about_us'] = $this->db->table('pages')
+            ->where('active', '1')
+            ->where('page_link', 'about_us')
+            ->get()->getRowArray();
         $data['data'] = $data;
+
         echo MainView('site_layout/home', $data);
     }
     //--------------------------------------------------------------------

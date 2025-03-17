@@ -34,73 +34,82 @@
 </div>
 <!-- /.untree_co-hero -->
 
-<!--  <div class="untree_co-section">
-      <div class="container">
-          <div class="row justify-content-center mb-3">
-              <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-                  <h2 class="line-bottom text-center mb-4">تصفح الفئات الرئيسية</h2>
-              </div>
-          </div>
-          <div class="row align-items-stretch">
-              <?php
-/*              foreach ($categories as $category):
-                  */?>
-                  <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
-                      <a href="<?/*= site_url('category/' . $category['slug']) */?>" class="category d-flex align-items-start h-100">
-                          <div>
-                              <i class="<?/*= esc($category['icon_class']) */?>"></i>
-                          </div>
-                          <div>
-                              <h3><?/*= esc($category['name_ar']) */?></h3>
-                              <span><?/*= esc($category['course_count']) */?> دورة</span>
-                          </div>
-                      </a>
-                  </div>
-              <?php /*endforeach; */?>
-          </div>
-
-          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="400">
-              <div class="col-lg-8 text-center">
-                  <p>لدينا المزيد من الفئات هنا. <a href="<?/*= site_url('categories') */?>">تصفح الكل</a></p>
-              </div>
-          </div>
-      </div>
-  </div>
--->
 <div id="bookNow" class="untree_co-section bg-light">
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-                <h2 class="line-bottom text-center mb-4">بادر الأن وقم بحجز مقعدك في درس مجاني!</h2>
-                <p>استكشف مجموعة متنوعة من الدورات التي تغطي مسار علوم الحاسب الألي لبناء أساس متين في مجال تكنولوجيا المعلومات.</p>
+                <h2 class="line-bottom text-center mb-4">بادر الآن بحجز مقعدك!</h2>
+                <p>استكشف مجموعة متنوعة من الدورات التي تغطي أساسيات علوم الحاسب لبناء مستقبل مميز في مجال التكنولوجيا.</p>
             </div>
         </div>
+
         <div class="row">
-            <?php
-            foreach ($courses as $course): ?>
+            <?php foreach ($courses as $course): ?>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
                     <div class="custom-media">
-                        <a href="#"><img src="<?= base_url() ?>site/images/default_course.webp" alt="Course Image" class="img-fluid"></a>
-                        <div class="custom-media-body">
+                        <!-- Image -->
+                        <img
+                                alt="<?= esc($course['course_name']) ?>"
+                                style="height: 200px; object-fit: cover;"
+                                src="<?= thumb($course['image'], 170, 249) ?>"
+                                class="card-img-top"
+                        >
+                        <div class="custom-media-body" style="padding: 15px;">
+                            <!-- Title -->
+                            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px;">
+                                <?= esc($course['course_name']) ?>
+                            </h3>
+
+                            <!-- Short Description (below title) -->
+                            <div style="font-size: 14px; color: #666; margin-bottom: 10px;">
+                                <?= esc($course['short_desc']) ?>
+                            </div>
+
+                            <!-- Lesson count or other info -->
                             <div class="d-flex justify-content-between pb-3">
-                                <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                                <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
+                <span style="font-size: 14px; color: #666;">
+                  <?= $course['lesson_count'] ?> درس
+                </span>
                             </div>
-                            <h3><?= esc($course['course_name']) ?></h3>
+
+                            <!-- Price & Action Buttons -->
                             <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div><span class="price">$<?= esc(number_format($course['price'], 2)) ?></span></div>
-                                <!-- Button trigger modal -->
-                                <a href="<?= base_url('courses/course_details/'.$course['slug']) ?>" class="btn btn-primary">تفاصيل</a>
-                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal" data-course="<?= esc($course['id']) ?>">سجل الآن</a>
+                                <div>
+                  <span class="price" style="font-size: 1rem; font-weight: bold;">
+                    $<?= esc(number_format($course['price'], 2)) ?>
+                  </span>
+                                </div>
+                                <div class="d-inline-flex" style="gap: 5px;">
+                                    <!-- Details button -->
+                                    <a href="<?= base_url('courses/course_details/'.$course['slug']) ?>"
+                                       class="btn btn-primary btn-sm">
+                                        تفاصيل
+                                    </a>
+
+                                    <!-- Register button: style depends on is_free -->
+                                    <?php if (!empty($course['is_free'])): ?>
+                                        <a href="<?= base_url('checkout/'.$course['id']) ?>"
+                                           class="btn btn-warning btn-sm"
+                                           style="font-weight:600;">
+                                            سجل مجانًا
+                                        </a>
+                                    <?php else: ?>
+                                        <a href="<?= base_url('checkout/'.$course['id']) ?>"
+                                           class="btn btn-success btn-sm"
+                                           style="font-weight:600;">
+                                            سجل الآن
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                        </div><!-- /.custom-media-body -->
+                    </div><!-- /.custom-media -->
+                </div><!-- /.col -->
             <?php endforeach; ?>
-        </div>
-    </div>
-</div>
-<?= $this->include('Modules\ContactUs\Views\Site\course_subscription_modal'); ?>
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /#bookNow -->
+
 <!-- instructor -->
 <div class="services-section">
     <div class="container">
@@ -192,18 +201,6 @@
 </div>
 
 <!-- /.untree_co-section -->
-
-<div class="untree_co-section pt-0 bg-img overlay" style="background-image: url('<?= base_url() ?>site/images/img-school-1-min.jpg');">
-    <div class="container">
-        <div class="row align-items-center justify-content-center text-center">
-            <div class="col-lg-7">
-                <h2 class="text-white mb-3" data-aos="fade-up" data-aos-delay="0">سجّل الآن واستثمر في مستقبلك.</h2>
-                <p class="text-white h5 mb-4" data-aos="fade-up" data-aos-delay="100">انضم إلينا لتتقن علوم الحاسب وتكنولوجيا المعلومات من خلال منهج مصمم لتطوير القدرات وبناء الخبرات.</p>
-                <p><a href="<?= base_url('site/register') ?>" class="btn btn-secondary" data-aos="fade-up" data-aos-delay="200">سجل الآن</a></p>
-            </div>
-        </div>
-    </div>
-</div> <!-- /.untree_co-section -->
 
 <div class="untree_co-section">
     <div class="container">

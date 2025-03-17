@@ -30,10 +30,10 @@ $routes->group('/', [
     // 1) Show list or index
     $routes->get('payments', [Payments::class, 'index']);
     // 2) Possibly a "show" route if needed
-    $routes->post('payments/show/(:num)', [Payments::class, 'show/$1']);
+    $routes->post('show/(:num)', [Payments::class, 'show/$1']);
     // 3) New route for purchasing a course (GET/POST)
     //    This calls purchase($courseId) in your Payments controller
-    $routes->match(['GET', 'POST'], 'payments/purchase/(:num)', [Payments::class, 'purchase/$1']);
+    $routes->match(['GET', 'POST'], 'checkout/(:num)', [Payments::class, 'checkout/$1']);
 });
 
 /*** Example API Routes (commented out) ***/
