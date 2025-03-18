@@ -250,6 +250,7 @@
     </div>
 </div> <!-- /.untree_co-section -->
 
+<!-- Articles Loop -->
 <div class="untree_co-section bg-light">
     <div class="container">
         <div class="row justify-content-center mb-5">
@@ -258,40 +259,66 @@
                 <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
             </div>
         </div>
+
         <div class="row align-items-stretch">
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="media-h d-flex h-100">
-                    <figure>
-                        <img src="<?= base_url() ?>site/images/img-school-1-min.jpg" alt="Image">
-                    </figure>
-                    <div class="media-h-body">
-                        <h2 class="mb-3"><a href="#">التعليم لقادة الغد</a></h2>
-                        <div class="meta mb-2"><span class="icon-calendar mr-2"></span><span>22 يونيو 2020</span> <span
-                                    class="icon-person mr-2"></span>الإدارة
+            <?php if (! empty($articles)): ?>
+                <?php
+                // Display only 2 articles in this layout
+                // If you want more, remove the limit or adjust the loop.
+                $maxToShow = 2;
+                foreach ($articles as $idx => $article):
+                    if ($idx >= $maxToShow) {
+                        break;
+                    }
+                    ?>
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="<?= 100 * ($idx+1) ?>">
+                        <div class="media-h d-flex h-100">
+                            <figure>
+                                <!-- Replace with your actual article image or a fallback -->
+                                <img
+                                        src="<?= base_url('uploads/' . ($article['image'] ?? 'default.png')) ?>"
+                                        alt="Article Image"
+                                >
+                            </figure>
+                            <div class="media-h-body">
+                                <h2 class="mb-3">
+                                    <a href="<?= site_url('articles/show/' . $article['id']) ?>">
+                                        <?= esc($article['title'] ?? 'بدون عنوان') ?>
+                                    </a>
+                                </h2>
+                                <div class="meta mb-2">
+                                    <span class="icon-calendar mr-2"></span>
+                                    <span>
+                                        <!-- Example: format created_at if it exists -->
+                                        <?php if (!empty($article['created_at'])): ?>
+                                            <?= date('d M Y', strtotime($article['created_at'])) ?>
+                                        <?php else: ?>
+                                            <?= date('d M Y') ?>
+                                        <?php endif; ?>
+                                    </span>
+                                    <span class="icon-person mr-2"></span>الإدارة
+                                </div>
+                                <p>
+                                    <!-- Short description if you have one -->
+                                    <?= esc($article['short_desc'] ?? 'لا يوجد وصف قصير.') ?>
+                                </p>
+                                <p>
+                                    <a href="<?= site_url('articles/show/' . $article['id']) ?>">اعرف المزيد</a>
+                                </p>
+                            </div>
                         </div>
-                        <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-                        <p><a href="#">اعرف المزيد</a></p>
                     </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12 text-center">
+                    <p>لا توجد مقالات متاحة حالياً.</p>
                 </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="media-h d-flex h-100">
-                    <figure>
-                        <img src="<?= base_url() ?>site/images/img-school-2-min.jpg" alt="Image">
-                    </figure>
-                    <div class="media-h-body">
-                        <h2 class="mb-3"><a href="#">سجل أطفالك هذا الصيف للحصول على خصم 30%</a></h2>
-                        <div class="meta mb-2"><span class="icon-calendar mr-2"></span><span>22 يونيو 2020</span> <span
-                                    class="icon-person mr-2"></span>الإدارة
-                        </div>
-                        <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-                        <p><a href="#">اعرف المزيد</a></p>
-                    </div>
-                </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 </div> <!-- /.untree_co-section -->
+
+<!-- /.untree_co-section -->
 
 <!--  <div class="untree_co-section">
     <div class="container">

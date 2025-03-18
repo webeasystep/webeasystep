@@ -2,7 +2,6 @@
 <?php $this->section('content'); ?>
 
 <style>
-
     .untree_co-section {
         padding-top: 80px;
         padding-bottom: 80px;
@@ -39,6 +38,11 @@
         line-height: 1.7;
         color: #555;
         margin: 0 auto;
+    }
+
+    /* Additional CTA area near the heading */
+    .enroll-cta-top {
+        margin-top: 25px;
     }
 
     /* Left Column: Outline / Videos */
@@ -250,9 +254,14 @@
         <!-- Centered Title & Description -->
         <div class="course-header-wrapper" data-aos="fade-up" data-aos-delay="100">
             <h2 class="section-title"><?= esc($title) ?></h2>
-            <p class="course-description">
-                <?= esc($course->course_desc) ?>
-            </p>
+            <p class="course-description"><?= esc($course->course_desc) ?></p>
+
+            <!-- CTA area near top heading (the same "اشترك الآن" style) -->
+            <div class="enroll-cta-top">
+                <a href="#" class="btn btn-success" style="min-width: 160px; font-weight:600;">
+                    اشترك الآن
+                </a>
+            </div>
         </div>
 
         <div class="row">
@@ -292,11 +301,9 @@
                                                             <span class="video-icon">
                                                                 <span class="icon-play-circle-o"></span>
                                                             </span>
-
                                                             <?php if (isset($video['is_preview']) && $video['is_preview'] == 1): ?>
                                                                 <!-- PREVIEW link => open in modal -->
-                                                                <a href="#" class="preview-video-link"
-                                                                   data-video-id="<?= esc($video['video_id']) ?>">
+                                                                <a href="#" class="preview-video-link" data-video-id="<?= esc($video['video_id']) ?>">
                                                                     <?= esc($video['video_title'] ?? 'عنوان الدرس') ?>
                                                                 </a>
                                                             <?php else: ?>
@@ -378,7 +385,7 @@
                         </ul>
                     </div>
 
-                    <!-- Pricing Block with Improved Colors (Arabic) -->
+                    <!-- Pricing Block with the same "اشترك الآن" button -->
                     <div class="block-v1 pricing-block">
                         <h3 class="mb-3">التسعير</h3>
                         <p class="price">
@@ -388,7 +395,9 @@
                             <?php endif; ?>
                         </p>
                         <p>
-                            <a href="#" class="btn btn-primary">اشترك الآن</a>
+                            <a href="#" class="btn btn-primary" style="display: inline-block; width: 100%;">
+                                اشترك الآن
+                            </a>
                         </p>
                     </div>
                 </div>

@@ -69,7 +69,7 @@ class Courses extends BaseController
         $userId = auth()->user()->id ?? null;
         if (!$userId) {
             // If your site allows free preview without login, skip this check. Otherwise:
-            return redirect()->to('/login')->with('error', 'Please log in first.');
+            return redirect()->to('site/login')->with('error', 'Please log in first.');
         }
 
         // Retrieve the enrollment
@@ -163,7 +163,7 @@ class Courses extends BaseController
     {
         $userId = auth()->user()->id;
         if (!$userId) {
-            return redirect()->to('/login')->with('error', 'Please log in first.');
+            return redirect()->to('site/login')->with('error', 'Please log in first.');
         }
 
         $course = $this->coursesModel->find($courseId);
@@ -184,7 +184,7 @@ class Courses extends BaseController
     {
         $userId = auth()->user()->id;
         if (!$userId) {
-            return redirect()->to('/login')->with('error', 'Please log in first.');
+            return redirect()->to('site/login')->with('error', 'Please log in first.');
         }
 
         $videoId = (int) $this->request->getPost('id');
@@ -237,7 +237,7 @@ class Courses extends BaseController
         $userId = auth()->user()->id;
 
         if (!$userId) {
-            return redirect()->to('/login')->with('error', 'Please log in first.');
+            return redirect()->to('site/login')->with('error', 'Please log in first.');
         }
 
         $myCourses = $this->coursesModel->getAllUserCourses($userId);

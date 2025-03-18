@@ -80,8 +80,8 @@
                     </form>
                 <?php else: ?>
                     <p>يرجى تسجيل الدخول أو إنشاء حساب للانضمام.</p>
-                    <a href="<?= site_url('login') ?>" class="btn btn-primary mb-2">تسجيل الدخول</a>
-                    <a href="<?= site_url('register') ?>" class="btn btn-outline-primary">إنشاء حساب</a>
+                    <a href="<?= site_url('site/login') ?>" class="btn btn-primary mb-2">تسجيل الدخول</a>
+                    <a href="<?= site_url('site/register') ?>" class="btn btn-outline-primary">إنشاء حساب</a>
                 <?php endif; ?>
             </div>
 

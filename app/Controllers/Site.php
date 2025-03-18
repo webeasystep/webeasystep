@@ -36,29 +36,42 @@ class Site extends BaseController
 
     public function home()
     {
-
         $data['page_name'] = 'home';
-        $data['title'] = lang('Site.home');
+        $data['title']     = lang('Site.home');
 
-        // Example queries
-        $data['trusted_markets'] = $this->db->table('users')->where('user_type', 1)->countAllResults();
-        $data['categories'] = $this->db->table('tb_categories')->where('active', 1)->get()->getResultArray();
+        // 1) Articles
+        $data['articles'] = $this->db
+            ->table('articles')
+            ->where('active', 1)
+            ->get()
+            ->getResultArray();
 
-        // Fetch all active courses
-        $data['courses'] = $this->db->table('tb_courses')->where('active', 1)->get()->getResultArray();
+        // 2) Categories
+        $data['categories'] = $this->db
+            ->table('tb_categories')
+            ->where('active', 1)
+            ->get()
+            ->getResultArray();
 
-        // Pre-process each course: short_desc, lesson_count, etc.
+        // 3) Courses
+        $data['courses'] = $this->db
+            ->table('tb_courses')
+            ->where('active', 1)
+            ->get()
+            ->getResultArray();
+
+        // Pre-process each course
         foreach ($data['courses'] as &$course) {
-            // If short_desc is in DB, else fallback
+            // Provide a fallback if short_desc doesn't exist in DB
             $course['short_desc'] = $course['short_desc'] ?? '';
 
-            // Count lessons from the JSON structure
+            // Count lessons from JSON structure
             $lessonCount = 0;
             if (!empty($course['course_structure'])) {
                 $structure = json_decode($course['course_structure'], true);
                 if (is_array($structure)) {
                     foreach ($structure as $section) {
-                        if (!empty($section['videos'])) {
+                        if (!empty($section['videos']) && is_array($section['videos'])) {
                             $lessonCount += count($section['videos']);
                         }
                     }
@@ -68,15 +81,21 @@ class Site extends BaseController
         }
         unset($course); // good practice after reference loops
 
-        // Possibly fetch an “about us” page, etc.
-        $data['about_us'] = $this->db->table('pages')
+        // 4) Possibly fetch “about us” page or other custom pages
+        $data['about_us'] = $this->db
+            ->table('pages')
             ->where('active', '1')
             ->where('page_link', 'about_us')
-            ->get()->getRowArray();
+            ->get()
+            ->getRowArray();
+
+        // Provide a unified data array if needed
         $data['data'] = $data;
 
+        // 5) Render the main home view
         echo MainView('site_layout/home', $data);
     }
+
     //--------------------------------------------------------------------
     // Login/out
     //--------------------------------------------------------------------
