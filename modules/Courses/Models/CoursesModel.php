@@ -182,4 +182,102 @@ class CoursesModel extends BaseModel
         return $videoIDs;
     }
 
+    /**
+     * Flatten the entire video list from the structure to find next/prev easily.
+     */
+     function flattenLessons(array $preparedStructure): array
+    {
+        $allLessons = [];
+        foreach ($preparedStructure as $section) {
+            foreach ($section['videos'] as $video) {
+                $allLessons[] = $video;
+            }
+        }
+        return $allLessons;
+    }
+
+    /**
+     * Build an array of sections/videos with IDs, titles, etc.
+     */
+     function prepareDynamicStructure(array $structureData): array
+    {
+        $dynamicStructure = [];
+        $sectionCounter   = 1;
+
+        foreach ($structureData as $sectionData) {
+            $section = [
+                'section_id'    => $sectionCounter,
+                'section_title' => $sectionData['section_title'] ?? 'Section Title',
+                'is_open'       => false,
+                'videos'       => [],
+            ];
+
+            if (!empty($sectionData['videos']) && is_array($sectionData['videos'])) {
+                $videoCounter = 1;
+                foreach ($sectionData['videos'] as $videoData) {
+                    $video = [
+                        'id'      => $videoData['id'] ?? $videoCounter,
+                        'video_title'   => $videoData['video_title'] ?? 'Lesson Title',
+                        'video_desc'    => $videoData['video_desc']  ?? 'No description provided.',
+                        'video_id'    => $videoData['video_id']  ?? '#',
+                        'video_duration' => $videoData['video_duration'] ?? '0:00',
+                        'is_preview'     => !empty($videoData['is_preview']),
+                        'is_active'      => false,
+                        'section_index'  => $sectionCounter,
+                    ];
+                    $section['videos'][] = $video;
+                    $videoCounter++;
+                }
+            }
+
+            $dynamicStructure[] = $section;
+            $sectionCounter++;
+        }
+
+        return $dynamicStructure;
+    }
+
+    /****
+     * Finds the first video that is NOT in $completedIDs.
+     * If all are completed, returns the ID of the LAST video.
+     ****/
+     function findNextIncompleteLesson(array $flatLessons, array $completedIDs): int
+    {
+        foreach ($flatLessons as $video) {
+            if (! in_array($video['id'], $completedIDs)) {
+                // Return the first uncompleted video
+                return $video['id'];
+            }
+        }
+        // If everything is completed, return the last video's ID
+        return end($flatLessons)['id'];
+    }
+    /**
+     * Example: compute user's progress in a course (videos completed / total).
+     */
+     function calculateProgress(object $course, object $enrollment): int
+    {
+        // decode structure as array
+        $structure = json_decode($course->course_structure ?? '[]', true);
+        if (!$structure) {
+            return 0;
+        }
+
+        // total videos
+        $totalLessons = 0;
+        foreach ($structure as $section) {
+            if (!empty($section['videos'])) {
+                $totalLessons += count($section['videos']);
+            }
+        }
+
+        // how many completed
+        $completedCount = $this->coursesModel->countCompletedLessons($enrollment->id);
+
+        if ($totalLessons === 0) {
+            return 0;
+        }
+        return (int) round(($completedCount / $totalLessons) * 100);
+    }
+
 }

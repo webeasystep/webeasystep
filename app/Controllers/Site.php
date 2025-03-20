@@ -60,9 +60,26 @@ class Site extends BaseController
             ->get()
             ->getResultArray();
 
+        // (Optional) Check if user is logged in
+        $userId = session()->get('user_id');
+        $enrolledCourseIds = [];
+
+        // If user is logged in, fetch the courses they’re enrolled in
+        if (!empty($userId)) {
+            $userCourses = $this->db
+                ->table('tb_enrollments')  // <-- use the correct table name here
+                ->select('course_id')
+                ->where('user_id', $userId)
+                ->get()
+                ->getResultArray();
+
+            // Extract course_ids into a simple array
+            $enrolledCourseIds = array_column($userCourses, 'course_id');
+        }
+
         // Pre-process each course
         foreach ($data['courses'] as &$course) {
-            // Provide a fallback if short_desc doesn't exist in DB
+            // Provide a fallback if short_desc doesn't exist
             $course['short_desc'] = $course['short_desc'] ?? '';
 
             // Count lessons from JSON structure
@@ -78,8 +95,11 @@ class Site extends BaseController
                 }
             }
             $course['lesson_count'] = $lessonCount;
+
+            // Mark if user is enrolled
+            $course['is_enrolled'] = in_array($course['id'], $enrolledCourseIds);
         }
-        unset($course); // good practice after reference loops
+        unset($course); // Good practice after reference loops
 
         // 4) Possibly fetch “about us” page or other custom pages
         $data['about_us'] = $this->db

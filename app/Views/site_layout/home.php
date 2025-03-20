@@ -1,5 +1,5 @@
-<?=$this->extend('site_layout/template');?>
-<?=$this->section('content');?>
+<?= $this->extend('site_layout/template'); ?>
+<?= $this->section('content'); ?>
 <!-- intro -->
 <div class="untree_co-hero overlay" style="background-image: url('<?= base_url() ?>site/images/hero-img-1-min.jpg');">
 
@@ -16,8 +16,10 @@
                         <a href="https://wa.me/201032863861" class="whatsapp-float" target="_blank" rel="noopener">
                             <i class="fab fa-whatsapp"></i> <span style="padding: .2rem;">لديك استفسار؟  تحدث</span>
                         </a>
-                        <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">اصنع مستقبلك الرقمي</h1>
-                        <p class="mb-3 small text-white" data-aos="fade-up" data-aos-delay="200">أول أكاديمية متخصصة في تدريس علوم الحاسب للطلبة وإعدادهم لوظائف المستقبل.</p>
+                        <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">اصنع مستقبلك
+                            الرقمي</h1>
+                        <p class="mb-3 small text-white" data-aos="fade-up" data-aos-delay="200">أول أكاديمية متخصصة في
+                            تدريس علوم الحاسب للطلبة وإعدادهم لوظائف المستقبل.</p>
                         <p class="mb-0" data-aos="fade-up" data-aos-delay="300">
                             <a href="<?= base_url('courses') ?>" class="btn btn-secondary">استكشف الدورات</a></p>
 
@@ -39,7 +41,8 @@
         <div class="row justify-content-center mb-5">
             <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
                 <h2 class="line-bottom text-center mb-4">بادر الآن بحجز مقعدك!</h2>
-                <p>استكشف مجموعة متنوعة من الدورات التي تغطي أساسيات علوم الحاسب لبناء مستقبل مميز في مجال التكنولوجيا.</p>
+                <p>استكشف مجموعة متنوعة من الدورات التي تغطي أساسيات علوم الحاسب لبناء مستقبل مميز في مجال
+                    التكنولوجيا.</p>
             </div>
         </div>
 
@@ -60,45 +63,54 @@
                                 <?= esc($course['course_name']) ?>
                             </h3>
 
-                            <!-- Short Description (below title) -->
+                            <!-- Short Description -->
                             <div style="font-size: 14px; color: #666; margin-bottom: 10px;">
                                 <?= esc($course['short_desc']) ?>
                             </div>
 
-                            <!-- Lesson count or other info -->
+                            <!-- Lesson count -->
                             <div class="d-flex justify-content-between pb-3">
-                <span style="font-size: 14px; color: #666;">
-                  <?= $course['lesson_count'] ?> درس
-                </span>
+                              <span style="font-size: 14px; color: #666;">
+                                <?= $course['lesson_count'] ?> درس
+                              </span>
                             </div>
 
                             <!-- Price & Action Buttons -->
                             <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
                                 <div>
-                  <span class="price" style="font-size: 1rem; font-weight: bold;">
-                    $<?= esc(number_format($course['price'], 2)) ?>
-                  </span>
+                                <span class="price" style="font-size: 1rem; font-weight: bold;">
+                                  $<?= esc(number_format($course['price'], 2)) ?>
+                                </span>
                                 </div>
                                 <div class="d-inline-flex" style="gap: 5px;">
                                     <!-- Details button -->
-                                    <a href="<?= base_url('courses/course_details/'.$course['slug']) ?>"
+                                    <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>"
                                        class="btn btn-primary btn-sm">
                                         تفاصيل
                                     </a>
 
-                                    <!-- Register button: style depends on is_free -->
-                                    <?php if (!empty($course['is_free'])): ?>
-                                        <a href="<?= base_url('checkout/'.$course['id']) ?>"
-                                           class="btn btn-warning btn-sm"
+                                    <!-- If the user is already enrolled, show "استكمل" / "Go to Course" -->
+                                    <?php if ($course['is_enrolled']): ?>
+                                        <a href="<?= base_url('courses/course_view/' . $course['slug']) ?>"
+                                           class="btn btn-secondary btn-sm"
                                            style="font-weight:600;">
-                                            سجل مجانًا
+                                            استكمل
                                         </a>
                                     <?php else: ?>
-                                        <a href="<?= base_url('checkout/'.$course['id']) ?>"
-                                           class="btn btn-success btn-sm"
-                                           style="font-weight:600;">
-                                            سجل الآن
-                                        </a>
+                                        <!-- Otherwise, show Register button (free or paid) -->
+                                        <?php if (!empty($course['is_free'])): ?>
+                                            <a href="<?= base_url('checkout/' . $course['id']) ?>"
+                                               class="btn btn-warning btn-sm"
+                                               style="font-weight:600;">
+                                                سجل مجانًا
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="<?= base_url('checkout/' . $course['id']) ?>"
+                                               class="btn btn-success btn-sm"
+                                               style="font-weight:600;">
+                                                سجل الآن
+                                            </a>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -149,7 +161,8 @@
         <div class="row justify-content-center mb-5">
             <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
                 <h2 class="line-bottom text-center mb-4">معك خطوة بخطوة على طول المسار</h2>
-                <p>نقدم تجربة تعليمية غنية تستند إلى الممارسة العملية في مجال تكنولوجيا المعلومات، معززة بمحتوى مصمم خصيصًا لطلاب الثانوية.</p>
+                <p>نقدم تجربة تعليمية غنية تستند إلى الممارسة العملية في مجال تكنولوجيا المعلومات، معززة بمحتوى مصمم
+                    خصيصًا لطلاب الثانوية.</p>
             </div>
         </div>
         <div class="row">
@@ -216,24 +229,6 @@
                     <li>متابعة مستمرة طوال أيام الأسبوع</li>
                     <li>دورات صيفية عملية</li>
                 </ul>
-
-                <!--
-                          <div class="row count-numbers mb-5">
-                            <div class="col-4 col-lg-4" data-aos="fade-up" data-aos-delay="0">
-                              <span class="counter d-block"><span data-number="12023">0</span><span>+</span></span>
-                              <span class="caption-2">عدد الطلاب</span>
-                            </div>
-                            <div class="col-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                              <span class="counter d-block"><span data-number="49">0</span><span></span></span>
-                              <span class="caption-2">عدد المعلمين</span>
-                            </div>
-                            <div class="col-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                              <span class="counter d-block"><span data-number="12">0</span><span></span></span>
-                              <span class="caption-2">عدد الجوائز</span>
-                            </div>
-                          </div>
-                -->
-
                 <p data-aos="fade-up" data-aos-delay="200">
                     <a href="#" class="btn btn-primary mr-1">التسجيل</a>
                     <a href="#" class="btn btn-outline-primary">اعرف المزيد</a>
@@ -261,7 +256,7 @@
         </div>
 
         <div class="row align-items-stretch">
-            <?php if (! empty($articles)): ?>
+            <?php if (!empty($articles)): ?>
                 <?php
                 // Display only 2 articles in this layout
                 // If you want more, remove the limit or adjust the loop.
@@ -271,7 +266,7 @@
                         break;
                     }
                     ?>
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="<?= 100 * ($idx+1) ?>">
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="<?= 100 * ($idx + 1) ?>">
                         <div class="media-h d-flex h-100">
                             <figure>
                                 <!-- Replace with your actual article image or a fallback -->
@@ -318,194 +313,6 @@
     </div>
 </div> <!-- /.untree_co-section -->
 
-<!-- /.untree_co-section -->
-
-<!--  <div class="untree_co-section">
-    <div class="container">
-      <div class="row justify-content-center mb-5">
-        <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-          <h2 class="line-bottom text-center mb-4">الأسعار</h2>
-          <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="00">
-          <div class="pricing">
-            &lt;!&ndash; <div class="pricing-img mb-4"><img src="<?= base_url() ?>site/images/1x/asset-1.png" alt="Image" class="img-fluid"></div> &ndash;&gt;
-            <div class="pricing-body">
-
-              <h3 class="pricing-plan-title">مبتدئ</h3>
-              <div class="price"><span class="fig">$50.99</span><span>/شهر</span></div>
-              <p class="mb-4">بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-
-              <p><a href="#" class="btn btn-outline-primary">ابدأ الآن</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="pricing">
-            &lt;!&ndash; <div class="pricing-img mb-4"><img src="<?= base_url() ?>site/images/1x/asset-2.png" alt="Image" class="img-fluid"></div> &ndash;&gt;
-            <div class="pricing-body">
-
-              <h3 class="pricing-plan-title">أعمال</h3>
-              <div class="price"><span class="fig">$99.99</span><span>/شهر</span></div>
-              <p class="mb-4">بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-
-              <p><a href="#" class="btn btn-primary">ابدأ الآن</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="pricing">
-            &lt;!&ndash; <div class="pricing-img mb-4"><img src="<?= base_url() ?>site/images/1x/asset-3.png" alt="Image" class="img-fluid"></div> &ndash;&gt;
-            <div class="pricing-body">
-
-              <h3 class="pricing-plan-title">بريميوم</h3>
-              <div class="price"><span class="fig">$199.99</span><span>/شهر</span></div>
-              <p class="mb-4">بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-
-              <p><a href="#" class="btn btn-outline-primary">ابدأ الآن</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>--> <!-- /.untree_co-section -->
-
-<!--  <div class="untree_co-section bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7 text-center mx-auto">
-
-          <h3 class="line-bottom mb-4">شهادات</h3>
-          <div class="owl-carousel wide-slider-testimonial">
-            <div class="item">
-              <blockquote class="block-testimonial">
-
-                <p>
-                  &ldquo;بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء. منفصلة يعيشون في بوكماركسجروف على ساحل السيمانتكس، المحيط اللغوي الكبير.&rdquo;</p>
-                <div class="author">
-                  <img src="<?= base_url() ?>site/images/person_1.jpg" alt="قالب مجاني من TemplateUX">
-                  <h3>جون دو</h3>
-                  <p class="position">الرئيس التنفيذي، المؤسس</p>
-                </div>
-              </blockquote>
-            </div>
-
-            <div class="item">
-              <blockquote class="block-testimonial">
-
-                <p>
-                  &ldquo;عندما وصلت إلى أول تلال جبال الإيطاليك، كانت تلقي نظرة أخيرة خلفها على أفق مسقط رأسها بوكماركسجروف، عنوان قرية الأبجدية والسطر الفرعي لطريقها، لين لين. تساءلت بحسرة عندما مرت سؤال خطابي على خدها، ثم واصلت طريقها.&rdquo;</p>
-                <div class="author">
-                  <img src="<?= base_url() ?>site/images/person_2.jpg" alt="قالب مجاني من TemplateUX">
-                  <h3>جيمس وودلاند</h3>
-                  <p class="position">مصمم في فيسبوك</p>
-                </div>
-              </blockquote>
-            </div>
-
-            <div class="item">
-              <blockquote class="block-testimonial">
-
-                <p>
-                  &ldquo;نهر صغير يدعى دودن يتدفق بجانب مكانهم ويمدهم بالريجاليا اللازمة. إنها بلاد الفردوس، حيث تطير أجزاء مشوية من الجمل إلى فمك.&rdquo;</p>
-                <div class="author">
-                  <img src="<?= base_url() ?>site/images/person_3.jpg" alt="قالب مجاني من TemplateUX">
-                  <h3>روب سميث</h3>
-                  <p class="position">مصمم المنتجات في تويتر</p>
-                </div>
-              </blockquote>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>-->
-<!--
-
-  <div class="untree_co-section">
-
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5 mr-auto mb-5 mb-lg-0"  data-aos="fade-up" data-aos-delay="0">
-          <img src="<?= base_url() ?>site/images/img-school-5-min.jpg" alt="صورة" class="img-fluid">
-        </div>
-        <div class="col-lg-7 ml-auto" data-aos="fade-up" data-aos-delay="100">
-          <h3 class="line-bottom mb-4">لماذا تختارنا</h3>
-          <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء. </p>
-
-          <div class="custom-accordion" id="accordion_1">
-            <div class="accordion-item">
-              <h2 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">معلمون وموظفون جيدون</button>
-              </h2>
-
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion_1">
-                <div class="accordion-body">
-                  <div class="d-flex">
-                    <div class="accordion-img mr-4">
-                      <img src="<?= base_url() ?>site/images/img-school-1-min.jpg" alt="صورة" class="img-fluid">
-                    </div>
-                    <div>
-                      <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء. </p>
-                      <p>منفصلة يعيشون في بوكماركسجروف على ساحل السيمانتكس، المحيط اللغوي الكبير.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> &lt;!&ndash; .accordion-item &ndash;&gt;
-
-            <div class="accordion-item">
-              <h2 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">نقدر الشخصيات الجيدة</button>
-              </h2>
-              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_1">
-                <div class="accordion-body">
-                  <div class="d-flex">
-                    <div class="accordion-img mr-4">
-                      <img src="<?= base_url() ?>site/images/img-school-2-min.jpg" alt="صورة" class="img-fluid">
-                    </div>
-                    <div>
-                      <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء. </p>
-                      <p>منفصلة يعيشون في بوكماركسجروف على ساحل السيمانتكس، المحيط اللغوي الكبير.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> &lt;!&ndash; .accordion-item &ndash;&gt;
-            <div class="accordion-item">
-              <h2 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">أطفالكم في أمان</button>
-              </h2>
-
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion_1">
-                <div class="accordion-body">
-                  <div class="d-flex">
-                    <div class="accordion-img mr-4">
-                      <img src="<?= base_url() ?>site/images/img-school-3-min.jpg" alt="صورة" class="img-fluid">
-                    </div>
-                    <div>
-                      <p>عندما وصلت إلى أول تلال جبال الإيطاليك، كانت تلقي نظرة أخيرة خلفها على أفق مسقط رأسها بوكماركسجروف، عنوان قرية الأبجدية والسطر الفرعي لطريقها، لين لين.</p>
-                      <p>تساءلت بحسرة عندما مرت سؤال خطابي على خدها، ثم واصلت طريقها.</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-            </div> &lt;!&ndash; .accordion-item &ndash;&gt;
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>-->
-<!-- /.untree_co-section -->
-
 <div class="untree_co-section">
     <div class="container">
         <div class="row justify-content-center">
@@ -523,4 +330,4 @@
     </div>
 </div>
 
-<?=$this->endSection();?>
+<?= $this->endSection(); ?>

@@ -1,5 +1,5 @@
-<?= $this->extend('site_layout/template'); ?>
-<?= $this->section('content'); ?>
+<?php $this->extend('site_layout/template'); ?>
+<?php $this->section('content'); ?>
 
 <style>
     .payment-section {
@@ -74,7 +74,8 @@
                 <h2>الدورة مجانية!</h2>
                 <?php if ($isLoggedIn): ?>
                     <p>يمكنك الانضمام فوراً.</p>
-                    <form action="<?= site_url('payments/complete_payment') ?>" method="post">
+                    <!-- Changed to checkout/{id} -->
+                    <form action="<?= site_url('checkout/'.$course->id) ?>" method="post">
                         <input type="hidden" name="course_id" value="<?= esc($course->id) ?>">
                         <button type="submit" class="btn-complete">انضم الآن</button>
                     </form>
@@ -90,7 +91,8 @@
             <div class="card p-4">
                 <h2 class="mb-4 text-center">القائمة الانتظارية</h2>
                 <p class="text-center">هذه الدورة غير متاحة حالياً. اترك بياناتك لنراسلك عند توفرها.</p>
-                <form action="<?= site_url('payments/complete_payment') ?>" method="post">
+                <!-- Changed to checkout/{id} -->
+                <form action="<?= site_url('checkout/'.$course->id) ?>" method="post">
                     <input type="hidden" name="course_id" value="<?= esc($course->id) ?>">
                     <div class="form-group">
                         <label for="name">الاسم الكامل</label>
@@ -110,7 +112,8 @@
                 <!-- المستخدم مسجل دخول -->
                 <div class="card p-4">
                     <h2 class="mb-4 text-center">إتمام الدفع</h2>
-                    <form action="<?= site_url('payments/complete_payment') ?>" method="post" enctype="multipart/form-data">
+                    <!-- Changed to checkout/{id} -->
+                    <form action="<?= site_url('checkout/'.$course->id) ?>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="course_id" value="<?= esc($course->id) ?>">
                         <div class="mb-4 text-center">
                             <p>يرجى تحويل المبلغ إلى حساب Instapay:</p>
@@ -159,7 +162,8 @@
                     <div class="col-md-6">
                         <div class="card p-4">
                             <h2 class="mb-4 text-center">الدفع</h2>
-                            <form action="<?= site_url('payments/complete_payment') ?>" method="post" enctype="multipart/form-data">
+                            <!-- Changed to checkout/{id} -->
+                            <form action="<?= site_url('checkout/'.$course->id) ?>" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="course_id" value="<?= esc($course->id) ?>">
                                 <div class="text-center mb-4">
                                     <p>يرجى تحويل المبلغ إلى حساب Instapay:</p>

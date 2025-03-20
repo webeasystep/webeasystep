@@ -112,7 +112,7 @@ class Payments extends BaseController
         ];
 
         // إذا كان الطلب من نوع POST -> أكمل عملية الدفع أو الانضمام
-        if ($this->request->getMethod() === 'post') {
+        if ($this->request->is('POST')) {
             return $this->completePayment($course);
         }
 
