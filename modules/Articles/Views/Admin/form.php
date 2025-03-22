@@ -15,7 +15,7 @@
                 <div class="col-sm-9">
                     <div class="i18n-input">
                         <input type="text" name="title" data-i18n="ar,en"
-                               data-ar="<?= $article->title_ar ??  "" ?>" data-en="<?= $article->title_en ?? "" ?>"
+                               data-ar="<?= $article->title ??  "" ?>" data-en="<?= $article->title_en ?? "" ?>"
                                id="title" class="form-control">
                     </div>
                     <small class="invalid-feedback"></small>
@@ -37,7 +37,7 @@
                 <div class="col-sm-9">
                     <div class="i18n-input">
                         <textarea name="desc" class="form-control" id="desc" data-i18n="ar,en"
-                                  data-ar="<?= $article->desc_ar ??  ""?>"
+                                  data-ar="<?= $article->description ??  ""?>"
                                   data-en="<?= $article->desc_en ??  ""?>">
                         </textarea>
                         <small class="invalid-feedback"></small>

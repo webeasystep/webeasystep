@@ -256,11 +256,23 @@
             <h2 class="section-title"><?= esc($title) ?></h2>
             <p class="course-description"><?= esc($course->course_desc) ?></p>
 
-            <!-- CTA area near top heading (the same "اشترك الآن" style) -->
+            <!-- CTA area near top heading -->
             <div class="enroll-cta-top">
-                <a href="#" class="btn btn-success" style="min-width: 160px; font-weight:600;">
-                    اشترك الآن
-                </a>
+                <?php if ($isEnrolled): ?>
+                    <!-- Already enrolled => استكمل -->
+                    <a href="<?= site_url('courses/course_view/'.$course->slug) ?>"
+                       class="btn btn-success"
+                       style="min-width: 160px; font-weight:600;">
+                        استكمل
+                    </a>
+                <?php else: ?>
+                    <!-- Not enrolled => اشترك الآن -->
+                    <a href="<?= site_url('checkout/'.$course->id) ?>"
+                       class="btn btn-success"
+                       style="min-width: 160px; font-weight:600;">
+                        اشترك الآن
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -385,7 +397,7 @@
                         </ul>
                     </div>
 
-                    <!-- Pricing Block with the same "اشترك الآن" button -->
+                    <!-- Pricing Block with the same button logic -->
                     <div class="block-v1 pricing-block">
                         <h3 class="mb-3">التسعير</h3>
                         <p class="price">
@@ -395,9 +407,21 @@
                             <?php endif; ?>
                         </p>
                         <p>
-                            <a href="#" class="btn btn-primary" style="display: inline-block; width: 100%;">
-                                اشترك الآن
-                            </a>
+                            <?php if ($isEnrolled): ?>
+                                <!-- Already enrolled => استكمل -->
+                                <a href="<?= site_url('courses/course_view/'.$course->slug) ?>"
+                                   class="btn btn-primary"
+                                   style="display: inline-block; width: 100%;">
+                                    استكمل
+                                </a>
+                            <?php else: ?>
+                                <!-- Not enrolled => اشترك الآن -->
+                                <a href="<?= site_url('checkout/'.$course->id) ?>"
+                                   class="btn btn-primary"
+                                   style="display: inline-block; width: 100%;">
+                                    اشترك الآن
+                                </a>
+                            <?php endif; ?>
                         </p>
                     </div>
                 </div>

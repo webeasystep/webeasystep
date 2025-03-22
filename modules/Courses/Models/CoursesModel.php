@@ -272,7 +272,7 @@ class CoursesModel extends BaseModel
         }
 
         // how many completed
-        $completedCount = $this->coursesModel->countCompletedLessons($enrollment->id);
+        $completedCount = $this->countCompletedLessons($enrollment->id);
 
         if ($totalLessons === 0) {
             return 0;

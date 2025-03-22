@@ -12,12 +12,12 @@
                             <img src="<?= thumb($article->image,170,249) ?>" alt="Image">
                         </figure>
                         <div class="media-h-body">
-                            <h2 class="mb-3"><a href="#"><?= $article->title_ar ?></a></h2>
+                            <h2 class="mb-3"><a href="<?= site_url('articles/article_show/'.$article->slug) ?>"><?= $article->title ?></a></h2>
                             <div class="meta">
                                 <span class="icon-calendar mr-2"></span><span><?= date('F d, Y', strtotime($article->created_at)) ?></span>
                                 <span class="icon-person mr-2"></span>Ahmed fakhr
                             </div>
-                            <p><?= $article->desc_ar ?></p>
+                            <p><?= $article->description ?></p>
                         </div>
                     </div>
                 </div>

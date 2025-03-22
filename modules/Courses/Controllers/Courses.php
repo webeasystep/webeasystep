@@ -81,20 +81,33 @@ class Courses extends BaseController
      */
     public function course_details(string $slug): string
     {
+        // 1) Fetch the course by slug
         $course = $this->coursesModel->getCourseBySlug($slug);
-
         if (!$course) {
             throw PageNotFoundException::forPageNotFound();
         }
 
+        // 2) Decode JSON structure (array of sections)
         $structure = json_decode($course->course_structure ?? '[]', true);
 
+        // 3) Check if user is enrolled
+        //    If user is logged in, check enrollment in the DB
+        //    e.g. $this->coursesModel->isUserEnrolled($userId, $course->id)
+        $userId      = auth()->loggedIn() ? auth()->user()->id : null;
+        $isEnrolled  = false;
+        if ($userId) {
+            $isEnrolled = $this->coursesModel->isUserEnrolled($userId, $course->id);
+        }
+
+        // 4) Prepare data for the view
         $data = [
-            'title'     => $course->course_name,
-            'course'    => $course,
-            'structure' => $structure,
+            'title'      => $course->course_name,
+            'course'     => $course,
+            'structure'  => $structure,
+            'isEnrolled' => $isEnrolled,
         ];
 
+        // 5) Render the updated "course_details" (or any view name you use)
         return view('site/course_details', $data);
     }
 

@@ -37,7 +37,7 @@ $routes->group('dt_admin', [
 $routes->group('/',
     ['namespace' => 'Modules\Articles\Controllers'],
     static function ($routes) {
-
+    $routes->get('articles/article_show/(:any)', [Articles::class, 'article_show/$1']);
     $routes->get('articles', [Articles::class, 'index']);
     $routes->post('articles/show/(:num)', [Articles::class, 'show/$1']);
 

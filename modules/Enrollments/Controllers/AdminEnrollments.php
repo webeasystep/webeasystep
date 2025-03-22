@@ -53,27 +53,41 @@ class AdminEnrollments extends BaseController
 
         // If it's an AJAX request from DataTables
         if ($this->request->isAJAX()) {
-            // Build your query. For example, select needed columns:
+
+            // Example: Join with `users`, `tb_courses`, and also `tb_payments`
+            //          so we can display payment info (method, status, amount)
             $builder = $this->enrollments
-                ->select('id, user_id, course_id, status, enrolled_at')
-                ->orderBy('id', 'desc')
+                ->select("
+                tb_enrollments.id,
+                users.username AS user_name,
+                tb_courses.course_name,
+                tb_enrollments.status AS enrollment_status,
+                tb_enrollments.enrolled_at,
+                tb_payments.payment_method,
+                tb_payments.payment_status,
+                tb_payments.amount
+            ")
+                ->join('users', 'users.id = tb_enrollments.user_id', 'left')
+                ->join('tb_courses', 'tb_courses.id = tb_enrollments.course_id', 'left')
+                // Join payments by matching user_id & course_id
+                ->join('tb_payments', 'tb_payments.user_id = tb_enrollments.user_id AND tb_payments.course_id = tb_enrollments.course_id', 'left')
+                ->orderBy('tb_enrollments.id', 'desc')
                 ->builder();
-            // dtTable usage (similar to AdminCourses)
+
             DtTable::hideColumns(['id']);
-            DtTable::searchableColumns(['user_id', 'course_id', 'status']);
-            DtTable::orderableColumns(['user_id', 'course_id', 'status', 'enrolled_at']);
-            // DtTable::setColumnSwitch('status');
-            // Render the output
+            DtTable::searchableColumns(['user_name', 'course_name', 'enrollment_status', 'payment_method', 'payment_status']);
+            DtTable::orderableColumns(['user_name', 'course_name', 'enrollment_status', 'payment_method', 'payment_status', 'amount', 'enrolled_at']);
             $output = DtTable::tableRender($builder, false);
-            // Which columns to show in the final table
-            DtTable::setShowColumns("user_id,course_id,status,enrolled_at");
+            DtTable::setShowColumns("user_name,course_name,enrollment_status,payment_method,payment_status,amount,enrolled_at");
 
             return $this->response->setJSON($output);
         }
 
-        // Otherwise, show the admin listing view
-        return view('admin/index', $data);
+        // Otherwise, show a normal admin listing page
+        return view('index', $data);
     }
+
+
 
     /**
      * Add a new enrollment
@@ -101,7 +115,7 @@ class AdminEnrollments extends BaseController
         $data['courses_list'] = $this->enrollments->get_courses_list();
         $data['users_list']   = $this->enrollments->get_users_list();
 
-        return view('admin/form', $data);
+        return view('form', $data);
     }
 
     /**
@@ -142,7 +156,7 @@ class AdminEnrollments extends BaseController
         $data['courses_list'] = $this->enrollments->get_courses_list();
         $data['users_list']   = $this->enrollments->get_users_list();
 
-        return view('admin/form', $data);
+        return view('form', $data);
     }
 
     /**

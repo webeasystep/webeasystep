@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Articles\Controllers;
 use App\Controllers\BaseController;
+use CodeIgniter\Exceptions\PageNotFoundException;
 use Modules\Articles\Models\ArticlesModel;
 
 
@@ -28,23 +29,29 @@ class Articles extends BaseController
         return view('site/index', $data);
     }
 
-    /*     function show($slug)
-        {
-            // Get the page content from the database
-            $page = $this->articlesModel->getPage($slug);
 
-            // If the page does not exist, return a 404 error
-            if (!$page) {
-                throw PageNotFoundException::forPageNotFound();
-            }
+    public function article_show($slug)
+    {
+        // decode if necessary
+        $slug = urldecode($slug);
 
-            $data = [
-                'title' => $page['title_'.lang('site.lang')],
-                'page_info' => $page,
-            ];
+        // find article by slug
+        $article = $this->articlesModel
+            ->where('slug', $slug)
+            ->first();
 
-            return view('site/show', $data);
-        }*/
+        if (!$article) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        $data = [
+            'title'   => $article->title,
+            'article' => $article,
+        ];
+
+        return view('site/article_show', $data);
+    }
+
 
 
 
