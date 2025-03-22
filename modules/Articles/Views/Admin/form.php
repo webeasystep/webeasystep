@@ -38,7 +38,7 @@
                     <div class="i18n-input">
                         <textarea name="desc" class="form-control" id="desc" data-i18n="ar,en"
                                   data-ar="<?= $article->description ??  ""?>"
-                                  data-en="<?= $article->desc_en ??  ""?>">
+                                  data-en="<?= $article->description ??  ""?>">
                         </textarea>
                         <small class="invalid-feedback"></small>
                     </div>
@@ -50,8 +50,8 @@
                 <div class="col-sm-9">
                     <div class="i18n-input">
                 <textarea name="content"  class="form-control ckeditor " id="content" data-i18n="ar,en"
-                          data-ar="<?= $article->content_ar ??  ""?>"
-                          data-en="<?= $article->content_en ??  ""?>" ></textarea>
+                          data-ar="<?= $article->content ??  ""?>"
+                          data-en="<?= $article->content ??  ""?>" ></textarea>
                         <small class="invalid-feedback"></small>
                     </div>
                 </div>

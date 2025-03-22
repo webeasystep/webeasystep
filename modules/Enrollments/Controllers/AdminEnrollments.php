@@ -96,7 +96,7 @@ class AdminEnrollments extends BaseController
     {
         $data['title'] = 'إضافة اشتراك جديد';
 
-        if ($this->request->getMethod() === 'post') {
+        if ($this->request->is('post')) {
             if ($this->validate($this->rules)) {
                 // Insert the data
                 $id = $this->data_arr(); // Creates a new row in tb_enrollments
@@ -125,13 +125,13 @@ class AdminEnrollments extends BaseController
     {
         $data['title'] = 'تعديل الاشتراك';
 
-        if ($this->request->getMethod() === 'post') {
+        if ($this->request->is('post')) {
             if ($this->validate($this->rules)) {
                 // Update the data
                 $this->data_arr($id);
 
                 // If you have a file to update:
-                // $this->fireUploader->upload_photos($this->enrollments, 'proof', $id);
+                $this->fireUploader->upload_photos($this->enrollments, 'proof_image', $id);
 
                 $this->show_msg('success', 'تم التعديل', 'تم تعديل بيانات الاشتراك بنجاح');
                 return redirect()->to(ADMIN_URL . 'enrollments');
