@@ -250,12 +250,24 @@ class DtTable
 
     public static function setColumnLink($columnName, $urlTemplate)
     {
-        self::$columnCallbacks[$columnName] = function ($data, $row) use ($columnName, $urlTemplate) {
+        self::$columnCallbacks[$columnName] = function ($data, $row) use ($urlTemplate) {
+            // Decode URL template if it's URL-encoded
+            $decodedUrlTemplate = urldecode($urlTemplate);
 
-            $url = str_replace(['id', '{data}'], [$row['id'], $data], $urlTemplate);
-            return "<a href=\"{$url}\">{$data}</a>";
+            // Build replacements for any placeholders (e.g. {slug}, {id}, etc.)
+            $replacements = [];
+            foreach ($row as $key => $value) {
+                $replacements['{' . $key . '}'] = $value;
+            }
+
+            // Replace placeholders in the decoded URL template
+            $url = strtr($decodedUrlTemplate, $replacements);
+
+            // Open link in a new tab
+            return "<a href=\"{$url}\" target=\"_blank\">{$data}</a>";
         };
     }
+
     public static function setColumnModal($columnName,$modalHeaderCallback, $modalContentCallback )
     {
         self::$columnCallbacks[$columnName] = function ($data, $row) use ($columnName, $modalContentCallback, $modalHeaderCallback) {

@@ -7,45 +7,50 @@ if (!isset($routes)) {
     $routes = \Config\Services::routes(true);
 }
 
-/*** Route for Sections Admin ***/
-
+/**
+ * Admin Enrollments Routes
+ * - All routes here require 'admin_filter'
+ * - Points to AdminEnrollments controller for listing, adding, editing, etc.
+ */
 $routes->group('dt_admin', [
     'namespace' => 'Modules\Enrollments\Controllers',
-    'filter' => 'admin_filter' // Apply the filter to the entire group
+    'filter' => 'admin_filter'
 ], static function ($routes) {
-    //  example of permissions $routes->get('sections', [AdminSections::class, 'index'], ['filter' => 'admin_filter']);
-    $routes->match(['GET', 'POST'], 'enrollments', [AdminEnrollments::class, 'index']);
 
+    // List Enrollments (DataTables usage)
+    $routes->match(['GET', 'POST'], 'enrollments', [AdminEnrollments::class, 'index']);
     $routes->post('enrollments/index', [AdminEnrollments::class, 'index']);
 
+    // Add new enrollment (or payment record)
     $routes->match(['GET', 'POST'], 'enrollments/add', [AdminEnrollments::class, 'add']);
 
+    // Edit enrollment
     $routes->match(['GET', 'POST'], 'enrollments/edit/(:num)', [AdminEnrollments::class, 'edit/$1']);
 
+    // Show enrollment details
     $routes->post('enrollments/show/(:num)', [AdminEnrollments::class, 'show/$1']);
 
-    $routes->post('enrollments/edit', [AdminEnrollments::class, 'edit']);
-
+    // Switch toggle (active/inactive or status toggles)
     $routes->post('enrollments/switchToggle', [AdminEnrollments::class, 'switchToggle']);
 
+    // Delete enrollment
     $routes->post('enrollments/delete', [AdminEnrollments::class, 'delete']);
-
-
 });
 
-/*** Route for Enrollments Site ***/
-$routes->group('/',
-    ['namespace' => 'Modules\Enrollments\Controllers'],
-    static function ($routes) {
 
+/**
+ * Front-end Enrollments Routes
+ * - Public routes for site visitors & enrolled users
+ */
+$routes->group('/', [
+    'namespace' => 'Modules\Enrollments\Controllers',
+], static function ($routes) {
+
+    // Example route to show a list of enrollments or payments
     $routes->get('enrollments', [Enrollments::class, 'index']);
     $routes->post('enrollments/show/(:num)', [Enrollments::class, 'show/$1']);
 
+    // Main route for user checkout / enrolling in a course
+    // e.g. GET/POST => /checkout/123
+    $routes->match(['GET', 'POST'], 'checkout/(:num)', [Enrollments::class, 'checkout/$1']);
 });
-
-
-/*** Route for Sections api ***/
-/*
-$routes->group('api', ['namespace' => 'App\API\v1'], static function ($routes) {
-    $routes->resource('enrollments');
-});*/

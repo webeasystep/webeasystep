@@ -1,5 +1,5 @@
-<?php $this->extend('site_layout/template'); ?>
-<?php $this->section('content'); ?>
+<?= $this->extend('site_layout/template'); ?>
+<?= $this->section('content'); ?>
 
 <style>
     .payment-section {
@@ -56,25 +56,25 @@
 
 <div class="payment-section">
     <div class="container">
-
+        <?= $this->include('site_layout/site_msg'); ?>
         <!-- عرض معلومات الدورة -->
         <div class="course-info-block">
             <img src="<?= base_url() ?>site/images/img-school-3-min.jpg" alt="صورة الدورة" class="course-img">
             <h4><?= esc($course->course_name ?? 'اسم الدورة') ?></h4>
-            <?php if ($isFree): ?>
+            <?php if ($course->is_free): ?>
                 <p class="course-price">مجاناً</p>
             <?php else: ?>
                 <p class="course-price">السعر: $<?= esc($course->price ?? '99') ?></p>
             <?php endif; ?>
         </div>
 
-        <?php if ($isFree): ?>
+        <?php if ($course->is_free): ?>
             <!-- سيناريو الدورة المجانية -->
             <div class="card p-4 text-center">
                 <h2>الدورة مجانية!</h2>
                 <?php if ($isLoggedIn): ?>
                     <p>يمكنك الانضمام فوراً.</p>
-                    <!-- Changed to checkout/{id} -->
+                    <!-- Use slug or ID as needed -->
                     <form action="<?= site_url('checkout/'.$course->id) ?>" method="post">
                         <input type="hidden" name="course_id" value="<?= esc($course->id) ?>">
                         <button type="submit" class="btn-complete">انضم الآن</button>
@@ -86,12 +86,12 @@
                 <?php endif; ?>
             </div>
 
-        <?php elseif ($isWaitingList): ?>
+        <?php elseif (!empty($course->waiting_list) && $course->waiting_list == 1): ?>
             <!-- سيناريو قائمة الانتظار -->
             <div class="card p-4">
                 <h2 class="mb-4 text-center">القائمة الانتظارية</h2>
                 <p class="text-center">هذه الدورة غير متاحة حالياً. اترك بياناتك لنراسلك عند توفرها.</p>
-                <!-- Changed to checkout/{id} -->
+                <!-- POST to checkout -->
                 <form action="<?= site_url('checkout/'.$course->id) ?>" method="post">
                     <input type="hidden" name="course_id" value="<?= esc($course->id) ?>">
                     <div class="form-group">
@@ -112,17 +112,22 @@
                 <!-- المستخدم مسجل دخول -->
                 <div class="card p-4">
                     <h2 class="mb-4 text-center">إتمام الدفع</h2>
-                    <!-- Changed to checkout/{id} -->
+                    <!-- Only show proof upload for paid courses -->
                     <form action="<?= site_url('checkout/'.$course->id) ?>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="course_id" value="<?= esc($course->id) ?>">
                         <div class="mb-4 text-center">
                             <p>يرجى تحويل المبلغ إلى حساب Instapay:</p>
                             <p><strong>fakhr@instapay</strong></p>
                         </div>
-                        <div class="form-group">
-                            <label for="proofImage" class="font-weight-bold mb-2 d-block">إرفاق إثبات الدفع:</label>
-                            <input type="file" class="form-control" id="proofImage" name="proofImage">
+
+                        <div class="form-group row">
+                            <label for="dropzone1" class="col-sm-3 col-form-label">إرفاق إثبات الدفع:</label>
+                            <div class="col-sm-9">
+                                <div class="fireupload" id="dropzone1"></div>
+                                <small class="invalid-feedback"></small>
+                            </div>
                         </div>
+
                         <button type="submit" class="btn-complete">إتمام الدفع</button>
                     </form>
                 </div>
@@ -162,16 +167,18 @@
                     <div class="col-md-6">
                         <div class="card p-4">
                             <h2 class="mb-4 text-center">الدفع</h2>
-                            <!-- Changed to checkout/{id} -->
                             <form action="<?= site_url('checkout/'.$course->id) ?>" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="course_id" value="<?= esc($course->id) ?>">
                                 <div class="text-center mb-4">
                                     <p>يرجى تحويل المبلغ إلى حساب Instapay:</p>
                                     <p><strong>fakhr@instapay</strong></p>
                                 </div>
-                                <div class="form-group">
-                                    <label for="proofImage" class="font-weight-bold mb-2 d-block">إرفاق إثبات الدفع:</label>
-                                    <input type="file" class="form-control" id="proofImage" name="proofImage">
+                                <div class="form-group row">
+                                    <label for="attachment" class="col-sm-3 col-form-label">إثبات الدفع</label>
+                                    <div class="col-sm-9">
+                                        <div class="fireupload" id="dropzone1"></div>
+                                        <small class="invalid-feedback"></small>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn-complete">إتمام الدفع</button>
                             </form>
@@ -184,4 +191,24 @@
     </div>
 </div>
 
+<?= $this->endSection(); ?>
+
+<?= $this->section('js'); ?>
+<script src="https://unpkg.com/sortablejs@1.13.0/Sortable.min.js"></script>
+<link rel="stylesheet" href="<?= base_url('admin/plugins/fireuploader/fireupload.css') ?>">
+<script type="text/javascript" src="<?= base_url('admin/plugins/fireuploader/fireupload.js') ?>"></script>
+<script>
+    $(document).ready(function () {
+        // Initialize FireUploader only if NOT free
+        <?php if (!$course->is_free): ?>
+        var uploader1 = new FireUploader({
+            dropzoneId: 'dropzone1',
+            inputName: "proof_image[]",
+            multipleFiles: false,
+            allowedExtensions: ["jpg", "pdf", "jpeg", "png"],
+            files: <?= json_encode($files ?? '[]') ?>
+        });
+        <?php endif; ?>
+    });
+</script>
 <?= $this->endSection(); ?>

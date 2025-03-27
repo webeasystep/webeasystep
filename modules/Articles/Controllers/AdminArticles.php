@@ -27,32 +27,33 @@ class AdminArticles extends BaseController
 
     public function index()
     {
-        // i want to detect controller path automatically
-        // set edit and view
         $data['title'] = lang('Articles.articles_List');
 
         if ($this->request->isAJAX()) {
-
             $articlesModel = $this->articles
-                ->select('id, title_ar,image ,slug,active,sort,created_at,updated_at')
-                ->orderBy('id','desc')
+                ->select('id, title, image, slug, active, sort, created_at, updated_at')
+                ->orderBy('id', 'desc')
                 ->builder();
 
             DtTable::hideColumns(['id']);
             DtTable::setColumnSwitch('active');
-            DtTable::searchableColumns(['title_ar']);
-            DtTable::orderableColumns(['title_ar', 'slug', 'sort']);
+            DtTable::searchableColumns(['title']);
+            DtTable::orderableColumns(['title', 'slug', 'sort']);
             DtTable::setColumnImage('image');
-            // DtTable::hideActions(['edit']);
-            //  DtTable::stateSave('false',120);
+
+            // Add a link around the title column
+            DtTable::setColumnLink('title', base_url('articles/view/{data}'));
+
+            DtTable::setShowColumns("title,slug,active,sort");
+
             $output = DtTable::tableRender($articlesModel, false);
-            DtTable::setShowColumns("title_ar,title_en,slug,active,sort");
 
             return $this->response->setJSON($output);
         } else {
             return view('index', $data);
         }
     }
+
 
 
     function add()

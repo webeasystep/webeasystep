@@ -76,6 +76,8 @@ return [
     'courses' => "الدورات",
     'plans' => "الخطط",
     'payments' => "المدفوعات",
+    'enrollments'       => 'الاشتراكات',
+    'courses_sections'       => 'أقسام الكورسات',
     'subscriptions' => "الاشتراكات",
     'users' => 'الأعضاء',
 ];

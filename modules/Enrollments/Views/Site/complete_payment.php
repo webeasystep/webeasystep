@@ -116,10 +116,14 @@
                             <p>يرجى تحويل المبلغ إلى حساب Instapay:</p>
                             <p><strong>fakhr@instapay</strong></p>
                         </div>
-                        <div class="form-group">
-                            <label for="proofImage" class="font-weight-bold mb-2 d-block">إرفاق إثبات الدفع:</label>
-                            <input type="file" class="form-control" id="proofImage" name="proofImage">
-                        </div>
+                            <!-- Attachments -->
+                            <div class="form-group row">
+                                <label for="dropzone1" class="col-sm-3 col-form-label">إرفاق إثبات الدفع:</label>
+                                <div class="col-sm-9">
+                                    <div class="fireupload" id="dropzone1"  ></div>
+                                    <small class="invalid-feedback"></small>
+                                </div>
+                            </div>
                         <button type="submit" class="btn-complete">إتمام الدفع</button>
                     </form>
                 </div>
@@ -165,9 +169,12 @@
                                     <p>يرجى تحويل المبلغ إلى حساب Instapay:</p>
                                     <p><strong>fakhr@instapay</strong></p>
                                 </div>
-                                <div class="form-group">
-                                    <label for="proofImage" class="font-weight-bold mb-2 d-block">إرفاق إثبات الدفع:</label>
-                                    <input type="file" class="form-control" id="proofImage" name="proofImage">
+                                <div class="form-group row">
+                                    <label for="proof_image" class="col-sm-3 col-form-label">إرفاق إثبات الدفع:</label>
+                                    <div class="col-sm-9">
+                                        <div class="fireupload" id="dropzone1"  ></div>
+                                        <small class="invalid-feedback"></small>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn-complete">إتمام الدفع</button>
                             </form>
@@ -181,3 +188,17 @@
 </div>
 
 <?= $this->endSection(); ?>
+
+<?= $this->section('js'); ?>
+<?= $this->include('admin_layout/curd_js'); ?>
+<script>
+    $(document).ready(function () {
+        var uploader1 = new FireUploader({
+            dropzoneId: 'dropzone1',
+            inputName: "proof_image[]",  // Changed to single input
+            allowedExtensions: ["pdf",'jpg','png','jpeg'],
+            files: <?= json_encode($files ?? '[]') ?>
+        });
+    });
+</script>
+<?php $this->endSection(); ?>

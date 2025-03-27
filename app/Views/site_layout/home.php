@@ -102,13 +102,13 @@
                                             <a href="<?= base_url('checkout/' . $course['id']) ?>"
                                                class="btn btn-warning btn-sm"
                                                style="font-weight:600;">
-                                                سجل مجانًا
+                                                انضم مجانًا
                                             </a>
                                         <?php else: ?>
                                             <a href="<?= base_url('checkout/' . $course['id']) ?>"
                                                class="btn btn-success btn-sm"
                                                style="font-weight:600;">
-                                                سجل الآن
+                                                إبدأ الآن
                                             </a>
                                         <?php endif; ?>
                                     <?php endif; ?>

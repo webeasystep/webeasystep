@@ -30,23 +30,29 @@ class AdminCourses extends BaseController
 
         if ($this->request->isAJAX()) {
             $coursesModel = $this->courses
-                ->select('id, course_name,slug, image, sort, price, is_free, created_at')
+                ->select('id, course_name, slug, image, sort, price, is_free, created_at')
                 ->orderBy('id', 'desc')
                 ->builder();
+
 
             DtTable::hideColumns(['id']);
             DtTable::searchableColumns(['course_name', 'course_desc', 'price', 'is_free']);
             DtTable::orderableColumns(['course_name', 'course_desc', 'sort', 'price', 'is_free', 'created_at']);
             DtTable::setColumnImage('image');
             DtTable::setColumnSwitch('is_free'); // Add switch for is_free
-            $output = DtTable::tableRender($coursesModel, false);
+            // Add a link around the course_name column using the slug
+            DtTable::setColumnLink('course_name', base_url('courses/course_details/{slug}'));
+
             DtTable::setShowColumns("course_name,course_desc,sort,price,is_free,created_at");
+
+            $output = DtTable::tableRender($coursesModel, false);
 
             return $this->response->setJSON($output);
         } else {
             return view('index', $data);
         }
     }
+
 
     public function add()
     {
