@@ -48,8 +48,8 @@
                     <?php if (isset(auth()->user()->username)): ?>
                         <!-- Example: If user is logged in -->
                         <a href="<?= site_url('courses/my_courses') ?>" class="small mr-3">
-                            <span class="icon-user"></span>
-                            <?= esc(auth()->user()->username) ?>
+                            <span class="icon-user"></span>&nbsp;&nbsp;&nbsp;
+                            My Courses
                         </a>
                         <a href="<?= site_url('site/logout') ?>" class="small">
                             <span class="icon-lock"></span> تسجيل الخروج

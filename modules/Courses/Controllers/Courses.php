@@ -69,9 +69,10 @@ class Courses extends BaseController
         }
         unset($course); // Good practice after reference loops
 
+        $data['title']  = 'My Courses' ;
+        $data['desc']  = 'All courses you are enrolled in' ;
         // Provide a unified data array if needed
         $data['data'] = $data;
-
         return view('site/index', $data);
     }
 

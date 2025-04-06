@@ -355,7 +355,7 @@
                 <div class="course-sidebar" data-aos="fade-up" data-aos-delay="300">
                     <!-- Video Block in Sidebar -->
                     <div class="block-v1 course-video">
-                        <h3 class="mb-3">فيديو تقديمي للدورة</h3>
+                        <h4 class="section-title mb-4">فيديو تقديمي للدورة</h4>
                         <div class="video-container">
                             <iframe
                                     src="https://iframe.mediadelivery.net/embed/395633/<?= $course->intro_video_id ?? 'af30806a-a34e-448e-91fb-b9c3f8d18b02' ?>?autoplay=false"
