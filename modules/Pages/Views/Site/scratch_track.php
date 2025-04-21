@@ -12,7 +12,7 @@
                 </div>
 
                 <p data-aos="fade-up" data-aos-delay="100">
-                    <strong>🚀 هل تريد أن يكتشف ابنك/ابنتك عالم البرمجة الممتع ويبدأ في بناء مهارات المستقبل الأساسية؟ 🚀</strong>
+                    <strong>🚀 هل تريد أن يكتشف ابنك/ابنتك عالم البرمجة الممتع ويبدأ في بناء مهارات المستقبل الأساسية؟ </strong>
                 </p>
 
                 <p data-aos="fade-up" data-aos-delay="200">
@@ -22,10 +22,7 @@
                 <p data-aos="fade-up" data-aos-delay="300"><a href="#register" class="btn btn-primary">سجّل الآن!</a> <a href="#contact" class="btn btn-outline-primary ms-2">تواصل معنا</a></p>
             </div>
             <div class="col-lg-5" data-aos="fade-up" data-aos-delay="0">
-                <figure class="img-wrap-2">
-                    <img src="<?= base_url() ?>site/images/scratch.jpg" alt="تعلم البرمجة مع سكراتش" class="img-fluid">
-                    <div class="dotted"></div>
-                </figure>
+                <img src="<?= base_url() ?>site/images/scratch.jpg" alt="تعلم البرمجة مع سكراتش" class="img-fluid">
             </div>
         </div>
     </div>

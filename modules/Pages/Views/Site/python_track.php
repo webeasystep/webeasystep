@@ -12,7 +12,7 @@
                     </div>
 
                     <p data-aos="fade-up" data-aos-delay="100">
-                        <strong>🐍 هل ابنك/ابنتك مستعد للانتقال من البرمجة المرئية إلى كتابة أكواد حقيقية بلغة قوية يستخدمها المحترفون؟ 🐍</strong>
+                        <strong>🐍 هل ابنك/ابنتك مستعد للانتقال من البرمجة المرئية إلى كتابة أكواد حقيقية بلغة قوية يستخدمها المحترفون؟ </strong>
                     </p>
 
                     <p data-aos="fade-up" data-aos-delay="200">
@@ -22,10 +22,7 @@
                     <p data-aos="fade-up" data-aos-delay="300"><a href="#register" class="btn btn-primary">سجّل الآن!</a> <a href="#contact" class="btn btn-outline-primary ms-2">تواصل معنا</a></p>
                 </div>
                 <div class="col-lg-5" data-aos="fade-up" data-aos-delay="0">
-                    <figure class="img-wrap-2">
-                        <img src="<?= base_url() ?>site/images/python.jpg" alt="تعلم برمجة بايثون" class="img-fluid">
-                        <div class="dotted"></div>
-                    </figure>
+                    <img src="<?= base_url() ?>site/images/python.jpg" alt="تعلم برمجة بايثون" class="img-fluid">
                 </div>
             </div>
         </div>

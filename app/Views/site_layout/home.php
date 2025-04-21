@@ -54,7 +54,7 @@
                         <img src="<?= base_url() ?>site/images/package/scratch.png" alt="Alternate Text" />
                     </div>
                     <p>ابدأ من الصفر، وتعلّم أساسيات البرمجة بطريقة ممتعة وسهلة باستخدام Scratch!</p>
-                    <a href="#">  اعرف المزيد ></a>
+                    <a href="<?= base_url() ?>/pages/scratch_track">  اعرف المزيد ></a>
                     <img src="<?= base_url() ?>site/images/package/level_prog1.png" alt="Alternate Text" class="package_icon" />
                 </div>
 
@@ -83,7 +83,7 @@
                         <img src="<?= base_url() ?>site/images/package/python.png" alt="Alternate Text" />
                     </div>
                     <p>اتعلم البرمجة الحقيقية بلغة Python، وابدأ تحل مشكلات وتبني مشاريع بسيطة</p>
-                    <a href="#"> اعرف المزيد ></a>
+                    <a href="<?= base_url() ?>/pages/python_track"> اعرف المزيد ></a>
                     <img src="<?= base_url() ?>site/images/package/level_prog2.png" alt="Alternate Text" class="package_icon" />
                 </div>
 
@@ -113,7 +113,7 @@
                         <img src="<?= base_url() ?>site/images/package/globe.png" alt="Alternate Text" />
                     </div>
                     <p>خد مهاراتك لمستوى احترافي، وابدأ تتعلم تطوير مواقع الويب خطوة بخطوة</p>
-                    <a href="#"> اعرف المزيد ></a>
+                    <a href="<?= base_url() ?>/pages/web_track"> اعرف المزيد ></a>
                 </div>
 
                 <div class="package_item_head">
@@ -122,7 +122,7 @@
                         <img src="<?= base_url() ?>site/images/package/mobile.png" alt="Alternate Text" />
                     </div>
                     <p>تعلم بناء تطبيقات تفاعلية وقوية تعمل على أنظمة Android و iOS.</p>
-                    <a href="#"> اعرف المزيد ></a>
+                    <a href="<?= base_url() ?>/pages/mobile_track"> اعرف المزيد ></a>
                 </div>
 
 
