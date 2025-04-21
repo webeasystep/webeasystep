@@ -63,20 +63,17 @@ class AdminPages extends BaseController
         $data['title'] = lang("Admin.add_data");
 
         if ($this->request->is('post')) {
-            // $this->rules['mobile'] = "required|is_unique[pages.mobile]";
-
             if ($this->validate($this->rules)) {
                 $id = $this->datar();
                 $this->fireUploader->upload_photos($this->pages, 'images', $id);
-                $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
+                $this->show_msg('success', lang("Admin.add"), lang("Admin.add_success"));
                 return redirect()->to(ADMIN_URL . "pages");
             } else {
                 $this->show_msg('danger', lang("Admin.validation_errors"), validation_errors());
             }
         }
-        // Fetch the categories
-        $data['pages'] = $this->pages->get_pages();
 
+        $data['pages'] = $this->pages->get_pages();
         return view('form', $data);
     }
 
@@ -85,36 +82,33 @@ class AdminPages extends BaseController
     // return redirect()->back()->withInput()->with('errors', $validationErrors);
     public function edit($id)
     {
-
-        $data['title'] = lang("Admin.add_data");
+        $data['title'] = lang("Admin.edit_data");
 
         if ($this->request->is('post')) {
-            $this->datar($id);
-            // if the profile photo is updated
-            // $this->rules['mobile'] = "required|is_unique[pages.mobile,id,$id]";
             if ($this->request->getFile('images')) {
                 $this->rules['images'] = 'max_size[images,1024]|is_image[images]';
             }
 
             if ($this->validate($this->rules)) {
-                $this->datar();
+                // Only call datar() once with the ID
+                $this->datar($id);
                 $this->fireUploader->upload_photos($this->pages, 'images', $id);
-                if (!empty($id)) { // Check if $id is not empty
-                    $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
-                } else {
-                    // Handle error when $id is empty
-                    $this->show_msg('danger', lang("Admin.validation_errors"), validation_errors());
-                }
+                $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
                 return redirect()->to(ADMIN_URL . "pages");
             } else {
                 $this->show_msg('danger', lang("Admin.validation_errors"), validation_errors());
             }
         }
 
-        $data['page'] = $this->pages->find($id); // Fetch the page data by ID
-        $data['pages'] = $this->pages->get_pages();
+        $data['page'] = $this->pages->find($id);
+        if (!$data['page']) {
+            $this->show_msg('danger', lang("Admin.error"), lang("Admin.record_not_found"));
+            return redirect()->to(ADMIN_URL . "pages");
+        }
 
-        $data['files'] = json_decode($data['page']->images, true);
+        $data['pages'] = $this->pages->get_pages();
+        $data['files'] = !empty($data['page']->images) ? json_decode($data['page']->images, true) : [];
+
         return view('form', $data);
     }
 
@@ -122,16 +116,15 @@ class AdminPages extends BaseController
         // add new page data
         $data = [
             'page_link' => $this->request->getPost('page_link', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            'title' => $this->request->getPost('title'),
+            'desc' => $this->request->getPost('desc'),
+            'content' => $this->request->getPost('content'),
             'parent_id' => $this->request->getPost('parent_id'),
             'sort' => $this->request->getPost('sort'),
             'show_home' => $this->request->getPost('show_home') ? 1 : 0,
             'active' => $this->request->getPost('active') ? 1 : 0,
         ];
 
-        // Retrieve the supported locales
-        $data["title_"] = $this->request->getPost("title");
-        $data["desc"] = $this->request->getPost("desc");
-        $data["content"] = $this->request->getPost("content");
         // Save the data using the save method
         if ($id) {
             // Update the existing record

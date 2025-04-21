@@ -13,12 +13,8 @@ class PagesModel extends BaseModel
     protected $useSoftDeletes = false;
 
     protected $allowedFields = [
-            'page_link', 'images',
-            'title_ar','title_en',
-            'desc_ar', 'desc_en',
-            'content_ar', 'content_en',
-            'show_home','active',
-            'sort','parent_id',
+        'page_link', 'images', 'title', 'desc', 'content',
+        'show_home', 'active', 'sort', 'parent_id',
     ];
 
     protected $useTimestamps = false;

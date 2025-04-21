@@ -147,6 +147,93 @@
 <!--Package-->
 <br />
 
+
+<div id="bookNow" class="untree_co-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                <h2 class="line-bottom text-center mb-4">بادر الآن بحجز مقعدك!</h2>
+                <p>استكشف مجموعة متنوعة من الدورات التي تغطي أساسيات علوم الحاسب لبناء مستقبل مميز في مجال
+                    التكنولوجيا.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <?php foreach ($courses as $course): ?>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
+                    <div class="custom-media">
+                        <!-- Image -->
+                        <img
+                                alt="<?= esc($course['course_name']) ?>"
+                                style="height: 200px; object-fit: cover;"
+                                src="<?= thumb($course['image'], 170, 249) ?>"
+                                class="card-img-top"
+                        >
+                        <div class="custom-media-body" style="padding: 15px;">
+                            <!-- Title -->
+                            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px;">
+                                <?= esc($course['course_name']) ?>
+                            </h3>
+
+                            <!-- Short Description -->
+                            <div style="font-size: 14px; color: #666; margin-bottom: 10px;">
+                                <?= esc($course['short_desc']) ?>
+                            </div>
+
+                            <!-- Lesson count -->
+                            <div class="d-flex justify-content-between pb-3">
+                              <span style="font-size: 14px; color: #666;">
+                                <?= $course['lesson_count'] ?> درس
+                              </span>
+                            </div>
+
+                            <!-- Price & Action Buttons -->
+                            <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
+                                <div>
+                                <span class="price" style="font-size: 1rem; font-weight: bold;">
+                                  $<?= esc(number_format($course['price'], 2)) ?>
+                                </span>
+                                </div>
+                                <div class="d-inline-flex" style="gap: 5px;">
+                                    <!-- Details button -->
+                                    <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>"
+                                       class="btn btn-primary btn-sm">
+                                        تفاصيل
+                                    </a>
+
+                                    <!-- If the user is already enrolled, show "استكمل" / "Go to Course" -->
+                                    <?php if ($course['is_enrolled']): ?>
+                                        <a href="<?= base_url('courses/course_view/' . $course['slug']) ?>"
+                                           class="btn btn-secondary btn-sm"
+                                           style="font-weight:600;">
+                                            استكمل
+                                        </a>
+                                    <?php else: ?>
+                                        <!-- Otherwise, show Register button (free or paid) -->
+                                        <?php if (!empty($course['is_free'])): ?>
+                                            <a href="<?= base_url('checkout/' . $course['id']) ?>"
+                                               class="btn btn-warning btn-sm"
+                                               style="font-weight:600;">
+                                                انضم مجانًا
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="<?= base_url('checkout/' . $course['id']) ?>"
+                                               class="btn btn-success btn-sm"
+                                               style="font-weight:600;">
+                                                إبدأ الآن
+                                            </a>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div><!-- /.custom-media-body -->
+                    </div><!-- /.custom-media -->
+                </div><!-- /.col -->
+            <?php endforeach; ?>
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /#bookNow -->
+
 <!-- instructor -->
 <div class="services-section">
     <div class="container">
@@ -195,29 +282,29 @@
                 <div class="feature">
                     <span class="uil uil-clock"></span>
                     <h3>دعم مستمر</h3>
-                    <p>خدمة دعم متواصلة  لتلبية كل احتياجاتكم التعليمية والتقنية.</p>
+                    <p>خدمة دعم متواصلة على مدار الساعة لتلبية كل احتياجاتكم التعليمية والتقنية.</p>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="feature">
                     <span class="uil uil-video"></span>
-                    <h3>دروس  متاحة دائماً</h3>
-                    <p>استمتع بحضور الدروس مباشرة أو شاهدها مسجلة في أي وقت يناسب طفلك</p>
+                    <h3>حصص مباشرة ومسجلة</h3>
+                    <p>اختر بين الحضور المباشر أو مشاهدة الجلسات المسجلة بحرية تامة حسب جدولك الزمني.</p>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="feature">
                     <span class="uil uil-brain"></span>
-                    <h3>تعلم ممتع ومحفز</h3>
-                    <p>نوفر بيئة تعليمية ممتعة ومحفزة تشجع الأطفال على الإبداع والاستمرار في تعلم البرمجة.</p>
+                    <h3>دراسة عملية</h3>
+                    <p>تعلم من خلال التطبيق العملي واكتسب مهارات حقيقية تستند إلى خبرات في صناعة البرمجيات.</p>
                 </div>
             </div>
 
             <div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="feature">
                     <span class="uil uil-repeat"></span>
-                    <h3>تعلم عملي</h3>
-                    <p>تعلم البرمجة من خلال المشاريع العملية والألعاب التفاعلية لتطوير مهارات التفكير المنطقي.</p>
+                    <h3>مراجعة في أي وقت</h3>
+                    <p>جميع الحصص متاحة للمراجعة في أي وقت، مما يوفر مرونة فائقة في الدراسة.</p>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
@@ -240,7 +327,7 @@
 
 <!-- /.untree_co-section -->
 
-<div class="untree_co-section"  style=" overflow-x: hidden;">
+<div class="untree_co-section">
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-5 mb-5">
