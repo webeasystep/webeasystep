@@ -171,7 +171,7 @@
             </div>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="0">
                 <figure class="img-wrap-2">
-                    <img src="<?= base_url() ?>site/images/teacher-min.jpg" alt="Image" class="img-fluid">
+                    <img src="<?= base_url() ?>site/images/profile_image.png" alt="Image" class="img-fluid">
                     <div class="dotted"></div>
                 </figure>
 

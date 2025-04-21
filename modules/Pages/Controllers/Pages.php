@@ -29,23 +29,27 @@ class Pages extends BaseController
 
     public function view($slug): string
     {
-
-        // Get the page content from the database
+        // Define the slugs that should have a specific course view
+        $courseSlugs = ['scratch_track', 'python_track', 'web_track', 'mobile_track'];
         $page = $this->pages->getPage($slug);
 
-        // If the page does not exist, return a 404 error
+        // If the page does not exist for the given slug, return a 404 error
         if (!$page) {
             throw PageNotFoundException::forPageNotFound();
         }
-
+        // Prepare the data array, common for all views
         $data = [
-            'title' => $page['title'],
-            'page_info' => $page,
+            'title'     => $page['title'], // Assuming 'title' column exists
+            'page_info' => $page,         // Pass the full page data
         ];
-        //
-        //  var_dump($this->modulePath);
-        return view('site/show', $data);
-        //echo view('Modules\pages\Views\site\view_page', $data);
+
+        if (in_array($slug, $courseSlugs)) {
+            // Load the specific course view
+            return view('site/' . $slug, $data);
+        } else {
+            // If the slug is not a course slug, load the default page view
+            return view('site/show', $data);
+        }
     }
 
 
