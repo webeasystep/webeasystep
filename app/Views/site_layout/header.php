@@ -1,17 +1,17 @@
 <head>
     <meta charset="UTF-8">
-    <title><?= $title ?? "-------"; ?> | <?= setting('App.siteName'); ?></title>
+    <title><?= $title ?? "-------"; ?> | <?= setting('App.title'); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?= setting('App.site_description'); ?>">
+    <meta name="description" content="<?= setting('App.site_description_ar'); ?>">
     <meta name="keywords" content="<?= setting('App.site_keywords'); ?>">
     <meta name="author" content="msarlink.com" />
 
     <!-- Facebook and Twitter integration -->
     <meta property="og:url" content="<?= current_url(); ?>"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="<?= setting('App.siteName'); ?>"/>
-    <meta property="og:site_name" content="<?= setting('App.siteName'); ?>"/>
-    <meta property="og:description" content="<?= setting('App.site_description'); ?>"/>
+    <meta property="og:title" content="<?= setting('App.title'); ?>"/>
+    <meta property="og:site_name" content="<?= setting('App.title'); ?>"/>
+    <meta property="og:description" content="<?= setting('App.site_description_ar'); ?>"/>
     <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-16x16.png" sizes="16x16" />
 

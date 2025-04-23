@@ -8,7 +8,7 @@
             <div class="col-lg-3 mr-auto">
                 <div class="widget">
                     <h3>معلومات عنا<span class="text-primary">.</span></h3>
-                    <p>أول أكاديمية متخصصة في تدريس علوم الحاسب للطلبة
+                    <p> +14 أول أكاديمية متخصصة في تدريس علوم الحاسب للطلبة
                         وإعدادهم لوظائف المستقبل.</p>
                 </div> <!-- /.widget -->
                 <div class="widget">
@@ -24,14 +24,11 @@
 
             <div class="col-lg-2 ml-auto">
                 <div class="widget">
-                    <h3>المشاريع</h3>
+                    <h3>المسارات</h3>
                     <ul class="list-unstyled float-right links">
-                        <li><a href="#">الذكاء الاصطناعي</a></li>
-                        <li><a href="#">الأمن السيبراني</a></li>
-                        <li><a href="#">انترنت الاشياء</a></li>
-                        <li><a href="#">علم البيانات</a></li>
-                        <li><a href="#">هندسة البرمجيات</a></li>
-                        <li><a href="#">التصميم الرقمي</a></li>
+                        <li><a href="#">مسار المبتدئين</a></li>
+                        <li><a href="#">مسار التأسيس</a></li>
+                        <li><a href="#">المسار المتقدم</a></li>
                     </ul>
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-3 -->

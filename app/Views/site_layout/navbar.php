@@ -47,10 +47,10 @@
                 <div class="col-6 col-lg-3 text-right">
                     <?php if (isset(auth()->user()->username)): ?>
                         <!-- Example: If user is logged in -->
-                        <a href="<?= site_url('courses/my_courses') ?>" class="small mr-3">
+        <!--                <a href="<?/*= site_url('courses/my_courses') */?>" class="small mr-3">
                             <span class="icon-user"></span>&nbsp;&nbsp;&nbsp;
                             My Courses
-                        </a>
+                        </a>-->
                         <a href="<?= site_url('site/logout') ?>" class="small">
                             <span class="icon-lock"></span> تسجيل الخروج
                         </a>
@@ -80,9 +80,9 @@
                     <li <?= current_url() == site_url('about') ? 'class="active"' : '' ?>>
                         <a href="<?= site_url('pages/about') ?>">عن الموقع</a>
                     </li>
-                    <li <?= current_url() == site_url('staff') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('courses') ?>">الكورسات</a>
-                    </li>
+             <!--       <li <?/*= current_url() == site_url('staff') ? 'class="active"' : '' */?>>
+                        <a href="<?/*= site_url('courses') */?>">الكورسات</a>
+                    </li>-->
                     <li <?= current_url() == site_url('news') ? 'class="active"' : '' ?>>
                         <a href="<?= site_url('articles') ?>">المدونة</a>
                     </li>

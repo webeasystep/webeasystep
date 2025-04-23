@@ -7,7 +7,9 @@
             <div class="row justify-content-between">
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="0">
-                        <h2 class="line-bottom mb-4">أتقن بايثون: اكتسب لغة البرمجة القوية والمطلوبة عالميًا!</h2>
+                        <!-- SEO: Changed to H1 for main page title -->
+                        <h1 class="line-bottom mb-4">أتقن بايثون: اكتسب لغة البرمجة القوية والمطلوبة عالميًا!</h1>
+                        <!-- SEO: H4 provides good secondary context -->
                         <h4 class="text-primary mb-3">مسار للمستوى المتوسط - عمر 14 عامًا فما فوق</h4>
                     </div>
 
@@ -19,10 +21,16 @@
                         مسار "إتقان بايثون" هو بوابتكم إلى عالم البرمجة النصية الاحترافية! لغة بايثون (Python) هي واحدة من أكثر لغات البرمجة شيوعًا وتنوعًا في العالم، وتستخدمها شركات عملاقة مثل جوجل، ناسا، ونيتفليكس.
                     </p>
 
-                    <p data-aos="fade-up" data-aos-delay="300"><a href="#register" class="btn btn-primary">سجّل الآن!</a> <a href="#contact" class="btn btn-outline-primary ms-2">تواصل معنا</a></p>
+                    <p data-aos="fade-up" data-aos-delay="300">
+                        <!-- SEO: Internal anchor links -->
+                        <a href="#register" class="btn btn-primary">سجّل الآن!</a>
+                        <a href="#contact" class="btn btn-outline-primary ms-2">تواصل معنا</a>
+                        <!-- SEO Note: Ensure #contact ID exists or link points to contact page -->
+                    </p>
                 </div>
                 <div class="col-lg-5" data-aos="fade-up" data-aos-delay="0">
-                    <img src="<?= base_url() ?>site/images/python.jpg" alt="تعلم برمجة بايثون" class="img-fluid">
+                    <!-- SEO: Added descriptive alt text -->
+                    <img src="<?= base_url() ?>site/images/python.jpg" alt="شعار لغة بايثون Python لتعليم البرمجة للمستوى المتوسط" class="img-fluid">
                 </div>
             </div>
         </div>
@@ -33,10 +41,12 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <!-- SEO: H2 for section title -->
                     <h2 class="line-bottom text-center mb-4">لماذا بايثون؟</h2>
                 </div>
             </div>
             <div class="row">
+                <!-- SEO: Using H3 for feature titles -->
                 <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
                     <div class="feature h-100">
                         <span class="uil uil-award"></span>
@@ -74,6 +84,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <!-- SEO: H2 for section title -->
                     <h2 class="line-bottom text-center mb-4">لغة يستخدمها العمالقة</h2>
                     <p>تُستخدم بايثون في أكبر الشركات التقنية حول العالم</p>
                 </div>
@@ -81,34 +92,38 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
                     <div class="row text-center">
+                        <!-- SEO: Added descriptive alt text for logos -->
                         <div class="col-4 col-md-2 mb-4">
                             <div class="client-logo">
-                                <img src="<?= base_url() ?>site/images/logo-google.png" alt="Google" class="img-fluid">
+                                <img src="<?= base_url() ?>site/images/logo-google.png" alt="شعار شركة جوجل التي تستخدم بايثون" class="img-fluid">
                             </div>
                         </div>
                         <div class="col-4 col-md-2 mb-4">
                             <div class="client-logo">
-                                <img src="<?= base_url() ?>site/images/logo-nasa.png" alt="NASA" class="img-fluid">
+                                <img src="<?= base_url() ?>site/images/logo-nasa.png" alt="شعار وكالة ناسا التي تستخدم بايثون" class="img-fluid">
+                            </div>
+                        </div>
+                        <!-- تم استبدال Netflix بـ YouTube -->
+                        <div class="col-4 col-md-2 mb-4">
+                            <div class="client-logo">
+                                <!-- تأكد من وجود ملف logo-youtube.png -->
+                                <img src="<?= base_url() ?>site/images/logo-youtube.png" alt="شعار منصة يوتيوب التي تستخدم بايثون" class="img-fluid">
+                            </div>
+                        </div>
+                        <!-- نهاية الاستبدال -->
+                        <div class="col-4 col-md-2 mb-4">
+                            <div class="client-logo">
+                                <img src="<?= base_url() ?>site/images/logo-instagram.png" alt="شعار انستجرام الذي يستخدم بايثون" class="img-fluid">
                             </div>
                         </div>
                         <div class="col-4 col-md-2 mb-4">
                             <div class="client-logo">
-                                <img src="<?= base_url() ?>site/images/logo-netflix.png" alt="Netflix" class="img-fluid">
+                                <img src="<?= base_url() ?>site/images/logo-spotify.png" alt="شعار سبوتيفاي الذي يستخدم بايثون" class="img-fluid">
                             </div>
                         </div>
                         <div class="col-4 col-md-2 mb-4">
                             <div class="client-logo">
-                                <img src="<?= base_url() ?>site/images/logo-instagram.png" alt="Instagram" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="col-4 col-md-2 mb-4">
-                            <div class="client-logo">
-                                <img src="<?= base_url() ?>site/images/logo-spotify.png" alt="Spotify" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="col-4 col-md-2 mb-4">
-                            <div class="client-logo">
-                                <img src="<?= base_url() ?>site/images/logo-dropbox.png" alt="Dropbox" class="img-fluid">
+                                <img src="<?= base_url() ?>site/images/logo-dropbox.png" alt="شعار دروب بوكس الذي يستخدم بايثون" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -121,23 +136,26 @@
     <div class="untree_co-section bg-light">
         <div class="container">
             <div class="row">
+                <div class="col-lg-5 mr-auto mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
+                    <!-- SEO: Added descriptive alt text -->
+                    <img src="<?= base_url() ?>site/images/img-school-4-min.jpg" alt="طالب يدرس برمجة بايثون على الكمبيوتر" class="img-fluid rounded">
+                    <!-- Consider renaming img-school-4-min.jpg to something more descriptive like python-student.jpg -->
+                </div>
                 <div class="col-lg-7 ml-auto" data-aos="fade-up" data-aos-delay="100">
+                    <!-- SEO: H3 for subsection title -->
                     <h3 class="line-bottom mb-4">هل هذا المسار مناسب لابني/ابنتي؟</h3>
                     <p>نعم، إذا كان ابنك/ابنتك:</p>
 
+                    <!-- SEO: Accordion content is crawlable -->
                     <div class="custom-accordion" id="accordion_1">
                         <div class="accordion-item">
+                            <!-- SEO: H2 for accordion button text is acceptable -->
                             <h2 class="mb-0">
                                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">العمر المناسب</button>
                             </h2>
-
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion_1">
                                 <div class="accordion-body">
-                                    <div class="d-flex">
-                                        <div>
-                                            <p>عمره/عمرها 14 عامًا أو أكثر، حيث صُمم المسار خصيصًا لهذه الفئة العمرية.</p>
-                                        </div>
-                                    </div>
+                                    <p>عمره/عمرها 14 عامًا أو أكثر، حيث صُمم المسار خصيصًا لهذه الفئة العمرية.</p>
                                 </div>
                             </div>
                         </div> <!-- .accordion-item -->
@@ -148,11 +166,7 @@
                             </h2>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_1">
                                 <div class="accordion-body">
-                                    <div class="d-flex">
-                                        <div>
-                                            <p>أكمل مسار سكراتش (المستوى 1) بنجاح أو لديه فهم جيد للمفاهيم المنطقية الأساسية للبرمجة (التسلسل، التكرار، الشروط).</p>
-                                        </div>
-                                    </div>
+                                    <p>أكمل مسار سكراتش (المستوى 1) بنجاح أو لديه فهم جيد للمفاهيم المنطقية الأساسية للبرمجة (التسلسل، التكرار، الشروط).</p>
                                 </div>
                             </div>
                         </div> <!-- .accordion-item -->
@@ -161,14 +175,9 @@
                             <h2 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">الاستعداد</button>
                             </h2>
-
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion_1">
                                 <div class="accordion-body">
-                                    <div class="d-flex">
-                                        <div>
-                                            <p>مستعد للانتقال إلى كتابة الأكواد النصية ويمتلك مهارات استخدام الكمبيوتر الأساسية.</p>
-                                        </div>
-                                    </div>
+                                    <p>مستعد للانتقال إلى كتابة الأكواد النصية ويمتلك مهارات استخدام الكمبيوتر الأساسية.</p>
                                 </div>
                             </div>
                         </div> <!-- .accordion-item -->
@@ -177,31 +186,24 @@
                             <h2 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">اللغة الإنجليزية</button>
                             </h2>
-
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion_1">
                                 <div class="accordion-body">
-                                    <div class="d-flex">
-                                        <div>
-                                            <p>(يفضل) لديه أساسيات بسيطة في اللغة الإنجليزية لفهم المصطلحات البرمجية.</p>
-                                        </div>
-                                    </div>
+                                    <p>(يفضل) لديه أساسيات بسيطة في اللغة الإنجليزية لفهم المصطلحات البرمجية.</p>
                                 </div>
                             </div>
                         </div> <!-- .accordion-item -->
                     </div>
                 </div>
-                <div class="col-lg-5 mr-auto mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
-                    <img src="<?= base_url() ?>site/images/img-school-4-min.jpg" alt="طلاب يتعلمون بايثون" class="img-fluid rounded">
-                </div>
             </div>
         </div>
     </div> <!-- /.untree_co-section -->
 
-    <!-- Course Levels -->
+    <!-- Course Levels Intro -->
     <div class="untree_co-section" id="course-levels">
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <!-- SEO: H2 for section title -->
                     <h2 class="line-bottom text-center mb-4">🌟 ماذا سيتعلم ويحقق ابنك/ابنتك في هذا المسار؟ 🌟</h2>
                     <p>ينقسم هذا المسار إلى مستويين لضمان بناء مهارات بايثون بشكل متين:</p>
                 </div>
@@ -216,12 +218,13 @@
                 <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
                     <div class="image-stack">
                         <div class="image-stack__item image-stack__item--top">
-                            <img src="<?= base_url() ?>site/images/python_2_1.jpg" alt="كود بايثون" class="img-fluid rounded">
+                            <!-- SEO: Added descriptive alt text -->
+                            <img src="<?= base_url() ?>site/images/python_2_1.jpg" alt="مثال على كود أساسيات لغة بايثون في المستوى 2.1" class="img-fluid rounded">
                         </div>
-
                     </div>
                 </div>
                 <div class="col-lg-5 ms-auto" data-aos="fade-up" data-aos-delay="100">
+                    <!-- SEO: H2 for level title (could be H3 if H2 is used above for the section intro, adjust based on overall structure) -->
                     <h2 class="section-title mb-4 text-primary">المستوى 2.1: أساسيات لغة بايثون</h2>
                     <p class="text-muted"><strong>8 حصص / ~12 ساعة</strong></p>
                     <ul class="list-unstyled ul-check primary">
@@ -243,6 +246,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 me-auto" data-aos="fade-up" data-aos-delay="0">
+                    <!-- SEO: H2 for level title (adjust to H3 if needed) -->
                     <h2 class="section-title mb-4 text-primary">المستوى 2.2: أدوات بايثون المتقدمة وحل المشكلات</h2>
                     <p class="text-muted"><strong>10 حصص / ~15 ساعة</strong></p>
                     <ul class="list-unstyled ul-check primary">
@@ -257,7 +261,8 @@
                 <div class="col-lg-6 ms-auto" data-aos="fade-up" data-aos-delay="100">
                     <div class="image-stack">
                         <div class="image-stack__item image-stack__item--bottom">
-                            <img src="<?= base_url() ?>site/images/python_2_1.jpg" alt="دروس بايثون المتقدمة" class="img-fluid rounded">
+                            <!-- SEO: Added descriptive alt text -->
+                            <img src="<?= base_url() ?>site/images/python_2_2.jpg" alt="شاشة تعرض كود بايثون متقدم لمشروع المستوى 2.2" class="img-fluid rounded">
                         </div>
                     </div>
                 </div>
@@ -270,10 +275,12 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <!-- SEO: H2 for section title -->
                     <h2 class="line-bottom text-center mb-4">💡 الفوائد الرئيسية لمسار بايثون</h2>
                 </div>
             </div>
             <div class="row">
+                <!-- SEO: Using H3 for benefit titles -->
                 <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
                     <div class="feature text-center h-100">
                         <span class="uil uil-briefcase"></span>
@@ -306,23 +313,125 @@
         </div> <!-- /.container -->
     </div> <!-- /.untree_co-section -->
 
+    <!-- Pricing Section -->
+    <!-- SEO: Background image is decorative, alt text not needed, ensure text is clear -->
+    <div class="untree_co-section" id="pricing" style="background-image: url('<?= base_url() ?>site/images/pattern-bg.png'); background-repeat: repeat; background-size: 200px;">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <!-- SEO: H2 for section title -->
+                    <h2 class="line-bottom text-center mb-4">💰 الأسعار والباقات لمسار بايثون</h2>
+                    <p>استثمارك في لغة المستقبل القوية مع خطط أسعار مرنة.</p>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing h-100 text-center bg-white rounded shadow-sm d-flex flex-column">
+                        <div class="pricing-header py-4 px-3">
+                            <!-- SEO: H3 for pricing plan name -->
+                            <h3>المستوى 2.1</h3>
+                            <div class="price">
+                                <span class="currency">$</span>
+                                <span class="amount">276</span>
+                            </div>
+                            <p class="pricing-text">أساسيات لغة بايثون</p>
+                        </div>
+                        <div class="pricing-body py-4 px-3 flex-grow-1">
+                            <ul class="list-unstyled">
+                                <li class="py-2">8 حصص تعليمية</li>
+                                <li class="py-2">~12 ساعة تدريبية</li>
+                                <li class="py-2">سعر الساعة: ~$23</li>
+                                <li class="py-2">مشروع نهائي للمستوى</li>
+                                <li class="py-2">شهادة إتمام المستوى</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer py-4 px-3 mt-auto"> <!-- Added mt-auto for consistent button alignment -->
+                            <!-- SEO: Corrected link to point to #register -->
+                            <a href="#register" class="btn btn-outline-primary">سجّل في هذا المستوى</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing h-100 text-center bg-white rounded shadow-sm d-flex flex-column">
+                        <div class="pricing-header py-4 px-3">
+                            <!-- SEO: H3 for pricing plan name -->
+                            <h3>المستوى 2.2</h3>
+                            <div class="price">
+                                <span class="currency">$</span>
+                                <span class="amount">345</span>
+                            </div>
+                            <p class="pricing-text">أدوات بايثون المتقدمة</p>
+                        </div>
+                        <div class="pricing-body py-4 px-3 flex-grow-1">
+                            <ul class="list-unstyled">
+                                <li class="py-2">10 حصص تعليمية</li>
+                                <li class="py-2">~15 ساعة تدريبية</li>
+                                <li class="py-2">سعر الساعة: ~$23</li>
+                                <li class="py-2">مشروع نهائي متقدم</li>
+                                <li class="py-2">شهادة إتمام المستوى</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer py-4 px-3 mt-auto"> <!-- Added mt-auto -->
+                            <!-- SEO: Corrected link to point to #register -->
+                            <a href="#register" class="btn btn-outline-primary">سجّل في هذا المستوى</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing pricing-popular h-100 text-center bg-white rounded shadow d-flex flex-column">
+                        <span class="popularity-badge">العرض الأفضل!</span>
+                        <div class="pricing-header py-4 px-3">
+                            <!-- SEO: H3 for pricing plan name -->
+                            <h3>المسار الكامل</h3>
+                            <div class="price">
+                                <span class="currency">$</span>
+                                <span class="amount">550</span>
+                                <del class="text-muted">$621</del>
+                            </div>
+                            <p class="pricing-text">المستويين معًا مع خصم ~11%</p>
+                        </div>
+                        <div class="pricing-body py-4 px-3 flex-grow-1">
+                            <ul class="list-unstyled">
+                                <li class="py-2">18 حصة تعليمية</li>
+                                <li class="py-2">~27 ساعة تدريبية</li>
+                                <li class="py-2"><strong>خصم ~11% على السعر الكامل</strong></li>
+                                <li class="py-2">مشاريع متدرجة المستوى</li>
+                                <li class="py-2">شهادة إتمام المسار الكامل</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer py-4 px-3 mt-auto"> <!-- Added mt-auto -->
+                            <!-- SEO: Corrected link to point to #register -->
+                            <a href="#register" class="btn btn-primary">سجّل في المسار الكامل</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Pricing Section -->
+
     <!-- Course Summary -->
-    <div class="untree_co-section">
+    <div class="untree_co-section bg-light">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <!-- SEO: H2 for section title -->
                     <h2 class="line-bottom text-center mb-4">📊 ملخص المسار</h2>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
                     <div class="row text-center">
+                        <!-- SEO: Clear summary information -->
                         <div class="col-md-4 mb-4">
                             <div class="counter">
                                 <div class="counter-number">
                                     <span class="uil uil-clock"></span>
                                     <span class="counter-text">
-                                    <strong>27</strong>
+                                    <strong>~27</strong>
                                     <span>ساعة دراسية</span>
                                 </span>
                                 </div>
@@ -344,7 +453,7 @@
                                 <div class="counter-number">
                                     <span class="uil uil-hourglass"></span>
                                     <span class="counter-text">
-                                    <strong>90</strong>
+                                    <strong>~90</strong>
                                     <span>دقيقة لكل حصة</span>
                                 </span>
                                 </div>
@@ -357,16 +466,18 @@
     </div>
 
     <!-- Call to Action -->
-    <div class="untree_co-section bg-light" id="register">
+    <div class="untree_co-section" id="register"> <!-- SEO: ID matches links -->
         <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col-lg-7" data-aos="fade-up" data-aos-delay="0">
+                    <!-- SEO: H2 for section title -->
                     <h2 class="line-bottom text-center mb-4">✨ استثمر في مهارات المستقبل اليوم! ✨</h2>
                     <p class="mb-5">جهز ابنك/ابنتك بلغة البرمجة التي تقود الابتكار في العالم.</p>
-
                     <p>
-                        <a href="#register-form" class="btn btn-primary btn-lg">سجل الآن في مسار بايثون!</a>
+                        <!-- SEO: Clear Call to Action links pointing to correct anchor -->
+                        <a href="#register" class="btn btn-primary btn-lg">سجل الآن في مسار بايثون!</a>
                         <a href="#contact" class="btn btn-outline-primary btn-lg ms-3">تواصل معنا للمزيد من المعلومات</a>
+                        <!-- SEO Note: Ensure #contact ID exists or link points to contact page -->
                     </p>
                 </div>
             </div>
@@ -377,4 +488,7 @@
 
 <?= $this->section('js'); ?>
     <!-- Additional JS if needed -->
+    <script>
+        // Optional: JS for pricing toggle or effects if added later
+    </script>
 <?php $this->endSection(); ?>
