@@ -25,10 +25,8 @@
                     </p>
 
                     <p data-aos="fade-up" data-aos-delay="300">
-                        <!-- SEO: Internal anchor links -->
-                        <a href="#register" class="btn btn-primary">سجّل الآن!</a>
-                        <a href="#contact" class="btn btn-outline-primary ms-2">تواصل معنا</a>
-                        <!-- SEO Note: Ensure #contact ID exists or links to contact page -->
+                        <a href="#pricing" class="btn btn-primary">اكتشف تفاصيل المسار والسعر</a>
+                        <a href="https://wa.me/201032863861?text=أرغب في حجز استشارة مجانية بخصوص مسار الويب" target="_blank" rel="noopener" class="btn btn-outline-primary btn-lg">احجز استشارتك المجانية الآن</a>
                     </p>
                 </div>
                 <div class="col-lg-5" data-aos="fade-up" data-aos-delay="0">
@@ -88,7 +86,7 @@
             <div class="row">
                 <div class="col-lg-5 mr-auto mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
                     <!-- SEO: Added descriptive alt text -->
-                    <img src="<?= base_url() ?>site/images/web_students.jpg" alt="طلاب يشاركون في دورة تطوير وتصميم مواقع الويب" class="img-fluid rounded">
+                    <img src="<?= base_url() ?>site/images/students_learn.jpg" alt="طلاب يتعلمون البرمجة في دورة تفاعلية أونلاين" class="img-fluid rounded shadow-sm">
                 </div>
                 <div class="col-lg-7 ml-auto" data-aos="fade-up" data-aos-delay="100">
                     <!-- SEO: Changed from H3 to H2 for section title -->
@@ -307,7 +305,7 @@
                         </div>
                         <div class="pricing-footer py-4 px-3 mt-auto">
                             <!-- SEO: Corrected link to #register -->
-                            <a href="#register" class="btn btn-outline-primary btn-sm">سجّل في HTML</a>
+                            <a href="<?= base_url('checkout/4') ?>" class="btn btn-outline-primary btn-sm">سجّل في HTML</a>
                         </div>
                     </div>
                 </div>
@@ -335,7 +333,7 @@
                         </div>
                         <div class="pricing-footer py-4 px-3 mt-auto">
                             <!-- SEO: Corrected link to #register -->
-                            <a href="#register" class="btn btn-outline-primary btn-sm">سجّل في CSS</a>
+                            <a href="<?= base_url('checkout/5') ?>" class="btn btn-outline-primary btn-sm">سجّل في CSS</a>
                         </div>
                     </div>
                 </div>
@@ -363,7 +361,7 @@
                         </div>
                         <div class="pricing-footer py-4 px-3 mt-auto">
                             <!-- SEO: Corrected link to #register -->
-                            <a href="#register" class="btn btn-outline-primary btn-sm">سجّل في JavaScript</a>
+                            <a href="<?= base_url('checkout/6') ?>" class="btn btn-outline-primary btn-sm">سجّل في JavaScript</a>
                         </div>
                     </div>
                 </div>
@@ -465,7 +463,7 @@
                     <p>
                         <!-- SEO: Clear CTAs pointing to correct anchors -->
                         <a href="#register" class="btn btn-primary btn-lg">سجل الآن في مسار تطوير الويب!</a>
-                        <a href="#contact" class="btn btn-outline-primary btn-lg ms-3">تواصل معنا للمزيد من المعلومات</a>
+                        <a href="https://wa.me/201032863861?text=أرغب في حجز استشارة مجانية بخصوص مسار الويب" target="_blank" rel="noopener" class="btn btn-outline-primary btn-lg">احجز استشارتك المجانية الآن</a>
                         <!-- SEO Note: Ensure #contact ID exists or links to contact page -->
                     </p>
                 </div>

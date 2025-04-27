@@ -23,12 +23,9 @@
                     <p data-aos="fade-up" data-aos-delay="250">
                         هذا المسار يركز على جعل عملية تطوير التطبيقات ممتعة ومتاحة، مما يسمح بتصميم الواجهات، برمجة السلوك، واستخدام ميزات الهاتف بطريقة بصرية.
                     </p>
-
                     <p data-aos="fade-up" data-aos-delay="300">
-                        <!-- SEO: Internal anchor links -->
-                        <a href="#register" class="btn btn-primary">سجّل الآن!</a>
-                        <a href="#contact" class="btn btn-outline-primary ms-2">تواصل معنا</a>
-                        <!-- SEO Note: Ensure #contact ID exists or links to contact page -->
+                        <a href="#pricing" class="btn btn-primary">اكتشف تفاصيل المسار والسعر</a>
+                        <a href="<?= base_url('checkout/7') ?>" target="_blank" rel="noopener" class="btn btn-outline-primary ms-2">سجل الأن</a>
                     </p>
                 </div>
                 <div class="col-lg-5" data-aos="fade-up" data-aos-delay="0">
@@ -88,7 +85,7 @@
             <div class="row">
                 <div class="col-lg-5 mr-auto mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
                     <!-- SEO: Added descriptive alt text -->
-                    <img src="<?= base_url() ?>site/images/mobile_students.jpg" alt="طلاب يشاركون في دورة تعلم بناء تطبيقات الهاتف باستخدام App Inventor" class="img-fluid rounded">
+                    <img src="<?= base_url() ?>site/images/students_learn.jpg" alt="طلاب يتعلمون البرمجة في دورة تفاعلية أونلاين" class="img-fluid rounded shadow-sm">
                 </div>
                 <div class="col-lg-7 ml-auto" data-aos="fade-up" data-aos-delay="100">
                     <!-- SEO: Changed from H3 to H2 for section title -->
@@ -300,7 +297,7 @@
                         </div>
                         <div class="pricing-footer py-4 px-3 mt-auto">
                             <!-- SEO: Corrected link to #register -->
-                            <a href="#register" class="btn btn-outline-primary btn-sm">سجّل في المستوى الأساسي</a>
+                            <a href="<?= base_url('checkout/7') ?>" class="btn btn-outline-primary btn-sm">سجّل في المستوى الأساسي</a>
                         </div>
                     </div>
                 </div>
@@ -328,7 +325,7 @@
                         </div>
                         <div class="pricing-footer py-4 px-3 mt-auto">
                             <!-- SEO: Corrected link to #register -->
-                            <a href="#register" class="btn btn-outline-primary btn-sm">سجّل في المستوى المتقدم</a>
+                            <a href="<?= base_url('checkout/8') ?>" class="btn btn-outline-primary btn-sm">سجّل في المستوى المتقدم</a>
                         </div>
                     </div>
                 </div>
@@ -429,8 +426,8 @@
                     <p class="mb-5">امنحهم الفرصة ليصبحوا من صانعي التكنولوجيا، وليس فقط مستهلكيها.</p>
                     <p>
                         <!-- SEO: Clear CTAs pointing to correct anchors -->
-                        <a href="#register" class="btn btn-primary btn-lg">سجل الآن في مسار صناعة التطبيقات!</a>
-                        <a href="#contact" class="btn btn-outline-primary btn-lg ms-3">تواصل معنا للمزيد من المعلومات</a>
+                        <a href="<?= base_url('checkout/7') ?>" class="btn btn-primary btn-lg">سجل الآن في مسار صناعة التطبيقات!</a>
+                        <a href="https://wa.me/201032863861?text=أرغب في حجز استشارة مجانية بخصوص مسار تطبيقات الجوال" target="_blank" rel="noopener" class="btn btn-outline-primary btn-lg">احجز استشارتك المجانية الآن</a>
                         <!-- SEO Note: Ensure #contact ID exists or links to contact page -->
                     </p>
                 </div>

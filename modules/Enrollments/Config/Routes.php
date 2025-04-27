@@ -20,19 +20,14 @@ $routes->group('dt_admin', [
     // List Enrollments (DataTables usage)
     $routes->match(['GET', 'POST'], 'enrollments', [AdminEnrollments::class, 'index']);
     $routes->post('enrollments/index', [AdminEnrollments::class, 'index']);
-
     // Add new enrollment (or payment record)
     $routes->match(['GET', 'POST'], 'enrollments/add', [AdminEnrollments::class, 'add']);
-
     // Edit enrollment
     $routes->match(['GET', 'POST'], 'enrollments/edit/(:num)', [AdminEnrollments::class, 'edit/$1']);
-
     // Show enrollment details
     $routes->post('enrollments/show/(:num)', [AdminEnrollments::class, 'show/$1']);
-
     // Switch toggle (active/inactive or status toggles)
     $routes->post('enrollments/switchToggle', [AdminEnrollments::class, 'switchToggle']);
-
     // Delete enrollment
     $routes->post('enrollments/delete', [AdminEnrollments::class, 'delete']);
 });
