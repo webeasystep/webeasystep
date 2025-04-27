@@ -40,6 +40,7 @@ class Auth extends ShieldAuth
     public const RECORD_LOGIN_ATTEMPT_FAILURE = 1; // Record only failures
     public const RECORD_LOGIN_ATTEMPT_ALL     = 2; // Record all login attempts
 
+
     /**
      * --------------------------------------------------------------------
      * View files

@@ -90,7 +90,7 @@
 
                 <!-- Example: Show a special button if on homepage -->
                 <?php if (current_url() == site_url()): ?>
-                    <a href="#bookNow" class="btn-book btn btn-secondary btn-sm menu-absolute">Book a Free Lesson</a>
+                    <a href="#book-free-session" class="btn-book btn btn-secondary btn-sm menu-absolute">احجز حصة مجانية</a>
                 <?php endif; ?>
 
                 <!-- Mobile Toggle -->

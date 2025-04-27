@@ -26,35 +26,10 @@
                 <div class="widget">
                     <h3>المسارات</h3>
                     <ul class="list-unstyled float-right links">
-                        <li><a href="#">مسار المبتدئين</a></li>
-                        <li><a href="#">مسار التأسيس</a></li>
-                        <li><a href="#">المسار المتقدم</a></li>
-                    </ul>
-                </div> <!-- /.widget -->
-            </div> <!-- /.col-lg-3 -->
-
-            <div class="col-lg-3">
-                <div class="widget">
-                    <h3>معرض الصور</h3>
-                    <ul class="instafeed instagram-gallery list-unstyled">
-                        <li><a class="instagram-item" href="<?= base_url() ?>site/images/gal_1.jpg" data-fancybox="gal"><img
-                                        src="<?= base_url() ?>site/images/gal_1.jpg" alt="" width="72" height="72"></a>
-                        </li>
-                        <li><a class="instagram-item" href="<?= base_url() ?>site/images/gal_2.jpg" data-fancybox="gal"><img
-                                        src="<?= base_url() ?>site/images/gal_2.jpg" alt="" width="72" height="72"></a>
-                        </li>
-                        <li><a class="instagram-item" href="<?= base_url() ?>site/images/gal_3.jpg" data-fancybox="gal"><img
-                                        src="<?= base_url() ?>site/images/gal_3.jpg" alt="" width="72" height="72"></a>
-                        </li>
-                        <li><a class="instagram-item" href="<?= base_url() ?>site/images/gal_4.jpg" data-fancybox="gal"><img
-                                        src="<?= base_url() ?>site/images/gal_4.jpg" alt="" width="72" height="72"></a>
-                        </li>
-                        <li><a class="instagram-item" href="<?= base_url() ?>site/images/gal_5.jpg" data-fancybox="gal"><img
-                                        src="<?= base_url() ?>site/images/gal_5.jpg" alt="" width="72" height="72"></a>
-                        </li>
-                        <li><a class="instagram-item" href="<?= base_url() ?>site/images/gal_6.jpg" data-fancybox="gal"><img
-                                        src="<?= base_url() ?>site/images/gal_6.jpg" alt="" width="72" height="72"></a>
-                        </li>
+                        <li><a href="<?= base_url() ?>/pages/scratch_track">مسار المبتدئين</a></li>
+                        <li><a href="<?= base_url() ?>/pages/python_track">مسار التأسيس</a></li>
+                        <li><a href="<?= base_url() ?>/pages/web_track">مسار تخصص الويب</a></li>
+                        <li><a href="<?= base_url() ?>/pages/mobile_track">مسار تخصص الموبايل</a></li>
                     </ul>
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-3 -->

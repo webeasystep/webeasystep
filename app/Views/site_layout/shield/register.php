@@ -1,4 +1,3 @@
-
 <?=$this->extend('site_layout/template');?>
 <?= $this->section('content') ?>
 
@@ -12,11 +11,10 @@
                 <form method="post">
                     <div class="contact-form">
                         <h1><?= lang('Auth.register') ?></h1>
-
                         <?= csrf_field() ?>
 
                         <p class="text-center"><?= lang('Auth.haveAccount') ?> <a
-                                    href="<?= url_to('site/login') ?>"><?= lang('Auth.login') ?></a></p>
+                                    href="<?= url_to('login') ?>"><?= lang('Auth.login') ?></a></p>
 
                         <!-- Email -->
                         <div class="form-group">

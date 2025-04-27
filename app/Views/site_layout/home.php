@@ -75,7 +75,7 @@
                     <div class="package_item_head">
                         <div>
                             <!-- SEO: Changed from <p> to <h3> for better heading structure -->
-                            <h3>المسار المتوسط: Python</h3>
+                            <h3>مسار التأسيس: Python</h3>
                             <!-- SEO: Added descriptive alt text -->
                             <img src="<?= base_url() ?>site/images/package/python.png" alt="شعار لغة بايثون لتعليم البرمجة" />
                         </div>
@@ -108,7 +108,7 @@
                     <div class="package_item_head">
                         <div>
                             <!-- SEO: Changed from <p> to <h3> for better heading structure -->
-                            <h3>المسار المتقدم: تطوير الويب</h3>
+                            <h3>مسار التخصص: تطوير الويب</h3>
                             <!-- SEO: Added descriptive alt text -->
                             <img src="<?= base_url() ?>site/images/package/globe.png" alt="أيقونة مسار تطوير الويب" />
                         </div>
@@ -119,7 +119,7 @@
                     <div class="package_item_head">
                         <div>
                             <!-- SEO: Changed from <p> to <h3> for better heading structure -->
-                            <h3>المسار المتقدم: تطوير تطبيقات الجوال</h3>
+                            <h3>مسار التخصص: تطوير تطبيقات الجوال</h3>
                             <!-- SEO: Added descriptive alt text -->
                             <img src="<?= base_url() ?>site/images/package/mobile.png" alt="أيقونة مسار تطوير تطبيقات الجوال" />
                         </div>
@@ -187,7 +187,7 @@
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="0">
                     <!-- SEO: H2 for section title - Good structure -->
-                    <h2 class="line-bottom text-center mb-4">لماذا يختار أولياء الأمور أكاديميتنا لأبنائهم؟</h2>
+                    <h2 class="line-bottom text-center mb-4">لماذا تختار مسارلينك؟</h2>
                     <p>نحن لا نعلم البرمجة فقط، بل نبني جيلاً مبدعاً ومؤهلاً للمستقبل، مع تجربة تعليمية فريدة ومتابعة لصيقة مصممة لطلاب نظام المسارات.</p>
                 </div>
             </div>
@@ -277,28 +277,30 @@
     </div>
     <!-- /.untree_co-section -->
 
-    <!-- Guarantee Section -->
-    <div class="untree_co-section bg-light">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center" data-aos="fade-up" data-aos-delay="0">
-                    <figure class="mb-4">
-                        <!-- SEO: Added descriptive alt text for the guarantee seal -->
-                        <img src="<?= base_url() ?>site/images/gurantee.png" alt="شعار ضمان استعادة الأموال ١٠٠٪ لرضا العملاء" class="img-fluid rounded" style="max-width: 150px;">
-                    </figure>
-                    <!-- SEO: H2 for section title - Good structure -->
-                    <h2 class="mb-4">ضماننا الذهبي: رضاك أو استرداد أموالك بالكامل!</h2>
-                    <p class="lead" style="font-size: 1.1rem;">
-                        نثق تمامًا بجودة المحتوى وشغف المدرب وخبرته، ونؤمن بأن ابنك سيحقق أقصى استفادة. <br> ولكن، إن لم تكن راضيًا تمامًا لأي سبب خلال الفترة الأولى من الدورة، يمكنك طلب استرداد كامل المبلغ المدفوع، بدون أي أسئلة.
-                    </p>
-                    <p class="mt-4">
-                        <!-- SEO: Internal anchor link - Good CTA -->
-                        <a href="#learning-tracks" class="btn btn-primary btn-lg">ابدأ رحلتك التعليمية بأمان الآن</a>
-                    </p>
-                </div>
+<!-- Free Session Booking Section -->
+<div class="untree_co-section bg-light" id="book-free-session">}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center" data-aos="fade-up" data-aos-delay="0">
+                <figure class="mb-4">
+                    <!-- Option 1: Icon -->
+                    <span class="uil uil-calendar-alt display-4 text-primary mb-3"></span>
+                    <!-- Option 2: Remove icon if preferred -->
+                </figure>
+                <!-- SEO: H2 for section title - Good structure -->
+                <h2 class="mb-4">جرب قبل أن تقرر: احجز حصة تعريفية مجانية!</h2>
+                <p class="lead" style="font-size: 1.1rem;">
+                    غير متأكد أو لديك أسئلة؟ احجز **حصة تعريفية مجانية (20 دقيقة عبر Zoom)** مع المدرب م/أحمد فخر الدين. <br>
+                    جرب أسلوبنا مباشرة، اطرح استفساراتك، وتأكد أنه المسار الأنسب لابنك في هذه الجلسة السريعة.
+                </p>
+                <p class="mt-4">
+                    <!-- SEO: Clear Call to Action linking to WhatsApp for booking -->
+                    <a href="https://wa.me/201032863861?text=أرغب في حجز حصة تعريفية مجانية لمدة 20 دقيقة" target="_blank" rel="noopener" class="btn btn-primary btn-lg">احجز حصتك التعريفية المجانية (20 دقيقة)</a>
+                </p>
             </div>
         </div>
     </div>
-    <!-- End Guarantee Section -->
+</div>
+<!-- End Free Session Booking Section -->
 
 <?= $this->endSection(); ?>

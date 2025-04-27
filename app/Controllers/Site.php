@@ -158,7 +158,7 @@ class Site extends BaseController
 
         // If it's a GET request, we'll display the login form or redirect if already logged in
         if (auth()->loggedIn()) {
-            $redirectURL =  site_url('/exams');
+            $redirectURL =  site_url('/courses/my_courses');
             return redirect()->to($redirectURL);
         }
         // Set a return URL if none is specified
@@ -172,6 +172,7 @@ class Site extends BaseController
 
     public function register()
     {
+
         if (auth()->loggedIn()) {
             return redirect()->back();
         }
@@ -229,11 +230,11 @@ class Site extends BaseController
             // Auto-login after successful registration
             auth()->login($user);
             $this->show_msg('success', lang('Auth.registerSuccess'), "تم تسجيل الدخول بنجاح!");
-            return redirect()->to('/exams/start');
+            return redirect()->to('//courses/my_courses');
         }
 
-        $data['page_name'] = 'register';
         $data['title'] = lang('Site.register');
+
         return MainView($this->config->siteViews['register'], $data);
     }
 
