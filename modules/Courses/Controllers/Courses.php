@@ -28,23 +28,6 @@ class Courses extends BaseController
             ->get()
             ->getResultArray();
 
-        // (Optional) Check if user is logged in
-        $userId = session()->get('user_id');
-        $enrolledCourseIds = [];
-
-        // If user is logged in, fetch the courses they’re enrolled in
-        if (!empty($userId)) {
-            $userCourses = $this->db
-                ->table('tb_enrollments')  // <-- use the correct table name here
-                ->select('course_id')
-                ->where('user_id', $userId)
-                ->get()
-                ->getResultArray();
-
-            // Extract course_ids into a simple array
-            $enrolledCourseIds = array_column($userCourses, 'course_id');
-        }
-
         // Pre-process each course
         foreach ($data['courses'] as &$course) {
             // Provide a fallback if short_desc doesn't exist
@@ -65,7 +48,7 @@ class Courses extends BaseController
             $course['lesson_count'] = $lessonCount;
 
             // Mark if user is enrolled
-            $course['is_enrolled'] = in_array($course['id'], $enrolledCourseIds);
+            $course['is_enrolled'] = true;
         }
         unset($course); // Good practice after reference loops
 
@@ -92,13 +75,7 @@ class Courses extends BaseController
         $structure = json_decode($course->course_structure ?? '[]', true);
 
         // 3) Check if user is enrolled
-        //    If user is logged in, check enrollment in the DB
-        //    e.g. $this->coursesModel->isUserEnrolled($userId, $course->id)
-        $userId      = auth()->loggedIn() ? auth()->user()->id : null;
-        $isEnrolled  = false;
-        if ($userId) {
-            $isEnrolled = $this->coursesModel->isUserEnrolled($userId, $course->id);
-        }
+        $isEnrolled  = true;
 
         // 4) Prepare data for the view
         $data = [

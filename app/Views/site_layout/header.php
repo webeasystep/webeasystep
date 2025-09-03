@@ -5,13 +5,14 @@
     <meta name="description" content="<?= setting('App.site_description_ar'); ?>">
     <meta name="keywords" content="<?= setting('App.site_keywords'); ?>">
     <meta name="author" content="msarlink.com" />
-
-    <!-- Facebook and Twitter integration -->
     <meta property="og:url" content="<?= current_url(); ?>"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="<?= setting('App.title'); ?>"/>
-    <meta property="og:site_name" content="<?= setting('App.title'); ?>"/>
     <meta property="og:description" content="<?= setting('App.site_description_ar'); ?>"/>
+    <meta property="og:image" content="<?= base_url() ?>site/images/feature_logo.png"/>
+    <meta property="og:image:width"   content="500"/>
+    <meta property="og:image:height"  content="500"/>
+    <meta property="og:site_name" content="msarlink.com"/>
     <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-16x16.png" sizes="16x16" />
 

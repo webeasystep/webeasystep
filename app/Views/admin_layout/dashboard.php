@@ -73,8 +73,8 @@
             <!-- small card -->
             <div class="small-box bg-gradient-gray">
                 <div class="inner">
-                    <h3><?= esc($tb_payments) ?></h3>
-                    <p><?= lang("Admin.courses_sections") ?></p>
+                    <h3><?= esc($users) ?></h3>
+                    <p><?= lang("Admin.users") ?></p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-solid fa-user-plus"></i>

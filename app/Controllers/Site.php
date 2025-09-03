@@ -46,36 +46,12 @@ class Site extends BaseController
             ->get()
             ->getResultArray();
 
-        // 2) Categories
-        $data['categories'] = $this->db
-            ->table('tb_categories')
-            ->where('active', 1)
-            ->get()
-            ->getResultArray();
-
-        // 3) Courses
+        // 2) Courses
         $data['courses'] = $this->db
             ->table('tb_courses')
             ->where('active', 1)
             ->get()
             ->getResultArray();
-
-        // (Optional) Check if user is logged in
-        $userId = session()->get('user_id');
-        $enrolledCourseIds = [];
-
-        // If user is logged in, fetch the courses they’re enrolled in
-        if (!empty($userId)) {
-            $userCourses = $this->db
-                ->table('tb_enrollments')  // <-- use the correct table name here
-                ->select('course_id')
-                ->where('user_id', $userId)
-                ->get()
-                ->getResultArray();
-
-            // Extract course_ids into a simple array
-            $enrolledCourseIds = array_column($userCourses, 'course_id');
-        }
 
         // Pre-process each course
         foreach ($data['courses'] as &$course) {
@@ -96,8 +72,8 @@ class Site extends BaseController
             }
             $course['lesson_count'] = $lessonCount;
 
-            // Mark if user is enrolled
-            $course['is_enrolled'] = in_array($course['id'], $enrolledCourseIds);
+            // Since users now have direct access, all courses are considered enrolled
+            $course['is_enrolled'] = true;
         }
         unset($course); // Good practice after reference loops
 

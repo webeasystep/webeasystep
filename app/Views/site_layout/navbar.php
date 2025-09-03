@@ -39,7 +39,7 @@
                     <!-- Email -->
                     <a href="mailto:info@mydomain.com" class="small mr-3" dir="ltr">
                         <span class="icon-envelope mr-2"></span>
-                        <span class="d-none d-lg-inline-block">info@webeasystep.com</span>
+                        <span class="d-none d-lg-inline-block">info@msarlink.com</span>
                     </a>
                 </div>
 
@@ -51,15 +51,15 @@
                             <span class="icon-user"></span>&nbsp;&nbsp;&nbsp;
                             My Courses
                         </a>-->
-                        <a href="<?= site_url('site/logout') ?>" class="small">
+                        <a href="<?= site_url('logout') ?>" class="small">
                             <span class="icon-lock"></span> تسجيل الخروج
                         </a>
                     <?php else: ?>
                         <!-- If not logged in -->
-                        <a href="<?= site_url('site/login') ?>" class="small mr-3">
+                        <a href="<?= site_url('login') ?>" class="small mr-3">
                             <span class="icon-lock"></span>تسجيل الدخول
                         </a>
-                        <a href="<?= site_url('site/register') ?>" class="small">
+                        <a href="<?= site_url('register') ?>" class="small">
                             <span class="icon-person"></span>حساب جديد
                         </a>
                     <?php endif; ?>
@@ -77,15 +77,19 @@
                     <li <?= current_url() == site_url() ? 'class="active"' : '' ?>>
                         <a href="<?= site_url() ?>">الرئيسية</a>
                     </li>
-                    <li <?= current_url() == site_url('about') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('pages/about') ?>">عن الموقع</a>
-                    </li>
-             <!--       <li <?/*= current_url() == site_url('staff') ? 'class="active"' : '' */?>>
-                        <a href="<?/*= site_url('courses') */?>">الكورسات</a>
-                    </li>-->
-                    <li <?= current_url() == site_url('news') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('articles') ?>">المدونة</a>
-                    </li>
+                        <li <?= current_url() == site_url('pages/scratch_track') ? 'class="active"' : '' ?>>
+                            <a href="<?= site_url('pages/scratch_track') ?>">مسار المبتدئين</a>
+                        </li>
+                        <li <?= current_url() == site_url('pages/python_track') ? 'class="active"' : '' ?>>
+                            <a href="<?= site_url('pages/python_track') ?>">مسار التأسيس</a>
+                        </li>
+                        <li <?= current_url() == site_url('pages/web_track') ? 'class="active"' : '' ?>>
+                            <a href="<?= site_url('pages/web_track') ?>">مسار تخصص الويب</a>
+                        </li>
+                        <li <?= current_url() == site_url('pages/mobile_track') ? 'class="active"' : '' ?>>
+                            <a href="<?= site_url('pages/mobile_track') ?>">مسار تخصص الموبايل</a>
+                        </li>
+
                 </ul>
 
                 <!-- Example: Show a special button if on homepage -->
