@@ -57,7 +57,7 @@
             <!-- small card -->
             <div class="small-box bg-gradient-blue">
                 <div class="inner">
-                    <h3><?= esc($tb_payments) ?></h3>
+                    <h3><?= lang("Admin.payments") ?></h3>
                     <p><?= lang("Admin.payments") ?></p>
                 </div>
                 <div class="icon">

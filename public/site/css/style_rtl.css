@@ -772,7 +772,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
 }
 
 .sticky-wrapper {
-    position: absolute;
+    position: relative;
     z-index: 100;
     width: 100%;
 }
@@ -841,7 +841,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
     background: transparent;
 }
 
-#sticky-wrapper.is-sticky .sticky-nav {
+.sticky-wrapper.is-sticky .sticky-nav {
     padding-top: 10px;
     padding-bottom: 10px;
     background: white;
@@ -851,26 +851,26 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
     backdrop-filter: blur(1rem);
 }
 
-#sticky-wrapper.is-sticky .sticky-nav .burger:before, #sticky-wrapper.is-sticky .sticky-nav .burger span, #sticky-wrapper.is-sticky .sticky-nav .burger:after {
+.sticky-wrapper.is-sticky .sticky-nav .burger:before, .sticky-wrapper.is-sticky .sticky-nav .burger span, .sticky-wrapper.is-sticky .sticky-nav .burger:after {
     background: #000000;
     -webkit-transition: .0s all ease;
     -o-transition: .0s all ease;
     transition: .0s all ease;
 }
 
-#sticky-wrapper.is-sticky .sticky-nav .logo {
+.sticky-wrapper.is-sticky .sticky-nav .logo {
     color: #000000 !important;
 }
 
-#sticky-wrapper.is-sticky .sticky-nav .site-menu > li > a {
+.sticky-wrapper.is-sticky .sticky-nav .site-menu > li > a {
     color: #000000 !important;
 }
 
-#sticky-wrapper.is-sticky .sticky-nav .site-menu > li > a:hover, #sticky-wrapper.is-sticky .sticky-nav .site-menu > li > a.active {
+.sticky-wrapper.is-sticky .sticky-nav .site-menu > li > a:hover, .sticky-wrapper.is-sticky .sticky-nav .site-menu > li > a.active {
     color: #136ad5 !important;
 }
 
-#sticky-wrapper.is-sticky .sticky-nav .site-menu > li.active a {
+.sticky-wrapper.is-sticky .sticky-nav .site-menu > li.active a {
     color: #136ad5 !important;
 }
 
@@ -2337,6 +2337,20 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
 
     .whatsapp-float i {
         font-size: 18px;
+    }
+    
+    /* Mobile sticky navigation adjustments */
+    .sticky-wrapper.is-sticky .sticky-nav {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    
+    .hero-webinar {
+        padding-top: 120px !important;
+    }
+    
+    .sticky-wrapper.is-sticky ~ .hero-webinar {
+        padding-top: 100px !important;
     }
 }
 

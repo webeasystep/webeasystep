@@ -3,16 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Untree.co">
+    <meta name="author" content="Ahmed Fakhr">
     <link rel="shortcut icon" href="favicon.ico">
 
     <meta name="description"
-          content="أول أكاديمية متخصصة في تدريس علوم الحاسب لطلبة المرحلة الثانوية بالمملكة العربية السعودية وإعدادهم لوظائف المستقبل." />
-    <meta name="keywords" content="bootstrap, bootstrap4" />
+          content="انضم إلى ندوة مجانية لتعلم البرمجة من الصفر مع خبراء منصة مسار لينك - أول أكاديمية متخصصة في تدريس علوم الحاسب للطلاب" />
+    <meta name="keywords" content="برمجة, بكالوريا, ويبنار, مجاني, أحمد فخر, علوم حاسب, مسار لينك" />
 
     <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap"
           rel="stylesheet">
-
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
@@ -28,7 +27,275 @@
     <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="css/style_rtl.css">
 
-    <title>منصة مسار لينك</title>
+    <title>ندوة مجانية - تعلم البرمجة من الصفر | منصة مسار لينك</title>
+
+    <style>
+        /* Landing Page Specific Styles */
+        .hero-webinar {
+            background: linear-gradient(135deg, #136ad5 0%, #1573e8 100%);
+            padding: 150px 0 100px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        
+        /* Ensure proper spacing when sticky navigation is active */
+        .sticky-wrapper.is-sticky ~ .hero-webinar {
+            padding-top: 120px;
+        }
+        
+        .hero-webinar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/hero_bg.jpg') center/cover;
+            opacity: 0.1;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-elements::before {
+            top: 20%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-elements::after {
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 3s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            /* Fix logo positioning to prevent overlap */
+            .logo {
+                top: 10px !important;
+                left: 10px !important;
+                z-index: 999 !important;
+            }
+            
+            .logo img {
+                width: 50px !important;
+                height: 50px !important;
+            }
+            
+            /* Increase hero section top padding significantly */
+            .hero-webinar {
+                padding: 140px 0 60px 0 !important;
+                margin-top: 20px !important;
+            }
+            
+            .sticky-wrapper.is-sticky ~ .hero-webinar {
+                padding-top: 120px !important;
+            }
+            
+            /* Adjust navigation bar */
+            .site-nav {
+                padding-top: 10px !important;
+                padding-bottom: 10px !important;
+            }
+            
+            .top-bar {
+                padding-top: 60px !important;
+            }
+            
+            /* Text sizing */
+            .hero-webinar .heading {
+                font-size: 22px !important;
+                line-height: 1.3;
+                margin-bottom: 15px !important;
+                margin-top: 20px !important;
+            }
+            
+            .hero-webinar h2 {
+                font-size: 17px !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .hero-webinar .lead {
+                font-size: 15px !important;
+                margin-bottom: 20px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Even smaller logo for very small screens */
+            .logo img {
+                width: 45px !important;
+                height: 45px !important;
+            }
+            
+            /* More padding for very small screens */
+            .hero-webinar {
+                padding: 120px 0 50px 0 !important;
+                margin-top: 30px !important;
+            }
+            
+            .sticky-wrapper.is-sticky ~ .hero-webinar {
+                padding-top: 100px !important;
+            }
+            
+            .top-bar {
+                padding-top: 70px !important;
+            }
+            
+            /* Smaller text for very small screens */
+            .hero-webinar .heading {
+                font-size: 18px !important;
+                line-height: 1.2;
+                margin-top: 30px !important;
+            }
+            
+            .hero-webinar h2 {
+                font-size: 15px !important;
+            }
+            
+            .hero-webinar .lead {
+                font-size: 13px !important;
+            }
+        }
+        
+        .cta-button {
+            background: #00aeff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            background: #14b4ff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 174, 255, 0.3);
+        }
+        .section-problem {
+            background: rgba(19, 106, 213, 0.05);
+            padding: 80px 0;
+        }
+        .section-solution {
+            background: white;
+            padding: 80px 0;
+        }
+        .section-about {
+            background: rgba(19, 106, 213, 0.05);
+            padding: 80px 0;
+        }
+        .section-details {
+            background: linear-gradient(135deg, #136ad5 0%, #1573e8 100%);
+            color: white;
+            padding: 80px 0;
+        }
+        .section-social-proof {
+            background: #f8fafc;
+            padding: 80px 0;
+        }
+        .section-closing {
+            background: linear-gradient(135deg, #136ad5 0%, #1573e8 100%);
+            color: white;
+            padding: 80px 0;
+        }
+        .checkmark {
+            color: #00aeff;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+        .problem-icon {
+            font-size: 60px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        .solution-icon {
+            font-size: 60px;
+            color: #00aeff;
+            margin-bottom: 20px;
+        }
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .webinar-details-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .landing-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .landing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #136ad5, #00aeff);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #00aeff, #14b4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
 </head>
 
 <body>
@@ -42,1070 +309,335 @@
         <div class="site-mobile-menu-body"></div>
     </div>
 
-    <style>
-        .logo {
-            display: block; /* or inline-block, depending on your layout */
-            text-align: center; /* Center logo if navigation links are centered */
-            padding: 10px 0; /* Adjust spacing around the logo */
-            right: 100px;
-            /* Add more styling here as needed */
-        }
-
-        /* Ensure sticky-nav sticks to the top */
-        .sticky-nav {
-            position: -webkit-sticky; /* For Safari */
-            position: sticky;
-            top: 0;
-            z-index: 1000; /* Make sure it stays above other content */
-        }
-    </style>
-
-    <!-- navbar -->
+    <!-- Navigation -->
     <nav class="site-nav mb-5">
-
         <a href="index.html" class="logo menu-absolute m-0 d-inline-block">
             <img src="images/logo.png" alt="MsarLink Logo" class="rounded-circle logo-image" style="object-fit: contain;">
         </a>
         <div class="pb-2 top-bar mb-3">
             <div class="container">
                 <div class="row align-items-center">
-
-                    <div class="col-6 col-lg-9">
-                        <a href="#" class="small mr-3" dir="ltr">
-                            <span class="icon-question-circle-o mr-2"></span> <span class="d-none d-lg-inline-block">هل لديك أسئلة؟</span>
+                    <div class="col-12 text-center">
+                        <a href="https://wa.me/201032863861" class="small mr-3" dir="ltr" target="_blank">
+                            <span class="icon-phone mr-2"></span> <span class="d-none d-lg-inline-block">201032863861</span>
                         </a>
-                        <a href="#" class="small mr-3" dir="ltr">
-                            <span class="icon-phone mr-2"></span> <span class="d-none d-lg-inline-block">10 20 123 456</span>
-                        </a>
-                        <a href="#" class="small mr-3" dir="ltr">
-                            <span class="icon-envelope mr-2"></span> <span class="d-none d-lg-inline-block">info@mydomain.com</span>
+                        <a href="mailto:fakhrcshub@gmail.com" class="small mr-3" dir="ltr">
+                            <span class="icon-envelope mr-2"></span> <span class="d-none d-lg-inline-block">fakhrcshub@gmail.com</span>
                         </a>
                     </div>
-
-                    <div dir="ltr" class="col-6 col-lg-3 text-right">
-                        <a href="login.html" class="small mr-3">
-                            <span class="icon-lock"></span>
-                            تسجيل الدخول
-                        </a>
-                        <a href="register.html" class="small">
-                            <span class="icon-person"></span>
-                            التسجيل
-                        </a>
-                    </div>
-
                 </div>
             </div>
         </div>
         <div class="sticky-nav js-sticky-header">
             <div class="container position-relative">
                 <div class="site-navigation text-center">
-
-
                     <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
-                        <li class="active"><a href="index.html">الرئيسية</a></li>
-                        <li class="has-children">
-                            <a href="#">قائمة</a>
-                            <ul class="dropdown">
-                                <li><a href="elements.html">عناصر</a></li>
-                                <li class="has-children">
-                                    <a href="#">قائمة فرعية اثنين</a>
-                                    <ul class="dropdown">
-                                        <li><a href="#">القائمة الفرعية واحد</a></li>
-                                        <li><a href="#">القائمة الفرعية اثنين</a></li>
-                                        <li><a href="#">القائمة الفرعية ثلاثة</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">قائمة ثلاث</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="staff.html">طاقمنا</a></li>
-                        <li><a href="news.html">الأخبار</a></li>
-                        <li><a href="gallery.html">معرض</a></li>
-                        <li><a href="about.html">عنا</a></li>
-                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="#about">عن الويبنار</a></li>
+                        <li><a href="#speaker">المتحدث</a></li>
+                        <li><a href="#register">التسجيل</a></li>
                     </ul>
-
-                    <a href="#" class="btn-book btn btn-secondary btn-sm menu-absolute">سجل الآن</a>
-
-                    <a href="#"
-                       class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light"
-                       data-toggle="collapse" data-target="#main-navbar">
+                    <a href="#register" class="btn-book btn btn-secondary btn-sm menu-absolute">سجل الآن</a>
+                    <a href="#" class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
                         <span></span>
                     </a>
-
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- intro -->
-    <div class="untree_co-hero overlay" style="background-image: url('images/hero-img-1-min.jpg');">
-
-        <div class="container">
+    <!-- Hero Section -->
+    <div class="hero-webinar">
+        <div class="floating-elements"></div>
+        <div class="container" style="position: relative; z-index: 2;">
             <div class="row align-items-center justify-content-center">
-
                 <div class="col-12">
-
-                    <div class="row justify-content-center ">
-
-                        <div class="col-lg-6 text-center ">
-                            <a href="#" href="https://vimeo.com/342333493" data-fancybox data-aos="fade-up"
-                               data-aos-delay="0" class="caption mb-4 d-inline-block">شاهد الفيديو</a>
-
-                            <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">اصنع مستقبلك الرقمي</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 text-center">
+                            <h1 class="mb-4 heading" data-aos="fade-up" data-aos-delay="100">
+                                🚀 <span class="gradient-text">ويبنار مجاني</span> – مادة البرمجة للبكالوريا
+                            </h1>
+                            <h2 class="mb-5" data-aos="fade-up" data-aos-delay="200">
+                                مع أحمد فخر ✨ – خبير البرمجة والتعليم
+                            </h2>
+                            <p class="lead mb-4" data-aos="fade-up" data-aos-delay="250">
+                                هتفهم المنهج الجديد خطوة بخطوة، وإزاي تخليها فرصة مش أزمة.
+                            </p>
                             <p class="mb-0" data-aos="fade-up" data-aos-delay="300">
-                                <a href="#" class="btn btn-secondary">
-                                    استكشف
-                                    الدورات
+                                <a href="#register" class="btn cta-button btn-lg pulse-animation">
+                                    👉 سجّل مكانك الآن مجانًا
                                 </a>
                             </p>
-
                         </div>
-
-
                     </div>
-
-                </div>
-
-            </div> <!-- /.row -->
-        </div> <!-- /.container -->
-
-    </div>
-    <!-- /.untree_co-hero -->
-    <!--  <div class="untree_co-section">
-        <div class="container">
-          <div class="row justify-content-center mb-3">
-            <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-              <h2 class="line-bottom text-center mb-4">تصفح الفئات الرئيسية</h2>
-            </div>
-          </div>
-          <div class="row align-items-stretch">
-            <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
-              <a href="#" class="category d-flex align-items-start h-100">
-                <div>
-                  <i class="uil uil-atom"></i>
-                </div>
-                <div>
-                  <h3>العلوم</h3>
-                  <span>1,391 دورة</span>
-                </div>
-              </a>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-              <a href="#" class="category d-flex align-items-start h-100">
-                <div>
-                  <i class="uil uil-briefcase"></i>
-                </div>
-                <div>
-                  <h3>الأعمال</h3>
-                  <span>3,234 دورة</span>
-                </div>
-              </a>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-              <a href="#" class="category d-flex align-items-start h-100">
-                <div>
-                  <i class="uil uil-calculator"></i>
-                </div>
-                <div>
-                  <h3>المحاسبة والتمويل</h3>
-                  <span>931 دورة</span>
-                </div>
-              </a>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-              <a href="#" class="category d-flex align-items-start h-100">
-                <div>
-                  <i class="uil uil-pen"></i>
-                </div>
-                <div>
-                  <h3>التصميم</h3>
-                  <span>7,291 دورة</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
-              <a href="#" class="category d-flex align-items-start h-100">
-                <div>
-                  <i class="uil uil-music"></i>
-                </div>
-                <div>
-                  <h3>الموسيقى</h3>
-                  <span>9,114 دورة</span>
-                </div>
-              </a>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-              <a href="#" class="category d-flex align-items-start h-100">
-                <div>
-                  <i class="uil uil-chart-pie"></i>
-                </div>
-                <div>
-                  <h3>التسويق</h3>
-                  <span>2,391 دورة</span>
-                </div>
-              </a>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-              <a href="#" class="category d-flex align-items-start h-100">
-                <div>
-                  <i class="uil uil-camera"></i>
-                </div>
-                <div>
-                  <h3>التصوير الفوتوغرافي</h3>
-                  <span>7,991 دورة</span>
-                </div>
-              </a>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-              <a href="#" class="category d-flex align-items-start h-100">
-                <div>
-                  <i class="uil uil-circle-layer"></i>
-                </div>
-                <div>
-                  <h3>الرسوم المتحركة</h3>
-                  <span>6,491 دورة</span>
-                </div>
-              </a>
-            </div>
-
-          </div>
-
-          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="400">
-            <div class="col-lg-8 text-center">
-              <p>لدينا المزيد من الفئات هنا. <a href="#">تصفح الكل</a></p>
-            </div>
-          </div>
-        </div>
-      </div>-->
-
-
-    <!--Package-->
-    <div class="package">
-        <div class="package_title">
-            <h4>ابدأ الآن واختر المسار المناسب لك في عالم البرمجة!</h4>
-            <p>
-                صممت المسارات التعليمية خصيصًا لتناسب الطلاب من عمر 14 سنة فما فوق،
-                وتشمل مراحل متعددة لبناء أساس قوي في علوم البرمجة
-            </p>
-        </div>
-        <div class="container-fluid">
-            <div class="d-flex" style="justify-content: space-evenly;flex-wrap:wrap ">
-
-                <div class="package_item package1">
-                    <div class="package_item_head">
-                        <div>
-                            <p>مبتدئ - Scratch </p>
-                            <img src="/images/package/scratch.png" alt="Alternate Text" />
-                        </div>
-                        <p>ابدأ من الصفر، وتعلّم أساسيات البرمجة بطريقة ممتعة وسهلة باستخدام Scratch!</p>
-                        <a href="#">  اعرف المزيد ></a>
-                        <img src="/images/package/level_prog1.png" alt="Alternate Text" class="package_icon" />
-                    </div>
-
-
-                    <div>
-                        <h4>تفاصيل المسار</h4>
-                        <p>ابدأ رحلتك في البرمجة بطريقة ممتعة وتفاعلية باستخدام Scratch – بدون أي سطور كود!</p>
-
-                        <ul>
-                            <li>👦 عدد الأطفال في الجروب: 5 – 8</li>
-                            <li>🧩 عدد المستويات داخل المسار: 3</li>
-                            <li>📺 لايف سيشن أسبوعية مع المدرب</li>
-                            <li>💬 جروب دعم على تيليجرام مخصص لكل دفعة</li>
-                        </ul>
-                    </div>
-
-                    <img src="/images/package/arrow1.png" alt="Alternate Text" class="arrow" />
-                </div>
-
-
-                <div class="package_item package2">
-                    <div class="package_item_head">
-                        <div>
-                            <p>متوسط - Python</p>
-                            <img src="/images/package/python.png" alt="Alternate Text" />
-                        </div>
-                        <p>اتعلم البرمجة الحقيقية بلغة Python، وابدأ تحل مشكلات وتبني مشاريع بسيطة</p>
-                        <a href="#"> اعرف المزيد ></a>
-                        <img src="/images/package/level_prog2.png" alt="Alternate Text" class="package_icon" />
-                    </div>
-
-
-                    <div>
-                        <h4>تفاصيل المسار</h4>
-                        <p>اتعلم كتابة كود حقيقي بلغة Python وابدأ تفهم المنطق البرمجي خطوة بخطوة.</p>
-
-                        <ul>
-                            <li>👦 عدد الأطفال في الجروب: 5 – 8</li>
-                            <li>🧩 عدد المستويات داخل المسار: 3</li>
-                            <li>📺 لايف سيشن أسبوعية مع المدرب</li>
-                            <li>💬 جروب دعم على تيليجرام مخصص لكل دفعة</li>
-                        </ul>
-                    </div>
-
-                    <img src="/images/package/arrow2.png" alt="Alternate Text" class="arrow" />
-                    <img src="/images/package/arrow2_emp.png" alt="Alternate Text" class="arrow_empty" />
-                </div>
-
-
-                <div class="package_item package3">
-                    <div class="package_item_head">
-                        <div>
-                            <p>متقدم - Web Track</p>
-                            <img src="/images/package/globe.png" alt="Alternate Text" />
-                        </div>
-                        <p>خد مهاراتك لمستوى احترافي، وابدأ تتعلم تطوير مواقع الويب خطوة بخطوة</p>
-                        <a href="#"> اعرف المزيد ></a>
-                    </div>
-
-                    <div class="package_item_head">
-                        <div>
-                            <p>متقدم - Mobile Track  </p>
-                            <img src="/images/package/mobile.png" alt="Alternate Text" />
-                        </div>
-                        <p>تعلم بناء تطبيقات تفاعلية وقوية تعمل على أنظمة Android و iOS.</p>
-                        <a href="#"> اعرف المزيد ></a>
-                    </div>
-
-
-                    <div>
-                        <h4>تفاصيل المسار</h4>
-                        <p>اختر مسارك الاحترافي وابدأ تطبيق مهاراتك في بناء مواقع أو نماذج ذكاء اصطناعي.</p>
-
-                        <ul>
-                            <li>👦 عدد الأطفال في الجروب: 5 – 8</li>
-                            <li>🧩 عدد المستويات داخل المسار: 3</li>
-                            <li>📺 لايف سيشن أسبوعية مع المدرب</li>
-                            <li>💬 جروب دعم على تيليجرام مخصص لكل دفعة</li>
-                        </ul>
-                    </div>
-
-                    <img src="/images/package/arrow1_emp.png" alt="Alternate Text" class="arrow_empty" />
                 </div>
             </div>
         </div>
     </div>
-    <!--Package-->
-    <br />
-    
 
-
-
-
-    <div class="untree_co-section bg-light">
+    <!-- Section 1 - المشكلة -->
+    <div class="section-problem untree_co-section">
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-                    <h2 class="line-bottom text-center mb-4">بادر الأن وقم بحجز مقعدك في حصة مجانية!</h2>
-                    <p>استكشف مجموعة متنوعة من الدورات التي تغطي مسار علوم الحاسب الألي لبناء أساس متين في مجال تكنولوجيا المعلومات.</p>
+                    <h2 class="line-bottom text-center mb-4">ليه الويبنار دا مهم ليك؟</h2>
+                    <p>سواء كنت ولي أمر أو طالب… ده أكتر سؤال بيتكرر:</p>
                 </div>
             </div>
             <div class="row">
-                <!-- Modal -->
-                <div class="modal fade" id="startNowModal" tabindex="-1" role="dialog" aria-labelledby="startNowModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="startNowModalLabel">بادر الأن وقم بحجز حصة مجانية</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="study-year">السنة الدراسية</label>
-                                        <select class="form-control" id="study-year">
-                                            <option>اولى ثانوي</option>
-                                            <option>ثانية ثانوي</option>
-                                            <option>ثالثة ثانوي</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name">الاسم</label>
-                                        <input type="text" class="form-control" id="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">البريد الإلكتروني</label>
-                                        <input type="email" class="form-control" id="email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="notes">ملاحظات أخرى (اختياري)</label>
-                                        <textarea class="form-control" id="notes"></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
-                                <button type="button" class="btn btn-primary">تقديم</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
-                    <div class="custom-media">
-                        <a href="#"><img src="images/digital_tech.webp" alt="Image" class="img-fluid"></a>
-                        <div class="custom-media-body">
-                            <div class="d-flex justify-content-between pb-3">
-                                <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                                <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                            </div>
-                            <h3>تقنية رقمية</h3>
-                            <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div><span class="price">$00.00</span></div>
-                                <!-- Button trigger modal -->
-                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal">
-                                    سجل
-                                    الآن
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
-                    <div class="custom-media">
-                        <a href="#"><img src="images/iot_5.webp" alt="Image" class="img-fluid"></a>
-                        <div class="custom-media-body">
-                            <div class="d-flex justify-content-between pb-3">
-                                <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                                <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                            </div>
-                            <h3>انترنت الاشياء</h3>
-                            <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div><span class="price">$00.00</span></div>
-                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal">
-                                    سجل
-                                    الآن
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
-                    <div class="custom-media">
-                        <a href="#"><img src="images/data_science.webp" alt="Image" class="img-fluid"></a>
-                        <div class="custom-media-body">
-                            <div class="d-flex justify-content-between pb-3">
-                                <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                                <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                            </div>
-                            <h3>علم البيانات</h3>
-                            <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div><span class="price">$00.00</span></div>
-                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal">
-                                    سجل
-                                    الآن
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
-                    <div class="custom-media">
-                        <a href="#"><img src="images/cyper_security_1.webp" alt="Image" class="img-fluid"></a>
-                        <div class="custom-media-body">
-                            <div class="d-flex justify-content-between pb-3">
-                                <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                                <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                            </div>
-                            <h3>الامن السيبراني</h3>
-                            <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div><span class="price">$00.00</span></div>
-                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal">
-                                    سجل
-                                    الآن
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                    <div class="custom-media">
-                        <a href="#"><img src="images/search.webp" alt="Image" class="img-fluid"></a>
-                        <div class="custom-media-body">
-                            <div class="d-flex justify-content-between pb-3">
-                                <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                                <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                            </div>
-                            <h3>البحث ومصادر المعلومات</h3>
-                            <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div><span class="price">$00.00</span></div>
-                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal">
-                                    سجل
-                                    الآن
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                    <div class="custom-media">
-                        <a href="#"><img src="images/digital_design3.webp" alt="Image" class="img-fluid"></a>
-                        <div class="custom-media-body">
-                            <div class="d-flex justify-content-between pb-3">
-                                <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                                <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                            </div>
-                            <h3>التصميم الرقمي</h3>
-                            <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div><span class="price">$00.00</span></div>
-                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal">
-                                    سجل
-                                    الآن
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                    <div class="custom-media">
-                        <a href="#"><img src="images/ai.webp" alt="Image" class="img-fluid"></a>
-                        <div class="custom-media-body">
-                            <div class="d-flex justify-content-between pb-3">
-                                <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                                <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                            </div>
-                            <h3>الذكاء الاصطناعي</h3>
-                            <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div><span class="price">$00.00</span></div>
-                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal">
-                                    سجل
-                                    الآن
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                    <div class="custom-media">
-                        <a href="#"><img src="images/software_1.webp" alt="Image" class="img-fluid"></a>
-                        <div class="custom-media-body">
-                            <div class="d-flex justify-content-between pb-3">
-                                <div class="text-primary"><span class="uil uil-book-open"></span> <span>قريباً</span></div>
-                                <div class="review"><span class="icon-star"></span> <span>4.8</span></div>
-                            </div>
-                            <h3>هندسة البرمجيات</h3>
-                            <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div><span class="price">$00.00</span></div>
-                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#startNowModal">
-                                    سجل
-                                    الآن
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- instructor -->
-    <div class="services-section">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-4 mb-5 mb-lg-0">
-
-                    <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="0">
-                        <h2 class="line-bottom mb-4">م/أحمد فخر الدين</h2>
-                    </div>
-
-                    <p data-aos="fade-up" data-aos-delay="100">
-                        خبرة لأكثر من 11 سنة في مجال صناعة البرمجيات داخل المملكة
-                        وخارجها ،أشرفت على العديد من الدورات الإلكترونية في أشهر المنصات الإلكترونية بالإضافة إلى :
-                    </p>
-
-                    <ul class="ul-check list-unstyled mb-5 primary" data-aos="fade-up" data-aos-delay="200">
-                        <li>حاصل على شهادة MCSE من مايكروسوفت في ادارة الشبكات</li>
-                        <li>حاصل على شهادة CISCO 101 لادارة الشبكات</li>
-                        <li>أشرفت على العديد من مشارع التخرج من كلية علوم الحاسب</li>
-                    </ul>
-
-                    <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">ابدأ الآن</a></p>
-
-                </div>
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="0">
-                    <figure class="img-wrap-2">
-                        <img src="images/teacher-min.jpg" alt="Image" class="img-fluid">
-                        <div class="dotted"></div>
-                    </figure>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- articles -->
-    <div class="untree_co-section">
-        <div class="container">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-                    <h2 class="line-bottom text-center mb-4">معك خطوة بخطوة على طول المسار</h2>
-                    <p>نقدم تجربة تعليمية غنية تستند إلى الممارسة العملية في مجال تكنولوجيا المعلومات، معززة بمحتوى مصمم خصيصًا لطلاب الثانوية.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature">
-                        <span class="uil uil-clock"></span>
-                        <h3>دعم مستمر</h3>
-                        <p>خدمة دعم متواصلة على مدار الساعة لتلبية كل احتياجاتكم التعليمية والتقنية.</p>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature">
-                        <span class="uil uil-video"></span>
-                        <h3>حصص مباشرة ومسجلة</h3>
-                        <p>اختر بين الحضور المباشر أو مشاهدة الجلسات المسجلة بحرية تامة حسب جدولك الزمني.</p>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature">
-                        <span class="uil uil-brain"></span>
-                        <h3>دراسة عملية</h3>
-                        <p>تعلم من خلال التطبيق العملي واكتسب مهارات حقيقية تستند إلى خبرات في صناعة البرمجيات.</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature">
-                        <span class="uil uil-repeat"></span>
-                        <h3>مراجعة في أي وقت</h3>
-                        <p>جميع الحصص متاحة للمراجعة في أي وقت، مما يوفر مرونة فائقة في الدراسة.</p>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature">
-                        <span class="uil uil-smile"></span>
-                        <h3>دعم نفسي وإرشادي</h3>
-                        <p>نوفر الإرشاد النفسي والدعم حتى بعد انتهاء مرحلة الثانوية لضمان تكامل التعليم والرفاهية.</p>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature">
-                        <span class="uil uil-link"></span>
-                        <h3>الربط بين المواد الدراسية</h3>
-                        <p>نضمن ارتباط المواد ببعضها لتعميق الفهم وتحسين الاستيعاب لجميع مراحل المسار التعليمي.</p>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- /.container -->
-    </div>
-
-    <!-- /.untree_co-section -->
-
-    <div class="untree_co-section pt-0 bg-img overlay" style="background-image: url('images/img-school-1-min.jpg');">
-        <div class="container">
-            <div class="row align-items-center justify-content-center text-center">
-                <div class="col-lg-7">
-                    <h2 class="text-white mb-3" data-aos="fade-up" data-aos-delay="0">سجّل الآن واستثمر في مستقبلك.</h2>
-                    <p class="text-white h5 mb-4" data-aos="fade-up" data-aos-delay="100">انضم إلينا لتتقن علوم الحاسب وتكنولوجيا المعلومات من خلال منهج مصمم لتطوير القدرات وبناء الخبرات.</p>
-                    <p><a href="#" class="btn btn-secondary" data-aos="fade-up" data-aos-delay="200">سجل الآن</a></p>
-                </div>
-            </div>
-        </div>
-    </div> <!-- /.untree_co-section -->
-
-    <div class="untree_co-section">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-5 mb-5">
-                    <h2 class="line-bottom mb-4" data-aos="fade-up" data-aos-delay="0">من نحن</h2>
-                    <p data-aos="fade-up" data-aos-delay="100">
-                        أول منصة تعليمية متخصصة في تدريس نظام المسارات لطلبة الثانوية
-                        بالمملكة العربية السعودية.
-                    </p>
-                    <ul class="list-unstyled ul-check mb-5 primary" data-aos="fade-up" data-aos-delay="200">
-                        <li>دورات خاصة عبر زووم</li>
-                        <li>دورات مسجلة لسهولة الاسترجاع</li>
-                        <li>معلمين متخصصين في كل مادة</li>
-                        <li>متابعة مستمرة طوال أيام الأسبوع</li>
-                        <li>دورات صيفية عملية</li>
-                    </ul>
-
-                    <!--
-                              <div class="row count-numbers mb-5">
-                                <div class="col-4 col-lg-4" data-aos="fade-up" data-aos-delay="0">
-                                  <span class="counter d-block"><span data-number="12023">0</span><span>+</span></span>
-                                  <span class="caption-2">عدد الطلاب</span>
-                                </div>
-                                <div class="col-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                                  <span class="counter d-block"><span data-number="49">0</span><span></span></span>
-                                  <span class="caption-2">عدد المعلمين</span>
-                                </div>
-                                <div class="col-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                                  <span class="counter d-block"><span data-number="12">0</span><span></span></span>
-                                  <span class="caption-2">عدد الجوائز</span>
-                                </div>
-                              </div>
-                    -->
-
-                    <p data-aos="fade-up" data-aos-delay="200">
-                        <a href="#" class="btn btn-primary mr-1">التسجيل</a>
-                        <a href="#" class="btn btn-outline-primary">اعرف المزيد</a>
-                    </p>
-                </div>
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="bg-1"></div>
-                    <a href="https://vimeo.com/342333493" data-fancybox class="video-wrap">
-                        <span class="play-wrap"><span class="icon-play"></span></span>
-                        <img src="images/img-school-4-min.jpg" alt="Image" class="img-fluid rounded">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div> <!-- /.untree_co-section -->
-
-    <div class="untree_co-section bg-light">
-        <div class="container">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-                    <h2 class="line-bottom text-center mb-4">المدونة</h2>
-                    <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-                </div>
-            </div>
-            <div class="row align-items-stretch">
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="media-h d-flex h-100">
-                        <figure>
-                            <img src="images/img-school-1-min.jpg" alt="Image">
-                        </figure>
-                        <div class="media-h-body">
-                            <h2 class="mb-3"><a href="#">التعليم لقادة الغد</a></h2>
-                            <div class="meta mb-2">
-                                <span class="icon-calendar mr-2"></span><span>22 يونيو 2020</span> <span class="icon-person mr-2"></span>الإدارة
-                            </div>
-                            <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-                            <p><a href="#">اعرف المزيد</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="media-h d-flex h-100">
-                        <figure>
-                            <img src="images/img-school-2-min.jpg" alt="Image">
-                        </figure>
-                        <div class="media-h-body">
-                            <h2 class="mb-3"><a href="#">سجل أطفالك هذا الصيف للحصول على خصم 30%</a></h2>
-                            <div class="meta mb-2">
-                                <span class="icon-calendar mr-2"></span><span>22 يونيو 2020</span> <span class="icon-person mr-2"></span>الإدارة
-                            </div>
-                            <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-                            <p><a href="#">اعرف المزيد</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- /.untree_co-section -->
-    <!--  <div class="untree_co-section">
-        <div class="container">
-          <div class="row justify-content-center mb-5">
-            <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-              <h2 class="line-bottom text-center mb-4">الأسعار</h2>
-              <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="00">
-              <div class="pricing">
-                &lt;!&ndash; <div class="pricing-img mb-4"><img src="images/1x/asset-1.png" alt="Image" class="img-fluid"></div> &ndash;&gt;
-                <div class="pricing-body">
-
-                  <h3 class="pricing-plan-title">مبتدئ</h3>
-                  <div class="price"><span class="fig">$50.99</span><span>/شهر</span></div>
-                  <p class="mb-4">بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-
-                  <p><a href="#" class="btn btn-outline-primary">ابدأ الآن</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-              <div class="pricing">
-                &lt;!&ndash; <div class="pricing-img mb-4"><img src="images/1x/asset-2.png" alt="Image" class="img-fluid"></div> &ndash;&gt;
-                <div class="pricing-body">
-
-                  <h3 class="pricing-plan-title">أعمال</h3>
-                  <div class="price"><span class="fig">$99.99</span><span>/شهر</span></div>
-                  <p class="mb-4">بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-
-                  <p><a href="#" class="btn btn-primary">ابدأ الآن</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-              <div class="pricing">
-                &lt;!&ndash; <div class="pricing-img mb-4"><img src="images/1x/asset-3.png" alt="Image" class="img-fluid"></div> &ndash;&gt;
-                <div class="pricing-body">
-
-                  <h3 class="pricing-plan-title">بريميوم</h3>
-                  <div class="price"><span class="fig">$199.99</span><span>/شهر</span></div>
-                  <p class="mb-4">بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء.</p>
-
-                  <p><a href="#" class="btn btn-outline-primary">ابدأ الآن</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>-->
-    <!-- /.untree_co-section -->
-    <!--  <div class="untree_co-section bg-light">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-7 text-center mx-auto">
-
-              <h3 class="line-bottom mb-4">شهادات</h3>
-              <div class="owl-carousel wide-slider-testimonial">
-                <div class="item">
-                  <blockquote class="block-testimonial">
-
-                    <p>
-                      &ldquo;بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء. منفصلة يعيشون في بوكماركسجروف على ساحل السيمانتكس، المحيط اللغوي الكبير.&rdquo;</p>
-                    <div class="author">
-                      <img src="images/person_1.jpg" alt="قالب مجاني من TemplateUX">
-                      <h3>جون دو</h3>
-                      <p class="position">الرئيس التنفيذي، المؤسس</p>
-                    </div>
-                  </blockquote>
-                </div>
-
-                <div class="item">
-                  <blockquote class="block-testimonial">
-
-                    <p>
-                      &ldquo;عندما وصلت إلى أول تلال جبال الإيطاليك، كانت تلقي نظرة أخيرة خلفها على أفق مسقط رأسها بوكماركسجروف، عنوان قرية الأبجدية والسطر الفرعي لطريقها، لين لين. تساءلت بحسرة عندما مرت سؤال خطابي على خدها، ثم واصلت طريقها.&rdquo;</p>
-                    <div class="author">
-                      <img src="images/person_2.jpg" alt="قالب مجاني من TemplateUX">
-                      <h3>جيمس وودلاند</h3>
-                      <p class="position">مصمم في فيسبوك</p>
-                    </div>
-                  </blockquote>
-                </div>
-
-                <div class="item">
-                  <blockquote class="block-testimonial">
-
-                    <p>
-                      &ldquo;نهر صغير يدعى دودن يتدفق بجانب مكانهم ويمدهم بالريجاليا اللازمة. إنها بلاد الفردوس، حيث تطير أجزاء مشوية من الجمل إلى فمك.&rdquo;</p>
-                    <div class="author">
-                      <img src="images/person_3.jpg" alt="قالب مجاني من TemplateUX">
-                      <h3>روب سميث</h3>
-                      <p class="position">مصمم المنتجات في تويتر</p>
-                    </div>
-                  </blockquote>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>-->
-    <!--
-
-      <div class="untree_co-section">
-
-
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-5 mr-auto mb-5 mb-lg-0"  data-aos="fade-up" data-aos-delay="0">
-              <img src="images/img-school-5-min.jpg" alt="صورة" class="img-fluid">
-            </div>
-            <div class="col-lg-7 ml-auto" data-aos="fade-up" data-aos-delay="100">
-              <h3 class="line-bottom mb-4">لماذا تختارنا</h3>
-              <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء. </p>
-
-              <div class="custom-accordion" id="accordion_1">
-                <div class="accordion-item">
-                  <h2 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">معلمون وموظفون جيدون</button>
-                  </h2>
-
-                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion_1">
-                    <div class="accordion-body">
-                      <div class="d-flex">
-                        <div class="accordion-img mr-4">
-                          <img src="images/img-school-1-min.jpg" alt="صورة" class="img-fluid">
-                        </div>
-                        <div>
-                          <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء. </p>
-                          <p>منفصلة يعيشون في بوكماركسجروف على ساحل السيمانتكس، المحيط اللغوي الكبير.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> &lt;!&ndash; .accordion-item &ndash;&gt;
-
-                <div class="accordion-item">
-                  <h2 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">نقدر الشخصيات الجيدة</button>
-                  </h2>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_1">
-                    <div class="accordion-body">
-                      <div class="d-flex">
-                        <div class="accordion-img mr-4">
-                          <img src="images/img-school-2-min.jpg" alt="صورة" class="img-fluid">
-                        </div>
-                        <div>
-                          <p>بعيداً جداً، خلف جبال الكلمات، بعيداً عن بلاد فوكاليا وكونسونانتيا، تعيش النصوص العمياء. </p>
-                          <p>منفصلة يعيشون في بوكماركسجروف على ساحل السيمانتكس، المحيط اللغوي الكبير.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> &lt;!&ndash; .accordion-item &ndash;&gt;
-                <div class="accordion-item">
-                  <h2 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">أطفالكم في أمان</button>
-                  </h2>
-
-                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion_1">
-                    <div class="accordion-body">
-                      <div class="d-flex">
-                        <div class="accordion-img mr-4">
-                          <img src="images/img-school-3-min.jpg" alt="صورة" class="img-fluid">
-                        </div>
-                        <div>
-                          <p>عندما وصلت إلى أول تلال جبال الإيطاليك، كانت تلقي نظرة أخيرة خلفها على أفق مسقط رأسها بوكماركسجروف، عنوان قرية الأبجدية والسطر الفرعي لطريقها، لين لين.</p>
-                          <p>تساءلت بحسرة عندما مرت سؤال خطابي على خدها، ثم واصلت طريقها.</p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                </div> &lt;!&ndash; .accordion-item &ndash;&gt;
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>-->
-    <!-- /.untree_co-section -->
-
-    <div class="untree_co-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center" data-aos="fade-up" data-aos-delay="0">
-                    <figure>
-                        <img src="images/gurantee.png" alt="ضمان الاسترداد" class="img-fluid rounded">
-                    </figure>
-                    <h2 class="mb-4">ضمان استعادة المال</h2>
-                    <p>
-                        المحتوى المقدم على المنصة من قبل معلمين شغوفين بما يقدمون ، وليسوا فقط اكاديميون مترمرسون،لذا فهناك
-                        ثقة تامة بأنه سوف ينال رضاءكم التام بإذن الله، ولكن أخي وأختي في حالة عدم رضاءكم يمكنكم طلب استرداد
-                        كامل المبلغ ودون سؤال واحد
-                    </p>
-                    <p><a href="#" class="btn btn-primary">اعرف المزيد</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="site-footer">
-
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-3 mr-auto">
-                    <div class="widget">
-                        <h3>معلومات عنا<span class="text-primary">.</span></h3>
-                        <p>
-                            أول أكاديمية متخصصة في تدريس علوم الحاسب لطلبة المرحلة الثانوية بالمملكة العربية السعودية
-                            وإعدادهم لوظائف المستقبل.
+                <div class="col-lg-10 mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    <div class="landing-card p-5">
+                        <blockquote class="blockquote text-center mb-4">
+                            <p class="mb-0">"إيه هي مادة البرمجة؟ وهل فعلاً هتكون صعبة؟"</p>
+                        </blockquote>
+                        
+                        <p class="lead mb-4">
+                            البرمجة مختلفة تمامًا عن مادة ICT اللي يمكن كان ليك تجربة مش مريحة معاها.
                         </p>
-                    </div> <!-- /.widget -->
-                    <div class="widget">
-                        <h3>تواصل معنا</h3>
-                        <ul class="list-unstyled social">
-                            <li><a href="https://t.me/msarlink"><span class="icon-telegram"></span></a></li>
-                            <li><a href="#"><span class="icon-instagram"></span></a></li>
-                            <li><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li><a href="#"><span class="icon-youtube"></span></a></li>
-                        </ul>
-                    </div> <!-- /.widget -->
-                </div> <!-- /.col-lg-3 -->
-
-                <div class="col-lg-2 ml-auto">
-                    <div class="widget">
-                        <h3>المشاريع</h3>
-                        <ul class="list-unstyled float-right links">
-                            <li><a href="#">الذكاء الاصطناعي</a></li>
-                            <li><a href="#">الأمن السيبراني</a></li>
-                            <li><a href="#">انترنت الاشياء</a></li>
-                            <li><a href="#">علم البيانات</a></li>
-                            <li><a href="#">هندسة البرمجيات</a></li>
-                            <li><a href="#">التصميم الرقمي</a></li>
-                        </ul>
-                    </div> <!-- /.widget -->
-                </div> <!-- /.col-lg-3 -->
-
-                <div class="col-lg-3">
-                    <div class="widget">
-                        <h3>معرض الصور</h3>
-                        <ul class="instafeed instagram-gallery list-unstyled">
-                            <li>
-                                <a class="instagram-item" href="images/gal_1.jpg" data-fancybox="gal">
-                                    <img src="images/gal_1.jpg" alt="" width="72" height="72">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="instagram-item" href="images/gal_2.jpg" data-fancybox="gal">
-                                    <img src="images/gal_2.jpg" alt="" width="72" height="72">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="instagram-item" href="images/gal_3.jpg" data-fancybox="gal">
-                                    <img src="images/gal_3.jpg" alt="" width="72" height="72">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="instagram-item" href="images/gal_4.jpg" data-fancybox="gal">
-                                    <img src="images/gal_4.jpg" alt="" width="72" height="72">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="instagram-item" href="images/gal_5.jpg" data-fancybox="gal">
-                                    <img src="images/gal_5.jpg" alt="" width="72" height="72">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="instagram-item" href="images/gal_6.jpg" data-fancybox="gal">
-                                    <img src="images/gal_6.jpg" alt="" width="72" height="72">
-                                </a>
-                            </li>
-                        </ul>
-                    </div> <!-- /.widget -->
-                </div> <!-- /.col-lg-3 -->
-
-
-                <div class="col-lg-3">
-                    <div class="widget">
-                        <h3>اتصل بنا</h3>
-                        <ul class="list-unstyled links mb-4">
-                            <li dir="ltr"><a href="tel://201032863861">+2010-328-638-61</a></li>
-                            <li dir="ltr"><a href="mailto:info@mydomain.com">info@msarlink.com</a></li>
-                        </ul>
-                    </div> <!-- /.widget -->
-                </div> <!-- /.col-lg-3 -->
-
-            </div> <!-- /.row -->
-
-            <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <p>
-                        حقوق النشر &copy;
-                        <script>document.write(new Date().getFullYear());</script>
-                        . جميع الحقوق محفوظة. &mdash; <a href="https://msarlink.com">msarlink.com</a>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>❌ مش حشو نظري ولا حفظ</strong></p>
+                                <p><strong>✅ مهارة بتغيّر طريقة التفكير</strong></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>✅ وبتأهلك لمستقبل الوظائف</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-warning mt-4">
+                            <h5>لكن المشكلة؟ 🤔</h5>
+                            <p class="mb-0">لو بدأنا غلط… الطالب هيكرهها من أول يوم.</p>
+                        </div>
+                        
+                        <p class="text-center mt-4 mb-0">
+                            <strong>علشان كده الويبنار ده نقطة البداية الصح.</strong>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div> <!-- /.container -->
-    </div> <!-- /.site-footer -->
+        </div>
+    </div>
+
+    <!-- Section 2 - الحل -->
+    <div class="section-solution untree_co-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <h2 class="line-bottom text-center mb-4">الحل = ويبنار مجاني 🎓</h2>
+                    <p>هيخليك تفهم المنهج الجديد قبل ما يبدأ</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    <div class="landing-card p-5">
+                        <p class="lead mb-4">
+                            أنا أحمد فخر – مبرمج ومدرب بخبرة +12 سنة – جهزتلك ويبنار مجاني عبر زووم مخصوص علشان:
+                        </p>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <p>✅ تفهم تفاصيل مادة البرمجة وأهدافها</p>
+                                <p>✅ تكتشف الفرق بين البرمجة و ICT</p>
+                                <p>✅ تعرف إزاي تبدأ مع ابنك من أول يوم بخطوات سهلة</p>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <p>✅ تشوف الخطة لسنة أولى  بكالوريا في مسار علوم الحاسب والهندسة</p>
+                                <p>✅ وتتعرف على منصة Qureo اللي بيتم اعتمادها في التدريس والامتحان</p>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <a href="#register" class="btn cta-button btn-lg pulse-animation">
+                                🔗 سجّل مكانك دلوقتي – المقاعد محدودة
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3 - أنا مين؟ -->
+    <div class="section-about untree_co-section" id="speaker">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <h2 class="line-bottom text-center mb-4">ليه تسمع مني أنا بالذات؟</h2>
+                    <p class="section-subtitle">لأني مش مجرد مدرس… أنا مبرمج عشت التجربة.</p>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-center mb-4" data-aos="fade-right">
+                    <img src="images/profile_image.jpg" alt="أحمد فخر" class="profile-image">
+                </div>
+                <div class="col-lg-8" data-aos="fade-left">
+                    <div class="landing-card p-5">
+                        <h4 class="mb-4 gradient-text">أحمد فخر</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">👨‍💻 خبرة 12 سنة في البرمجة  وتنفيذ مشاريع في مصر والخليج</li>
+                            <li class="mb-3">🎓 درّبت آلاف الطلاب على منصات زي Udemy وSkillshare</li>
+                            <li class="mb-3">📚 Mentor لطلاب الجامعات وأشرفت على مشاريع تخرج ورسايل ماجستير</li>
+                            
+                            <li class="mb-3">🚀 مؤسس مبادرة خطوة سهلة لتعليم البرمجة بيتابعها 20 الف مبرمج في سوق العمل</li>
+                        </ul>
+                        
+                        <div class="alert alert-info mt-4">
+                            <h5>رسالتي:</h5>
+                            <p class="mb-0">"أبني جيل فاهم البرمجة كمهارة ومش شايفها مجرد مادة للامتحان."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4 - تفاصيل الويبنار -->
+    <div class="section-details untree_co-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <h2 class="line-bottom text-center mb-4">تفاصيل الويبنار</h2>
+                    <p class="section-subtitle">كل ما تحتاج معرفته عن الندوة</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="webinar-details-card">
+                        <div class="row text-center">
+                            <div class="col-md-6 mb-4">
+                                <div class="icon-box mb-3">
+                                    <i class="uil uil-calendar-alt"></i>
+                                </div>
+                                <h5>📅 التاريخ</h5>
+                                <p>سيتم تحديده قريباً</p>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="icon-box mb-3">
+                                    <i class="uil uil-clock"></i>
+                                </div>
+                                <h5>⏰ التوقيت</h5>
+                                <p>سيتم تحديده قريباً</p>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="icon-box mb-3">
+                                    <i class="uil uil-video"></i>
+                                </div>
+                                <h5>📍 المكان</h5>
+                                <p>عبر زووم – الرابط هيجيلك بعد التسجيل</p>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="icon-box mb-3">
+                                    <i class="uil uil-money-bill"></i>
+                                </div>
+                                <h5>💵 التكلفة</h5>
+                                <p><strong>مجانًا 100%</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <a href="#register" class="btn cta-button btn-lg pulse-animation">
+                                🚀 سجّل دلوقتي وخليك أول واحد يعرف التفاصيل
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Section 6 - Closing -->
+    <div class="section-closing untree_co-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <h2 class="line-bottom text-center mb-4">لو فعلاً مهتم بمستقبل ابنك … متفوتش الفرصة</h2>
+                    <p class="section-subtitle">البرمجة مش مادة … دي مستقبل.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="webinar-details-card">
+                        <h3 class="mb-4">لو فعلاً مهتم بمستقبل ابنك … متفوتش الفرصة</h3>
+                        <p class="section-subtitle">البرمجة مش مادة … دي مستقبل.</p>
+                        
+                        <p class="lead mb-4">
+                            الويبنار ده هيخليك تعرف المنهج الجديد، وتشوف ازاي تحوّل البرمجة من مصدر قلق لفرصة كبيرة لمستقبل ابنك.
+                        </p>
+                        
+                        <a href="#register" class="btn cta-button btn-lg pulse-animation">
+                            🎯 سجّل في الويبنار المجاني دلوقتي
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Form Section -->
+    <div id="register" class="untree_co-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 text-center" data-aos="fade-up">
+                    <h2 class="line-bottom text-center mb-4">سجّل دلوقتي في الويبنار المجاني! 🎯</h2>
+                    <p>اضغط على الرابط أدناه للتسجيل في الويبنار</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="alert alert-info text-center mb-4" data-aos="fade-up">
+                        <i class="uil uil-bell me-2"></i>
+                        <strong>تنبيه:</strong> سيصل إشعار قبل موعد الندوة على البريد الإلكتروني
+                    </div>
+                    <div class="landing-card p-5 text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="mb-4">
+                            <i class="uil uil-external-link-alt" style="font-size: 3rem; color: #00aeff; margin-bottom: 1rem;"></i>
+                            <h4 class="mb-3 gradient-text">نموذج التسجيل</h4>
+                            <p class="mb-4">املأ البيانات المطلوبة في نموذج جوجل للتسجيل في الويبنار المجاني</p>
+                        </div>
+                        
+                        <a href="https://forms.gle/FQJHhV17Xp5xWTeL7" target="_blank" class="btn cta-button btn-lg pulse-animation">
+                            🚀 سجّل دلوقتي - مجاناً!
+                        </a>
+                        
+                        <div class="text-center mt-4">
+                            <p class="small text-muted">
+                                <i class="uil uil-lock me-2"></i>
+                                بياناتك محمية ومش هنشاركها مع أي حد
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="untree_co-section" style="background: #136ad5; color: white; padding: 40px 0;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center mb-3 mb-lg-0">
+                        <img src="images/logo.png" alt="Logo" style="height: 40px;" class="me-3">
+                        <div>
+                            <h5 class="mb-0">أحمد فخر - خبير البرمجة والتعليم</h5>
+                            <p class="mb-0 small">البرمجة مش مادة دي مستقبل</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <div class="social-links mb-3">
+                        <a href="https://www.facebook.com/Code4Bac" class="text-white me-3" target="_blank"><i class="uil uil-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/@code4bac" class="text-white me-3" target="_blank"><i class="uil uil-youtube"></i></a>
+                        <a href="https://wa.me/201032863861" class="text-white" target="_blank"><i class="uil uil-whatsapp"></i></a>
+                    </div>
+                    <p class="mb-0 small">&copy; 2025 جميع الحقوق محفوظة</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <div id="overlayer"></div>
     <div class="loader">
@@ -1113,7 +645,6 @@
             <span class="sr-only">جار التحميل...</span>
         </div>
     </div>
-
 
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -1126,6 +657,23 @@
     <script src="js/aos.js"></script>
     <script src="js/custom.js"></script>
 
-</body>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
+        // No form handler needed since we're using Google Forms
+    </script>
+
+</body>
 </html>

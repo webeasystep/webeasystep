@@ -43,7 +43,7 @@ class Admin extends BaseController
         $data['section_name'] = "dashboard";
 
         // Fetch counts for each table
-        $tables = ['articles', 'tb_courses', 'users'];
+        $tables = ['articles','tb_enrollments', 'tb_courses', 'users'];
         foreach ($tables as $table) {
             $query = $this->db->query("SELECT COUNT(*) as count FROM $table");
             $result = $query->getRow();
