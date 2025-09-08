@@ -112,8 +112,8 @@ class AdminEnrollments extends BaseController
         }
 
         // For a dropdown of courses or users, you can do:
-        $data['courses_list'] = $this->enrollments->get_courses_list();
-        $data['users_list']   = $this->enrollments->get_users_list();
+        $data['courses'] = $this->enrollments->get_courses_list();
+        $data['users']   = $this->enrollments->get_users_list();
 
         return view('form', $data);
     }
@@ -153,8 +153,8 @@ class AdminEnrollments extends BaseController
         // $data['files'] = json_decode($enrollment->proof ?? '[]', true);
 
         // For dropdowns
-        $data['courses_list'] = $this->enrollments->get_courses_list();
-        $data['users_list']   = $this->enrollments->get_users_list();
+        $data['courses'] = $this->enrollments->get_courses_list();
+        $data['users']   = $this->enrollments->get_users_list();
 
         return view('form', $data);
     }
