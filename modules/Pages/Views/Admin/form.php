@@ -26,7 +26,7 @@
             </div>
 
             <div class="form-group row">
-            <label for="job_title" class="col-sm-3 col-form-label">العنوان</label>
+            <label for="job_title" class="col-sm-3 col-form-label"><?= lang('Pages.title') ?></label>
             <div class="col-sm-9">
                 <input type="text" name="title" id="title" class="form-control" value="<?= set_value('title', $page->title ?? '') ?>">
                 <small class="invalid-feedback"></small>
@@ -34,7 +34,7 @@
         </div>
 
             <div class="form-group row">
-                <label for="desc" class="col-sm-3 col-form-label">الوصف</label>
+                <label for="desc" class="col-sm-3 col-form-label"><?= lang('Pages.description') ?></label>
                 <div class="col-sm-9">
                     <textarea name="desc" class="form-control" id="desc"><?= set_value('desc', $page->desc ?? '') ?></textarea>
                     <small class="invalid-feedback"></small>
@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group row ">
-                <label for="content" class="col-sm-3 col-form-label">العنوان</label>
+                <label for="content" class="col-sm-3 col-form-label"><?= lang('Pages.content') ?></label>
                 <div class="col-sm-9">
                     <textarea name="content" class="form-control" id="content"><?= set_value('content', $page->content ?? '') ?></textarea>
                     <small class="invalid-feedback"></small>

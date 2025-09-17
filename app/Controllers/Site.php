@@ -46,36 +46,9 @@ class Site extends BaseController
             ->get()
             ->getResultArray();
 
-        // 2) Courses
-        $data['courses'] = $this->db
-            ->table('tb_courses')
-            ->where('active', 1)
-            ->get()
-            ->getResultArray();
-
-        // Pre-process each course
-        foreach ($data['courses'] as &$course) {
-            // Provide a fallback if short_desc doesn't exist
-            $course['short_desc'] = $course['short_desc'] ?? '';
-
-            // Count lessons from JSON structure
-            $lessonCount = 0;
-            if (!empty($course['course_structure'])) {
-                $structure = json_decode($course['course_structure'], true);
-                if (is_array($structure)) {
-                    foreach ($structure as $section) {
-                        if (!empty($section['videos']) && is_array($section['videos'])) {
-                            $lessonCount += count($section['videos']);
-                        }
-                    }
-                }
-            }
-            $course['lesson_count'] = $lessonCount;
-
-            // Since users now have direct access, all courses are considered enrolled
-            $course['is_enrolled'] = true;
-        }
-        unset($course); // Good practice after reference loops
+        // 2) Get courses data from Courses controller
+        $coursesController = new \Modules\Courses\Controllers\Courses();
+        $data['courses'] = $coursesController->getCoursesForHome();
 
         // 4) Possibly fetch “about us” page or other custom pages
         $data['about_us'] = $this->db
@@ -90,6 +63,21 @@ class Site extends BaseController
 
         // 5) Render the main home view
         echo MainView('site_layout/home', $data);
+    }
+
+    /**
+     * Handle post-login redirect to intended course
+     */
+    public function handlePostLoginRedirect()
+    {
+        $intendedCourse = session()->get('intended_course');
+        if ($intendedCourse) {
+            session()->remove('intended_course');
+            // Redirect to courses controller for handling
+            return redirect()->to('courses/course-action/' . $intendedCourse);
+        }
+        
+        return redirect()->to('courses/my_courses');
     }
 
     //--------------------------------------------------------------------

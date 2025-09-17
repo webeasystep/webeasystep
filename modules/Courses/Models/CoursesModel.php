@@ -10,14 +10,16 @@ class CoursesModel extends BaseModel
     protected $table         = 'tb_courses';
     protected $primaryKey    = 'id';
     protected $allowedFields = [
-        'course_name', 'course_desc', 'image', 'sort',
-        'price', 'is_free', 'active', 'course_structure', 'slug'
+        'course_title', 'course_desc', 'short_desc', 'image', 'sort',
+        'price', 'is_free', 'active', 'slug',
+        'instructor_id', 'category_id', 'difficulty_level', 'language',
+        'requirements', 'what_you_learn', 'featured', 'enrollment_limit', 'intro_video_id'
     ];
     protected $useTimestamps = true;
     protected $returnType    = 'object';
 
     // Additional table references
-    protected $enrollmentsTable        = 'tb_enrollments';
+    protected $enrollmentsTable        = 'tb_unit_enrollments';
     protected $videoCompletionsTable  = 'tb_video_completions';
 
     /**
@@ -55,23 +57,106 @@ class CoursesModel extends BaseModel
     }
 
     /**
-     * Fetch all active courses a user is enrolled in (requires 'tb_enrollments')
+     * Fetch all courses that contain units a user has enrolled in
      */
     public function getAllUserCourses(int $userId)
     {
-        $builder = $this->db->table($this->enrollmentsTable);
-        $builder->select('tb_courses.*');
-        $builder->join($this->table, "{$this->table}.id = {$this->enrollmentsTable}.course_id");
-        $builder->where("{$this->enrollmentsTable}.user_id", $userId);
-        $builder->where("{$this->table}.active", 1);
-        return $builder->get()->getResult(); // array of objects
+        // Get approved unit enrollments for the user
+        $unitEnrollments = $this->db->table('tb_unit_enrollments')
+                                   ->select('unit_ids')
+                                   ->where('user_id', $userId)
+                                   ->where('status', 'approved')
+                                   ->get()
+                                   ->getResultArray();
+
+        if (empty($unitEnrollments)) {
+            return [];
+        }
+
+        // Collect all unit IDs
+        $allUnitIds = [];
+        foreach ($unitEnrollments as $enrollment) {
+            $unitIds = json_decode($enrollment['unit_ids'], true);
+            if (is_array($unitIds)) {
+                $allUnitIds = array_merge($allUnitIds, $unitIds);
+            }
+        }
+
+        if (empty($allUnitIds)) {
+            return [];
+        }
+
+        // Get courses that contain these units
+        $builder = $this->db->table($this->table);
+        $builder->select('tb_courses.*, COUNT(DISTINCT u.id) as enrolled_units_count');
+        $builder->join('tb_units u', 'u.course_id = tb_courses.id');
+        $builder->whereIn('u.id', array_unique($allUnitIds));
+        $builder->where('tb_courses.active', 1);
+        $builder->groupBy('tb_courses.id');
+        $builder->orderBy('enrolled_units_count', 'DESC');
+
+        return $builder->get()->getResult();
+    }
+
+    /**
+     * Get all active courses with enrollment counts and statistics
+     */
+    public function getAllCoursesWithStats(): array
+    {
+        $courses = $this->where('active', 1)
+                       ->orderBy('featured', 'DESC')
+                       ->orderBy('sort', 'ASC')
+                       ->findAll();
+
+        foreach ($courses as &$course) {
+            $course->enrollment_count = $this->getEnrollmentCount($course->id);
+            $course->stats = $this->getCourseStats($course->id);
+        }
+
+        return $courses;
+    }
+
+    /**
+     * Get courses by category
+     */
+    public function getCoursesByCategory(int $categoryId): array
+    {
+        return $this->where('category_id', $categoryId)
+                   ->where('active', 1)
+                   ->orderBy('sort', 'ASC')
+                   ->findAll();
+    }
+
+    /**
+     * Get featured courses
+     */
+    public function getFeaturedCourses(int $limit = 6): array
+    {
+        return $this->where('featured', 1)
+                   ->where('active', 1)
+                   ->orderBy('sort', 'ASC')
+                   ->limit($limit)
+                   ->findAll();
+    }
+
+    /**
+     * Search courses by title or description
+     */
+    public function searchCourses(string $query): array
+    {
+        return $this->like('course_title', $query)
+                   ->orLike('course_desc', $query)
+                   ->orLike('short_desc', $query)
+                   ->where('active', 1)
+                   ->orderBy('course_title', 'ASC')
+                   ->findAll();
     }
 
     /* ================== ENROLLMENT METHODS ================== */
 
     /**
      * Enroll a user in a course if not already enrolled.
-     * Creates or reactivates a record in tb_enrollments.
+     * Creates or reactivates a record in tb_unit_enrollments.
      */
     public function enrollUser(int $userId, int $courseId)
     {
@@ -109,13 +194,34 @@ class CoursesModel extends BaseModel
      */
     public function isUserEnrolled(int $userId, int $courseId): bool
     {
-        $builder = $this->db->table($this->enrollmentsTable);
-        $row = $builder->where('user_id', $userId)
+        // Get course units
+        $courseUnits = $this->db->table('tb_units')
+            ->select('id')
             ->where('course_id', $courseId)
+            ->get()
+            ->getResultArray();
+
+        if (empty($courseUnits)) {
+            return false;
+        }
+
+        $courseUnitIds = array_column($courseUnits, 'id');
+
+        // Check if user has enrolled in any units of this course
+        $enrollments = $this->db->table($this->enrollmentsTable)
+            ->where('user_id', $userId)
             ->where('status !=', 'cancelled')
             ->get()
-            ->getRow();
-        return (bool) $row;
+            ->getResultArray();
+
+        foreach ($enrollments as $enrollment) {
+            $unitIds = json_decode($enrollment['unit_ids'], true);
+            if ($unitIds && array_intersect($unitIds, $courseUnitIds)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -123,12 +229,34 @@ class CoursesModel extends BaseModel
      */
     public function getEnrollment(int $userId, int $courseId)
     {
-        $builder = $this->db->table($this->enrollmentsTable);
-        return $builder->where('user_id', $userId)
+        // Get course units
+        $courseUnits = $this->db->table('tb_units')
+            ->select('id')
             ->where('course_id', $courseId)
+            ->get()
+            ->getResultArray();
+
+        if (empty($courseUnits)) {
+            return null;
+        }
+
+        $courseUnitIds = array_column($courseUnits, 'id');
+
+        // Find enrollment that includes units from this course
+        $enrollments = $this->db->table($this->enrollmentsTable)
+            ->where('user_id', $userId)
             ->where('status !=', 'cancelled')
             ->get()
-            ->getRow();
+            ->getResultArray();
+
+        foreach ($enrollments as $enrollment) {
+            $unitIds = json_decode($enrollment['unit_ids'], true);
+            if ($unitIds && array_intersect($unitIds, $courseUnitIds)) {
+                return (object) $enrollment;
+            }
+        }
+
+        return null;
     }
 
     /* ================== LESSON COMPLETION METHODS ================== */
@@ -206,7 +334,7 @@ class CoursesModel extends BaseModel
 
         foreach ($structureData as $sectionData) {
             $section = [
-                'section_id'    => $sectionCounter,
+                'course_id'     => $unit->course_id,
                 'section_title' => $sectionData['section_title'] ?? 'Section Title',
                 'is_open'       => false,
                 'videos'       => [],
@@ -257,19 +385,12 @@ class CoursesModel extends BaseModel
      */
      function calculateProgress(object $course, object $enrollment): int
     {
-        // decode structure as array
-        $structure = json_decode($course->course_structure ?? '[]', true);
-        if (!$structure) {
-            return 0;
-        }
+        // TODO: Implement progress calculation using units system
+        // This should calculate progress based on completed unit items
+        return 0;
 
-        // total videos
-        $totalLessons = 0;
-        foreach ($structure as $section) {
-            if (!empty($section['videos'])) {
-                $totalLessons += count($section['videos']);
-            }
-        }
+        // Note: This method needs to be updated to work with the new units system
+        // It should query the units and unit_items tables to calculate progress
 
         // how many completed
         $completedCount = $this->countCompletedLessons($enrollment->id);
@@ -278,6 +399,155 @@ class CoursesModel extends BaseModel
             return 0;
         }
         return (int) round(($completedCount / $totalLessons) * 100);
+    }
+
+    /**
+     * Get enrollment count for a course
+     */
+    public function getEnrollmentCount(int $courseId): int
+    {
+        // Get all units for this course
+        $unitsModel = new \Modules\Units\Models\UnitsModel();
+        $units = $unitsModel->where('course_id', $courseId)->findAll();
+        $unitIds = array_column($units, 'id');
+
+        if (empty($unitIds)) {
+            return 0;
+        }
+
+        // Count enrollments where unit_ids contains any of the course's units
+        $builder = $this->db->table($this->enrollmentsTable);
+        $builder->where('status', 'approved');
+
+        $count = 0;
+        foreach ($unitIds as $unitId) {
+            $builder->orWhere("JSON_CONTAINS(unit_ids, '\"$unitId\"')");
+        }
+
+        return $builder->countAllResults();
+    }
+
+    /**
+     * Get course statistics
+     */
+    public function getCourseStats(int $courseId): array
+    {
+        $unitsModel = new UnitsModel();
+        $stats = $unitsModel->getCourseUnitStats($courseId);
+
+        // Add enrollment statistics
+        $stats['total_enrollments'] = $this->getEnrollmentCount($courseId);
+        $stats['completion_rate'] = $this->getCourseCompletionRate($courseId);
+
+        return $stats;
+    }
+
+    /**
+     * Get course completion rate
+     */
+    public function getCourseCompletionRate(int $courseId): float
+    {
+        $enrollments = $this->db->table($this->enrollmentsTable)
+                               ->where('course_id', $courseId)
+                               ->where('status', 'active')
+                               ->get()
+                               ->getResult();
+
+        if (empty($enrollments)) {
+            return 0.0;
+        }
+
+        $course = $this->find($courseId);
+        if (!$course) {
+            return 0.0;
+        }
+
+        $completedCount = 0;
+        foreach ($enrollments as $enrollment) {
+            $progress = $this->calculateProgress($course, $enrollment);
+            if ($progress >= 100) {
+                $completedCount++;
+            }
+        }
+
+        return round(($completedCount / count($enrollments)) * 100, 2);
+    }
+
+    /**
+     * Get course with basic structure (removed sections functionality)
+     */
+    public function getCourseWithStructure(int $courseId): ?object
+    {
+        $course = $this->find($courseId);
+        if (!$course) {
+            return null;
+        }
+
+        $course->stats = $this->getCourseStats($courseId);
+
+        return $course;
+    }
+
+    /**
+     * Get popular courses based on unit enrollment count
+     */
+    public function getPopularCourses(int $limit = 10): array
+    {
+        // Get all courses with their enrollment counts
+        $courses = $this->where('active', 1)->findAll();
+
+        foreach ($courses as &$course) {
+            $course->enrollment_count = $this->getEnrollmentCount($course->id);
+        }
+
+        // Sort by enrollment count descending
+        usort($courses, function($a, $b) {
+            return $b->enrollment_count <=> $a->enrollment_count;
+        });
+
+        return array_slice($courses, 0, $limit);
+    }
+
+    /**
+     * Get recently added courses
+     */
+    public function getRecentCourses(int $limit = 6): array
+    {
+        return $this->where('active', 1)
+                   ->orderBy('created_at', 'DESC')
+                   ->limit($limit)
+                   ->findAll();
+    }
+
+    /**
+     * Get course analytics for admin dashboard
+     */
+    public function getCourseAnalytics(): array
+    {
+        $totalCourses = $this->where('active', 1)->countAllResults();
+        $totalEnrollments = $this->db->table($this->enrollmentsTable)
+                                   ->where('status', 'active')
+                                   ->countAllResults();
+
+        $avgEnrollmentsPerCourse = $totalCourses > 0 ? round($totalEnrollments / $totalCourses, 2) : 0;
+
+        // Get monthly enrollment trends
+        $monthlyEnrollments = $this->db->table($this->enrollmentsTable)
+                                      ->select('YEAR(enrolled_at) as year, MONTH(enrolled_at) as month, COUNT(*) as count')
+                                      ->where('status', 'active')
+                                      ->where('enrolled_at >=', date('Y-m-d', strtotime('-12 months')))
+                                      ->groupBy('YEAR(enrolled_at), MONTH(enrolled_at)')
+                                      ->orderBy('year, month')
+                                      ->get()
+                                      ->getResultArray();
+
+        return [
+            'total_courses' => $totalCourses,
+            'total_enrollments' => $totalEnrollments,
+            'avg_enrollments_per_course' => $avgEnrollmentsPerCourse,
+            'monthly_enrollments' => $monthlyEnrollments,
+            'popular_courses' => $this->getPopularCourses(5)
+        ];
     }
 
 }

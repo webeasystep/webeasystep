@@ -58,7 +58,7 @@
             </div>-->
 
             <div class="form-group row ">
-                <label for="address" class="col-sm-3 col-form-label">العنوان</label>
+                <label for="address" class="col-sm-3 col-form-label"><?= lang('Users.address') ?></label>
                 <div class="col-sm-9">
                     <div class="i18n-input">
                 <textarea name="address"  class="form-control ckeditor " id="address" data-i18n="ar,en"
@@ -71,7 +71,7 @@
 
 
             <div class="form-group row">
-                <label for="address2" class="col-sm-3 col-form-label">العنوان</label>
+                <label for="address2" class="col-sm-3 col-form-label"><?= lang('Users.address') ?></label>
                 <div class="col-sm-9">
                     <div class="i18n-input">
                         <textarea name="address2" class="form-control" id="address2" data-i18n="ar,en" data-ar="عنوان عربي" data-en="ENGLISH ADDRESS">

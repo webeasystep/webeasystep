@@ -17,8 +17,8 @@ use Config\Services;
  * @see: https://codeigniter.com/user_guide/extending/common.html
  */
 
-if (!function_exists('View')) {
-    function View(string $name, array $data = [], array $options = []): string
+if (!function_exists('view')) {
+    function view(string $name, array $data = [], array $options = []): string
     {
         $renderer = \Config\Services::renderer();
         $saveData = config('View')->saveData;
@@ -28,11 +28,33 @@ if (!function_exists('View')) {
 
         $module = currentModule(); // Ensure currentModule() returns the current module name
 
-        // Determine viewType based on the presence of 'site' in the view name
-        $viewType = str_contains($name, 'site/') ? 'Site' : 'Admin';
+        // Default to Admin view type for admin controllers
+        $viewType = 'Admin';
+        
+        // Check if it's a site view (contains 'site/')
+        if (str_contains($name, 'site/')) {
+            $viewType = 'Site';
+            $name = str_replace('site/', '', $name);
+        }
 
-        // Adjust view path, removing 'site/' if present
-        $name = $viewType === 'Site' ? str_replace('site/', '', $name) : $name;
+        // Construct the full path
+        $fullPath = "\\Modules\\{$module}\\Views\\{$viewType}\\{$name}";
+
+        return $renderer->setData($data, 'raw')
+            ->render($fullPath, $options, $saveData);
+    }
+}
+
+if (!function_exists('View')) {
+    function View(string $viewType, string $name, array $data = [], array $options = []): string
+    {
+        $renderer = \Config\Services::renderer();
+        $saveData = config('View')->saveData;
+
+        // Update saveData option if provided
+        $saveData = $options['saveData'] ?? $saveData;
+
+        $module = currentModule(); // Ensure currentModule() returns the current module name
 
         // Construct the full path
         $fullPath = "\\Modules\\{$module}\\Views\\{$viewType}\\{$name}";

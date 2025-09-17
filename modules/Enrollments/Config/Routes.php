@@ -30,6 +30,14 @@ $routes->group('dt_admin', [
     $routes->post('enrollments/switchToggle', [AdminEnrollments::class, 'switchToggle']);
     // Delete enrollment
     $routes->post('enrollments/delete', [AdminEnrollments::class, 'delete']);
+    
+    // Admin routes for unit enrollments
+    $routes->match(['GET', 'POST'], 'enrollments/units', [AdminEnrollments::class, 'unitEnrollments']);
+    $routes->get('enrollments/units/show/(:num)', [AdminEnrollments::class, 'showUnitEnrollment/$1']);
+    $routes->post('enrollments/units/approve/(:num)', [AdminEnrollments::class, 'approveUnitEnrollment/$1']);
+    $routes->post('enrollments/units/reject/(:num)', [AdminEnrollments::class, 'rejectUnitEnrollment/$1']);
+    $routes->get('enrollments/units/stats', [AdminEnrollments::class, 'unitEnrollmentStats']);
+    $routes->get('enrollments/units/pending-count', [AdminEnrollments::class, 'getPendingUnitEnrollmentsCount']);
 });
 
 
@@ -48,4 +56,9 @@ $routes->group('/', [
     // Main route for user checkout / enrolling in a course
     // e.g. GET/POST => /checkout/123
     $routes->match(['GET', 'POST'], 'checkout/(:num)', [Enrollments::class, 'checkout/$1']);
+    
+    // Site routes for unit purchases
+     $routes->get('enrollments/units-shop', [Enrollments::class, 'unitsShop']);
+     $routes->match(['GET', 'POST'], 'enrollments/purchase-units', [Enrollments::class, 'purchaseUnits']);
+     $routes->get('enrollments/my-purchases', [Enrollments::class, 'myPurchases']);
 });

@@ -13,10 +13,10 @@
                             </a>
                             <!-- SEO: H1 is the main page title - Good usage -->
                             <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">جهز ابنك لوظائف المستقبل: تعلم البرمجة خطوة بخطوة</h1>
-                            <p class="mb-4 small text-white" data-aos="fade-up" data-aos-delay="200">أكاديمية رائدة في تدريس علوم الحاسب للطلاب (+14) بنظام المسارات، وتأهيلهم لسوق العمل المستقبلي .</p>
+                            <p class="mb-4 small text-white" data-aos="fade-up" data-aos-delay="200">أول أكاديمية في مصر لتدريس مسار الهندسة وعلوم الحاسب</p>
                             <p class="mb-0" data-aos="fade-up" data-aos-delay="300">
                                 <!-- SEO: Internal anchor link to relevant section - Good -->
-                                <a href="#learning-tracks" class="btn btn-secondary">استكشف مساراتنا التعليمية</a>
+                                <a href="#learning-tracks" class="btn btn-secondary">استكشف الدورات التعليمية</a>
                             </p>
                         </div>
                     </div>
@@ -28,123 +28,103 @@
 
     <!-- Package Section -->
     <!-- SEO: Added relevant ID for internal linking -->
-    <div class="package" id="learning-tracks" style="padding-top: 5em; padding-bottom: 3em;">
-        <div class="package_title text-center mb-5">
-            <!-- SEO: H2 for section title - Good structure -->
-            <h2 class="line-bottom mb-4">ابدأ الآن واختر المسار المناسب لابنك في عالم البرمجة!</h2>
-            <p class="lead">
-                مسارات تعليمية متدرجة مصممة خصيصًا للطلاب (+14) لتأسيسهم بقوة في علوم البرمجة وتكنولوجيا المعلومات.
-            </p>
-        </div>
-        <div class="container-fluid">
-            <div class="d-flex" style="justify-content: space-evenly;flex-wrap:wrap ">
-
-                <!-- Package 1: Scratch -->
-                <div class="package_item package1">
-                    <div class="package_item_head">
-                        <div>
-                            <!-- SEO: Changed from <p> to <h3> for better heading structure -->
-                            <h3>مسار المبتدئين: Scratch</h3>
-                            <!-- SEO: Added descriptive alt text -->
-                            <img src="<?= base_url() ?>site/images/package/scratch.png" alt="شعار لغة سكراتش لتعليم البرمجة للمبتدئين" />
-                        </div>
-                        <p>مدخل ممتع لعالم البرمجة بدون أكواد معقدة - مثالي للبداية!</p>
-                        <!-- SEO: Internal link to track details - Good -->
-                        <a href="<?= base_url() ?>/pages/scratch_track"> اعرف المزيد عن مسار Scratch ></a>
-                        <!-- SEO: Added descriptive alt text -->
-                        <img src="<?= base_url() ?>site/images/package/level_prog1.png" alt="أيقونة المستوى الأول لمسار البرمجة" class="package_icon" />
-                    </div>
-                    <div>
-                        <!-- SEO: H4 for subsection heading - Good structure -->
-                        <h4>مميزات المسار:</h4>
-                        <p>نؤسس ابنك خطوة بخطوة في التفكير المنطقي وحل المشكلات بطريقة تفاعلية:</p>
-                        <ul class="ul-check list-unstyled primary">
-                            <li> جلسات تفاعلية مباشرة (Zoom) تضمن تركيز واهتمام فردي.</li>
-                            <li> مرونة تامة: جلسة أو جلستين أسبوعياً حسب استيعاب الطالب.</li>
-                            <li> تطبيق عملي فوري: مشاريع وألعاب لترسيخ المفاهيم.</li>
-                            <li> دعم متواصل طوال الأسبوع للإجابة على أي استفسار.</li>
-                            <li> مستوى تعليمي للانتقال السلس للمرحلة التالية.</li>
-                        </ul>
-                    </div>
-                    <!-- SEO: Decorative image, empty alt attribute -->
-                    <img src="<?= base_url() ?>site/images/package/arrow1.png" alt="" class="arrow" />
-                </div>
-
-                <!-- Package 2: Python -->
-                <div class="package_item package2">
-                    <div class="package_item_head">
-                        <div>
-                            <!-- SEO: Changed from <p> to <h3> for better heading structure -->
-                            <h3>مسار التأسيس: Python</h3>
-                            <!-- SEO: Added descriptive alt text -->
-                            <img src="<?= base_url() ?>site/images/package/python.png" alt="شعار لغة بايثون لتعليم البرمجة" />
-                        </div>
-                        <p>انتقل لكتابة الأكواد الحقيقية بلغة Python القوية والمطلوبة عالمياً.</p>
-                        <!-- SEO: Internal link to track details - Good -->
-                        <a href="<?= base_url() ?>/pages/python_track"> اعرف المزيد عن مسار Python ></a>
-                        <!-- SEO: Added descriptive alt text -->
-                        <img src="<?= base_url() ?>site/images/package/level_prog2.png" alt="أيقونة المستوى الثاني لمسار البرمجة" class="package_icon" />
-                    </div>
-                    <div>
-                        <!-- SEO: H4 for subsection heading - Good structure -->
-                        <h4>مميزات المسار:</h4>
-                        <p>نمكن ابنك من بناء برامج بسيطة وحل المشكلات باستخدام لغة العصر:</p>
-                        <ul class="ul-check list-unstyled primary">
-                            <li> جلسات تفاعلية مباشرة (Zoom) لتطبيق عملي وفهم عميق.</li>
-                            <li> مرونة تامة: جلسة أو جلستين أسبوعياً حسب استيعاب الطالب.</li>
-                            <li> بناء مشاريع حقيقية: مهام مستمرة لتطوير المهارات البرمجية.</li>
-                            <li> دعم فني وأكاديمي طوال الأسبوع لتخطي أي عقبة.</li>
-                            <li> مستويان تعليميان لتأسيس قوي قبل التخصص.</li>
-                        </ul>
-                    </div>
-                    <!-- SEO: Decorative image, empty alt attribute -->
-                    <img src="<?= base_url() ?>site/images/package/arrow2.png" alt="" class="arrow" />
-                    <!-- SEO: Decorative image, empty alt attribute -->
-                    <img src="<?= base_url() ?>site/images/package/arrow2_emp.png" alt="" class="arrow_empty" />
-                </div>
-
-                <!-- Package 3: Advanced Tracks -->
-                <div class="package_item package3">
-                    <div class="package_item_head">
-                        <div>
-                            <!-- SEO: Changed from <p> to <h3> for better heading structure -->
-                            <h3>مسار التخصص: تطوير الويب</h3>
-                            <!-- SEO: Added descriptive alt text -->
-                            <img src="<?= base_url() ?>site/images/package/globe.png" alt="أيقونة مسار تطوير الويب" />
-                        </div>
-                        <p>احتراف بناء وتصميم مواقع وتطبيقات ويب تفاعلية خطوة بخطوة.</p>
-                        <!-- SEO: Internal link to track details - Good -->
-                        <a href="<?= base_url() ?>/pages/web_track"> اعرف المزيد عن مسار الويب ></a>
-                    </div>
-                    <div class="package_item_head">
-                        <div>
-                            <!-- SEO: Changed from <p> to <h3> for better heading structure -->
-                            <h3>مسار التخصص: تطوير تطبيقات الجوال</h3>
-                            <!-- SEO: Added descriptive alt text -->
-                            <img src="<?= base_url() ?>site/images/package/mobile.png" alt="أيقونة مسار تطوير تطبيقات الجوال" />
-                        </div>
-                        <p>تعلم بناء تطبيقات جوال احترافية تعمل على Android و iOS.</p>
-                        <!-- SEO: Internal link to track details - Good -->
-                        <a href="<?= base_url() ?>/pages/mobile_track"> اعرف المزيد عن مسار الجوال ></a>
-                    </div>
-                    <div>
-                        <!-- SEO: H4 for subsection heading - Good structure -->
-                        <h4>مميزات المسارات المتقدمة:</h4>
-                        <p>تخصص في مجال مطلوب واختر طريقك لبناء مشاريع احترافية:</p>
-                        <ul class="ul-check list-unstyled primary">
-                            <li> تدريب مكثف عبر جلسات Zoom تفاعلية مع المدرب.</li>
-                            <li> جدول مرن: جلسة أو جلستين أسبوعياً لتعلم متوازن.</li>
-                            <li> بناء مشاريع تخرج قوية تضاف لسيرتك الذاتية.</li>
-                            <li> دعم مستمر ومتابعة دقيقة لضمان اتقان المهارات.</li>
-                            <li> 3 مستويات متقدمة لإعدادك لسوق العمل مباشرة.</li>
-                        </ul>
-                    </div>
-                    <!-- SEO: Decorative image, empty alt attribute -->
-                    <img src="<?= base_url() ?>site/images/package/arrow1_emp.png" alt="" class="arrow_empty" />
-                </div>
+    <div class="untree_co-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-7 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
+                <h2 class="line-bottom text-center mb-4">كورساتنا التعليمية المتخصصة</h2>
+                <p>تعلم البرمجة وعلوم الحاسب من خلال نظام تعليمي متطور يشمل حصص تفاعلية، اختبارات بعد كل درس، ومتابعة مستمرة مع أولياء الأمور.</p>
             </div>
         </div>
+        <div class="row">
+            <!-- Modal -->
+            <div class="modal fade" id="startNowModal" tabindex="-1" role="dialog" aria-labelledby="startNowModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="startNowModalLabel">بادر الأن وقم بحجز حصة مجانية</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="study-year">السنة الدراسية</label>
+                                    <select class="form-control" id="study-year">
+                                        <option>اولى ثانوي</option>
+                                        <option>ثانية ثانوي</option>
+                                        <option>ثالثة ثانوي</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">الاسم</label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">البريد الإلكتروني</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="notes">ملاحظات أخرى (اختياري)</label>
+                                    <textarea class="form-control" id="notes"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                            <button type="button" class="btn btn-primary">تقديم</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php if (!empty($courses)): ?>
+                <?php foreach ($courses as $course): ?>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
+                        <div class="custom-media">
+                            <a href="<?= $course['course_url'] ?>">
+                                <img src="<?= base_url($course['image_url']) ?>" alt="<?= esc($course['course_title']) ?>" class="img-fluid">
+                            </a>
+                            <div class="custom-media-body">
+                                <div class="d-flex justify-content-between pb-3">
+                                    <div class="text-primary">
+                                        <span class="uil uil-book-open"></span>
+                                        <span><?= $course['lesson_count'] ?> حصة</span>
+                                    </div>
+                                    <div class="review">
+                                        <span class="uil uil-clock"></span>
+                                        <span><?= $course['duration_formatted'] ?></span>
+                                    </div>
+                                </div>
+                                <h3><?= esc($course['course_title']) ?></h3>
+                                <p class="text-muted small mb-3"><?= esc(substr($course['short_desc'], 0, 100)) ?>...</p>
+                                <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
+                                    <div>
+                                        <?php if ($course['is_free']): ?>
+                                            <span class="price text-success">مجاني</span>
+                                        <?php else: ?>
+                                            <span class="price"><?= number_format($course['price']) ?> </span>
+                                        <?php endif; ?>
+                                    </div>
+                                    <?php if ($course['is_enrolled']): ?>
+                                        <a href="<?= $course['course_url'] ?>" class="btn btn-success">متابعة التعلم</a>
+                                    <?php else: ?>
+                                        <a href="<?= base_url('courses/course-action/' . $course['id']) ?>" class="btn btn-primary">ابدأ التعلم</a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                 <div class="col-12 text-center">
+                     <p class="text-muted">لا توجد كورسات متاحة حالياً</p>
+                 </div>
+             <?php endif; ?>
+        </div>
     </div>
+</div>
     <!--End Package Section-->
     <br />
 
@@ -157,12 +137,15 @@
                         <!-- SEO: H2 for section title - Good structure -->
                         <h2 class="line-bottom mb-4">المدرب: م/ أحمد فخر الدين</h2>
                     </div>
-                    <p data-aos="fade-up" data-aos-delay="100">بخبرة عملية تمتد لأكثر من 12 عامًا في صناعة البرمجيات وتدريب المبرمجين في المملكة وخارجها، يقود م/أحمد طلابنا نحو الاحتراف:</p>
+                    <p data-aos="fade-up" data-aos-delay="100">بخبرة عملية تمتد لأكثر من 12 عامًا في صناعة البرمجيات وتدريب المبرمجين، يقدم م/أحمد نظاماً تعليمياً متطوراً يشمل:</p>
                     <ul class="ul-check list-unstyled mb-5 primary" data-aos="fade-up" data-aos-delay="200">
-                        <li> حاصل على شهادة MCSE من مايكروسوفت في إدارة الشبكات.</li>
-                        <li> حاصل على شهادة CISCO 101 لإدارة الشبكات.</li>
-                        <li> أشرف على العديد من مشاريع التخرج لطلاب علوم الحاسب.</li>
-                        <li> قدم دورات متخصصة على منصات تعليمية رائدة.</li>
+                        <li> نظام تعلم بالحصص مع اختبارات بعد كل درس</li>
+                        <li> عدم السماح بالانتقال للحصة التالية إلا بعد اجتياز الاختبار</li>
+                        <li> تنبيهات أسبوعية لأولياء الأمور بتقدم الطالب</li>
+                        <li> مجموعة دعم فني وأكاديمي طوال الأسبوع</li>
+                        <li> لقاء أسبوعي مباشر عبر Google Meet</li>
+                        <li> مشاريع عملية وتطبيقات تفاعلية</li>
+                        <li> محاكاة لنظام امتحانات TOFAS</li>
                     </ul>
                     <p data-aos="fade-up" data-aos-delay="300">
                         <!-- SEO: Internal anchor link - Good -->
@@ -195,50 +178,44 @@
                 <!-- Feature items use H3 which is good for sub-headings within this section -->
                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="feature">
-                        <span class="uil uil-clock"></span>
-                        <!-- SEO: H3 for feature title -->
-                        <h3>دعم لا يتوقف</h3>
-                        <p>لن يقف ابنك عند أي عقبة، دعم فني وأكاديمي متواصل طوال الأسبوع للإجابة والمساعدة.</p>
+                        <span class="uil uil-graduation-cap"></span>
+                        <h3>نظام تعلم متدرج</h3>
+                        <p>تعلم بالحصص مع اختبارات بعد كل درس، لا يمكن الانتقال للحصة التالية إلا بعد اجتياز الاختبار.</p>
                     </div>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="feature">
-                        <span class="uil uil-video"></span>
-                        <!-- SEO: H3 for feature title -->
-                        <h3>تعلم في أي وقت</h3>
-                        <p>مرونة كاملة لابنك لحضور الدروس مباشرة أو مشاهدتها مسجلة بالوقت المناسب له.</p>
+                        <span class="uil uil-bell"></span>
+                        <h3>متابعة أولياء الأمور</h3>
+                        <p>تنبيهات أسبوعية لأولياء الأمور بتقدم الطالب ونتائج الاختبارات والواجبات.</p>
                     </div>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="feature">
-                        <span class="uil uil-brain"></span>
-                        <!-- SEO: H3 for feature title -->
-                        <h3>بيئة تعليمية محفزة</h3>
-                        <p>نحول التعلم إلى متعة! بيئة تفاعلية تشجع الإبداع وتنمي شغف البرمجة لدى ابنك.</p>
+                        <span class="uil uil-users-alt"></span>
+                        <h3>مجموعة دعم متواصلة</h3>
+                        <p>دعم فني وأكاديمي طوال الأسبوع مع مجموعة دعم متخصصة للإجابة على جميع الاستفسارات.</p>
                     </div>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="feature">
-                        <span class="uil uil-file-check-alt"></span>
-                        <!-- SEO: H3 for feature title -->
-                        <h3>تطبيق عملي ومشاريع</h3>
-                        <p>يتعلم ابنك بالممارسة عبر مشاريع عملية وأنشطة تطور تفكيره المنطقي ومهاراته.</p>
+                        <span class="uil uil-video"></span>
+                        <h3>لقاءات مباشرة أسبوعية</h3>
+                        <p>لقاء أسبوعي مباشر عبر Google Meet لمراجعة المفاهيم والإجابة على الأسئلة.</p>
                     </div>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="feature">
-                        <span class="uil uil-comments-alt"></span>
-                        <!-- SEO: H3 for feature title -->
-                        <h3>إرشاد ودعم شامل</h3>
-                        <p>نهتم بمستقبله كاملاً، نقدم الإرشاد لاختيار المسار الجامعي والمهني حتى بعد التخرج.</p>
+                        <span class="uil uil-constructor"></span>
+                        <h3>مشاريع عملية تطبيقية</h3>
+                        <p>تطبيقات ومشاريع عملية تفاعلية تطور المهارات البرمجية والتفكير المنطقي.</p>
                     </div>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="feature">
-                        <span class="uil uil-link"></span>
-                        <!-- SEO: H3 for feature title -->
-                        <h3>ربط بمنهج المسارات</h3>
-                        <p>نعزز فهم ابنك للمنهج الدراسي بربط مفاهيم البرمجة بمواد نظام المسارات السعودي.</p>
+                        <span class="uil uil-clipboard-alt"></span>
+                        <h3>محاكاة امتحانات TOFAS</h3>
+                        <p>تدريب على نظام امتحانات TOFAS لإعداد الطلاب للامتحانات الرسمية بثقة.</p>
                     </div>
                 </div>
             </div>
@@ -253,14 +230,16 @@
                 <div class="col-lg-5 mb-5 mb-lg-0">
                     <!-- SEO: H2 for section title - Good structure -->
                     <h2 class="line-bottom mb-4" data-aos="fade-up" data-aos-delay="0">أكاديمية متخصصة لطلاب المسارات</h2>
-                    <p data-aos="fade-up" data-aos-delay="100">نحن أول منصة تعليمية تركز حصرياً على تدريس علوم الحاسب والبرمجة للطلاب بنظام المسارات، مع منهجية تراعي احتياجاتهم وأهدافهم المستقبلية.</p>
+                    <p data-aos="fade-up" data-aos-delay="100">منصة تعليمية متطورة تقدم نظام تعلم بالحصص مع نظام اختبارات متقدم ومتابعة شاملة لأولياء الأمور.</p>
                     <ul class="list-unstyled ul-check mb-5 primary" data-aos="fade-up" data-aos-delay="200">
-                        <li> دورات فردية تفاعلية عبر Zoom لتركيز أكبر.</li>
-                        <li> وصول دائم للمحاضرات المسجلة للمراجعة.</li>
-                        <li> مسار تعليمي واضح ومخصص يراعي الفروق الفردية.</li>
-                        <li> متابعة أسبوعية دقيقة لتقدم الطالب.</li>
-                        <li> مرونة في عدد الحصص (1-2 أسبوعياً) حسب الحاجة.</li>
-                        <li> مشاريع عملية تطبيقية بنهاية كل مستوى.</li>
+                        <li> نظام بيع كورسات بالحصص مع تقدم متدرج</li>
+                        <li> اختبارات إجبارية بعد كل حصة لضمان الفهم</li>
+                        <li> منع الوصول للحصة التالية قبل اجتياز الاختبار</li>
+                        <li> تنبيهات أسبوعية لأولياء الأمور بالتقدم</li>
+                        <li> مجموعة دعم فني وأكاديمي طوال الأسبوع</li>
+                        <li> لقاءات أسبوعية مباشرة عبر Google Meet</li>
+                        <li> مشاريع عملية وتطبيقات تفاعلية</li>
+                        <li> محاكاة شاملة لنظام امتحانات TOFAS</li>
                     </ul>
                     <p data-aos="fade-up" data-aos-delay="300">
                         <!-- SEO: Internal anchor link & external link with noopener - Good -->
@@ -288,14 +267,15 @@
                     <!-- Option 2: Remove icon if preferred -->
                 </figure>
                 <!-- SEO: H2 for section title - Good structure -->
-                <h2 class="mb-4">جرب قبل أن تقرر: احجز حصة تعريفية مجانية!</h2>
+                <h2 class="mb-4">ابدأ رحلة التعلم مع نظامنا المتطور!</h2>
                 <p class="lead" style="font-size: 1.1rem;">
-                    غير متأكد أو لديك أسئلة؟ احجز **حصة تعريفية مجانية (20 دقيقة عبر Zoom)** مع المدرب م/أحمد فخر الدين. <br>
-                    جرب أسلوبنا مباشرة، اطرح استفساراتك، وتأكد أنه المسار الأنسب لابنك في هذه الجلسة السريعة.
+                    انضم إلى نظام تعليمي فريد يجمع بين التعلم بالحصص والاختبارات التفاعلية. <br>
+                    مع متابعة مستمرة لأولياء الأمور ودعم أكاديمي طوال الأسبوع، بالإضافة إلى لقاءات مباشرة أسبوعية ومحاكاة امتحانات TOFAS.
                 </p>
                 <p class="mt-4">
-                    <!-- SEO: Clear Call to Action linking to WhatsApp for booking -->
-                    <a href="https://wa.me/201032863861?text=أرغب في حجز حصة تعريفية مجانية لمدة 20 دقيقة" target="_blank" rel="noopener" class="btn btn-primary btn-lg">احجز حصتك التعريفية المجانية (20 دقيقة)</a>
+                    <!-- SEO: Clear Call to Action linking to courses -->
+                    <a href="#learning-tracks" class="btn btn-primary btn-lg">استكشف الكورسات المتاحة</a>
+                    <a href="https://wa.me/201032863861?text=أرغب في معرفة المزيد عن نظام التعلم بالحصص" target="_blank" rel="noopener" class="btn btn-outline-primary btn-lg ml-3">تحدث مع مستشار تعليمي</a>
                 </p>
             </div>
         </div>

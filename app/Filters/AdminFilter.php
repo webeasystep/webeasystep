@@ -16,6 +16,13 @@ class AdminFilter implements FilterInterface
 
         // Check if the user is logged in
         if (!$auth->loggedIn()) {
+            // For AJAX requests, return JSON error
+            if ($request->isAJAX() || $request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest') {
+                return service('response')
+                    ->setStatusCode(401)
+                    ->setJSON(['error' => 'Unauthorized', 'message' => 'You must be logged in']);
+            }
+            
             // Set flash data
             $session->setFlashdata('error', 'You must be logged in to view this page.');
 
@@ -26,6 +33,13 @@ class AdminFilter implements FilterInterface
         // Check if the user has admin rights
         // (Assuming 'admin' is a group name, modify as needed)
         if (!$auth->user()->inGroup('superadmin')) {
+            // For AJAX requests, return JSON error
+            if ($request->isAJAX() || $request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest') {
+                return service('response')
+                    ->setStatusCode(403)
+                    ->setJSON(['error' => 'Forbidden', 'message' => 'You do not have permission']);
+            }
+            
             // Set flash data
             $session->setFlashdata('error', 'You do not have permission to view this page.');
 

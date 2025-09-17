@@ -14,7 +14,7 @@ class Settings extends BaseController
     }
     public function index()
     {
-        return view('\Modules\Customers\Views\Admin\index');
+        return view('index');
     }
 
 
@@ -32,6 +32,6 @@ class Settings extends BaseController
         $data = [
             'news' => $news
         ];
-        return view('Modules\Users\Views\user', $data);
+        return View('Site', 'user', $data);
     }
 }

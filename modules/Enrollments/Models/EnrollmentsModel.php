@@ -6,60 +6,48 @@ use App\Models\BaseModel;
 
 class EnrollmentsModel extends BaseModel
 {
-    protected $table      = 'tb_enrollments';
+    protected $table      = 'tb_unit_enrollments';
     protected $primaryKey = 'id';
 
     /**
-     * Allowed fields to avoid the "DataException: no data in update"
-     * Make sure these match your actual columns in `tb_enrollments`.
+     * Updated to use tb_unit_enrollments as primary data source
      */
     protected $allowedFields = [
         'user_id',
-        'course_id',
-        'enrolled_at',
+        'unit_ids',
+        'total_amount',
+        'payment_proof',
+        'payment_method',
         'status',
-        'proof_image',    // Add this if you store the payment proof
-        'completed_at',
-        'updated_at',
+        'admin_notes',
+        'processed_by',
+        'processed_at'
     ];
 
-    /**
-     * If you want CI4 to auto-manage created/updated timestamps, set:
-     *   protected $useTimestamps = true;
-     * Then define the fields it should use:
-     *
-     * protected $createdField  = 'enrolled_at';
-     * protected $updatedField  = 'updated_at';
-     *
-     * Make sure your DB columns exist and you want that behavior.
-     */
-    protected $useTimestamps = false; // or true if you want
-
+    protected $useTimestamps = true;
     protected $returnType = 'object';
 
 
     /**
-     * Enroll user immediately (e.g., for free courses).
-     * This sets status='active' so the user can access the course immediately.
+     * Create new unit enrollment request
      */
-    public function enrollUser(int $userId, int $courseId)
+    public function enrollUserInUnits($userId, $unitIds, $totalAmount, $paymentProof = null, $paymentMethod = 'bank_transfer')
     {
-        // Check if the user is already enrolled
-        $existing = $this->where('user_id', $userId)
-            ->where('course_id', $courseId)
-            ->first();
-        if ($existing) {
-            // Already enrolled, do nothing
-            return;
+        // Validate required fields
+        if (empty($userId) || empty($unitIds) || empty($totalAmount)) {
+            return false;
         }
 
-        // Otherwise, create a new enrollment
-        $this->insert([
-            'user_id'     => $userId,
-            'course_id'   => $courseId,
-            'enrolled_at' => date('Y-m-d H:i:s'),
-            'status'      => 'active', // or 'pending' if you want admin approval
-        ]);
+        $enrollmentData = [
+            'user_id' => $userId,
+            'unit_ids' => is_array($unitIds) ? json_encode($unitIds) : $unitIds,
+            'total_amount' => $totalAmount,
+            'payment_proof' => $paymentProof,
+            'payment_method' => $paymentMethod,
+            'status' => 'pending'
+        ];
+
+        return $this->insert($enrollmentData);
     }
 
 
@@ -88,41 +76,202 @@ class EnrollmentsModel extends BaseModel
     }
 
     /**
-     * قائمة الدورات (للاستخدام في Forms مثلاً)
+     * Get list of available units for enrollment
      */
-    public function get_courses_list(): array
+    public function get_units_list()
     {
-        $builder = $this->db->table('tb_courses');
-        $builder->select('id, course_name');
-        $builder->where('active', '1');
-        $query = $builder->get();
-        $list = $query->getResultArray();
-
-        // إضافة خيار فارغ في البداية
-        array_unshift($list, ['id' => '', 'course_name' => '--اختر الدورة--']);
-
-        // تحويلها لمصفوفة ملائمة: [course_id => course_name]
-        return array_column($list, 'course_name', 'id');
+        if (class_exists('\Modules\Units\Models\UnitsModel')) {
+            $unitsModel = new \Modules\Units\Models\UnitsModel();
+            return $unitsModel->where('status', 'active')
+                             ->select('id, unit_title as title, unit_desc as description, unit_price as price')
+                             ->findAll();
+        }
+        return [];
     }
-
+    
     /**
-     * قائمة المستخدمين (للاستخدام في Forms مثلاً)
+     * Get list of users for admin interface
      */
-    public function get_users_list(): array
+    public function get_users_list()
     {
-        $builder = $this->db->table('users');
-        $builder->select('id, username');  // أو أي عمود آخر يمثل اسم المستخدم
-        $builder->where('active', '1');
-        $query = $builder->get();
-        $list = $query->getResultArray();
+        $db = \Config\Database::connect();
+        return $db->table('users')
+                 ->where('active', 1)
+                 ->select('id, username, full_name')
+                 ->get()
+                 ->getResult();
+    }
+    
+    /**
+     * Get pending enrollment requests for admin
+     */
+    public function getPendingEnrollments()
+    {
+        return $this->select('tb_unit_enrollments.*, users.username, users.email')
+                   ->join('users', 'users.id = tb_unit_enrollments.user_id')
+                   ->where('tb_unit_enrollments.status', 'pending')
+                   ->orderBy('tb_unit_enrollments.created_at', 'ASC')
+                   ->findAll();
+    }
+    
+    /**
+     * Get enrollment with unit details
+     */
+    public function getEnrollmentWithUnits($enrollmentId)
+    {
+        $enrollment = $this->find($enrollmentId);
+        if (!$enrollment) {
+            return null;
+        }
 
-        array_unshift($list, ['id' => '', 'username' => '--اختر المستخدم--']);
+        $unitIds = json_decode($enrollment->unit_ids, true);
+        if ($unitIds && class_exists('\Modules\Units\Models\UnitsModel')) {
+            $unitsModel = new \Modules\Units\Models\UnitsModel();
+            $enrollment->units = $unitsModel->whereIn('id', $unitIds)->findAll();
+        } else {
+            $enrollment->units = [];
+        }
 
-        return array_column($list, 'username', 'id');
+        return $enrollment;
     }
     /**
-     * If you truly need to handle payments in the same table,
-     * you can keep references to 'amount', 'enrollment_method', etc.
-     * But if you have a separate tb_payments table, move them to a PaymentModel.
+     * Get user's unit enrollments with unit details
      */
+    public function getUserUnitEnrollments(int $userId, string $status = null): array
+    {
+        $builder = $this->where('user_id', $userId);
+        
+        if ($status) {
+            $builder->where('status', $status);
+        }
+        
+        $enrollments = $builder->orderBy('created_at', 'DESC')->findAll();
+        
+        // Add unit details to each enrollment
+        if ($enrollments && class_exists('\Modules\Units\Models\UnitsModel')) {
+            $unitsModel = new \Modules\Units\Models\UnitsModel();
+            
+            foreach ($enrollments as &$enrollment) {
+                $unitIds = json_decode($enrollment->unit_ids, true);
+                if ($unitIds) {
+                    $enrollment->units = $unitsModel->whereIn('id', $unitIds)->findAll();
+                } else {
+                    $enrollment->units = [];
+                }
+            }
+        }
+        
+        return $enrollments;
+    }
+    
+    /**
+     * Get unit enrollment statistics
+     */
+    public function getUnitEnrollmentStats(): array
+    {
+        $stats = [];
+        
+        // Total enrollments
+        $stats['total'] = $this->countAll();
+        
+        // Enrollments by status
+        $stats['pending'] = $this->where('status', 'pending')->countAllResults(false);
+        $stats['approved'] = $this->where('status', 'approved')->countAllResults(false);
+        $stats['rejected'] = $this->where('status', 'rejected')->countAllResults(false);
+        
+        // Recent enrollments (last 30 days)
+        $thirtyDaysAgo = date('Y-m-d H:i:s', strtotime('-30 days'));
+        $stats['recent'] = $this->where('created_at >=', $thirtyDaysAgo)->countAllResults(false);
+        
+        // Total revenue from approved enrollments
+        $revenueQuery = $this->select('SUM(total_amount) as total_revenue')
+                           ->where('status', 'approved')
+                           ->first();
+        $stats['total_revenue'] = $revenueQuery->total_revenue ?? 0;
+        
+        return $stats;
+    }
+    
+    /**
+     * Approve unit enrollment and grant access
+     */
+    public function approveEnrollment($enrollmentId, $adminId, $notes = null)
+    {
+        $enrollment = $this->find($enrollmentId);
+        if (!$enrollment) {
+            return false;
+        }
+
+        $db = \Config\Database::connect();
+        $db->transStart();
+
+        try {
+            // Update enrollment status
+            $this->update($enrollmentId, [
+                'status' => 'approved',
+                'processed_by' => $adminId,
+                'processed_at' => date('Y-m-d H:i:s'),
+                'admin_notes' => $notes
+            ]);
+
+            // Grant access to units
+            $unitIds = json_decode($enrollment->unit_ids, true);
+            if ($unitIds && class_exists('\Modules\Units\Models\UnitPurchasesModel')) {
+                $unitPurchasesModel = new \Modules\Units\Models\UnitPurchasesModel();
+                $pricePerUnit = $enrollment->total_amount / count($unitIds);
+                
+                foreach ($unitIds as $unitId) {
+                    $purchaseData = [
+                        'user_id' => $enrollment->user_id,
+                        'unit_id' => $unitId,
+                        'payment_attachment_id' => $enrollmentId,
+                        'price_paid' => $pricePerUnit,
+                        'access_granted' => 1,
+                        'access_expires_at' => null
+                    ];
+                    
+                    $unitPurchasesModel->insertPurchase($purchaseData);
+                }
+            }
+
+            $db->transComplete();
+            return $db->transStatus();
+        } catch (\Exception $e) {
+            $db->transRollback();
+            return false;
+        }
+    }
+    
+    /**
+     * Reject unit enrollment
+     */
+    public function rejectEnrollment($enrollmentId, $adminId, $notes = null)
+    {
+        return $this->update($enrollmentId, [
+            'status' => 'rejected',
+            'processed_by' => $adminId,
+            'processed_at' => date('Y-m-d H:i:s'),
+            'admin_notes' => $notes
+        ]);
+    }
+    
+    /**
+     * Check if user has access to specific unit
+     */
+    public function hasUnitAccess($userId, $unitId)
+    {
+        // Check if user has approved enrollment for this unit
+        $enrollments = $this->where('user_id', $userId)
+                           ->where('status', 'approved')
+                           ->findAll();
+        
+        foreach ($enrollments as $enrollment) {
+            $unitIds = json_decode($enrollment->unit_ids, true);
+            if ($unitIds && in_array($unitId, $unitIds)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

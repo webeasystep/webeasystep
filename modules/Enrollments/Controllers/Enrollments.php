@@ -6,13 +6,17 @@ use App\Controllers\BaseController;
 use App\Libraries\FireUploader;
 use Modules\Courses\Models\CoursesModel;
 use Modules\Enrollments\Models\EnrollmentsModel;
+use Modules\Enrollments\Models\UnitEnrollmentsModel;
+use Modules\Units\Models\UnitsModel;
 use Modules\Users\Models\UsersModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Enrollments extends BaseController
 {
     protected EnrollmentsModel $enrollmentsModel;
+    protected UnitEnrollmentsModel $unitEnrollmentsModel;
     protected CoursesModel     $coursesModel;
+    protected UnitsModel       $unitsModel;
     protected UsersModel       $usersModel;
     protected FireUploader     $fireUploader;
 
@@ -31,7 +35,9 @@ class Enrollments extends BaseController
     public function __construct()
     {
         $this->enrollmentsModel = new EnrollmentsModel();
+        $this->unitEnrollmentsModel = new UnitEnrollmentsModel();
         $this->coursesModel     = new CoursesModel();
+        $this->unitsModel       = new UnitsModel();
         $this->usersModel       = new UsersModel();
         $this->fireUploader     = new FireUploader();
     }
@@ -128,7 +134,7 @@ class Enrollments extends BaseController
     {
         if (!$userId) {
             // If you want to require login for free courses, handle it here
-            return redirect()->to('/site/login')->with('error', 'Please log in first.');
+            return redirect()->to('/login')->with('error', 'Please log in first.');
         }
 
         // Immediately enroll user
@@ -218,5 +224,138 @@ class Enrollments extends BaseController
         $this->show_msg('success', 'Payment Received', 'Your payment proof was uploaded. Enrollment is pending admin review.');
 
         return redirect()->to('/courses/my_courses');
+    }
+
+    /**
+     * Display units available for purchase
+     */
+    public function unitsShop()
+    {
+        $data = [
+            'title' => 'شراء الوحدات الدراسية',
+            'units' => $this->unitsModel->getPurchasableUnits()
+        ];
+
+        return view('Site/units_shop', $data);
+    }
+
+    /**
+     * Handle unit purchase checkout
+     */
+    public function purchaseUnits()
+    {
+        $userId = auth()->user()->id ?? null;
+        if (!$userId) {
+            return redirect()->to('/login')->with('error', 'يرجى تسجيل الدخول أولاً');
+        }
+
+        if ($this->request->is('post')) {
+            return $this->processPurchaseUnits($userId);
+        }
+
+        $unitIds = $this->request->getGet('units');
+        if (!$unitIds) {
+            return redirect()->to('/enrollments/units-shop')->with('error', 'يرجى اختيار وحدة واحدة على الأقل');
+        }
+
+        $unitIds = explode(',', $unitIds);
+        $selectedUnits = $this->unitsModel->whereIn('id', $unitIds)->findAll();
+        
+        if (empty($selectedUnits)) {
+            return redirect()->to('/enrollments/units-shop')->with('error', 'الوحدات المحددة غير متاحة');
+        }
+
+        $totalPrice = 0;
+        foreach ($selectedUnits as $unit) {
+            $totalPrice += $unit->unit_price ?? 0;
+        }
+
+        $data = [
+            'title' => 'إتمام شراء الوحدات',
+            'selected_units' => $selectedUnits,
+            'total_price' => $totalPrice,
+            'unit_ids' => $unitIds
+        ];
+
+        return view('Site/purchase_units', $data);
+    }
+
+    /**
+     * Process unit purchase with payment proof
+     */
+    private function processPurchaseUnits($userId)
+    {
+        $unitIds = $this->request->getPost('unit_ids');
+        $paymentMethod = $this->request->getPost('payment_method') ?? 'bank_transfer';
+        
+        if (empty($unitIds)) {
+            return redirect()->back()->with('error', 'يرجى اختيار وحدة واحدة على الأقل')->withInput();
+        }
+
+        // Validate payment proof
+        if (empty($_FILES['payment_proof']['name'])) {
+            return redirect()->back()->with('error', 'يرجى إرفاق إثبات الدفع')->withInput();
+        }
+
+        // Calculate total price
+        $units = $this->unitsModel->whereIn('id', $unitIds)->findAll();
+        $totalPrice = 0;
+        foreach ($units as $unit) {
+            $totalPrice += $unit->unit_price ?? 0;
+        }
+
+        if ($totalPrice <= 0) {
+            return redirect()->back()->with('error', 'خطأ في حساب المبلغ الإجمالي')->withInput();
+        }
+
+        // Create enrollment request
+        $enrollmentData = [
+            'user_id' => $userId,
+            'unit_ids' => $unitIds,
+            'total_amount' => $totalPrice,
+            'payment_method' => $paymentMethod
+        ];
+
+        $enrollmentId = $this->unitEnrollmentsModel->createUnitEnrollment($enrollmentData);
+
+        if (!$enrollmentId) {
+            return redirect()->back()->with('error', 'فشل في حفظ طلب الشراء')->withInput();
+        }
+
+        // Upload payment proof
+        $this->fireUploader->upload_photos($this->unitEnrollmentsModel, 'payment_proof', $enrollmentId);
+
+        return redirect()->to('/enrollments/my-purchases')
+                        ->with('success', 'تم إرسال طلب الشراء بنجاح. سيتم مراجعته من قبل الإدارة وتفعيل الوحدات عند الموافقة.');
+    }
+
+    /**
+     * Display user's unit purchases
+     */
+    public function myPurchases()
+    {
+        $userId = auth()->user()->id ?? null;
+        if (!$userId) {
+            return redirect()->to('/login')->with('error', 'يرجى تسجيل الدخول أولاً');
+        }
+
+        $enrollments = $this->unitEnrollmentsModel->getUserEnrollments($userId);
+        
+        // Get unit details for each enrollment
+        foreach ($enrollments as &$enrollment) {
+            $unitIds = json_decode($enrollment->unit_ids, true);
+            if ($unitIds) {
+                $enrollment->units = $this->unitsModel->whereIn('id', $unitIds)->findAll();
+            } else {
+                $enrollment->units = [];
+            }
+        }
+
+        $data = [
+            'title' => 'مشترياتي',
+            'enrollments' => $enrollments
+        ];
+
+        return view('Site/my_purchases', $data);
     }
 }

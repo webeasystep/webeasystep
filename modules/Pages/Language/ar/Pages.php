@@ -25,4 +25,5 @@ return [
     'page_link' => 'رابط الصفحة',
     'parent_id' => 'القسم الرئيسي',
     'main_parent' => 'القسم الرئيسي',
+    'duration_hours' => 'مدة الفيديوهات',
 ];

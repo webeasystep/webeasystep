@@ -6,35 +6,52 @@ use App\Controllers\BaseController;
 use App\Libraries\DtTable;
 use App\Libraries\FireUploader;
 use Modules\Enrollments\Models\EnrollmentsModel;
+use Modules\Enrollments\Models\UnitEnrollmentsModel;
+use Modules\Units\Models\UnitsModel;
+use Modules\Users\Models\UsersModel;
 
 class AdminEnrollments extends BaseController
 {
     protected EnrollmentsModel $enrollments;
+    protected UnitEnrollmentsModel $unitEnrollments;
+    protected UnitsModel $unitsModel;
+    protected UsersModel $usersModel;
     protected array $rules;
     protected FireUploader $fireUploader;
+    protected string $table = 'tb_unit_enrollments';
 
     public function __construct()
     {
         // Initialize the FireUploader for file uploads
         $this->fireUploader = new FireUploader();
 
-        // Model instance
+        // Model instances
         $this->enrollments = new EnrollmentsModel();
+        $this->unitEnrollments = new UnitEnrollmentsModel();
+        $this->unitsModel = new UnitsModel();
+        $this->usersModel = new UsersModel();
 
-        // Validation rules (adjust as needed for your fields)
+        // Validation rules for tb_unit_enrollments
         $this->rules = [
             'user_id' => [
                 'label' => 'المستخدم',
                 'rules' => 'required|integer',
             ],
-            'course_id' => [
-                'label' => 'الدورة',
-                'rules' => 'required|integer',
+            'unit_ids' => [
+                'label' => 'الوحدات',
+                'rules' => 'required',
+            ],
+            'total_amount' => [
+                'label' => 'المبلغ الإجمالي',
+                'rules' => 'required|decimal',
+            ],
+            'payment_method' => [
+                'label' => 'طريقة الدفع',
+                'rules' => 'required|in_list[bank_transfer,credit_card,paypal,cash]',
             ],
             'status' => [
                 'label' => 'الحالة',
-                // If your table uses these enumerations: active, completed, cancelled
-                'rules' => 'required|in_list[active,completed,cancelled]',
+                'rules' => 'required|in_list[pending,approved,rejected]',
             ],
             // Example if you want to require a file for proof:
             // 'proof' => [
@@ -54,31 +71,28 @@ class AdminEnrollments extends BaseController
         // If it's an AJAX request from DataTables
         if ($this->request->isAJAX()) {
 
-            // Example: Join with `users`, `tb_courses`, and also `tb_payments`
-            //          so we can display payment info (method, status, amount)
-            $builder = $this->enrollments
+            // Join with `users` for unit enrollment display
+            $builder = $this->unitEnrollments
                 ->select("
-                tb_enrollments.id,
+                tb_unit_enrollments.id,
                 users.username AS user_name,
-                tb_courses.course_name,
-                tb_enrollments.status AS enrollment_status,
-                tb_enrollments.enrolled_at,
-                tb_payments.payment_method,
-                tb_payments.payment_status,
-                tb_payments.amount
+                tb_unit_enrollments.unit_ids,
+                tb_unit_enrollments.total_amount,
+                tb_unit_enrollments.payment_method,
+                tb_unit_enrollments.status AS enrollment_status,
+                tb_unit_enrollments.created_at,
+                tb_unit_enrollments.processed_at,
+                tb_unit_enrollments.admin_notes
             ")
-                ->join('users', 'users.id = tb_enrollments.user_id', 'left')
-                ->join('tb_courses', 'tb_courses.id = tb_enrollments.course_id', 'left')
-                // Join payments by matching user_id & course_id
-                ->join('tb_payments', 'tb_payments.user_id = tb_enrollments.user_id AND tb_payments.course_id = tb_enrollments.course_id', 'left')
-                ->orderBy('tb_enrollments.id', 'desc')
+                ->join('users', 'users.id = tb_unit_enrollments.user_id', 'left')
+                ->orderBy('tb_unit_enrollments.id', 'desc')
                 ->builder();
 
             DtTable::hideColumns(['id']);
-            DtTable::searchableColumns(['user_name', 'course_name', 'enrollment_status', 'payment_method', 'payment_status']);
-            DtTable::orderableColumns(['user_name', 'course_name', 'enrollment_status', 'payment_method', 'payment_status', 'amount', 'enrolled_at']);
+            DtTable::searchableColumns(['user_name', 'email', 'enrollment_status', 'payment_method']);
+            DtTable::orderableColumns(['user_name', 'enrollment_status', 'created_at', 'total_amount']);
+            DtTable::setShowColumns("user_name,email,unit_ids,total_amount,enrollment_status,created_at,processed_at");
             $output = DtTable::tableRender($builder, false);
-            DtTable::setShowColumns("user_name,course_name,enrollment_status,payment_method,payment_status,amount,enrolled_at");
 
             return $this->response->setJSON($output);
         }
@@ -90,92 +104,99 @@ class AdminEnrollments extends BaseController
 
 
     /**
-     * Add a new enrollment
+     * Add a new unit enrollment
      */
     public function add()
     {
-        $data['title'] = 'إضافة اشتراك جديد';
+        $data['title'] = 'إضافة طلب شراء وحدات جديد';
 
         if ($this->request->is('post')) {
             if ($this->validate($this->rules)) {
                 // Insert the data
-                $id = $this->data_arr(); // Creates a new row in tb_enrollments
+                $id = $this->data_arr(); // Creates a new row in tb_unit_enrollments
 
-                // If you want to upload a file for proof or something:
-                // $this->fireUploader->upload_photos($this->enrollments, 'proof', $id);
+                // Upload payment proof if provided
+                $this->fireUploader->upload_photos($this->unitEnrollments, 'payment_proof', $id);
 
-                $this->show_msg('success', 'تمت الإضافة بنجاح', 'تم إضافة الاشتراك بنجاح');
+                $this->show_msg('success', 'تمت الإضافة بنجاح', 'تم إضافة طلب شراء الوحدات بنجاح');
                 return redirect()->to(ADMIN_URL . 'enrollments');
             } else {
                 $this->show_msg('danger', 'أخطاء في الإدخال', validation_errors());
             }
         }
 
-        // For a dropdown of courses or users, you can do:
-        $data['courses'] = $this->enrollments->get_courses_list();
-        $data['users']   = $this->enrollments->get_users_list();
+        // For dropdowns
+        $data['units'] = $this->unitEnrollments->get_units_list();
+        $data['users'] = $this->unitEnrollments->get_users_list();
 
         return view('form', $data);
     }
 
     /**
-     * Edit an existing enrollment
+     * Edit an existing unit enrollment
      */
     public function edit($id)
     {
-        $data['title'] = 'تعديل الاشتراك';
+        $data['title'] = 'تعديل طلب شراء الوحدات';
 
         if ($this->request->is('post')) {
             if ($this->validate($this->rules)) {
                 // Update the data
                 $this->data_arr($id);
 
-                // If you have a file to update:
-                $this->fireUploader->upload_photos($this->enrollments, 'proof_image', $id);
+                // Update payment proof if provided
+                $this->fireUploader->upload_photos($this->unitEnrollments, 'payment_proof', $id);
 
-                $this->show_msg('success', 'تم التعديل', 'تم تعديل بيانات الاشتراك بنجاح');
+                $this->show_msg('success', 'تم التعديل', 'تم تعديل بيانات طلب الشراء بنجاح');
                 return redirect()->to(ADMIN_URL . 'enrollments');
             } else {
                 $this->show_msg('danger', 'أخطاء في الإدخال', validation_errors());
             }
         }
 
-        // Fetch existing enrollment
-        $enrollment = $this->enrollments->find($id);
+        // Fetch existing unit enrollment
+        $enrollment = $this->unitEnrollments->find($id);
         if (!$enrollment) {
-            $this->show_msg('danger', 'خطأ', 'لم يتم العثور على الاشتراك المطلوب');
+            $this->show_msg('danger', 'خطأ', 'لم يتم العثور على طلب الشراء المطلوب');
             return redirect()->to(ADMIN_URL . 'enrollments');
         }
 
         $data['enrollment'] = $enrollment;
 
-        // If you had stored any JSON or attachments, fetch them here
-        // $data['files'] = json_decode($enrollment->proof ?? '[]', true);
+        // Decode unit_ids JSON for form display
+        $data['selected_units'] = json_decode($enrollment->unit_ids ?? '[]', true);
 
         // For dropdowns
-        $data['courses'] = $this->enrollments->get_courses_list();
-        $data['users']   = $this->enrollments->get_users_list();
+        $data['units'] = $this->unitEnrollments->get_units_list();
+        $data['users'] = $this->unitEnrollments->get_users_list();
 
         return view('form', $data);
     }
 
     /**
-     * Insert or Update data in tb_enrollments
+     * Insert or Update data in tb_unit_enrollments
      */
     private function data_arr($id = null)
     {
-        $builder = $this->db->table('tb_enrollments');
+        $builder = $this->db->table('tb_unit_enrollments');
+
+        $unitIds = $this->request->getPost('unit_ids');
+        if (is_array($unitIds)) {
+            $unitIds = json_encode($unitIds);
+        }
 
         $data = [
             'user_id' => $this->request->getPost('user_id', FILTER_SANITIZE_NUMBER_INT),
-            'course_id' => $this->request->getPost('course_id', FILTER_SANITIZE_NUMBER_INT),
-            // We rely on DB default for enrolled_at if needed
-            'status' => $this->request->getPost('status', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            'unit_ids' => $unitIds,
+            'total_amount' => $this->request->getPost('total_amount', FILTER_SANITIZE_NUMBER_FLOAT) ?: 0,
+            'payment_method' => $this->request->getPost('payment_method', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: 'bank_transfer',
+            'status' => $this->request->getPost('status', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: 'pending',
         ];
 
-        // If you had extra fields like amount or enrollment_method, add them:
-        // 'amount' => $this->request->getPost('amount', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
-        // 'enrollment_method' => $this->request->getPost('enrollment_method'),
+        // Add payment proof if provided
+        if ($this->request->getPost('payment_proof')) {
+            $data['payment_proof'] = $this->request->getPost('payment_proof', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        }
 
         if ($id) {
             // Update existing record
@@ -189,4 +210,95 @@ class AdminEnrollments extends BaseController
         return $id;
     }
 
+    /**
+     * Display unit enrollment requests
+     */
+    public function unitEnrollments()
+    {
+        $data['title'] = 'طلبات شراء الوحدات';
+
+        if ($this->request->isAJAX()) {
+            $enrollmentsModel = $this->unitEnrollments
+                ->select('tb_unit_enrollments.*, users.username, users.email')
+                ->join('users', 'users.id = tb_unit_enrollments.user_id')
+                ->orderBy('tb_unit_enrollments.created_at', 'DESC')
+                ->builder();
+
+            DtTable::hideColumns(['id', 'user_id', 'unit_ids']);
+            DtTable::searchableColumns(['username', 'email', 'status']);
+            DtTable::orderableColumns(['username', 'total_amount', 'status', 'created_at']);
+            DtTable::setShowColumns('username,email,total_amount,payment_method,status,created_at');
+
+            $output = DtTable::tableRender($enrollmentsModel, false);
+            return $this->response->setJSON($output);
+        } else {
+            return view('Admin/unit_enrollments', $data);
+        }
+    }
+
+    /**
+     * View unit enrollment details
+     */
+    public function showUnitEnrollment($id)
+    {
+        $enrollment = $this->unitEnrollments->getEnrollmentWithUnits($id);
+        if (!$enrollment) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('طلب الشراء غير موجود');
+        }
+
+        $data = [
+            'title' => 'تفاصيل طلب شراء الوحدات',
+            'enrollment' => $enrollment
+        ];
+
+        return view('Admin/unit_enrollment_details', $data);
+    }
+
+    /**
+     * Approve unit enrollment request
+     */
+    public function approveUnitEnrollment($id)
+    {
+        $adminId = auth()->user()->id;
+        $notes = $this->request->getPost('admin_notes');
+
+        if ($this->unitEnrollments->approveEnrollment($id, $adminId, $notes)) {
+            return redirect()->back()->with('success', 'تم الموافقة على الطلب وتفعيل الوحدات بنجاح');
+        } else {
+            return redirect()->back()->with('error', 'فشل في الموافقة على الطلب');
+        }
+    }
+
+    /**
+     * Reject unit enrollment request
+     */
+    public function rejectUnitEnrollment($id)
+    {
+        $adminId = auth()->user()->id;
+        $notes = $this->request->getPost('admin_notes');
+
+        if ($this->unitEnrollments->rejectEnrollment($id, $adminId, $notes)) {
+            return redirect()->back()->with('success', 'تم رفض الطلب');
+        } else {
+            return redirect()->back()->with('error', 'فشل في رفض الطلب');
+        }
+    }
+
+    /**
+     * Get unit enrollment statistics
+     */
+    public function unitEnrollmentStats()
+    {
+        $stats = $this->unitEnrollments->getEnrollmentStats();
+        return $this->response->setJSON($stats);
+    }
+
+    /**
+     * Get pending unit enrollments count
+     */
+    public function getPendingUnitEnrollmentsCount()
+    {
+        $count = $this->unitEnrollments->where('status', 'pending')->countAllResults();
+        return $this->response->setJSON(['count' => $count]);
+    }
 }

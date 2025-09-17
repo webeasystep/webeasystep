@@ -42,22 +42,23 @@ class Autoload extends AutoloadConfig
     public $psr4 = [
         APP_NAMESPACE             => APPPATH, // For custom app namespace
         'Config'                  => APPPATH . 'Config',
-        'Modules\Users'   => ROOTPATH . 'modules/Users',
-        'Modules\Permissions'   => ROOTPATH . 'modules/Permissions',
-        'Modules\Groups'   => ROOTPATH . 'modules/Groups',
-        'Modules\Pages'   => ROOTPATH . 'modules/Pages',
-        'Modules\Sections'   => ROOTPATH . 'modules/Sections',
+        'Modules\Admin'      => ROOTPATH . 'modules/Admin',
         'Modules\Articles'   => ROOTPATH . 'modules/Articles',
+
+        'Modules\ContactUs'  => ROOTPATH . 'modules/ContactUs',
+        'Modules\Courses'    => ROOTPATH . 'modules/Courses',
+        'Modules\Enrollments' => ROOTPATH . 'modules/Enrollments',
+        'Modules\Groups'     => ROOTPATH . 'modules/Groups',
+        'Modules\Pages'      => ROOTPATH . 'modules/Pages',
+        'Modules\Permissions' => ROOTPATH . 'modules/Permissions',
+        'Modules\Progress'   => ROOTPATH . 'modules/Progress',
+        'Modules\Quizzes'    => ROOTPATH . 'modules/Quizzes',
+        'Modules\Search'     => ROOTPATH . 'modules/Search',
+        'Modules\Sections'   => ROOTPATH . 'modules/Sections',
         'Modules\Settings'   => ROOTPATH . 'modules/Settings',
-        'Modules\ContactUs'   => ROOTPATH . 'modules/ContactUs',
-        'Modules\Search'   => ROOTPATH . 'modules/Search',
-        'Modules\Courses'   => ROOTPATH . 'modules/Courses',
-        'Modules\Videos'   => ROOTPATH . 'modules/Videos',
-        'Modules\Subscriptions'   => ROOTPATH . 'modules/Subscriptions',
-        'Modules\Plans'   => ROOTPATH . 'modules/Plans',
-        'Modules\Payments'   => ROOTPATH . 'modules/Payments',
-        'Modules\Enrollments'   => ROOTPATH . 'modules/Enrollments',
-        'Modules\CoursesSections'   => ROOTPATH . 'modules/CoursesSections',
+        'Modules\Units'      => ROOTPATH . 'modules/Units',
+        'Modules\Users'      => ROOTPATH . 'modules/Users',
+        'Modules\Videos'     => ROOTPATH . 'modules/Videos',
     ];
 
     /**

@@ -265,40 +265,50 @@
                     </div>
                 </div>
 
-                <!-- Accordion of Sections & Videos -->
+                <!-- Accordion of Units & Items -->
                 <div class="videos-accordion accordion" id="videoAccordion">
-                    <?php foreach ($structure as $section): ?>
+                    <?php foreach ($units as $unit): ?>
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="heading<?= esc($section['section_id']) ?>">
-                                <button class="accordion-button <?= $section['is_open'] ? '' : 'collapsed' ?>"
+                            <h2 class="accordion-header" id="heading<?= esc($unit->id) ?>">
+                                <button class="accordion-button <?= isset($unit->is_open) && $unit->is_open ? '' : 'collapsed' ?>"
                                         type="button"
                                         data-toggle="collapse"
-                                        data-target="#collapse<?= esc($section['section_id']) ?>"
-                                        aria-expanded="<?= $section['is_open'] ? 'true' : 'false' ?>"
-                                        aria-controls="collapse<?= esc($section['section_id']) ?>">
-                                    <?= esc($section['section_title']) ?>
+                                        data-target="#collapse<?= esc($unit->id) ?>"
+                                        aria-expanded="<?= isset($unit->is_open) && $unit->is_open ? 'true' : 'false' ?>"
+                                        aria-controls="collapse<?= esc($unit->id) ?>">
+                                    <?= esc($unit->unit_name) ?>
+                                    <span class="badge badge-secondary ml-2"><?= count($unit->items ?? []) ?> عنصر</span>
                                 </button>
                             </h2>
-                            <div id="collapse<?= esc($section['section_id']) ?>"
-                                 class="collapse <?= $section['is_open'] ? 'show' : '' ?>"
-                                 aria-labelledby="heading<?= esc($section['section_id']) ?>"
+                            <div id="collapse<?= esc($unit->id) ?>"
+                                 class="collapse <?= isset($unit->is_open) && $unit->is_open ? 'show' : '' ?>"
+                                 aria-labelledby="heading<?= esc($unit->id) ?>"
                                  data-parent="#videoAccordion">
                                 <div class="accordion-body">
                                     <ul class="list-unstyled mb-0">
-                                        <?php foreach ($section['videos'] as $video): ?>
-                                            <li class="mb-2">
-                                                <a href="<?= site_url('courses/course_view/' . $course->slug . '?video=' . $video['id']) ?>"
-                                                   class="text-dark text-decoration-none
-                                                   <?= $video['id'] == $current_id ? 'active-video' : '' ?>">
-                                                    <?php if ($video['is_preview']): ?>
-                                                        <span class="icon-play-circle-o mr-2" style="color:#6c757d;"></span>
-                                                    <?php else: ?>
-                                                        <span class="icon-lock mr-2" style="color:#dc3545;"></span>
-                                                    <?php endif; ?>
-                                                    <?= esc($video['video_title']) ?>
-                                                </a>
-                                            </li>
-                                        <?php endforeach; ?>
+                                        <?php if (isset($unit->items)): ?>
+                                            <?php foreach ($unit->items as $item): ?>
+                                                <li class="mb-2">
+                                                    <a href="<?= site_url('courses/course_view/' . $course->slug . '?video=' . $item->id) ?>"
+                                                       class="text-dark text-decoration-none
+                                                       <?= $item->id == $current_id ? 'active-video' : '' ?>">
+                                                        <?php if ($item->item_type === 'video'): ?>
+                                                            <span class="icon-play-circle-o mr-2" style="color:#6c757d;"></span>
+                                                        <?php elseif ($item->item_type === 'quiz'): ?>
+                                                            <span class="icon-question-circle mr-2" style="color:#28a745;"></span>
+                                                        <?php elseif ($item->item_type === 'page'): ?>
+                                                            <span class="icon-file-text-o mr-2" style="color:#17a2b8;"></span>
+                                                        <?php else: ?>
+                                                            <span class="icon-circle mr-2" style="color:#6c757d;"></span>
+                                                        <?php endif; ?>
+                                                        <?= esc($item->title) ?>
+                                                        <?php if ($item->duration): ?>
+                                                            <small class="text-muted">(<?= esc($item->duration) ?> دقيقة)</small>
+                                                        <?php endif; ?>
+                                                    </a>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </ul>
                                 </div>
                             </div>
@@ -318,7 +328,7 @@
                 <div class="course-preview-video">
                     <div class="video-container">
                         <iframe
-                                src="https://iframe.mediadelivery.net/embed/395633/<?= $video_id ?>?autoplay=false"
+                                src="https://iframe.mediadelivery.net/embed/<?= $course->collection_id ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
                                 loading="lazy"
                                 style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
                                 allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"

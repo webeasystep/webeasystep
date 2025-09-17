@@ -22,7 +22,7 @@
                     <div class="custom-media">
                         <!-- Image -->
                         <img
-                                alt="<?= esc($course['course_name']) ?>"
+                                alt="<?= esc($course['course_title']) ?>"
                                 style="height: 200px; object-fit: cover;"
                                 src="<?= thumb($course['image'], 170, 249) ?>"
                                 class="card-img-top"
@@ -30,7 +30,7 @@
                         <div class="custom-media-body" style="padding: 15px;">
                             <!-- Title -->
                             <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px;">
-                                <?= esc($course['course_name']) ?>
+                                <?= esc($course['course_title']) ?>
                             </h3>
 
                             <!-- Short Description -->

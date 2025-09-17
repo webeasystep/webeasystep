@@ -11,7 +11,7 @@
             <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>"/>
 
             <div class="form-group row">
-                <label for="job_title" class="col-sm-3 col-form-label">العنوان</label>
+                <label for="job_title" class="col-sm-3 col-form-label"><?= lang('Articles.title') ?></label>
                 <div class="col-sm-9">
                     <div class="i18n-input">
                         <input type="text" name="title" data-i18n="ar,en"
@@ -23,7 +23,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="slug" class="col-sm-3 col-form-label">الرابط</label>
+                <label for="slug" class="col-sm-3 col-form-label"><?= lang('Articles.slug') ?></label>
                 <div class="col-sm-9">
                     <input disabled  type="text" name="title"
                            value="<?= set_value('slug', $group->slug ?? "") ?>"
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="desc" class="col-sm-3 col-form-label">الوصف</label>
+                <label for="desc" class="col-sm-3 col-form-label"><?= lang('Articles.description') ?></label>
                 <div class="col-sm-9">
                     <div class="i18n-input">
                         <textarea name="desc" class="form-control" id="desc" data-i18n="ar,en"
@@ -46,7 +46,7 @@
             </div>
 
             <div class="form-group row ">
-                <label for="content" class="col-sm-3 col-form-label">المحتوى</label>
+                <label for="content" class="col-sm-3 col-form-label"><?= lang('Articles.content') ?></label>
                 <div class="col-sm-9">
                     <div class="i18n-input">
                 <textarea name="content"  class="form-control ckeditor " id="content" data-i18n="ar,en"

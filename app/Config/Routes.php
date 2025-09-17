@@ -51,6 +51,7 @@ $routes->group('site', ['namespace' => 'App\Controllers'], function ($routes) {
     $routes->match(['GET', 'POST'], 'search', 'Site::search', ['filter' => 'site_filter']);
     // Add dynamic segments for order_id and driver_id in the take_order route
     $routes->get('take_order/(:num)/(:num)', 'Site::take_order/$1/$2', ['filter' => 'site_filter']);
+    $routes->get('post-login-redirect', [Site::class, 'handlePostLoginRedirect'], ['filter' => 'site_filter']);
 
 });
 
@@ -78,7 +79,7 @@ $routes->group('dt_admin', ['namespace' => 'App\Controllers'], static function (
  * --------------------------------------------------------------------
  */
 
-foreach (glob(ROOTPATH . 'Modules/*', GLOB_ONLYDIR) as $item_dir) {
+foreach (glob(ROOTPATH . 'modules/*', GLOB_ONLYDIR) as $item_dir) {
     if (file_exists($item_dir . '/Config/Routes.php')) {
         require_once($item_dir . '/Config/Routes.php');
     }

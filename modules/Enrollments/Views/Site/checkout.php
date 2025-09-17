@@ -60,7 +60,7 @@
         <!-- عرض معلومات الدورة -->
         <div class="course-info-block">
             <img src="<?= base_url() ?>site/images/img-school-3-min.jpg" alt="صورة الدورة" class="course-img">
-            <h4><?= esc($course->course_name ?? 'اسم الدورة') ?></h4>
+            <h4><?= esc($course->course_title ?? 'اسم الدورة') ?></h4>
             <?php if ($course->is_free): ?>
                 <p class="course-price">مجاناً</p>
             <?php else: ?>
@@ -81,8 +81,8 @@
                     </form>
                 <?php else: ?>
                     <p>يرجى تسجيل الدخول أو إنشاء حساب للانضمام.</p>
-                    <a href="<?= site_url('site/login') ?>" class="btn btn-primary mb-2">تسجيل الدخول</a>
-                    <a href="<?= site_url('site/register') ?>" class="btn btn-outline-primary">إنشاء حساب</a>
+                    <a href="<?= site_url('login') ?>" class="btn btn-primary mb-2">تسجيل الدخول</a>
+                    <a href="<?= site_url('register') ?>" class="btn btn-outline-primary">إنشاء حساب</a>
                 <?php endif; ?>
             </div>
 
@@ -121,7 +121,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="dropzone1" class="col-sm-3 col-form-label">إرفاق إثبات الدفع:</label>
+                            <label for="dropzone1" class="col-sm-3 col-form-label"><?= lang('Enrollments.attach_payment_proof') ?>:</label>
                             <div class="col-sm-9">
                                 <div class="fireupload" id="dropzone1"></div>
                                 <small class="invalid-feedback"></small>
@@ -174,7 +174,7 @@
                                     <p><strong>fakhr@instapay</strong></p>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="attachment" class="col-sm-3 col-form-label">إثبات الدفع</label>
+                                    <label for="attachment" class="col-sm-3 col-form-label"><?= lang('Enrollments.payment_proof') ?></label>
                                     <div class="col-sm-9">
                                         <div class="fireupload" id="dropzone1"></div>
                                         <small class="invalid-feedback"></small>

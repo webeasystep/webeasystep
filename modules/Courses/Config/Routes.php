@@ -21,6 +21,13 @@ $routes->group('dt_admin', [
     $routes->post('courses/edit', [AdminCourses::class, 'edit']);
     $routes->post('courses/switchToggle', [AdminCourses::class, 'switchToggle']);
     $routes->post('courses/delete', [AdminCourses::class, 'delete']);
+    $routes->get('courses/get-all', [AdminCourses::class, 'getAllCourses']);
+    
+    // Quiz management routes
+    $routes->get('courses/getQuizzesByCourse/(:num)', [AdminCourses::class, 'getQuizzesByCourse/$1']);
+    $routes->post('courses/addQuizToCourse', [AdminCourses::class, 'addQuizToCourse']);
+    $routes->get('courses/show/(:num)', [AdminCourses::class, 'show/$1']);
+
 });
 
 /*** Site Routes for Courses ***/
@@ -32,6 +39,8 @@ $routes->group('/', [
     $routes->get('courses', [Courses::class, 'index']);
     // 2) Course details by slug
     $routes->get('courses/course_details/(:any)', [Courses::class, 'course_details/$1']);
+    // Course action route
+    $routes->get('courses/course-action/(:num)', [Courses::class, 'courseAction/$1'], ['filter' => 'site_filter']);
     // 3) Course "player" view
     $routes->get('courses/course_view/(:any)', [Courses::class, 'course_view/$1']);
 

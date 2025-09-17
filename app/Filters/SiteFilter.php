@@ -19,7 +19,7 @@ class SiteFilter implements FilterInterface
             $session->setFlashdata('error', 'You must be logged in to view this page.');
 
             // Redirect to login page
-            return redirect()->to('/site/login');
+            return redirect()->to('/login');
         }
 
     }

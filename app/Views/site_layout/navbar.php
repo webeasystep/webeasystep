@@ -78,18 +78,8 @@
                         <a href="<?= site_url() ?>">الرئيسية</a>
                     </li>
                         <li <?= current_url() == site_url('pages/scratch_track') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('pages/scratch_track') ?>">مسار المبتدئين</a>
+                            <a href="<?= site_url('pages/scratch_track') ?>">كورس مادة البرمجة والذكاء الاصطناعي أولى ثانوي /بكالوريا</a>
                         </li>
-                        <li <?= current_url() == site_url('pages/python_track') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('pages/python_track') ?>">مسار التأسيس</a>
-                        </li>
-                        <li <?= current_url() == site_url('pages/web_track') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('pages/web_track') ?>">مسار تخصص الويب</a>
-                        </li>
-                        <li <?= current_url() == site_url('pages/mobile_track') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('pages/mobile_track') ?>">مسار تخصص الموبايل</a>
-                        </li>
-
                 </ul>
 
                 <!-- Example: Show a special button if on homepage -->

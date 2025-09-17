@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 08, 2025 at 11:50 AM
+-- Generation Time: Sep 11, 2025 at 12:13 PM
 -- Server version: 8.0.41
 -- PHP Version: 8.1.32
 
@@ -129,7 +129,7 @@ CREATE TABLE `auth_identities` (
 --
 
 INSERT INTO `auth_identities` (`id`, `user_id`, `type`, `name`, `secret`, `secret2`, `expires`, `extra`, `force_reset`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'email_password', NULL, 'spcialist@gmail.com', '$2y$12$oPYzuzAqnhFew7pvhlhJTu9kjr03NejJuZPCehKheSOIhrPQ8Kwbe', NULL, NULL, 0, '2025-09-08 14:46:30', '2023-08-08 15:08:48', '2025-09-08 14:46:30');
+(1, 1, 'email_password', NULL, 'spcialist@gmail.com', '$2y$12$oPYzuzAqnhFew7pvhlhJTu9kjr03NejJuZPCehKheSOIhrPQ8Kwbe', NULL, NULL, 0, '2025-09-11 10:46:10', '2023-08-08 15:08:48', '2025-09-11 10:46:10');
 
 -- --------------------------------------------------------
 
@@ -138,14 +138,14 @@ INSERT INTO `auth_identities` (`id`, `user_id`, `type`, `name`, `secret`, `secre
 --
 
 CREATE TABLE `auth_logins` (
-  `id` int NOT NULL,
-  `ip_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_agent` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `id_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `identifier` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `ip_address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_agent` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `identifier` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `user_id` int UNSIGNED DEFAULT NULL,
-  `date` datetime DEFAULT NULL,
-  `success` tinyint(1) DEFAULT NULL
+  `date` datetime NOT NULL,
+  `success` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -153,47 +153,10 @@ CREATE TABLE `auth_logins` (
 --
 
 INSERT INTO `auth_logins` (`id`, `ip_address`, `user_agent`, `id_type`, `identifier`, `user_id`, `date`, `success`) VALUES
-(1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-01-20 11:41:27', 0),
-(15, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'email_password', 'amd@dt4it.com', NULL, '2025-02-18 15:00:51', 0),
-(16, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', NULL, '2025-02-18 15:08:14', 0),
-(17, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-02-18 15:45:03', 1),
-(18, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-02-24 09:58:33', 0),
-(19, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-02-24 10:02:43', 1),
-(20, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-02-24 17:38:14', 1),
-(21, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-03-06 12:29:32', 0),
-(22, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-06 12:33:19', 1),
-(23, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-03-11 16:14:40', 0),
-(24, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-11 16:15:00', 1),
-(25, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-03-12 09:53:39', 0),
-(26, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-03-12 10:42:29', 0),
-(27, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-03-12 10:47:11', 0),
-(28, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-03-12 10:47:40', 0),
-(29, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-03-12 10:48:32', 0),
-(30, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-03-12 10:53:00', 0),
-(31, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-03-12 10:55:37', 0),
-(32, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'webeasystep@gmail.com', NULL, '2025-03-12 10:58:41', 0),
-(33, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-12 10:59:15', 1),
-(34, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-12 18:16:18', 1),
-(35, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-13 11:04:23', 1),
-(36, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-15 05:06:30', 1),
-(37, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-17 15:13:53', 1),
-(38, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-17 23:52:21', 1),
-(39, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-18 14:37:57', 1),
-(40, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-19 01:17:27', 1),
-(41, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-20 13:07:12', 1),
-(42, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-22 02:07:10', 1),
-(43, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-23 12:15:18', 1),
-(44, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-24 03:03:23', 1),
-(45, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-26 22:17:51', 1),
-(46, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-27 12:12:07', 1),
-(47, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-03-27 17:13:35', 1),
-(48, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-04-01 02:49:12', 1),
-(49, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-04-06 17:52:48', 1),
-(50, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-04-19 15:35:54', 1),
-(51, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-04-23 14:45:07', 1),
-(52, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-04-27 15:41:30', 1),
-(53, '127.0.0.1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1', 'email_password', 'spcialist@gmail.com', 1, '2025-09-08 12:32:13', 1),
-(54, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-09-08 14:46:30', 1);
+(1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', NULL, '2025-09-11 10:10:10', 0),
+(2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'email_password', 'amd@dt4it.com', NULL, '2025-09-11 10:10:31', 0),
+(3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', NULL, '2025-09-11 10:13:09', 0),
+(4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'email_password', 'spcialist@gmail.com', 1, '2025-09-11 10:46:10', 1);
 
 -- --------------------------------------------------------
 
@@ -255,17 +218,18 @@ INSERT INTO `auth_permissions_users` (`id`, `user_id`, `permission`, `created_at
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_remember_tokens`
+-- Table structure for table `auth_token_logins`
 --
 
-CREATE TABLE `auth_remember_tokens` (
+CREATE TABLE `auth_token_logins` (
   `id` int UNSIGNED NOT NULL,
-  `selector` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `hashedValidator` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ip_address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_agent` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `identifier` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `user_id` int UNSIGNED DEFAULT NULL,
-  `expires` datetime DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
+  `date` datetime NOT NULL,
+  `success` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -321,11 +285,7 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
-(0, '2023-10-03-125706', 'App\\Database\\Migrations\\CreateUsersTable', 'default', 'App', 1696408382, 1),
-(0, '2023-10-03-135722', 'App\\Database\\Migrations\\CreateContactUsTable', 'default', 'App', 1696408383, 1),
-(0, '2023-10-03-135804', 'App\\Database\\Migrations\\CreatePagesTable', 'default', 'App', 1696408383, 1),
-(0, '2023-10-03-135909', 'App\\Database\\Migrations\\CreateSectionsTable', 'default', 'App', 1696408383, 1),
-(0, '2023-10-03-140022', 'App\\Database\\Migrations\\CreateSettingsTable', 'default', 'App', 1696408383, 1);
+(1, '2024-01-01-000005', 'App\\Database\\Migrations\\CreateProgressTracking', 'default', 'App', 1757532556, 1);
 
 -- --------------------------------------------------------
 
@@ -398,7 +358,11 @@ INSERT INTO `sections` (`id`, `parent_id`, `section_link`, `title`, `icon`, `act
 (10, 0, 'articles', 'المقالات', 'fa fa-location-arrow', 1, 3, '2023-11-14 18:02:39', '2023-11-14 18:02:39'),
 (115, 0, 'courses', 'الكورسات', 'far fa-circle nav-icon', 1, 2, '2025-02-18 10:45:52', '2025-02-18 10:45:52'),
 (116, 0, 'enrollments', 'الاشتراكات', 'far fa-circle nav-icon', 1, 3, '2025-02-18 10:46:32', '2025-02-18 10:46:32'),
-(117, 0, 'payments', 'المدفوعات', 'far fa-circle nav-icon', 0, 4, '2025-02-20 11:36:29', '2025-02-20 11:36:29');
+(117, 0, 'payments', 'المدفوعات', 'far fa-circle nav-icon', 0, 4, '2025-02-20 11:36:29', '2025-02-20 11:36:29'),
+(120, 0, 'billing', 'الفواتير', 'fas fa-credit-card', 1, 5, '2025-09-11 07:03:15', '2025-09-11 07:03:15'),
+(121, 0, 'progress', 'التقدم', 'fas fa-chart-line', 1, 6, '2025-09-11 07:03:15', '2025-09-11 07:03:15'),
+(122, 0, 'quizzes', 'الاختبارات', 'fas fa-question-circle', 1, 8, '2025-09-11 07:03:15', '2025-09-11 07:03:15'),
+(123, 0, 'videos', 'الفيديوهات', 'fas fa-video', 1, 10, '2025-09-11 07:03:15', '2025-09-11 07:03:15');
 
 -- --------------------------------------------------------
 
@@ -515,85 +479,6 @@ CREATE TABLE `tbnotifications` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tbnotifications`
---
-
-INSERT INTO `tbnotifications` (`id`, `notify_name`, `title_ar`, `title_en`, `desc_ar`, `desc_en`, `font_color`, `background_color`, `has_push`, `is_public`, `active`, `created_at`) VALUES
-(1, 'account_created', 'اهلا بك يا {full_name} تم انشاء حسابك بنجاح\r\n', 'account_created', 'اهلا بك يا {username} تم انشاء حسابك بنجاح\r\nسيمكنك استخدام الحساب بعد وصول اشعار الموافقة من الادارة', 'اهلا بك يا {username} تم انشاء حسابك بنجاح\r\nسيمكنك استخدام الحساب بعد وصول اشعار الموافقة من الادارة', '#8e22c3', '#dfc1ee', 1, 0, 1, '2020-01-12 23:00:00'),
-(2, 'account_approved', 'اهلا بك يا {full_name} تم قبول حسابك بنجاح', 'account_approved', 'اهلا بك يا {username} تم قبول حسابك بنجاح', 'اهلا بك يا {username} تم قبول حسابك بنجاح', '#8e22c3', '#dfc1ee', 1, 0, 1, '2020-01-08 23:00:00'),
-(3, 'order_accepted', 'تم قبول طلبك بنجاح', 'order_accepted', 'وصلت رسالة للتو من المعلم{username}', 'وصلت رسالة للتو من المعلم{username}', '#858585', '#f0f0f0', 1, 0, 1, '2020-01-08 23:00:00'),
-(4, 'order_canceled', 'شكرا لك يا {full_name} تم الغاء الطلب ', 'order_canceled', 'شكرا لك يا {username} تم قبول طلبك بنجاح', 'شكرا لك يا {username} تم قبول طلبك بنجاح', '#006a8d', '#d6ecf3', 1, 0, 1, '2020-01-09 23:00:00'),
-(5, 'order_created', 'تم اضافة طلب جديد', 'order_created', 'تم اضافة طلب جديد', 'تم اضافة طلب جديد', NULL, NULL, 1, 0, 1, '2021-03-22 12:22:37'),
-(6, 'order_pending', 'هناك طلبات تنتظرك', 'order_pending', 'هناك طلبات تنتظرك', 'تم اضافة طلب جديد', '#000000', '#000000', 1, 0, 1, '2021-03-22 12:22:37'),
-(7, 'account_busy', 'تنبيه بتأخير الحضور', 'account_busy', 'تنبيه بتأخير الحضور', 'خاصية قبول الطلبات لم تعد مفعلة ،راجع الإدارة', '#8e22c3', '#dfc1ee', 1, 0, 1, '2021-03-22 12:22:37'),
-(8, 'order_assigned_to_another_driver', 'تنبيه : تم اسناد الطلب لسائق اخر', 'order_assigned_to_another_driver', 'تنبيه : تم اسناد الطلب لسائق اخر', 'تنبيه : تم اسناد الطلب لسائق اخر', '#8e22c3', '#dfc1ee', 1, 0, 1, '2022-12-30 22:43:11'),
-(9, 'order_canceled_by_merchant', 'قام التاجر بالغاء الطلب رقم', 'order_canceled_by_merchant', 'قام التاجر بالغاء الطلب رقم', 'قام التاجر بالغاء الطلب رقم', '#8e22c3', '#dfc1ee', 1, 0, 1, '2022-12-30 22:43:11'),
-(10, 'order_assigned', 'تنبيه : تم اسناد طلب اليك', 'order_assigned', 'تنبيه : تم اسناد طلب اليك', 'تنبيه : تم اسناد طلب اليك', '#8e22c3', '#dfc1ee', 1, 0, 1, '2022-12-30 16:43:11');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tborders_status`
---
-
-CREATE TABLE `tborders_status` (
-  `id` int NOT NULL,
-  `name_ar` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `name_en` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `client_status_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `action_name_client` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `action_name_ar` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `action_name_en` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `notify_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `color` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `activated` tinyint(1) DEFAULT '1',
-  `sort` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tborders_status`
---
-
-INSERT INTO `tborders_status` (`id`, `name_ar`, `name_en`, `client_status_name`, `action_name_client`, `action_name_ar`, `action_name_en`, `notify_name`, `color`, `activated`, `sort`) VALUES
-(1, 'جديد', 'Pending', 'جديد', 'في انتظار موافقة السائق', 'في انتظار موافقة السائق', 'New Order', 'order_pending', NULL, 1, 2),
-(2, 'مقبول', 'Accepted', 'مقبول', 'قام السائق بتأكيد الطلب', 'قام السائق بتأكيد الطلب', 'Accept Order', 'order_accepted', 'bg-green', 0, 3),
-(3, 'مستلم', 'Taken', 'مستلم', 'تسلم الطلب', 'تسلم الطلب', 'Take Order', 'order_taken', NULL, 1, 4),
-(4, 'ملغي', 'Canceled', 'ملغي', 'تم الغاء الطلب', 'تم الغاء الطلب', 'Cancel Order', 'order_canceled', NULL, 1, 5),
-(5, 'منتهي', 'Finished', 'منتهي', 'انهاء الطلب', 'انهاء الطلب', 'Finish Order', 'order_finished', NULL, 1, 6),
-(6, 'مخفي', 'Hidden', 'جديد', 'في انتظار موافقة السائق', 'اخفاء الطلب', 'Hide Order', 'order_hidden', 'bg-gray', 0, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_categories`
---
-
-CREATE TABLE `tb_categories` (
-  `id` int NOT NULL,
-  `name_ar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `course_count` int UNSIGNED NOT NULL,
-  `icon_class` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `active` tinyint(1) DEFAULT '1',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tb_categories`
---
-
-INSERT INTO `tb_categories` (`id`, `name_ar`, `course_count`, `icon_class`, `slug`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'العلوم', 1391, 'uil uil-atom', 'al-oloum', 1, '2025-03-03 10:14:24', '2025-03-03 10:14:24'),
-(2, 'الأعمال', 3234, 'uil uil-briefcase', 'al-aamal', 1, '2025-03-03 10:14:24', '2025-03-03 10:14:24'),
-(3, 'المحاسبة والتمويل', 931, 'uil uil-calculator', 'al-mohasaba-wal-tamweel', 1, '2025-03-03 10:14:24', '2025-03-03 10:14:24'),
-(4, 'التصميم', 7291, 'uil uil-pen', 'al-tasmeem', 1, '2025-03-03 10:14:24', '2025-03-03 10:14:24'),
-(5, 'الموسيقى', 9114, 'uil uil-music', 'al-musiqa', 1, '2025-03-03 10:14:24', '2025-03-03 10:14:24'),
-(6, 'التسويق', 2391, 'uil uil-chart-pie', 'al-taswiq', 1, '2025-03-03 10:14:24', '2025-03-03 10:14:24'),
-(7, 'التصوير الفوتوغرافي', 7991, 'uil uil-camera', 'al-tasweer-al- الفوتوغرافي', 1, '2025-03-03 10:14:24', '2025-03-03 10:14:24'),
-(8, 'الرسوم المتحركة', 6491, 'uil uil-circle-layer', 'al-rusum-al-mutaharrika', 1, '2025-03-03 10:14:24', '2025-03-03 10:14:24');
-
 -- --------------------------------------------------------
 
 --
@@ -602,7 +487,8 @@ INSERT INTO `tb_categories` (`id`, `name_ar`, `course_count`, `icon_class`, `slu
 
 CREATE TABLE `tb_courses` (
   `id` int NOT NULL,
-  `course_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `course_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `course_title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `skill_level` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `intro_video_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -623,15 +509,56 @@ CREATE TABLE `tb_courses` (
 -- Dumping data for table `tb_courses`
 --
 
-INSERT INTO `tb_courses` (`id`, `course_name`, `slug`, `skill_level`, `intro_video_id`, `price`, `image`, `course_desc`, `course_structure`, `waiting_list`, `is_free`, `short_desc`, `created_at`, `updated_at`, `sort`, `active`) VALUES
-(1, 'مسار سكراتش المكثف (بأسلوب CS50)', 'scratch-cs50-intensive', 'مبتدئ', 'placeholder_video_id_session_1', 360.00, NULL, 'مسار تأسيسي مكثف للمبتدئين (+14) لتعلم البرمجة باستخدام سكراتش، مستوحى من منهج CS50 Scratch من جامعة هارفارد. يقدم المسار في 12 حصة تفاعلية مباشرة عبر Zoom بإشراف م/ أحمد فخر الدين، مع التركيز على التفكير المنطقي، حل المشكلات، وبناء المشاريع العملية.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"placeholder_video_id_session_1\", \"is_preview\": 1, \"video_desc\": \"مقدمة تفاعلية، استكشاف الواجهة، وتطبيق عملي على الحركة والمظاهر الأساسية.\", \"video_title\": \"الجلسة 1: الانطلاق في عالم Scratch (Sprites & Basics)\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"placeholder_video_id_session_2\", \"is_preview\": 0, \"video_desc\": \"فهم أنواع الأحداث المختلفة وربط الحركة والمظاهر بها.\", \"video_title\": \"الجلسة 2: أحداث التفاعل (Events)\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"placeholder_video_id_session_3\", \"is_preview\": 0, \"video_desc\": \"التحكم في توقيت الأوامر واستخدام حلقة التكرار Repeat لبناء أنماط ورسومات.\", \"video_title\": \"الجلسة 3: التحكم في التدفق والتكرار (Control Flow & Repeat)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: مقدمة وأساسيات التفاعل\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 4, \"sort\": 1, \"active\": 1, \"video_id\": \"placeholder_video_id_session_4\", \"is_preview\": 0, \"video_desc\": \"استخدام حلقة التكرار المستمر Forever والاستشعار الأساسي للحركة والتفاعل مع الحواف.\", \"video_title\": \"الجلسة 4: التكرار المستمر والاستشعار (Forever & Sensing)\", \"video_duration\": \"90:00\"}, {\"id\": 5, \"sort\": 2, \"active\": 1, \"video_id\": \"placeholder_video_id_session_5\", \"is_preview\": 0, \"video_desc\": \"فهم وتطبيق الشروط الأساسية (If) لاتخاذ القرارات بناءً على الاستشعار.\", \"video_title\": \"الجلسة 5: الشروط الأساسية (Conditions - If)\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 3, \"active\": 1, \"video_id\": \"placeholder_video_id_session_6\", \"is_preview\": 0, \"video_desc\": \"استخدام الشروط المتفرعة (If/Else) والاستشعار المتقدم للتفاعل مع الألوان ومدخلات المستخدم.\", \"video_title\": \"الجلسة 6: الشروط المتفرعة والاستشعار المتقدم (If/Else & Advanced Sensing)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: التحكم، الشروط، والاستشعار\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 7, \"sort\": 1, \"active\": 1, \"video_id\": \"placeholder_video_id_session_7\", \"is_preview\": 0, \"video_desc\": \"فهم أهمية المتغيرات وكيفية إنشائها واستخدامها لتخزين البيانات مثل النقاط والأسماء.\", \"video_title\": \"الجلسة 7: المتغيرات (Variables)\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 2, \"active\": 1, \"video_id\": \"placeholder_video_id_session_8\", \"is_preview\": 0, \"video_desc\": \"استخدام العمليات الحسابية، المقارنة، المنطقية، والعشوائية لمعالجة البيانات واتخاذ قرارات معقدة.\", \"video_title\": \"الجلسة 8: العمليات والمنطق (Operators)\", \"video_duration\": \"90:00\"}, {\"id\": 9, \"sort\": 3, \"active\": 1, \"video_id\": \"placeholder_video_id_session_9\", \"is_preview\": 0, \"video_desc\": \"مقدمة لمفهوم الدوال (My Blocks) وكيفية إنشائها لتنظيم الكود وإعادة استخدامه.\", \"video_title\": \"الجلسة 9: الدوال الأساسية (My Blocks – الجزء 1)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: البيانات، العمليات، والتنظيم\"}, {\"sort\": 4, \"active\": 1, \"videos\": [{\"id\": 10, \"sort\": 1, \"active\": 1, \"video_id\": \"placeholder_video_id_session_10\", \"is_preview\": 0, \"video_desc\": \"إنشاء دوال (My Blocks) بمدخلات لجعلها أكثر مرونة، واستخدام البث (Broadcasting) للتواصل بين الكائنات.\", \"video_title\": \"الجلسة 10: الدوال المتقدمة والبث (My Blocks & Broadcasting)\", \"video_duration\": \"90:00\"}, {\"id\": 11, \"sort\": 2, \"active\": 1, \"video_id\": \"placeholder_video_id_session_11\", \"is_preview\": 0, \"video_desc\": \"مراجعة شاملة، عصف ذهني، وتخطيط لمشروع نهائي مصغر يطبق المهارات المكتسبة.\", \"video_title\": \"الجلسة 11: التخطيط وبدء Mini-Project\", \"video_duration\": \"90:00\"}, {\"id\": 12, \"sort\": 3, \"active\": 1, \"video_id\": \"placeholder_video_id_session_12\", \"is_preview\": 0, \"video_desc\": \"استكمال العمل على المشروع المصغر، تصحيح الأخطاء، وعرض المشاريع النهائية للمجموعة.\", \"video_title\": \"الجلسة 12: استكمال وعرض Mini-Project\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الرابع: الدوال المتقدمة والمشروع النهائي\"}]', 0, 0, '12 حصة تفاعلية لتعلم سكراتش بأسلوب CS50', '2025-04-27 06:30:08', '2025-04-27 06:30:08', 2, 1),
-(2, 'المستوى 2.1: أساسيات البرمجة ومنطق بايثون', 'python-logic-fundamentals', 'مبتدئ-متوسط', 'py1_vid_session_1', 240.00, NULL, 'مسار تأسيسي لتعلم كتابة برامج بايثون بسيطة، يتضمن المتغيرات، العمليات، المدخلات، الشروط، والتعامل الأساسي مع النصوص. يهدف لبناء قاعدة صلبة في التفكير المنطقي والبرمجة النصية للمنتقلين من سكراتش أو المبتدئين في بايثون.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"py1_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"مقدمة لبايثون، إعداد البيئة، وأول برنامج print().\", \"video_title\": \"الجلسة 1: الانطلاق مع بايثون (Introduction & Setup)\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"py1_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"فهم المتغيرات، قواعد التسمية، وأنواع البيانات الأساسية (int, float, str, bool).\", \"video_title\": \"الجلسة 2: تخزين البيانات (المتغيرات والأنواع الأساسية)\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"py1_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"استخدام المعاملات الحسابية والمقارنة لإجراء العمليات والتحقق من الشروط.\", \"video_title\": \"الجلسة 3: إجراء العمليات (Operators)\", \"video_duration\": \"90:00\"}, {\"id\": 4, \"sort\": 4, \"active\": 1, \"video_id\": \"py1_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"استقبال مدخلات من المستخدم باستخدام input() وتحويل أنواع البيانات (Type Casting).\", \"video_title\": \"الجلسة 4: التفاعل مع المستخدم (Input & Type Casting)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: الانطلاق والبيانات الأساسية\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 5, \"sort\": 1, \"active\": 1, \"video_id\": \"py1_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"العمليات الأساسية على النصوص (الربط، التكرار، الطول) والفهرسة والتقطيع.\", \"video_title\": \"الجلسة 5: التعامل مع النصوص (String Basics)\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 2, \"active\": 1, \"video_id\": \"py1_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"فهم وتطبيق جملة if الشرطية لاتخاذ قرارات بسيطة بناءً على المقارنات.\", \"video_title\": \"الجلسة 6: اتخاذ القرارات (If Statement)\", \"video_duration\": \"90:00\"}, {\"id\": 7, \"sort\": 3, \"active\": 1, \"video_id\": \"py1_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"استخدام else و elif لتوسيع نطاق القرارات والمعاملات المنطقية (and, or, not) لدمج الشروط.\", \"video_title\": \"الجلسة 7: توسيع القرارات (Else, Elif & Logical Operators)\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 4, \"active\": 1, \"video_id\": \"py1_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"مراجعة شاملة للمفاهيم وتطبيقها في تحديات برمجية صغيرة.\", \"video_title\": \"الجلسة 8: مراجعة وتحديات المستوى الأول\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: النصوص واتخاذ القرارات\"}]', 0, 0, '8 حصص لتعلم أساسيات بايثون والمنطق البرمجي', '2025-04-27 06:37:49', '2025-04-27 06:37:49', 3, 1),
-(3, 'المستوى 2.2: هياكل البيانات وحل المشكلات ببايثون', 'python-data-structures-problem-solving', 'متوسط', 'py2_vid_session_1', 300.00, NULL, 'مسار لتعميق مهارات بايثون، يركز على الحلقات (while/for)، هياكل البيانات (القوائم)، بناء الدوال وتنظيمها، استخدام الوحدات الجاهزة، التعامل مع الملفات، وتطبيق كل المهارات في مشروع برمجي متكامل.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"py2_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"فهم وتطبيق حلقة while للتكرار المشروط والتحكم في تدفقها.\", \"video_title\": \"الجلسة 9 (L2.2-1): التكرار المشروط (While Loops)\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"py2_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"استخدام حلقة for للتكرار المحدد، ومقدمة لهيكل بيانات القوائم (Lists).\", \"video_title\": \"الجلسة 10 (L2.2-2): التكرار المحدد والقوائم (For Loops & Lists Intro)\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"py2_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"تعلم دوال القوائم المختلفة للتعديل، الحذف، البحث، والترتيب.\", \"video_title\": \"الجلسة 11 (L2.2-3): عمليات القوائم المتقدمة (List Methods)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: الحلقات والقوائم\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 4, \"sort\": 1, \"active\": 1, \"video_id\": \"py2_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"مقدمة لمفهوم الدوال (Functions) لتقسيم الكود وتنظيمه.\", \"video_title\": \"الجلسة 12 (L2.2-4): تنظيم الكود (Functions Intro)\", \"video_duration\": \"90:00\"}, {\"id\": 5, \"sort\": 2, \"active\": 1, \"video_id\": \"py2_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"إنشاء دوال تأخذ معاملات (Parameters) وتعيد قيماً (Return) لجعلها أكثر قوة.\", \"video_title\": \"الجلسة 13 (L2.2-5): دوال أكثر قوة (Parameters & Return)\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 3, \"active\": 1, \"video_id\": \"py2_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"استخدام الوحدات (Modules) الجاهزة مثل random, math, time لتوسيع قدرات البرنامج.\", \"video_title\": \"الجلسة 14 (L2.2-6): استخدام أدوات جاهزة (Modules)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: تنظيم الكود والوحدات\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 7, \"sort\": 1, \"active\": 1, \"video_id\": \"py2_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"قراءة وكتابة البيانات من وإلى الملفات النصية باستخدام open() و with.\", \"video_title\": \"الجلسة 15 (L2.2-7): التعامل مع الملفات (File I/O)\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 2, \"active\": 1, \"video_id\": \"py2_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"مراجعة شاملة، اختيار فكرة مشروع نهائي وتخطيط هيكله ومنطقه.\", \"video_title\": \"الجلسة 16 (L2.2-8): التخطيط للمشروع النهائي\", \"video_duration\": \"90:00\"}, {\"id\": 9, \"sort\": 3, \"active\": 1, \"video_id\": \"py2_vid_session_9\", \"is_preview\": 0, \"video_desc\": \"العمل على تنفيذ المشروع النهائي، كتابة الكود وحل المشكلات.\", \"video_title\": \"الجلسة 17 (L2.2-9): بناء المشروع وتطويره\", \"video_duration\": \"90:00\"}, {\"id\": 10, \"sort\": 4, \"active\": 1, \"video_id\": \"py2_vid_session_10\", \"is_preview\": 0, \"video_desc\": \"استكمال المشروع، اختباره، عرضه، ومراجعة نهائية لمفاهيم المسار.\", \"video_title\": \"الجلسة 18 (L2.2-10): استكمال المشروع، العرض، والمراجعة النهائية\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: التعامل مع الملفات والمشروع النهائي\"}]', 0, 0, '10 حصص لهياكل البيانات، الدوال، والمشاريع ببايثون', '2025-04-27 06:38:04', '2025-04-27 06:38:04', 4, 1),
-(4, 'المستوى 3A.1: أساسيات بناء الويب (HTML Foundation)', 'html-foundation', 'مبتدئ', 'html_vid_session_1', 240.00, NULL, 'تعلم أساسيات لغة HTML لبناء هيكل صفحات الويب بشكل صحيح ومنظم. يغطي المسار العناصر الأساسية، النصوص، القوائم، الروابط، الصور، الجداول، النماذج، والعناصر الدلالية الحديثة.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"html_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"فهم بنية مستند HTML الأساسية (DOCTYPE, html, head, body) وإنشاء أول صفحة.\", \"video_title\": \"الجلسة 1: مقدمة إلى HTML وبنية المستند\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"html_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"استخدام عناصر تنسيق النصوص الأساسية مثل العناوين والفقرات والتأكيد.\", \"video_title\": \"الجلسة 2: العناصر الأساسية والنصوص\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"html_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"إنشاء القوائم المرتبة وغير المرتبة، وإضافة الروابط والصور مع السمات الهامة.\", \"video_title\": \"الجلسة 3: القوائم والروابط والصور\", \"video_duration\": \"90:00\"}, {\"id\": 4, \"sort\": 4, \"active\": 1, \"video_id\": \"html_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"بناء الجداول لعرض البيانات المنظمة ومقدمة لأساسيات النماذج (form, input, button).\", \"video_title\": \"الجلسة 4: الجداول والنماذج الأساسية\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: أساسيات وبنية HTML\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 5, \"sort\": 1, \"active\": 1, \"video_id\": \"html_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"استخدام العناصر الدلالية (header, nav, main, footer) لهيكلة أفضل وفهم Meta Data.\", \"video_title\": \"الجلسة 5: الوسوم الدلالية وميتا داتا\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 2, \"active\": 1, \"video_id\": \"html_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"استخدام أدوات المطور (DevTools) وأدوات التحقق (Validators) لتصحيح الأخطاء.\", \"video_title\": \"الجلسة 6: التحقق وتصحيح الأخطاء\", \"video_duration\": \"90:00\"}, {\"id\": 7, \"sort\": 3, \"active\": 1, \"video_id\": \"html_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"البدء في مشروع تطبيقي صغير (صفحة شخصية) لتطبيق مهارات HTML.\", \"video_title\": \"الجلسة 7: مشروع تطبيقي صغير\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 4, \"active\": 1, \"video_id\": \"html_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"عرض المشاريع النهائية، تقييمها، ومقدمة بسيطة لنشر المواقع.\", \"video_title\": \"الجلسة 8: عرض المشاريع وتقييم\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: الدلالية والمشاريع\"}]', 0, 0, '8 حصص لتأسيس HTML وبنية صفحات الويب', '2025-04-27 06:39:19', '2025-04-27 06:39:19', 5, 1),
-(5, 'المستوى 3A.2: تصميم وتنسيق الويب (CSS Styling & Layout)', 'css-styling-layout', 'مبتدئ-متوسط', 'css_vid_session_1', 300.00, NULL, 'تعلم كيفية إضافة الأناقة والجمال لصفحات الويب باستخدام CSS. يغطي المسار المحددات، نموذج الصندوق، تنسيق النصوص والألوان، تقنيات التخطيط الحديثة (Flexbox و Grid)، التصميم المتجاوب، والتحريكات البسيطة.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"css_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"مقدمة لـ CSS وطرق ربطها بـ HTML وكتابة أول قاعدة تنسيق.\", \"video_title\": \"الجلسة 1: مقدمة إلى CSS وربطها بـHTML\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"css_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"تعلم استخدام المحددات (Selectors) المختلفة لاستهداف عناصر HTML.\", \"video_title\": \"الجلسة 2: المحددات (Selectors)\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"css_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"فهم نموذج الصندوق (Box Model): المحتوى، الحشو، الحدود، والهوامش.\", \"video_title\": \"الجلسة 3: نموذج الصندوق (Box Model)\", \"video_duration\": \"90:00\"}, {\"id\": 4, \"sort\": 4, \"active\": 1, \"video_id\": \"css_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"تنسيق النصوص باستخدام خصائص الخطوط والألوان واستيراد خطوط خارجية.\", \"video_title\": \"الجلسة 4: النصوص والألوان\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: أساسيات CSS ونموذج الصندوق\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 5, \"sort\": 1, \"active\": 1, \"video_id\": \"css_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"مقدمة لـ Flexbox وخصائص الحاوية للتحكم في توزيع العناصر.\", \"video_title\": \"الجلسة 5: Flexbox – الجزء الأول\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 2, \"active\": 1, \"video_id\": \"css_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"التحكم في العناصر الفردية داخل Flexbox (النمو، الانكماش، الترتيب).\", \"video_title\": \"الجلسة 6: Flexbox – الجزء الثاني\", \"video_duration\": \"90:00\"}, {\"id\": 7, \"sort\": 3, \"active\": 1, \"video_id\": \"css_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"مقدمة لنظام Grid لإنشاء تخطيطات شبكية معقدة.\", \"video_title\": \"الجلسة 7: Grid Layout\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: التخطيط باستخدام Flexbox و Grid\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 8, \"sort\": 1, \"active\": 1, \"video_id\": \"css_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"استخدام Media Queries لجعل التصميم يتكيف مع مختلف أحجام الشاشات.\", \"video_title\": \"الجلسة 8: التصميم المتجاوب (Media Queries)\", \"video_duration\": \"90:00\"}, {\"id\": 9, \"sort\": 2, \"active\": 1, \"video_id\": \"css_vid_session_9\", \"is_preview\": 0, \"video_desc\": \"إضافة تأثيرات بصرية باستخدام التحولات (Transitions) والرسوم المتحركة (Animations).\", \"video_title\": \"الجلسة 9: التحولات والرسوم المتحركة\", \"video_duration\": \"90:00\"}, {\"id\": 10, \"sort\": 3, \"active\": 1, \"video_id\": \"css_vid_session_10\", \"is_preview\": 0, \"video_desc\": \"تطبيق جميع مهارات CSS في مشروع تصميم صفحة ويب متكاملة ونشرها.\", \"video_title\": \"الجلسة 10: مشروع تطبيقي نهائي\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: التصميم المتجاوب والمشروع\"}]', 0, 0, '10 حصص لتصميم وتنسيق الويب باستخدام CSS', '2025-04-27 06:39:35', '2025-04-27 06:39:35', 6, 1),
-(6, 'المستوى 3A.3: التفاعلية وبرمجة الواجهات (JavaScript & DOM)', 'javascript-fundamentals-dom', 'متوسط', 'js_vid_session_1', 360.00, NULL, 'تعلم أساسيات لغة JavaScript لإضافة التفاعلية والسلوك الديناميكي لصفحات الويب. يغطي المسار المتغيرات، الشروط، الحلقات، الدوال، المصفوفات، الكائنات، التعامل مع DOM، الأحداث، مقدمة للـ APIs والبرمجة غير المتزامنة، مع مشروع نهائي.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"js_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"مقدمة لـ JavaScript، كيفية ربطها بالصفحة، واستخدام console.log.\", \"video_title\": \"الجلسة 1: مقدمة إلى JavaScript وربطها بالصفحة\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"js_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"تعلم المتغيرات (let, const, var) وأنواع البيانات الأساسية.\", \"video_title\": \"الجلسة 2: المتغيرات وأنواع البيانات\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"js_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"استخدام جمل if/else if/else و switch لاتخاذ القرارات المنطقية.\", \"video_title\": \"الجلسة 3: العمليات الشرطية\", \"video_duration\": \"90:00\"}, {\"id\": 4, \"sort\": 4, \"active\": 1, \"video_id\": \"js_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"استخدام حلقات for و while لتكرار تنفيذ الأكواد.\", \"video_title\": \"الجلسة 4: الحلقات التكرارية\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: أساسيات JavaScript والتحكم\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 5, \"sort\": 1, \"active\": 1, \"video_id\": \"js_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"تعريف واستدعاء الدوال، فهم المعاملات والقيم المعادة.\", \"video_title\": \"الجلسة 5: الدوال (Functions)\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 2, \"active\": 1, \"video_id\": \"js_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"مقدمة للمصفوفات (Arrays) والكائنات (Objects) لتخزين مجموعات البيانات.\", \"video_title\": \"الجلسة 6: المصفوفات والكائنات\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: الدوال وهياكل البيانات\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 7, \"sort\": 1, \"active\": 1, \"video_id\": \"js_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"تعلم كيفية تحديد عناصر HTML وتعديل محتواها وأنماطها باستخدام JavaScript.\", \"video_title\": \"الجلسة 7: التعامل مع DOM\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 2, \"active\": 1, \"video_id\": \"js_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"الاستماع والاستجابة لأحداث المستخدم مثل النقر ولوحة المفاتيح.\", \"video_title\": \"الجلسة 8: الأحداث (Events)\", \"video_duration\": \"90:00\"}, {\"id\": 9, \"sort\": 3, \"active\": 1, \"video_id\": \"js_vid_session_9\", \"is_preview\": 0, \"video_desc\": \"تطبيق عملي لبناء قائمة مهام تفاعلية باستخدام DOM والأحداث.\", \"video_title\": \"الجلسة 9: مشروع مصغر – To‑Do List\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: التفاعل مع الصفحة (DOM & Events)\"}, {\"sort\": 4, \"active\": 1, \"videos\": [{\"id\": 10, \"sort\": 1, \"active\": 1, \"video_id\": \"js_vid_session_10\", \"is_preview\": 0, \"video_desc\": \"مقدمة لجلب البيانات من واجهات برمجة التطبيقات (APIs) باستخدام Fetch والتعامل مع JSON.\", \"video_title\": \"الجلسة 10: التعامل مع APIs (Fetch & JSON)\", \"video_duration\": \"90:00\"}, {\"id\": 11, \"sort\": 2, \"active\": 1, \"video_id\": \"js_vid_session_11\", \"is_preview\": 0, \"video_desc\": \"فهم البرمجة غير المتزامنة باستخدام Promises و async/await.\", \"video_title\": \"الجلسة 11: البرمجة غير المتزامنة (Promises & async/await)\", \"video_duration\": \"90:00\"}, {\"id\": 12, \"sort\": 3, \"active\": 1, \"video_id\": \"js_vid_session_12\", \"is_preview\": 0, \"video_desc\": \"تطبيق جميع مهارات JavaScript في مشروع نهائي متكامل ونشره.\", \"video_title\": \"الجلسة 12: المشروع النهائي – تطبيق ويب متكامل\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الرابع: APIs والمشروع النهائي\"}]', 0, 0, '12 حصة لتعلم JavaScript والتفاعل مع صفحات الويب', '2025-04-27 06:39:49', '2025-04-27 06:39:49', 7, 1),
-(7, 'المستوى 4.1: تأسيس تطبيقات الهاتف (App Inventor Foundations & Logic)', 'app-inventor-foundations-logic', 'مبتدئ-متوسط', 'appinv1_vid_session_1', 300.00, NULL, 'تعلم أساسيات بناء تطبيقات أندرويد بدون كتابة كود باستخدام MIT App Inventor. يغطي المسار استكشاف الواجهة، تصميم واجهات المستخدم، التعامل مع الأحداث، المكونات الأساسية، الوسائط، تطبيق المنطق البرمجي (الشروط والمتغيرات)، ومقدمة لتصحيح الأخطاء.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv1_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"مقدمة لعالم تطبيقات الهاتف وبيئة App Inventor وإعداد بيئة العمل.\", \"video_title\": \"الجلسة 1: الغوص في عالم التطبيقات و App Inventor\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv1_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"تعلم سحب وإفلات المكونات الأساسية (Button, Label, TextBox) وتغيير خصائصها.\", \"video_title\": \"الجلسة 2: بناء الواجهات الأولى والخصائص\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"appinv1_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"استخدام مكونات التخطيط (Layouts) لتنظيم الواجهات والتحكم في محاذاة العناصر.\", \"video_title\": \"الجلسة 3: تنظيم الواجهات (Layouts)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: مقدمة وتصميم الواجهات\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 4, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv1_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"فهم الأحداث (Events) وربطها بإجراءات بسيطة لتغيير النصوص والألوان.\", \"video_title\": \"الجلسة 4: التفاعل الأول (Events & Basic Actions)\", \"video_duration\": \"90:00\"}, {\"id\": 5, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv1_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"إضافة الصور والأصوات للتطبيقات باستخدام مكونات Image, Sound, Player.\", \"video_title\": \"الجلسة 5: إضافة الحياة (Images & Sounds)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: التفاعل الأساسي والوسائط\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 6, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv1_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"تعلم استخدام الشروط (If/Then/Else) لاتخاذ القرارات بناءً على مقارنات منطقية.\", \"video_title\": \"الجلسة 6: اتخاذ القرارات (Conditional Logic - If/Then/Else)\", \"video_duration\": \"90:00\"}, {\"id\": 7, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv1_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"بناء شروط متعددة (else if) واستخدام مكون Notifier لعرض التنبيهات والرسائل.\", \"video_title\": \"الجلسة 7: الشروط المتقدمة والتنبيهات (Nested If/Else & Notifier)\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 3, \"active\": 1, \"video_id\": \"appinv1_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"فهم أهمية المتغيرات وكيفية إنشائها واستخدامها لتخزين البيانات مؤقتاً.\", \"video_title\": \"الجلسة 8: تخزين البيانات مؤقتاً (Variables)\", \"video_duration\": \"90:00\"}, {\"id\": 9, \"sort\": 4, \"active\": 1, \"video_id\": \"appinv1_vid_session_9\", \"is_preview\": 0, \"video_desc\": \"استخدام المتغيرات مع العمليات الحسابية ومكون TextToSpeech لإضافة النطق.\", \"video_title\": \"الجلسة 9: استخدام المتغيرات والحسابات و TextToSpeech\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: المنطق البرمجي والبيانات\"}, {\"sort\": 4, \"active\": 1, \"videos\": [{\"id\": 10, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv1_vid_session_10\", \"is_preview\": 0, \"video_desc\": \"مراجعة شاملة وتطبيق المفاهيم في مشروع صغير وعرض النتائج.\", \"video_title\": \"الجلسة 10: مشروع المستوى الأول المصغر وتجميعه (Mini-Project & Review)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الرابع: المشروع والمراجعة\"}]', 0, 0, '10 حصص لتأسيس بناء تطبيقات الهاتف بـ App Inventor', '2025-04-27 06:42:14', '2025-04-27 06:42:14', 8, 1),
-(8, 'المستوى 4.2: بناء تطبيقات متقدمة ومشاريع (App Inventor Advanced)', 'app-inventor-advanced-projects', 'متوسط-متقدم', 'appinv2_vid_session_1', 360.00, NULL, 'تعمق في بناء تطبيقات أندرويد معقدة باستخدام MIT App Inventor. يغطي المسار تنظيم الكود بالإجراءات، التعامل مع القوائم، التخزين الدائم، استخدام مكونات الوقت والحساسات، الرسم، إدارة الشاشات المتعددة، وينتهي بمشروع متكامل.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv2_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"تعلم كيفية تنظيم الكود باستخدام الإجراءات (Procedures) مع وبدون مدخلات.\", \"video_title\": \"الجلسة 11 (L4.2-1): تنظيم الكود بالإجراءات (Procedures/Functions)\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv2_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"مقدمة للتعامل مع مجموعات البيانات باستخدام القوائم (Lists) والعمليات الأساسية عليها.\", \"video_title\": \"الجلسة 12 (L4.2-2): التعامل مع مجموعات البيانات (Introduction to Lists)\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"appinv2_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"معالجة القوائم (الإزالة، التكرار) وعرضها للمستخدم باستخدام مكون ListView.\", \"video_title\": \"الجلسة 13 (L4.2-3): معالجة القوائم وعرضها (List Manipulation & ListView)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: تنظيم الكود وهياكل البيانات\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 4, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv2_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"حفظ البيانات بشكل دائم على الجهاز باستخدام مكون التخزين المحلي TinyDB.\", \"video_title\": \"الجلسة 14 (L4.2-4): حفظ البيانات بشكل دائم (TinyDB Storage)\", \"video_duration\": \"90:00\"}, {\"id\": 5, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv2_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"استخدام مكون الساعة (Clock) لتنفيذ مهام مؤقتة أو دورية.\", \"video_title\": \"الجلسة 15 (L4.2-5): التحكم بالوقت والتحكم الدوري (Clock Component)\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 3, \"active\": 1, \"video_id\": \"appinv2_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"التفاعل مع حركة الجهاز باستخدام حساس التسارع (Accelerometer Sensor).\", \"video_title\": \"الجلسة 16 (L4.2-6): التفاعل مع حركة الجهاز (Accelerometer Sensor)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: التخزين، الوقت، والحساسات\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 7, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv2_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"مقدمة للرسم على الشاشة باستخدام مكون Canvas والتحكم في كائنات Ball/ImageSprite.\", \"video_title\": \"الجلسة 17 (L4.2-7): الرسم واللمس (Canvas & Ball/ImageSprite)\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv2_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"تعلم كيفية إنشاء وإدارة شاشات متعددة في التطبيق وتمرير البيانات بينها.\", \"video_title\": \"الجلسة 18 (L4.2-8): التنقل بين الشاشات وتمرير البيانات (Multiple Screens)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: الرسم والتنقل بين الشاشات\"}, {\"sort\": 4, \"active\": 1, \"videos\": [{\"id\": 9, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv2_vid_session_9\", \"is_preview\": 0, \"video_desc\": \"عصف ذهني، اختيار فكرة مشروع نهائي متكامل، وتخطيط هيكله ومنطقه.\", \"video_title\": \"الجلسة 19 (L4.2-9): المشروع النهائي - العصف الذهني والتخطيط.\", \"video_duration\": \"90:00\"}, {\"id\": 10, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv2_vid_session_10\", \"is_preview\": 0, \"video_desc\": \"وقت عمل مركز لتطوير الوظائف الأساسية للمشروع بمساعدة المدرب.\", \"video_title\": \"الجلسة 20 (L4.2-10): المشروع النهائي - تطوير الوظائف الأساسية.\", \"video_duration\": \"90:00\"}, {\"id\": 11, \"sort\": 3, \"active\": 1, \"video_id\": \"appinv2_vid_session_11\", \"is_preview\": 0, \"video_desc\": \"إضافة الميزات الإضافية، تحسين الواجهات، والتركيز على اختبار وتصحيح الأخطاء.\", \"video_title\": \"الجلسة 21 (L4.2-11): المشروع النهائي - إضافة الميزات وتصحيح الأخطاء.\", \"video_duration\": \"90:00\"}, {\"id\": 12, \"sort\": 4, \"active\": 1, \"video_id\": \"appinv2_vid_session_12\", \"is_preview\": 0, \"video_desc\": \"وضع اللمسات النهائية على المشروع، عرضه للمجموعة، ومناقشة النتائج والخطوات التالية.\", \"video_title\": \"الجلسة 22 (L4.2-12): المشروع النهائي - اللمسات الأخيرة والعرض.\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الرابع: المشروع النهائي\"}]', 0, 0, '12 حصة لميزات App Inventor المتقدمة وتطوير المشاريع', '2025-04-27 06:42:14', '2025-04-27 06:42:14', 9, 1);
+INSERT INTO `tb_courses` (`id`, `course_title`, `course_title`, `slug`, `skill_level`, `intro_video_id`, `price`, `image`, `course_desc`, `course_structure`, `waiting_list`, `is_free`, `short_desc`, `created_at`, `updated_at`, `sort`, `active`) VALUES
+(1, 'مسار سكراتش المكثف (بأسلوب CS50)', 'مسار سكراتش المكثف (بأسلوب CS50)', 'scratch-cs50-intensive', 'مبتدئ', 'placeholder_video_id_session_1', 360.00, NULL, 'مسار تأسيسي مكثف للمبتدئين (+14) لتعلم البرمجة باستخدام سكراتش، مستوحى من منهج CS50 Scratch من جامعة هارفارد. يقدم المسار في 12 حصة تفاعلية مباشرة عبر Zoom بإشراف م/ أحمد فخر الدين، مع التركيز على التفكير المنطقي، حل المشكلات، وبناء المشاريع العملية.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"placeholder_video_id_session_1\", \"is_preview\": 1, \"video_desc\": \"مقدمة تفاعلية، استكشاف الواجهة، وتطبيق عملي على الحركة والمظاهر الأساسية.\", \"video_title\": \"الجلسة 1: الانطلاق في عالم Scratch (Sprites & Basics)\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"placeholder_video_id_session_2\", \"is_preview\": 0, \"video_desc\": \"فهم أنواع الأحداث المختلفة وربط الحركة والمظاهر بها.\", \"video_title\": \"الجلسة 2: أحداث التفاعل (Events)\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"placeholder_video_id_session_3\", \"is_preview\": 0, \"video_desc\": \"التحكم في توقيت الأوامر واستخدام حلقة التكرار Repeat لبناء أنماط ورسومات.\", \"video_title\": \"الجلسة 3: التحكم في التدفق والتكرار (Control Flow & Repeat)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: مقدمة وأساسيات التفاعل\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 4, \"sort\": 1, \"active\": 1, \"video_id\": \"placeholder_video_id_session_4\", \"is_preview\": 0, \"video_desc\": \"استخدام حلقة التكرار المستمر Forever والاستشعار الأساسي للحركة والتفاعل مع الحواف.\", \"video_title\": \"الجلسة 4: التكرار المستمر والاستشعار (Forever & Sensing)\", \"video_duration\": \"90:00\"}, {\"id\": 5, \"sort\": 2, \"active\": 1, \"video_id\": \"placeholder_video_id_session_5\", \"is_preview\": 0, \"video_desc\": \"فهم وتطبيق الشروط الأساسية (If) لاتخاذ القرارات بناءً على الاستشعار.\", \"video_title\": \"الجلسة 5: الشروط الأساسية (Conditions - If)\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 3, \"active\": 1, \"video_id\": \"placeholder_video_id_session_6\", \"is_preview\": 0, \"video_desc\": \"استخدام الشروط المتفرعة (If/Else) والاستشعار المتقدم للتفاعل مع الألوان ومدخلات المستخدم.\", \"video_title\": \"الجلسة 6: الشروط المتفرعة والاستشعار المتقدم (If/Else & Advanced Sensing)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: التحكم، الشروط، والاستشعار\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 7, \"sort\": 1, \"active\": 1, \"video_id\": \"placeholder_video_id_session_7\", \"is_preview\": 0, \"video_desc\": \"فهم أهمية المتغيرات وكيفية إنشائها واستخدامها لتخزين البيانات مثل النقاط والأسماء.\", \"video_title\": \"الجلسة 7: المتغيرات (Variables)\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 2, \"active\": 1, \"video_id\": \"placeholder_video_id_session_8\", \"is_preview\": 0, \"video_desc\": \"استخدام العمليات الحسابية، المقارنة، المنطقية، والعشوائية لمعالجة البيانات واتخاذ قرارات معقدة.\", \"video_title\": \"الجلسة 8: العمليات والمنطق (Operators)\", \"video_duration\": \"90:00\"}, {\"id\": 9, \"sort\": 3, \"active\": 1, \"video_id\": \"placeholder_video_id_session_9\", \"is_preview\": 0, \"video_desc\": \"مقدمة لمفهوم الدوال (My Blocks) وكيفية إنشائها لتنظيم الكود وإعادة استخدامه.\", \"video_title\": \"الجلسة 9: الدوال الأساسية (My Blocks – الجزء 1)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: البيانات، العمليات، والتنظيم\"}, {\"sort\": 4, \"active\": 1, \"videos\": [{\"id\": 10, \"sort\": 1, \"active\": 1, \"video_id\": \"placeholder_video_id_session_10\", \"is_preview\": 0, \"video_desc\": \"إنشاء دوال (My Blocks) بمدخلات لجعلها أكثر مرونة، واستخدام البث (Broadcasting) للتواصل بين الكائنات.\", \"video_title\": \"الجلسة 10: الدوال المتقدمة والبث (My Blocks & Broadcasting)\", \"video_duration\": \"90:00\"}, {\"id\": 11, \"sort\": 2, \"active\": 1, \"video_id\": \"placeholder_video_id_session_11\", \"is_preview\": 0, \"video_desc\": \"مراجعة شاملة، عصف ذهني، وتخطيط لمشروع نهائي مصغر يطبق المهارات المكتسبة.\", \"video_title\": \"الجلسة 11: التخطيط وبدء Mini-Project\", \"video_duration\": \"90:00\"}, {\"id\": 12, \"sort\": 3, \"active\": 1, \"video_id\": \"placeholder_video_id_session_12\", \"is_preview\": 0, \"video_desc\": \"استكمال العمل على المشروع المصغر، تصحيح الأخطاء، وعرض المشاريع النهائية للمجموعة.\", \"video_title\": \"الجلسة 12: استكمال وعرض Mini-Project\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الرابع: الدوال المتقدمة والمشروع النهائي\"}]', 0, 0, '12 حصة تفاعلية لتعلم سكراتش بأسلوب CS50', '2025-04-27 06:30:08', '2025-04-27 06:30:08', 2, 1),
+(2, 'المستوى 2.1: أساسيات البرمجة ومنطق بايثون', 'المستوى 2.1: أساسيات البرمجة ومنطق بايثون', 'python-logic-fundamentals', 'مبتدئ-متوسط', 'py1_vid_session_1', 240.00, NULL, 'مسار تأسيسي لتعلم كتابة برامج بايثون بسيطة، يتضمن المتغيرات، العمليات، المدخلات، الشروط، والتعامل الأساسي مع النصوص. يهدف لبناء قاعدة صلبة في التفكير المنطقي والبرمجة النصية للمنتقلين من سكراتش أو المبتدئين في بايثون.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"py1_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"مقدمة لبايثون، إعداد البيئة، وأول برنامج print().\", \"video_title\": \"الجلسة 1: الانطلاق مع بايثون (Introduction & Setup)\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"py1_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"فهم المتغيرات، قواعد التسمية، وأنواع البيانات الأساسية (int, float, str, bool).\", \"video_title\": \"الجلسة 2: تخزين البيانات (المتغيرات والأنواع الأساسية)\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"py1_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"استخدام المعاملات الحسابية والمقارنة لإجراء العمليات والتحقق من الشروط.\", \"video_title\": \"الجلسة 3: إجراء العمليات (Operators)\", \"video_duration\": \"90:00\"}, {\"id\": 4, \"sort\": 4, \"active\": 1, \"video_id\": \"py1_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"استقبال مدخلات من المستخدم باستخدام input() وتحويل أنواع البيانات (Type Casting).\", \"video_title\": \"الجلسة 4: التفاعل مع المستخدم (Input & Type Casting)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: الانطلاق والبيانات الأساسية\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 5, \"sort\": 1, \"active\": 1, \"video_id\": \"py1_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"العمليات الأساسية على النصوص (الربط، التكرار، الطول) والفهرسة والتقطيع.\", \"video_title\": \"الجلسة 5: التعامل مع النصوص (String Basics)\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 2, \"active\": 1, \"video_id\": \"py1_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"فهم وتطبيق جملة if الشرطية لاتخاذ قرارات بسيطة بناءً على المقارنات.\", \"video_title\": \"الجلسة 6: اتخاذ القرارات (If Statement)\", \"video_duration\": \"90:00\"}, {\"id\": 7, \"sort\": 3, \"active\": 1, \"video_id\": \"py1_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"استخدام else و elif لتوسيع نطاق القرارات والمعاملات المنطقية (and, or, not) لدمج الشروط.\", \"video_title\": \"الجلسة 7: توسيع القرارات (Else, Elif & Logical Operators)\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 4, \"active\": 1, \"video_id\": \"py1_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"مراجعة شاملة للمفاهيم وتطبيقها في تحديات برمجية صغيرة.\", \"video_title\": \"الجلسة 8: مراجعة وتحديات المستوى الأول\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: النصوص واتخاذ القرارات\"}]', 0, 0, '8 حصص لتعلم أساسيات بايثون والمنطق البرمجي', '2025-04-27 06:37:49', '2025-04-27 06:37:49', 3, 1),
+(3, 'المستوى 2.2: هياكل البيانات وحل المشكلات ببايثون', 'المستوى 2.2: هياكل البيانات وحل المشكلات ببايثون', 'python-data-structures-problem-solving', 'متوسط', 'py2_vid_session_1', 300.00, NULL, 'مسار لتعميق مهارات بايثون، يركز على الحلقات (while/for)، هياكل البيانات (القوائم)، بناء الدوال وتنظيمها، استخدام الوحدات الجاهزة، التعامل مع الملفات، وتطبيق كل المهارات في مشروع برمجي متكامل.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"py2_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"فهم وتطبيق حلقة while للتكرار المشروط والتحكم في تدفقها.\", \"video_title\": \"الجلسة 9 (L2.2-1): التكرار المشروط (While Loops)\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"py2_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"استخدام حلقة for للتكرار المحدد، ومقدمة لهيكل بيانات القوائم (Lists).\", \"video_title\": \"الجلسة 10 (L2.2-2): التكرار المحدد والقوائم (For Loops & Lists Intro)\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"py2_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"تعلم دوال القوائم المختلفة للتعديل، الحذف، البحث، والترتيب.\", \"video_title\": \"الجلسة 11 (L2.2-3): عمليات القوائم المتقدمة (List Methods)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: الحلقات والقوائم\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 4, \"sort\": 1, \"active\": 1, \"video_id\": \"py2_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"مقدمة لمفهوم الدوال (Functions) لتقسيم الكود وتنظيمه.\", \"video_title\": \"الجلسة 12 (L2.2-4): تنظيم الكود (Functions Intro)\", \"video_duration\": \"90:00\"}, {\"id\": 5, \"sort\": 2, \"active\": 1, \"video_id\": \"py2_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"إنشاء دوال تأخذ معاملات (Parameters) وتعيد قيماً (Return) لجعلها أكثر قوة.\", \"video_title\": \"الجلسة 13 (L2.2-5): دوال أكثر قوة (Parameters & Return)\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 3, \"active\": 1, \"video_id\": \"py2_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"استخدام الوحدات (Modules) الجاهزة مثل random, math, time لتوسيع قدرات البرنامج.\", \"video_title\": \"الجلسة 14 (L2.2-6): استخدام أدوات جاهزة (Modules)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: تنظيم الكود والوحدات\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 7, \"sort\": 1, \"active\": 1, \"video_id\": \"py2_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"قراءة وكتابة البيانات من وإلى الملفات النصية باستخدام open() و with.\", \"video_title\": \"الجلسة 15 (L2.2-7): التعامل مع الملفات (File I/O)\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 2, \"active\": 1, \"video_id\": \"py2_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"مراجعة شاملة، اختيار فكرة مشروع نهائي وتخطيط هيكله ومنطقه.\", \"video_title\": \"الجلسة 16 (L2.2-8): التخطيط للمشروع النهائي\", \"video_duration\": \"90:00\"}, {\"id\": 9, \"sort\": 3, \"active\": 1, \"video_id\": \"py2_vid_session_9\", \"is_preview\": 0, \"video_desc\": \"العمل على تنفيذ المشروع النهائي، كتابة الكود وحل المشكلات.\", \"video_title\": \"الجلسة 17 (L2.2-9): بناء المشروع وتطويره\", \"video_duration\": \"90:00\"}, {\"id\": 10, \"sort\": 4, \"active\": 1, \"video_id\": \"py2_vid_session_10\", \"is_preview\": 0, \"video_desc\": \"استكمال المشروع، اختباره، عرضه، ومراجعة نهائية لمفاهيم المسار.\", \"video_title\": \"الجلسة 18 (L2.2-10): استكمال المشروع، العرض، والمراجعة النهائية\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: التعامل مع الملفات والمشروع النهائي\"}]', 0, 0, '10 حصص لهياكل البيانات، الدوال، والمشاريع ببايثون', '2025-04-27 06:38:04', '2025-04-27 06:38:04', 4, 1),
+(4, 'المستوى 3A.1: أساسيات بناء الويب (HTML Foundation)', 'المستوى 3A.1: أساسيات بناء الويب (HTML Foundation)', 'html-foundation', 'مبتدئ', 'html_vid_session_1', 240.00, NULL, 'تعلم أساسيات لغة HTML لبناء هيكل صفحات الويب بشكل صحيح ومنظم. يغطي المسار العناصر الأساسية، النصوص، القوائم، الروابط، الصور، الجداول، النماذج، والعناصر الدلالية الحديثة.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"html_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"فهم بنية مستند HTML الأساسية (DOCTYPE, html, head, body) وإنشاء أول صفحة.\", \"video_title\": \"الجلسة 1: مقدمة إلى HTML وبنية المستند\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"html_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"استخدام عناصر تنسيق النصوص الأساسية مثل العناوين والفقرات والتأكيد.\", \"video_title\": \"الجلسة 2: العناصر الأساسية والنصوص\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"html_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"إنشاء القوائم المرتبة وغير المرتبة، وإضافة الروابط والصور مع السمات الهامة.\", \"video_title\": \"الجلسة 3: القوائم والروابط والصور\", \"video_duration\": \"90:00\"}, {\"id\": 4, \"sort\": 4, \"active\": 1, \"video_id\": \"html_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"بناء الجداول لعرض البيانات المنظمة ومقدمة لأساسيات النماذج (form, input, button).\", \"video_title\": \"الجلسة 4: الجداول والنماذج الأساسية\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: أساسيات وبنية HTML\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 5, \"sort\": 1, \"active\": 1, \"video_id\": \"html_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"استخدام العناصر الدلالية (header, nav, main, footer) لهيكلة أفضل وفهم Meta Data.\", \"video_title\": \"الجلسة 5: الوسوم الدلالية وميتا داتا\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 2, \"active\": 1, \"video_id\": \"html_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"استخدام أدوات المطور (DevTools) وأدوات التحقق (Validators) لتصحيح الأخطاء.\", \"video_title\": \"الجلسة 6: التحقق وتصحيح الأخطاء\", \"video_duration\": \"90:00\"}, {\"id\": 7, \"sort\": 3, \"active\": 1, \"video_id\": \"html_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"البدء في مشروع تطبيقي صغير (صفحة شخصية) لتطبيق مهارات HTML.\", \"video_title\": \"الجلسة 7: مشروع تطبيقي صغير\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 4, \"active\": 1, \"video_id\": \"html_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"عرض المشاريع النهائية، تقييمها، ومقدمة بسيطة لنشر المواقع.\", \"video_title\": \"الجلسة 8: عرض المشاريع وتقييم\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: الدلالية والمشاريع\"}]', 0, 0, '8 حصص لتأسيس HTML وبنية صفحات الويب', '2025-04-27 06:39:19', '2025-04-27 06:39:19', 5, 1),
+(5, 'المستوى 3A.2: تصميم وتنسيق الويب (CSS Styling & Layout)', 'المستوى 3A.2: تصميم وتنسيق الويب (CSS Styling & Layout)', 'css-styling-layout', 'مبتدئ-متوسط', 'css_vid_session_1', 300.00, NULL, 'تعلم كيفية إضافة الأناقة والجمال لصفحات الويب باستخدام CSS. يغطي المسار المحددات، نموذج الصندوق، تنسيق النصوص والألوان، تقنيات التخطيط الحديثة (Flexbox و Grid)، التصميم المتجاوب، والتحريكات البسيطة.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"css_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"مقدمة لـ CSS وطرق ربطها بـ HTML وكتابة أول قاعدة تنسيق.\", \"video_title\": \"الجلسة 1: مقدمة إلى CSS وربطها بـHTML\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"css_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"تعلم استخدام المحددات (Selectors) المختلفة لاستهداف عناصر HTML.\", \"video_title\": \"الجلسة 2: المحددات (Selectors)\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"css_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"فهم نموذج الصندوق (Box Model): المحتوى، الحشو، الحدود، والهوامش.\", \"video_title\": \"الجلسة 3: نموذج الصندوق (Box Model)\", \"video_duration\": \"90:00\"}, {\"id\": 4, \"sort\": 4, \"active\": 1, \"video_id\": \"css_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"تنسيق النصوص باستخدام خصائص الخطوط والألوان واستيراد خطوط خارجية.\", \"video_title\": \"الجلسة 4: النصوص والألوان\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: أساسيات CSS ونموذج الصندوق\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 5, \"sort\": 1, \"active\": 1, \"video_id\": \"css_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"مقدمة لـ Flexbox وخصائص الحاوية للتحكم في توزيع العناصر.\", \"video_title\": \"الجلسة 5: Flexbox – الجزء الأول\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 2, \"active\": 1, \"video_id\": \"css_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"التحكم في العناصر الفردية داخل Flexbox (النمو، الانكماش، الترتيب).\", \"video_title\": \"الجلسة 6: Flexbox – الجزء الثاني\", \"video_duration\": \"90:00\"}, {\"id\": 7, \"sort\": 3, \"active\": 1, \"video_id\": \"css_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"مقدمة لنظام Grid لإنشاء تخطيطات شبكية معقدة.\", \"video_title\": \"الجلسة 7: Grid Layout\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: التخطيط باستخدام Flexbox و Grid\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 8, \"sort\": 1, \"active\": 1, \"video_id\": \"css_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"استخدام Media Queries لجعل التصميم يتكيف مع مختلف أحجام الشاشات.\", \"video_title\": \"الجلسة 8: التصميم المتجاوب (Media Queries)\", \"video_duration\": \"90:00\"}, {\"id\": 9, \"sort\": 2, \"active\": 1, \"video_id\": \"css_vid_session_9\", \"is_preview\": 0, \"video_desc\": \"إضافة تأثيرات بصرية باستخدام التحولات (Transitions) والرسوم المتحركة (Animations).\", \"video_title\": \"الجلسة 9: التحولات والرسوم المتحركة\", \"video_duration\": \"90:00\"}, {\"id\": 10, \"sort\": 3, \"active\": 1, \"video_id\": \"css_vid_session_10\", \"is_preview\": 0, \"video_desc\": \"تطبيق جميع مهارات CSS في مشروع تصميم صفحة ويب متكاملة ونشرها.\", \"video_title\": \"الجلسة 10: مشروع تطبيقي نهائي\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: التصميم المتجاوب والمشروع\"}]', 0, 0, '10 حصص لتصميم وتنسيق الويب باستخدام CSS', '2025-04-27 06:39:35', '2025-04-27 06:39:35', 6, 1),
+(6, 'المستوى 3A.3: التفاعلية وبرمجة الواجهات (JavaScript & DOM)', 'المستوى 3A.3: التفاعلية وبرمجة الواجهات (JavaScript & DOM)', 'javascript-fundamentals-dom', 'متوسط', 'js_vid_session_1', 360.00, NULL, 'تعلم أساسيات لغة JavaScript لإضافة التفاعلية والسلوك الديناميكي لصفحات الويب. يغطي المسار المتغيرات، الشروط، الحلقات، الدوال، المصفوفات، الكائنات، التعامل مع DOM، الأحداث، مقدمة للـ APIs والبرمجة غير المتزامنة، مع مشروع نهائي.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"js_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"مقدمة لـ JavaScript، كيفية ربطها بالصفحة، واستخدام console.log.\", \"video_title\": \"الجلسة 1: مقدمة إلى JavaScript وربطها بالصفحة\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"js_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"تعلم المتغيرات (let, const, var) وأنواع البيانات الأساسية.\", \"video_title\": \"الجلسة 2: المتغيرات وأنواع البيانات\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"js_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"استخدام جمل if/else if/else و switch لاتخاذ القرارات المنطقية.\", \"video_title\": \"الجلسة 3: العمليات الشرطية\", \"video_duration\": \"90:00\"}, {\"id\": 4, \"sort\": 4, \"active\": 1, \"video_id\": \"js_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"استخدام حلقات for و while لتكرار تنفيذ الأكواد.\", \"video_title\": \"الجلسة 4: الحلقات التكرارية\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: أساسيات JavaScript والتحكم\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 5, \"sort\": 1, \"active\": 1, \"video_id\": \"js_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"تعريف واستدعاء الدوال، فهم المعاملات والقيم المعادة.\", \"video_title\": \"الجلسة 5: الدوال (Functions)\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 2, \"active\": 1, \"video_id\": \"js_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"مقدمة للمصفوفات (Arrays) والكائنات (Objects) لتخزين مجموعات البيانات.\", \"video_title\": \"الجلسة 6: المصفوفات والكائنات\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: الدوال وهياكل البيانات\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 7, \"sort\": 1, \"active\": 1, \"video_id\": \"js_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"تعلم كيفية تحديد عناصر HTML وتعديل محتواها وأنماطها باستخدام JavaScript.\", \"video_title\": \"الجلسة 7: التعامل مع DOM\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 2, \"active\": 1, \"video_id\": \"js_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"الاستماع والاستجابة لأحداث المستخدم مثل النقر ولوحة المفاتيح.\", \"video_title\": \"الجلسة 8: الأحداث (Events)\", \"video_duration\": \"90:00\"}, {\"id\": 9, \"sort\": 3, \"active\": 1, \"video_id\": \"js_vid_session_9\", \"is_preview\": 0, \"video_desc\": \"تطبيق عملي لبناء قائمة مهام تفاعلية باستخدام DOM والأحداث.\", \"video_title\": \"الجلسة 9: مشروع مصغر – To‑Do List\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: التفاعل مع الصفحة (DOM & Events)\"}, {\"sort\": 4, \"active\": 1, \"videos\": [{\"id\": 10, \"sort\": 1, \"active\": 1, \"video_id\": \"js_vid_session_10\", \"is_preview\": 0, \"video_desc\": \"مقدمة لجلب البيانات من واجهات برمجة التطبيقات (APIs) باستخدام Fetch والتعامل مع JSON.\", \"video_title\": \"الجلسة 10: التعامل مع APIs (Fetch & JSON)\", \"video_duration\": \"90:00\"}, {\"id\": 11, \"sort\": 2, \"active\": 1, \"video_id\": \"js_vid_session_11\", \"is_preview\": 0, \"video_desc\": \"فهم البرمجة غير المتزامنة باستخدام Promises و async/await.\", \"video_title\": \"الجلسة 11: البرمجة غير المتزامنة (Promises & async/await)\", \"video_duration\": \"90:00\"}, {\"id\": 12, \"sort\": 3, \"active\": 1, \"video_id\": \"js_vid_session_12\", \"is_preview\": 0, \"video_desc\": \"تطبيق جميع مهارات JavaScript في مشروع نهائي متكامل ونشره.\", \"video_title\": \"الجلسة 12: المشروع النهائي – تطبيق ويب متكامل\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الرابع: APIs والمشروع النهائي\"}]', 0, 0, '12 حصة لتعلم JavaScript والتفاعل مع صفحات الويب', '2025-04-27 06:39:49', '2025-04-27 06:39:49', 7, 1),
+(7, 'المستوى 4.1: تأسيس تطبيقات الهاتف (App Inventor Foundations & Logic)', 'المستوى 4.1: تأسيس تطبيقات الهاتف (App Inventor Foundations & Logic)', 'app-inventor-foundations-logic', 'مبتدئ-متوسط', 'appinv1_vid_session_1', 300.00, NULL, 'تعلم أساسيات بناء تطبيقات أندرويد بدون كتابة كود باستخدام MIT App Inventor. يغطي المسار استكشاف الواجهة، تصميم واجهات المستخدم، التعامل مع الأحداث، المكونات الأساسية، الوسائط، تطبيق المنطق البرمجي (الشروط والمتغيرات)، ومقدمة لتصحيح الأخطاء.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv1_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"مقدمة لعالم تطبيقات الهاتف وبيئة App Inventor وإعداد بيئة العمل.\", \"video_title\": \"الجلسة 1: الغوص في عالم التطبيقات و App Inventor\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv1_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"تعلم سحب وإفلات المكونات الأساسية (Button, Label, TextBox) وتغيير خصائصها.\", \"video_title\": \"الجلسة 2: بناء الواجهات الأولى والخصائص\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"appinv1_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"استخدام مكونات التخطيط (Layouts) لتنظيم الواجهات والتحكم في محاذاة العناصر.\", \"video_title\": \"الجلسة 3: تنظيم الواجهات (Layouts)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: مقدمة وتصميم الواجهات\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 4, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv1_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"فهم الأحداث (Events) وربطها بإجراءات بسيطة لتغيير النصوص والألوان.\", \"video_title\": \"الجلسة 4: التفاعل الأول (Events & Basic Actions)\", \"video_duration\": \"90:00\"}, {\"id\": 5, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv1_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"إضافة الصور والأصوات للتطبيقات باستخدام مكونات Image, Sound, Player.\", \"video_title\": \"الجلسة 5: إضافة الحياة (Images & Sounds)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: التفاعل الأساسي والوسائط\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 6, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv1_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"تعلم استخدام الشروط (If/Then/Else) لاتخاذ القرارات بناءً على مقارنات منطقية.\", \"video_title\": \"الجلسة 6: اتخاذ القرارات (Conditional Logic - If/Then/Else)\", \"video_duration\": \"90:00\"}, {\"id\": 7, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv1_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"بناء شروط متعددة (else if) واستخدام مكون Notifier لعرض التنبيهات والرسائل.\", \"video_title\": \"الجلسة 7: الشروط المتقدمة والتنبيهات (Nested If/Else & Notifier)\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 3, \"active\": 1, \"video_id\": \"appinv1_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"فهم أهمية المتغيرات وكيفية إنشائها واستخدامها لتخزين البيانات مؤقتاً.\", \"video_title\": \"الجلسة 8: تخزين البيانات مؤقتاً (Variables)\", \"video_duration\": \"90:00\"}, {\"id\": 9, \"sort\": 4, \"active\": 1, \"video_id\": \"appinv1_vid_session_9\", \"is_preview\": 0, \"video_desc\": \"استخدام المتغيرات مع العمليات الحسابية ومكون TextToSpeech لإضافة النطق.\", \"video_title\": \"الجلسة 9: استخدام المتغيرات والحسابات و TextToSpeech\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: المنطق البرمجي والبيانات\"}, {\"sort\": 4, \"active\": 1, \"videos\": [{\"id\": 10, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv1_vid_session_10\", \"is_preview\": 0, \"video_desc\": \"مراجعة شاملة وتطبيق المفاهيم في مشروع صغير وعرض النتائج.\", \"video_title\": \"الجلسة 10: مشروع المستوى الأول المصغر وتجميعه (Mini-Project & Review)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الرابع: المشروع والمراجعة\"}]', 0, 0, '10 حصص لتأسيس بناء تطبيقات الهاتف بـ App Inventor', '2025-04-27 06:42:14', '2025-04-27 06:42:14', 8, 1),
+(8, 'المستوى 4.2: بناء تطبيقات متقدمة ومشاريع (App Inventor Advanced)', 'المستوى 4.2: بناء تطبيقات متقدمة ومشاريع (App Inventor Advanced)', 'app-inventor-advanced-projects', 'متوسط-متقدم', 'appinv2_vid_session_1', 360.00, NULL, 'تعمق في بناء تطبيقات أندرويد معقدة باستخدام MIT App Inventor. يغطي المسار تنظيم الكود بالإجراءات، التعامل مع القوائم، التخزين الدائم، استخدام مكونات الوقت والحساسات، الرسم، إدارة الشاشات المتعددة، وينتهي بمشروع متكامل.', '[{\"sort\": 1, \"active\": 1, \"videos\": [{\"id\": 1, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv2_vid_session_1\", \"is_preview\": 1, \"video_desc\": \"تعلم كيفية تنظيم الكود باستخدام الإجراءات (Procedures) مع وبدون مدخلات.\", \"video_title\": \"الجلسة 11 (L4.2-1): تنظيم الكود بالإجراءات (Procedures/Functions)\", \"video_duration\": \"90:00\"}, {\"id\": 2, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv2_vid_session_2\", \"is_preview\": 0, \"video_desc\": \"مقدمة للتعامل مع مجموعات البيانات باستخدام القوائم (Lists) والعمليات الأساسية عليها.\", \"video_title\": \"الجلسة 12 (L4.2-2): التعامل مع مجموعات البيانات (Introduction to Lists)\", \"video_duration\": \"90:00\"}, {\"id\": 3, \"sort\": 3, \"active\": 1, \"video_id\": \"appinv2_vid_session_3\", \"is_preview\": 0, \"video_desc\": \"معالجة القوائم (الإزالة، التكرار) وعرضها للمستخدم باستخدام مكون ListView.\", \"video_title\": \"الجلسة 13 (L4.2-3): معالجة القوائم وعرضها (List Manipulation & ListView)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الأول: تنظيم الكود وهياكل البيانات\"}, {\"sort\": 2, \"active\": 1, \"videos\": [{\"id\": 4, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv2_vid_session_4\", \"is_preview\": 0, \"video_desc\": \"حفظ البيانات بشكل دائم على الجهاز باستخدام مكون التخزين المحلي TinyDB.\", \"video_title\": \"الجلسة 14 (L4.2-4): حفظ البيانات بشكل دائم (TinyDB Storage)\", \"video_duration\": \"90:00\"}, {\"id\": 5, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv2_vid_session_5\", \"is_preview\": 0, \"video_desc\": \"استخدام مكون الساعة (Clock) لتنفيذ مهام مؤقتة أو دورية.\", \"video_title\": \"الجلسة 15 (L4.2-5): التحكم بالوقت والتحكم الدوري (Clock Component)\", \"video_duration\": \"90:00\"}, {\"id\": 6, \"sort\": 3, \"active\": 1, \"video_id\": \"appinv2_vid_session_6\", \"is_preview\": 0, \"video_desc\": \"التفاعل مع حركة الجهاز باستخدام حساس التسارع (Accelerometer Sensor).\", \"video_title\": \"الجلسة 16 (L4.2-6): التفاعل مع حركة الجهاز (Accelerometer Sensor)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثاني: التخزين، الوقت، والحساسات\"}, {\"sort\": 3, \"active\": 1, \"videos\": [{\"id\": 7, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv2_vid_session_7\", \"is_preview\": 0, \"video_desc\": \"مقدمة للرسم على الشاشة باستخدام مكون Canvas والتحكم في كائنات Ball/ImageSprite.\", \"video_title\": \"الجلسة 17 (L4.2-7): الرسم واللمس (Canvas & Ball/ImageSprite)\", \"video_duration\": \"90:00\"}, {\"id\": 8, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv2_vid_session_8\", \"is_preview\": 0, \"video_desc\": \"تعلم كيفية إنشاء وإدارة شاشات متعددة في التطبيق وتمرير البيانات بينها.\", \"video_title\": \"الجلسة 18 (L4.2-8): التنقل بين الشاشات وتمرير البيانات (Multiple Screens)\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الثالث: الرسم والتنقل بين الشاشات\"}, {\"sort\": 4, \"active\": 1, \"videos\": [{\"id\": 9, \"sort\": 1, \"active\": 1, \"video_id\": \"appinv2_vid_session_9\", \"is_preview\": 0, \"video_desc\": \"عصف ذهني، اختيار فكرة مشروع نهائي متكامل، وتخطيط هيكله ومنطقه.\", \"video_title\": \"الجلسة 19 (L4.2-9): المشروع النهائي - العصف الذهني والتخطيط.\", \"video_duration\": \"90:00\"}, {\"id\": 10, \"sort\": 2, \"active\": 1, \"video_id\": \"appinv2_vid_session_10\", \"is_preview\": 0, \"video_desc\": \"وقت عمل مركز لتطوير الوظائف الأساسية للمشروع بمساعدة المدرب.\", \"video_title\": \"الجلسة 20 (L4.2-10): المشروع النهائي - تطوير الوظائف الأساسية.\", \"video_duration\": \"90:00\"}, {\"id\": 11, \"sort\": 3, \"active\": 1, \"video_id\": \"appinv2_vid_session_11\", \"is_preview\": 0, \"video_desc\": \"إضافة الميزات الإضافية، تحسين الواجهات، والتركيز على اختبار وتصحيح الأخطاء.\", \"video_title\": \"الجلسة 21 (L4.2-11): المشروع النهائي - إضافة الميزات وتصحيح الأخطاء.\", \"video_duration\": \"90:00\"}, {\"id\": 12, \"sort\": 4, \"active\": 1, \"video_id\": \"appinv2_vid_session_12\", \"is_preview\": 0, \"video_desc\": \"وضع اللمسات النهائية على المشروع، عرضه للمجموعة، ومناقشة النتائج والخطوات التالية.\", \"video_title\": \"الجلسة 22 (L4.2-12): المشروع النهائي - اللمسات الأخيرة والعرض.\", \"video_duration\": \"90:00\"}], \"section_title\": \"القسم الرابع: المشروع النهائي\"}]', 0, 0, '12 حصة لميزات App Inventor المتقدمة وتطوير المشاريع', '2025-04-27 06:42:14', '2025-04-27 06:42:14', 9, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_credit_transactions`
+--
+
+CREATE TABLE `tb_credit_transactions` (
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int UNSIGNED NOT NULL COMMENT 'Reference to users table',
+  `transaction_type` enum('credit_purchase','course_enrollment','refund','admin_adjustment') COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Type of credit transaction',
+  `amount` decimal(10,2) DEFAULT NULL COMMENT 'Transaction amount (positive for credits added, negative for spent)',
+  `balance_before` decimal(10,2) DEFAULT NULL COMMENT 'User credit balance before transaction',
+  `balance_after` decimal(10,2) DEFAULT NULL COMMENT 'User credit balance after transaction',
+  `reference_type` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Type of related entity (course, payment, etc.)',
+  `reference_id` int DEFAULT NULL COMMENT 'ID of related entity',
+  `description` text COLLATE utf8mb4_general_ci COMMENT 'Transaction description',
+  `processed_by` int UNSIGNED DEFAULT NULL COMMENT 'Admin user who processed the transaction',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_email_logs`
+--
+
+CREATE TABLE `tb_email_logs` (
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int UNSIGNED DEFAULT NULL COMMENT 'Reference to users table',
+  `recipient_email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'Email address of recipient',
+  `email_type` enum('verification','password_reset','parent_notification','course_completion','system_notification') COLLATE utf8mb4_general_ci NOT NULL COMMENT 'Type of email sent',
+  `subject` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'Email subject line',
+  `template_used` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Email template identifier',
+  `status` enum('sent','failed','queued') COLLATE utf8mb4_general_ci DEFAULT 'queued' COMMENT 'Email delivery status',
+  `error_message` text COLLATE utf8mb4_general_ci COMMENT 'Error message if sending failed',
+  `sent_at` datetime DEFAULT NULL COMMENT 'When email was successfully sent',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -656,6 +583,25 @@ CREATE TABLE `tb_enrollments` (
 
 INSERT INTO `tb_enrollments` (`id`, `user_id`, `course_id`, `enrolled_at`, `status`, `completed_at`, `updated_at`, `proof_image`) VALUES
 (1, 1, 1, '2025-04-01 02:49:32', 'active', NULL, '2025-03-31 21:49:32', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_login_logs`
+--
+
+CREATE TABLE `tb_login_logs` (
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int UNSIGNED DEFAULT NULL COMMENT 'Reference to users table (null for failed attempts)',
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'Email used for login attempt',
+  `ip_address` varchar(45) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'IP address of login attempt',
+  `user_agent` text COLLATE utf8mb4_general_ci COMMENT 'Browser user agent',
+  `login_status` enum('success','failed','blocked') COLLATE utf8mb4_general_ci NOT NULL COMMENT 'Login attempt result',
+  `failure_reason` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Reason for login failure',
+  `session_id` varchar(128) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Session ID for successful logins',
+  `logout_at` datetime DEFAULT NULL COMMENT 'When user logged out',
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -706,6 +652,87 @@ CREATE TABLE `tb_questions_options` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_quizzes`
+--
+
+CREATE TABLE `tb_quizzes` (
+  `id` int NOT NULL,
+  `course_id` int NOT NULL,
+  `section_id` int DEFAULT NULL,
+  `quiz_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quiz_desc` text COLLATE utf8mb4_unicode_ci,
+  `questions_data` longtext COLLATE utf8mb4_unicode_ci,
+  `quiz_questions` longtext COLLATE utf8mb4_unicode_ci,
+  `time_limit` int DEFAULT '30',
+  `time_limit_minutes` int DEFAULT '30',
+  `max_attempts` int DEFAULT '3',
+  `passing_score` decimal(5,2) DEFAULT '70.00',
+  `difficulty_level` enum('easy','medium','hard') COLLATE utf8mb4_unicode_ci DEFAULT 'medium',
+  `shuffle_questions` tinyint(1) DEFAULT '0',
+  `shuffle_answers` tinyint(1) DEFAULT '0',
+  `show_results` tinyint(1) DEFAULT '1',
+  `show_results_immediately` tinyint(1) DEFAULT '1',
+  `active` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_quiz_attempts`
+--
+
+CREATE TABLE `tb_quiz_attempts` (
+  `id` int NOT NULL,
+  `quiz_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` decimal(5,2) DEFAULT '0.00',
+  `time_taken_seconds` int DEFAULT '0',
+  `is_passed` tinyint(1) DEFAULT '0',
+  `user_answers` longtext COLLATE utf8mb4_unicode_ci,
+  `quiz_questions` longtext COLLATE utf8mb4_unicode_ci,
+  `attempt_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_sections`
+--
+
+CREATE TABLE `tb_sections` (
+  `id` int UNSIGNED NOT NULL,
+  `course_id` int UNSIGNED NOT NULL COMMENT 'Reference to courses table',
+  `section_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Section title',
+  `section_desc` text COLLATE utf8mb4_unicode_ci COMMENT 'Section description',
+  `sort_order` int DEFAULT '0' COMMENT 'Display order within course',
+  `is_locked` tinyint(1) DEFAULT '0' COMMENT 'Whether section requires previous completion',
+  `active` tinyint(1) DEFAULT '1' COMMENT 'Whether section is active',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tb_sections`
+--
+
+INSERT INTO `tb_sections` (`id`, `course_id`, `section_name`, `section_desc`, `sort_order`, `is_locked`, `active`, `created_at`, `updated_at`) VALUES
+(1, 4, 'القسم الأول: أساسيات وبنية HTML', 'تعلم الأساسيات وبنية HTML الصحيحة', 1, 0, 1, '2025-09-11 14:45:58', '2025-09-11 14:45:58'),
+(2, 4, 'القسم الثاني: الدلالية والمشاريع', 'العناصر الدلالية والمشاريع التطبيقية', 2, 1, 1, '2025-09-11 14:45:58', '2025-09-11 14:45:58'),
+(3, 5, 'القسم الأول: أساسيات CSS ونموذج الصندوق', 'تعلم أساسيات CSS وفهم نموذج الصندوق', 1, 0, 1, '2025-09-11 14:47:40', '2025-09-11 14:47:40'),
+(4, 1, 'الأساسيات', 'تعلم أساسيات HTML', 1, 0, 1, '2025-09-11 15:10:10', '2025-09-11 15:10:10'),
+(5, 1, 'المتقدم', 'مواضيع متقدمة في HTML', 2, 0, 1, '2025-09-11 15:10:10', '2025-09-11 15:10:10'),
+(6, 2, 'أساسيات CSS', 'تعلم أساسيات التصميم', 1, 0, 1, '2025-09-11 15:10:10', '2025-09-11 15:10:10'),
+(7, 2, 'التصميم المتجاوب', 'تصميم مواقع متجاوبة', 2, 0, 1, '2025-09-11 15:10:10', '2025-09-11 15:10:10'),
+(8, 3, 'JavaScript الأساسي', 'أساسيات البرمجة', 1, 0, 1, '2025-09-11 15:10:10', '2025-09-11 15:10:10'),
+(9, 3, 'DOM والأحداث', 'التفاعل مع صفحات الويب', 2, 0, 1, '2025-09-11 15:10:10', '2025-09-11 15:10:10');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_student_answers`
 --
 
@@ -720,6 +747,63 @@ CREATE TABLE `tb_student_answers` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_units`
+--
+
+CREATE TABLE `tb_units` (
+  `id` int UNSIGNED NOT NULL,
+  `section_id` int UNSIGNED NOT NULL COMMENT 'Reference to sections table',
+  `unit_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Unit title',
+  `unit_desc` text COLLATE utf8mb4_unicode_ci COMMENT 'Unit description',
+  `unit_type` enum('video','text','quiz','assignment') COLLATE utf8mb4_unicode_ci DEFAULT 'video' COMMENT 'Type of unit content',
+  `video_id` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Bunny.net video ID',
+  `video_duration` int DEFAULT NULL COMMENT 'Video duration in seconds',
+  `content` longtext COLLATE utf8mb4_unicode_ci COMMENT 'Text content or additional materials',
+  `is_preview` tinyint(1) DEFAULT '0' COMMENT 'Whether unit is available as preview',
+  `sort_order` int DEFAULT '0' COMMENT 'Display order within section',
+  `active` tinyint(1) DEFAULT '1' COMMENT 'Whether unit is active',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tb_units`
+--
+
+INSERT INTO `tb_units` (`id`, `section_id`, `unit_name`, `unit_desc`, `unit_type`, `video_id`, `video_duration`, `content`, `is_preview`, `sort_order`, `active`, `created_at`, `updated_at`) VALUES
+(1, 1, 'مقدمة إلى HTML', 'فهم بنية مستند HTML الأساسية', 'video', 'html_vid_1', 1800, NULL, 1, 1, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06'),
+(2, 1, 'العناصر الأساسية', 'استخدام عناصر تنسيق النصوص', 'video', 'html_vid_2', 2100, NULL, 0, 2, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06'),
+(3, 2, 'الوسوم الدلالية', 'استخدام العناصر الدلالية', 'video', 'html_vid_3', 1950, NULL, 0, 1, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06'),
+(4, 3, 'أساسيات CSS', 'مقدمة في تنسيق الصفحات', 'video', 'css_vid_1', 2200, NULL, 1, 1, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06'),
+(5, 4, 'التصميم المتجاوب', 'تصميم يتكيف مع الشاشات', 'video', 'css_vid_2', 2400, NULL, 0, 1, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06'),
+(6, 5, 'متغيرات JavaScript', 'أساسيات البرمجة', 'video', 'js_vid_1', 2000, NULL, 1, 1, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06'),
+(7, 6, 'DOM والأحداث', 'التفاعل مع صفحات الويب', 'video', 'js_vid_2', 2300, NULL, 0, 2, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_user_unit_progress`
+--
+
+CREATE TABLE `tb_user_unit_progress` (
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int UNSIGNED NOT NULL COMMENT 'Reference to users table',
+  `unit_id` int NOT NULL COMMENT 'Reference to tb_units table',
+  `enrollment_id` int NOT NULL COMMENT 'Reference to tb_enrollments table',
+  `progress_percentage` decimal(5,2) DEFAULT '0.00' COMMENT 'Progress percentage (0-100)',
+  `watch_time` int DEFAULT '0' COMMENT 'Total watch time in seconds',
+  `last_position` int DEFAULT '0' COMMENT 'Last video position in seconds',
+  `is_completed` tinyint(1) DEFAULT '0' COMMENT 'Whether unit is completed',
+  `completed_at` datetime DEFAULT NULL COMMENT 'When unit was completed',
+  `first_accessed_at` datetime DEFAULT NULL COMMENT 'When unit was first accessed',
+  `last_accessed_at` datetime DEFAULT NULL COMMENT 'When unit was last accessed',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_video_completions`
 --
 
@@ -729,13 +813,6 @@ CREATE TABLE `tb_video_completions` (
   `video_id` int NOT NULL,
   `completed_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tb_video_completions`
---
-
-INSERT INTO `tb_video_completions` (`id`, `enrollment_id`, `video_id`, `completed_at`) VALUES
-(1, 1, 1, '2025-04-01 02:49:38');
 
 -- --------------------------------------------------------
 
@@ -765,7 +842,38 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `full_name`, `mobile`, `user_type`, `status`, `active`, `last_active`, `created_at`, `updated_at`, `group_id`, `deleted_at`, `email`) VALUES
 (1, 'fakhawy', 'ahmed fakhr', '01032863861', 1, 1, 1, '2024-03-17 04:24:54', '1969-12-31 19:33:34', NULL, 1, NULL, ''),
-(3205, 'ahmed fakhr el din', NULL, NULL, 1, 1, 0, NULL, '2025-01-21 13:22:44', '2025-01-21 13:22:44', 2, NULL, '');
+(3205, 'ahmed fakhr el din', NULL, NULL, 1, 1, 0, NULL, '2025-01-21 13:22:44', '2025-01-21 13:22:44', 2, NULL, ''),
+(3210, 'student1', 'أحمد محمد', '01012345678', 1, 1, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06', '2025-09-11 15:11:06', 2, NULL, 'ahmed.student@example.com'),
+(3211, 'student2', 'فاطمة علي', '01012345679', 1, 1, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06', '2025-09-11 15:11:06', 2, NULL, 'fatima.student@example.com'),
+(3212, 'student3', 'محمد حسن', '01012345680', 1, 1, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06', '2025-09-11 15:11:06', 2, NULL, 'mohammed.student@example.com'),
+(3213, 'instructor1', 'د. سارة أحمد', '01012345681', 2, 1, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06', '2025-09-11 15:11:06', 1, NULL, 'sara.instructor@example.com'),
+(3214, 'admin1', 'عبدالله إدارة', '01012345682', 3, 1, 1, '2025-09-11 15:11:06', '2025-09-11 15:11:06', '2025-09-11 15:11:06', 1, NULL, 'admin@example.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `videos`
+--
+
+CREATE TABLE `videos` (
+  `id` int UNSIGNED NOT NULL,
+  `title_ar` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `title_en` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `desc_ar` text COLLATE utf8mb4_general_ci,
+  `desc_en` text COLLATE utf8mb4_general_ci,
+  `video_url` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
+  `thumbnail` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `duration` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `course_id` int UNSIGNED DEFAULT NULL,
+  `section_id` int UNSIGNED DEFAULT NULL,
+  `sort_order` int DEFAULT '0',
+  `sort` int DEFAULT '0',
+  `is_visible` tinyint(1) DEFAULT '1',
+  `show_in_home` tinyint(1) DEFAULT '0',
+  `active` tinyint(1) DEFAULT '1',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -791,20 +899,12 @@ ALTER TABLE `auth_groups_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `auth_identities`
---
-ALTER TABLE `auth_identities`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `type` (`type`,`secret`),
-  ADD KEY `user_id` (`user_id`);
-
---
 -- Indexes for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_id_type_identifier` (`id_type`,`identifier`),
-  ADD KEY `idx_user_id` (`user_id`);
+  ADD KEY `id_type_identifier` (`id_type`,`identifier`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `auth_permissions`
@@ -819,11 +919,11 @@ ALTER TABLE `auth_permissions_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `auth_remember_tokens`
+-- Indexes for table `auth_token_logins`
 --
-ALTER TABLE `auth_remember_tokens`
+ALTER TABLE `auth_token_logins`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `selector` (`selector`);
+  ADD KEY `id_type_identifier` (`id_type`,`identifier`);
 
 --
 -- Indexes for table `contact_us`
@@ -857,23 +957,29 @@ ALTER TABLE `tbnotifications`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tborders_status`
---
-ALTER TABLE `tborders_status`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tb_categories`
---
-ALTER TABLE `tb_categories`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `slug` (`slug`);
-
---
 -- Indexes for table `tb_courses`
 --
 ALTER TABLE `tb_courses`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_credit_transactions`
+--
+ALTER TABLE `tb_credit_transactions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `processed_by` (`processed_by`),
+  ADD KEY `idx_credit_transactions_user_date` (`user_id`,`created_at`),
+  ADD KEY `idx_credit_transactions_type` (`transaction_type`),
+  ADD KEY `idx_credit_transactions_reference` (`reference_type`,`reference_id`);
+
+--
+-- Indexes for table `tb_email_logs`
+--
+ALTER TABLE `tb_email_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_email_logs_user_type` (`user_id`,`email_type`),
+  ADD KEY `idx_email_logs_status_date` (`status`,`created_at`),
+  ADD KEY `idx_email_logs_type_sent` (`email_type`,`sent_at`);
 
 --
 -- Indexes for table `tb_enrollments`
@@ -885,10 +991,22 @@ ALTER TABLE `tb_enrollments`
   ADD KEY `idx_enrollment_course` (`course_id`);
 
 --
+-- Indexes for table `tb_login_logs`
+--
+ALTER TABLE `tb_login_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_login_logs_user_date` (`user_id`,`created_at`),
+  ADD KEY `idx_login_logs_ip_date` (`ip_address`,`created_at`),
+  ADD KEY `idx_login_logs_status` (`login_status`);
+
+--
 -- Indexes for table `tb_payments`
 --
 ALTER TABLE `tb_payments`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_user_payments` (`user_id`),
+  ADD KEY `idx_course_payments` (`course_id`),
+  ADD KEY `idx_payment_status` (`payment_status`);
 
 --
 -- Indexes for table `tb_questions`
@@ -903,10 +1021,54 @@ ALTER TABLE `tb_questions_options`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_quizzes`
+--
+ALTER TABLE `tb_quizzes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_course_id` (`course_id`),
+  ADD KEY `idx_section_id` (`section_id`),
+  ADD KEY `idx_active` (`active`);
+
+--
+-- Indexes for table `tb_quiz_attempts`
+--
+ALTER TABLE `tb_quiz_attempts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_quiz_id` (`quiz_id`),
+  ADD KEY `idx_user_id` (`user_id`),
+  ADD KEY `idx_attempt_date` (`attempt_date`);
+
+--
+-- Indexes for table `tb_sections`
+--
+ALTER TABLE `tb_sections`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_sections_course` (`course_id`),
+  ADD KEY `idx_sections_active` (`active`),
+  ADD KEY `idx_sections_course_sort` (`course_id`,`sort_order`);
+
+--
 -- Indexes for table `tb_student_answers`
 --
 ALTER TABLE `tb_student_answers`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_units`
+--
+ALTER TABLE `tb_units`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_units_section_sort` (`section_id`,`sort_order`),
+  ADD KEY `idx_units_active` (`active`);
+
+--
+-- Indexes for table `tb_user_unit_progress`
+--
+ALTER TABLE `tb_user_unit_progress`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_user_unit_progress_unique` (`user_id`,`unit_id`),
+  ADD KEY `idx_user_unit_progress_enrollment` (`enrollment_id`),
+  ADD KEY `idx_user_unit_progress_completed` (`is_completed`);
 
 --
 -- Indexes for table `tb_video_completions`
@@ -916,14 +1078,14 @@ ALTER TABLE `tb_video_completions`
   ADD KEY `idx_lesson_enrollment` (`enrollment_id`);
 
 --
--- Indexes for table `users`
+-- Indexes for table `videos`
 --
-ALTER TABLE `users`
+ALTER TABLE `videos`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_mobile_uindex` (`mobile`),
-  ADD KEY `group_id` (`group_id`),
-  ADD KEY `idx_id_user_type` (`id`,`user_type`),
-  ADD KEY `user_type` (`user_type`);
+  ADD KEY `idx_course_id` (`course_id`),
+  ADD KEY `idx_section_id` (`section_id`),
+  ADD KEY `idx_active` (`active`),
+  ADD KEY `idx_sort_order` (`sort_order`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -948,16 +1110,10 @@ ALTER TABLE `auth_groups_users`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `auth_identities`
---
-ALTER TABLE `auth_identities`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -972,10 +1128,10 @@ ALTER TABLE `auth_permissions_users`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `auth_remember_tokens`
+-- AUTO_INCREMENT for table `auth_token_logins`
 --
-ALTER TABLE `auth_remember_tokens`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `auth_token_logins`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `contact_us`
@@ -993,7 +1149,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -1005,19 +1161,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `tbnotifications`
 --
 ALTER TABLE `tbnotifications`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `tborders_status`
---
-ALTER TABLE `tborders_status`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `tb_categories`
---
-ALTER TABLE `tb_categories`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_courses`
@@ -1026,16 +1170,34 @@ ALTER TABLE `tb_courses`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `tb_credit_transactions`
+--
+ALTER TABLE `tb_credit_transactions`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_email_logs`
+--
+ALTER TABLE `tb_email_logs`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_enrollments`
 --
 ALTER TABLE `tb_enrollments`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tb_login_logs`
+--
+ALTER TABLE `tb_login_logs`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_payments`
 --
 ALTER TABLE `tb_payments`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_questions`
@@ -1050,22 +1212,62 @@ ALTER TABLE `tb_questions_options`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tb_quizzes`
+--
+ALTER TABLE `tb_quizzes`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_quiz_attempts`
+--
+ALTER TABLE `tb_quiz_attempts`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_sections`
+--
+ALTER TABLE `tb_sections`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `tb_student_answers`
 --
 ALTER TABLE `tb_student_answers`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tb_units`
+--
+ALTER TABLE `tb_units`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tb_user_unit_progress`
+--
+ALTER TABLE `tb_user_unit_progress`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_video_completions`
 --
 ALTER TABLE `tb_video_completions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `videos`
 --
-ALTER TABLE `users`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3206;
+ALTER TABLE `videos`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tb_user_unit_progress`
+--
+ALTER TABLE `tb_user_unit_progress`
+  ADD CONSTRAINT `tb_user_unit_progress_ibfk_2` FOREIGN KEY (`enrollment_id`) REFERENCES `tb_enrollments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

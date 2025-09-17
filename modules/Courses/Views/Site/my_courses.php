@@ -209,7 +209,7 @@
                             <!-- Course Image & Badge -->
                             <div class="course-image-container">
                                 <img
-                                        alt="<?= esc($course->course_name) ?>"
+                                        alt="<?= esc($course->course_title) ?>"
                                         class="course-thumbnail"
                                         src="<?= thumb($course->image, 170, 249) ?>"
                                 >
@@ -224,7 +224,7 @@
 
                             <!-- Course Content -->
                             <div class="course-content">
-                                <h3 class="course-title"><?= esc($course->course_name) ?></h3>
+                                <h3 class="course-title"><?= esc($course->course_title) ?></h3>
                                 <p class="course-excerpt">
                                     <?= character_limiter(strip_tags($course->course_desc), 90) ?>
                                 </p>

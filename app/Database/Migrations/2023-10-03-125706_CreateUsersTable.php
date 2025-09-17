@@ -49,7 +49,7 @@ class CreateUsersTable extends Migration
             'status_message' => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true,],
             'active' => ['type' => 'tinyint', 'constraint' => 1, 'null' => 0, 'default' => 0],
             'last_active' => ['type' => 'datetime', 'null' => true],
-            'type'    => 'TIMESTAMP',
+            'type'    => ['type' => 'VARCHAR', 'constraint' => 50, 'null' => true],
             'created_at' => ['type' => 'TIMESTAMP', 'default' => new RawSql('CURRENT_TIMESTAMP')],
             'updated_at' => ['type' => 'datetime', 'null' => true],
             'deleted_at' => ['type' => 'datetime', 'null' => true],

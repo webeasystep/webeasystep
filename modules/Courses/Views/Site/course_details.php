@@ -282,61 +282,88 @@
                 <div class="course-outline" data-aos="fade-up" data-aos-delay="200">
                     <h2 class="section-title mb-4" style="font-size:1.5rem;">محتوى الكورس</h2>
                     <div class="custom-accordion" id="courseOutlineAccordion">
-                        <?php if (is_array($structure) && !empty($structure)) : ?>
-                            <?php foreach ($structure as $sectionIndex => $section) : ?>
+                        <?php if (!empty($units)) : ?>
+                            <?php foreach ($units as $unitIndex => $unit) : ?>
                                 <div class="accordion-item">
                                     <h2 class="mb-0">
                                         <button
-                                                class="btn btn-link <?= ($sectionIndex !== 0) ? 'collapsed' : '' ?>"
+                                                class="btn btn-link <?= ($unitIndex !== 0) ? 'collapsed' : '' ?>"
                                                 type="button"
                                                 data-toggle="collapse"
-                                                data-target="#collapse<?= $sectionIndex + 1 ?>"
-                                                aria-expanded="<?= ($sectionIndex === 0) ? 'true' : 'false' ?>"
-                                                aria-controls="collapse<?= $sectionIndex + 1 ?>"
+                                                data-target="#collapse<?= $unitIndex + 1 ?>"
+                                                aria-expanded="<?= ($unitIndex === 0) ? 'true' : 'false' ?>"
+                                                aria-controls="collapse<?= $unitIndex + 1 ?>"
                                         >
-                                            القسم <?= $sectionIndex + 1 ?>:
-                                            <?= esc($section['section_title'] ?? 'عنوان القسم') ?>
-                                            <span class="video-count">(<?= count($section['videos'] ?? []) ?> دروس)</span>
+                                            الوحدة <?= $unitIndex + 1 ?>:
+                                            <?= esc($unit->unit_name ?? 'عنوان الوحدة') ?>
+                                            <span class="video-count">(<?= count($unit->items ?? []) ?> عناصر)</span>
                                         </button>
                                     </h2>
                                     <div
-                                            id="collapse<?= $sectionIndex + 1 ?>"
-                                            class="collapse <?= ($sectionIndex === 0) ? 'show' : '' ?>"
+                                            id="collapse<?= $unitIndex + 1 ?>"
+                                            class="collapse <?= ($unitIndex === 0) ? 'show' : '' ?>"
                                             aria-labelledby="headingOne"
                                             data-parent="#courseOutlineAccordion"
                                     >
                                         <div class="accordion-body">
                                             <ul class="video-list">
-                                                <?php if (is_array($section['videos'] ?? [])) : ?>
-                                                    <?php foreach ($section['videos'] as $video) : ?>
+                                                <?php if (!empty($unit->items)) : ?>
+                                                    <?php foreach ($unit->items as $item) : ?>
                                                         <li>
                                                             <span class="video-icon">
-                                                                <span class="icon-play-circle-o"></span>
+                                                                <?php if ($item->item_type === 'video'): ?>
+                                                                    <span class="icon-play-circle-o"></span>
+                                                                <?php elseif ($item->item_type === 'quiz'): ?>
+                                                                    <span class="icon-question-circle-o"></span>
+                                                                <?php elseif ($item->item_type === 'page'): ?>
+                                                                    <span class="icon-file-text-o"></span>
+                                                                <?php else: ?>
+                                                                    <span class="icon-circle-o"></span>
+                                                                <?php endif; ?>
                                                             </span>
-                                                            <?php if (isset($video['is_preview']) && $video['is_preview'] == 1): ?>
+                                                            
+                                                            <?php 
+                                                            // Check if item has preview capability
+                                                            $metadata = json_decode($item->metadata ?? '{}', true);
+                                                            $isPreview = ($item->item_type === 'video' && isset($metadata['is_preview']) && $metadata['is_preview'] == 1);
+                                                            ?>
+                                                            
+                                                            <?php if ($isPreview): ?>
                                                                 <!-- PREVIEW link => open in modal -->
-                                                                <a href="#" class="preview-video-link" data-video-id="<?= esc($video['video_id']) ?>">
-                                                                    <?= esc($video['video_title'] ?? 'عنوان الدرس') ?>
+                                                                <a href="#" class="preview-video-link" data-video-id="<?= esc($item->item_id) ?>">
+                                                                    <?= esc($item->title ?? 'عنوان العنصر') ?>
                                                                 </a>
                                                             <?php else: ?>
                                                                 <!-- locked => normal text -->
                                                                 <span class="text-muted">
-                                                                    <?= esc($video['video_title'] ?? 'عنوان الدرس') ?>
+                                                                    <?= esc($item->title ?? 'عنوان العنصر') ?>
                                                                 </span>
                                                             <?php endif; ?>
 
-                                                            <span class="video-time">
-                                                                <?= esc($video['video_duration'] ?? '0:00') ?>
+                                                            <?php if ($item->item_type === 'video' && $item->duration): ?>
+                                                                <span class="video-time">
+                                                                    <?= gmdate('i:s', $item->duration) ?>
+                                                                </span>
+                                                            <?php endif; ?>
+                                                            
+                                                            <span class="video-status <?= $isPreview ? 'preview' : 'locked' ?>">
+                                                                <?= $isPreview ? 'معاينة' : 'مغلق' ?>
                                                             </span>
-                                                            <span class="video-status <?= (isset($video['is_preview']) && $video['is_preview'] == 1) ? 'preview' : 'locked' ?>">
-                                                                <?= (isset($video['is_preview']) && $video['is_preview'] == 1)
-                                                                    ? 'معاينة'
-                                                                    : 'مغلق' ?>
+                                                            
+                                                            <span class="item-type" style="font-size: 0.8rem; color: #666; margin-right: 10px;">
+                                                                <?php 
+                                                                switch($item->item_type) {
+                                                                    case 'video': echo 'فيديو'; break;
+                                                                    case 'quiz': echo 'اختبار'; break;
+                                                                    case 'page': echo 'صفحة'; break;
+                                                                    default: echo 'عنصر';
+                                                                }
+                                                                ?>
                                                             </span>
                                                         </li>
                                                     <?php endforeach; ?>
                                                 <?php else: ?>
-                                                    <li>لا توجد دروس في هذا القسم.</li>
+                                                    <li>لا توجد عناصر في هذه الوحدة.</li>
                                                 <?php endif; ?>
                                             </ul>
                                         </div>
@@ -358,7 +385,7 @@
                         <h4 class="section-title mb-4">فيديو تقديمي للدورة</h4>
                         <div class="video-container">
                             <iframe
-                                    src="https://iframe.mediadelivery.net/embed/395633/<?= $course->intro_video_id ?? 'af30806a-a34e-448e-91fb-b9c3f8d18b02' ?>?autoplay=false"
+                                    src="https://iframe.mediadelivery.net/embed/<?= $course->collection_id ?? '495222' ?>/<?= $course->intro_video_id ?? '' ?>?autoplay=false"
                                     loading="lazy"
                                     style="border: none; position: absolute; top: 0; height: 100%; width: 100%;"
                                     allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
