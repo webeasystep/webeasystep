@@ -149,15 +149,13 @@
                                             <td><?= esc($attempt->first_name . ' ' . $attempt->last_name) ?></td>
                                             <td><?= $attempt->score ?>%</td>
                                             <td>
-                                                <?php if ($attempt->status == 'completed'): ?>
+                                                <?php if ($attempt->score > 0): ?>
                                                     <span class="badge badge-success"><?= lang('Admin.completed') ?></span>
-                                                <?php elseif ($attempt->status == 'in_progress'): ?>
-                                                    <span class="badge badge-warning"><?= lang('Admin.in_progress') ?></span>
                                                 <?php else: ?>
-                                                    <span class="badge badge-danger"><?= esc($attempt->status) ?></span>
+                                                    <span class="badge badge-warning"><?= lang('Admin.in_progress') ?></span>
                                                 <?php endif; ?>
                                             </td>
-                                            <td><?= date('Y-m-d H:i:s', strtotime($attempt->created_at)) ?></td>
+                                            <td><?= date('Y-m-d H:i:s', strtotime($attempt->attempt_date)) ?></td>
                                             <td>
                                                 <a href="<?= base_url('dt_admin/quizzes/attempt/' . $attempt->id) ?>" class="btn btn-info btn-sm">
                                                     <i class="fas fa-eye"></i> <?= lang('Admin.view') ?>

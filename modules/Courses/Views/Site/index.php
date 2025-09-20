@@ -10,8 +10,8 @@
         <!-- Section Heading & Intro -->
         <div class="row justify-content-center mb-5">
             <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-                <h2 class="line-bottom text-center mb-4">Book Your Free Lesson Now!</h2>
-                <p>Explore a variety of courses covering computer science tracks to build a solid foundation in IT.</p>
+                <h2 class="line-bottom text-center mb-4">الكورسات المتاحة</h2>
+                <p>ابدأ الان في تعلم البرمجة  وتحسين مهاراتك فيها .</p>
             </div>
         </div>
 
@@ -45,11 +45,14 @@
                               </span>
                             </div>
 
-                            <!-- Price & Action Buttons -->
+                            <!-- Course Info & Action Buttons -->
                             <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div>
-                                <span class="price" style="font-size: 1rem; font-weight: bold;">
-                                  $<?= esc(number_format($course['price'], 2)) ?>
+                                <div class="course-stats">
+                                <span class="units-count" style="font-size: 0.9rem; color: #666; margin-left: 15px;">
+                                  <i class="fas fa-book"></i> <?= $course['unit_count'] ?? 0 ?> وحدة
+                                </span>
+                                <span class="quizzes-count" style="font-size: 0.9rem; color: #666;">
+                                  <i class="fas fa-question-circle"></i> <?= $course['quiz_count'] ?? 0 ?> اختبار
                                 </span>
                                 </div>
                                 <div class="d-inline-flex" style="gap: 5px;">
@@ -76,7 +79,7 @@
                                             </a>
                                         <?php else: ?>
                                             <a href="<?= base_url('checkout/' . $course['id']) ?>"
-                                               class="btn btn-success btn-sm"
+                                               class="btn btn-primary btn-sm"
                                                style="font-weight:600;">
                                                 سجل الآن
                                             </a>

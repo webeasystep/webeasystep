@@ -44,7 +44,7 @@ The Courses module is the core educational content management system for the MSA
 ```sql
 CREATE TABLE `tb_courses` (
     `id` int NOT NULL AUTO_INCREMENT,
-    `course_title` varchar(255) NOT NULL,
+    `course_name` varchar(255) NOT NULL,
     `slug` varchar(255) DEFAULT NULL,
     `skill_level` varchar(100) DEFAULT NULL,
     `intro_video_id` varchar(100) DEFAULT NULL,
@@ -356,7 +356,7 @@ WAITING_LIST_ENABLED=true
 ### Creating a Course
 ```php
 $courseData = [
-    'course_title' => 'Introduction to Python Programming',
+    'course_name' => 'Introduction to Python Programming',
     'slug' => 'intro-python-programming',
     'skill_level' => 'beginner',
     'price' => 299.00,

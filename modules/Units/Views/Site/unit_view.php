@@ -38,11 +38,11 @@
                 <?php if ($unit->video_id): ?>
                 <div class="card mb-4">
                     <div class="card-body p-0">
-                        <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <div style="position: relative; padding-top: 56.25%;">
                             <iframe
-                                src="https://iframe.mediadelivery.net/embed/<?= $course->intro_video_id ?? '495222' ?>/<?= $unit->video_id ?>?autoplay=false"
+                                src="https://iframe.mediadelivery.net/embed/495222/<?= $unit->video_id ?>?autoplay=false"
                                 loading="lazy"
-                                style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+                                style="border: none; position: absolute; top: 0; height: 100%; width: 100%;"
                                 allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                                 allowfullscreen="true"
                                 id="unit-video">

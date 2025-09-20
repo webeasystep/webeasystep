@@ -48,6 +48,15 @@ $routes->group('/', ['namespace' => 'Modules\Users\Controllers'], static functio
     $routes->post('users/register', [Users::class, 'processRegistration']);
     $routes->get('users/verify-email-sent', [Users::class, 'verifyEmailSent']);
     $routes->get('users/verify-email/(:any)', [Users::class, 'verifyEmail/$1']);
+    
+    // Settings routes (require authentication)
+    $routes->group('', ['filter' => 'site_filter'], static function ($routes) {
+        $routes->get('settings', [\Modules\Users\Controllers\Settings::class, 'index']);
+        $routes->post('settings/update-profile', [\Modules\Users\Controllers\Settings::class, 'updateProfile']);
+        $routes->post('settings/change-password', [\Modules\Users\Controllers\Settings::class, 'changePassword']);
+        $routes->post('settings/upload-avatar', [\Modules\Users\Controllers\Settings::class, 'uploadAvatar']);
+        $routes->post('settings/delete-avatar', [\Modules\Users\Controllers\Settings::class, 'deleteAvatar']);
+    });
 });
 
 /*** Route for Users api ***/

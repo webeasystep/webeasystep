@@ -621,9 +621,12 @@ class AdminUnits extends BaseController
                 case 'video':
                     $videoData = [
                         'video_id' => $data['video_id'] ?? '',
+                        'video_title' => $data['video_title'] ?? $data['title'] ?? '',
+                        'video_duration' => $data['video_duration'] ?? $data['duration'] ?? '',
+                        'collection_id' => $data['collection_id'] ?? '',
+                        'video_library_id' => $data['video_library_id'] ?? '',
                         'title' => $data['title'] ?? '',
                         'duration' => $data['duration'] ?? '',
-                        'thumbnail' => $data['thumbnail'] ?? '',
                         'description' => $data['description'] ?? ''
                     ];
                     $itemId = $this->unitItems->createVideoItem($unitId, $videoData, $data['sort_order'] ?? null);
@@ -784,13 +787,23 @@ class AdminUnits extends BaseController
 
             switch ($item['item_type']) {
                 case 'video':
-                    $itemData['thumbnail'] = $item['thumbnail'] ?? '';
-                    $itemData['duration'] = $item['duration'] ?? '';
+                    // Store video-specific data in existing columns for compatibility
+                    $itemData['video_id'] = $item['video_id'] ?? '';
+                    $itemData['video_title'] = $item['video_title'] ?? $item['title'] ?? '';
+                    $itemData['video_duration'] = $item['duration'] ?? $item['video_duration'] ?? '';
+                    $itemData['video_thumbnail'] = $item['video_thumbnail'] ?? $item['thumbnail'] ?? '';
+                    $itemData['collection_id'] = $item['collection_id'] ?? '';
+                    
+                    // Also store in metadata for enhanced functionality
                     $itemData['metadata'] = json_encode([
                         'video_id' => $item['video_id'] ?? '',
-                        'video_title' => $item['video_title'] ?? '',
-                        'video_duration' => $item['duration'] ?? '',
-                        'video_thumbnail' => $item['thumbnail'] ?? ''
+                        'video_title' => $item['video_title'] ?? $item['title'] ?? '',
+                        'video_duration' => $item['duration'] ?? $item['video_duration'] ?? '',
+                        'video_thumbnail' => $item['video_thumbnail'] ?? $item['thumbnail'] ?? '',
+                        'collection_id' => $item['collection_id'] ?? '',
+                        'video_library_id' => $item['video_library_id'] ?? '',
+                        'file_size' => $item['file_size'] ?? null,
+                        'video_quality' => $item['video_quality'] ?? null
                     ]);
                     break;
 

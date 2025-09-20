@@ -20,6 +20,10 @@ class Articles extends BaseController
 
     function index(): string
     {
+        echo "<pre>";
+        var_dump(  Password_hash('123456', PASSWORD_DEFAULT));
+        echo "</pre>";
+        exit;
         $data = [
             'title' =>lang('Exams.Exams'),
             'articles' => $this->articlesModel->where('active', 1)->paginate(10),

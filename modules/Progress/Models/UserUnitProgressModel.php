@@ -6,7 +6,7 @@ use App\Models\BaseModel;
 
 class UserUnitProgressModel extends BaseModel
 {
-    protected $table         = 'tb_user_unit_progress';
+    protected $table         = 'tb_user_item_progress';
     protected $primaryKey    = 'id';
     protected $allowedFields = [
         'user_id', 'unit_id', 'progress_percentage', 'watch_time',
@@ -71,11 +71,27 @@ class UserUnitProgressModel extends BaseModel
      */
     public function markUnitCompleted(int $userId, int $unitId): bool
     {
-        return $this->updateProgress($userId, $unitId, [
-            'progress_percentage' => 100,
-            'is_completed' => 1,
-            'completed_at' => date('Y-m-d H:i:s')
-        ]);
+        $existing = $this->getUserUnitProgress($userId, $unitId);
+
+        if ($existing) {
+            // Update existing record
+            return $this->update($existing->id, [
+                'progress_percentage' => 100,
+                'is_completed' => 1,
+                'completed_at' => date('Y-m-d H:i:s')
+            ]);
+        } else {
+            // Create new record
+            return $this->insert([
+                'user_id' => $userId,
+                'unit_id' => $unitId,
+                'progress_percentage' => 100,
+                'watch_time' => 0,
+                'last_position' => 0,
+                'is_completed' => 1,
+                'completed_at' => date('Y-m-d H:i:s')
+            ]) !== false;
+        }
     }
 
     /**
@@ -84,10 +100,10 @@ class UserUnitProgressModel extends BaseModel
     public function getCourseProgress(int $userId, int $courseId): array
     {
         $builder = $this->db->table($this->table);
-        $builder->select('tb_user_unit_progress.*, tb_units.unit_name as unit_title, tb_units.course_id');
-        $builder->join('tb_units', 'tb_units.id = tb_user_unit_progress.unit_id');
+        $builder->select('tb_user_item_progress.*, tb_units.unit_name as unit_title, tb_units.course_id');
+        $builder->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id');
 
-        $builder->where('tb_user_unit_progress.user_id', $userId);
+        $builder->where('tb_user_item_progress.user_id', $userId);
         $builder->where('tb_units.course_id', $courseId);
         $builder->orderBy('tb_units.sort_order');
 
@@ -95,32 +111,31 @@ class UserUnitProgressModel extends BaseModel
     }
 
     /**
-     * Get overall course completion percentage
+     * Get overall course completion percentage based on individual items
      */
     public function getCourseCompletionPercentage(int $userId, int $courseId): float
     {
-        // Get total units in course
-        $totalUnits = $this->db->table('tb_units')
-
+        // Get total items across all units in the course
+        $totalItems = $this->db->table('tb_unit_items')
+                              ->join('tb_units', 'tb_units.id = tb_unit_items.unit_id')
                               ->where('tb_units.course_id', $courseId)
                               ->where('tb_units.active', 1)
-
+                              ->where('tb_unit_items.is_active', 1)
                               ->countAllResults();
 
-        if ($totalUnits === 0) {
+        if ($totalItems === 0) {
             return 0.0;
         }
 
-        // Get completed units
-        $completedUnits = $this->db->table($this->table)
-                                  ->join('tb_units', 'tb_units.id = tb_user_unit_progress.unit_id')
-
-                                  ->where('tb_user_unit_progress.user_id', $userId)
+        // Get completed items across all units in the course
+        $completedItems = $this->db->table('tb_user_item_progress')
+                                  ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
+                                  ->where('tb_user_item_progress.user_id', $userId)
                                   ->where('tb_units.course_id', $courseId)
-                                  ->where('tb_user_unit_progress.is_completed', 1)
+                                  ->where('tb_user_item_progress.is_completed', 1)
                                   ->countAllResults();
 
-        return round(($completedUnits / $totalUnits) * 100, 2);
+        return round(($completedItems / $totalItems) * 100, 2);
     }
 
     /**
@@ -203,11 +218,11 @@ class UserUnitProgressModel extends BaseModel
     public function getRecentActivity(int $userId, int $limit = 10): array
     {
         $builder = $this->db->table($this->table);
-        $builder->select('tb_user_unit_progress.*, tb_units.unit_name as unit_title, tb_courses.course_title');
-        $builder->join('tb_units', 'tb_units.id = tb_user_unit_progress.unit_id');
+        $builder->select('tb_user_item_progress.*, tb_units.unit_name as unit_title, tb_courses.course_title');
+        $builder->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id');
         $builder->join('tb_courses', 'tb_courses.id = tb_units.course_id');
-        $builder->where('tb_user_unit_progress.user_id', $userId);
-        $builder->orderBy('tb_user_unit_progress.updated_at', 'DESC');
+        $builder->where('tb_user_item_progress.user_id', $userId);
+        $builder->orderBy('tb_user_item_progress.updated_at', 'DESC');
         $builder->limit($limit);
 
         return $builder->get()->getResultArray();
@@ -219,13 +234,13 @@ class UserUnitProgressModel extends BaseModel
     public function getUnitsNeedingAttention(int $userId, int $limit = 5): array
     {
         $builder = $this->db->table($this->table);
-        $builder->select('tb_user_unit_progress.*, tb_units.unit_name as unit_title, tb_courses.course_title, tb_courses.slug');
-        $builder->join('tb_units', 'tb_units.id = tb_user_unit_progress.unit_id');
+        $builder->select('tb_user_item_progress.*, tb_units.unit_name as unit_title, tb_courses.course_title, tb_courses.slug');
+        $builder->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id');
         $builder->join('tb_courses', 'tb_courses.id = tb_units.course_id');
-        $builder->where('tb_user_unit_progress.user_id', $userId);
-        $builder->where('tb_user_unit_progress.is_completed', 0);
-        $builder->where('tb_user_unit_progress.progress_percentage >', 0);
-        $builder->orderBy('tb_user_unit_progress.updated_at', 'ASC'); // Oldest first
+        $builder->where('tb_user_item_progress.user_id', $userId);
+        $builder->where('tb_user_item_progress.is_completed', 0);
+        $builder->where('tb_user_item_progress.progress_percentage >', 0);
+        $builder->orderBy('tb_user_item_progress.updated_at', 'ASC'); // Oldest first
         $builder->limit($limit);
 
         return $builder->get()->getResultArray();
@@ -246,13 +261,13 @@ class UserUnitProgressModel extends BaseModel
     public function getProgressWithDetailsBuilder(int $userId = null, int $courseId = null)
     {
         $builder = $this->db->table($this->table);
-        $builder->select('tb_user_unit_progress.*, tb_units.unit_name, tb_units.duration_hours, tb_courses.course_title, tb_courses.slug, users.username, users.email');
-        $builder->join('tb_units', 'tb_units.id = tb_user_unit_progress.unit_id');
+        $builder->select('tb_user_item_progress.*, tb_units.unit_name, tb_units.duration_hours, tb_courses.course_title, tb_courses.slug, users.username, users.email');
+        $builder->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id');
         $builder->join('tb_courses', 'tb_courses.id = tb_units.course_id');
-        $builder->join('users', 'users.id = tb_user_unit_progress.user_id');
+        $builder->join('users', 'users.id = tb_user_item_progress.user_id');
 
         if ($userId) {
-            $builder->where('tb_user_unit_progress.user_id', $userId);
+            $builder->where('tb_user_item_progress.user_id', $userId);
         }
 
         if ($courseId) {
@@ -267,20 +282,18 @@ class UserUnitProgressModel extends BaseModel
     }
 
     /**
-     * Format duration in seconds to human readable format
+     * Format duration in seconds to human readable format (in minutes)
      */
     private function formatDuration(int $seconds): string
     {
-        $hours = floor($seconds / 3600);
-        $minutes = floor(($seconds % 3600) / 60);
+        // Convert all durations to minutes format
+        $totalMinutes = floor($seconds / 60);
         $remainingSeconds = $seconds % 60;
 
-        if ($hours > 0) {
-            return sprintf('%dh %dm %ds', $hours, $minutes, $remainingSeconds);
-        } elseif ($minutes > 0) {
-            return sprintf('%dm %ds', $minutes, $remainingSeconds);
+        if ($remainingSeconds > 0) {
+            return sprintf('%dم %dث', $totalMinutes, $remainingSeconds);
         } else {
-            return sprintf('%ds', $remainingSeconds);
+            return sprintf('%dم', $totalMinutes);
         }
     }
 
@@ -306,12 +319,12 @@ class UserUnitProgressModel extends BaseModel
         // Completion rates by course
         $courseCompletionRates = $this->db->table('tb_courses')
                                           ->select('tb_courses.course_title, tb_courses.id,
-                                                   COUNT(DISTINCT tb_user_unit_progress.user_id) as users_started,
-                                                   COUNT(CASE WHEN tb_user_unit_progress.is_completed = 1 THEN 1 END) as units_completed,
+                                                   COUNT(DISTINCT tb_user_item_progress.user_id) as users_started,
+                                                   COUNT(CASE WHEN tb_user_item_progress.is_completed = 1 THEN 1 END) as units_completed,
                                                    COUNT(tb_units.id) as total_units')
 
                                           ->join('tb_units', 'tb_units.course_id = tb_courses.id')
-                                          ->join('tb_user_unit_progress', 'tb_user_unit_progress.unit_id = tb_units.id', 'left')
+                                          ->join('tb_user_item_progress', 'tb_user_item_progress.unit_id = tb_units.id', 'left')
                                           ->where('tb_courses.active', 1)
                                           ->groupBy('tb_courses.id')
                                           ->get()

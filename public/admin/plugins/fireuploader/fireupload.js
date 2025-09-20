@@ -5,7 +5,30 @@ class FireUploader {
                     multipleFiles = false,
                     files = { files: [], fileCount: 0 },
                     allowedExtensions = []
-                } = {}) {
+                createPreview(file) {
+        console.log('FireUploader Debug - createPreview() called with file:', file);
+        
+        const baseUrl = window.location.origin;
+        const fullImageUrl = baseUrl + "/" + file.full_path;
+        
+        console.log('FireUploader Debug - Base URL:', baseUrl);
+        console.log('FireUploader Debug - Full image URL:', fullImageUrl);
+        
+        // Set the 'action' attribute to 'preloaded'
+        file.action = 'preloaded';
+        
+        console.log('FireUploader Debug - Calling addPreviewItem with:');
+        console.log('  - dataUrl:', fullImageUrl);
+        console.log('  - name:', file.original_name);
+        console.log('  - fileObject:', file);
+        
+        this.addPreviewItem({
+            dataUrl: fullImageUrl,
+            name: file.original_name,
+            fileObject: file
+        });
+    } = {}) {
+        console.log('FireUploader Debug - Constructor called with options:', { dropzoneId, inputName, multipleFiles, files, allowedExtensions });
         this.allowedExtensions = allowedExtensions;
         this.dropzoneId = dropzoneId;
         this.inputName = inputName;
@@ -19,6 +42,14 @@ class FireUploader {
         this.files = files && typeof files === 'object'
             ? { files: files.files || [], fileCount: files.fileCount || 0 }
             : { files: [], fileCount: 0 };
+        
+        console.log('FireUploader Debug - Initialized properties:');
+        console.log('  - dropzoneId:', this.dropzoneId);
+        console.log('  - inputName:', this.inputName);
+        console.log('  - multipleFiles:', this.multipleFiles);
+        console.log('  - allowedExtensions:', this.allowedExtensions);
+        console.log('  - files:', this.files);
+        
         this.init();
         this.handlePreloadedFiles();
     }
@@ -55,6 +86,36 @@ class FireUploader {
     }
 
     init() {
+        console.log('FireUploader Debug - init() method called');
+        this.$dropzone = $(`#${this.dropzoneId}`);
+        console.log('FireUploader Debug - Dropzone element found:', this.$dropzone.length > 0);
+        
+        if (this.$dropzone.length === 0) {
+            console.error('FireUploader Debug - ERROR: Dropzone element not found with ID:', this.dropzoneId);
+            return;
+        }
+
+        this.$preview = this.$dropzone.find('.preview');
+        this.$addIcon = this.$dropzone.find('.add-icon');
+        this.$fileInput = this.$dropzone.find('input[type="file"]');
+
+        console.log('FireUploader Debug - Elements found:');
+        console.log('  - preview:', this.$preview.length);
+        console.log('  - addIcon:', this.$addIcon.length);
+        console.log('  - fileInput:', this.$fileInput.length);
+
+        // Set multiple attribute based on multipleFiles option
+        this.$fileInput.attr('multiple', this.multipleFiles);
+        this.$fileInput.attr('name', this.inputName);
+
+        console.log('FireUploader Debug - File input configured:');
+        console.log('  - multiple attribute:', this.$fileInput.attr('multiple'));
+        console.log('  - name attribute:', this.$fileInput.attr('name'));
+
+        this.initEventListeners();
+    }
+
+    initEventListeners() {
         this.$dropzone.on('dragover dragenter', (event) => {
             event.preventDefault();
             event.stopPropagation();
@@ -257,21 +318,31 @@ class FireUploader {
     }
 
     handlePreloadedFiles() {
-        const baseUrl = window.location.origin; // This will get the base URL of the site
-        if (this.files.fileCount > 0) {
-            $.each(this.files.files, (index, file) => {
-                // Set the 'action' attribute to 'preloaded'
-                file.action = 'preloaded';
-                this.addPreviewItem({
-                    dataUrl: baseUrl + "/" + file.full_path, // Append file name to the base URL
-                    name: file.original_name,
-                    fileObject: file // pass the file object from preloaded files
-                });
-            });
+        console.log('FireUploader Debug - handlePreloadedFiles() called');
+        console.log('FireUploader Debug - Files data:', this.files);
+        
+        if (!this.files || !this.files.files || this.files.files.length === 0) {
+            console.log('FireUploader Debug - No preloaded files to display');
+            return;
         }
+
+        console.log('FireUploader Debug - Processing', this.files.files.length, 'preloaded files');
+        
+        this.files.files.forEach((file, index) => {
+            console.log(`FireUploader Debug - Processing file ${index + 1}:`, file);
+            
+            if (file.full_path) {
+                console.log('FireUploader Debug - Creating preview for:', file.full_path);
+                this.createPreview(file);
+            } else {
+                console.warn('FireUploader Debug - File missing full_path:', file);
+            }
+        });
     }
 
     addPreviewItem(fileData) {
+        console.log('FireUploader Debug - addPreviewItem() called with:', fileData);
+        
         const div = $('<div>', {
             class: 'preview-item',
             'data-filename': fileData.name,
@@ -285,7 +356,10 @@ class FireUploader {
         });
 
         const hiddenFileInputId = `${fileData.fileObject.original_name.replace(/[^a-zA-Z0-9-_]/g, '_')}`;
+        console.log('FireUploader Debug - Creating preview item with ID:', hiddenFileInputId);
+        
         removeIcon.on('click', () => {
+            console.log('FireUploader Debug - Delete clicked for:', fileData.name);
             div.remove();
             this.files.files = this.files.files.filter(file => file.raw_name !== fileData.name);
 
@@ -311,6 +385,9 @@ class FireUploader {
         iconsDiv.append(removeIcon);
 
         if (fileData.fileObject.is_image) {
+            console.log('FireUploader Debug - Creating image element for:', fileData.name);
+            console.log('FireUploader Debug - Image URL:', fileData.dataUrl);
+            
             const img = $('<img>', {
                 src: fileData.dataUrl,
                 alt: fileData.name,
@@ -318,8 +395,13 @@ class FireUploader {
 
             // Handle image load error
             img.on('error', function () {
+                console.log('FireUploader Debug - Image load error for:', fileData.dataUrl);
                 // FontAwesome icon for 'not found'
                 $(this).replaceWith('<i class="fas fa-exclamation-triangle"></i>');
+            });
+            
+            img.on('load', function () {
+                console.log('FireUploader Debug - Image loaded successfully:', fileData.dataUrl);
             });
 
             const zoomIcon = $('<span>', {
@@ -340,6 +422,7 @@ class FireUploader {
 
             div.append(fileNameLabel);
         } else {
+            console.log('FireUploader Debug - File is not an image, creating file icon');
             const fileIcon = $('<i>', {
                 class: 'fas ' + this.getFontAwesomeClass(fileData.fileObject.extension) + ' file-icon'
             });
@@ -368,11 +451,43 @@ class FireUploader {
             name: this.$fileInput.attr('name'),
             value: JSON.stringify(fileData.fileObject),
             class: 'hidden-file-input',
-            id: hiddenFileInputId // Use the original name as the ID for the hidden input
+            id: hiddenFileInputId
+        });
+
+        console.log('FireUploader Debug - Created hidden input:', {
+            name: this.$fileInput.attr('name'),
+            value: JSON.stringify(fileData.fileObject),
+            id: hiddenFileInputId
         });
 
         this.$dropzone.append(hiddenFileInput);
         this.$preview.append(div);
+        
+        console.log('FireUploader Debug - Preview item added to DOM');
+    }
+
+    createPreview(file) {
+        console.log('FireUploader Debug - createPreview() called with file:', file);
+        
+        const baseUrl = window.location.origin;
+        const fullImageUrl = baseUrl + "/" + file.full_path;
+        
+        console.log('FireUploader Debug - Base URL:', baseUrl);
+        console.log('FireUploader Debug - Full image URL:', fullImageUrl);
+        
+        // Set the 'action' attribute to 'preloaded'
+        file.action = 'preloaded';
+        
+        console.log('FireUploader Debug - Calling addPreviewItem with:');
+        console.log('  - dataUrl:', fullImageUrl);
+        console.log('  - name:', file.original_name);
+        console.log('  - fileObject:', file);
+        
+        this.addPreviewItem({
+            dataUrl: fullImageUrl,
+            name: file.original_name,
+            fileObject: file
+        });
     }
 
 

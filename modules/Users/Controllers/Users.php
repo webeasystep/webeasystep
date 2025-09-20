@@ -18,7 +18,6 @@ class Users extends BaseController
         'mobile' => ['rules' => 'required|min_length[10]|max_length[15]'],
         'password' => ['rules' => 'required|min_length[8]'],
         'password_confirm' => ['rules' => 'required|matches[password]'],
-        'birth_date' => ['rules' => 'required|valid_date'],
         'parent_name' => ['rules' => 'permit_empty|min_length[2]|max_length[100]'],
         'parent_email' => ['rules' => 'permit_empty|valid_email'],
         'parent_phone' => ['rules' => 'permit_empty|min_length[10]|max_length[20]']
@@ -53,7 +52,7 @@ class Users extends BaseController
             'title' => 'Register',
             'validation' => $this->validator
         ];
-        return View('Site', 'register', $data);
+        return MainView('site_layout/shield/register', $data);
     }
 
     /**
@@ -67,17 +66,6 @@ class Users extends BaseController
 
         $data = $this->request->getPost();
         
-        // Check if user is under 18 and requires parent info
-        $birthDate = new \DateTime($data['birth_date']);
-        $today = new \DateTime();
-        $age = $today->diff($birthDate)->y;
-        
-        if ($age < 18) {
-            if (empty($data['parent_name']) || empty($data['parent_email'])) {
-                return redirect()->back()->withInput()->with('error', 'Parent information is required for users under 18.');
-            }
-        }
-
         // Hash password
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         unset($data['password_confirm']);

@@ -25,7 +25,7 @@
                     <select name="unit_ids[]" id="unit_ids" class="form-control select2" multiple="multiple" style="width: 100%;">
                         <?php if (isset($units) && is_array($units)): ?>
                             <?php foreach ($units as $unitId => $unitName): ?>
-                                <option value="<?= $unitId ?>" 
+                                <option value="<?= $unitId ?>"
                                     <?= (isset($selected_units) && in_array($unitId, $selected_units)) ? 'selected' : '' ?>>
                                     <?= esc($unitName) ?>
                                 </option>
@@ -48,10 +48,8 @@
                 <label for="payment_method" class="col-sm-3 col-form-label"><?= lang("Enrollments.payment_method") ?></label>
                 <div class="col-sm-9">
                     <select name="payment_method" id="payment_method" class="form-control">
-                        <option value="bank_transfer" <?= set_select('payment_method', 'bank_transfer', ($enrollment->payment_method ?? 'bank_transfer') == 'bank_transfer') ?>>Bank Transfer</option>
-                        <option value="credit_card" <?= set_select('payment_method', 'credit_card', ($enrollment->payment_method ?? "") == 'credit_card') ?>>Credit Card</option>
-                        <option value="paypal" <?= set_select('payment_method', 'paypal', ($enrollment->payment_method ?? "") == 'paypal') ?>>PayPal</option>
-                        <option value="cash" <?= set_select('payment_method', 'cash', ($enrollment->payment_method ?? "") == 'cash') ?>>Cash</option>
+                        <option value="instapay" <?= set_select('payment_method', 'instapay', ($enrollment->payment_method ?? 'instapay') == 'instapay') ?>>انستاباي</option>
+                        <option value="vodafone_cash" <?= set_select('payment_method', 'vodafone_cash', ($enrollment->payment_method ?? "") == 'vodafone_cash') ?>>فودافون كاش</option>
                     </select>
                     <small class="invalid-feedback"></small>
                 </div>
@@ -60,12 +58,7 @@
             <div class="form-group row">
                 <label for="payment_proof" class="col-sm-3 col-form-label"><?= lang("Enrollments.payment_proof") ?></label>
                 <div class="col-sm-9">
-                    <input type="file" name="payment_proof" id="payment_proof" class="form-control" accept="image/*,.pdf">
-                    <?php if (isset($enrollment->payment_proof) && !empty($enrollment->payment_proof)): ?>
-                        <small class="form-text text-muted">
-                            Current file: <a href="<?= base_url('uploads/' . $enrollment->payment_proof) ?>" target="_blank">View</a>
-                        </small>
-                    <?php endif; ?>
+                    <div class="fireupload" id="dropzone1"></div>
                     <small class="invalid-feedback"></small>
                 </div>
             </div>
@@ -96,9 +89,21 @@
         </div>
     </div>
 </div>
-
 <?= $this->endSection(); ?>
 
 <?= $this->section('js'); ?>
 <?= $this->include('admin_layout/curd_js'); ?>
-<?php $this->endSection(); ?>
+<script>
+    $(document).ready(function() {
+        // مثال لتهيئة FireUploader
+        var uploader1 = new FireUploader({
+            dropzoneId: 'dropzone1',
+            inputName: "payment_proof[]",
+            multipleFiles: true,
+            allowedExtensions: ["jpg", "png", "webp"],
+            files: <?= json_encode($files ?? []) ?>
+        });
+    });
+</script>
+<?= $this->endSection(); ?>
+

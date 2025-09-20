@@ -32,7 +32,7 @@ class QuizzesModel extends BaseModel
      */
     public function getQuizById($quizId)
     {
-        return $this->select('tb_quizzes.*, tb_courses.course_title, tb_courses.course')
+        return $this->select('tb_quizzes.*, tb_courses.course_title')
                     ->join('tb_courses', 'tb_courses.id = tb_quizzes.course_id')
                     ->where('tb_quizzes.id', $quizId)
                     ->where('tb_quizzes.active', 1)
@@ -111,10 +111,9 @@ class QuizzesModel extends BaseModel
             'AVG(score) as average_score',
             'MAX(score) as highest_score',
             'MIN(score) as lowest_score',
-            'AVG(time_taken) as average_time'
+            'AVG(time_taken_seconds) as average_time'
         ])
         ->where('quiz_id', $quizId)
-        ->where('status', 'completed')
         ->get()
         ->getRow();
 
@@ -130,16 +129,15 @@ class QuizzesModel extends BaseModel
 
         return $builder->select([
             'tb_quiz_attempts.score',
-            'tb_quiz_attempts.time_taken',
-            'tb_quiz_attempts.completed_at',
+            'tb_quiz_attempts.time_taken_seconds',
+            'tb_quiz_attempts.attempt_date',
             'users.full_name',
             'users.username'
         ])
         ->join('users', 'users.id = tb_quiz_attempts.user_id')
         ->where('tb_quiz_attempts.quiz_id', $quizId)
-        ->where('tb_quiz_attempts.status', 'completed')
         ->orderBy('tb_quiz_attempts.score', 'DESC')
-        ->orderBy('tb_quiz_attempts.time_taken', 'ASC')
+        ->orderBy('tb_quiz_attempts.time_taken_seconds', 'ASC')
         ->limit($limit)
         ->get()
         ->getResult();
@@ -261,7 +259,6 @@ class QuizzesModel extends BaseModel
 
         $stats = $builder->select('AVG(score) as avg_score, COUNT(*) as total_attempts')
                         ->where('quiz_id', $quizId)
-                        ->where('status', 'completed')
                         ->get()
                         ->getRow();
 

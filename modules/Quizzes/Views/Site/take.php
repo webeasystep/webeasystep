@@ -9,52 +9,53 @@
 <?= $this->extend('site_layout/template') ?>
 
 <?= $this->section('content') ?>
-<div class="container-fluid py-4">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <!-- Quiz Header -->
-            <div class="card mb-4">
-                <div class="card-header bg-primary text-white">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <h4 class="mb-0"><?= esc($quiz->quiz_title) ?></h4>
-                            <?php if ($quiz->quiz_description): ?>
-                                <small><?= esc($quiz->quiz_description) ?></small>
-                            <?php endif; ?>
-                        </div>
-                        <div class="col-md-6 text-md-right">
-                            <div class="quiz-timer">
-                                <i class="fas fa-clock"></i>
-                                <span id="timer-display"><?= sprintf('%02d:%02d', $quiz->time_limit_minutes, 0) ?></span>
+<div class="site-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Quiz Header -->
+                <div class="feature-1 border mb-4">
+                    <div class="feature-1-content">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h2 class="mb-2"><?= esc($quiz->quiz_title) ?></h2>
+                                <?php if ($quiz->quiz_desc): ?>
+                                    <p class="text-muted mb-0"><?= esc($quiz->quiz_desc) ?></p>
+                                <?php endif; ?>
                             </div>
-                            <div class="mt-1">
-                                <small><?= lang('Quizzes.question') ?> <span id="current-question">1</span> <?= lang('Admin.of') ?> <?= count($questions) ?></small>
+                            <div class="col-md-6 text-md-right">
+                                <div class="quiz-timer mb-2">
+                                    <i class="icon-clock-o text-primary mr-2"></i>
+                                    <span id="timer-display" class="h5 text-primary"><?= sprintf('%02d:%02d', $quiz->time_limit_minutes, 0) ?></span>
+                                </div>
+                                <div class="quiz-progress">
+                                    <small class="text-muted"><?= lang('Quizzes.question') ?> <span id="current-question" class="text-primary font-weight-bold">1</span> <?= lang('Admin.of') ?> <?= count($questions) ?></small>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
             <!-- Quiz Form -->
-            <form id="quiz-form" action="<?= base_url('quizzes/submit/' . $quiz->id) ?>" method="post">
+            <form id="quiz-form" action="<?= base_url('quizzes/submit-attempt/' . $attempt->id) ?>" method="post">
                 <?= csrf_field() ?>
                 <input type="hidden" name="start_time" value="<?= time() ?>">
                 <input type="hidden" name="completion_time" id="completion-time" value="0">
                 
                 <?php foreach ($questions as $index => $question): ?>
                 <div class="question-container" data-question="<?= $index + 1 ?>" style="<?= $index === 0 ? '' : 'display: none;' ?>">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="row align-items-center">
+                    <div class="feature-1 border">
+                        <div class="feature-1-content">
+                            <div class="row align-items-center mb-4">
                                 <div class="col-md-8">
-                                    <h5 class="mb-0">
+                                    <h4 class="mb-0">
                                         <?= lang('Quizzes.question') ?> <?= $index + 1 ?>
-                                        <span class="badge badge-info ml-2"><?= $question->points ?> <?= lang('Admin.points') ?></span>
-                                    </h5>
+                                        <span class="badge badge-primary ml-2"><?= $question['points'] ?? 1 ?> <?= lang('Admin.points') ?></span>
+                                    </h4>
                                 </div>
                                 <div class="col-md-4 text-md-right">
-                                    <div class="progress" style="height: 8px;">
-                                        <div class="progress-bar" role="progressbar" 
+                                    <div class="progress mb-2" style="height: 8px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" 
                                              style="width: <?= (($index + 1) / count($questions)) * 100 ?>%"
                                              aria-valuenow="<?= $index + 1 ?>" 
                                              aria-valuemin="0" 
@@ -63,95 +64,99 @@
                                     <small class="text-muted"><?= number_format((($index + 1) / count($questions)) * 100, 1) ?>% <?= lang('Admin.complete') ?></small>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="question-text mb-4">
-                                <p class="lead"><?= nl2br(esc($question->question_text)) ?></p>
-                            </div>
                             
-                            <div class="question-options">
-                                <?php if ($question->question_type === 'single_choice'): ?>
-                                    <?php $options = json_decode($question->options, true); ?>
-                                    <?php if ($options): ?>
-                                        <?php foreach ($options as $optIndex => $option): ?>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" 
-                                                   name="answers[<?= $question->id ?>]" 
-                                                   id="q<?= $question->id ?>_opt<?= $optIndex ?>" 
-                                                   value="<?= $optIndex ?>">
-                                            <label class="form-check-label" for="q<?= $question->id ?>_opt<?= $optIndex ?>">
-                                                <?= esc($option) ?>
-                                            </label>
-                                        </div>
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                    
-                                <?php elseif ($question->question_type === 'multiple_choice'): ?>
-                                    <?php $options = json_decode($question->options, true); ?>
-                                    <?php if ($options): ?>
-                                        <?php foreach ($options as $optIndex => $option): ?>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="checkbox" 
-                                                   name="answers[<?= $question->id ?>][]" 
-                                                   id="q<?= $question->id ?>_opt<?= $optIndex ?>" 
-                                                   value="<?= $optIndex ?>">
-                                            <label class="form-check-label" for="q<?= $question->id ?>_opt<?= $optIndex ?>">
-                                                <?= esc($option) ?>
-                                            </label>
-                                        </div>
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                    
-                                <?php elseif ($question->question_type === 'true_false'): ?>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="radio" 
-                                               name="answers[<?= $question->id ?>]" 
-                                               id="q<?= $question->id ?>_true" 
-                                               value="true">
-                                        <label class="form-check-label" for="q<?= $question->id ?>_true">
-                                            <i class="fas fa-check text-success"></i> <?= lang('Admin.true') ?>
-                                        </label>
-                                    </div>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="radio" 
-                                               name="answers[<?= $question->id ?>]" 
-                                               id="q<?= $question->id ?>_false" 
-                                               value="false">
-                                        <label class="form-check-label" for="q<?= $question->id ?>_false">
-                                            <i class="fas fa-times text-danger"></i> <?= lang('Admin.false') ?>
-                                        </label>
-                                    </div>
-                                    
-                                <?php elseif ($question->question_type === 'essay'): ?>
-                                    <div class="form-group">
-                                        <textarea class="form-control" 
-                                                  name="answers[<?= $question->id ?>]" 
-                                                  id="q<?= $question->id ?>_essay" 
-                                                  rows="6" 
-                                                  placeholder="<?= lang('Quizzes.enter_your_answer') ?>"></textarea>
-                                    </div>
-                                <?php endif; ?>
+                            <div class="question-text mb-4">
+                                <p class="lead"><?= nl2br(esc($question['question_text'])) ?></p>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <?php if ($index > 0): ?>
-                                        <button type="button" class="btn btn-secondary" onclick="previousQuestion()">
-                                            <i class="fas fa-arrow-left"></i> <?= lang('Quizzes.previous_question') ?>
-                                        </button>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="col-md-6 text-md-right">
-                                    <?php if ($index < count($questions) - 1): ?>
-                                        <button type="button" class="btn btn-primary" onclick="nextQuestion()">
-                                            <?= lang('Quizzes.next_question') ?> <i class="fas fa-arrow-right"></i>
-                                        </button>
-                                    <?php else: ?>
-                                        <button type="button" class="btn btn-success" onclick="submitQuiz()">
-                                            <i class="fas fa-check"></i> <?= lang('Quizzes.submit_quiz') ?>
-                                        </button>
-                                    <?php endif; ?>
+                             
+                             <div class="question-options">
+                                 <?php if ($question['question_type'] === 'single_choice'): ?>
+                                     <?php 
+                                     $options = is_array($question['options']) ? $question['options'] : json_decode($question['options'], true);
+                                     ?>
+                                     <?php if ($options): ?>
+                                         <?php foreach ($options as $optIndex => $option): ?>
+                                         <div class="form-check mb-3">
+                                             <input class="form-check-input" type="radio" 
+                                                    name="answers[<?= $index ?>]" 
+                                                    id="q<?= $index ?>_opt<?= $optIndex ?>" 
+                                                    value="<?= $optIndex ?>">
+                                             <label class="form-check-label" for="q<?= $index ?>_opt<?= $optIndex ?>">
+                                                 <?= esc($option) ?>
+                                             </label>
+                                         </div>
+                                         <?php endforeach; ?>
+                                     <?php endif; ?>
+                                     
+                                 <?php elseif ($question['question_type'] === 'multiple_choice'): ?>
+                                     <?php 
+                                     $options = is_array($question['options']) ? $question['options'] : json_decode($question['options'], true);
+                                     ?>
+                                     <?php if ($options): ?>
+                                         <?php foreach ($options as $optIndex => $option): ?>
+                                         <div class="form-check mb-3">
+                                             <input class="form-check-input" type="checkbox" 
+                                                    name="answers[<?= $index ?>][]" 
+                                                    id="q<?= $index ?>_opt<?= $optIndex ?>" 
+                                                    value="<?= $optIndex ?>">
+                                             <label class="form-check-label" for="q<?= $index ?>_opt<?= $optIndex ?>">
+                                                 <?= esc($option) ?>
+                                             </label>
+                                         </div>
+                                         <?php endforeach; ?>
+                                     <?php endif; ?>
+                                     
+                                 <?php elseif ($question['question_type'] === 'true_false'): ?>
+                                     <div class="form-check mb-3">
+                                         <input class="form-check-input" type="radio" 
+                                                name="answers[<?= $index ?>]" 
+                                                id="q<?= $index ?>_true" 
+                                                value="true">
+                                         <label class="form-check-label" for="q<?= $index ?>_true">
+                                             <i class="fas fa-check text-success"></i> <?= lang('Admin.true') ?>
+                                         </label>
+                                     </div>
+                                     <div class="form-check mb-3">
+                                         <input class="form-check-input" type="radio" 
+                                                name="answers[<?= $index ?>]" 
+                                                id="q<?= $index ?>_false" 
+                                                value="false">
+                                         <label class="form-check-label" for="q<?= $index ?>_false">
+                                             <i class="fas fa-times text-danger"></i> <?= lang('Admin.false') ?>
+                                         </label>
+                                     </div>
+                                     
+                                 <?php elseif ($question['question_type'] === 'essay'): ?>
+                                     <div class="form-group">
+                                         <textarea class="form-control" 
+                                                   name="answers[<?= $index ?>]" 
+                                                   id="q<?= $index ?>_essay" 
+                                                   rows="6" 
+                                                   placeholder="<?= lang('Quizzes.enter_your_answer') ?>"></textarea>
+                                     </div>
+                                 <?php endif; ?>
+                             </div>
+                            
+                            <div class="quiz-navigation mt-4 pt-4 border-top">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <?php if ($index > 0): ?>
+                                            <button type="button" class="btn btn-secondary" onclick="previousQuestion()">
+                                                <i class="icon-arrow-left"></i> <?= lang('Quizzes.previous_question') ?>
+                                            </button>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="col-md-6 text-md-right">
+                                        <?php if ($index < count($questions) - 1): ?>
+                                            <button type="button" class="btn btn-primary" onclick="nextQuestion()">
+                                                <?= lang('Quizzes.next_question') ?> <i class="icon-arrow-right"></i>
+                                            </button>
+                                        <?php else: ?>
+                                            <button type="button" class="btn btn-success" onclick="submitQuiz()">
+                                                <i class="icon-check"></i> <?= lang('Quizzes.submit_quiz') ?>
+                                            </button>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -161,12 +166,12 @@
             </form>
             
             <!-- Question Navigation -->
-            <div class="card mt-4">
-                <div class="card-body">
-                    <h6 class="card-title"><?= lang('Quizzes.question_navigation') ?></h6>
+            <div class="feature-1 border mt-4">
+                <div class="feature-1-content">
+                    <h5 class="mb-3"><?= lang('Quizzes.question_navigation') ?></h5>
                     <div class="question-nav">
                         <?php foreach ($questions as $index => $question): ?>
-                        <button type="button" class="btn btn-outline-secondary btn-sm mr-2 mb-2 question-nav-btn" 
+                        <button type="button" class="btn btn-outline-primary btn-sm mr-2 mb-2 question-nav-btn" 
                                 data-question="<?= $index + 1 ?>" onclick="goToQuestion(<?= $index + 1 ?>)">
                             <?= $index + 1 ?>
                         </button>
@@ -174,7 +179,7 @@
                     </div>
                     <div class="mt-3">
                         <small class="text-muted">
-                            <i class="fas fa-info-circle"></i> 
+                            <i class="icon-info-circle"></i> 
                             <?= lang('Quizzes.navigation_help') ?>
                         </small>
                     </div>
@@ -206,7 +211,7 @@
                     <?= lang('Admin.cancel') ?>
                 </button>
                 <button type="button" class="btn btn-success" onclick="confirmSubmit()">
-                    <i class="fas fa-check"></i> <?= lang('Quizzes.submit_quiz') ?>
+                    <i class="icon-check"></i> <?= lang('Quizzes.submit_quiz') ?>
                 </button>
             </div>
         </div>
@@ -218,7 +223,8 @@
 <style>
 .quiz-timer {
     font-size: 1.2em;
-    font-weight: bold;
+    font-weight: 600;
+    color: var(--primary-color);
 }
 
 .question-container {
@@ -231,31 +237,46 @@
 }
 
 .question-nav-btn.active {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color) !important;
 }
 
 .question-nav-btn.answered {
-    background-color: #28a745;
-    color: white;
-    border-color: #28a745;
+    background-color: var(--success-color) !important;
+    color: white !important;
+    border-color: var(--success-color) !important;
 }
 
 .form-check-label {
     cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    transition: background-color 0.2s;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
 }
 
 .form-check-label:hover {
-    background-color: #f8f9fa;
+    background-color: var(--light-bg);
+    border-color: var(--border-color);
 }
 
 .form-check-input:checked + .form-check-label {
-    background-color: #e3f2fd;
+    background-color: var(--primary-light);
+    border-color: var(--primary-color);
     font-weight: 500;
+}
+
+.quiz-navigation {
+    border-top: 1px solid var(--border-color);
+}
+
+.feature-1 {
+    transition: all 0.2s ease;
+}
+
+.feature-1:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 </style>
 

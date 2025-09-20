@@ -69,6 +69,10 @@ class AdminArticles extends BaseController
                 $this->show_msg('danger', lang("Admin.validation_errors"), validation_errors());
             }
         }
+        
+        // Initialize empty files array for new articles
+        $data['files'] = [];
+        
         return view("form", $data);
     }
     //$validationErrors = $this->validation->getErrors();
@@ -92,6 +96,10 @@ class AdminArticles extends BaseController
 
         // Fetch the categories
         $data['article'] = $this->articles->getArticleById($id);
+        
+        // Existing images for FireUploader
+        $data['files'] = !empty($data['article']->image) ? json_decode($data['article']->image, true) : [];
+        
         return view('form', $data);
     }
 

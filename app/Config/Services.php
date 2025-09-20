@@ -48,4 +48,20 @@ class Services extends BaseService
         return new NotificationService();
     }
 
+    /**
+     * The activator service for email activation
+     */
+    public static function activator($getShared = true)
+    {
+        if ($getShared) {
+            return static::getSharedInstance('activator');
+        }
+
+        // Get the configured activator class from Auth config
+        $config = config('Auth');
+        $activatorClass = $config->actions['register'];
+        
+        return new $activatorClass();
+    }
+
 }

@@ -105,11 +105,10 @@ CREATE TABLE `tb_unit_items` (
     `item_id` varchar(255) NOT NULL COMMENT 'video_id, quiz_id, or page_id',
     `title` varchar(255) NOT NULL,
     `description` text DEFAULT NULL,
-    `thumbnail` varchar(500) DEFAULT NULL,
     `duration` varchar(20) DEFAULT NULL,
     `sort_order` int DEFAULT 1,
     `is_active` tinyint(1) DEFAULT 1,
-    `metadata` json DEFAULT NULL COMMENT 'Additional data like file size, passing score, etc.',
+    `metadata` json DEFAULT NULL COMMENT 'Additional data including video_thumbnail, file size, passing score, etc.',
     `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
     `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
@@ -120,6 +119,8 @@ CREATE TABLE `tb_unit_items` (
     FOREIGN KEY (`unit_id`) REFERENCES `tb_units` (`id`) ON DELETE CASCADE
 );
 ```
+
+**Note**: The `thumbnail` column has been removed and thumbnail data is now stored within the `metadata` JSON column as `video_thumbnail` for better data organization and flexibility.
 
 
 

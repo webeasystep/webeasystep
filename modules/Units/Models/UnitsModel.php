@@ -10,7 +10,7 @@ class UnitsModel extends BaseModel
     protected $allowedFields = [
         'course_id', 'unit_name', 'unit_desc',
         'sort_order', 'active',
-        'price'
+        'price', 'is_free'
     ];
     protected $useTimestamps = true;
     protected $returnType = 'object';
@@ -271,7 +271,7 @@ class UnitsModel extends BaseModel
             }
 
             // Parse duration and add to total
-            if ($unit->video_duration) {
+            if (isset($unit->video_duration) && $unit->video_duration) {
                 $stats['total_duration'] += $this->parseDurationToMinutes($unit->video_duration);
             }
         }

@@ -41,8 +41,9 @@ class BaseController extends Controller
         $this->db = Database::connect();
         $this->session = Services::session();
         $this->language = Services::language();
-        $this->session->set('lang', $this->session->lang ?? config("app")->defaultLocale);
-        $this->language->setLocale($this->session->lang ?? config("app")->defaultLocale);
+        $currentLang = $this->session->get('lang') ?? config("app")->defaultLocale;
+        $this->session->set('lang', $currentLang);
+        $this->language->setLocale($currentLang);
     }
 
     public function langSwitch(): RedirectResponse

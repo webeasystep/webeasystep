@@ -613,6 +613,9 @@ function selectItemType(type) {
     }
 }
 
+// Global variable to store fetched video data
+let currentVideoData = null;
+
 // Video Functions
 function fetchVideoData() {
     const videoId = $('#video_id').val().trim();
@@ -640,10 +643,13 @@ function fetchVideoData() {
             $('#fetchBtn').prop('disabled', false).html('<i class="fas fa-download mr-1"></i>جلب البيانات');
 
             if (response.success) {
+                // Store complete video data globally
+                currentVideoData = response.data;
+                
                 // Fill video data
                 $('#video_title').val(response.data.title || 'غير محدد');
-                $('#video_duration').val(formatDuration(response.data.duration) || 'غير محدد');
-                $('#video_size').val(formatFileSize(response.data.size) || 'غير محدد');
+                $('#video_duration').val(response.data.video_duration || formatDuration(response.data.duration) || 'غير محدد');
+                $('#video_size').val(formatFileSize(response.data.file_size) || 'غير محدد');
                 $('#video_thumbnail').val(response.data.thumbnail || '');
 
                 // Show thumbnail or placeholder
@@ -682,7 +688,7 @@ function saveVideoItem() {
     const videoThumbnail = $('#video_thumbnail').val();
     const sortOrder = parseInt($('#video_sort_order').val()) || getNextSortOrder();
 
-    if (!videoId || !videoTitle) {
+    if (!videoId || !videoTitle || !currentVideoData) {
         toastr.error('يرجى جلب بيانات الفيديو أولاً');
         return;
     }
@@ -690,9 +696,19 @@ function saveVideoItem() {
     const item = {
         item_type: 'video',
         video_id: videoId,
+        video_title: videoTitle,
         title: videoTitle,
-        duration: videoDuration,
+        duration: currentVideoData.duration || 0,
+        video_duration: videoDuration,
         thumbnail: videoThumbnail,
+        video_thumbnail: videoThumbnail,
+        collection_id: currentVideoData.collection_id || '',
+        file_size: currentVideoData.file_size || 0,
+        video_quality: currentVideoData.height ? currentVideoData.width + 'x' + currentVideoData.height : null,
+        width: currentVideoData.width || 0,
+        height: currentVideoData.height || 0,
+        framerate: currentVideoData.framerate || 0,
+        description: currentVideoData.description || '',
         sort_order: sortOrder,
         is_active: 1,
         id: 'video_' + Date.now()
@@ -714,6 +730,7 @@ function resetVideoForm() {
     $('#videoDataSection').hide();
     $('#saveVideoBtn').prop('disabled', true);
     $('#video_sort_order').val('1');
+    currentVideoData = null; // Clear stored video data
 }
 
 // Quiz Functions
@@ -995,14 +1012,13 @@ function getNextSortOrder() {
 
 function formatDuration(seconds) {
     if (!seconds) return 'غير محدد';
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
+    const totalMinutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
 
-    if (hours > 0) {
-        return hours + ':' + String(minutes).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+    if (remainingSeconds > 0) {
+        return totalMinutes + ':' + String(remainingSeconds).padStart(2, '0');
     } else {
-        return minutes + ':' + String(secs).padStart(2, '0');
+        return totalMinutes + ':00';
     }
 }
 

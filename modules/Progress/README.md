@@ -38,9 +38,9 @@ The Progress module provides comprehensive learning progress tracking for the MS
 
 ## Database Schema
 
-### tb_user_unit_progress Table
+### tb_user_item_progress Table
 ```sql
-CREATE TABLE `tb_user_unit_progress` (
+CREATE TABLE `tb_user_item_progress` (
     `id` int NOT NULL AUTO_INCREMENT,
     `user_id` int NOT NULL,
     `unit_id` int NOT NULL,

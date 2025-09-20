@@ -17,7 +17,7 @@ class UsersModel extends Model
     protected $useSoftDeletes = false;
     protected $allowedFields  = [
         'email', 'full_name', 'address', 'avatar', 'mobile', 'username',
-        'parent_name', 'parent_email', 'parent_phone', 'birth_date', 'credits',
+        'parent_name', 'parent_email', 'parent_phone', 'credits',
         'email_verified_at', 'verification_token', 'phone_verified_at', 'phone_verification_code',
         'password_confirm', 'reset_hash', 'reset_at', 'reset_expires', 'activate_hash',
         'status', 'status_message', 'active', 'force_pass_reset', 'permissions', 'is_deleted',

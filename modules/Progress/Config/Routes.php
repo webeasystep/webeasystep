@@ -44,6 +44,9 @@ $routes->group('progress', ['namespace' => 'Modules\Progress\Controllers'], func
     // Dashboard
     $routes->get('dashboard', [Progress::class, 'dashboard'], ['filter' => 'site_filter']);
     
+    // Test endpoint for progress calculation (no auth required for testing)
+    $routes->get('test', 'TestProgress::index');
+    
     // AJAX API endpoints for progress tracking
     $routes->post('update', [Progress::class, 'updateProgress'], ['filter' => 'site_filter']);
     $routes->post('mark-completed', [Progress::class, 'markCompleted'], ['filter' => 'site_filter']);

@@ -40,6 +40,15 @@ class Auth extends ShieldAuth
     public const RECORD_LOGIN_ATTEMPT_FAILURE = 1; // Record only failures
     public const RECORD_LOGIN_ATTEMPT_ALL     = 2; // Record all login attempts
 
+    /**
+     * --------------------------------------------------------------------
+     * Require Email Activation
+     * --------------------------------------------------------------------
+     * When enabled, users must activate their account via email before
+     * they can log in.
+     */
+    public bool $requireActivation = true;
+
 
     /**
      * --------------------------------------------------------------------
@@ -111,7 +120,7 @@ class Auth extends ShieldAuth
      * @var array<string, class-string<ActionInterface>|null>
      */
     public array $actions = [
-        'register' => null,
+        'register' => \App\Libraries\EmailActivator::class,
         'login'    => null,
     ];
 
@@ -311,7 +320,7 @@ class Auth extends ShieldAuth
      * For example:
      *     $personalFields = ['firstname', 'lastname'];
      */
-    public array $personalFields = ['full_name','avatar'];
+    public array $personalFields = ['full_name'];
 
     /**
      * --------------------------------------------------------------------
@@ -442,7 +451,7 @@ class Auth extends ShieldAuth
      *
      * @var class-string<UserModel>
      */
-    public string $userProvider = UserModel::class;
+    public string $userProvider = \App\Models\UserModel::class;
 
     /**
      * Returns the URL that a user should be redirected

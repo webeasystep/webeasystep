@@ -63,10 +63,9 @@
             <h4>الوحدات المختارة (<?= count($selected_units ?? []) ?>)</h4>
             <?php if (isset($selected_units) && !empty($selected_units)): ?>
                 <?php foreach ($selected_units as $unit): ?>
-                    <p><strong><?= esc($unit->unit_name) ?></strong> - $<?= esc($unit->price) ?></p>
+                    <p><strong><?= esc($unit->unit_name) ?></strong></p>
                 <?php endforeach; ?>
             <?php endif; ?>
-            <p class="course-price">المجموع: $<?= esc($total_amount ?? '0') ?></p>
         </div>
 
         <?php if ($isFree): ?>

@@ -31,7 +31,7 @@ class AuthToken extends ShieldAuthToken
      * - Auth::RECORD_LOGIN_ATTEMPT_FAILURE
      * - Auth::RECORD_LOGIN_ATTEMPT_ALL
      */
-    public int $recordLoginAttempt = Auth::RECORD_LOGIN_ATTEMPT_FAILURE;
+    public int $recordLoginAttempt = Auth::RECORD_LOGIN_ATTEMPT_ALL;
 
     /**
      * --------------------------------------------------------------------

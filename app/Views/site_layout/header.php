@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="<?= base_url() ?>site/fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="<?= base_url() ?>site/css/aos.css">
     <link rel="stylesheet" href="<?= base_url(); ?>site/css/style_rtl.css">
-    <script src="<?= base_url() ?>site/js/jquery-3.4.1.min.js"></script>
 </head>
 <?php
 /*echo password_hash('01123303370', PASSWORD_DEFAULT)

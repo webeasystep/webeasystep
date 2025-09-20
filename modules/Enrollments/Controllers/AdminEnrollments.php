@@ -47,7 +47,7 @@ class AdminEnrollments extends BaseController
             ],
             'payment_method' => [
                 'label' => 'طريقة الدفع',
-                'rules' => 'required|in_list[bank_transfer,credit_card,paypal,cash]',
+                'rules' => 'required',
             ],
             'status' => [
                 'label' => 'الحالة',
@@ -145,7 +145,6 @@ class AdminEnrollments extends BaseController
                 $this->data_arr($id);
 
                 // Update payment proof if provided
-                $this->fireUploader->upload_photos($this->unitEnrollments, 'payment_proof', $id);
 
                 $this->show_msg('success', 'تم التعديل', 'تم تعديل بيانات طلب الشراء بنجاح');
                 return redirect()->to(ADMIN_URL . 'enrollments');
@@ -165,6 +164,9 @@ class AdminEnrollments extends BaseController
 
         // Decode unit_ids JSON for form display
         $data['selected_units'] = json_decode($enrollment->unit_ids ?? '[]', true);
+
+        // Initialize files array for FireUploader - existing payment proof for FireUploader
+        $data['files'] = json_decode($enrollment->payment_proof ?? '[]', true);
 
         // For dropdowns
         $data['units'] = $this->unitEnrollments->get_units_list();
@@ -189,17 +191,17 @@ class AdminEnrollments extends BaseController
             'user_id' => $this->request->getPost('user_id', FILTER_SANITIZE_NUMBER_INT),
             'unit_ids' => $unitIds,
             'total_amount' => $this->request->getPost('total_amount', FILTER_SANITIZE_NUMBER_FLOAT) ?: 0,
-            'payment_method' => $this->request->getPost('payment_method', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: 'bank_transfer',
+            'payment_method' => $this->request->getPost('payment_method', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: 'instapay',
             'status' => $this->request->getPost('status', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: 'pending',
         ];
 
-        // Add payment proof if provided
-        if ($this->request->getPost('payment_proof')) {
+        // Add payment proof only for new records (not for updates)
+        if (!$id && $this->request->getPost('payment_proof')) {
             $data['payment_proof'] = $this->request->getPost('payment_proof', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         }
 
         if ($id) {
-            // Update existing record
+            // Update existing record (excluding payment_proof to avoid JSON validation errors)
             $builder->where('id', $id)->update($data);
         } else {
             // Insert new record

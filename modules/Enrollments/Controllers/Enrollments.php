@@ -59,172 +59,25 @@ class Enrollments extends BaseController
     }
 
     /**
-     * Renders the checkout page to handle:
-     *   1) Free course
-     *   2) Waiting list
-     *   3) Paid course
+     * Display user's unit purchases
      */
-    public function checkout(int $courseId)
+    public function myPurchases()
     {
-        $course = $this->coursesModel->find($courseId);
-        if (!$course) {
-            $this->show_msg('danger', 'Error', 'Course not found.');
-            return redirect()->back();
+        if (!auth()->loggedIn()) {
+            return redirect()->to('/login');
         }
 
-        $isFree        = ($course->is_free == 1);
-        $isWaitingList = (!empty($course->waiting_list) && $course->waiting_list == 1);
-        $isLoggedIn    = auth()->loggedIn();
+        $userId = auth()->user()->id;
+        $purchases = $this->unitEnrollmentsModel->getUserEnrollments($userId);
 
         $data = [
-            'title'         => 'Checkout / Enroll in Course',
-            'course'        => $course,
-            'isFree'        => $isFree,
-            'isWaitingList' => $isWaitingList,
-            'isLoggedIn'    => $isLoggedIn,
+            'title' => 'مشترياتي',
+            'purchases' => $purchases
         ];
 
-        // If POST, handle the enrollment logic
-        if ($this->request->is('post')) {
-            return $this->completeEnrollment($course);
-        }
-
-        return view('site/checkout', $data);
+        return view('site/my_purchases', $data);
     }
 
-    /**
-     * Main entry point for completing an enrollment:
-     *   - Free course
-     *   - Waiting list
-     *   - Paid course (user logged in / not logged in)
-     */
-    private function completeEnrollment(object $course)
-    {
-        if (!$course) {
-            $this->show_msg('danger', 'Error', 'Invalid course.');
-            return redirect()->back();
-        }
-
-        $isFree        = ($course->is_free == 1);
-        $isWaitingList = (!empty($course->waiting_list) && $course->waiting_list == 1);
-        $isLoggedIn    = auth()->loggedIn();
-        $userId        = $isLoggedIn ? auth()->user()->id : null;
-
-        if ($isFree) {
-            return $this->handleFreeCourse($course, $userId);
-        }
-
-        if ($isWaitingList) {
-            return $this->handleWaitingList($course, $userId);
-        }
-
-        // If paid course but user not logged in => create user
-        if (!$isLoggedIn) {
-            return $this->handlePaidNotLoggedIn($course);
-        }
-
-        // If paid course and user is logged in => requires proof of payment
-        return $this->handlePaidLoggedIn($course, $userId);
-    }
-
-    /**
-     * Scenario: Free course => enroll user immediately, redirect to course_view.
-     */
-    private function handleFreeCourse(object $course, ?int $userId)
-    {
-        if (!$userId) {
-            // If you want to require login for free courses, handle it here
-            return redirect()->to('/login')->with('error', 'Please log in first.');
-        }
-
-        // Immediately enroll user
-        $this->enrollmentsModel->enrollUser($userId, $course->id);
-        $this->show_msg('success', 'Enrolled', 'You have been enrolled in this free course!');
-
-        // Redirect to course_view
-        return redirect()->to('/courses/course_view/' . $course->slug);
-    }
-
-    /**
-     * Scenario: Waiting list => show message or store user in a waiting list table if needed.
-     */
-    private function handleWaitingList(object $course, ?int $userId)
-    {
-        $this->show_msg('success', 'Waiting List', 'You have been added to the waiting list. We will contact you later.');
-        return redirect()->back();
-    }
-
-    /**
-     * Scenario: Paid course but user not logged in => create new user, then proceed as if logged in.
-     */
-    private function handlePaidNotLoggedIn(object $course)
-    {
-        if (!$this->validate($this->rules)) {
-            $errors = implode('<br>', $this->validator->getErrors());
-            $this->show_msg('danger', 'Validation Errors', $errors);
-            return redirect()->back()->withInput();
-        }
-
-        // Create new user
-        $userData = [
-            'full_name'  => $this->request->getPost('name'),
-            'email'      => $this->request->getPost('email'),
-            'country'    => $this->request->getPost('country'),
-            'mobile'     => $this->request->getPost('phone'),
-            'password'   => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
-            'created_at' => date('Y-m-d H:i:s'),
-        ];
-        $newUserId = $this->usersModel->insert($userData);
-
-        if (!$newUserId) {
-            $this->show_msg('danger', 'Error', 'Failed to create user account.');
-            return redirect()->back();
-        }
-
-        // Optionally log them in automatically
-        auth()->loginById($newUserId);
-
-        // Now treat them as a logged-in user for paid enrollment
-        return $this->handlePaidLoggedIn($course, $newUserId);
-    }
-
-    /**
-     * Scenario: Paid course + user is logged in => requires proof of payment, then enrollment is pending.
-     */
-    private function handlePaidLoggedIn(object $course, int $userId)
-    {
-
-        // Payment proof is required
-
-        if (empty($_FILES['proof_image']['name'])) {
-            $this->show_msg('danger', 'Error', 'Payment proof is required.');
-            return redirect()->back()->withInput();
-        }
-
-        // Insert pending enrollment record
-        $enrollmentData = [
-            'user_id'          => $userId,
-            'course_id'        => $course->id,
-            'amount'           => $course->price,
-            'enrollment_method'=> 'instapay',
-            'status'           => 'pending',
-            'enrolled_at'      => date('Y-m-d H:i:s'),
-        ];
-        $enrollmentId = $this->enrollmentsModel->insert($enrollmentData);
-
-        if (!$enrollmentId) {
-            $this->show_msg('danger', 'Error', 'Failed to save payment data.');
-            return redirect()->back();
-        }
-
-        // Upload proof_image
-        $this->fireUploader->upload_photos($this->enrollmentsModel, 'proof_image', $enrollmentId);
-
-        // We do NOT enrollUser(...) yet because admin must approve
-        $this->show_msg('success', 'Payment Received', 'Your payment proof was uploaded. Enrollment is pending admin review.');
-
-        return redirect()->to('/courses/my_courses');
-    }
 
     /**
      * Display units available for purchase
@@ -260,7 +113,7 @@ class Enrollments extends BaseController
 
         $unitIds = explode(',', $unitIds);
         $selectedUnits = $this->unitsModel->whereIn('id', $unitIds)->findAll();
-        
+
         if (empty($selectedUnits)) {
             return redirect()->to('/enrollments/units-shop')->with('error', 'الوحدات المحددة غير متاحة');
         }
@@ -274,10 +127,107 @@ class Enrollments extends BaseController
             'title' => 'إتمام شراء الوحدات',
             'selected_units' => $selectedUnits,
             'total_price' => $totalPrice,
-            'unit_ids' => $unitIds
+            'unit_ids' => $unitIds,
+            'files' => [] // Initialize empty files array for FireUploader
         ];
 
-        return view('Site/purchase_units', $data);
+        return view('site/purchase_units', $data);
+    }
+
+    /**
+     * Complete enrollment for free units or process paid enrollment
+     */
+    public function completeEnrollment()
+    {
+        $userId = auth()->user()->id ?? null;
+        if (!$userId) {
+            return redirect()->to('/login')->with('error', 'يرجى تسجيل الدخول أولاً');
+        }
+
+        $unitIds = $this->request->getPost('unit_ids');
+        if (empty($unitIds)) {
+            return redirect()->back()->with('error', 'يرجى اختيار وحدة واحدة على الأقل');
+        }
+
+        // Parse unit IDs if they come as JSON string
+        if (is_string($unitIds)) {
+            $unitIds = json_decode($unitIds, true);
+        }
+
+        if (!is_array($unitIds)) {
+            return redirect()->back()->with('error', 'خطأ في معرفات الوحدات');
+        }
+
+        // Get selected units
+        $units = $this->unitsModel->whereIn('id', $unitIds)->findAll();
+        if (empty($units)) {
+            return redirect()->back()->with('error', 'الوحدات المحددة غير متاحة');
+        }
+
+        // Check if all units are free
+        $allFree = true;
+        $totalPrice = 0;
+        foreach ($units as $unit) {
+            if (!$unit->is_free) {
+                $allFree = false;
+            }
+            $totalPrice += $unit->price ?? 0;
+        }
+
+        if ($allFree) {
+            // Handle free unit enrollment - grant immediate access
+            $enrollmentData = [
+                'user_id' => $userId,
+                'unit_ids' => json_encode($unitIds),
+                'total_amount' => 0,
+                'payment_method' => 'free',
+                'status' => 'approved',
+                'processed_at' => date('Y-m-d H:i:s'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+
+            $enrollmentId = $this->unitEnrollmentsModel->insert($enrollmentData);
+            
+            if ($enrollmentId) {
+                // Grant access to free units
+                if (class_exists('\Modules\Units\Models\UnitPurchasesModel')) {
+                    $unitPurchasesModel = new \Modules\Units\Models\UnitPurchasesModel();
+                    
+                    foreach ($unitIds as $unitId) {
+                        $purchaseData = [
+                            'user_id' => $userId,
+                            'unit_id' => $unitId,
+                            'payment_attachment_id' => $enrollmentId,
+                            'price_paid' => 0,
+                            'access_granted' => 1,
+                            'access_expires_at' => null
+                        ];
+                        
+                        $unitPurchasesModel->insertPurchase($purchaseData);
+                    }
+                }
+
+                // Get the first unit's course to redirect to course view
+                $firstUnit = $units[0];
+                $course = $this->coursesModel->find($firstUnit->course_id);
+                
+                if ($course) {
+                    // Redirect to course view as requested
+                    return redirect()->to('/courses/view/' . $course->id)
+                                   ->with('success', 'تم تسجيلك في الوحدات المجانية بنجاح! يمكنك الآن الوصول إلى المحتوى.');
+                } else {
+                    return redirect()->to('/enrollments/my-purchases')
+                                   ->with('success', 'تم تسجيلك في الوحدات المجانية بنجاح!');
+                }
+            } else {
+                return redirect()->back()->with('error', 'فشل في تسجيل الاشتراك المجاني');
+            }
+        } else {
+            // Handle paid enrollment - redirect to payment process
+            return redirect()->to('/enrollments/purchase-units?units=' . implode(',', $unitIds))
+                           ->with('info', 'يرجى إتمام عملية الدفع للوحدات المدفوعة');
+        }
     }
 
     /**
@@ -286,23 +236,44 @@ class Enrollments extends BaseController
     private function processPurchaseUnits($userId)
     {
         $unitIds = $this->request->getPost('unit_ids');
-        $paymentMethod = $this->request->getPost('payment_method') ?? 'bank_transfer';
+        $paymentMethod = $this->request->getPost('payment_method') ?? 'vodafone_cash';
         
+        // Debug logging
+        log_message('debug', 'ProcessPurchaseUnits - User ID: ' . $userId);
+        log_message('debug', 'ProcessPurchaseUnits - Unit IDs: ' . json_encode($unitIds));
+        log_message('debug', 'ProcessPurchaseUnits - Payment Method: ' . $paymentMethod);
+        log_message('debug', 'ProcessPurchaseUnits - All POST data: ' . json_encode($this->request->getPost()));
+
         if (empty($unitIds)) {
             return redirect()->back()->with('error', 'يرجى اختيار وحدة واحدة على الأقل')->withInput();
         }
 
-        // Validate payment proof
-        if (empty($_FILES['payment_proof']['name'])) {
+        // Validate payment proof using FireUploader
+        $paymentProofFiles = $this->request->getPost('payment_proof');
+        if (empty($paymentProofFiles)) {
             return redirect()->back()->with('error', 'يرجى إرفاق إثبات الدفع')->withInput();
+        }
+        
+        // Parse the payment proof JSON data
+        $paymentProofData = null;
+        if (is_array($paymentProofFiles) && !empty($paymentProofFiles[0])) {
+            $paymentProofData = json_decode($paymentProofFiles[0], true);
+            log_message('debug', 'Payment proof data: ' . json_encode($paymentProofData));
+        }
+        
+        if (!$paymentProofData || !isset($paymentProofData['original_name'])) {
+            return redirect()->back()->with('error', 'يرجى إرفاق إثبات الدفع صحيح')->withInput();
         }
 
         // Calculate total price
         $units = $this->unitsModel->whereIn('id', $unitIds)->findAll();
         $totalPrice = 0;
         foreach ($units as $unit) {
-            $totalPrice += $unit->unit_price ?? 0;
+            $totalPrice += $unit->price ?? 0;
         }
+        
+        log_message('debug', 'Units found: ' . count($units));
+        log_message('debug', 'Total price calculated: ' . $totalPrice);
 
         if ($totalPrice <= 0) {
             return redirect()->back()->with('error', 'خطأ في حساب المبلغ الإجمالي')->withInput();
@@ -311,51 +282,37 @@ class Enrollments extends BaseController
         // Create enrollment request
         $enrollmentData = [
             'user_id' => $userId,
-            'unit_ids' => $unitIds,
+            'unit_ids' => json_encode($unitIds),
             'total_amount' => $totalPrice,
-            'payment_method' => $paymentMethod
+            'payment_method' => $paymentMethod,
+            'status' => 'pending',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ];
 
-        $enrollmentId = $this->unitEnrollmentsModel->createUnitEnrollment($enrollmentData);
+        log_message('debug', 'Enrollment data to insert: ' . json_encode($enrollmentData));
+        
+        $enrollmentId = $this->unitEnrollmentsModel->insert($enrollmentData);
+        
+        log_message('debug', 'Enrollment ID after insert: ' . $enrollmentId);
+        log_message('debug', 'Database errors: ' . json_encode($this->unitEnrollmentsModel->errors()));
 
         if (!$enrollmentId) {
+            log_message('error', 'Failed to insert enrollment data');
             return redirect()->back()->with('error', 'فشل في حفظ طلب الشراء')->withInput();
         }
 
-        // Upload payment proof
-        $this->fireUploader->upload_photos($this->unitEnrollmentsModel, 'payment_proof', $enrollmentId);
+        // Upload payment proof using FireUploader
+        try {
+            $this->fireUploader->upload_photos($this->unitEnrollmentsModel, 'payment_proof', $enrollmentId);
+            log_message('debug', 'Payment proof uploaded successfully for enrollment ID: ' . $enrollmentId);
+        } catch (\Exception $e) {
+            log_message('error', 'Payment proof upload error: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'فشل في رفع إثبات الدفع: ' . $e->getMessage())->withInput();
+        }
 
         return redirect()->to('/enrollments/my-purchases')
-                        ->with('success', 'تم إرسال طلب الشراء بنجاح. سيتم مراجعته من قبل الإدارة وتفعيل الوحدات عند الموافقة.');
+                        ->with('success', 'تم إرسال طلب الشراء بنجاح. سيتم مراجعته من قبل الإدارة وتفعيل الوحدات عند الموافقة. يرجى انتظار التفعيل.');
     }
 
-    /**
-     * Display user's unit purchases
-     */
-    public function myPurchases()
-    {
-        $userId = auth()->user()->id ?? null;
-        if (!$userId) {
-            return redirect()->to('/login')->with('error', 'يرجى تسجيل الدخول أولاً');
-        }
-
-        $enrollments = $this->unitEnrollmentsModel->getUserEnrollments($userId);
-        
-        // Get unit details for each enrollment
-        foreach ($enrollments as &$enrollment) {
-            $unitIds = json_decode($enrollment->unit_ids, true);
-            if ($unitIds) {
-                $enrollment->units = $this->unitsModel->whereIn('id', $unitIds)->findAll();
-            } else {
-                $enrollment->units = [];
-            }
-        }
-
-        $data = [
-            'title' => 'مشترياتي',
-            'enrollments' => $enrollments
-        ];
-
-        return view('Site/my_purchases', $data);
-    }
 }

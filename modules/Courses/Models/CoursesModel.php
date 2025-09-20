@@ -11,9 +11,9 @@ class CoursesModel extends BaseModel
     protected $primaryKey    = 'id';
     protected $allowedFields = [
         'course_title', 'course_desc', 'short_desc', 'image', 'sort',
-        'price', 'is_free', 'active', 'slug',
+        'is_free', 'active', 'slug',
         'instructor_id', 'category_id', 'difficulty_level', 'language',
-        'requirements', 'what_you_learn', 'featured', 'enrollment_limit', 'intro_video_id'
+        'requirements', 'what_you_learn', 'enrollment_limit', 'intro_video_id', 'collection_id'
     ];
     protected $useTimestamps = true;
     protected $returnType    = 'object';
@@ -104,16 +104,37 @@ class CoursesModel extends BaseModel
     public function getAllCoursesWithStats(): array
     {
         $courses = $this->where('active', 1)
-                       ->orderBy('featured', 'DESC')
                        ->orderBy('sort', 'ASC')
                        ->findAll();
 
         foreach ($courses as &$course) {
             $course->enrollment_count = $this->getEnrollmentCount($course->id);
             $course->stats = $this->getCourseStats($course->id);
+            $course->unit_count = $this->getUnitCount($course->id);
+            $course->quiz_count = $this->getQuizCount($course->id);
         }
 
         return $courses;
+    }
+
+    /**
+     * Get unit count for a course
+     */
+    public function getUnitCount(int $courseId): int
+    {
+        return $this->db->table('tb_units')
+                       ->where('course_id', $courseId)
+                       ->countAllResults();
+    }
+
+    /**
+     * Get quiz count for a course
+     */
+    public function getQuizCount(int $courseId): int
+    {
+        return $this->db->table('tb_quizzes')
+                       ->where('course_id', $courseId)
+                       ->countAllResults();
     }
 
     /**
@@ -128,12 +149,11 @@ class CoursesModel extends BaseModel
     }
 
     /**
-     * Get featured courses
+     * Get featured courses (top courses by sort order)
      */
     public function getFeaturedCourses(int $limit = 6): array
     {
-        return $this->where('featured', 1)
-                   ->where('active', 1)
+        return $this->where('active', 1)
                    ->orderBy('sort', 'ASC')
                    ->limit($limit)
                    ->findAll();
@@ -381,24 +401,17 @@ class CoursesModel extends BaseModel
         return end($flatLessons)['id'];
     }
     /**
-     * Example: compute user's progress in a course (videos completed / total).
+     * Calculate user's progress in a course based on completed units.
      */
      function calculateProgress(object $course, object $enrollment): int
     {
-        // TODO: Implement progress calculation using units system
-        // This should calculate progress based on completed unit items
-        return 0;
-
-        // Note: This method needs to be updated to work with the new units system
-        // It should query the units and unit_items tables to calculate progress
-
-        // how many completed
-        $completedCount = $this->countCompletedLessons($enrollment->id);
-
-        if ($totalLessons === 0) {
-            return 0;
-        }
-        return (int) round(($completedCount / $totalLessons) * 100);
+        // Use Progress module to calculate completion percentage
+        $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
+        
+        // Get course completion percentage
+        $completionPercentage = $progressModel->getCourseCompletionPercentage($enrollment->user_id, $course->id);
+        
+        return (int) $completionPercentage;
     }
 
     /**
@@ -432,7 +445,7 @@ class CoursesModel extends BaseModel
      */
     public function getCourseStats(int $courseId): array
     {
-        $unitsModel = new UnitsModel();
+        $unitsModel = new \Modules\Units\Models\UnitsModel();
         $stats = $unitsModel->getCourseUnitStats($courseId);
 
         // Add enrollment statistics
@@ -447,9 +460,18 @@ class CoursesModel extends BaseModel
      */
     public function getCourseCompletionRate(int $courseId): float
     {
+        // Get all units for this course
+        $unitsModel = new \Modules\Units\Models\UnitsModel();
+        $units = $unitsModel->where('course_id', $courseId)->findAll();
+        $unitIds = array_column($units, 'id');
+
+        if (empty($unitIds)) {
+            return 0.0;
+        }
+
+        // Count enrollments where unit_ids contains any of the course's units
         $enrollments = $this->db->table($this->enrollmentsTable)
-                               ->where('course_id', $courseId)
-                               ->where('status', 'active')
+                               ->where('status', 'approved')
                                ->get()
                                ->getResult();
 
@@ -457,20 +479,21 @@ class CoursesModel extends BaseModel
             return 0.0;
         }
 
-        $course = $this->find($courseId);
-        if (!$course) {
-            return 0.0;
-        }
-
-        $completedCount = 0;
+        $courseEnrollments = [];
         foreach ($enrollments as $enrollment) {
-            $progress = $this->calculateProgress($course, $enrollment);
-            if ($progress >= 100) {
-                $completedCount++;
+            $enrollmentUnitIds = json_decode($enrollment->unit_ids, true);
+            if ($enrollmentUnitIds && array_intersect($enrollmentUnitIds, $unitIds)) {
+                $courseEnrollments[] = $enrollment;
             }
         }
 
-        return round(($completedCount / count($enrollments)) * 100, 2);
+        if (empty($courseEnrollments)) {
+            return 0.0;
+        }
+
+        // For now, return a basic completion rate
+        // This can be enhanced with actual progress tracking
+        return 0.0;
     }
 
     /**

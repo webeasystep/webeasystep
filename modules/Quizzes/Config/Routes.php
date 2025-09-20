@@ -41,34 +41,34 @@ $routes->group('/', [
 ], static function ($routes) {
     // Public quiz routes
     $routes->get('quizzes', [Quizzes::class, 'index']);
-    $routes->get('quizzes/course/(:num)', [Quizzes::class, 'courseQuizzes/$1']);
-    $routes->get('quizzes/view/(:num)', [Quizzes::class, 'viewQuiz/$1']);
+    
+    // Test route for debugging session data
+    $routes->get('quizzes/testSession', [Quizzes::class, 'testSession']);
     
     // Routes requiring authentication
     $routes->group('', ['filter' => 'site_filter'], static function ($routes) {
         // Quiz taking
-        $routes->get('quizzes/take/(:num)', [Quizzes::class, 'takeQuiz/$1']);
-        $routes->post('quizzes/submit/(:num)', [Quizzes::class, 'submitQuiz/$1']);
-        $routes->get('quizzes/results/(:num)', [Quizzes::class, 'viewResults/$1']);
-        $routes->get('quizzes/retry/(:num)', [Quizzes::class, 'retryQuiz/$1']);
+        $routes->get('quizzes/take/(:num)', [Quizzes::class, 'take/$1']);
+        $routes->get('quizzes/start/(:num)', [Quizzes::class, 'take/$1']); // Redirect GET requests to take page
+        $routes->post('quizzes/start/(:num)', [Quizzes::class, 'startAttempt/$1']);
+        $routes->get('quizzes/continue/(:num)', [Quizzes::class, 'continueAttempt/$1']);
+        $routes->get('quizzes/submit/(:num)', [Quizzes::class, 'redirectToQuiz/$1']); // Redirect GET requests to proper workflow
+        $routes->post('quizzes/submit-attempt/(:num)', [Quizzes::class, 'submitAnswers/$1']); // Submit with attempt ID
+        $routes->get('quizzes/results/(:num)', [Quizzes::class, 'results/$1']);
+        
+        // Embedded quiz routes for course integration
+        $routes->post('quizzes/start-embedded/(:num)', 'Quizzes::startEmbedded/$1');
+        $routes->post('quizzes/save-answer-embedded/(:num)', 'Quizzes::saveAnswer/$1');
+        $routes->post('quizzes/submit-embedded/(:num)', [Quizzes::class, 'submitEmbedded/$1']);
+        
+        // Test route for debugging
+        $routes->get('quizzes/test-submit/(:num)', [Quizzes::class, 'submitEmbedded/$1']);
+        
+        // Additional routes for JavaScript compatibility
+        $routes->post('quizzes/save-answer/(:num)', 'Quizzes::saveAnswer/$1');
         
         // User quiz history
         $routes->get('quizzes/my-attempts', [Quizzes::class, 'myAttempts']);
-        $routes->get('quizzes/attempt/(:num)', [Quizzes::class, 'viewAttempt/$1']);
-        
-        // AJAX endpoints
-        $routes->post('quizzes/ajax/save-progress', [Quizzes::class, 'saveProgress']);
-        $routes->get('quizzes/ajax/time-remaining/(:num)', [Quizzes::class, 'getTimeRemaining/$1']);
+        $routes->get('quizzes/attempts/(:num)', [Quizzes::class, 'viewAttempt/$1']);
     });
-});
-
-/*** API Routes for Quizzes ***/
-$routes->group('api/quizzes', [
-    'namespace' => 'Modules\Quizzes\Controllers',
-    'filter' => 'site_filter'
-], static function ($routes) {
-    $routes->get('course/(:num)', [Quizzes::class, 'apiCourseQuizzes/$1']);
-    $routes->get('(:num)', [Quizzes::class, 'apiQuizDetails/$1']);
-    $routes->post('(:num)/submit', [Quizzes::class, 'apiSubmitQuiz/$1']);
-    $routes->get('attempts/(:num)', [Quizzes::class, 'apiAttemptDetails/$1']);
 });

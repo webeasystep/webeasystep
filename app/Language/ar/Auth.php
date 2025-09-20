@@ -162,4 +162,17 @@ return [
 
     // الصلاحيات
     'unknownPermission' => '{0} ليست صلاحية صالحة.',
+
+    // حقول نموذج التسجيل
+    'fullName' => 'الاسم الكامل',
+    'mobileNumber' => 'رقم الهاتف المحمول',
+    'parentGuardianInfo' => 'معلومات ولي الأمر',
+    'parentGuardianName' => 'اسم ولي الأمر',
+    'parentGuardianEmail' => 'البريد الإلكتروني لولي الأمر',
+    'parentGuardianPhone' => 'هاتف ولي الأمر',
+    'enterFullName' => 'أدخل اسمك الكامل',
+    'enterMobileNumber' => 'أدخل رقم هاتفك المحمول',
+    'enterParentName' => 'أدخل اسم ولي الأمر',
+    'enterParentEmail' => 'أدخل البريد الإلكتروني لولي الأمر',
+    'enterParentPhone' => 'أدخل هاتف ولي الأمر',
 ];

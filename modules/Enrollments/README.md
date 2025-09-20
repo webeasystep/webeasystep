@@ -80,9 +80,9 @@ CREATE TABLE `tb_unit_enrollments` (
 );
 ```
 
-### tb_enrollments Table (Deprecated)
+### tb_unit_enrollments Table (Deprecated)
 ```sql
-CREATE TABLE `tb_enrollments` (
+CREATE TABLE `tb_unit_enrollments` (
     `id` int NOT NULL AUTO_INCREMENT,
     `user_id` int NOT NULL,
     `course_id` int NOT NULL,

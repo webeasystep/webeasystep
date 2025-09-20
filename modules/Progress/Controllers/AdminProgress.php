@@ -37,12 +37,12 @@ class AdminProgress extends BaseController
 
         if ($this->request->isAJAX()) {
             $progressModel = $this->progress
-                ->select('tb_user_unit_progress.id, tb_user_unit_progress.progress_percentage, tb_user_unit_progress.watch_time, tb_user_unit_progress.is_completed, tb_user_unit_progress.created_at, users.username as user_name, tb_units.unit_name as unit_title, tb_courses.course_title as course_title')
-                ->join('users', 'users.id = tb_user_unit_progress.user_id')
-                ->join('tb_units', 'tb_units.id = tb_user_unit_progress.unit_id')
+                ->select('tb_user_item_progress.id, tb_user_item_progress.progress_percentage, tb_user_item_progress.watch_time, tb_user_item_progress.is_completed, tb_user_item_progress.created_at, users.username as user_name, tb_units.unit_name as unit_title, tb_courses.course_title as course_title')
+                ->join('users', 'users.id = tb_user_item_progress.user_id')
+                ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
 
                 ->join('tb_courses', 'tb_courses.id = tb_units.course_id')
-                ->orderBy('tb_user_unit_progress.id', 'desc')
+                ->orderBy('tb_user_item_progress.id', 'desc')
                 ->builder();
 
             DtTable::hideColumns(['id']);
@@ -201,7 +201,7 @@ class AdminProgress extends BaseController
     public function show($id): \CodeIgniter\HTTP\ResponseInterface
     {
         $data['title'] = lang("Admin.show_data");
-        $data['progress'] = $this->progress->getProgressWithDetails()->where('tb_user_unit_progress.id', $id)->first();
+        $data['progress'] = $this->progress->getProgressWithDetails()->where('tb_user_item_progress.id', $id)->first();
 
         if (!$data['progress']) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -277,7 +277,7 @@ class AdminProgress extends BaseController
         }
 
         if ($userId) {
-            $query->where('tb_user_unit_progress.user_id', $userId);
+            $query->where('tb_user_item_progress.user_id', $userId);
         }
 
         $progressData = $query->get()->getResultArray();
@@ -321,13 +321,13 @@ class AdminProgress extends BaseController
     private function getRecentCompletions($limit = 10)
     {
         return $this->progressModel
-                   ->select('tb_user_unit_progress.*, users.username, tb_units.unit_name as unit_title, tb_courses.course_title')
-                   ->join('users', 'users.id = tb_user_unit_progress.user_id')
-                   ->join('tb_units', 'tb_units.id = tb_user_unit_progress.unit_id')
+                   ->select('tb_user_item_progress.*, users.username, tb_units.unit_name as unit_title, tb_courses.course_title')
+                   ->join('users', 'users.id = tb_user_item_progress.user_id')
+                   ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
 
                    ->join('tb_courses', 'tb_courses.id = tb_units.course_id')
-                   ->where('tb_user_unit_progress.is_completed', 1)
-                   ->orderBy('tb_user_unit_progress.completed_at', 'DESC')
+                   ->where('tb_user_item_progress.is_completed', 1)
+                   ->orderBy('tb_user_item_progress.completed_at', 'DESC')
                    ->limit($limit)
                    ->findAll();
     }
@@ -338,10 +338,10 @@ class AdminProgress extends BaseController
     private function getTopPerformers($limit = 10)
     {
         return $this->progressModel
-                   ->select('users.username, users.email, COUNT(*) as completed_units, SUM(tb_user_unit_progress.watch_time) as total_watch_time')
-                   ->join('users', 'users.id = tb_user_unit_progress.user_id')
-                   ->where('tb_user_unit_progress.is_completed', 1)
-                   ->groupBy('tb_user_unit_progress.user_id')
+                   ->select('users.username, users.email, COUNT(*) as completed_units, SUM(tb_user_item_progress.watch_time) as total_watch_time')
+                   ->join('users', 'users.id = tb_user_item_progress.user_id')
+                   ->where('tb_user_item_progress.is_completed', 1)
+                   ->groupBy('tb_user_item_progress.user_id')
                    ->orderBy('completed_units', 'DESC')
                    ->limit($limit)
                    ->findAll();
@@ -354,12 +354,12 @@ class AdminProgress extends BaseController
     {
         return $this->db->table('tb_courses')
                        ->select('tb_courses.course_title, 
-                                COUNT(DISTINCT tb_user_unit_progress.user_id) as enrolled_users,
-                                COUNT(CASE WHEN tb_user_unit_progress.is_completed = 1 THEN 1 END) as completed_units,
+                                COUNT(DISTINCT tb_user_item_progress.user_id) as enrolled_users,
+                                COUNT(CASE WHEN tb_user_item_progress.is_completed = 1 THEN 1 END) as completed_units,
                                 COUNT(tb_units.id) as total_units')
 
                        ->join('tb_units', 'tb_units.course_id = tb_courses.id')
-                       ->join('tb_user_unit_progress', 'tb_user_unit_progress.unit_id = tb_units.id', 'left')
+                       ->join('tb_user_item_progress', 'tb_user_item_progress.unit_id = tb_units.id', 'left')
                        ->where('tb_courses.active', 1)
                        ->groupBy('tb_courses.id')
                        ->get()
@@ -377,11 +377,11 @@ class AdminProgress extends BaseController
                               ->where('tb_units.active', 1)
                               ->countAllResults();
 
-        $completedProgress = $this->db->table('tb_user_unit_progress')
-                                     ->join('tb_units', 'tb_units.id = tb_user_unit_progress.unit_id')
+        $completedProgress = $this->db->table('tb_user_item_progress')
+                                     ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
 
                                      ->where('tb_units.course_id', $courseId)
-                                     ->where('tb_user_unit_progress.is_completed', 1)
+                                     ->where('tb_user_item_progress.is_completed', 1)
                                      ->countAllResults();
 
         // Get units for this course

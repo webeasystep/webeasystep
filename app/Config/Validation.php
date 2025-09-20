@@ -44,4 +44,15 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+    
+    /**
+     * Registration validation rules for user registration
+     */
+    public array $registrationRules = [
+        'full_name' => 'required|min_length[2]|max_length[100]',
+        'email' => 'required|valid_email|is_unique[auth_identities.secret]',
+        'mobile' => 'required|egyptian_mobile',
+        'password' => 'required|min_length[8]',
+        'password_confirm' => 'required|matches[password]',
+    ];
 }

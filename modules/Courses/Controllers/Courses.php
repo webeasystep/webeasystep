@@ -30,6 +30,47 @@ class Courses extends BaseController
     }
 
     /**
+     * View individual item by ID
+     */
+    public function item(int $itemId)
+    {
+        // Get the unit item
+        $unitItem = $this->unitItemsModel->find($itemId);
+        if (!$unitItem) {
+            throw PageNotFoundException::forPageNotFound('Item not found');
+        }
+
+        // Get the unit
+        $unit = $this->unitsModel->find($unitItem->unit_id);
+        if (!$unit || !$unit->active) {
+            throw PageNotFoundException::forPageNotFound('Unit not found or inactive');
+        }
+
+        // Get the course
+        $course = $this->coursesModel->find($unit->course_id);
+        if (!$course || !$course->active) {
+            throw PageNotFoundException::forPageNotFound('Course not found or inactive');
+        }
+
+        // Check user authentication
+        $userId = auth()->user()->id ?? null;
+        if (!$userId) {
+            return redirect()->to('login')->with('error', 'Please log in to access course content.');
+        }
+
+        // Check if user has access to this content
+        $hasAccess = $this->checkUnitAccess($userId, $unit->id);
+        if (!$hasAccess) {
+            return redirect()->to('/courses/course_details/' . $course->slug)
+                ->with('error', 'You do not have access to this content. Please enroll in the course first.');
+        }
+
+        // Redirect to the course view with the specific item
+        $redirectUrl = site_url('courses/course_view/' . $course->slug . '?item_id=' . $itemId);
+        return redirect()->to($redirectUrl);
+    }
+
+    /**
      * Get courses data for home page
      */
     public function getCoursesForHome()
@@ -83,18 +124,9 @@ class Courses extends BaseController
             $images = json_decode($course['image'], true);
             $course['image_url'] = 'site/images/default-course.jpg'; // Default fallback
 
-            if (!empty($images) && is_array($images)) {
-                // Check if it's FireUploader format with 'files' array
-                if (isset($images['files']) && is_array($images['files']) && !empty($images['files'])) {
-                    $firstFile = $images['files'][0];
-                    if (isset($firstFile['full_path']) && !empty($firstFile['full_path'])) {
-                        $course['image_url'] = $firstFile['full_path'];
-                    }
-                }
-                // Check if it's a direct array of image paths (legacy format)
-                elseif (isset($images[0]) && is_string($images[0])) {
-                    $course['image_url'] = $images[0];
-                }
+            // Use the thumb helper function for consistent image handling
+            if (!empty($course['image'])) {
+                $course['image_url'] = thumb($course['image'], 300, 200);
             }
 
             // Count lessons and units from units system
@@ -111,8 +143,12 @@ class Courses extends BaseController
                         $lessonCount += count($unit->items);
                         // Calculate total duration if available
                         foreach ($unit->items as $item) {
-                            if (!empty($item->duration)) {
-                                $totalDuration += $this->parseDurationToMinutes($item->duration);
+                            $itemDuration = 0;
+                            if ($item->item_type === 'video' && !empty($item->metadata)) {
+                                $metadata = json_decode($item->metadata, true);
+                                $itemDuration = $metadata['duration'] ?? 0;
+                                // Convert seconds to minutes for consistency
+                                $totalDuration += $this->parseDurationToMinutes(gmdate('H:i:s', $itemDuration));
                             }
                         }
                     }
@@ -159,22 +195,12 @@ class Courses extends BaseController
     }
 
     /**
-     * Format minutes to readable duration string
+     * Format minutes to readable duration string (always show in minutes)
      */
     private function formatDuration(int $minutes): string
     {
-        if ($minutes < 60) {
-            return $minutes . ' دقيقة';
-        }
-
-        $hours = floor($minutes / 60);
-        $remainingMinutes = $minutes % 60;
-
-        if ($remainingMinutes == 0) {
-            return $hours . ' ساعة';
-        }
-
-        return $hours . ' ساعة و ' . $remainingMinutes . ' دقيقة';
+        // Always show in minutes, regardless of the total duration
+        return $minutes . ' دقيقة';
     }
 
     /**
@@ -245,12 +271,8 @@ class Courses extends BaseController
      */
     public function index(): string
     {
-        // 3) Courses
-        $data['courses'] = $this->db
-            ->table('tb_courses')
-            ->where('active', 1)
-            ->get()
-            ->getResultArray();
+        // 3) Courses with stats (unit_count and quiz_count)
+        $data['courses'] = $this->coursesModel->getAllCoursesWithStats();
 
         // (Optional) Check if user is logged in
         $userId = session()->get('user_id');
@@ -284,6 +306,9 @@ class Courses extends BaseController
 
         // Pre-process each course
         foreach ($data['courses'] as &$course) {
+            // Convert object to array for consistency
+            $course = (array) $course;
+            
             // Provide a fallback if short_desc doesn't exist
             $course['short_desc'] = $course['short_desc'] ?? '';
 
@@ -326,9 +351,29 @@ class Courses extends BaseController
         // 2) Get course units with their items
         $units = $this->unitsModel->getUnitsByCourse($course->id);
 
-        // Get unit items for each unit
+        // Get unit items for each unit and process metadata
         foreach ($units as &$unit) {
             $unit->items = $this->unitItemsModel->getUnitItems($unit->id, true); // Only active items
+
+            // Process each item's metadata
+            if (isset($unit->items)) {
+                foreach ($unit->items as &$item) {
+                    // Ensure metadata is properly decoded
+                    if (!empty($item->metadata) && is_string($item->metadata)) {
+                        $item->metadata = json_decode($item->metadata, true);
+                    }
+
+                    // Add video duration in readable format for display (in minutes)
+                    if ($item->item_type === 'video' && isset($item->metadata['video_duration'])) {
+                        $durationSeconds = (int)$item->metadata['video_duration'];
+                        // Convert to minutes format instead of hours
+                        $minutes = floor($durationSeconds / 60);
+                        $seconds = $durationSeconds % 60;
+                        $item->duration_formatted = sprintf('%d:%02d', $minutes, $seconds);
+                    }
+                }
+                unset($item);
+            }
         }
         unset($unit);
 
@@ -344,6 +389,7 @@ class Courses extends BaseController
         $totalDuration = 0;
         $videoCount = 0;
         $quizCount = 0;
+        $pageCount = 0;
 
         foreach ($units as $unit) {
             if (isset($unit->items)) {
@@ -351,9 +397,19 @@ class Courses extends BaseController
                 foreach ($unit->items as $item) {
                     if ($item->item_type === 'video') {
                         $videoCount++;
-                        $totalDuration += (int)($item->duration ?? 0);
+                        // Extract duration from metadata if available
+                        $itemDuration = 0;
+                        if (!empty($item->metadata)) {
+                            $metadata = is_array($item->metadata) ? $item->metadata : json_decode($item->metadata, true);
+                            if (is_array($metadata)) {
+                                $itemDuration = $metadata['video_duration'] ?? 0;
+                            }
+                        }
+                        $totalDuration += (int)$itemDuration;
                     } elseif ($item->item_type === 'quiz') {
                         $quizCount++;
+                    } elseif ($item->item_type === 'page') {
+                        $pageCount++;
                     }
                 }
             }
@@ -362,7 +418,17 @@ class Courses extends BaseController
         // Add calculated stats to course object
         $course->video_count = $videoCount;
         $course->quizzes_count = $quizCount;
-        $course->duration = $this->formatDuration($totalDuration / 60); // Convert seconds to minutes
+        $course->page_count = $pageCount;
+        $course->total_items = $totalItems;
+        $course->duration = $this->formatDuration((int)($totalDuration / 60)); // Convert seconds to minutes and ensure integer
+
+        // Ensure required fields exist with defaults
+        $course->collection_id = $course->collection_id ?? '495222';
+        $course->intro_video_id = $course->intro_video_id ?? '';
+        
+        // Add unit and quiz counts for display
+        $course->unit_count = $this->coursesModel->getUnitCount($course->id);
+        $course->quiz_count = $this->coursesModel->getQuizCount($course->id);
 
         // 5) Prepare data for the view
         $data = [
@@ -370,6 +436,10 @@ class Courses extends BaseController
             'course' => $course,
             'units' => $units,
             'isEnrolled' => $isEnrolled,
+            'totalItems' => $totalItems,
+            'videoCount' => $videoCount,
+            'quizCount' => $quizCount,
+            'pageCount' => $pageCount,
         ];
 
         // 6) Render the updated "course_details" view
@@ -393,22 +463,46 @@ class Courses extends BaseController
             return redirect()->to('login')->with('error', 'Please log in first.');
         }
 
-        // Retrieve the enrollment
-        $enrollment = $this->coursesModel->getEnrollment($userId, $course->id);
-        if (!$enrollment) {
-            return redirect()->to('/courses')->with('error', 'You are not enrolled in this course.');
+        // Check enrollment using the new Units system
+        $hasAccess = $this->checkCourseAccess($userId, $course->id);
+        if (!$hasAccess) {
+            return redirect()->to('/courses/course_details/' . $slug)->with('error', 'You need to enroll in this course to access its content.');
         }
 
         // 3) Get course units with their items
         $units = $this->unitsModel->getUnitsByCourse($course->id);
 
-        // Get unit items for each unit and flatten all items
+        // Get unit items for each unit using the new UnitItemsModel
         $flatItems = [];
         foreach ($units as &$unit) {
-            $unit->items = $this->unitItemsModel->getUnitItems($unit->id, true); // Only active items
+            $unit->items = $this->unitItemsModel->getUnitItemsWithDetails($unit->id, true); // Get items with related data
 
             // Add items to flat array for navigation
             foreach ($unit->items as $item) {
+                // Extract duration from metadata if it's a video item
+                $duration = 0;
+                $thumbnail = '';
+                $parsedMetadata = [];
+
+                if (!empty($item->metadata)) {
+                    $parsedMetadata = is_string($item->metadata)
+                        ? json_decode($item->metadata, true)
+                        : $item->metadata;
+
+                    if (!is_array($parsedMetadata)) {
+                        $parsedMetadata = [];
+                    }
+                }
+
+                if ($item->item_type === 'video' && !empty($parsedMetadata)) {
+                    $duration = $parsedMetadata['video_duration'] ?? 0;
+                    $thumbnail = $parsedMetadata['video_thumbnail'] ?? '';
+                }
+
+                // Add duration property to the item object for view access
+                $item->duration = $duration;
+                $item->thumbnail = $thumbnail;
+
                 $flatItems[] = [
                     'id' => $item->id,
                     'unit_id' => $unit->id,
@@ -416,16 +510,20 @@ class Courses extends BaseController
                     'item_type' => $item->item_type,
                     'title' => $item->title,
                     'description' => $item->description,
-                    'item_id' => $item->item_id, // video_id for videos
-                    'duration' => $item->duration,
+                    'item_id' => $item->item_id, // References quiz_id, page_id, or video_id
+                    'duration' => $duration,
+                    'thumbnail' => $thumbnail,
+                    'metadata' => $parsedMetadata,
+                    'quiz_details' => $item->quiz_details ?? null,
+                    'page_details' => $item->page_details ?? null,
                     'is_preview' => false // Will be determined by enrollment
                 ];
             }
         }
         unset($unit);
 
-        // 4) Check which item is requested in ?video=XYZ (keeping same parameter name for compatibility)
-        $requestedItemId = $this->request->getGet('video');
+        // 4) Check which item is requested in ?item=XYZ (generic parameter for all item types)
+        $requestedItemId = $this->request->getGet('item') ?: $this->request->getGet('video') ?: $this->request->getGet('item_id');
 
         // 5) If no specific item is requested, jump to the first one
         if (!$requestedItemId && !empty($flatItems)) {
@@ -469,26 +567,188 @@ class Courses extends BaseController
             }
         }
 
-        // 9) Calculate progress (simplified for now)
-        $courseProgress = 0; // TODO: Implement progress calculation for units system
+        // 9) Calculate progress using the Progress module
+        $courseProgress = 0;
+        if ($hasAccess) {
+            $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
+            $courseProgress = $progressModel->getCourseCompletionPercentage($userId, $course->id);
+        }
 
-        // 10) Prepare data for the view
+        // 10) Prepare data for the view based on current item type
+        $videoId = 'dQw4w9WgXcQ'; // Default fallback
+        $videoLibraryId = '495222'; // Default fallback
+        $itemTitle = 'Default Item Title';
+        $itemDesc = 'Default item description';
+        $quizData = null;
+        $pageData = null;
+
+        if ($currentItem) {
+            $itemTitle = $currentItem['title'];
+            $itemDesc = $currentItem['description'];
+
+            // Debug logging for switch case
+            file_put_contents('d:/laragon/www/msarlink/debug.log', 
+                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERING IF BLOCK' . "\n", 
+                FILE_APPEND | LOCK_EX);
+            file_put_contents('d:/laragon/www/msarlink/debug.log', 
+                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - item_type: ' . $currentItem['item_type'] . "\n", 
+                FILE_APPEND | LOCK_EX);
+            file_put_contents('d:/laragon/www/msarlink/debug.log', 
+                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - metadata: ' . json_encode($currentItem['metadata']) . "\n", 
+                FILE_APPEND | LOCK_EX);
+            file_put_contents('d:/laragon/www/msarlink/debug.log', 
+                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ABOUT TO ENTER SWITCH' . "\n", 
+                FILE_APPEND | LOCK_EX);
+
+            switch ($currentItem['item_type']) {
+                case 'video':
+                    file_put_contents('d:/laragon/www/msarlink/debug.log', 
+                        date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERED VIDEO CASE' . "\n", 
+                        FILE_APPEND | LOCK_EX);
+                    // Extract video_id and video_library_id from metadata
+                    if (!empty($currentItem['metadata']) && is_array($currentItem['metadata'])) {
+                        $videoId = $currentItem['metadata']['video_id'] ?? $currentItem['item_id'] ?? 'dQw4w9WgXcQ';
+
+                        // BunnyCDN expects numeric library ID, not UUID
+                        // The collection_id is a UUID, but we need the actual library ID
+                        $videoLibraryId = '495222'; // Default BunnyCDN library ID
+
+                        // Only use video_library_id if it's numeric (valid BunnyCDN library ID)
+                        if (!empty($currentItem['metadata']['video_library_id']) &&
+                            is_numeric($currentItem['metadata']['video_library_id'])) {
+                            $videoLibraryId = $currentItem['metadata']['video_library_id'];
+                        }
+
+                    } else {
+                        $videoId = $currentItem['item_id'] ?? 'dQw4w9WgXcQ';
+                        $videoLibraryId = '495222'; // Default fallback
+                    }
+                    break;
+                case 'quiz':
+                    file_put_contents('d:/laragon/www/msarlink/debug.log', 
+                        date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERED QUIZ CASE' . "\n", 
+                        FILE_APPEND | LOCK_EX);
+                    // Extract quiz_id from metadata and fetch quiz data
+                    if (!empty($currentItem['metadata']) && is_array($currentItem['metadata'])) {
+                        $quizId = $currentItem['metadata']['quiz_id'] ?? $currentItem['item_id'];
+
+                        if ($quizId) {
+                            // Load QuizzesModel and fetch quiz data
+                            $quizzesModel = new \Modules\Quizzes\Models\QuizzesModel();
+                            $quizData = $quizzesModel->getQuizById($quizId);
+
+                            // Debug logging for quiz loading
+                            file_put_contents('d:/laragon/www/msarlink/debug.log', 
+                                date('Y-m-d H:i:s') . ' QUIZ LOADING DEBUG - quizId: ' . $quizId . "\n", 
+                                FILE_APPEND | LOCK_EX);
+                            file_put_contents('d:/laragon/www/msarlink/debug.log', 
+                                date('Y-m-d H:i:s') . ' QUIZ LOADING DEBUG - quizData result: ' . json_encode($quizData) . "\n", 
+                                FILE_APPEND | LOCK_EX);
+
+                            if ($quizData) {
+                                $itemDesc = $quizData->quiz_desc ?? $itemDesc;
+                                
+                                // Add user attempt information if user is logged in
+                                $userId = session()->get('user_id');
+                                if ($userId) {
+                                    $attemptsModel = new \Modules\Quizzes\Models\QuizAttemptsModel();
+                                    $userAttemptCount = $attemptsModel->getUserAttemptCount($userId, $quizId);
+                                    $userBestScore = $attemptsModel->getUserBestScore($userId, $quizId);
+                                    $userLatestAttempt = $attemptsModel->getUserLatestAttempt($userId, $quizId);
+                                    
+                                    // Add attempt information to quiz data
+                                    $quizData->user_attempt_count = $userAttemptCount;
+                                    $quizData->user_best_score = $userBestScore;
+                                    $quizData->remaining_attempts = max(0, $quizData->max_attempts - $userAttemptCount);
+                                    $quizData->has_exceeded_attempts = $userAttemptCount >= $quizData->max_attempts;
+                                    $quizData->user_latest_attempt = $userLatestAttempt;
+                                    
+                                    // Debug logging for attempt info
+                                    file_put_contents('d:/laragon/www/msarlink/debug.log', 
+                                        date('Y-m-d H:i:s') . ' ATTEMPT INFO DEBUG - User: ' . $userId . ', Attempts: ' . $userAttemptCount . '/' . $quizData->max_attempts . "\n", 
+                                        FILE_APPEND | LOCK_EX);
+                                }
+                            }
+                        }
+                    } else if (isset($currentItem['quiz_details'])) {
+                        $quizData = $currentItem['quiz_details'];
+                        $itemDesc = $quizData->quiz_desc ?? $itemDesc;
+                    }
+                    break;
+                case 'page':
+                    // Extract page_id from metadata and fetch page data
+                    if (!empty($currentItem['metadata']) && is_array($currentItem['metadata'])) {
+                        $pageId = $currentItem['metadata']['page_id'] ?? $currentItem['item_id'];
+
+                        if ($pageId) {
+                            // Load PagesModel and fetch page data
+                            $pagesModel = new \Modules\Pages\Models\PagesModel();
+                            $pageData = $pagesModel->find($pageId);
+
+                            if ($pageData) {
+                                $itemDesc = $pageData->content ?? $itemDesc;
+                            }
+                        }
+                    } else if (isset($currentItem['page_details'])) {
+                        $pageData = $currentItem['page_details'];
+                        $itemDesc = $pageData->content ?? $itemDesc;
+                    }
+                    break;
+            }
+        }
+
+        // Debug logging for quiz data
+        log_message('debug', 'COURSES_CONTROLLER DEBUG - quizData: ' . json_encode($quizData));
+        error_log('COURSES_CONTROLLER DEBUG - quizData: ' . json_encode($quizData));
+        file_put_contents('D:\laragon\www\msarlink\debug.log', 
+            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - quizData: ' . json_encode($quizData) . "\n", 
+            FILE_APPEND | LOCK_EX);
+
         $data = [
             'title'             => $course->course_title,
             'course'            => $course,
             'units'             => $units, // Changed from 'structure' to 'units'
             'course_progress'   => $courseProgress,
             'current_id'        => $requestedItemId,
-            'video_id'          => $currentItem['item_id'] ?? 'dQw4w9WgXcQ',
-            'video_title'       => $currentItem['title'] ?? 'Default Item Title',
-            'video_desc'        => $currentItem['description'] ?? 'Default item description',
+            'current_item'      => $currentItem,
+            'current_item_type' => $currentItem ? $currentItem['item_type'] : 'video',
+            'video_id'          => $videoId,
+            'video_library_id'  => $videoLibraryId,
+            'video_title'       => $itemTitle,
+            'video_desc'        => $itemDesc,
+            'itemTitle'         => $itemTitle,
+            'itemDesc'          => $itemDesc,
+            'quiz_data'         => $quizData,
+            'page_data'         => $pageData,
+            'metadata'          => $currentItem['metadata'] ?? [],
             'prevLessonUrl'     => $prevItem
-                ? site_url('courses/course_view/'.$slug.'?video='.$prevItem['id'])
+                ? site_url('courses/course_view/'.$slug.'?item='.$prevItem['id'])
                 : null,
             'nextLessonUrl'     => $nextItem
-                ? site_url('courses/course_view/'.$slug.'?video='.$nextItem['id'])
+                ? site_url('courses/course_view/'.$slug.'?item='.$nextItem['id'])
                 : null,
         ];
+
+        // Debug logging
+        log_message('debug', 'COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem));
+        log_message('debug', 'COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId);
+        log_message('debug', 'COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems));
+        
+        // Also use error_log for immediate visibility
+        error_log('COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem));
+        error_log('COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId);
+        error_log('COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems));
+        
+        // Write to custom debug file
+        file_put_contents('D:\laragon\www\msarlink\debug.log', 
+            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem) . "\n", 
+            FILE_APPEND | LOCK_EX);
+        file_put_contents('D:\laragon\www\msarlink\debug.log', 
+            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId . "\n", 
+            FILE_APPEND | LOCK_EX);
+        file_put_contents('D:\laragon\www\msarlink\debug.log', 
+            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems) . "\n", 
+            FILE_APPEND | LOCK_EX);
 
         return view('site/course_view', $data);
     }
@@ -539,9 +799,9 @@ class Courses extends BaseController
             return redirect()->to('/courses/'.$slug)->with('error', 'You are not enrolled in this course.');
         }
 
-        // 3) Mark the item as complete (TODO: Implement item completion tracking)
-        // For now, we'll use the existing method but this should be updated for units system
-        // $this->coursesModel->markLessonComplete($enrollment->id, $itemId);
+        // 3) Mark the item as complete
+        // Use the existing method for now - this tracks video completion
+        $this->coursesModel->markLessonComplete($enrollment->id, $itemId);
 
         // 4) Get course units and flatten items to find next item
         $units = $this->unitsModel->getUnitsByCourse($course->id);
@@ -558,17 +818,30 @@ class Courses extends BaseController
             }
         }
 
+        // Debug logging
+        log_message('debug', 'Current item ID: ' . $itemId);
+        log_message('debug', 'Flat items: ' . json_encode($flatItems));
+
         // Locate the current item index
         $currentIndex = array_search($itemId, array_column($flatItems, 'id'));
+        log_message('debug', 'Current index: ' . ($currentIndex !== false ? $currentIndex : 'not found'));
 
         if ($currentIndex !== false) {
             $nextIndex = $currentIndex + 1;
+            log_message('debug', 'Next index: ' . $nextIndex);
             // 5) If next item exists, redirect there
             if (isset($flatItems[$nextIndex])) {
                 $nextItemId = $flatItems[$nextIndex]['id'];
-                return redirect()->to(site_url('courses/course_view/'.$slug.'?video='.$nextItemId))
+                log_message('debug', 'Next item ID: ' . $nextItemId);
+                $redirectUrl = site_url('courses/course_view/'.$slug.'?item='.$nextItemId);
+                log_message('debug', 'Redirect URL: ' . $redirectUrl);
+                return redirect()->to($redirectUrl)
                     ->with('success', 'Item marked as complete! Moving to next item...');
+            } else {
+                log_message('debug', 'No next item found - reached end of course');
             }
+        } else {
+            log_message('debug', 'Current item not found in flat items array');
         }
 
         // 6) If no next item, just redirect back or to the course_view
@@ -596,10 +869,10 @@ class Courses extends BaseController
             $progress   = 0;
 
             // TODO: Implement progress calculation for units system
-            // For now, set progress to 0 until we implement unit-based progress tracking
+            // Calculate progress using the Progress module
             if ($enrollment) {
-                // $progress = $this->coursesModel->calculateProgress($courseObj, $enrollment);
-                $progress = 0; // Placeholder until units progress is implemented
+                $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
+                $progress = $progressModel->getCourseCompletionPercentage($userId, $courseObj->id);
             }
 
             $enrolledCourses[] = [
@@ -643,26 +916,119 @@ class Courses extends BaseController
             return redirect()->to('/courses/my_courses')->with('success', 'Successfully enrolled in free course!');
         }
 
-        // Get user's current credits
-        $userCredits = $this->creditTransactionsModel->getUserCredits($userId);
+        // For paid courses, redirect to unit enrollment since pricing is now unit-based
+        return redirect()->to('/enrollments/enroll/' . $courseId)->with('info', 'Please select units to enroll in this course.');
+    }
 
-        if ($userCredits < $course->price) {
-            return redirect()->back()->with('error', 'Insufficient credits. You need ' . $course->price . ' credits but only have ' . $userCredits . '.');
+    /**
+     * Mark course item as complete
+     */
+    public function mark_complete()
+    {
+        if (!$this->request->getMethod() === 'POST') {
+            return redirect()->back()->with('error', 'Invalid request method.');
         }
 
-        // Deduct credits and enroll
-        $this->creditTransactionsModel->recordTransaction([
-            'user_id' => $userId,
-            'type' => 'debit',
-            'amount' => $course->price,
-            'description' => 'Course purchase: ' . $course->course_title,
-            'reference_type' => 'course_purchase',
-            'reference_id' => $courseId
-        ]);
+        $userId = auth()->user()->id ?? null;
+        if (!$userId) {
+            return redirect()->to('login')->with('error', 'Please log in first.');
+        }
 
-        $this->coursesModel->enrollUser($userId, $courseId);
+        $itemId = $this->request->getPost('id');
+        $courseSlug = $this->request->getPost('slug');
+        $itemType = $this->request->getPost('item_type') ?? 'video';
 
-        return redirect()->to('/courses/my_courses')->with('success', 'Course purchased successfully!');
+        if (!$itemId || !$courseSlug) {
+            return redirect()->back()->with('error', 'Missing required parameters.');
+        }
+
+        // Get the unit item
+        $unitItem = $this->unitItemsModel->find($itemId);
+        if (!$unitItem) {
+            return redirect()->back()->with('error', 'Item not found.');
+        }
+
+        // Check if user has access to this unit
+        if (!$this->checkUnitAccess($userId, $unitItem->unit_id)) {
+            return redirect()->back()->with('error', 'You do not have access to this content.');
+        }
+
+        // Handle completion based on item type
+        $success = false;
+        switch ($itemType) {
+            case 'video':
+                $success = $this->markVideoComplete($userId, $itemId, $unitItem);
+                break;
+            case 'quiz':
+                // For quizzes, completion is handled by the quiz system
+                $success = $this->markQuizComplete($userId, $itemId, $unitItem);
+                break;
+            case 'page':
+                $success = $this->markPageComplete($userId, $itemId, $unitItem);
+                break;
+        }
+
+        if ($success) {
+            return redirect()->back()->with('success', 'Item marked as complete!');
+        } else {
+            return redirect()->back()->with('error', 'Failed to mark item as complete.');
+        }
+    }
+
+    /**
+     * Mark video item as complete
+     */
+    private function markVideoComplete($userId, $itemId, $unitItem): bool
+    {
+        // Load Progress model to save completion
+        $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
+        
+        // Mark unit as completed with 100% progress
+        $success = $progressModel->markUnitCompleted($userId, $unitItem->unit_id);
+        
+        if ($success) {
+            log_message('info', "User {$userId} completed video item {$itemId} in unit {$unitItem->unit_id}");
+        } else {
+            log_message('error', "Failed to mark video item {$itemId} as complete for user {$userId}");
+        }
+        
+        return $success;
+    }
+
+    /**
+     * Mark quiz item as complete
+     */
+    private function markQuizComplete($userId, $itemId, $unitItem): bool
+    {
+        // Quiz completion is handled by the quiz system
+        // Check if user has completed the quiz
+        $quizModel = new \Modules\Quizzes\Models\QuizAttemptsModel();
+        $attempts = $quizModel->where('user_id', $userId)
+                             ->where('quiz_id', $unitItem->item_id)
+                             ->where('is_completed', 1)
+                             ->findAll();
+
+        return !empty($attempts);
+    }
+
+    /**
+     * Mark page item as complete
+     */
+    private function markPageComplete($userId, $itemId, $unitItem): bool
+    {
+        // Load Progress model to save completion
+        $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
+        
+        // Mark unit as completed with 100% progress
+        $success = $progressModel->markUnitCompleted($userId, $unitItem->unit_id);
+        
+        if ($success) {
+            log_message('info', "User {$userId} completed page item {$itemId} in unit {$unitItem->unit_id}");
+        } else {
+            log_message('error', "Failed to mark page item {$itemId} as complete for user {$userId}");
+        }
+        
+        return $success;
     }
 
     /**
@@ -804,6 +1170,58 @@ class Courses extends BaseController
                 'url' => site_url('courses/unit/' . $nextUnit->id)
             ] : null
         ]);
+    }
+
+    /**
+     * Check if user has access to course content through unit enrollments
+     */
+    private function checkCourseAccess($userId, $courseId): bool
+    {
+        // Get all units for this course
+        $courseUnits = $this->db->table('tb_units')
+            ->select('id')
+            ->where('course_id', $courseId)
+            ->where('active', 1)
+            ->get()
+            ->getResultArray();
+
+        if (empty($courseUnits)) {
+            return false;
+        }
+
+        $courseUnitIds = array_column($courseUnits, 'id');
+
+        // Check if user has enrollment for any of these units
+        $enrollments = $this->db->table('tb_unit_enrollments')
+            ->where('user_id', $userId)
+            ->where('status', 'approved')
+            ->get()
+            ->getResultArray();
+
+        foreach ($enrollments as $enrollment) {
+            $unitIds = json_decode($enrollment['unit_ids'], true);
+            if ($unitIds && array_intersect($unitIds, $courseUnitIds)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Check if user has access to a specific unit
+     */
+    private function checkUnitAccess($userId, $unitId): bool
+    {
+        // Check if unit is free/preview
+        $unit = $this->unitsModel->find($unitId);
+        if ($unit && isset($unit->is_free) && $unit->is_free) {
+            return true;
+        }
+
+        // Check unit purchases
+        $unitPurchasesModel = new \Modules\Units\Models\UnitPurchasesModel();
+        return $unitPurchasesModel->hasUnitAccess($userId, $unitId);
     }
 
     /**

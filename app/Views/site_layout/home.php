@@ -102,15 +102,13 @@
                                 <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
                                     <div>
                                         <?php if ($course['is_free']): ?>
-                                            <span class="price text-success">مجاني</span>
-                                        <?php else: ?>
-                                            <span class="price"><?= number_format($course['price']) ?> </span>
+                                            <span class="badge bg-success">مجاني</span>
                                         <?php endif; ?>
                                     </div>
                                     <?php if ($course['is_enrolled']): ?>
                                         <a href="<?= $course['course_url'] ?>" class="btn btn-success">متابعة التعلم</a>
                                     <?php else: ?>
-                                        <a href="<?= base_url('courses/course-action/' . $course['id']) ?>" class="btn btn-primary">ابدأ التعلم</a>
+                                        <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>" class="btn btn-primary">ابدأ التعلم</a>
                                     <?php endif; ?>
                                 </div>
                             </div>

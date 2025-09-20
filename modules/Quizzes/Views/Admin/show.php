@@ -108,12 +108,12 @@
                                 </div>
                             </div>
 
-                            <?php if ($quiz->quiz_description): ?>
+                            <?php if ($quiz->quiz_desc): ?>
                             <div class="row mt-3">
                                 <div class="col-12">
                                     <h6><?= lang('Quizzes.quiz_description') ?>:</h6>
                                     <div class="bg-light p-3 rounded">
-                                        <?= nl2br(esc($quiz->quiz_description)) ?>
+                                        <?= nl2br(esc($quiz->quiz_desc)) ?>
                                     </div>
                                 </div>
                             </div>

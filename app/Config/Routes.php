@@ -36,10 +36,19 @@ $routes->get('/', [Site::class, 'index']);
 $routes->get('lang/{locale}', [BaseController::class, 'langSwitch']);
 
 // 1) قبل shield routes:
-$routes->match(['get', 'post'], 'register', [Site::class, 'register']);
-$routes->match(['get', 'post'], 'login', [Site::class, 'login']);
+$routes->match(['GET', 'POST'], 'register', [Site::class, 'register']);
+$routes->match(['GET', 'POST'], 'login', [Site::class, 'login']);
+$routes->get('activate-account', [Site::class, 'activateAccount']);
+$routes->get('activation-sent', function() {
+    return MainView('site_layout/activation_sent');
+});
 
-service('auth')->routes($routes);
+// Shield routes - exclude both show and verify to avoid conflicts
+service('auth')->routes($routes, ['except' => ['auth/a/show', 'auth/a/verify']]);
+
+// Custom routes for Shield actions using dedicated ActivationController
+$routes->get('auth/a/show', 'ActivationController::show');
+$routes->post('auth/a/verify', 'ActivationController::verify');
 
 
 // Site main routes

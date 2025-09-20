@@ -507,6 +507,22 @@ function selectItemType(type) {
     }
 }
 
+// Global variable to store fetched video data
+let currentVideoData = null;
+
+// Helper function to format duration (in minutes)
+function formatDuration(seconds) {
+    if (!seconds) return 'غير محدد';
+    const totalMinutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+
+    if (remainingSeconds > 0) {
+        return totalMinutes + ':' + String(remainingSeconds).padStart(2, '0');
+    } else {
+        return totalMinutes + ':00';
+    }
+}
+
 // Video Functions
 function fetchVideoData() {
     const videoId = $('#video_id').val();
@@ -522,8 +538,11 @@ function fetchVideoData() {
         '<?= csrf_token() ?>': '<?= csrf_hash() ?>'
     }, function(response) {
         if (response.success) {
+            // Store complete video data globally
+            currentVideoData = response.data;
+            
             $('#video_title').val(response.data.title);
-            $('#video_duration').val(response.data.duration);
+            $('#video_duration').val(response.data.video_duration || formatDuration(response.data.duration));
             $('#video_thumbnail').val(response.data.thumbnail);
             toastr.success('تم جلب بيانات الفيديو بنجاح');
         } else {
@@ -537,13 +556,29 @@ function fetchVideoData() {
 }
 
 function saveVideoItem() {
+    if (!currentVideoData) {
+        toastr.error('يرجى جلب بيانات الفيديو أولاً');
+        return;
+    }
+    
     const formData = {
         unit_id: currentUnitId,
         item_type: 'video',
         video_id: $('#video_id').val(),
+        video_title: $('#video_title').val(),
         title: $('#video_title').val(),
-        duration: $('#video_duration').val(),
+        duration: currentVideoData.duration || 0,
+        video_duration: $('#video_duration').val(),
         thumbnail: $('#video_thumbnail').val(),
+        video_thumbnail: $('#video_thumbnail').val(),
+        collection_id: currentVideoData.collection_id || '',
+        video_library_id: currentVideoData.video_library_id || '',
+        file_size: currentVideoData.file_size || 0,
+        video_quality: currentVideoData.height ? currentVideoData.width + 'x' + currentVideoData.height : null,
+        width: currentVideoData.width || 0,
+        height: currentVideoData.height || 0,
+        framerate: currentVideoData.framerate || 0,
+        description: currentVideoData.description || '',
         '<?= csrf_token() ?>': '<?= csrf_hash() ?>'
     };
 
@@ -552,6 +587,7 @@ function saveVideoItem() {
             toastr.success('تم إضافة الفيديو بنجاح');
             $('#addVideoModal').modal('hide');
             $('#addVideoForm')[0].reset();
+            currentVideoData = null; // Clear stored video data
             loadUnitItems();
         } else {
             toastr.error('حدث خطأ في إضافة الفيديو');

@@ -9,125 +9,125 @@
 <?= $this->extend('site_layout/template') ?>
 
 <?= $this->section('content') ?>
-<div class="container-fluid py-4">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <!-- Results Header -->
-            <div class="card mb-4">
-                <div class="card-header bg-<?= $attempt->score >= $quiz->passing_score ? 'success' : 'warning' ?> text-white">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h4 class="mb-0">
-                                <i class="fas fa-<?= $attempt->score >= $quiz->passing_score ? 'trophy' : 'exclamation-triangle' ?>"></i>
-                                <?= $attempt->score >= $quiz->passing_score ? lang('Quizzes.quiz_passed') : lang('Quizzes.quiz_failed') ?>
-                            </h4>
-                            <p class="mb-0"><?= esc($quiz->quiz_title) ?></p>
-                        </div>
-                        <div class="col-md-4 text-md-right">
-                            <div class="score-display">
-                                <h2 class="mb-0"><?= number_format($attempt->score, 1) ?>%</h2>
-                                <small><?= lang('Quizzes.your_score') ?></small>
+<div class="site-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Results Header -->
+                <div class="feature-1 border mb-4 <?= $attempt->score >= $quiz->passing_score ? 'border-success' : 'border-warning' ?>">
+                    <div class="feature-1-content bg-<?= $attempt->score >= $quiz->passing_score ? 'success' : 'warning' ?> text-white">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h3 class="mb-2">
+                                    <i class="icon-<?= $attempt->score >= $quiz->passing_score ? 'trophy' : 'exclamation-triangle' ?>"></i>
+                                    <?= $attempt->score >= $quiz->passing_score ? lang('Quizzes.quiz_passed') : lang('Quizzes.quiz_failed') ?>
+                                </h3>
+                                <p class="mb-0 lead"><?= esc($quiz->quiz_title) ?></p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Score Summary -->
-            <div class="row mb-4">
-                <div class="col-md-3">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h3 class="text-primary"><?= number_format($attempt->score, 1) ?>%</h3>
-                            <p class="card-text text-muted"><?= lang('Quizzes.final_score') ?></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h3 class="text-success"><?= $correct_answers ?></h3>
-                            <p class="card-text text-muted"><?= lang('Quizzes.correct_answers') ?></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h3 class="text-danger"><?= $wrong_answers ?></h3>
-                            <p class="card-text text-muted"><?= lang('Quizzes.wrong_answers') ?></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h3 class="text-info"><?= gmdate('H:i:s', $attempt->completion_time_seconds) ?></h3>
-                            <p class="card-text text-muted"><?= lang('Quizzes.completion_time') ?></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Passing Score Info -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <h6 class="mb-0"><?= lang('Quizzes.passing_score_label') ?>: <?= number_format($quiz->passing_score, 1) ?>%</h6>
-                            <p class="text-muted mb-0">
-                                <?php if ($attempt->score >= $quiz->passing_score): ?>
-                                    <i class="fas fa-check-circle text-success"></i> <?= lang('Quizzes.congratulations_passed') ?>
-                                <?php else: ?>
-                                    <i class="fas fa-times-circle text-danger"></i> <?= lang('Quizzes.need_to_improve') ?>
-                                <?php endif; ?>
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar bg-<?= $attempt->score >= $quiz->passing_score ? 'success' : 'warning' ?>" 
-                                     role="progressbar" 
-                                     style="width: <?= min($attempt->score, 100) ?>%" 
-                                     aria-valuenow="<?= $attempt->score ?>" 
-                                     aria-valuemin="0" 
-                                     aria-valuemax="100">
-                                    <?= number_format($attempt->score, 1) ?>%
+                            <div class="col-md-4 text-md-right">
+                                <div class="score-display">
+                                    <h1 class="mb-0 display-4"><?= number_format($attempt->score, 1) ?>%</h1>
+                                    <small class="opacity-75"><?= lang('Quizzes.your_score') ?></small>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between mt-1">
-                                <small class="text-muted">0%</small>
-                                <small class="text-muted"><?= number_format($quiz->passing_score, 1) ?>% (<?= lang('Quizzes.passing') ?>)</small>
-                                <small class="text-muted">100%</small>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Score Summary -->
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-3">
+                        <div class="feature-1 border text-center">
+                            <div class="feature-1-content">
+                                <h3 class="text-primary mb-2"><?= number_format($attempt->score, 1) ?>%</h3>
+                                <p class="text-muted mb-0"><?= lang('Quizzes.final_score') ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="feature-1 border text-center">
+                            <div class="feature-1-content">
+                                <h3 class="text-success mb-2"><?= $correct_answers ?></h3>
+                                <p class="text-muted mb-0"><?= lang('Quizzes.correct_answers') ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="feature-1 border text-center">
+                            <div class="feature-1-content">
+                                <h3 class="text-danger mb-2"><?= $wrong_answers ?></h3>
+                                <p class="text-muted mb-0"><?= lang('Quizzes.wrong_answers') ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="feature-1 border text-center">
+                            <div class="feature-1-content">
+                                <h3 class="text-info mb-2"><?= gmdate('H:i:s', $attempt->time_taken_seconds ?? 0) ?></h3>
+                                <p class="text-muted mb-0"><?= lang('Quizzes.completion_time') ?></p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Question Review -->
-            <?php if ($quiz->show_results_immediately && isset($questions_with_answers)): ?>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="mb-0"><?= lang('Quizzes.question_review') ?></h5>
-                </div>
-                <div class="card-body">
-                    <?php foreach ($questions_with_answers as $index => $question): ?>
-                    <div class="question-review mb-4 pb-4 <?= $index < count($questions_with_answers) - 1 ? 'border-bottom' : '' ?>">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <h6 class="text-primary">
-                                    <?= lang('Quizzes.question') ?> <?= $index + 1 ?>
-                                    <span class="badge badge-<?= $question->is_correct ? 'success' : 'danger' ?> ml-2">
-                                        <?= $question->points ?> <?= lang('Admin.points') ?>
-                                    </span>
-                                </h6>
+            <!-- Passing Score Info -->
+                <div class="feature-1 border mb-4">
+                    <div class="feature-1-content">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h5 class="mb-2"><?= lang('Quizzes.passing_score_label') ?>: <?= number_format($quiz->passing_score, 1) ?>%</h5>
+                                <p class="text-muted mb-0">
+                                    <?php if ($attempt->score >= $quiz->passing_score): ?>
+                                        <i class="icon-check-circle text-success"></i> <?= lang('Quizzes.congratulations_passed') ?>
+                                    <?php else: ?>
+                                        <i class="icon-times-circle text-danger"></i> <?= lang('Quizzes.need_to_improve') ?>
+                                    <?php endif; ?>
+                                </p>
                             </div>
-                            <div class="col-md-2 text-right">
-                                <i class="fas fa-<?= $question->is_correct ? 'check-circle text-success' : 'times-circle text-danger' ?> fa-lg"></i>
+                            <div class="col-md-6">
+                                <div class="progress mb-2" style="height: 20px;">
+                                    <div class="progress-bar bg-<?= $attempt->score >= $quiz->passing_score ? 'success' : 'warning' ?>" 
+                                         role="progressbar" 
+                                         style="width: <?= min($attempt->score, 100) ?>%" 
+                                         aria-valuenow="<?= $attempt->score ?>" 
+                                         aria-valuemin="0" 
+                                         aria-valuemax="100">
+                                        <?= number_format($attempt->score, 1) ?>%
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted">0%</small>
+                                    <small class="text-muted"><?= number_format($quiz->passing_score, 1) ?>% (<?= lang('Quizzes.passing') ?>)</small>
+                                    <small class="text-muted">100%</small>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+            <!-- Question Review -->
+                <?php if ($quiz->show_results_immediately && isset($questions_with_answers)): ?>
+                <div class="feature-1 border mb-4">
+                    <div class="feature-1-content">
+                        <h4 class="mb-4"><?= lang('Quizzes.question_review') ?></h4>
                         
-                        <p class="mb-3"><strong><?= esc($question->question_text) ?></strong></p>
+                        <?php foreach ($questions_with_answers as $index => $question): ?>
+                        <div class="question-review mb-4 pb-4 <?= $index < count($questions_with_answers) - 1 ? 'border-bottom' : '' ?>">
+                            <div class="row align-items-center mb-3">
+                                <div class="col-md-10">
+                                    <h5 class="text-primary mb-0">
+                                        <?= lang('Quizzes.question') ?> <?= $index + 1 ?>
+                                        <span class="badge badge-<?= $question->is_correct ? 'success' : 'danger' ?> ml-2">
+                                            <?= $question->points ?> <?= lang('Admin.points') ?>
+                                        </span>
+                                    </h5>
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    <i class="icon-<?= $question->is_correct ? 'check-circle text-success' : 'times-circle text-danger' ?> display-6"></i>
+                                </div>
+                            </div>
+                            
+                            <p class="mb-3 lead"><?= esc($question->question_text) ?></p>
                         
                         <?php if ($question->question_type === 'single_choice' || $question->question_type === 'multiple_choice'): ?>
                             <?php $options = json_decode($question->options, true); ?>
@@ -210,44 +210,44 @@
                         <?php endif; ?>
                     </div>
                     <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
-            <?php endif; ?>
+                <?php endif; ?>
 
-            <!-- Actions -->
-            <div class="card">
-                <div class="card-body text-center">
-                    <div class="btn-group" role="group">
-                        <?php if ($can_retake): ?>
-                            <a href="<?= base_url('quizzes/take/' . $quiz->id) ?>" class="btn btn-primary">
-                                <i class="fas fa-redo"></i> <?= lang('Quizzes.retry_quiz') ?>
+                <!-- Actions -->
+                <div class="feature-1 border">
+                    <div class="feature-1-content text-center">
+                        <div class="btn-group-vertical btn-group-sm-horizontal" role="group">
+                            <?php if ($can_retake): ?>
+                                <a href="<?= base_url('quizzes/take/' . $quiz->id) ?>" class="btn btn-primary mb-2 mb-sm-0 mr-sm-2">
+                                    <i class="icon-refresh"></i> <?= lang('Quizzes.retry_quiz') ?>
+                                </a>
+                            <?php endif; ?>
+                            
+                            <a href="<?= base_url('quizzes/attempts/' . $quiz->id) ?>" class="btn btn-info mb-2 mb-sm-0 mr-sm-2">
+                                <i class="icon-clock"></i> <?= lang('Quizzes.view_attempts') ?>
                             </a>
-                        <?php endif; ?>
-                        
-                        <a href="<?= base_url('quizzes/attempts/' . $quiz->id) ?>" class="btn btn-info">
-                            <i class="fas fa-history"></i> <?= lang('Quizzes.view_attempts') ?>
-                        </a>
-                        
-                        <a href="<?= base_url('quizzes') ?>" class="btn btn-secondary">
-                            <i class="fas fa-list"></i> <?= lang('Quizzes.back_to_quizzes') ?>
-                        </a>
-                        
-                        <?php if (isset($quiz->course_id)): ?>
-                            <a href="<?= base_url('courses/course_view/' . $quiz->course_id) ?>" class="btn btn-outline-primary">
-                                <i class="fas fa-book"></i> <?= lang('Courses.back_to_course') ?>
+                            
+                            <a href="<?= base_url('quizzes') ?>" class="btn btn-secondary mb-2 mb-sm-0 mr-sm-2">
+                                <i class="icon-list"></i> <?= lang('Quizzes.back_to_quizzes') ?>
                             </a>
+                            
+                            <?php if (isset($quiz->course_id)): ?>
+                                <a href="<?= base_url('courses/course_view/' . $quiz->slug) ?>" class="btn btn-outline-primary">
+                                <i class="icon-book"></i> <?= lang('Courses.back_to_course') ?>
+                            </a>
+                            <?php endif; ?>
+                        </div>
+                        
+                        <?php if (!$can_retake && $quiz->max_attempts): ?>
+                            <div class="mt-3">
+                                <small class="text-muted">
+                                    <i class="icon-exclamation-triangle"></i> 
+                                    <?= lang('Quizzes.max_attempts_reached') ?> (<?= $user_attempts ?>/<?= $quiz->max_attempts ?>)
+                                </small>
+                            </div>
                         <?php endif; ?>
                     </div>
-                    
-                    <?php if (!$can_retake && $quiz->max_attempts): ?>
-                        <div class="mt-3">
-                            <small class="text-muted">
-                                <i class="fas fa-exclamation-triangle"></i> 
-                                <?= lang('Quizzes.max_attempts_reached') ?> (<?= $user_attempts ?>/<?= $quiz->max_attempts ?>)
-                            </small>
-                        </div>
-                    <?php endif; ?>
-                </div>
             </div>
             
             <!-- Attempt Information -->
@@ -299,13 +299,76 @@
 
 <?= $this->section('js') ?>
 <style>
-.score-display h2 {
-    font-size: 2.5rem;
-    font-weight: bold;
+.site-section {
+    padding: 2rem 0;
+}
+
+.feature-1 {
+    background: var(--bs-white);
+    border-radius: var(--bs-border-radius-lg);
+    box-shadow: var(--bs-box-shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.feature-1:hover {
+    box-shadow: var(--bs-box-shadow);
+    transform: translateY(-2px);
+}
+
+.feature-1-content {
+    padding: 2rem;
+}
+
+.score-display {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--bs-success);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.score-display.failed {
+    color: var(--bs-warning);
+}
+
+.progress-bar {
+    height: 8px;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+
+.btn-group-vertical.btn-group-sm-horizontal {
+    flex-direction: column;
+}
+
+@media (min-width: 576px) {
+    .btn-group-vertical.btn-group-sm-horizontal {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .btn-group-vertical.btn-group-sm-horizontal .btn {
+        margin-bottom: 0 !important;
+        margin-right: 0.5rem;
+    }
+    
+    .btn-group-vertical.btn-group-sm-horizontal .btn:last-child {
+        margin-right: 0;
+    }
 }
 
 .question-review {
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
     transition: all 0.3s ease;
+}
+
+.question-review:nth-child(odd) {
+    animation-delay: 0.1s;
+}
+
+.question-review:nth-child(even) {
+    animation-delay: 0.2s;
 }
 
 .question-review:hover {
@@ -313,6 +376,13 @@
     border-radius: 0.5rem;
     padding: 1rem !important;
     margin: -0.5rem;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .options-review .bg-success {
@@ -337,11 +407,42 @@
 
 .card {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    transition: box-shadow 0.15s ease-in-out;
+    transition: all 0.3s ease;
+    border: none;
 }
 
 .card:hover {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--bs-primary);
+    animation: confetti-fall 3s linear infinite;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
 }
 </style>
 

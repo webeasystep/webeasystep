@@ -24,7 +24,6 @@ class AdminCourses extends BaseController
             "short_desc" => ['label' => lang("Courses.short_desc"), 'rules' => "required|max_length[500]"],
             "slug" => ['label' => lang("Courses.slug"), 'rules' => "required|alpha_dash|is_unique[tb_courses.slug]"],
             "active" => ['label' => lang("Courses.active"), 'rules' => "permit_empty|in_list[0,1,on]"],
-            "price" => ['label' => lang("Courses.price"), 'rules' => "required|decimal"],
         ];
     }
 
@@ -34,21 +33,21 @@ class AdminCourses extends BaseController
 
         if ($this->request->isAJAX()) {
             $coursesModel = $this->courses
-                ->select('id, course_title, slug, image, sort, price, is_free,active, created_at')
+                ->select('id, course_title, slug, image, sort, is_free, active, created_at')
                 ->orderBy('id', 'desc')
                 ->builder();
 
 
             DtTable::hideColumns(['id']);
-            DtTable::searchableColumns(['course_title', 'course_desc', 'price', 'is_free']);
-            DtTable::orderableColumns(['course_title', 'course_desc', 'sort', 'price', 'is_free', 'created_at']);
+            DtTable::searchableColumns(['course_title', 'course_desc', 'is_free']);
+            DtTable::orderableColumns(['course_title', 'course_desc', 'sort', 'is_free', 'created_at']);
             DtTable::setColumnImage('image');
             DtTable::setColumnSwitch('is_free'); // Add switch for is_free
             DtTable::setColumnSwitch('active'); // Add switch for is_free
             // Add a link around the course_title column using the slug
             DtTable::setColumnLink('course_title', base_url('courses/course_details/{slug}'));
 
-            DtTable::setShowColumns("course_title,course_desc,sort,price,is_free,created_at");
+            DtTable::setShowColumns("course_title,course_desc,sort,is_free,created_at");
 
             $output = DtTable::tableRender($coursesModel, false);
 
@@ -115,8 +114,8 @@ class AdminCourses extends BaseController
             'short_desc'        => $this->request->getPost('short_desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             'slug'              => $this->request->getPost('slug', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             'intro_video_id'    => $this->request->getPost('intro_video_id'),
+            'collection_id'     => $this->request->getPost('collection_id'),
             'sort'              => $this->request->getPost('sort', FILTER_SANITIZE_NUMBER_INT),
-            'price'             => $this->request->getPost('price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
             'is_free'           => $this->request->getPost('is_free') ? '1' : '0',
             'active'            => $this->request->getPost('active') ? '1' : '0',
         ];

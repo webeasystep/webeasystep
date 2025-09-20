@@ -122,7 +122,7 @@ class Units extends BaseController
     /**
      * View individual unit with progress tracking
      */
-    public function viewUnit(int $unitId): string
+    public function viewUnit(int $unitId)
     {
         $unit = $this->unitsModel->find($unitId);
         if (!$unit || !$unit->active) {

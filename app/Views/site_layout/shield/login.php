@@ -7,7 +7,19 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <h5 class="card-title mb-5"><?= lang('Auth.login') ?></h5>
-                <?= $this->include('admin_layout/admin_msg'); ?>
+                <?= $this->include('site_layout/site_msg'); ?>
+
+                <?php if (session()->getFlashdata('errors')): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i> يرجى إصلاح الأخطاء التالية:
+                        <ul class="mb-0 mt-2">
+                            <?php foreach (session()->getFlashdata('errors') as $error): ?>
+                                <li><?= esc($error) ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="إغلاق"></button>
+                    </div>
+                <?php endif; ?>
 
                 <form  method="post">
                     <?= csrf_field() ?>

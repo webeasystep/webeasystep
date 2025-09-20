@@ -18,7 +18,6 @@ class UnitItemsModel extends Model
         'item_id',
         'title',
         'description',
-        'thumbnail',
         'duration',
         'sort_order',
         'is_active',
@@ -141,15 +140,36 @@ class UnitItemsModel extends Model
      */
     public function createVideoItem($unitId, $videoData, $sortOrder = null)
     {
+        // Prepare content_data with additional metadata
+        $contentData = [
+            'collection_id' => $videoData['collection_id'] ?? '',
+            'stream_url' => $videoData['stream_url'] ?? '',
+            'preview_url' => $videoData['preview_url'] ?? '',
+            'captions_path' => $videoData['captions_path'] ?? '',
+            'seek_path' => $videoData['seek_path'] ?? '',
+            'fallback_url' => $videoData['fallback_url'] ?? ''
+        ];
+        
+        // Prepare metadata JSON with video information
+        $metadata = [
+            'video_id' => $videoData['video_id'] ?? '',
+            'video_title' => $videoData['video_title'] ?? $videoData['title'] ?? '',
+            'video_duration' => $videoData['video_duration'] ?? '',
+            'video_thumbnail' => $videoData['video_thumbnail'] ?? $videoData['thumbnail'] ?? '',
+            'collection_id' => $videoData['collection_id'] ?? '',
+            'video_library_id' => $videoData['video_library_id'] ?? ''
+        ];
+        
         $data = [
             'unit_id' => $unitId,
             'item_type' => 'video',
-            'video_id' => $videoData['video_id'],
-            'video_title' => $videoData['title'] ?? '',
-            'video_duration' => $videoData['duration'] ?? '',
-            'video_thumbnail' => $videoData['thumbnail'] ?? '',
-            'title' => $videoData['title'] ?? 'فيديو جديد',
+            'video_id' => $videoData['video_id'] ?? '',
+            'video_title' => $videoData['video_title'] ?? $videoData['title'] ?? '',
+            'video_duration' => $videoData['video_duration'] ?? '',
+            'title' => $videoData['video_title'] ?? $videoData['title'] ?? 'فيديو جديد',
             'description' => $videoData['description'] ?? '',
+            'content_data' => json_encode($contentData),
+            'metadata' => json_encode($metadata),
             'sort_order' => $sortOrder ?? $this->getNextSortOrder($unitId),
             'is_active' => 1
         ];
@@ -163,19 +183,26 @@ class UnitItemsModel extends Model
     public function createQuizItem($unitId, $quizId, $title = null, $sortOrder = null)
     {
         // Get quiz details if title not provided
+        $quizModel = new \Modules\Quizzes\Models\QuizzesModel();
+        $quiz = $quizModel->find($quizId);
+        
         if (!$title) {
-            $quizModel = new \Modules\Quizzes\Models\QuizzesModel();
-            $quiz = $quizModel->find($quizId);
             $title = $quiz ? $quiz->quiz_title : 'كويز جديد';
         }
+        
+        $description = $quiz ? $quiz->quiz_desc : '';
 
         $data = [
             'unit_id' => $unitId,
             'item_type' => 'quiz',
             'item_id' => $quizId,
             'title' => $title,
+            'description' => $description,
             'sort_order' => $sortOrder ?? $this->getNextSortOrder($unitId),
-            'is_active' => 1
+            'is_active' => 1,
+            'metadata' => json_encode([
+                'quiz_id' => $quizId
+            ])
         ];
 
         return $this->insert($data);
@@ -187,19 +214,26 @@ class UnitItemsModel extends Model
     public function createPageItem($unitId, $pageId, $title = null, $sortOrder = null)
     {
         // Get page details if title not provided
+        $pageModel = new \Modules\Pages\Models\PagesModel();
+        $page = $pageModel->find($pageId);
+        
         if (!$title) {
-            $pageModel = new \Modules\Pages\Models\PagesModel();
-            $page = $pageModel->find($pageId);
             $title = $page ? $page->title : 'صفحة جديدة';
         }
+        
+        $description = $page ? $page->desc : '';
 
         $data = [
             'unit_id' => $unitId,
             'item_type' => 'page',
             'item_id' => $pageId,
             'title' => $title,
+            'description' => $description,
             'sort_order' => $sortOrder ?? $this->getNextSortOrder($unitId),
-            'is_active' => 1
+            'is_active' => 1,
+            'metadata' => json_encode([
+                'page_id' => $pageId
+            ])
         ];
 
         return $this->insert($data);

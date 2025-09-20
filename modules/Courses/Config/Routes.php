@@ -22,7 +22,7 @@ $routes->group('dt_admin', [
     $routes->post('courses/switchToggle', [AdminCourses::class, 'switchToggle']);
     $routes->post('courses/delete', [AdminCourses::class, 'delete']);
     $routes->get('courses/get-all', [AdminCourses::class, 'getAllCourses']);
-    
+
     // Quiz management routes
     $routes->get('courses/getQuizzesByCourse/(:num)', [AdminCourses::class, 'getQuizzesByCourse/$1']);
     $routes->post('courses/addQuizToCourse', [AdminCourses::class, 'addQuizToCourse']);
@@ -30,31 +30,24 @@ $routes->group('dt_admin', [
 
 });
 
-/*** Site Routes for Courses ***/
-$routes->group('/', [
+// Public Site Routes (no authentication required)
+$routes->group('', [
     'namespace' => 'Modules\Courses\Controllers'
 ], static function ($routes) {
+    $routes->get('courses', 'Courses::index');
+    $routes->get('courses/course_details/(:any)', 'Courses::course_details/$1');
+});
 
-    // 1) List all courses (index)
-    $routes->get('courses', [Courses::class, 'index']);
-    // 2) Course details by slug
-    $routes->get('courses/course_details/(:any)', [Courses::class, 'course_details/$1']);
-    // Course action route
-    $routes->get('courses/course-action/(:num)', [Courses::class, 'courseAction/$1'], ['filter' => 'site_filter']);
-    // 3) Course "player" view
-    $routes->get('courses/course_view/(:any)', [Courses::class, 'course_view/$1']);
-
-    // 5) Show single course by ID (if you still use it)
-    $routes->post('courses/show/(:num)', [Courses::class, 'show/$1']);
-    // === NEW Routes with SiteFilter ===
-    $routes->group('', ['filter' => 'site_filter'], static function ($routes) {
-        // 4) My Courses (enrolled)
-        $routes->get('courses/my_courses', [Courses::class, 'my_courses']);
-        // Enroll user in a course (POST to /courses/enroll/123)
-        $routes->post('courses/enroll/(:num)', [Courses::class, 'enroll/$1']);
-        // Mark a video as complete (POST to /courses/markLessonComplete)
-        $routes->post('courses/markLessonComplete', [Courses::class, 'markLessonComplete']);
-    });
+// Protected Site Routes (authentication required)
+$routes->group('', [
+    'namespace' => 'Modules\Courses\Controllers',
+    'filter' => 'site_filter'
+], static function ($routes) {
+    $routes->get('courses/course_view/(:any)', 'Courses::course_view/$1');
+    $routes->get('courses/item/(:num)', 'Courses::item/$1');
+    $routes->get('courses/my_courses', 'Courses::my_courses');
+    $routes->post('courses/enroll/(:num)', 'Courses::enroll/$1');
+    $routes->post('courses/markLessonComplete', 'Courses::markLessonComplete');
 });
 
 /*** Example API Routes (commented out) ***/

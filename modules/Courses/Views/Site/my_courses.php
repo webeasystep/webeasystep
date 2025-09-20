@@ -80,10 +80,10 @@
         font-weight: 600;
     }
     .free-badge {
-        background-color: #27ae60 !important; /* Green for free */
+        background-color: var(--primary-color) !important; /* Primary color for free */
     }
-    .price-badge {
-        background-color: #e74c3c !important; /* Red for price */
+    .info-badge {
+        background-color: #17a2b8 !important; /* Info blue for unit count */
     }
 
     /* Course Content */
@@ -118,7 +118,7 @@
         color: #444;
     }
     .progress {
-        height: 8px;
+        height: 19px;
         background-color: #e9ecef;
         border-radius: 4px;
         overflow: hidden;
@@ -216,8 +216,8 @@
                                 <?php if ($course->is_free): ?>
                                     <div class="course-badge free-badge">مجاناً</div>
                                 <?php else: ?>
-                                    <div class="course-badge price-badge">
-                                        $<?= number_format($course->price, 2) ?>
+                                    <div class="course-badge info-badge">
+                                        <i class="fas fa-book"></i> <?= $course->unit_count ?? 0 ?> وحدة
                                     </div>
                                 <?php endif; ?>
                             </div>

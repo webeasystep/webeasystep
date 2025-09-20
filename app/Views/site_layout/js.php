@@ -1,5 +1,5 @@
 <!-- jQuery -->
-
+<script src="<?= base_url() ?>site/js/jquery-3.4.1.min.js"></script>
 <script src="<?= base_url() ?>site/js/popper.min.js"></script>
 <script src="<?= base_url() ?>site/js/bootstrap.min.js"></script>
 <script src="<?= base_url() ?>site/js/owl.carousel.min.js"></script>

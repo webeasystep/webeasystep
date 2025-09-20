@@ -6,8 +6,8 @@ use CodeIgniter\Config\BaseConfig;
 
 class Email extends BaseConfig
 {
-    public string $fromEmail  = 'spcialist@gmail.com';
-    public string $fromName   = 'amd';
+    public string $fromEmail  = '';
+    public string $fromName   = '';
     public string $recipients = '';
 
     /**
@@ -18,7 +18,7 @@ class Email extends BaseConfig
     /**
      * The mail sending protocol: mail, sendmail, smtp
      */
-    public string $protocol = 'mail';
+    public string $protocol = 'smtp';
 
     /**
      * The server path to Sendmail.
@@ -43,7 +43,7 @@ class Email extends BaseConfig
     /**
      * SMTP Port
      */
-    public int $SMTPPort = 25;
+    public int $SMTPPort = 587;
 
     /**
      * SMTP Timeout (in seconds)
@@ -77,7 +77,7 @@ class Email extends BaseConfig
     /**
      * Type of mail, either 'text' or 'html'
      */
-    public string $mailType = 'text';
+    public string $mailType = 'html';
 
     /**
      * Character set (utf-8, iso-8859-1, etc.)
@@ -118,4 +118,47 @@ class Email extends BaseConfig
      * Enable notify message from server
      */
     public bool $DSN = false;
+
+    /**
+     * Constructor to load email settings from environment variables
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        
+        // Load email settings from environment variables
+        $this->fromEmail = env('MAIL_FROM_EMAIL', 'no-reply@msarlink.test');
+        $this->fromName = env('MAIL_FROM_NAME', 'MSARLink System');
+        $this->SMTPHost = env('MAIL_HOST', 'localhost');
+        $this->SMTPPort = (int) env('MAIL_PORT', 587);
+        $this->SMTPUser = env('MAIL_USERNAME', env('MAIL_USER', ''));
+        $this->SMTPPass = env('MAIL_PASSWORD', env('MAIL_PASS', ''));
+        
+        // Set protocol based on environment
+        if (env('MAIL_DRIVER') === 'mailtrap' || env('MAIL_DRIVER') === 'smtp') {
+            $this->protocol = 'smtp';
+            
+            // Mailtrap specific configuration
+            if (env('MAIL_DRIVER') === 'mailtrap') {
+                // For port 587, disable encryption as Mailtrap supports plain auth
+                if ($this->SMTPPort == 587) {
+                    $this->SMTPCrypto = ''; // No encryption for port 587 plain auth
+                } elseif ($this->SMTPPort == 2525) {
+                    $this->SMTPCrypto = 'tls'; // Use STARTTLS for port 2525
+                } elseif ($this->SMTPPort == 465) {
+                    $this->SMTPCrypto = 'ssl'; // Use SSL for port 465
+                } else {
+                    $this->SMTPCrypto = ''; // Default to no encryption
+                }
+                
+                // Increase timeout for Mailtrap
+                $this->SMTPTimeout = 30;
+                
+                // Enable debugging for development
+                if (ENVIRONMENT === 'development') {
+                    $this->validate = true;
+                }
+            }
+        }
+    }
 }

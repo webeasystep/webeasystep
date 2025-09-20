@@ -90,6 +90,18 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label for="collection_id" class="col-sm-3 col-form-label"><?= lang("Courses.collection_id") ?></label>
+                <div class="col-sm-9">
+                    <input type="text" name="collection_id"
+                           value="<?= set_value('collection_id', $course->collection_id ?? "") ?>"
+                           id="collection_id" class="form-control"
+                           placeholder="<?= lang("Courses.collection_id_placeholder") ?>">
+                    <small class="form-text text-muted"><?= lang("Courses.collection_id_help") ?></small>
+                    <small class="invalid-feedback"></small>
+                </div>
+            </div>
+
             <!-- Switch for 'is_free' -->
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label"><?= lang("Courses.is_free") ?></label>
@@ -153,11 +165,5 @@
             $('#course-form').submit();
         });
     });
-
-
-
-
-
-
 </script>
 <?= $this->endSection(); ?>

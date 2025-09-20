@@ -31,11 +31,16 @@ class EnrollmentsModel extends BaseModel
     /**
      * Create new unit enrollment request
      */
-    public function enrollUserInUnits($userId, $unitIds, $totalAmount, $paymentProof = null, $paymentMethod = 'bank_transfer')
+    public function enrollUserInUnits($userId, $unitIds, $totalAmount, $paymentProof = null, $paymentMethod = 'instapay')
     {
         // Validate required fields
         if (empty($userId) || empty($unitIds) || empty($totalAmount)) {
             return false;
+        }
+
+        // Validate payment method - only allow instapay and vodafone_cash
+        if (!in_array($paymentMethod, ['instapay', 'vodafone_cash'])) {
+            $paymentMethod = 'instapay'; // Default to instapay if invalid method provided
         }
 
         $enrollmentData = [
@@ -88,7 +93,7 @@ class EnrollmentsModel extends BaseModel
         }
         return [];
     }
-    
+
     /**
      * Get list of users for admin interface
      */
@@ -101,7 +106,7 @@ class EnrollmentsModel extends BaseModel
                  ->get()
                  ->getResult();
     }
-    
+
     /**
      * Get pending enrollment requests for admin
      */
@@ -113,7 +118,7 @@ class EnrollmentsModel extends BaseModel
                    ->orderBy('tb_unit_enrollments.created_at', 'ASC')
                    ->findAll();
     }
-    
+
     /**
      * Get enrollment with unit details
      */
@@ -140,17 +145,17 @@ class EnrollmentsModel extends BaseModel
     public function getUserUnitEnrollments(int $userId, string $status = null): array
     {
         $builder = $this->where('user_id', $userId);
-        
+
         if ($status) {
             $builder->where('status', $status);
         }
-        
+
         $enrollments = $builder->orderBy('created_at', 'DESC')->findAll();
-        
+
         // Add unit details to each enrollment
         if ($enrollments && class_exists('\Modules\Units\Models\UnitsModel')) {
             $unitsModel = new \Modules\Units\Models\UnitsModel();
-            
+
             foreach ($enrollments as &$enrollment) {
                 $unitIds = json_decode($enrollment->unit_ids, true);
                 if ($unitIds) {
@@ -160,38 +165,38 @@ class EnrollmentsModel extends BaseModel
                 }
             }
         }
-        
+
         return $enrollments;
     }
-    
+
     /**
      * Get unit enrollment statistics
      */
     public function getUnitEnrollmentStats(): array
     {
         $stats = [];
-        
+
         // Total enrollments
         $stats['total'] = $this->countAll();
-        
+
         // Enrollments by status
         $stats['pending'] = $this->where('status', 'pending')->countAllResults(false);
         $stats['approved'] = $this->where('status', 'approved')->countAllResults(false);
         $stats['rejected'] = $this->where('status', 'rejected')->countAllResults(false);
-        
+
         // Recent enrollments (last 30 days)
         $thirtyDaysAgo = date('Y-m-d H:i:s', strtotime('-30 days'));
         $stats['recent'] = $this->where('created_at >=', $thirtyDaysAgo)->countAllResults(false);
-        
+
         // Total revenue from approved enrollments
         $revenueQuery = $this->select('SUM(total_amount) as total_revenue')
                            ->where('status', 'approved')
                            ->first();
         $stats['total_revenue'] = $revenueQuery->total_revenue ?? 0;
-        
+
         return $stats;
     }
-    
+
     /**
      * Approve unit enrollment and grant access
      */
@@ -219,7 +224,7 @@ class EnrollmentsModel extends BaseModel
             if ($unitIds && class_exists('\Modules\Units\Models\UnitPurchasesModel')) {
                 $unitPurchasesModel = new \Modules\Units\Models\UnitPurchasesModel();
                 $pricePerUnit = $enrollment->total_amount / count($unitIds);
-                
+
                 foreach ($unitIds as $unitId) {
                     $purchaseData = [
                         'user_id' => $enrollment->user_id,
@@ -229,7 +234,7 @@ class EnrollmentsModel extends BaseModel
                         'access_granted' => 1,
                         'access_expires_at' => null
                     ];
-                    
+
                     $unitPurchasesModel->insertPurchase($purchaseData);
                 }
             }
@@ -241,7 +246,7 @@ class EnrollmentsModel extends BaseModel
             return false;
         }
     }
-    
+
     /**
      * Reject unit enrollment
      */
@@ -254,7 +259,7 @@ class EnrollmentsModel extends BaseModel
             'admin_notes' => $notes
         ]);
     }
-    
+
     /**
      * Check if user has access to specific unit
      */
@@ -264,14 +269,14 @@ class EnrollmentsModel extends BaseModel
         $enrollments = $this->where('user_id', $userId)
                            ->where('status', 'approved')
                            ->findAll();
-        
+
         foreach ($enrollments as $enrollment) {
             $unitIds = json_decode($enrollment->unit_ids, true);
             if ($unitIds && in_array($unitId, $unitIds)) {
                 return true;
             }
         }
-        
+
         return false;
     }
 }

@@ -391,7 +391,7 @@ public function uploadAvatar() {
 ```php
 // Get user's enrolled courses
 public function getUserCourses($userId) {
-    return $this->db->table('tb_enrollments e')
+    return $this->db->table('tb_unit_enrollments e')
                    ->select('e.*, c.course_title, c.slug, c.image')
                    ->join('tb_courses c', 'c.id = e.course_id')
                    ->where('e.user_id', $userId)
@@ -432,7 +432,7 @@ public function getUserBalance($userId) {
 ```php
 // Get user's learning progress
 public function getUserProgress($userId) {
-    return $this->db->table('tb_user_unit_progress p')
+    return $this->db->table('tb_user_item_progress p')
                    ->select('p.*, u.unit_title, s.section_title, c.course_title')
                    ->join('tb_units u', 'u.id = p.unit_id')
                    ->join('tb_sections s', 's.id = u.section_id')
