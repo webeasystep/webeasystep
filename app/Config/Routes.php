@@ -35,6 +35,18 @@ $routes->get('/', [Site::class, 'index']);
 
 $routes->get('lang/{locale}', [BaseController::class, 'langSwitch']);
 
+// Debug route for session testing
+$routes->get('debug_session', function() {
+    $session = session();
+    $data = [
+        'session_data' => $session->get(),
+        'user_id' => $session->get('user_id'),
+        'auth_user' => auth()->user(),
+        'is_logged_in' => auth()->loggedIn()
+    ];
+    return json_encode($data, JSON_PRETTY_PRINT);
+});
+
 // 1) قبل shield routes:
 $routes->match(['GET', 'POST'], 'register', [Site::class, 'register']);
 $routes->match(['GET', 'POST'], 'login', [Site::class, 'login']);

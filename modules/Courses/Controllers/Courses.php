@@ -469,10 +469,34 @@ class Courses extends BaseController
             return redirect()->to('/courses/course_details/' . $slug)->with('error', 'You need to enroll in this course to access its content.');
         }
 
-        // 3) Get course units with their items
-        $units = $this->unitsModel->getUnitsByCourse($course->id);
+        // 3) Get course units with their items - FILTER BY ENROLLMENT
+        $allUnits = $this->unitsModel->getUnitsByCourse($course->id);
+        
+        // Get user's enrolled unit IDs
+        $enrolledUnitIds = [];
+        $enrollments = $this->db->table('tb_unit_enrollments')
+            ->where('user_id', $userId)
+            ->where('status', 'approved')
+            ->get()
+            ->getResultArray();
 
-        // Get unit items for each unit using the new UnitItemsModel
+        foreach ($enrollments as $enrollment) {
+            $unitIds = json_decode($enrollment['unit_ids'], true);
+            if ($unitIds) {
+                $enrolledUnitIds = array_merge($enrolledUnitIds, $unitIds);
+            }
+        }
+        $enrolledUnitIds = array_unique($enrolledUnitIds);
+
+        // Filter units to show only enrolled ones
+        $units = [];
+        foreach ($allUnits as $unit) {
+            if (in_array($unit->id, $enrolledUnitIds)) {
+                $units[] = $unit;
+            }
+        }
+
+        // Get unit items for each enrolled unit using the new UnitItemsModel
         $flatItems = [];
         foreach ($units as &$unit) {
             $unit->items = $this->unitItemsModel->getUnitItemsWithDetails($unit->id, true); // Get items with related data
@@ -649,7 +673,9 @@ class Courses extends BaseController
                                 $itemDesc = $quizData->quiz_desc ?? $itemDesc;
                                 
                                 // Add user attempt information if user is logged in
-                                $userId = session()->get('user_id');
+                                $user = session()->get('user');
+                                $userId = $user['id'] ?? null;
+                                
                                 if ($userId) {
                                     $attemptsModel = new \Modules\Quizzes\Models\QuizAttemptsModel();
                                     $userAttemptCount = $attemptsModel->getUserAttemptCount($userId, $quizId);
@@ -1000,15 +1026,62 @@ class Courses extends BaseController
      */
     private function markQuizComplete($userId, $itemId, $unitItem): bool
     {
-        // Quiz completion is handled by the quiz system
-        // Check if user has completed the quiz
+        // First check if user has already completed the quiz through the quiz system
         $quizModel = new \Modules\Quizzes\Models\QuizAttemptsModel();
         $attempts = $quizModel->where('user_id', $userId)
                              ->where('quiz_id', $unitItem->item_id)
                              ->where('is_completed', 1)
                              ->findAll();
 
-        return !empty($attempts);
+        $quizCompleted = !empty($attempts);
+        
+        // If quiz is completed, update the progress system
+        if ($quizCompleted) {
+            // Load Progress model to save completion
+            $progressModel = new \Modules\Progress\Models\UserItemProgressModel();
+            
+            // Get user enrollment for this course
+            $enrollmentModel = new \Modules\Courses\Models\EnrollmentModel();
+            $enrollment = $enrollmentModel->where([
+                'user_id' => $userId,
+                'course_id' => $unitItem->course_id
+            ])->first();
+            
+            if (!$enrollment) {
+                log_message('error', 'No enrollment found for user ' . $userId . ' in course ' . $unitItem->course_id);
+                return false;
+            }
+            
+            // Update progress for this quiz item
+            $progressData = [
+                'user_id' => $userId,
+                'unit_id' => $unitItem->unit_id,
+                'item_id' => $itemId,
+                'enrollment_id' => $enrollment->id,
+                'progress_percentage' => 100.00,
+                'is_completed' => 1,
+                'completed_at' => date('Y-m-d H:i:s'),
+                'last_accessed_at' => date('Y-m-d H:i:s')
+            ];
+            
+            // Check if progress record exists
+            $existingProgress = $progressModel->where([
+                'user_id' => $userId,
+                'item_id' => $itemId
+            ])->first();
+            
+            if ($existingProgress) {
+                $progressModel->update($existingProgress->id, $progressData);
+            } else {
+                $progressData['first_accessed_at'] = date('Y-m-d H:i:s');
+                $progressModel->insert($progressData);
+            }
+            
+            log_message('info', "Quiz item {$itemId} marked as complete for user {$userId}");
+            return true;
+        }
+        
+        return false;
     }
 
     /**

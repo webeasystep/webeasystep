@@ -55,6 +55,7 @@ $routes->group('progress', ['namespace' => 'Modules\Progress\Controllers'], func
     $routes->get('user/(:num)', [Progress::class, 'getUserProgress/$1'], ['filter' => 'site_filter']);
     $routes->get('course/(:num)', [Progress::class, 'getCourseProgress/$1'], ['filter' => 'site_filter']);
     $routes->get('unit/(:num)', [Progress::class, 'getUnitProgress/$1'], ['filter' => 'site_filter']);
+    $routes->get('unit-progress', [Progress::class, 'getUnitProgressByParam'], ['filter' => 'site_filter']);
     
     // Export progress data
     $routes->get('export', [Progress::class, 'exportProgress'], ['filter' => 'site_filter']);

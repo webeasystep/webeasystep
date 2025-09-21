@@ -69,49 +69,79 @@ class EmbeddedQuiz {
             // Build the URL for starting the embedded quiz
             let url = `/quizzes/start-embedded/${quizId}`;
             
-            // Add query parameters if provided
-            const params = new URLSearchParams();
-            if (courseSlug) params.append('course_slug', courseSlug);
-            if (itemId) params.append('item_id', itemId);
-            
-            if (params.toString()) {
-                url += '?' + params.toString();
-            }
-            
             console.log('COURSE_VIEW JS DEBUG - Quiz URL:', url);
             
             // Make the request to start the quiz
             const response = await fetch(url, {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    course_slug: courseSlug,
+                    item_id: itemId
+                })
             });
             
             console.log('COURSE_VIEW JS DEBUG - Response status:', response.status);
             
             if (!response.ok) {
-                if (response.status === 403) {
-                    throw new Error('Maximum attempts exceeded');
+                // Get the error response data for better error messages
+                let errorData;
+                try {
+                    errorData = await response.json();
+                } catch (e) {
+                    errorData = { message: `HTTP ${response.status}: ${response.statusText}` };
                 }
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                
+                // Handle specific error cases with user-friendly messages
+                if (response.status === 403) {
+                    this.showErrorModal(errorData.message || 'تم استنفاد المحاولات المسموحة لهذا الكويز');
+                    return; // Don't throw, just show the modal and return
+                } else if (response.status === 401) {
+                    this.showErrorModal('يجب تسجيل الدخول أولاً لأخذ الكويز');
+                    return;
+                } else if (response.status === 404) {
+                    this.showErrorModal('الكويز غير موجود أو غير متاح');
+                    return;
+                } else {
+                    this.showErrorModal(errorData.message || 'حدث خطأ أثناء تحميل الكويز. يرجى المحاولة مرة أخرى.');
+                    return;
+                }
             }
             
             const data = await response.json();
             console.log('COURSE_VIEW JS DEBUG - Response data:', data);
             
             if (data.success) {
-                // Quiz started successfully, show the quiz modal
-                this.showQuizModal(data.quiz_data);
+                // Store quiz data
+                this.quiz = data.quiz;
+                this.questions = data.questions;
+                this.attemptId = data.attempt_id;
+                this.currentQuestionIndex = 0;
+                this.userAnswers = {};
+                
+                // Initialize timer
+                this.timeLimit = parseInt(data.quiz.time_limit_minutes) * 60;
+                this.timeRemaining = this.timeLimit;
+                
+                // Build and show the quiz modal
+                this.buildQuizModal();
+                this.showQuizModal();
+                this.startTimer();
             } else {
                 throw new Error(data.message || 'Failed to start quiz');
             }
             
         } catch (error) {
             console.error('Error starting quiz:', error);
-            this.showErrorModal(error.message);
-            throw error; // Re-throw for button state handling
+            // Only show error modal if we haven't already handled the error above
+            if (error.message && !error.message.includes('HTTP')) {
+                this.showErrorModal(error.message);
+            }
+            // Don't re-throw the error to prevent console errors
         }
     }
 
@@ -125,8 +155,8 @@ class EmbeddedQuiz {
                     <!-- Quiz Header -->
                     <div class="quiz-modal-header">
                         <div class="quiz-header-left">
-                            <h3 class="quiz-title">${this.escapeHtml(this.quizData.quiz_title)}</h3>
-                            <p class="quiz-description">${this.escapeHtml(this.quizData.quiz_desc || '')}</p>
+                            <h3 class="quiz-title">${this.escapeHtml(this.quiz.quiz_title)}</h3>
+                            <p class="quiz-description">${this.escapeHtml(this.quiz.quiz_desc || '')}</p>
                         </div>
                         <div class="quiz-header-right">
                             <div class="quiz-timer">
@@ -459,14 +489,18 @@ class EmbeddedQuiz {
 
     /**
      * Submit the quiz
+     * @param {boolean} isTimerExpired - Whether the quiz is being submitted due to timer expiration
      */
-    async submitQuiz() {
+    async submitQuiz(isTimerExpired = false) {
         if (this.isSubmitting) return;
 
-        const unansweredCount = this.questions.length - Object.keys(this.answers).length;
-        if (unansweredCount > 0) {
-            if (!confirm(`لديك ${unansweredCount} أسئلة لم تجب عليها. هل تريد إنهاء الكويز؟`)) {
-                return;
+        // Only show confirmation for unanswered questions if not timer expired
+        if (!isTimerExpired) {
+            const unansweredCount = this.questions.length - Object.keys(this.answers).length;
+            if (unansweredCount > 0) {
+                if (!confirm(`لديك ${unansweredCount} أسئلة لم تجب عليها. هل تريد إنهاء الكويز؟`)) {
+                    return;
+                }
             }
         }
 
@@ -582,7 +616,7 @@ class EmbeddedQuiz {
             if (this.timeRemaining <= 0) {
                 this.stopTimer();
                 alert('انتهى الوقت المحدد للكويز. سيتم إرسال إجاباتك تلقائياً.');
-                this.submitQuiz();
+                this.submitQuiz(true); // Pass true to indicate timer expiration
             }
         }, 1000);
     }
@@ -749,7 +783,7 @@ $(document).ready(function() {
         // Start quiz and handle completion/error
         window.embeddedQuiz.startQuiz(quizId, courseSlug, itemId)
             .finally(() => {
-                // Restore button state
+                // Restore button state regardless of success or failure
                 $button.prop('disabled', false).html(originalText);
             });
     });

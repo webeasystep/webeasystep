@@ -218,21 +218,7 @@ class AdminQuizzes extends BaseController
      */
     public function importQuiz()
     {
-        // Log method entry and request details
-        log_message('info', '[QUIZ_IMPORT] Method importQuiz() called');
-        log_message('info', '[QUIZ_IMPORT] Request method: ' . $this->request->getMethod());
-        log_message('info', '[QUIZ_IMPORT] Request URI: ' . $this->request->getUri());
-        log_message('info', '[QUIZ_IMPORT] POST data: ' . json_encode($this->request->getPost()));
-        log_message('info', '[QUIZ_IMPORT] FILES data: ' . json_encode($_FILES));
-        log_message('info', '[QUIZ_IMPORT] Content Type: ' . $this->request->getHeaderLine('Content-Type'));
-        
-        // Additional method checking
-        log_message('info', '[QUIZ_IMPORT] Method check - getMethod(): ' . $this->request->getMethod());
-        log_message('info', '[QUIZ_IMPORT] Method check - strtolower(getMethod()): ' . strtolower($this->request->getMethod()));
-        log_message('info', '[QUIZ_IMPORT] Method check - comparison result: ' . ($this->request->getMethod() === 'post' ? 'true' : 'false'));
-        log_message('info', '[QUIZ_IMPORT] Method check - case insensitive comparison: ' . (strtolower($this->request->getMethod()) === 'post' ? 'true' : 'false'));
-        
-        if (strtolower($this->request->getMethod()) === 'post') {
+        if ($this->request->getMethod() === 'post') {
             log_message('info', '[QUIZ_IMPORT] Starting quiz import process');
             
             $file = $this->request->getFile('quiz_file');
@@ -270,11 +256,9 @@ class AdminQuizzes extends BaseController
             }
 
             log_message('info', '[QUIZ_IMPORT] Validation passed, attempting import');
-            $quizId = $this->quizzesModel->importFromJSON($quizData);
-            if ($quizId) {
-                log_message('info', '[QUIZ_IMPORT] Import successful, quiz ID: ' . $quizId);
-                // Redirect to edit page instead of quiz list to allow user to review/edit the imported quiz
-                return redirect()->to('/dt_admin/quizzes/edit/' . $quizId)->with('success', lang('Quizzes.quiz_imported_successfully') . ' - يمكنك الآن مراجعة وتعديل الاختبار');
+            if ($this->quizzesModel->importFromJSON($quizData)) {
+                log_message('info', '[QUIZ_IMPORT] Import successful');
+                return redirect()->to('/dt_admin/quizzes')->with('success', lang('Quizzes.quiz_imported_successfully'));
             } else {
                 log_message('error', '[QUIZ_IMPORT] Import failed');
                 return redirect()->back()->with('error', lang('Quizzes.failed_to_import_quiz'));

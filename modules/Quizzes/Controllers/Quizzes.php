@@ -23,6 +23,24 @@ class Quizzes extends BaseController
     }
 
     /**
+     * Redirect GET requests to embedded quiz to proper error handling
+     */
+    public function redirectToEmbeddedQuiz($quizId)
+    {
+        // Embedded quizzes should only be accessed via POST requests
+        // Return JSON error for AJAX requests, redirect for regular requests
+        if ($this->request->isAJAX()) {
+            return $this->response->setStatusCode(405)->setJSON([
+                'success' => false,
+                'message' => 'Embedded quizzes must be started via POST request'
+            ]);
+        }
+        
+        // For non-AJAX requests, redirect back with error
+        return redirect()->back()->with('error', 'Invalid quiz access method');
+    }
+
+    /**
      * Test method to check session data and authentication
      */
     public function testSession()
@@ -122,7 +140,8 @@ class Quizzes extends BaseController
      */
     public function take($quizId)
     {
-        $userId = session()->get('user_id');
+        $user = session()->get('user');
+        $userId = $user['id'] ?? null;
         if (!$userId) {
             return redirect()->to('/users/login')->with('error', 'Please login to take quizzes.');
         }
@@ -134,6 +153,10 @@ class Quizzes extends BaseController
 
         // Check if user has exceeded max attempts
         $attemptCount = $this->attemptsModel->getUserAttemptCount($userId, $quizId);
+        
+        // Debug logging for attempt count
+        log_message('debug', "QUIZ_TAKE_DEBUG: User ID: {$userId}, Quiz ID: {$quizId}, Attempt Count: {$attemptCount}, Max Attempts: {$quiz->max_attempts}");
+        
         if ($attemptCount >= $quiz->max_attempts) {
             return redirect()->back()->with('error', 'You have exceeded the maximum number of attempts for this quiz.');
         }
@@ -193,8 +216,12 @@ class Quizzes extends BaseController
      */
     public function continueAttempt($attemptId)
     {
-        $userId = session()->get('user_id');
+        // Get user ID from session (Shield stores it as user.id)
+        $sessionUser = session()->get('user');
+        $userId = $sessionUser['id'] ?? null;
+        log_message('debug', "QUIZ_CONTINUE_DEBUG: User ID from session: " . ($userId ?? 'null'));
         if (!$userId) {
+            log_message('debug', "QUIZ_CONTINUE_DEBUG: No user ID, redirecting to login");
             return redirect()->to('/users/login');
         }
 
@@ -203,8 +230,8 @@ class Quizzes extends BaseController
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Attempt not found');
         }
 
-        // Check if already completed (score > 0 means completed)
-        if ($attempt->score > 0) {
+        // Check if already completed (score > 0 OR time_taken_seconds is set means completed)
+        if ($attempt->score > 0 || (!is_null($attempt->time_taken_seconds) && $attempt->time_taken_seconds > 0)) {
             return redirect()->to("/quizzes/results/{$attemptId}");
         }
 
@@ -242,14 +269,21 @@ class Quizzes extends BaseController
             }
         }
 
+        // Get attempt count for display
+        $attemptCount = $this->attemptsModel->getUserAttemptCount($userId, $attempt->quiz_id);
+        log_message('debug', "QUIZ_CONTINUE_DEBUG: Attempt count calculated: " . $attemptCount);
+
         $data = [
             'title' => $quiz->quiz_title,
             'quiz' => $quiz,
             'attempt' => $attempt,
             'questions' => $questions,
+            'attempt_count' => $attemptCount,
             'time_remaining' => $quiz->time_limit_minutes ? ($quiz->time_limit_minutes * 60) - $elapsedSeconds : null
         ];
 
+        log_message('debug', "QUIZ_CONTINUE_DEBUG: Data array keys: " . implode(', ', array_keys($data)));
+        log_message('debug', "QUIZ_CONTINUE_DEBUG: Returning view 'site/take'");
         return view('site/take', $data);
     }
 
@@ -409,7 +443,7 @@ class Quizzes extends BaseController
             ]);
         }
 
-        $userId = session()->get('user_id');
+        $userId = auth()->user()->id ?? null;
         if (!$userId) {
             return $this->response->setStatusCode(401)->setJSON([
                 'success' => false,
@@ -494,11 +528,16 @@ class Quizzes extends BaseController
             ]);
         }
 
+        // Try multiple ways to get user ID from session
         $userId = session()->get('user_id');
+        if (!$userId) {
+            $user = session()->get('user');
+            $userId = $user['id'] ?? null;
+        }
         if (!$userId) {
             return $this->response->setStatusCode(401)->setJSON([
                 'success' => false,
-                'message' => 'Unauthorized'
+                'message' => 'User not authenticated'
             ]);
         }
 
@@ -548,18 +587,23 @@ class Quizzes extends BaseController
         log_message('debug', 'SUBMIT_EMBEDDED: Function called with attempt ID: ' . $attemptId);
         log_message('debug', 'SUBMIT_EMBEDDED: Request method: ' . $this->request->getMethod());
         log_message('debug', 'SUBMIT_EMBEDDED: Is AJAX: ' . ($this->request->isAJAX() ? 'yes' : 'no'));
+        log_message('debug', 'SUBMIT_EMBEDDED: Content Type: ' . $this->request->getHeaderLine('Content-Type'));
         log_message('debug', 'SUBMIT_EMBEDDED: Headers: ' . json_encode($this->request->headers()));
         
         try {
-            // Check if request is AJAX
+            // Accept both AJAX and regular POST requests for embedded quizzes
             log_message('debug', 'SUBMIT_EMBEDDED: Starting submission process');
-            if (!$this->request->isAJAX()) {
-                log_message('debug', 'SUBMIT_EMBEDDED: Not an AJAX request');
-                return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid request']);
+            if ($this->request->getMethod() !== 'POST') {
+                log_message('debug', 'SUBMIT_EMBEDDED: Not a POST request');
+                return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid request method']);
             }
 
-            // Get user ID
+            // Try multiple ways to get user ID from session
             $userId = session()->get('user_id');
+            if (!$userId) {
+                $user = session()->get('user');
+                $userId = $user['id'] ?? null;
+            }
             log_message('debug', 'SUBMIT_EMBEDDED: User ID: ' . $userId);
             if (!$userId) {
                 log_message('debug', 'SUBMIT_EMBEDDED: User not logged in');
@@ -595,17 +639,47 @@ class Quizzes extends BaseController
                 log_message('debug', 'SUBMIT_EMBEDDED: Using JSON data: ' . json_encode($input));
             }
             
-            $answers = $input['answers'] ?? [];
+            // If input is directly the answers array (not wrapped in 'answers' key)
+            if (isset($input['answers'])) {
+                $answers = $input['answers'];
+            } else {
+                // Assume the input is directly the answers
+                $answers = $input;
+            }
             $completionTime = $input['completion_time'] ?? 0;
+            
+            log_message('debug', 'SUBMIT_EMBEDDED: Parsed answers: ' . json_encode($answers));
 
         // Calculate score
         $questions = json_decode($attempt->quiz_questions, true);
         $totalQuestions = count($questions);
         $correctAnswers = 0;
 
+        log_message('debug', 'SUBMIT_EMBEDDED: Starting score calculation');
+        log_message('debug', 'SUBMIT_EMBEDDED: Total questions: ' . $totalQuestions);
+        log_message('debug', 'SUBMIT_EMBEDDED: User answers: ' . json_encode($answers));
+
         foreach ($questions as $index => $question) {
             $userAnswer = $answers[$index] ?? null;
             $correctAnswer = $question['correct_answer'] ?? null;
+            
+            // If no correct_answer field exists, try to determine from options structure
+            if ($correctAnswer === null && isset($question['options'])) {
+                // For backward compatibility, find correct options from the options array
+                $correctAnswer = [];
+                foreach ($question['options'] as $optIndex => $option) {
+                    if (isset($option['is_correct']) && $option['is_correct']) {
+                        $correctAnswer[] = $optIndex;
+                    }
+                }
+                // If no is_correct flags found, assume first option is correct
+                if (empty($correctAnswer)) {
+                    $correctAnswer = [0];
+                }
+                log_message('debug', 'SUBMIT_EMBEDDED: Question ' . $index . ' - No correct_answer field, derived from options: ' . json_encode($correctAnswer));
+            }
+
+            log_message('debug', "SUBMIT_EMBEDDED: Question $index - Type: {$question['question_type']}, User Answer: " . json_encode($userAnswer) . ", Correct Answer: " . json_encode($correctAnswer));
 
             // Handle different question types
             if ($question['question_type'] === 'multiple_choice') {
@@ -615,15 +689,25 @@ class Quizzes extends BaseController
                     sort($correctAnswer);
                     if ($userAnswer == $correctAnswer) {
                         $correctAnswers++;
+                        log_message('debug', "SUBMIT_EMBEDDED: Question $index - CORRECT (multiple choice)");
+                    } else {
+                        log_message('debug', "SUBMIT_EMBEDDED: Question $index - INCORRECT (multiple choice) - User: " . json_encode($userAnswer) . " vs Correct: " . json_encode($correctAnswer));
                     }
+                } else {
+                    log_message('debug', "SUBMIT_EMBEDDED: Question $index - INCORRECT (multiple choice) - Invalid format - User is array: " . (is_array($userAnswer) ? 'yes' : 'no') . ", Correct is array: " . (is_array($correctAnswer) ? 'yes' : 'no'));
                 }
             } else {
                 // For single choice, true/false, essay
                 if ($userAnswer == $correctAnswer) {
                     $correctAnswers++;
+                    log_message('debug', "SUBMIT_EMBEDDED: Question $index - CORRECT (single choice)");
+                } else {
+                    log_message('debug', "SUBMIT_EMBEDDED: Question $index - INCORRECT (single choice) - User: " . json_encode($userAnswer) . " vs Correct: " . json_encode($correctAnswer));
                 }
             }
         }
+
+        log_message('debug', 'SUBMIT_EMBEDDED: Final correct answers: ' . $correctAnswers);
 
         $score = $totalQuestions > 0 ? ($correctAnswers / $totalQuestions) * 100 : 0;
         $passed = $score >= ($quiz->passing_score ?? 70);

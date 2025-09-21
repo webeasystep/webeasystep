@@ -102,17 +102,32 @@ class Site extends BaseController
 
     public function login()
     {
+        log_message('debug', 'Site::login - Method: ' . $this->request->getMethod());
+        log_message('debug', 'Site::login - POST data: ' . json_encode($this->request->getPost()));
+        log_message('debug', 'Site::login - Already logged in: ' . (auth()->loggedIn() ? 'true' : 'false'));
+        log_message('debug', 'Site::login - Request method check: ' . ($this->request->getMethod() === 'post' ? 'true' : 'false'));
+        log_message('debug', 'Site::login - Request method uppercase check: ' . ($this->request->getMethod() === 'POST' ? 'true' : 'false'));
+        
         // If it's a POST request, we'll handle the login attempt
-        if ($this->request->getMethod() === 'post') {
+        if (strtoupper($this->request->getMethod()) === 'POST') {
+            log_message('debug', 'Site::login - Entering POST processing block');
             $rules = [
                 'email' => 'required|valid_email',
                 'password' => 'required',
             ];
 
+            log_message('debug', 'Site::login - Validation rules: ' . json_encode($rules));
+            log_message('debug', 'Site::login - Input data for validation: ' . json_encode($this->request->getPost()));
+            
             if (!$this->validate($rules)) {
-                session()->setFlashdata('errors', $this->validator->getErrors());
+                $errors = $this->validator->getErrors();
+                log_message('debug', 'Site::login - Validation failed: ' . json_encode($errors));
+                log_message('debug', 'Site::login - Validation error details: ' . print_r($errors, true));
+                session()->setFlashdata('errors', $errors);
                 return redirect()->back()->withInput();
             }
+
+            log_message('debug', 'Site::login - Validation passed');
 
             // Get the credentials for login
             $remember = (bool)$this->request->getPost('remember');
@@ -120,18 +135,31 @@ class Site extends BaseController
                 'email'    => $this->request->getPost('email'),
                 'password' => $this->request->getPost('password')
             ];
+            
+            log_message('debug', 'Site::login - Attempting login with credentials: ' . json_encode(['email' => $credentials['email']]));
+            log_message('debug', 'Site::login - Remember me: ' . ($remember ? 'true' : 'false'));
+            
             $loginAttempt = auth()->remember($remember)->attempt($credentials);
 
+            log_message('debug', 'Site::login - Login attempt completed');
+            log_message('debug', 'Site::login - Login result isOK: ' . ($loginAttempt->isOK() ? 'true' : 'false'));
+
             if (!$loginAttempt->isOK()) {
+                log_message('debug', 'Site::login - Login failed: ' . $loginAttempt->reason());
+                log_message('debug', 'Site::login - Extra info: ' . json_encode($loginAttempt->extraInfo()));
                 session()->setFlashdata('errors', [$loginAttempt->reason()]);
                 return redirect()->back()->withInput();
             }
 
-            $_SESSION['user_id'] = auth()->user()->id;
-            $_SESSION['full_name'] = auth()->user()->full_name;
-
-            $redirectURL = session('redirect_url') ?? site_url('/login');
+            log_message('debug', 'Site::login - Login successful for user ID: ' . auth()->user()->id);
+            log_message('debug', 'Site::login - User logged in check: ' . (auth()->loggedIn() ? 'true' : 'false'));
+            
+            // Shield handles session management automatically, no need for manual $_SESSION variables
+            // The session authenticator will store user data in session under the 'user' key
+            
+            $redirectURL = session('redirect_url') ?? site_url('/courses/my_courses');
             unset($_SESSION['redirect_url']);
+            log_message('debug', 'Site::login - Redirecting to: ' . $redirectURL);
             $this->show_msg('success', lang('Auth.loginSuccess'), "مرحبًا بك مرة أخرى");
             return redirect()->to($redirectURL)->withCookies();
         }

@@ -57,6 +57,7 @@ $routes->group('/', [
         $routes->get('quizzes/results/(:num)', [Quizzes::class, 'results/$1']);
         
         // Embedded quiz routes for course integration
+        $routes->get('quizzes/start-embedded/(:num)', [Quizzes::class, 'redirectToEmbeddedQuiz/$1']); // Redirect GET requests to proper workflow
         $routes->post('quizzes/start-embedded/(:num)', 'Quizzes::startEmbedded/$1');
         $routes->post('quizzes/save-answer-embedded/(:num)', 'Quizzes::saveAnswer/$1');
         $routes->post('quizzes/submit-embedded/(:num)', [Quizzes::class, 'submitEmbedded/$1']);

@@ -52,7 +52,7 @@
                                 </div>
                             <?php endif; ?>
 
-                            <form action="<?= base_url('dt_admin/quizzes/import') ?>" method="post" enctype="multipart/form-data">
+                            <form id="quiz-import-form" action="<?= base_url('dt_admin/quizzes/import') ?>" method="post" enctype="multipart/form-data">
                                 <?= csrf_field() ?>
 
                                 <div class="form-group">
@@ -142,6 +142,8 @@
 
 <script>
 $(document).ready(function() {
+    console.log('Quiz import page loaded');
+    
     // Initialize Select2
     $('.select2').select2({
         theme: 'bootstrap4'
@@ -150,7 +152,76 @@ $(document).ready(function() {
     // Custom file input label update
     $('.custom-file-input').on('change', function() {
         var fileName = $(this).val().split('\\').pop();
+        console.log('File selected:', fileName);
         $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+        
+        // Log file details
+        var file = this.files[0];
+        if (file) {
+            console.log('File details:', {
+                name: file.name,
+                size: file.size,
+                type: file.type,
+                lastModified: file.lastModified
+            });
+        }
+    });
+    
+    // Add form submission logging
+    $('#quiz-import-form').on('submit', function(e) {
+        console.log('Form submission started');
+        
+        var formData = new FormData(this);
+        var file = $('#quiz_file')[0].files[0];
+        var courseId = $('#course_id').val();
+        
+        console.log('Form data before submission:', {
+            file: file ? file.name : 'No file selected',
+            fileSize: file ? file.size : 0,
+            courseId: courseId,
+            hasFile: !!file
+        });
+        
+        // Log the actual file content if it's a JSON file
+        if (file && file.type === 'application/json') {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    var jsonContent = JSON.parse(event.target.result);
+                    console.log('JSON file content:', jsonContent);
+                    console.log('Questions in JSON:', jsonContent.quiz_questions ? jsonContent.quiz_questions.length : 'No questions found');
+                    
+                    if (jsonContent.quiz_questions) {
+                        jsonContent.quiz_questions.forEach(function(question, index) {
+                            console.log('Question ' + (index + 1) + ':', {
+                                text: question.question_text,
+                                type: question.question_type,
+                                options: question.options,
+                                correct_answer: question.correct_answer
+                            });
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error parsing JSON file:', error);
+                }
+            };
+            reader.readAsText(file);
+        }
+        
+        // Don't prevent form submission, just log
+        console.log('Form will be submitted normally');
+    });
+    
+    // Log any AJAX requests if they exist
+    $(document).ajaxSend(function(event, xhr, settings) {
+        console.log('AJAX request sent:', settings);
+    });
+    
+    $(document).ajaxComplete(function(event, xhr, settings) {
+        console.log('AJAX request completed:', {
+            status: xhr.status,
+            responseText: xhr.responseText
+        });
     });
 });
 </script>

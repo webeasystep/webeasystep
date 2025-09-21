@@ -188,42 +188,88 @@ class QuizzesModel extends BaseModel
     /**
      * Validate quiz JSON structure
      */
-    public function validateQuizJson($jsonData)
+    public function validateQuizJSON($jsonData)
     {
-        $errors = [];
-
         // Check required fields
-        $required = ['quiz_title', 'course_id', 'questions'];
+        $required = ['quiz_title', 'questions'];
         foreach ($required as $field) {
-            if (!isset($jsonData[$field])) {
-                $errors[] = "Missing required field: {$field}";
+            if (!isset($jsonData[$field]) || empty($jsonData[$field])) {
+                return false;
             }
         }
 
         // Validate questions structure
         if (isset($jsonData['questions']) && is_array($jsonData['questions'])) {
             foreach ($jsonData['questions'] as $index => $question) {
-                if (!isset($question['question'])) {
-                    $errors[] = "Question #{$index}: Missing question text";
+                // Check for question_text (not just 'question')
+                if (!isset($question['question_text']) || empty($question['question_text'])) {
+                    return false;
                 }
 
-                if (!isset($question['type'])) {
-                    $errors[] = "Question #{$index}: Missing question type";
+                if (!isset($question['question_type'])) {
+                    return false;
                 }
 
-                if (in_array($question['type'], ['multiple_choice', 'single_choice']) && !isset($question['options'])) {
-                    $errors[] = "Question #{$index}: Missing options for choice question";
+                if (in_array($question['question_type'], ['multiple_choice', 'single_choice']) && !isset($question['options'])) {
+                    return false;
                 }
 
                 if (!isset($question['correct_answer'])) {
-                    $errors[] = "Question #{$index}: Missing correct answer";
+                    return false;
                 }
             }
         } else {
-            $errors[] = "Questions must be an array";
+            return false;
         }
 
-        return $errors;
+        return true;
+    }
+
+    /**
+     * Import quiz from JSON data
+     */
+    public function importFromJSON($jsonData)
+    {
+        try {
+            log_message('info', '[QUIZ_MODEL] Starting importFromJSON');
+            log_message('info', '[QUIZ_MODEL] Input JSON keys: ' . json_encode(array_keys($jsonData)));
+            
+            // Log the questions data specifically
+            if (isset($jsonData['questions'])) {
+                log_message('info', '[QUIZ_MODEL] Questions count: ' . count($jsonData['questions']));
+                foreach ($jsonData['questions'] as $index => $question) {
+                    log_message('info', '[QUIZ_MODEL] Question ' . ($index + 1) . ' structure: ' . json_encode($question));
+                }
+            }
+            
+            // Prepare quiz data
+            $quizData = [
+                'course_id' => $jsonData['course_id'] ?? 1, // Default course if not provided
+                'quiz_title' => $jsonData['quiz_title'],
+                'quiz_desc' => $jsonData['quiz_description'] ?? '',
+                'time_limit_minutes' => $jsonData['time_limit'] ?? 30,
+                'passing_score' => $jsonData['passing_score'] ?? 70.00,
+                'max_attempts' => $jsonData['max_attempts'] ?? 3,
+                'shuffle_questions' => $jsonData['shuffle_questions'] ?? 0,
+                'shuffle_answers' => $jsonData['shuffle_answers'] ?? 0,
+                'show_results' => $jsonData['show_results'] ?? 1,
+                'show_results_immediately' => $jsonData['show_results_immediately'] ?? 1,
+                'active' => 1,
+                'quiz_questions' => json_encode($jsonData['questions'])
+            ];
+
+            log_message('info', '[QUIZ_MODEL] Prepared quiz data: ' . json_encode($quizData));
+            log_message('info', '[QUIZ_MODEL] Quiz questions JSON: ' . $quizData['quiz_questions']);
+            
+            $result = $this->insert($quizData);
+            log_message('info', '[QUIZ_MODEL] Insert result: ' . ($result ? 'success (ID: ' . $result . ')' : 'failed'));
+            
+            return $result;
+        } catch (\Exception $e) {
+            log_message('error', '[QUIZ_MODEL] Failed to import quiz from JSON: ' . $e->getMessage());
+            log_message('error', '[QUIZ_MODEL] Exception trace: ' . $e->getTraceAsString());
+            return false;
+        }
     }
 
     /**

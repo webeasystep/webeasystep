@@ -136,8 +136,8 @@ class Users extends BaseController
         // Get the authenticated user
         $user = $authenticator->getUser();
         
-        // Update last active
-        $this->userModel->update($user->id, ['last_active' => date('Y-m-d H:i:s')]);
+        // Note: last_active is automatically updated by Shield's recordActiveDate feature
+        // No manual update needed here
         
         return redirect()->to('/dashboard')->with('success', 'Welcome back!');
     }

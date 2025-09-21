@@ -18,6 +18,7 @@ class Progress extends BaseController
         $this->progressModel = new UserUnitProgressModel();
         $this->coursesModel = new CoursesModel();
         $this->unitsModel = new UnitsModel();
+        $this->db = \Config\Database::connect();
     }
 
     public function index()
@@ -185,16 +186,32 @@ class Progress extends BaseController
 
         // Check if user is enrolled in the course
         $isEnrolled = $this->coursesModel->isUserEnrolled($userId, $course->id);
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - isUserEnrolled result: ' . ($isEnrolled ? 'true' : 'false'));
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - isUserEnrolled result: ' . ($isEnrolled ? 'true' : 'false') . "\n",
+            FILE_APPEND | LOCK_EX);
+        
         if (!$isEnrolled) {
             return $this->response->setJSON(['success' => false, 'message' => 'User not enrolled in course']);
         }
 
-        // Get enrollment ID
+        // Get enrollment ID - check if user has enrolled in this specific unit
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Looking for enrollment with userId=' . $userId . ', unitId=' . $unitId);
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Looking for enrollment with userId=' . $userId . ', unitId=' . $unitId . "\n",
+            FILE_APPEND | LOCK_EX);
+            
         $enrollment = $this->db->table('tb_unit_enrollments')
                               ->where('user_id', $userId)
-                              ->where('course_id', $course->id)
+                              ->where('status', 'approved')
+                              ->where("JSON_CONTAINS(unit_ids, '\"$unitId\"')", null, false)
                               ->get()
                               ->getRow();
+
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Enrollment found: ' . ($enrollment ? json_encode($enrollment) : 'NULL'));
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Enrollment found: ' . ($enrollment ? json_encode($enrollment) : 'NULL') . "\n",
+            FILE_APPEND | LOCK_EX);
 
         if (!$enrollment) {
             return $this->response->setJSON(['success' => false, 'message' => 'Enrollment not found']);
@@ -460,5 +477,55 @@ class Progress extends BaseController
             'success' => true,
             'analytics' => $analytics
         ]);
+    }
+
+    /**
+     * Get unit progress by parameter (for video-progress.js)
+     */
+    public function getUnitProgressByParam()
+    {
+        // Use Shield authentication
+        $user = auth()->user();
+        
+        if (!$user) {
+            return $this->response->setStatusCode(401)->setJSON([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ]);
+        }
+        
+        $userId = $user->id;
+
+        $unitId = $this->request->getGet('unit_id');
+        if (!$unitId) {
+            return $this->response->setStatusCode(400)->setJSON([
+                'success' => false,
+                'message' => 'Unit ID is required'
+            ]);
+        }
+
+        // Get unit progress
+        $progress = $this->progressModel->getUserUnitProgress($userId, $unitId);
+
+        if ($progress) {
+            return $this->response->setJSON([
+                'success' => true,
+                'progress' => [
+                    'progress_percentage' => (float) $progress->progress_percentage,
+                    'watch_time_seconds' => (int) $progress->watch_time,
+                    'last_position_seconds' => (int) $progress->last_position
+                ]
+            ]);
+        } else {
+            // Return default progress if none exists
+            return $this->response->setJSON([
+                'success' => true,
+                'progress' => [
+                    'progress_percentage' => 0.0,
+                    'watch_time_seconds' => 0,
+                    'last_position_seconds' => 0
+                ]
+            ]);
+        }
     }
 }

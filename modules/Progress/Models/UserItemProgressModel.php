@@ -21,6 +21,12 @@ class UserItemProgressModel extends BaseModel
      */
     public function markItemCompleted(int $userId, int $unitId, int $itemId, int $enrollmentId): bool
     {
+        // Debug logging
+        log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Starting with userId=' . $userId . ', unitId=' . $unitId . ', itemId=' . $itemId . ', enrollmentId=' . $enrollmentId);
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Starting with userId=' . $userId . ', unitId=' . $unitId . ', itemId=' . $itemId . ', enrollmentId=' . $enrollmentId . "\n",
+            FILE_APPEND | LOCK_EX);
+
         $data = [
             'user_id' => $userId,
             'unit_id' => $unitId,
@@ -32,16 +38,47 @@ class UserItemProgressModel extends BaseModel
             'last_accessed_at' => date('Y-m-d H:i:s')
         ];
 
+        log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Data to insert/update: ' . json_encode($data));
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Data to insert/update: ' . json_encode($data) . "\n",
+            FILE_APPEND | LOCK_EX);
+
         // Check if record exists
         $existing = $this->where('user_id', $userId)
                         ->where('item_id', $itemId)
                         ->first();
 
+        log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Existing record: ' . ($existing ? json_encode($existing) : 'NULL'));
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Existing record: ' . ($existing ? json_encode($existing) : 'NULL') . "\n",
+            FILE_APPEND | LOCK_EX);
+
         if ($existing) {
-            return $this->update($existing->id, $data);
+            $result = $this->update($existing->id, $data);
+            log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Update result: ' . ($result ? 'true' : 'false'));
+            file_put_contents('D:\laragon\www\msarlink\debug.log',
+                date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Update result: ' . ($result ? 'true' : 'false') . "\n",
+                FILE_APPEND | LOCK_EX);
+            return $result;
         } else {
             $data['first_accessed_at'] = date('Y-m-d H:i:s');
-            return $this->insert($data) !== false;
+            $insertResult = $this->insert($data);
+            $result = $insertResult !== false;
+            log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Insert result: ' . ($result ? 'true' : 'false') . ', Insert ID: ' . ($insertResult ?: 'NULL'));
+            file_put_contents('D:\laragon\www\msarlink\debug.log',
+                date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Insert result: ' . ($result ? 'true' : 'false') . ', Insert ID: ' . ($insertResult ?: 'NULL') . "\n",
+                FILE_APPEND | LOCK_EX);
+            
+            // Check for database errors
+            if (!$result) {
+                $error = $this->db->error();
+                log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Database error: ' . json_encode($error));
+                file_put_contents('D:\laragon\www\msarlink\debug.log',
+                    date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Database error: ' . json_encode($error) . "\n",
+                    FILE_APPEND | LOCK_EX);
+            }
+            
+            return $result;
         }
     }
 

@@ -5,6 +5,7 @@
     <meta name="description" content="<?= setting('App.site_description_ar'); ?>">
     <meta name="keywords" content="<?= setting('App.site_keywords'); ?>">
     <meta name="author" content="msarlink.com" />
+    <meta name="csrf-token" content="<?= csrf_hash() ?>">
     <meta property="og:url" content="<?= current_url(); ?>"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="<?= setting('App.title'); ?>"/>

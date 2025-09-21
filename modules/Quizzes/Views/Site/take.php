@@ -31,6 +31,14 @@
                                 <div class="quiz-progress">
                                     <small class="text-muted"><?= lang('Quizzes.question') ?> <span id="current-question" class="text-primary font-weight-bold">1</span> <?= lang('Admin.of') ?> <?= count($questions) ?></small>
                                 </div>
+                                <?php if (isset($attempt_count) && $attempt_count > 0): ?>
+                                    <div class="quiz-attempt-info">
+                                        <small class="text-info">
+                                            <i class="icon-info-circle mr-1"></i>
+                                            محاولة رقم <?= $attempt_count ?> من أصل <?= $quiz->max_attempts ?>
+                                        </small>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
