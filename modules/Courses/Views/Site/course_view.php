@@ -377,19 +377,17 @@
                                         <?php if (isset($unit->items)): ?>
                                             <?php foreach ($unit->items as $item): ?>
                                                 <li class="mb-2">
-                                                    <a href="<?= site_url('courses/course_view/' . $course->slug . '?item=' . $item->id) ?>"
-                                                       class="text-dark text-decoration-none d-flex align-items-center
+                                                    <a href="<?= site_url('courses/course_view/' . $course->slug . '?video=' . $item->id) ?>"
+                                                       class="text-dark text-decoration-none
                                                        <?= $item->id == $current_id ? 'active-video' : '' ?>">
-
-                                                        <!-- Item Type Icon with Colors -->
                                                         <?php if ($item->item_type === 'video'): ?>
-                                                            <i class="fas fa-play-circle mr-2" style="color: #007bff; font-size: 1.1rem;"></i>
+                                                            <span class="icon-play-circle-o mr-2" style="color:#6c757d;"></span>
                                                         <?php elseif ($item->item_type === 'quiz'): ?>
-                                                            <i class="fas fa-question-circle mr-2" style="color: #28a745; font-size: 1.1rem;"></i>
+                                                            <span class="icon-question-circle mr-2" style="color:#28a745;"></span>
                                                         <?php elseif ($item->item_type === 'page'): ?>
-                                                            <i class="fas fa-file-alt mr-2" style="color: #17a2b8; font-size: 1.1rem;"></i>
+                                                            <span class="icon-file-text-o mr-2" style="color:#17a2b8;"></span>
                                                         <?php else: ?>
-                                                            <i class="fas fa-circle mr-2" style="color: #6c757d; font-size: 1.1rem;"></i>
+                                                            <span class="icon-circle mr-2" style="color:#6c757d;"></span>
                                                         <?php endif; ?>
 
                                                         <!-- Item Title and Duration -->
@@ -650,14 +648,13 @@
                         date('Y-m-d H:i:s') . ' COURSE_VIEW DEBUG - course_id: ' . ($course->id ?? 'NOT_SET') . "\n",
                         FILE_APPEND | LOCK_EX);
                     ?>
-                    <?php if (isset($current_item) && !empty($current_item['unit_id']) && !empty($current_item['id'])): ?>
+                    <?php if (isset($current_item) && !empty($current_item['id'])): ?>
                         <button class="btn btn-success btn-block mark-complete-button"
-                                onclick="markItemComplete(<?= $current_item['unit_id'] ?>, <?= $course->id ?>, <?= $current_item['id'] ?>)">
+                                onclick="markItemComplete(<?= $course->id ?>, <?= $current_item['id'] ?>)">
                             <i class="fas fa-check mr-2"></i>
                             تم الإكمال
                         </button>
                         <script>
-                            console.log('COURSE_VIEW JS DEBUG - Unit ID:', <?= $current_item['unit_id'] ?>);
                             console.log('COURSE_VIEW JS DEBUG - Course ID:', <?= $course->id ?>);
                             console.log('COURSE_VIEW JS DEBUG - Item ID:', <?= $current_item['id'] ?>);
                             console.log('COURSE_VIEW JS DEBUG - Current Item:', <?= json_encode($current_item) ?>);
@@ -674,12 +671,12 @@
                 </div>
 
                 <script>
-                    function markItemComplete(unitId, courseId, itemId) {
-                        console.log('MARK_COMPLETE DEBUG - Function called with:', {unitId, courseId, itemId});
+                    function markItemComplete(courseId, itemId) {
+                        console.log('MARK_COMPLETE DEBUG - Function called with:', {courseId, itemId});
 
-                        if (!unitId || !courseId || !itemId) {
-                            console.error('MARK_COMPLETE ERROR - Missing parameters:', {unitId, courseId, itemId});
-                            alert('خطأ: Unit ID, Course ID, and Item ID required');
+                        if (!courseId || !itemId) {
+                            console.error('MARK_COMPLETE ERROR - Missing parameters:', {courseId, itemId});
+                            alert('خطأ: Course ID and Item ID required');
                             return;
                         }
 
@@ -689,7 +686,7 @@
                         button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>جاري الحفظ...';
 
                         console.log('MARK_COMPLETE DEBUG - Sending request to:', '<?= base_url('progress/mark-completed') ?>');
-                        console.log('MARK_COMPLETE DEBUG - Request body:', {unit_id: unitId, course_id: courseId, item_id: itemId});
+                        console.log('MARK_COMPLETE DEBUG - Request body:', {course_id: courseId, item_id: itemId});
 
                         fetch('<?= base_url('progress/mark-completed') ?>', {
                             method: 'POST',
@@ -698,7 +695,6 @@
                                 'X-Requested-With': 'XMLHttpRequest'
                             },
                             body: JSON.stringify({
-                                unit_id: unitId,
                                 course_id: courseId,
                                 item_id: itemId
                             })
@@ -722,13 +718,21 @@
 
                                     // Auto-navigate to next item or unit without confirmation
                                     if (data.next_item) {
+                                        console.log(1111111111111111)
                                         setTimeout(() => {
                                             window.location.href = data.next_item.url;
                                         }, 500);
                                     } else if (data.next_unit) {
+                                        console.log(22222222222222)
                                         setTimeout(() => {
                                             window.location.href = data.next_unit.url;
                                         }, 500);
+                                    } else if (data.course_completed && data.redirect_url) {
+                                        console.log(333333333333333333)
+                                        // Course is completed, redirect to my_courses
+                                        setTimeout(() => {
+                                            window.location.href = data.redirect_url;
+                                        }, 1000);
                                     }
                                     // No alert for course completion - just stay on current page
                                 } else {
@@ -758,9 +762,9 @@
         // Initialize video progress tracking if video exists
         <?php if ($current_item_type === 'video' && isset($current_item)): ?>
         const videoElement = document.querySelector('iframe[src*="mediadelivery.net"]');
-        if (videoElement && <?= $current_item['unit_id'] ?? 0 ?>) {
-            // Initialize progress tracker for the current video
-            const progressTracker = new VideoProgressTracker(videoElement, <?= $current_item['unit_id'] ?? 0 ?>, {
+        if (videoElement && <?= $current_item['id'] ?? 0 ?>) {
+            // Initialize progress tracker for the current video using item_id
+            const progressTracker = new VideoProgressTracker(videoElement, <?= $current_item['id'] ?? 0 ?>, {
                 updateInterval: 10000, // Update every 10 seconds
                 completionThreshold: 0.85, // Mark complete at 85%
                 autoMarkComplete: true,

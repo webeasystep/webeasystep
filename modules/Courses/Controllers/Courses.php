@@ -308,7 +308,7 @@ class Courses extends BaseController
         foreach ($data['courses'] as &$course) {
             // Convert object to array for consistency
             $course = (array) $course;
-            
+
             // Provide a fallback if short_desc doesn't exist
             $course['short_desc'] = $course['short_desc'] ?? '';
 
@@ -425,7 +425,7 @@ class Courses extends BaseController
         // Ensure required fields exist with defaults
         $course->collection_id = $course->collection_id ?? '495222';
         $course->intro_video_id = $course->intro_video_id ?? '';
-        
+
         // Add unit and quiz counts for display
         $course->unit_count = $this->coursesModel->getUnitCount($course->id);
         $course->quiz_count = $this->coursesModel->getQuizCount($course->id);
@@ -471,7 +471,7 @@ class Courses extends BaseController
 
         // 3) Get course units with their items - FILTER BY ENROLLMENT
         $allUnits = $this->unitsModel->getUnitsByCourse($course->id);
-        
+
         // Get user's enrolled unit IDs
         $enrolledUnitIds = [];
         $enrollments = $this->db->table('tb_unit_enrollments')
@@ -554,9 +554,38 @@ class Courses extends BaseController
             $requestedItemId = $flatItems[0]['id'];
         }
 
-        // 6) Find the current item in $flatItems
+        // 6) Find the current item in $flatItems (search by both id and item_id)
+        $currentIndex = false;
+        $currentItem = null;
+
+        // First try to find by id
         $currentIndex = array_search($requestedItemId, array_column($flatItems, 'id'));
+
+        // If not found by id, try to find by item_id
+        if ($currentIndex === false) {
+            $currentIndex = array_search($requestedItemId, array_column($flatItems, 'item_id'));
+        }
+
         $currentItem = ($currentIndex !== false) ? $flatItems[$currentIndex] : null;
+
+        // If item not found and we have a specific item requested, check if it exists but user doesn't have access
+        if (!$currentItem && $requestedItemId) {
+            // Check if the item exists in the database
+            $requestedItem = $this->unitItemsModel->find($requestedItemId);
+            if ($requestedItem) {
+                // Item exists but user doesn't have access - redirect to course details with enrollment message
+                $unit = $this->unitsModel->find($requestedItem->unit_id);
+                if ($unit && $unit->course_id == $course->id) {
+                    return redirect()->to('/courses/course_details/' . $slug)
+                        ->with('error', 'You need to enroll in the required units to access this content. Please check the enrollment options.');
+                }
+            }
+
+            // If item doesn't exist or belongs to different course, redirect to first available item
+            if (!empty($flatItems)) {
+                return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $flatItems[0]['id']));
+            }
+        }
 
         // 7) Determine next & prev items
         $prevItem = ($currentIndex > 0)
@@ -611,23 +640,23 @@ class Courses extends BaseController
             $itemDesc = $currentItem['description'];
 
             // Debug logging for switch case
-            file_put_contents('d:/laragon/www/msarlink/debug.log', 
-                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERING IF BLOCK' . "\n", 
+            file_put_contents('d:/laragon/www/msarlink/debug.log',
+                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERING IF BLOCK' . "\n",
                 FILE_APPEND | LOCK_EX);
-            file_put_contents('d:/laragon/www/msarlink/debug.log', 
-                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - item_type: ' . $currentItem['item_type'] . "\n", 
+            file_put_contents('d:/laragon/www/msarlink/debug.log',
+                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - item_type: ' . $currentItem['item_type'] . "\n",
                 FILE_APPEND | LOCK_EX);
-            file_put_contents('d:/laragon/www/msarlink/debug.log', 
-                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - metadata: ' . json_encode($currentItem['metadata']) . "\n", 
+            file_put_contents('d:/laragon/www/msarlink/debug.log',
+                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - metadata: ' . json_encode($currentItem['metadata']) . "\n",
                 FILE_APPEND | LOCK_EX);
-            file_put_contents('d:/laragon/www/msarlink/debug.log', 
-                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ABOUT TO ENTER SWITCH' . "\n", 
+            file_put_contents('d:/laragon/www/msarlink/debug.log',
+                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ABOUT TO ENTER SWITCH' . "\n",
                 FILE_APPEND | LOCK_EX);
 
             switch ($currentItem['item_type']) {
                 case 'video':
-                    file_put_contents('d:/laragon/www/msarlink/debug.log', 
-                        date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERED VIDEO CASE' . "\n", 
+                    file_put_contents('d:/laragon/www/msarlink/debug.log',
+                        date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERED VIDEO CASE' . "\n",
                         FILE_APPEND | LOCK_EX);
                     // Extract video_id and video_library_id from metadata
                     if (!empty($currentItem['metadata']) && is_array($currentItem['metadata'])) {
@@ -649,8 +678,8 @@ class Courses extends BaseController
                     }
                     break;
                 case 'quiz':
-                    file_put_contents('d:/laragon/www/msarlink/debug.log', 
-                        date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERED QUIZ CASE' . "\n", 
+                    file_put_contents('d:/laragon/www/msarlink/debug.log',
+                        date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERED QUIZ CASE' . "\n",
                         FILE_APPEND | LOCK_EX);
                     // Extract quiz_id from metadata and fetch quiz data
                     if (!empty($currentItem['metadata']) && is_array($currentItem['metadata'])) {
@@ -662,36 +691,36 @@ class Courses extends BaseController
                             $quizData = $quizzesModel->getQuizById($quizId);
 
                             // Debug logging for quiz loading
-                            file_put_contents('d:/laragon/www/msarlink/debug.log', 
-                                date('Y-m-d H:i:s') . ' QUIZ LOADING DEBUG - quizId: ' . $quizId . "\n", 
+                            file_put_contents('d:/laragon/www/msarlink/debug.log',
+                                date('Y-m-d H:i:s') . ' QUIZ LOADING DEBUG - quizId: ' . $quizId . "\n",
                                 FILE_APPEND | LOCK_EX);
-                            file_put_contents('d:/laragon/www/msarlink/debug.log', 
-                                date('Y-m-d H:i:s') . ' QUIZ LOADING DEBUG - quizData result: ' . json_encode($quizData) . "\n", 
+                            file_put_contents('d:/laragon/www/msarlink/debug.log',
+                                date('Y-m-d H:i:s') . ' QUIZ LOADING DEBUG - quizData result: ' . json_encode($quizData) . "\n",
                                 FILE_APPEND | LOCK_EX);
 
                             if ($quizData) {
                                 $itemDesc = $quizData->quiz_desc ?? $itemDesc;
-                                
+
                                 // Add user attempt information if user is logged in
                                 $user = session()->get('user');
                                 $userId = $user['id'] ?? null;
-                                
+
                                 if ($userId) {
                                     $attemptsModel = new \Modules\Quizzes\Models\QuizAttemptsModel();
                                     $userAttemptCount = $attemptsModel->getUserAttemptCount($userId, $quizId);
                                     $userBestScore = $attemptsModel->getUserBestScore($userId, $quizId);
                                     $userLatestAttempt = $attemptsModel->getUserLatestAttempt($userId, $quizId);
-                                    
+
                                     // Add attempt information to quiz data
                                     $quizData->user_attempt_count = $userAttemptCount;
                                     $quizData->user_best_score = $userBestScore;
                                     $quizData->remaining_attempts = max(0, $quizData->max_attempts - $userAttemptCount);
                                     $quizData->has_exceeded_attempts = $userAttemptCount >= $quizData->max_attempts;
                                     $quizData->user_latest_attempt = $userLatestAttempt;
-                                    
+
                                     // Debug logging for attempt info
-                                    file_put_contents('d:/laragon/www/msarlink/debug.log', 
-                                        date('Y-m-d H:i:s') . ' ATTEMPT INFO DEBUG - User: ' . $userId . ', Attempts: ' . $userAttemptCount . '/' . $quizData->max_attempts . "\n", 
+                                    file_put_contents('d:/laragon/www/msarlink/debug.log',
+                                        date('Y-m-d H:i:s') . ' ATTEMPT INFO DEBUG - User: ' . $userId . ', Attempts: ' . $userAttemptCount . '/' . $quizData->max_attempts . "\n",
                                         FILE_APPEND | LOCK_EX);
                                 }
                             }
@@ -726,8 +755,8 @@ class Courses extends BaseController
         // Debug logging for quiz data
         log_message('debug', 'COURSES_CONTROLLER DEBUG - quizData: ' . json_encode($quizData));
         error_log('COURSES_CONTROLLER DEBUG - quizData: ' . json_encode($quizData));
-        file_put_contents('D:\laragon\www\msarlink\debug.log', 
-            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - quizData: ' . json_encode($quizData) . "\n", 
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - quizData: ' . json_encode($quizData) . "\n",
             FILE_APPEND | LOCK_EX);
 
         $data = [
@@ -759,21 +788,21 @@ class Courses extends BaseController
         log_message('debug', 'COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem));
         log_message('debug', 'COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId);
         log_message('debug', 'COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems));
-        
+
         // Also use error_log for immediate visibility
         error_log('COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem));
         error_log('COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId);
         error_log('COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems));
-        
+
         // Write to custom debug file
-        file_put_contents('D:\laragon\www\msarlink\debug.log', 
-            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem) . "\n", 
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem) . "\n",
             FILE_APPEND | LOCK_EX);
-        file_put_contents('D:\laragon\www\msarlink\debug.log', 
-            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId . "\n", 
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId . "\n",
             FILE_APPEND | LOCK_EX);
-        file_put_contents('D:\laragon\www\msarlink\debug.log', 
-            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems) . "\n", 
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems) . "\n",
             FILE_APPEND | LOCK_EX);
 
         return view('site/course_view', $data);
@@ -1008,16 +1037,16 @@ class Courses extends BaseController
     {
         // Load Progress model to save completion
         $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
-        
+
         // Mark unit as completed with 100% progress
         $success = $progressModel->markUnitCompleted($userId, $unitItem->unit_id);
-        
+
         if ($success) {
             log_message('info', "User {$userId} completed video item {$itemId} in unit {$unitItem->unit_id}");
         } else {
             log_message('error', "Failed to mark video item {$itemId} as complete for user {$userId}");
         }
-        
+
         return $success;
     }
 
@@ -1034,24 +1063,24 @@ class Courses extends BaseController
                              ->findAll();
 
         $quizCompleted = !empty($attempts);
-        
+
         // If quiz is completed, update the progress system
         if ($quizCompleted) {
             // Load Progress model to save completion
             $progressModel = new \Modules\Progress\Models\UserItemProgressModel();
-            
+
             // Get user enrollment for this course
             $enrollmentModel = new \Modules\Courses\Models\EnrollmentModel();
             $enrollment = $enrollmentModel->where([
                 'user_id' => $userId,
                 'course_id' => $unitItem->course_id
             ])->first();
-            
+
             if (!$enrollment) {
                 log_message('error', 'No enrollment found for user ' . $userId . ' in course ' . $unitItem->course_id);
                 return false;
             }
-            
+
             // Update progress for this quiz item
             $progressData = [
                 'user_id' => $userId,
@@ -1063,24 +1092,24 @@ class Courses extends BaseController
                 'completed_at' => date('Y-m-d H:i:s'),
                 'last_accessed_at' => date('Y-m-d H:i:s')
             ];
-            
+
             // Check if progress record exists
             $existingProgress = $progressModel->where([
                 'user_id' => $userId,
                 'item_id' => $itemId
             ])->first();
-            
+
             if ($existingProgress) {
                 $progressModel->update($existingProgress->id, $progressData);
             } else {
                 $progressData['first_accessed_at'] = date('Y-m-d H:i:s');
                 $progressModel->insert($progressData);
             }
-            
+
             log_message('info', "Quiz item {$itemId} marked as complete for user {$userId}");
             return true;
         }
-        
+
         return false;
     }
 
@@ -1091,16 +1120,16 @@ class Courses extends BaseController
     {
         // Load Progress model to save completion
         $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
-        
+
         // Mark unit as completed with 100% progress
         $success = $progressModel->markUnitCompleted($userId, $unitItem->unit_id);
-        
+
         if ($success) {
             log_message('info', "User {$userId} completed page item {$itemId} in unit {$unitItem->unit_id}");
         } else {
             log_message('error', "Failed to mark page item {$itemId} as complete for user {$userId}");
         }
-        
+
         return $success;
     }
 

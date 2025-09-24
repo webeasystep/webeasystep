@@ -234,4 +234,40 @@ class UnitEnrollmentsModel extends BaseModel
         }
         return [];
     }
+
+    /**
+     * Check if user has already enrolled in any of the specified units
+     * @param int $userId
+     * @param array $unitIds
+     * @return array Array of already enrolled unit IDs
+     */
+    public function checkDuplicateEnrollments($userId, $unitIds)
+    {
+        if (empty($unitIds) || !is_array($unitIds)) {
+            return [];
+        }
+
+        // Get all approved enrollments for this user
+        $enrollments = $this->where('user_id', $userId)
+                           ->where('status', 'approved')
+                           ->findAll();
+
+        $enrolledUnitIds = [];
+        
+        foreach ($enrollments as $enrollment) {
+            if (!empty($enrollment->unit_ids)) {
+                $existingUnitIds = json_decode($enrollment->unit_ids, true);
+                if (is_array($existingUnitIds)) {
+                    $enrolledUnitIds = array_merge($enrolledUnitIds, $existingUnitIds);
+                }
+            }
+        }
+
+        // Remove duplicates and convert to strings for comparison
+        $enrolledUnitIds = array_unique(array_map('strval', $enrolledUnitIds));
+        $requestedUnitIds = array_map('strval', $unitIds);
+
+        // Find intersection (duplicates)
+        return array_intersect($requestedUnitIds, $enrolledUnitIds);
+    }
 }

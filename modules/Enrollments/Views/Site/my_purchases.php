@@ -181,10 +181,30 @@
 
                                 <?php if ($purchase->status === 'approved'): ?>
                                     <div class="mt-3">
-                                        <a href="<?= site_url('courses') ?>" class="btn btn-success">
-                                            <i class="fas fa-play me-2"></i>
-                                            الوصول للوحدات
-                                        </a>
+                                        <?php
+                                        // Get the first unit's course slug for navigation
+                                        $courseSlug = null;
+                                        if ($unitIds && !empty($units)) {
+                                            $firstUnit = $units[0];
+                                            // Get course slug from the first unit's course
+                                            $coursesModel = new \Modules\Courses\Models\CoursesModel();
+                                            $course = $coursesModel->find($firstUnit->course_id);
+                                            if ($course && !empty($course->slug)) {
+                                                $courseSlug = $course->slug;
+                                            }
+                                        }
+                                        ?>
+                                        <?php if ($courseSlug): ?>
+                                            <a href="<?= site_url('courses/course_view/' . $courseSlug) ?>" class="btn btn-success">
+                                                <i class="fas fa-play me-2"></i>
+                                                الوصول للوحدات
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="<?= site_url('courses') ?>" class="btn btn-success">
+                                                <i class="fas fa-play me-2"></i>
+                                                الوصول للوحدات
+                                            </a>
+                                        <?php endif; ?>
                                     </div>
                                 <?php endif; ?>
                             </div>

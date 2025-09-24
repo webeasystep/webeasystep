@@ -146,9 +146,8 @@
                         </div>
 
                         <!-- Payment Form -->
-                        <?= $this->include('admin_layout/admin_msg'); ?>
-                        <?= form_open_multipart(); ?>
-                        <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>"/>
+                        <form action="<?= site_url('enrollments/purchase-units') ?>" method="post" enctype="multipart/form-data" id="purchaseForm">
+                            <?= csrf_field() ?>
 
                             <!-- Hidden unit IDs -->
                             <?php if (!empty($unit_ids)): ?>
@@ -161,20 +160,20 @@
                             <div class="mb-4">
                                 <h5 class="mb-3">طريقة الدفع:</h5>
 
-                                <div class="payment-method-card" onclick="selectPaymentMethod('instapay')">
+                                <div class="payment-method-card" onclick="selectPaymentMethod('vodafone_cash')">
                                     <div class="d-flex align-items-center">
-                                        <input type="radio" name="payment_method" value="instapay" id="instapay" checked>
-                                        <label for="instapay" class="mb-0 ms-2">
-                                            <strong>انستاباي</strong>
+                                        <input type="radio" name="payment_method" value="vodafone_cash" id="vodafone_cash" checked>
+                                        <label for="vodafone_cash" class="mb-0 ms-2">
+                                            <strong>فودافون كاش</strong>
                                         </label>
                                     </div>
                                 </div>
 
-                                <div class="payment-method-card" onclick="selectPaymentMethod('vodafone_cash')">
+                                <div class="payment-method-card" onclick="selectPaymentMethod('instapay')">
                                     <div class="d-flex align-items-center">
-                                        <input type="radio" name="payment_method" value="vodafone_cash" id="vodafone_cash">
-                                        <label for="vodafone_cash" class="mb-0 ms-2">
-                                            <strong>فودافون كاش</strong>
+                                        <input type="radio" name="payment_method" value="instapay" id="instapay">
+                                        <label for="instapay" class="mb-0 ms-2">
+                                            <strong>انستاباي</strong>
                                         </label>
                                     </div>
                                 </div>
@@ -285,7 +284,7 @@
 
     // Initialize default selection
     document.addEventListener('DOMContentLoaded', function() {
-        selectPaymentMethod('instapay');
+        selectPaymentMethod('vodafone_cash');
     });
 </script>
 

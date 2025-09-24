@@ -45,9 +45,17 @@ $routes->group('dt_admin', [
  * Front-end Enrollments Routes
  * - Public routes for site visitors & enrolled users
  */
-$routes->group('/', [
+$routes->group('', [
     'namespace' => 'Modules\Enrollments\Controllers',
 ], static function ($routes) {
+
+    // Test route to verify controller access
+    $routes->get('enrollments/test', function() {
+        return json_encode(['status' => 'success', 'message' => 'Enrollments controller accessible']);
+    });
+
+    // Test route using controller method
+    $routes->get('enrollments/controller-test', [Enrollments::class, 'test']);
 
     // Example route to show a list of enrollments or payments
     $routes->get('enrollments', [Enrollments::class, 'index']);
@@ -56,5 +64,6 @@ $routes->group('/', [
     // Site routes for unit purchases - consolidated to use purchase-units only
     $routes->get('enrollments/units-shop', [Enrollments::class, 'unitsShop']);
     $routes->match(['GET', 'POST'], 'enrollments/purchase-units', [Enrollments::class, 'purchaseUnits']);
+    $routes->post('enrollments/complete-enrollment', [Enrollments::class, 'completeEnrollment']);
     $routes->get('enrollments/my-purchases', [Enrollments::class, 'myPurchases']);
 });

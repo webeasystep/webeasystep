@@ -133,7 +133,7 @@ class UserItemProgressModel extends BaseModel
     }
 
     /**
-     * Get next incomplete item in unit
+     * Get next item in unit (regardless of completion status)
      */
     public function getNextIncompleteItem(int $userId, int $unitId): ?array
     {
@@ -162,6 +162,37 @@ class UserItemProgressModel extends BaseModel
         }
 
         return null; // All items completed
+    }
+
+    /**
+     * Get next item in sequence (for proper navigation flow)
+     */
+    public function getNextItemInSequence(int $currentItemId, int $unitId): ?array
+    {
+        // Get current item's sort_order
+        $currentItem = $this->db->table('tb_unit_items')
+                              ->select('sort_order')
+                              ->where('id', $currentItemId)
+                              ->where('unit_id', $unitId)
+                              ->get()
+                              ->getRowArray();
+
+        if (!$currentItem) {
+            return null;
+        }
+
+        // Get next item in sequence
+        $nextItem = $this->db->table('tb_unit_items')
+                           ->select('id, title, item_type, sort_order')
+                           ->where('unit_id', $unitId)
+                           ->where('sort_order >', $currentItem['sort_order'])
+                           ->where('is_active', 1)
+                           ->orderBy('sort_order', 'ASC')
+                           ->limit(1)
+                           ->get()
+                           ->getRowArray();
+
+        return $nextItem;
     }
 
     /**

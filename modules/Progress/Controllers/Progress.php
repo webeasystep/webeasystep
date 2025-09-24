@@ -130,48 +130,30 @@ class Progress extends BaseController
         }
 
         $userId = $user['id'];
-        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - User ID from authenticated user: ' . $userId);
-        error_log('PROGRESS_CONTROLLER DEBUG - User ID from authenticated user: ' . $userId);
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - User ID: ' . $userId . "\n",
-            FILE_APPEND | LOCK_EX);
 
-        // Parse JSON input
-        $input = $this->request->getJSON(true);
-        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Parsed input: ' . json_encode($input));
-        error_log('PROGRESS_CONTROLLER DEBUG - Parsed input: ' . json_encode($input));
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Parsed input: ' . json_encode($input) . "\n",
-            FILE_APPEND | LOCK_EX);
+        // Get input data
+        $input = $this->request->getJSON();
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Raw input: ' . json_encode($input));
 
-        $unitId = $input['unit_id'] ?? null;
-        $courseId = $input['course_id'] ?? null;
-        $itemId = $input['item_id'] ?? null;
+        $courseId = isset($input->course_id) ? $input->course_id : (isset($input['course_id']) ? $input['course_id'] : null);
+        $itemId = isset($input->item_id) ? $input->item_id : (isset($input['item_id']) ? $input['item_id'] : null);
 
-        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Unit ID: ' . ($unitId ?? 'NULL'));
-        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Course ID: ' . ($courseId ?? 'NULL'));
-        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Item ID: ' . ($itemId ?? 'NULL'));
-        error_log('PROGRESS_CONTROLLER DEBUG - Unit ID: ' . ($unitId ?? 'NULL'));
-        error_log('PROGRESS_CONTROLLER DEBUG - Course ID: ' . ($courseId ?? 'NULL'));
-        error_log('PROGRESS_CONTROLLER DEBUG - Item ID: ' . ($itemId ?? 'NULL'));
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Unit ID: ' . ($unitId ?? 'NULL') . "\n",
-            FILE_APPEND | LOCK_EX);
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Course ID: ' . ($courseId ?? 'NULL') . "\n",
-            FILE_APPEND | LOCK_EX);
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Item ID: ' . ($itemId ?? 'NULL') . "\n",
-            FILE_APPEND | LOCK_EX);
-
-        if (!$unitId || !$courseId || !$itemId) {
-            log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Missing unit_id, course_id, or item_id');
-            error_log('PROGRESS_CONTROLLER DEBUG - Missing unit_id, course_id, or item_id');
-            file_put_contents('D:\laragon\www\msarlink\debug.log',
-                date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Missing unit_id, course_id, or item_id' . "\n",
-                FILE_APPEND | LOCK_EX);
-            return $this->response->setJSON(['success' => false, 'message' => 'خطأ: Unit ID, Course ID, and Item ID required']);
+        if (!$courseId || !$itemId) {
+            log_message('error', 'PROGRESS_CONTROLLER ERROR - Missing required parameters: courseId=' . $courseId . ', itemId=' . $itemId);
+            return $this->response->setJSON(['success' => false, 'message' => 'Course ID and Item ID are required']);
         }
+
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Processing: courseId=' . $courseId . ', itemId=' . $itemId);
+
+        // Get item details to find unit_id
+        $unitItemsModel = new \Modules\Units\Models\UnitItemsModel();
+        $item = $unitItemsModel->find($itemId);
+        if (!$item) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Item not found']);
+        }
+
+        $unitId = $item->unit_id;
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Found unitId=' . $unitId . ' for itemId=' . $itemId);
 
         // Verify user has access to this unit
         $unit = $this->unitsModel->find($unitId);
@@ -190,7 +172,7 @@ class Progress extends BaseController
         file_put_contents('D:\laragon\www\msarlink\debug.log',
             date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - isUserEnrolled result: ' . ($isEnrolled ? 'true' : 'false') . "\n",
             FILE_APPEND | LOCK_EX);
-        
+
         if (!$isEnrolled) {
             return $this->response->setJSON(['success' => false, 'message' => 'User not enrolled in course']);
         }
@@ -200,7 +182,7 @@ class Progress extends BaseController
         file_put_contents('D:\laragon\www\msarlink\debug.log',
             date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Looking for enrollment with userId=' . $userId . ', unitId=' . $unitId . "\n",
             FILE_APPEND | LOCK_EX);
-            
+
         $enrollment = $this->db->table('tb_unit_enrollments')
                               ->where('user_id', $userId)
                               ->where('status', 'approved')
@@ -237,8 +219,58 @@ class Progress extends BaseController
                 $this->progressModel->markUnitCompleted($userId, $unitId);
             }
 
-            // Get next item in the unit
-            $nextItem = $itemProgressModel->getNextIncompleteItem($userId, $unitId);
+            // Use the same navigation logic as the Next button - build flatItems array
+            // Get user's enrolled unit IDs
+            $enrolledUnitIds = [];
+            $enrollments = $this->db->table('tb_unit_enrollments')
+                ->where('user_id', $userId)
+                ->where('status', 'approved')
+                ->get()
+                ->getResultArray();
+
+            foreach ($enrollments as $enrollment) {
+                $unitIds = json_decode($enrollment['unit_ids'], true);
+                if ($unitIds) {
+                    $enrolledUnitIds = array_merge($enrolledUnitIds, $unitIds);
+                }
+            }
+            $enrolledUnitIds = array_unique($enrolledUnitIds);
+
+            // Get all enrolled units for this course
+            $allUnits = $this->unitsModel->getUnitsByCourse($course->id);
+            $enrolledUnits = [];
+            foreach ($allUnits as $unit) {
+                if (in_array($unit->id, $enrolledUnitIds)) {
+                    $enrolledUnits[] = $unit;
+                }
+            }
+
+            // Build flatItems array (same logic as Courses controller)
+            $flatItems = [];
+            $unitItemsModel = new \Modules\Units\Models\UnitItemsModel();
+            foreach ($enrolledUnits as $unit) {
+                $unitItems = $unitItemsModel->getUnitItemsWithDetails($unit->id, true);
+                foreach ($unitItems as $unitItem) {
+                    $flatItems[] = [
+                        'id' => $unitItem->id,
+                        'unit_id' => $unit->id,
+                        'unit_name' => $unit->unit_name,
+                        'item_type' => $unitItem->item_type,
+                        'title' => $unitItem->title,
+                        'description' => $unitItem->description,
+                        'item_id' => $unitItem->item_id
+                    ];
+                }
+            }
+
+            // Find current item index in flatItems
+            $currentIndex = false;
+            foreach ($flatItems as $index => $flatItem) {
+                if ($flatItem['id'] == $itemId) {
+                    $currentIndex = $index;
+                    break;
+                }
+            }
 
             // Get updated course completion percentage
             $courseCompletion = $this->progressModel->getCourseCompletionPercentage($userId, $course->id);
@@ -250,37 +282,19 @@ class Progress extends BaseController
                 'unit_completed' => $unitCompleted
             ];
 
-            if ($nextItem) {
+            // Determine next item using flatItems navigation (same as Next button)
+            if ($currentIndex !== false && $currentIndex < count($flatItems) - 1) {
+                $nextItem = $flatItems[$currentIndex + 1];
                 $response['next_item'] = [
                     'id' => $nextItem['id'],
                     'title' => $nextItem['title'],
                     'type' => $nextItem['item_type'],
-                    'url' => base_url('courses/item/' . $nextItem['id'])
+                    'url' => base_url('courses/course_view/' . $course->slug . '?item=' . $nextItem['id'])
                 ];
             } else {
-                // No more items in unit, get next unit
-                $nextUnit = $this->unitsModel->getNextUnit($unitId, $course->id);
-
-                // Debug logging for nextUnit
-                log_message('debug', 'PROGRESS_CONTROLLER DEBUG - nextUnit type: ' . gettype($nextUnit));
-                log_message('debug', 'PROGRESS_CONTROLLER DEBUG - nextUnit data: ' . json_encode($nextUnit));
-
-                if ($nextUnit) {
-                    // Check if nextUnit is object or array
-                    if (is_object($nextUnit)) {
-                        $response['next_unit'] = [
-                            'id' => $nextUnit->id,
-                            'title' => $nextUnit->unit_name,
-                            'url' => base_url('courses/unit/' . $nextUnit->id)
-                        ];
-                    } else if (is_array($nextUnit)) {
-                        $response['next_unit'] = [
-                            'id' => $nextUnit['id'],
-                            'title' => $nextUnit['unit_name'],
-                            'url' => base_url('courses/unit/' . $nextUnit['id'])
-                        ];
-                    }
-                }
+                // No next item means course is completed
+                $response['course_completed'] = true;
+                $response['redirect_url'] = base_url('courses/course_view/' . $course->slug);
             }
 
             return $this->response->setJSON($response);
@@ -486,14 +500,14 @@ class Progress extends BaseController
     {
         // Use Shield authentication
         $user = auth()->user();
-        
+
         if (!$user) {
             return $this->response->setStatusCode(401)->setJSON([
                 'success' => false,
                 'message' => 'User not authenticated'
             ]);
         }
-        
+
         $userId = $user->id;
 
         $unitId = $this->request->getGet('unit_id');

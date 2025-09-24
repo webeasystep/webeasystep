@@ -45,17 +45,17 @@ class Enrollments extends BaseController
     /**
      * Example index method if you want to list enrollments.
      */
-    public function index(): string
+    public function index()
     {
-        $data = [
-            'title'       => 'Enrollments List',
-            'enrollments' => $this->enrollmentsModel
-                ->where('status', 'completed')
-                ->paginate(10),
-            'pager' => $this->enrollmentsModel->pager,
-        ];
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Enrollments index working']);
+    }
 
-        return view('site/complete_enrollment', $data);
+    /**
+     * Test method to verify controller access
+     */
+    public function test()
+    {
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Enrollments controller test method working']);
     }
 
     /**
@@ -139,94 +139,87 @@ class Enrollments extends BaseController
      */
     public function completeEnrollment()
     {
-        $userId = auth()->user()->id ?? null;
-        if (!$userId) {
-            return redirect()->to('/login')->with('error', 'يرجى تسجيل الدخول أولاً');
+        // Check if user is logged in
+        if (!auth()->loggedIn()) {
+            return redirect()->to('/login');
         }
 
+        $userId = auth()->id();
+
+        // Get unit_ids from POST data
         $unitIds = $this->request->getPost('unit_ids');
+
         if (empty($unitIds)) {
-            return redirect()->back()->with('error', 'يرجى اختيار وحدة واحدة على الأقل');
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'No units selected for enrollment'
+            ]);
         }
 
-        // Parse unit IDs if they come as JSON string
-        if (is_string($unitIds)) {
-            $unitIds = json_decode($unitIds, true);
-        }
+        // Convert comma-separated string to array
+        $unitIdsArray = is_string($unitIds) ? explode(',', $unitIds) : $unitIds;
+        $unitIdsArray = array_map('trim', $unitIdsArray);
 
-        if (!is_array($unitIds)) {
-            return redirect()->back()->with('error', 'خطأ في معرفات الوحدات');
-        }
+        // Check for existing enrollment with the same units
+        $unitIdsJson = json_encode($unitIdsArray);
+        
+        // First check for exact match
+        $existingEnrollment = $this->enrollmentsModel
+            ->where('user_id', $userId)
+            ->where('unit_ids', $unitIdsJson)
+            ->where('status !=', 'cancelled')
+            ->first();
 
-        // Get selected units
-        $units = $this->unitsModel->whereIn('id', $unitIds)->findAll();
-        if (empty($units)) {
-            return redirect()->back()->with('error', 'الوحدات المحددة غير متاحة');
-        }
-
-        // Check if all units are free
-        $allFree = true;
-        $totalPrice = 0;
-        foreach ($units as $unit) {
-            if (!$unit->is_free) {
-                $allFree = false;
-            }
-            $totalPrice += $unit->price ?? 0;
-        }
-
-        if ($allFree) {
-            // Handle free unit enrollment - grant immediate access
-            $enrollmentData = [
-                'user_id' => $userId,
-                'unit_ids' => json_encode($unitIds),
-                'total_amount' => 0,
-                'payment_method' => 'free',
-                'status' => 'approved',
-                'processed_at' => date('Y-m-d H:i:s'),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ];
-
-            $enrollmentId = $this->unitEnrollmentsModel->insert($enrollmentData);
-            
-            if ($enrollmentId) {
-                // Grant access to free units
-                if (class_exists('\Modules\Units\Models\UnitPurchasesModel')) {
-                    $unitPurchasesModel = new \Modules\Units\Models\UnitPurchasesModel();
-                    
-                    foreach ($unitIds as $unitId) {
-                        $purchaseData = [
-                            'user_id' => $userId,
-                            'unit_id' => $unitId,
-                            'payment_attachment_id' => $enrollmentId,
-                            'price_paid' => 0,
-                            'access_granted' => 1,
-                            'access_expires_at' => null
-                        ];
-                        
-                        $unitPurchasesModel->insertPurchase($purchaseData);
+        // If no exact match, check for any overlapping units
+        if (!$existingEnrollment) {
+            $allEnrollments = $this->enrollmentsModel
+                ->where('user_id', $userId)
+                ->where('status !=', 'cancelled')
+                ->findAll();
+                
+            foreach ($allEnrollments as $enrollment) {
+                $existingUnits = json_decode($enrollment->unit_ids, true);
+                if (is_array($existingUnits)) {
+                    $overlap = array_intersect($unitIdsArray, $existingUnits);
+                    if (!empty($overlap)) {
+                        $existingEnrollment = $enrollment;
+                        break;
                     }
                 }
-
-                // Get the first unit's course to redirect to course view
-                $firstUnit = $units[0];
-                $course = $this->coursesModel->find($firstUnit->course_id);
-                
-                if ($course) {
-                    // Redirect to course view as requested
-                    return redirect()->to('/courses/view/' . $course->id)
-                                   ->with('success', 'تم تسجيلك في الوحدات المجانية بنجاح! يمكنك الآن الوصول إلى المحتوى.');
-                } else {
-                    return redirect()->to('/enrollments/my-purchases')
-                                   ->with('success', 'تم تسجيلك في الوحدات المجانية بنجاح!');
-                }
-            } else {
-                return redirect()->back()->with('error', 'فشل في تسجيل الاشتراك المجاني');
             }
+        }
+        
+        if ($existingEnrollment) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'You have already enrolled in some of these units',
+                'existing_enrollment' => $existingEnrollment
+            ]);
+        }
+
+        // Create new enrollment
+        $enrollmentData = [
+            'user_id' => $userId,
+            'unit_ids' => json_encode($unitIdsArray),
+            'status' => 'pending',
+            'enrolled_at' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
+        $enrollmentId = $this->enrollmentsModel->insert($enrollmentData);
+
+        if ($enrollmentId) {
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Enrollment completed successfully',
+                'enrollment_id' => $enrollmentId
+            ]);
         } else {
-            // Handle paid enrollment - redirect to payment process
-            return redirect()->to('/enrollments/purchase-units?units=' . implode(',', $unitIds))
-                           ->with('info', 'يرجى إتمام عملية الدفع للوحدات المدفوعة');
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Failed to complete enrollment'
+            ]);
         }
     }
 
@@ -248,12 +241,18 @@ class Enrollments extends BaseController
             return redirect()->back()->with('error', 'يرجى اختيار وحدة واحدة على الأقل')->withInput();
         }
 
+        // Check for duplicate enrollments
+        $duplicateUnits = $this->unitEnrollmentsModel->checkDuplicateEnrollments($userId, $unitIds);
+        if (!empty($duplicateUnits)) {
+            return redirect()->back()->with('error', 'لقد تم الاشتراك في هذه الوحدة من قبل')->withInput();
+        }
+
         // Validate payment proof using FireUploader
         $paymentProofFiles = $this->request->getPost('payment_proof');
         if (empty($paymentProofFiles)) {
             return redirect()->back()->with('error', 'يرجى إرفاق إثبات الدفع')->withInput();
         }
-        
+
         // Parse the payment proof JSON data
         $paymentProofData = null;
         if (is_array($paymentProofFiles) && !empty($paymentProofFiles[0])) {

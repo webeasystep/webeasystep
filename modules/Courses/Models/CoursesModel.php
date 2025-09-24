@@ -13,7 +13,7 @@ class CoursesModel extends BaseModel
         'course_title', 'course_desc', 'short_desc', 'image', 'sort',
         'is_free', 'active', 'slug',
         'instructor_id', 'category_id', 'difficulty_level', 'language',
-        'requirements', 'what_you_learn', 'enrollment_limit', 'intro_video_id', 'collection_id'
+        'requirements', 'what_you_learn', 'enrollment_limit', 'intro_video_id',
     ];
     protected $useTimestamps = true;
     protected $returnType    = 'object';
@@ -407,10 +407,10 @@ class CoursesModel extends BaseModel
     {
         // Use Progress module to calculate completion percentage
         $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
-        
+
         // Get course completion percentage
         $completionPercentage = $progressModel->getCourseCompletionPercentage($enrollment->user_id, $course->id);
-        
+
         return (int) $completionPercentage;
     }
 

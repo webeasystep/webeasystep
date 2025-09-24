@@ -114,7 +114,6 @@ class AdminCourses extends BaseController
             'short_desc'        => $this->request->getPost('short_desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             'slug'              => $this->request->getPost('slug', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             'intro_video_id'    => $this->request->getPost('intro_video_id'),
-            'collection_id'     => $this->request->getPost('collection_id'),
             'sort'              => $this->request->getPost('sort', FILTER_SANITIZE_NUMBER_INT),
             'is_free'           => $this->request->getPost('is_free') ? '1' : '0',
             'active'            => $this->request->getPost('active') ? '1' : '0',

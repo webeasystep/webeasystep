@@ -33,8 +33,8 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Pages\Controllers',
 
 /*** Route for Pages Site ***/
 
-$routes->group('/', ['namespace' => 'Modules\Pages\Controllers'], static function ($routes) {
-    $routes->add('pages/(:any)', [Pages::class, 'view']);
+$routes->group('', ['namespace' => 'Modules\Pages\Controllers'], static function ($routes) {
+    $routes->get('pages/(:any)', [Pages::class, 'view/$1']);
     $routes->get('pages', [Pages::class, 'index']);
     $routes->post('pages/view/(:num)', [Pages::class, 'view/$1']);
     $routes->get('pages/add', [Pages::class, 'add']);

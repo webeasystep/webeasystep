@@ -19,12 +19,8 @@ return [
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
     'status' => 'Status',
-    'active' => 'Active',
     'done' => 'Done',
     'intro_video_id' => "Intro Video ID",
     'intro_video_id_placeholder' => "Enter video ID for course preview",
     'intro_video_id_help' => "Video ID from your video hosting service for course introduction",
-    'collection_id' => "Collection ID",
-    'collection_id_placeholder' => "Enter collection ID for video embedding",
-    'collection_id_help' => "Collection ID from your video hosting service for embedding videos",
 ];
