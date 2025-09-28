@@ -2683,40 +2683,36 @@
                 <div class="stat-item">
                     <i class="icon-book"></i>
                     <div>
-                        <div class="stat-value"><?= count($units) ?></div>
-                        <div class="stat-label">وحدات</div>
+                        <div class="stat-value"><?= $course->unit_count ?? count($units) ?></div>
+                        <div class="stat-label">وحدة</div>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <i class="icon-video"></i>
+                    <div>
+                        <div class="stat-value"><?= $course->video_count ?? 0 ?></div>
+                        <div class="stat-label">فيديو</div>
                     </div>
                 </div>
                 <div class="stat-item">
-                    <i class="icon-play-circle"></i>
+                    <i class="icon-question-circle"></i>
                     <div>
-                        <div class="stat-value"><?php
-                            $totalItems = 0;
-                            foreach($units as $unit) {
-                                $totalItems += count($unit->items ?? []);
-                            }
-                            echo $totalItems;
-                            ?></div>
-                        <div class="stat-label">دروس</div>
+                        <div class="stat-value"><?= $course->quiz_count ?? 0 ?></div>
+                        <div class="stat-label">اختبار</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="icon-file-text"></i>
+                    <div>
+                        <div class="stat-value"><?= $course->page_count ?? 0 ?></div>
+                        <div class="stat-label">صفحة</div>
                     </div>
                 </div>
                 <div class="stat-item">
                     <i class="icon-clock-o"></i>
                     <div>
-                        <div class="stat-value"><?php
-                            $totalDuration = 0;
-                            foreach($units as $unit) {
-                                foreach($unit->items ?? [] as $item) {
-                                    if(isset($item->duration_formatted)) {
-                                        $parts = explode(':', $item->duration_formatted);
-                                        if(count($parts) >= 2) {
-                                            $totalDuration += intval($parts[0]) * 60 + intval($parts[1]);
-                                        }
-                                    }
-                                }
-                            }
-                            echo floor($totalDuration / 60) . ':' . sprintf('%02d', $totalDuration % 60);
-                            ?></div>
+                        <div class="stat-value"><?= $course->duration ?? '0:00' ?></div>
                         <div class="stat-label">دقائق</div>
                     </div>
                 </div>

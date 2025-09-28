@@ -123,34 +123,66 @@ class Courses extends BaseController
                 $course['image_url'] = thumb($course['image'], 300, 200);
             }
 
-            // Count lessons and units from units system
-            $lessonCount = 0;
+            // Count videos, pages, quizzes, and units from database
+            $videoCount = 0;
+            $pageCount = 0;
             $unitCount = 0;
+            $quizCount = 0;
             $totalDuration = 0;
 
-            // Get units and their items for this course
-            $units = $this->unitItemsModel->getUnitItems($course['id'], true);
-            if (!empty($units)) {
-                $unitCount = count($units);
-                foreach ($units as $unit) {
-                    if (!empty($unit->items)) {
-                        $lessonCount += count($unit->items);
-                        // Calculate total duration if available
-                        foreach ($unit->items as $item) {
-                            $itemDuration = 0;
-                            if ($item->item_type === 'video' && !empty($item->metadata)) {
-                                $metadata = json_decode($item->metadata, true);
-                                $itemDuration = $metadata['duration'] ?? 0;
-                                // Convert seconds to minutes for consistency
-                                $totalDuration += $this->parseDurationToMinutes(gmdate('H:i:s', $itemDuration));
-                            }
+            // Get units count for this course
+            $unitCount = $this->db->table('tb_units')
+                ->where('course_id', $course['id'])
+                ->where('active', 1)
+                ->countAllResults();
+
+            // Get quiz count for this course
+            $quizCount = $this->db->table('tb_quizzes')
+                ->where('course_id', $course['id'])
+                ->where('active', 1)
+                ->countAllResults();
+
+            // Get unit items and separate by type
+            $unitItems = $this->db->table('tb_unit_items ui')
+                ->select('ui.*, u.course_id')
+                ->join('tb_units u', 'u.id = ui.unit_id')
+                ->where('u.course_id', $course['id'])
+                ->where('u.active', 1)
+                ->where('ui.is_active', 1)
+                ->get()
+                ->getResultArray();
+
+            // Count items by type and calculate duration
+            foreach ($unitItems as $item) {
+                if ($item['item_type'] === 'video') {
+                    $videoCount++;
+                    
+                    // Calculate duration from metadata (video_duration in seconds)
+                    if (!empty($item['metadata'])) {
+                        $metadata = json_decode($item['metadata'], true);
+                        if (isset($metadata['video_duration'])) {
+                            // Convert seconds to minutes and round
+                            $totalDuration += round($metadata['video_duration'] / 60);
                         }
                     }
+                    // Fallback to duration field if metadata is not available
+                    elseif (!empty($item['duration'])) {
+                        $totalDuration += round($item['duration'] / 60);
+                    }
+                } elseif ($item['item_type'] === 'page') {
+                    $pageCount++;
                 }
             }
 
-            $course['lesson_count'] = $lessonCount;
+            $course['video_count'] = $videoCount;
+            $course['page_count'] = $pageCount;
+            $course['unit_count'] = $unitCount;
+            $course['quiz_count'] = $quizCount;
+            
+            // Keep legacy fields for backward compatibility
+            $course['lesson_count'] = $videoCount; // Videos are considered lessons
             $course['section_count'] = $unitCount;
+            
             $course['total_duration'] = $totalDuration;
             $course['duration_formatted'] = $this->formatDuration($totalDuration);
 

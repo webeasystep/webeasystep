@@ -89,10 +89,26 @@
                             <div class="custom-media-body">
                                 <div class="d-flex justify-content-between pb-3">
                                     <div class="text-primary">
-                                        <span class="uil uil-book-open"></span>
-                                        <span><?= $course['lesson_count'] ?> حصة</span>
+                                        <span class="uil uil-play-circle"></span>
+                                        <span><?= $course['video_count'] ?> فيديو</span>
                                     </div>
-                                    <div class="review">
+                                    <div class="text-info">
+                                        <span class="uil uil-layers"></span>
+                                        <span><?= $course['unit_count'] ?> وحدة</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between pb-3">
+                                    <div class="text-success">
+                                        <span class="uil uil-clipboard-notes"></span>
+                                        <span><?= $course['quiz_count'] ?> اختبار</span>
+                                    </div>
+                                    <div class="text-warning">
+                                        <span class="uil uil-file-alt"></span>
+                                        <span><?= $course['page_count'] ?> صفحة</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center pb-3">
+                                    <div class="text-secondary">
                                         <span class="uil uil-clock"></span>
                                         <span><?= $course['duration_formatted'] ?></span>
                                     </div>
