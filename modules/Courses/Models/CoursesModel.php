@@ -62,25 +62,19 @@ class CoursesModel extends BaseModel
     public function getAllUserCourses(int $userId)
     {
         // Get approved unit enrollments for the user
-        $unitEnrollments = $this->db->table('tb_unit_enrollments')
-                                   ->select('unit_ids')
-                                   ->where('user_id', $userId)
-                                   ->where('status', 'approved')
-                                   ->get()
-                                   ->getResultArray();
+        $allUnitIds = $this->db->table('tb_unit_enrollments')
+                              ->select('unit_id')
+                              ->where('user_id', $userId)
+                              ->where('status', 'approved')
+                              ->get()
+                              ->getResultArray();
 
-        if (empty($unitEnrollments)) {
+        if (empty($allUnitIds)) {
             return [];
         }
 
-        // Collect all unit IDs
-        $allUnitIds = [];
-        foreach ($unitEnrollments as $enrollment) {
-            $unitIds = json_decode($enrollment['unit_ids'], true);
-            if (is_array($unitIds)) {
-                $allUnitIds = array_merge($allUnitIds, $unitIds);
-            }
-        }
+        // Extract unit IDs
+        $allUnitIds = array_column($allUnitIds, 'unit_id');
 
         if (empty($allUnitIds)) {
             return [];
@@ -228,20 +222,13 @@ class CoursesModel extends BaseModel
         $courseUnitIds = array_column($courseUnits, 'id');
 
         // Check if user has enrolled in any units of this course
-        $enrollments = $this->db->table($this->enrollmentsTable)
+        $hasEnrollment = $this->db->table($this->enrollmentsTable)
+            ->whereIn('unit_id', $courseUnitIds)
             ->where('user_id', $userId)
             ->where('status !=', 'cancelled')
-            ->get()
-            ->getResultArray();
+            ->countAllResults() > 0;
 
-        foreach ($enrollments as $enrollment) {
-            $unitIds = json_decode($enrollment['unit_ids'], true);
-            if ($unitIds && array_intersect($unitIds, $courseUnitIds)) {
-                return true;
-            }
-        }
-
-        return false;
+        return $hasEnrollment;
     }
 
     /**
@@ -263,20 +250,14 @@ class CoursesModel extends BaseModel
         $courseUnitIds = array_column($courseUnits, 'id');
 
         // Find enrollment that includes units from this course
-        $enrollments = $this->db->table($this->enrollmentsTable)
+        $enrollment = $this->db->table($this->enrollmentsTable)
+            ->whereIn('unit_id', $courseUnitIds)
             ->where('user_id', $userId)
             ->where('status !=', 'cancelled')
             ->get()
-            ->getResultArray();
+            ->getRow();
 
-        foreach ($enrollments as $enrollment) {
-            $unitIds = json_decode($enrollment['unit_ids'], true);
-            if ($unitIds && array_intersect($unitIds, $courseUnitIds)) {
-                return (object) $enrollment;
-            }
-        }
-
-        return null;
+        return $enrollment;
     }
 
     /* ================== LESSON COMPLETION METHODS ================== */
@@ -428,16 +409,13 @@ class CoursesModel extends BaseModel
             return 0;
         }
 
-        // Count enrollments where unit_ids contains any of the course's units
-        $builder = $this->db->table($this->enrollmentsTable);
-        $builder->where('status', 'approved');
-
-        $count = 0;
-        foreach ($unitIds as $unitId) {
-            $builder->orWhere("JSON_CONTAINS(unit_ids, '\"$unitId\"')");
-        }
-
-        return $builder->countAllResults();
+        // Count distinct users enrolled in any units of this course
+        return $this->db->table($this->enrollmentsTable)
+            ->select('user_id')
+            ->distinct()
+            ->whereIn('unit_id', $unitIds)
+            ->where('status', 'approved')
+            ->countAllResults();
     }
 
     /**
@@ -469,25 +447,16 @@ class CoursesModel extends BaseModel
             return 0.0;
         }
 
-        // Count enrollments where unit_ids contains any of the course's units
-        $enrollments = $this->db->table($this->enrollmentsTable)
-                               ->where('status', 'approved')
-                               ->get()
-                               ->getResult();
+        // Get distinct users enrolled in any units of this course
+        $enrolledUsers = $this->db->table($this->enrollmentsTable)
+                                 ->select('user_id')
+                                 ->distinct()
+                                 ->whereIn('unit_id', $unitIds)
+                                 ->where('status', 'approved')
+                                 ->get()
+                                 ->getResult();
 
-        if (empty($enrollments)) {
-            return 0.0;
-        }
-
-        $courseEnrollments = [];
-        foreach ($enrollments as $enrollment) {
-            $enrollmentUnitIds = json_decode($enrollment->unit_ids, true);
-            if ($enrollmentUnitIds && array_intersect($enrollmentUnitIds, $unitIds)) {
-                $courseEnrollments[] = $enrollment;
-            }
-        }
-
-        if (empty($courseEnrollments)) {
+        if (empty($enrolledUsers)) {
             return 0.0;
         }
 

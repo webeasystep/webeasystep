@@ -557,7 +557,12 @@
         border-color: var(--border-color);
     }
 
-
+    /* Material 3 Unit Purchase Section */
+    .unit-purchase-section {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border-light);
+    }
 
     /* Material 3 Modal */
     .modal-content {

@@ -13,7 +13,7 @@ $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
 
 # --- Admin Login Credentials ---
 $loginData = @{
-    email    = "spcialist@gmail.com"
+    email    = "01123303370"
     password = "123456"
 }
 Invoke-WebRequest -Uri "http://localhost:8080/msarlink/dt_admin/login" -Method POST -Body $loginData -WebSession $session

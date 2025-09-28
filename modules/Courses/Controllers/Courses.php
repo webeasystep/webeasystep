@@ -58,11 +58,16 @@ class Courses extends BaseController
             return redirect()->to('login')->with('error', 'Please log in to access course content.');
         }
 
-        // Check if user has access to this content
+        // Check if user has access to this unit
         $hasAccess = $this->checkUnitAccess($userId, $unit->id);
         if (!$hasAccess) {
-            return redirect()->to('/courses/course_details/' . $course->slug)
-                ->with('error', 'You do not have access to this content. Please enroll in the course first.');
+            // Check if unit is free/preview
+            if (!$unit->is_free) {
+                // Redirect back to current course view with Arabic flash message
+                $currentUrl = $this->request->getServer('HTTP_REFERER') ?? site_url('courses/course_view/' . $course->slug);
+                return redirect()->to($currentUrl)
+                    ->with('error', 'يجب عليك شراء الوحدة أولاً حتى تتمكن من مشاهدتها');
+            }
         }
 
         // Redirect to the course view with the specific item
@@ -90,28 +95,17 @@ class Courses extends BaseController
 
         if ($userId) {
             // Get courses with enrolled units for logged-in user
-            $enrolledUnits = $this->db
-                ->table('tb_unit_enrollments')
-                ->select('unit_ids')
-                ->where('user_id', $userId)
-                ->where('status', 'approved')
+            $enrolledCourseIds = $this->db
+                ->table('tb_unit_enrollments ue')
+                ->select('u.course_id')
+                ->join('tb_units u', 'u.id = ue.unit_id')
+                ->where('ue.user_id', $userId)
+                ->where('ue.status', 'approved')
+                ->distinct()
                 ->get()
                 ->getResultArray();
 
-            $enrolledCourseIds = [];
-            foreach ($enrolledUnits as $enrollment) {
-                $unitIds = json_decode($enrollment['unit_ids'], true);
-                if ($unitIds) {
-                    // Get courses for these units
-                    $unitCourses = $this->db->table('tb_units')
-                        ->select('course_id')
-                        ->whereIn('id', $unitIds)
-                        ->get()
-                        ->getResultArray();
-                    $enrolledCourseIds = array_merge($enrolledCourseIds, array_column($unitCourses, 'course_id'));
-                }
-            }
-            $enrolledCourseIds = array_unique($enrolledCourseIds);
+            $enrolledCourseIds = array_column($enrolledCourseIds, 'course_id');
         }
 
         // Pre-process each course
@@ -242,19 +236,15 @@ class Courses extends BaseController
 
         $enrollment = null;
         if (!empty($courseUnitIds)) {
-            $enrollments = $this->db->table('tb_unit_enrollments')
-                ->where('user_id', $userId)
-                ->where('status', 'approved')
+            $enrollments = $this->db->table('tb_unit_enrollments ue')
+                ->join('tb_units u', 'u.id = ue.unit_id')
+                ->where('ue.user_id', $userId)
+                ->where('ue.status', 'approved')
+                ->where('u.course_id', $course['id'])
                 ->get()
                 ->getResultArray();
 
-            foreach ($enrollments as $enroll) {
-                $unitIds = json_decode($enroll['unit_ids'], true);
-                if ($unitIds && array_intersect($unitIds, $courseUnitIds)) {
-                    $enrollment = $enroll;
-                    break;
-                }
-            }
+            $enrollment = !empty($enrollments) ? $enrollments[0] : null;
         }
 
         if ($enrollment) {
@@ -278,30 +268,19 @@ class Courses extends BaseController
         $userId = auth()->loggedIn() ? auth()->user()->id : null;
         $enrolledCourseIds = [];
 
-        // If user is logged in, fetch the courses they’re enrolled in
+        // If user is logged in, fetch the courses they're enrolled in
         if (!empty($userId)) {
-            $enrolledUnits = $this->db
-                ->table('tb_unit_enrollments')
-                ->select('unit_ids')
-                ->where('user_id', $userId)
-                ->where('status', 'approved')
+            $enrolledCourseIds = $this->db
+                ->table('tb_unit_enrollments ue')
+                ->select('u.course_id')
+                ->join('tb_units u', 'u.id = ue.unit_id')
+                ->where('ue.user_id', $userId)
+                ->where('ue.status', 'approved')
+                ->distinct()
                 ->get()
                 ->getResultArray();
 
-            $enrolledCourseIds = [];
-            foreach ($enrolledUnits as $enrollment) {
-                $unitIds = json_decode($enrollment['unit_ids'], true);
-                if ($unitIds) {
-                    // Get courses for these units
-                    $unitCourses = $this->db->table('tb_units')
-                        ->select('course_id')
-                        ->whereIn('id', $unitIds)
-                        ->get()
-                        ->getResultArray();
-                    $enrolledCourseIds = array_merge($enrolledCourseIds, array_column($unitCourses, 'course_id'));
-                }
-            }
-            $enrolledCourseIds = array_unique($enrolledCourseIds);
+            $enrolledCourseIds = array_column($enrolledCourseIds, 'course_id');
         }
 
         // Pre-process each course
@@ -358,19 +337,14 @@ class Courses extends BaseController
         $userEnrolledUnitIds = [];
         if ($userId) {
             // Get user's approved unit enrollments
-            $enrollments = $this->db->table('tb_unit_enrollments')
+            $userEnrolledUnitIds = $this->db->table('tb_unit_enrollments')
+                ->select('unit_id')
                 ->where('user_id', $userId)
                 ->where('status', 'approved')
                 ->get()
                 ->getResultArray();
 
-            foreach ($enrollments as $enrollment) {
-                $unitIds = json_decode($enrollment['unit_ids'], true);
-                if ($unitIds && is_array($unitIds)) {
-                    $userEnrolledUnitIds = array_merge($userEnrolledUnitIds, $unitIds);
-                }
-            }
-            $userEnrolledUnitIds = array_unique($userEnrolledUnitIds);
+            $userEnrolledUnitIds = array_column($userEnrolledUnitIds, 'unit_id');
         }
 
         // Filter out units that user has already purchased and been approved for
@@ -482,6 +456,11 @@ class Courses extends BaseController
      */
     public function course_view(string $slug): string|RedirectResponse
     {
+        // Debug: Log method entry
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' COURSE_VIEW METHOD - Starting with slug: ' . $slug . "\n",
+            FILE_APPEND | LOCK_EX);
+            
         // 1) Fetch the course by slug
         $course = $this->coursesModel->getCourseBySlug($slug);
         if (!$course) {
@@ -504,75 +483,93 @@ class Courses extends BaseController
         $allUnits = $this->unitsModel->getUnitsByCourse($course->id);
 
         // Get user's enrolled unit IDs
-        $enrolledUnitIds = [];
-        $enrollments = $this->db->table('tb_unit_enrollments')
+        $enrolledUnitIds = $this->db->table('tb_unit_enrollments')
+            ->select('unit_id')
             ->where('user_id', $userId)
             ->where('status', 'approved')
             ->get()
             ->getResultArray();
 
-        foreach ($enrollments as $enrollment) {
-            $unitIds = json_decode($enrollment['unit_ids'], true);
-            if ($unitIds) {
-                $enrolledUnitIds = array_merge($enrolledUnitIds, $unitIds);
-            }
-        }
-        $enrolledUnitIds = array_unique($enrolledUnitIds);
+        $enrolledUnitIds = array_column($enrolledUnitIds, 'unit_id');
 
-        // Filter units to show only enrolled ones
+        // Get ALL units for display (both enrolled and unenrolled)
         $units = [];
         foreach ($allUnits as $unit) {
-            if (in_array($unit->id, $enrolledUnitIds)) {
-                $units[] = $unit;
+            // Debug: Log unit properties before processing
+            file_put_contents('D:\laragon\www\msarlink\debug.log',
+                date('Y-m-d H:i:s') . ' UNIT DEBUG - Unit ID: ' . $unit->id . ', is_free: ' . ($unit->is_free ?? 'NOT SET') . "\n",
+                FILE_APPEND | LOCK_EX);
+            
+            // Mark unit as enrolled or not
+            $unit->is_enrolled = in_array($unit->id, $enrolledUnitIds);
+            
+            // Ensure is_free property is preserved (it should already be there from database)
+            if (!isset($unit->is_free)) {
+                $unit->is_free = 0; // Default to not free if not set
             }
+            
+            $units[] = $unit;
         }
 
-        // Get unit items for each enrolled unit using the new UnitItemsModel
+        // Get unit items for each unit (enrolled and unenrolled)
         $flatItems = [];
         foreach ($units as &$unit) {
-            $unit->items = $this->unitItemsModel->getUnitItemsWithDetails($unit->id, true); // Get items with related data
+            // Only get items for enrolled units
+            if ($unit->is_enrolled) {
+                $unit->items = $this->unitItemsModel->getUnitItemsWithDetails($unit->id, true); // Get items with related data
+            } else {
+                // For unenrolled units, get basic item info but mark as locked
+                $unit->items = $this->unitItemsModel->getUnitItemsWithDetails($unit->id, true);
+                // Mark all items as locked for unenrolled units
+                foreach ($unit->items as &$item) {
+                    $item->is_locked = true;
+                }
+                unset($item);
+            }
 
-            // Add items to flat array for navigation
-            foreach ($unit->items as $item) {
-                // Extract duration from metadata if it's a video item
-                $duration = 0;
-                $thumbnail = '';
-                $parsedMetadata = [];
+            // Add items to flat array for navigation (only for enrolled units)
+            if ($unit->is_enrolled) {
+                foreach ($unit->items as $item) {
+                    // Extract duration from metadata if it's a video item
+                    $duration = 0;
+                    $thumbnail = '';
+                    $parsedMetadata = [];
 
-                if (!empty($item->metadata)) {
-                    $parsedMetadata = is_string($item->metadata)
-                        ? json_decode($item->metadata, true)
-                        : $item->metadata;
+                    if (!empty($item->metadata)) {
+                        $parsedMetadata = is_string($item->metadata)
+                            ? json_decode($item->metadata, true)
+                            : $item->metadata;
 
-                    if (!is_array($parsedMetadata)) {
-                        $parsedMetadata = [];
+                        if (!is_array($parsedMetadata)) {
+                            $parsedMetadata = [];
+                        }
                     }
+
+                    if ($item->item_type === 'video' && !empty($parsedMetadata)) {
+                        $duration = $parsedMetadata['video_duration'] ?? 0;
+                        $thumbnail = $parsedMetadata['video_thumbnail'] ?? '';
+                    }
+
+                    // Add duration property to the item object for view access
+                    $item->duration = $duration;
+                    $item->thumbnail = $thumbnail;
+
+                    $flatItems[] = [
+                        'id' => $item->id,
+                        'unit_id' => $unit->id,
+                        'unit_name' => $unit->unit_name,
+                        'item_type' => $item->item_type,
+                        'title' => $item->title,
+                        'description' => $item->description,
+                        'item_id' => $item->item_id, // References quiz_id, page_id, or video_id
+                        'duration' => $duration,
+                        'thumbnail' => $thumbnail,
+                        'metadata' => $parsedMetadata,
+                        'quiz_details' => $item->quiz_details ?? null,
+                        'page_details' => $item->page_details ?? null,
+                        'is_preview' => false // Will be determined by enrollment
+                    ];
                 }
-
-                if ($item->item_type === 'video' && !empty($parsedMetadata)) {
-                    $duration = $parsedMetadata['video_duration'] ?? 0;
-                    $thumbnail = $parsedMetadata['video_thumbnail'] ?? '';
-                }
-
-                // Add duration property to the item object for view access
-                $item->duration = $duration;
-                $item->thumbnail = $thumbnail;
-
-                $flatItems[] = [
-                    'id' => $item->id,
-                    'unit_id' => $unit->id,
-                    'unit_name' => $unit->unit_name,
-                    'item_type' => $item->item_type,
-                    'title' => $item->title,
-                    'description' => $item->description,
-                    'item_id' => $item->item_id, // References quiz_id, page_id, or video_id
-                    'duration' => $duration,
-                    'thumbnail' => $thumbnail,
-                    'metadata' => $parsedMetadata,
-                    'quiz_details' => $item->quiz_details ?? null,
-                    'page_details' => $item->page_details ?? null,
-                    'is_preview' => false // Will be determined by enrollment
-                ];
             }
         }
         unset($unit);
@@ -604,11 +601,16 @@ class Courses extends BaseController
             // Check if the item exists in the database
             $requestedItem = $this->unitItemsModel->find($requestedItemId);
             if ($requestedItem) {
-                // Item exists but user doesn't have access - redirect to course details with enrollment message
+                // Item exists - check if user has access to the unit
                 $unit = $this->unitsModel->find($requestedItem->unit_id);
                 if ($unit && $unit->course_id == $course->id) {
-                    return redirect()->to('/courses/course_details/' . $slug)
-                        ->with('error', 'You need to enroll in the required units to access this content. Please check the enrollment options.');
+                    // Check if user has access to this unit
+                    $hasUnitAccess = $this->checkUnitAccess($userId, $unit->id);
+                    if (!$hasUnitAccess && !$unit->is_free) {
+                        // User doesn't have access - redirect with Arabic message
+                        return redirect()->to(site_url('courses/course_view/' . $slug))
+                            ->with('error', 'يجب عليك شراء الوحدة أولاً حتى تتمكن من مشاهدتها');
+                    }
                 }
             }
 
@@ -961,13 +963,13 @@ class Courses extends BaseController
             if ($enrollment) {
                 $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
                 $progress = $progressModel->getCourseCompletionPercentage($userId, $courseObj->id);
-                
+
                 // Get total units for this course
                 $totalUnits = $this->db->table('tb_units')
                                       ->where('course_id', $courseObj->id)
                                       ->where('active', 1)
                                       ->countAllResults();
-                
+
                 // Get completed units count
                 $completedUnits = $this->db->table('tb_user_item_progress')
                                           ->select('tb_user_item_progress.unit_id')
@@ -977,7 +979,7 @@ class Courses extends BaseController
                                           ->where('tb_user_item_progress.is_completed', 1)
                                           ->groupBy('tb_user_item_progress.unit_id')
                                           ->countAllResults();
-                
+
                 // Calculate remaining units
                 $remainingUnits = max(0, $totalUnits - $completedUnits);
             } else {
@@ -1353,20 +1355,13 @@ class Courses extends BaseController
         $courseUnitIds = array_column($courseUnits, 'id');
 
         // Check if user has enrollment for any of these units
-        $enrollments = $this->db->table('tb_unit_enrollments')
+        $hasAccess = $this->db->table('tb_unit_enrollments')
+            ->whereIn('unit_id', $courseUnitIds)
             ->where('user_id', $userId)
             ->where('status', 'approved')
-            ->get()
-            ->getResultArray();
+            ->countAllResults() > 0;
 
-        foreach ($enrollments as $enrollment) {
-            $unitIds = json_decode($enrollment['unit_ids'], true);
-            if ($unitIds && array_intersect($unitIds, $courseUnitIds)) {
-                return true;
-            }
-        }
-
-        return false;
+        return $hasAccess;
     }
 
     /**
@@ -1388,7 +1383,7 @@ class Courses extends BaseController
     /**
      * View individual unit with progress tracking
      */
-    public function viewUnit(int $unitId): string
+    public function viewUnit(int $unitId): RedirectResponse
     {
         $unit = $this->unitsModel->find($unitId);
         if (!$unit || !$unit->active) {
@@ -1435,7 +1430,6 @@ class Courses extends BaseController
         $data = [
             'title' => $unit->unit_title,
             'course' => $course,
-            'section' => $section,
             'unit' => $unit,
             'prevUnit' => $prevUnit,
             'nextUnit' => $nextUnit,

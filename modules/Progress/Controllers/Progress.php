@@ -185,8 +185,8 @@ class Progress extends BaseController
 
         $enrollment = $this->db->table('tb_unit_enrollments')
                               ->where('user_id', $userId)
+                              ->where('unit_id', $unitId)
                               ->where('status', 'approved')
-                              ->where("JSON_CONTAINS(unit_ids, '\"$unitId\"')", null, false)
                               ->get()
                               ->getRow();
 
@@ -194,6 +194,44 @@ class Progress extends BaseController
         file_put_contents('D:\laragon\www\msarlink\debug.log',
             date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Enrollment found: ' . ($enrollment ? json_encode($enrollment) : 'NULL') . "\n",
             FILE_APPEND | LOCK_EX);
+
+        // AUTO-ENROLLMENT LOGIC FOR FREE UNITS
+        if (!$enrollment && $unit->is_free) {
+            log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Auto-enrolling user in free unit: unitId=' . $unitId);
+            file_put_contents('D:\laragon\www\msarlink\debug.log',
+                date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Auto-enrolling user in free unit: unitId=' . $unitId . "\n",
+                FILE_APPEND | LOCK_EX);
+
+            // Create auto-enrollment for free unit
+            $enrollmentData = [
+                'user_id' => $userId,
+                'unit_id' => $unitId,
+                'total_amount' => 0,
+                'payment_method' => 'free',
+                'status' => 'approved',
+                'processed_at' => date('Y-m-d H:i:s'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+
+            $enrollmentId = $this->db->table('tb_unit_enrollments')->insert($enrollmentData);
+            
+            if ($enrollmentId) {
+                // Fetch the newly created enrollment
+                $enrollment = $this->db->table('tb_unit_enrollments')
+                                      ->where('id', $enrollmentId)
+                                      ->get()
+                                      ->getRow();
+                
+                log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Auto-enrollment successful: enrollmentId=' . $enrollmentId);
+                file_put_contents('D:\laragon\www\msarlink\debug.log',
+                    date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Auto-enrollment successful: enrollmentId=' . $enrollmentId . "\n",
+                    FILE_APPEND | LOCK_EX);
+            } else {
+                log_message('error', 'PROGRESS_CONTROLLER ERROR - Auto-enrollment failed for free unit: unitId=' . $unitId);
+                return $this->response->setJSON(['success' => false, 'message' => 'Failed to auto-enroll in free unit']);
+            }
+        }
 
         if (!$enrollment) {
             return $this->response->setJSON(['success' => false, 'message' => 'Enrollment not found']);
@@ -221,20 +259,14 @@ class Progress extends BaseController
 
             // Use the same navigation logic as the Next button - build flatItems array
             // Get user's enrolled unit IDs
-            $enrolledUnitIds = [];
             $enrollments = $this->db->table('tb_unit_enrollments')
+                ->select('unit_id')
                 ->where('user_id', $userId)
                 ->where('status', 'approved')
                 ->get()
                 ->getResultArray();
 
-            foreach ($enrollments as $enrollment) {
-                $unitIds = json_decode($enrollment['unit_ids'], true);
-                if ($unitIds) {
-                    $enrolledUnitIds = array_merge($enrolledUnitIds, $unitIds);
-                }
-            }
-            $enrolledUnitIds = array_unique($enrolledUnitIds);
+            $enrolledUnitIds = array_column($enrollments, 'unit_id');
 
             // Get all enrolled units for this course
             $allUnits = $this->unitsModel->getUnitsByCourse($course->id);

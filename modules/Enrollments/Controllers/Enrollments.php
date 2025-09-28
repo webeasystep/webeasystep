@@ -186,60 +186,31 @@ class Enrollments extends BaseController
         $unitIdsArray = is_string($unitIds) ? explode(',', $unitIds) : $unitIds;
         $unitIdsArray = array_map('trim', $unitIdsArray);
 
-        // Check for existing enrollment with the same units
-        $unitIdsJson = json_encode($unitIdsArray);
+        // Check for existing enrollments for these units
+        $duplicateEnrollments = $this->unitEnrollmentsModel->checkDuplicateEnrollmentsForUnits($userId, $unitIdsArray);
 
-        // First check for exact match
-        $existingEnrollment = $this->enrollmentsModel
-            ->where('user_id', $userId)
-            ->where('unit_ids', $unitIdsJson)
-            ->where('status !=', 'cancelled')
-            ->first();
-
-        // If no exact match, check for any overlapping units
-        if (!$existingEnrollment) {
-            $allEnrollments = $this->enrollmentsModel
-                ->where('user_id', $userId)
-                ->where('status !=', 'cancelled')
-                ->findAll();
-
-            foreach ($allEnrollments as $enrollment) {
-                $existingUnits = json_decode($enrollment->unit_ids, true);
-                if (is_array($existingUnits)) {
-                    $overlap = array_intersect($unitIdsArray, $existingUnits);
-                    if (!empty($overlap)) {
-                        $existingEnrollment = $enrollment;
-                        break;
-                    }
-                }
-            }
-        }
-
-        if ($existingEnrollment) {
+        if (!empty($duplicateEnrollments)) {
+            $duplicateUnitIds = array_column($duplicateEnrollments, 'unit_id');
             return $this->response->setJSON([
                 'success' => false,
                 'message' => 'You have already enrolled in some of these units',
-                'existing_enrollment' => $existingEnrollment
+                'duplicate_units' => $duplicateUnitIds
             ]);
         }
 
-        // Create new enrollment
-        $enrollmentData = [
+        // Create individual enrollments for each unit
+        $enrollmentIds = $this->unitEnrollmentsModel->createMultipleUnitEnrollments([
             'user_id' => $userId,
-            'unit_ids' => json_encode($unitIdsArray),
-            'status' => 'pending',
-            'enrolled_at' => date('Y-m-d H:i:s'),
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ];
+            'unit_ids' => $unitIdsArray,
+            'total_amount' => 0, // Will be calculated per unit
+            'status' => 'pending'
+        ]);
 
-        $enrollmentId = $this->enrollmentsModel->insert($enrollmentData);
-
-        if ($enrollmentId) {
+        if ($enrollmentIds) {
             return $this->response->setJSON([
                 'success' => true,
                 'message' => 'Enrollment completed successfully',
-                'enrollment_id' => $enrollmentId
+                'enrollment_ids' => $enrollmentIds
             ]);
         } else {
             return $this->response->setJSON([
@@ -270,10 +241,11 @@ class Enrollments extends BaseController
         }
 
         // Check for duplicate enrollments
-        $duplicateUnits = $this->unitEnrollmentsModel->checkDuplicateEnrollments($userId, $unitIds);
-        if (!empty($duplicateUnits)) {
+        $duplicateEnrollments = $this->unitEnrollmentsModel->checkDuplicateEnrollmentsForUnits($userId, $unitIds);
+        if (!empty($duplicateEnrollments)) {
+            $duplicateUnitIds = array_column($duplicateEnrollments, 'unit_id');
             session()->remove('selected_units');
-            return redirect()->back()->with('error', 'لقد تم الاشتراك في هذه الوحدة من قبل')->withInput();
+            return redirect()->back()->with('error', 'لقد تم الاشتراك في بعض هذه الوحدات من قبل: ' . implode(', ', $duplicateUnitIds))->withInput();
         }
 
         // Calculate total price and check if all units are free
@@ -294,23 +266,18 @@ class Enrollments extends BaseController
 
         // Handle free units - auto approve and redirect to course
         if ($allUnitsFree) {
-            // Create enrollment request with approved status
-            $enrollmentData = [
+            // Create individual enrollment requests with approved status
+            $enrollmentIds = $this->unitEnrollmentsModel->createMultipleUnitEnrollments([
                 'user_id' => $userId,
-                'unit_ids' => json_encode($unitIds),
+                'unit_ids' => $unitIds,
                 'total_amount' => 0,
                 'payment_method' => $paymentMethod,
-                'status' => 'approved',
-                'processed_at' => date('Y-m-d H:i:s'),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ];
+                'status' => 'approved'
+            ]);
 
-            log_message('debug', 'Free units enrollment data: ' . json_encode($enrollmentData));
+            log_message('debug', 'Free units enrollment IDs: ' . json_encode($enrollmentIds));
 
-            $enrollmentId = $this->unitEnrollmentsModel->insert($enrollmentData);
-
-            if (!$enrollmentId) {
+            if (!$enrollmentIds) {
                 log_message('error', 'Failed to insert free units enrollment data');
                 session()->remove('selected_units');
                 return redirect()->back()->with('error', 'فشل في تسجيل الاشتراك المجاني')->withInput();
@@ -326,7 +293,7 @@ class Enrollments extends BaseController
             // Get course slug for proper redirect
             $coursesModel = new \Modules\Courses\Models\CoursesModel();
             $course = $coursesModel->getCourseById($courseId);
-            
+
             if (!$course) {
                 log_message('error', 'Course not found for ID: ' . $courseId);
                 session()->remove('selected_units');
@@ -345,25 +312,19 @@ class Enrollments extends BaseController
             return redirect()->back()->with('error', 'خطأ في حساب المبلغ الإجمالي')->withInput();
         }
 
-        // Create enrollment request for paid units
-        $enrollmentData = [
+        // Create individual enrollment requests for paid units
+        $enrollmentIds = $this->unitEnrollmentsModel->createMultipleUnitEnrollments([
             'user_id' => $userId,
-            'unit_ids' => json_encode($unitIds),
+            'unit_ids' => $unitIds,
             'total_amount' => $totalPrice,
             'payment_method' => $paymentMethod,
-            'status' => 'pending',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ];
+            'status' => 'pending'
+        ]);
 
-        log_message('debug', 'Paid units enrollment data: ' . json_encode($enrollmentData));
-
-        $enrollmentId = $this->unitEnrollmentsModel->insert($enrollmentData);
-
-        log_message('debug', 'Enrollment ID after insert: ' . $enrollmentId);
+        log_message('debug', 'Paid units enrollment IDs: ' . json_encode($enrollmentIds));
         log_message('debug', 'Database errors: ' . json_encode($this->unitEnrollmentsModel->errors()));
 
-        if (!$enrollmentId) {
+        if (!$enrollmentIds) {
             log_message('error', 'Failed to insert enrollment data');
             session()->remove('selected_units');
             return redirect()->back()->with('error', 'فشل في حفظ طلب الشراء')->withInput();

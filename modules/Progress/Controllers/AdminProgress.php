@@ -394,19 +394,15 @@ class AdminProgress extends BaseController
 
         $enrolledUsers = 0;
         if (!empty($courseUnitIds)) {
+            // Get unique users enrolled in any unit of this course
             $enrollments = $this->db->table('tb_unit_enrollments')
+                                   ->select('DISTINCT user_id')
                                    ->where('status', 'approved')
+                                   ->whereIn('unit_id', $courseUnitIds)
                                    ->get()
                                    ->getResultArray();
 
-            $uniqueUsers = [];
-            foreach ($enrollments as $enrollment) {
-                $unitIds = json_decode($enrollment['unit_ids'], true);
-                if ($unitIds && array_intersect($unitIds, $courseUnitIds)) {
-                    $uniqueUsers[$enrollment['user_id']] = true;
-                }
-            }
-            $enrolledUsers = count($uniqueUsers);
+            $enrolledUsers = count($enrollments);
         }
 
         return [
