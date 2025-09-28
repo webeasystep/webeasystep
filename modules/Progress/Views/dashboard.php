@@ -115,7 +115,7 @@
                             <div class="mb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <h6 class="mb-0">
-                                        <a href="<?= base_url('courses/view/' . $course->slug) ?>" class="text-decoration-none">
+                                        <a href="<?= base_url('courses/course_view/' . $course->slug) ?>" class="text-decoration-none">
                                             <?= esc($course->course_title) ?>
                                         </a>
                                     </h6>

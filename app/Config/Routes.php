@@ -48,7 +48,7 @@ $routes->get('debug_session', function() {
 });
 
 // 1) قبل shield routes:
-$routes->match(['GET', 'POST'], 'register', [Site::class, 'register']);
+// $routes->match(['GET', 'POST'], 'register', [Site::class, 'register']); // تم تعطيله لصالح Users controller
 $routes->match(['GET', 'POST'], 'login', [Site::class, 'login']);
 $routes->get('activate-account', [Site::class, 'activateAccount']);
 $routes->get('activation-sent', function() {

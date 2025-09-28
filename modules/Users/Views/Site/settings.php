@@ -74,10 +74,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">البريد الإلكتروني *</label>
+                                            <label for="email" class="form-label">البريد الإلكتروني</label>
                                             <input type="email" class="form-control" id="email" name="email"
-                                                   value="<?= esc($user->email ?? '') ?>" disabled readonly>
-                                            <div class="form-text text-muted">لا يمكن تغيير البريد الإلكتروني</div>
+                                                   value="<?= esc($user->email ?? '') ?>" placeholder="أدخل بريدك الإلكتروني (اختياري)">
+                                            <div class="form-text text-muted">يمكنك إضافة بريدك الإلكتروني لتلقي الإشعارات والتحديثات</div>
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +87,8 @@
                                         <div class="mb-3">
                                             <label for="mobile" class="form-label">رقم الهاتف المحمول *</label>
                                             <input type="tel" class="form-control" id="mobile" name="mobile"
-                                                   value="<?= esc($user->mobile ?? '') ?>" required>
+                                                   value="<?= esc($user->mobile ?? '') ?>" disabled readonly>
+                                            <div class="form-text text-muted">لا يمكن تغيير رقم الهاتف المحمول المستخدم في تسجيل الدخول</div>
                                         </div>
                                     </div>
                                 </div>

@@ -64,6 +64,7 @@ $routes->group('', [
     // Site routes for unit purchases - consolidated to use purchase-units only
     $routes->get('enrollments/units-shop', [Enrollments::class, 'unitsShop']);
     $routes->match(['GET', 'POST'], 'enrollments/purchase-units', [Enrollments::class, 'purchaseUnits']);
+    $routes->match(['GET', 'POST'], 'enrollments/checkout', [Enrollments::class, 'checkout']);
     $routes->post('enrollments/complete-enrollment', [Enrollments::class, 'completeEnrollment']);
     $routes->get('enrollments/my-purchases', [Enrollments::class, 'myPurchases']);
 });

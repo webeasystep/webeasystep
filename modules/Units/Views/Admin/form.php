@@ -177,7 +177,7 @@
                             <div class="card-body text-center d-flex flex-column justify-content-center">
                                 <i class="fas fa-question-circle fa-4x mb-3 text-success"></i>
                                 <h5 class="card-title font-weight-bold">اختبار تفاعلي</h5>
-                                <p class="text-muted small">إضافة كويز مرتبط بالكورس الحالي</p>
+                                <p class="text-muted small">إضافة اختبار مرتبط بالكورس الحالي</p>
                                 <div class="mt-auto">
                                     <span class="badge badge-success">Quiz</span>
                                 </div>
@@ -337,18 +337,18 @@
                 <form id="quizForm">
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle mr-2"></i>
-                        <strong>ملاحظة:</strong> سيتم عرض الكويزات المرتبطة بالكورس المحدد فقط.
+                        <strong>ملاحظة:</strong> سيتم عرض الاختبارات المرتبطة بالكورس المحدد فقط.
                     </div>
 
                     <div class="form-group">
                         <label for="quiz_select" class="font-weight-bold">
-                            <i class="fas fa-list mr-1"></i>اختر الكويز المطلوب
+                            <i class="fas fa-list mr-1"></i>اختر الاختبار المطلوب
                         </label>
                         <select class="form-control" id="quiz_id" name="quiz_id" required>
-                            <option value="">-- جاري تحميل الكويزات المتاحة --</option>
+                            <option value="">-- جاري تحميل الاختبارات المتاحة --</option>
                         </select>
                         <small class="form-text text-muted">
-                            يتم عرض الكويزات النشطة المرتبطة بالكورس الحالي فقط
+                            يتم عرض الاختبارات النشطة المرتبطة بالكورس الحالي فقط
                         </small>
                     </div>
 
@@ -356,7 +356,7 @@
                         <div class="card border-success">
                             <div class="card-header bg-light">
                                 <h6 class="mb-0">
-                                    <i class="fas fa-info-circle mr-1"></i>معلومات الكويز المحدد
+                                    <i class="fas fa-info-circle mr-1"></i>معلومات الاختبار المحدد
                                 </h6>
                             </div>
                             <div class="card-body">
@@ -379,23 +379,23 @@
                             <i class="fas fa-sort-numeric-up mr-1"></i>ترتيب العرض
                         </label>
                         <input type="number" class="form-control" id="quiz_sort_order" name="quiz_sort_order"
-                               value="1" min="1" placeholder="ترتيب الكويز في الوحدة">
-                        <small class="form-text text-muted">حدد ترتيب ظهور هذا الكويز في الوحدة</small>
+                               value="1" min="1" placeholder="ترتيب الاختبار في الوحدة">
+                        <small class="form-text text-muted">حدد ترتيب ظهور هذا الاختبار في الوحدة</small>
                     </div>
 
                     <div id="noQuizzesMessage" style="display: none;" class="alert alert-warning">
                         <i class="fas fa-exclamation-triangle mr-2"></i>
-                        <strong>تنبيه:</strong> لا توجد كويزات متاحة لهذا الكورس.
+                        <strong>تنبيه:</strong> لا توجد اختبارات متاحة لهذا الكورس.
                         <div class="mt-2">
                             <button type="button" class="btn btn-warning btn-sm" onclick="openNewQuizForm()">
-                                <i class="fas fa-plus mr-1"></i>إنشاء كويز جديد
+                                <i class="fas fa-plus mr-1"></i>إنشاء اختبار جديد
                             </button>
                         </div>
                     </div>
 
                     <div class="text-center mt-4">
                         <button type="button" class="btn btn-outline-success" onclick="openNewQuizForm()">
-                            <i class="fas fa-plus mr-1"></i>إنشاء كويز جديد للكورس
+                            <i class="fas fa-plus mr-1"></i>إنشاء اختبار جديد للكورس
                         </button>
                     </div>
                 </form>
@@ -405,7 +405,7 @@
                     <i class="fas fa-times mr-1"></i>إلغاء
                 </button>
                 <button type="button" class="btn btn-success" onclick="saveQuizItem()" id="saveQuizBtn" disabled>
-                    <i class="fas fa-save mr-1"></i>حفظ الكويز
+                    <i class="fas fa-save mr-1"></i>حفظ الاختبار
                 </button>
             </div>
         </div>
@@ -547,7 +547,7 @@ $(document).ready(function() {
     <?php if ($isEdit && $unit): ?>
     currentCourseId = '<?= $unit->course_id ?>';
     <?php endif; ?>
-    
+
     // Display existing unit items if editing
     <?php if ($isEdit && isset($existing_unit_items)): ?>
     displayUnitItems();
@@ -645,7 +645,7 @@ function fetchVideoData() {
             if (response.success) {
                 // Store complete video data globally
                 currentVideoData = response.data;
-                
+
                 // Fill video data
                 $('#video_title').val(response.data.title || 'غير محدد');
                 $('#video_duration').val(response.data.video_duration || formatDuration(response.data.duration) || 'غير محدد');
@@ -740,24 +740,24 @@ function loadQuizzes() {
         return;
     }
 
-    $('#quiz_id').html('<option value="">-- جاري تحميل الكويزات المتاحة --</option>');
+    $('#quiz_id').html('<option value="">-- جاري تحميل الاختبارات المتاحة --</option>');
     $('#saveQuizBtn').prop('disabled', true);
 
     $.get('<?= ADMIN_URL ?>units/get-available-quizzes/' + currentCourseId, function(response) {
         if (response.success && response.quizzes.length > 0) {
-            let options = '<option value="">اختر كويز</option>';
+            let options = '<option value="">اختر اختبار</option>';
             response.quizzes.forEach(function(quiz) {
                 options += '<option value="' + quiz.id + '" data-title="' + quiz.title + '" data-desc="' + (quiz.description || 'لا يوجد وصف') + '" data-duration="' + (quiz.duration || 0) + '" data-passing="' + (quiz.passing_score || 0) + '">' + quiz.title + '</option>';
             });
             $('#quiz_id').html(options);
             $('#noQuizzesMessage').hide();
         } else {
-            $('#quiz_id').html('<option value="">لا توجد كويزات متاحة</option>');
+            $('#quiz_id').html('<option value="">لا توجد اختبارات متاحة</option>');
             $('#noQuizzesMessage').show();
         }
     }).fail(function() {
-        $('#quiz_id').html('<option value="">خطأ في تحميل الكويزات</option>');
-        toastr.error('حدث خطأ في تحميل الكويزات');
+        $('#quiz_id').html('<option value="">خطأ في تحميل الاختبارات</option>');
+        toastr.error('حدث خطأ في تحميل الاختبارات');
     });
 }
 
@@ -787,7 +787,7 @@ function saveQuizItem() {
     const sortOrder = parseInt($('#quiz_sort_order').val()) || getNextSortOrder();
 
     if (!quizId) {
-        toastr.error('يرجى اختيار كويز');
+        toastr.error('يرجى اختيار اختبار');
         return;
     }
 
@@ -809,7 +809,7 @@ function saveQuizItem() {
     $('#addQuizModal').modal('hide');
     resetQuizForm();
 
-    toastr.success('تم إضافة الكويز بنجاح');
+    toastr.success('تم إضافة الاختبار بنجاح');
 }
 
 function resetQuizForm() {
@@ -930,7 +930,7 @@ function displayUnitItems() {
                 break;
             case 'quiz':
                 typeIcon = '<i class="fas fa-question-circle text-warning"></i>';
-                typeName = 'كويز';
+                typeName = 'اختبار';
                 break;
             case 'page':
                 typeIcon = '<i class="fas fa-file-alt text-info"></i>';

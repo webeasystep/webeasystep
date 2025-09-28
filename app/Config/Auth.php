@@ -260,11 +260,12 @@ class Auth extends ShieldAuth
      * @var array<string, array<int, string>|string>
      */
     public array $emailValidationRules = [
-        'label' => 'Auth.email',
-        'rules' => [
-            'required',
-            'max_length[254]',
-            'valid_email',
+        'email' => [
+            'label' => 'Auth.email',
+            'rules' => [
+                'permit_empty',
+                'valid_email',
+            ],
         ],
     ];
 
@@ -301,7 +302,6 @@ class Auth extends ShieldAuth
      * Fields that are available to be used as credentials for login.
      */
     public array $validFields = [
-        'email',
         'mobile',
       //  'username',
     ];

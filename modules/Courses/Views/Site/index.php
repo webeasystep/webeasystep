@@ -38,12 +38,6 @@
                                 <?= esc($course['short_desc']) ?>
                             </div>
 
-                            <!-- Lesson count -->
-                            <div class="d-flex justify-content-between pb-3">
-                              <span style="font-size: 14px; color: #666;">
-                                <?= $course['lesson_count'] ?> درس
-                              </span>
-                            </div>
 
                             <!-- Course Info & Action Buttons -->
                             <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
@@ -59,9 +53,8 @@
                                     <!-- Details button -->
                                     <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>"
                                        class="btn btn-primary btn-sm">
-                                        تفاصيل
+                                        شراء وحدات
                                     </a>
-
                                     <!-- If the user is already enrolled, show "استكمل" / "Go to Course" -->
                                     <?php if ($course['is_enrolled']): ?>
                                         <a href="<?= base_url('courses/course_view/' . $course['slug']) ?>"
@@ -69,21 +62,6 @@
                                            style="font-weight:600;">
                                             استكمل
                                         </a>
-                                    <?php else: ?>
-                                        <!-- Otherwise, show Register button (free or paid) -->
-                                        <?php if (!empty($course['is_free'])): ?>
-                                            <a href="<?= base_url('checkout/' . $course['id']) ?>"
-                                               class="btn btn-warning btn-sm"
-                                               style="font-weight:600;">
-                                                سجل مجانًا
-                                            </a>
-                                        <?php else: ?>
-                                            <a href="<?= base_url('checkout/' . $course['id']) ?>"
-                                               class="btn btn-primary btn-sm"
-                                               style="font-weight:600;">
-                                                سجل الآن
-                                            </a>
-                                        <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
                             </div>

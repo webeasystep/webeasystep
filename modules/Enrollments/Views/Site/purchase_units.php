@@ -96,32 +96,32 @@
         background: linear-gradient(135deg, #d4541a 0%, #c04717 100%);
         color: white;
     }
-.whatsapp-contact-section {
-                margin: 20px 0;
-            }
+    .whatsapp-contact-section {
+        margin: 20px 0;
+    }
 
-            .whatsapp-icon svg {
-                filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            }
+    .whatsapp-icon svg {
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
 
-            .alert-info {
-                background-color: #e8f5e8;
-                border-color: #25D366;
-                color: #155724;
-            }
+    .alert-info {
+        background-color: #e8f5e8;
+        border-color: #25D366;
+        color: #155724;
+    }
 
-            .btn-success {
-                background-color: #25D366;
-                border-color: #25D366;
-                transition: all 0.3s ease;
-            }
+    .btn-success {
+        background-color: #25D366;
+        border-color: #25D366;
+        transition: all 0.3s ease;
+    }
 
-            .btn-success:hover {
-                background-color: #128C7E;
-                border-color: #128C7E;
-                transform: translateY(-1px);
-            }
-        </style>
+    .btn-success:hover {
+        background-color: #128C7E;
+        border-color: #128C7E;
+        transform: translateY(-1px);
+    }
+</style>
 
 <section class="payment-section">
     <div class="container">
@@ -146,34 +146,31 @@
                         </div>
 
                         <!-- Payment Form -->
-                        <form action="<?= site_url('enrollments/purchase-units') ?>" method="post" enctype="multipart/form-data" id="purchaseForm">
+                        <?= $this->include('site_layout/site_msg'); ?>
+
+                        <form action="<?= site_url('enrollments/checkout') ?>" method="post" enctype="multipart/form-data" id="purchaseForm">
                             <?= csrf_field() ?>
 
-                            <!-- Hidden unit IDs -->
-                            <?php if (!empty($unit_ids)): ?>
-                                <?php foreach ($unit_ids as $unitId): ?>
-                                    <input type="hidden" name="unit_ids[]" value="<?= esc($unitId) ?>">
-                                <?php endforeach; ?>
-                            <?php endif; ?>
+                            <!-- Unit IDs are now handled via session, no need for hidden inputs -->
 
                             <!-- Payment Method Selection -->
                             <div class="mb-4">
                                 <h5 class="mb-3">طريقة الدفع:</h5>
 
-                                <div class="payment-method-card" onclick="selectPaymentMethod('vodafone_cash')">
+                                <div class="payment-method-card" onclick="selectPaymentMethod('instapay')">
                                     <div class="d-flex align-items-center">
-                                        <input type="radio" name="payment_method" value="vodafone_cash" id="vodafone_cash" checked>
-                                        <label for="vodafone_cash" class="mb-0 ms-2">
-                                            <strong>فودافون كاش</strong>
+                                        <input type="radio" name="payment_method" value="instapay" id="instapay" checked>
+                                        <label for="instapay" class="mb-0 ms-2">
+                                            <strong>انستاباي</strong>
                                         </label>
                                     </div>
                                 </div>
 
-                                <div class="payment-method-card" onclick="selectPaymentMethod('instapay')">
+                                <div class="payment-method-card" onclick="selectPaymentMethod('vodafone_cash')">
                                     <div class="d-flex align-items-center">
-                                        <input type="radio" name="payment_method" value="instapay" id="instapay">
-                                        <label for="instapay" class="mb-0 ms-2">
-                                            <strong>انستاباي</strong>
+                                        <input type="radio" name="payment_method" value="vodafone_cash" id="vodafone_cash">
+                                        <label for="vodafone_cash" class="mb-0 ms-2">
+                                            <strong>فودافون كاش</strong>
                                         </label>
                                     </div>
                                 </div>
@@ -210,7 +207,7 @@
                                     </div>
                                 </div>
 
-                                <div id="instapay_info" class="payment-details" style="display: none;">
+                                <div id="instapay_info" class="payment-details" style="display: block;">
                                     <div class="bank-details">
                                         <h6>بيانات انستاباي:</h6>
                                         <p><strong>الحساب:</strong> fakhr@instapay</p>
@@ -219,14 +216,6 @@
                                 </div>
                             </div>
 
-                            <!-- Payment Proof Upload -->
-                            <div class="mb-4">
-                                <label class="form-label">
-                                    <strong>إرفاق إثبات الدفع: <span class="text-danger">*</span></strong>
-                                </label>
-                                <div class="fireupload" id="dropzone1"></div>
-                                <div class="form-text">يرجى إرفاق صورة أو ملف PDF لإثبات عملية الدفع</div>
-                            </div>
 
                             <!-- Submit Button -->
                             <button type="submit" class="btn btn-purchase">
@@ -247,7 +236,6 @@
 <?= $this->section('js'); ?>
 <?= $this->include('admin_layout/curd_js'); ?>
 <script>
-    // Initialize FireUploader
     var uploader1 = new FireUploader({
         dropzoneId: 'dropzone1',
         inputName: "payment_proof[]",
@@ -284,7 +272,7 @@
 
     // Initialize default selection
     document.addEventListener('DOMContentLoaded', function() {
-        selectPaymentMethod('vodafone_cash');
+        selectPaymentMethod('instapay');
     });
 </script>
 

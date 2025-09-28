@@ -486,7 +486,7 @@ class AdminUnits extends BaseController
         // Quizzes are associated with courses, not individual units
         // This operation is not supported in the current architecture
         return $this->response->setJSON([
-            'success' => false, 
+            'success' => false,
             'message' => 'الاختبارات مرتبطة بالكورس وليس بالوحدة الفردية'
         ]);
     }
@@ -536,7 +536,7 @@ class AdminUnits extends BaseController
         if (!$unit) {
             return [];
         }
-        
+
         // Get quizzes by course_id instead of unit_id
         return $this->db->table('tb_quizzes')
                        ->select('id as quiz_id')
@@ -635,7 +635,7 @@ class AdminUnits extends BaseController
                 case 'quiz':
                     $quizId = $data['quiz_id'] ?? null;
                     if (!$quizId) {
-                        throw new \Exception('معرف الكويز مطلوب');
+                        throw new \Exception('معرف الاختبار مطلوب');
                     }
                     $itemId = $this->unitItems->createQuizItem($unitId, $quizId, $data['title'] ?? null, $data['sort_order'] ?? null);
                     break;
@@ -793,7 +793,7 @@ class AdminUnits extends BaseController
                     $itemData['video_duration'] = $item['duration'] ?? $item['video_duration'] ?? '';
                     $itemData['video_thumbnail'] = $item['video_thumbnail'] ?? $item['thumbnail'] ?? '';
                     $itemData['collection_id'] = $item['collection_id'] ?? '';
-                    
+
                     // Also store in metadata for enhanced functionality
                     $itemData['metadata'] = json_encode([
                         'video_id' => $item['video_id'] ?? '',
@@ -885,7 +885,7 @@ class AdminUnits extends BaseController
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'success' => false,
-                'message' => 'فشل في جلب الكويزات: ' . $e->getMessage()
+                'message' => 'فشل في جلب الاختبارات: ' . $e->getMessage()
             ]);
         }
     }
@@ -970,7 +970,7 @@ class AdminUnits extends BaseController
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'success' => false,
-                'message' => 'فشل في جلب الكويزات: ' . $e->getMessage()
+                'message' => 'فشل في جلب الاختبارات: ' . $e->getMessage()
             ]);
         }
     }

@@ -56,7 +56,7 @@
                                             <th><?= lang('Courses.course') ?>:</th>
                                             <td>
                                                 <?php if (isset($quiz->course_title)): ?>
-                                                    <a href="<?= base_url('dt_admin/courses/view/' . $quiz->course_id) ?>">
+                                                    <a href="<?= base_url('dt_admin/courses/course_view/' . $quiz->course_slug) ?>">
                                                         <?= esc($quiz->course_title) ?>
                                                     </a>
                                                 <?php else: ?>

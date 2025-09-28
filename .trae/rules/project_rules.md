@@ -10,11 +10,13 @@ Invoke-WebRequest -Uri "http://localhost:8080/some/endpoint" -Method GET -UseBas
 
 # 2) Always login before accessing protected routes
 $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+
+# --- Admin Login Credentials ---
 $loginData = @{
-    email = "spcialist@gmail.com"
+    email    = "spcialist@gmail.com"
     password = "123456"
 }
-Invoke-WebRequest -Uri "http://localhost:8080/login" -Method POST -Body $loginData -WebSession $session
+Invoke-WebRequest -Uri "http://localhost:8080/msarlink/dt_admin/login" -Method POST -Body $loginData -WebSession $session
 # - Reuse $session for all subsequent requests
 # - Treat login as the first step in any test cycle
 

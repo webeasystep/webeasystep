@@ -85,6 +85,12 @@
     .info-badge {
         background-color: #17a2b8 !important; /* Info blue for unit count */
     }
+    .remaining-units {
+        font-size: 0.8rem;
+        color: #ffc107;
+        font-weight: 500;
+        margin-left: 5px;
+    }
 
     /* Course Content */
     .course-content {
@@ -200,9 +206,10 @@
             <?php if (!empty($enrolledCourses)): ?>
                 <?php foreach ($enrolledCourses as $item): ?>
                     <?php
-                    // Each $item has ['course' => $courseObj, 'progress' => $progress]
+                    // Each $item has ['course' => $courseObj, 'progress' => $progress, 'total_units' => $totalUnits, 'completed_units' => $completedUnits, 'remaining_units' => $remainingUnits]
                     $course   = $item['course'];
                     $progress = $item['progress'];
+                    $enrolledCourse = $item; // Use the full item array for unit data
                     ?>
                     <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="course-card">
@@ -213,13 +220,13 @@
                                         class="course-thumbnail"
                                         src="<?= thumb($course->image, 170, 249) ?>"
                                 >
-                                <?php if ($course->is_free): ?>
-                                    <div class="course-badge free-badge">مجاناً</div>
-                                <?php else: ?>
-                                    <div class="course-badge info-badge">
-                                        <i class="fas fa-book"></i> <?= $course->unit_count ?? 0 ?> وحدة
-                                    </div>
-                                <?php endif; ?>
+                                <div class="course-badge info-badge">
+                                    <i class="fas fa-book"></i> 
+                                    <?= $enrolledCourse['completed_units'] ?>/<?= $enrolledCourse['total_units'] ?> وحدة
+                                    <?php if ($enrolledCourse['remaining_units'] > 0): ?>
+                                        <span class="remaining-units">(<?= $enrolledCourse['remaining_units'] ?> متبقية)</span>
+                                    <?php endif; ?>
+                                </div>
                             </div>
 
                             <!-- Course Content -->

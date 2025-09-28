@@ -42,7 +42,7 @@ class UnitItemsModel extends Model
         ],
         'item_type' => [
             'required' => 'نوع العنصر مطلوب',
-            'in_list' => 'نوع العنصر يجب أن يكون فيديو أو كويز أو صفحة'
+            'in_list' => 'نوع العنصر يجب أن يكون فيديو أو اختبار أو صفحة'
         ],
         'title' => [
             'required' => 'عنوان العنصر مطلوب',
@@ -149,7 +149,7 @@ class UnitItemsModel extends Model
             'seek_path' => $videoData['seek_path'] ?? '',
             'fallback_url' => $videoData['fallback_url'] ?? ''
         ];
-        
+
         // Prepare metadata JSON with video information
         $metadata = [
             'video_id' => $videoData['video_id'] ?? '',
@@ -159,7 +159,7 @@ class UnitItemsModel extends Model
             'collection_id' => $videoData['collection_id'] ?? '',
             'video_library_id' => $videoData['video_library_id'] ?? ''
         ];
-        
+
         $data = [
             'unit_id' => $unitId,
             'item_type' => 'video',
@@ -185,11 +185,11 @@ class UnitItemsModel extends Model
         // Get quiz details if title not provided
         $quizModel = new \Modules\Quizzes\Models\QuizzesModel();
         $quiz = $quizModel->find($quizId);
-        
+
         if (!$title) {
-            $title = $quiz ? $quiz->quiz_title : 'كويز جديد';
+            $title = $quiz ? $quiz->quiz_title : 'اختبار جديد';
         }
-        
+
         $description = $quiz ? $quiz->quiz_desc : '';
 
         $data = [
@@ -216,11 +216,11 @@ class UnitItemsModel extends Model
         // Get page details if title not provided
         $pageModel = new \Modules\Pages\Models\PagesModel();
         $page = $pageModel->find($pageId);
-        
+
         if (!$title) {
             $title = $page ? $page->title : 'صفحة جديدة';
         }
-        
+
         $description = $page ? $page->desc : '';
 
         $data = [

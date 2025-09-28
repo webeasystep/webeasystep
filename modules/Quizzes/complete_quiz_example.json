@@ -1,0 +1,135 @@
+{
+  "quiz_title": "Complete Quiz Example - All Question Types",
+  "quiz_description": "This is a comprehensive example showing all supported question types in the MSARLink quiz system",
+  "course_id": 1,
+  "time_limit": 45,
+  "passing_score": 70.0,
+  "max_attempts": 3,
+  "shuffle_questions": true,
+  "shuffle_answers": true,
+  "show_results": true,
+  "show_results_immediately": false,
+  "questions": [
+    {
+      "question_text": "What is the capital of Saudi Arabia?",
+      "question_type": "single_choice",
+      "points": 10,
+      "options": [
+        "Jeddah",
+        "Riyadh", 
+        "Dammam",
+        "Mecca"
+      ],
+      "correct_answer": "Riyadh",
+      "explanation": "Riyadh is the capital and largest city of Saudi Arabia, located in the center of the Arabian Peninsula."
+    },
+    {
+      "question_text": "Select all programming languages from the following options:",
+      "question_type": "multiple_choice",
+      "points": 15,
+      "options": [
+        "Python",
+        "HTML",
+        "JavaScript", 
+        "CSS",
+        "Java",
+        "XML"
+      ],
+      "correct_answer": ["Python", "JavaScript", "Java"],
+      "explanation": "Python, JavaScript, and Java are programming languages. HTML and XML are markup languages, while CSS is a styling language."
+    },
+    {
+      "question_text": "The Earth is flat.",
+      "question_type": "true_false",
+      "points": 5,
+      "correct_answer": false,
+      "explanation": "The Earth is approximately spherical in shape, not flat. This has been scientifically proven through various methods."
+    },
+    {
+      "question_text": "Which of the following are web development frameworks?",
+      "question_type": "multiple_choice", 
+      "points": 12,
+      "options": [
+        "React",
+        "Angular",
+        "Photoshop",
+        "Vue.js",
+        "Bootstrap",
+        "Microsoft Word"
+      ],
+      "correct_answer": ["React", "Angular", "Vue.js", "Bootstrap"],
+      "explanation": "React, Angular, Vue.js are JavaScript frameworks, and Bootstrap is a CSS framework. Photoshop and Microsoft Word are not web development tools."
+    },
+    {
+      "question_text": "What does HTML stand for?",
+      "question_type": "single_choice",
+      "points": 8,
+      "options": [
+        "Hyper Text Markup Language",
+        "High Tech Modern Language", 
+        "Home Tool Markup Language",
+        "Hyperlink and Text Markup Language"
+      ],
+      "correct_answer": "Hyper Text Markup Language",
+      "explanation": "HTML stands for Hyper Text Markup Language, which is the standard markup language for creating web pages."
+    },
+    {
+      "question_text": "JavaScript is the same as Java programming language.",
+      "question_type": "true_false",
+      "points": 6,
+      "correct_answer": false,
+      "explanation": "JavaScript and Java are completely different programming languages with different syntax, use cases, and origins."
+    },
+    {
+      "question_text": "Which HTTP methods are commonly used in RESTful APIs?",
+      "question_type": "multiple_choice",
+      "points": 18,
+      "options": [
+        "GET",
+        "POST", 
+        "PUT",
+        "DELETE",
+        "PATCH",
+        "CONNECT",
+        "TRACE"
+      ],
+      "correct_answer": ["GET", "POST", "PUT", "DELETE", "PATCH"],
+      "explanation": "GET, POST, PUT, DELETE, and PATCH are the most commonly used HTTP methods in RESTful APIs. CONNECT and TRACE are less commonly used."
+    },
+    {
+      "question_text": "What is the correct way to declare a variable in JavaScript?",
+      "question_type": "single_choice",
+      "points": 7,
+      "options": [
+        "var myVariable;",
+        "variable myVariable;",
+        "v myVariable;", 
+        "declare myVariable;"
+      ],
+      "correct_answer": "var myVariable;",
+      "explanation": "In JavaScript, variables can be declared using 'var', 'let', or 'const' keywords. 'var myVariable;' is the traditional way to declare a variable."
+    },
+    {
+      "question_text": "CSS stands for Cascading Style Sheets.",
+      "question_type": "true_false",
+      "points": 4,
+      "correct_answer": true,
+      "explanation": "CSS indeed stands for Cascading Style Sheets, which is used to describe the presentation of HTML documents."
+    },
+    {
+      "question_text": "Which of the following are valid CSS selectors?",
+      "question_type": "multiple_choice",
+      "points": 14,
+      "options": [
+        ".class-name",
+        "#id-name",
+        "element-name",
+        "*",
+        "::before",
+        "@media"
+      ],
+      "correct_answer": [".class-name", "#id-name", "element-name", "*", "::before"],
+      "explanation": ".class-name (class selector), #id-name (ID selector), element-name (element selector), * (universal selector), and ::before (pseudo-element) are all valid CSS selectors. @media is a CSS rule, not a selector."
+    }
+  ]
+}

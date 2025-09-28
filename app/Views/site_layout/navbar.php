@@ -72,7 +72,7 @@
                         <a href="<?= site_url('login') ?>" class="small mr-3">
                             <span class="icon-lock"></span>تسجيل الدخول
                         </a>
-                        <a href="<?= site_url('register') ?>" class="small">
+                        <a href="<?= site_url('users/register') ?>" class="small">
                             <span class="icon-person"></span>حساب جديد
                         </a>
                     <?php endif; ?>
@@ -89,9 +89,6 @@
                 <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
                     <li <?= current_url() == site_url() ? 'class="active"' : '' ?>>
                         <a href="<?= site_url() ?>">الرئيسية</a>
-                    </li>
-                    <li <?= current_url() == site_url('pages/scratch_track') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('pages/scratch_track') ?>">كورس مادة البرمجة والذكاء الاصطناعي أولى ثانوي /بكالوريا</a>
                     </li>
 
                     <?php if (isset(auth()->user()->full_name)): ?>

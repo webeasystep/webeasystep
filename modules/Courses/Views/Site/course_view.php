@@ -399,12 +399,12 @@
 
                                                             // Get duration based on item type
                                                             if ($item->item_type === 'video') {
-                                                                $duration = $metadata['video_duration'] ?? null;
+                                                                $duration = round($metadata['video_duration'] / 60) ?? null;
                                                                 if ($duration) {
                                                                     echo '<br><small class="text-muted">(' . esc($duration) . ' دقيقة)</small>';
                                                                 }
                                                             } elseif ($item->item_type === 'quiz') {
-                                                                echo '<br><small class="text-success">كويز تفاعلي</small>';
+                                                                echo '<br><small class="text-success">اختبار تفاعلي</small>';
                                                             } elseif ($item->item_type === 'page') {
                                                                 echo '<br><small class="text-info">صفحة إضافية</small>';
                                                             }
@@ -474,7 +474,7 @@
                                 <div class="card-header bg-success text-white">
                                     <h4 class="mb-0">
                                         <i class="fas fa-question-circle mr-2"></i>
-                                        كويز تفاعلي
+                                        اختبار تفاعلي
                                     </h4>
                                 </div>
                                 <div class="card-body">
@@ -507,7 +507,7 @@
                                             <!-- User Progress Information -->
                                             <?php if (isset($quiz_data->user_attempt_count) && $quiz_data->user_attempt_count > 0): ?>
                                                 <div class="quiz-user-progress mt-3 p-3 bg-light rounded">
-                                                    <h6 class="mb-2"><i class="fas fa-chart-line text-primary"></i> تقدمك في هذا الكويز</h6>
+                                                    <h6 class="mb-2"><i class="fas fa-chart-line text-primary"></i> تقدمك في هذا الاختبار</h6>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <small class="text-muted">أفضل نتيجة:</small>
@@ -531,7 +531,7 @@
                                                     تم استنفاد المحاولات المسموحة
                                                 </button>
                                                 <p class="text-muted mt-2 small">
-                                                    لقد استخدمت جميع المحاولات المسموحة (<?= esc($quiz_data->max_attempts ?? 3) ?>) لهذا الكويز.
+                                                    لقد استخدمت جميع المحاولات المسموحة (<?= esc($quiz_data->max_attempts ?? 3) ?>) لهذا الاختبار.
                                                     <?php if (isset($quiz_data->user_best_score) && $quiz_data->user_best_score > 0): ?>
                                                         أفضل نتيجة حققتها: <?= esc($quiz_data->user_best_score) ?>%
                                                     <?php endif; ?>
@@ -544,7 +544,7 @@
                                                     <?php if (isset($quiz_data->user_attempt_count) && $quiz_data->user_attempt_count > 0): ?>
                                                         إعادة المحاولة
                                                     <?php else: ?>
-                                                        ابدأ الكويز
+                                                        ابدأ الاختبار
                                                     <?php endif; ?>
                                                 </button>
                                                 <?php if (isset($quiz_data->remaining_attempts) && $quiz_data->remaining_attempts > 0): ?>
@@ -558,7 +558,7 @@
                                     <?php else: ?>
                                         <div class="text-center">
                                             <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
-                                            <p class="text-muted">الكويز غير متاح حالياً</p>
+                                            <p class="text-muted">الاختبار غير متاح حالياً</p>
                                         </div>
                                     <?php endif; ?>
                                 </div>

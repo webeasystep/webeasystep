@@ -275,7 +275,7 @@ class Courses extends BaseController
         $data['courses'] = $this->coursesModel->getAllCoursesWithStats();
 
         // (Optional) Check if user is logged in
-        $userId = session()->get('user_id');
+        $userId = auth()->loggedIn() ? auth()->user()->id : null;
         $enrolledCourseIds = [];
 
         // If user is logged in, fetch the courses they’re enrolled in
@@ -350,6 +350,37 @@ class Courses extends BaseController
 
         // 2) Get course units with their items
         $units = $this->unitsModel->getUnitsByCourse($course->id);
+
+        // 2.1) Check if user is logged in and get user ID
+        $userId = auth()->loggedIn() ? auth()->user()->id : null;
+
+        // 2.2) Check user's unit enrollments to filter out purchased units
+        $userEnrolledUnitIds = [];
+        if ($userId) {
+            // Get user's approved unit enrollments
+            $enrollments = $this->db->table('tb_unit_enrollments')
+                ->where('user_id', $userId)
+                ->where('status', 'approved')
+                ->get()
+                ->getResultArray();
+
+            foreach ($enrollments as $enrollment) {
+                $unitIds = json_decode($enrollment['unit_ids'], true);
+                if ($unitIds && is_array($unitIds)) {
+                    $userEnrolledUnitIds = array_merge($userEnrolledUnitIds, $unitIds);
+                }
+            }
+            $userEnrolledUnitIds = array_unique($userEnrolledUnitIds);
+        }
+
+        // Filter out units that user has already purchased and been approved for
+        $filteredUnits = [];
+        foreach ($units as $unit) {
+            if (!in_array($unit->id, $userEnrolledUnitIds)) {
+                $filteredUnits[] = $unit;
+            }
+        }
+        $units = $filteredUnits;
 
         // Get unit items for each unit and process metadata
         foreach ($units as &$unit) {
@@ -922,17 +953,45 @@ class Courses extends BaseController
             // find enrollment
             $enrollment = $this->coursesModel->getEnrollment($userId, $courseObj->id);
             $progress   = 0;
+            $completedUnits = 0;
+            $totalUnits = 0;
+            $remainingUnits = 0;
 
-            // TODO: Implement progress calculation for units system
-            // Calculate progress using the Progress module
+            // Calculate progress and unit statistics using the Progress module
             if ($enrollment) {
                 $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
                 $progress = $progressModel->getCourseCompletionPercentage($userId, $courseObj->id);
+                
+                // Get total units for this course
+                $totalUnits = $this->db->table('tb_units')
+                                      ->where('course_id', $courseObj->id)
+                                      ->where('active', 1)
+                                      ->countAllResults();
+                
+                // Get completed units count
+                $completedUnits = $this->db->table('tb_user_item_progress')
+                                          ->select('tb_user_item_progress.unit_id')
+                                          ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
+                                          ->where('tb_user_item_progress.user_id', $userId)
+                                          ->where('tb_units.course_id', $courseObj->id)
+                                          ->where('tb_user_item_progress.is_completed', 1)
+                                          ->groupBy('tb_user_item_progress.unit_id')
+                                          ->countAllResults();
+                
+                // Calculate remaining units
+                $remainingUnits = max(0, $totalUnits - $completedUnits);
+            } else {
+                // If not enrolled, get total units from course data
+                $totalUnits = $courseObj->unit_count ?? 0;
+                $remainingUnits = $totalUnits;
             }
 
             $enrolledCourses[] = [
-                'course'   => $courseObj,
-                'progress' => $progress,
+                'course'         => $courseObj,
+                'progress'       => $progress,
+                'total_units'    => $totalUnits,
+                'completed_units' => $completedUnits,
+                'remaining_units' => $remainingUnits,
             ];
         }
 

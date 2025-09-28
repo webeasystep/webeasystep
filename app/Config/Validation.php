@@ -50,9 +50,9 @@ class Validation extends BaseConfig
      */
     public array $registrationRules = [
         'full_name' => 'required|min_length[2]|max_length[100]',
-        'email' => 'required|valid_email|is_unique[auth_identities.secret]',
-        'mobile' => 'required|egyptian_mobile',
-        'password' => 'required|min_length[8]',
+        'email' => 'permit_empty|valid_email|is_unique[auth_identities.secret]',
+        'mobile' => 'required|egyptian_mobile|is_unique[users.mobile]',
+        'password' => 'required|min_length[6]',
         'password_confirm' => 'required|matches[password]',
     ];
 }

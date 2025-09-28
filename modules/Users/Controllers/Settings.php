@@ -31,7 +31,7 @@ class Settings extends BaseController
 
         // Get user data from the users model
         $userData = $this->usersModel->find($user->id);
-        
+
         $data = [
             'title' => 'إعدادات الحساب',
             'user' => $userData
@@ -58,7 +58,7 @@ class Settings extends BaseController
         $validation = \Config\Services::validation();
         $validation->setRules([
             'full_name' => 'required|min_length[2]|max_length[100]',
-            'mobile' => 'required|regex_match[/^01[0125][0-9]{8}$/]', // Egyptian mobile validation
+            'email' => 'permit_empty|valid_email|is_unique[users.email,id,' . $user->id . ']',
             'parent_name' => 'permit_empty|min_length[2]|max_length[100]',
             'parent_email' => 'permit_empty|valid_email',
             'parent_phone' => 'permit_empty|regex_match[/^01[0125][0-9]{8}$/]' // Egyptian mobile validation for parent
@@ -70,9 +70,10 @@ class Settings extends BaseController
 
         $updateData = [
             'full_name' => $this->request->getPost('full_name'),
-            'mobile' => $this->request->getPost('mobile'),
+            'email' => $this->request->getPost('email'),
             'parent_name' => $this->request->getPost('parent_name'),
-            'parent_mobile' => $this->request->getPost('parent_mobile'),
+            'parent_email' => $this->request->getPost('parent_email'),
+            'parent_phone' => $this->request->getPost('parent_phone'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
 
@@ -106,7 +107,7 @@ class Settings extends BaseController
         $validation = \Config\Services::validation();
         $validation->setRules([
             'current_password' => 'required',
-            'new_password' => 'required|min_length[8]',
+            'new_password' => 'required|min_length[6]',
             'confirm_password' => 'required|matches[new_password]'
         ]);
 
@@ -126,10 +127,10 @@ class Settings extends BaseController
             // Update password using Shield's user provider
             $userProvider = auth()->getProvider();
             $userEntity = $userProvider->findById($user->id);
-            
+
             // Hash the new password
             $userEntity->password = $newPassword;
-            
+
             if ($userProvider->save($userEntity)) {
                 return redirect()->back()->with('success', 'تم تغيير كلمة المرور بنجاح!');
             } else {
@@ -154,11 +155,11 @@ class Settings extends BaseController
 
         // Initialize FireUploader
         $fireUploader = new \App\Libraries\FireUploader();
-        
+
         try {
             // Use FireUploader to handle the upload
             $uploadResult = $fireUploader->upload_photos($this->usersModel, 'avatar', $user->id);
-            
+
             if ($uploadResult) {
                 return redirect()->to('/settings')->with('success', 'تم تحديث صورة الملف الشخصي بنجاح!');
             } else {
@@ -184,7 +185,7 @@ class Settings extends BaseController
         try {
             // Get user data to check for existing avatar
             $userData = $this->usersModel->find($user->id);
-            
+
             if ($userData && $userData->avatar) {
                 // Delete the avatar file if it exists
                 $avatarPath = FCPATH . 'uploads/avatars/' . $userData->avatar;

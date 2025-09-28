@@ -39,16 +39,16 @@ $routes->group('/', ['namespace' => 'Modules\Users\Controllers'], static functio
     $routes->get('users/add', [Users::class, 'add']);
     $routes->get('users/edit/(:num)', [Users::class, 'edit/$1']);
     $routes->get('users/delete/(:num)', [Users::class, 'delete/$1']);
-    
+
     // Authentication routes
     $routes->get('users/login', [Users::class, 'login']);
     $routes->post('users/login', [Users::class, 'processLogin']);
     $routes->get('users/logout', [Users::class, 'logout']);
     $routes->get('users/register', [Users::class, 'register']);
-    $routes->post('users/register', [Users::class, 'processRegistration']);
+    $routes->post('users/register', [Users::class, 'register']);
     $routes->get('users/verify-email-sent', [Users::class, 'verifyEmailSent']);
     $routes->get('users/verify-email/(:any)', [Users::class, 'verifyEmail/$1']);
-    
+
     // Settings routes (require authentication)
     $routes->group('', ['filter' => 'site_filter'], static function ($routes) {
         $routes->get('settings', [\Modules\Users\Controllers\Settings::class, 'index']);

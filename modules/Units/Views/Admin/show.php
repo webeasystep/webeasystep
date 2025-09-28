@@ -422,7 +422,7 @@ function displayUnitItems(items) {
                 break;
             case 'quiz':
                 typeIcon = '<i class="fas fa-question-circle text-warning"></i>';
-                typeName = 'كويز';
+                typeName = 'اختبار';
                 break;
             case 'page':
                 typeIcon = '<i class="fas fa-file-alt text-info"></i>';
@@ -540,7 +540,7 @@ function fetchVideoData() {
         if (response.success) {
             // Store complete video data globally
             currentVideoData = response.data;
-            
+
             $('#video_title').val(response.data.title);
             $('#video_duration').val(response.data.video_duration || formatDuration(response.data.duration));
             $('#video_thumbnail').val(response.data.thumbnail);
@@ -560,7 +560,7 @@ function saveVideoItem() {
         toastr.error('يرجى جلب بيانات الفيديو أولاً');
         return;
     }
-    
+
     const formData = {
         unit_id: currentUnitId,
         item_type: 'video',
@@ -599,7 +599,7 @@ function saveVideoItem() {
 function loadQuizzes() {
     $.get('<?= ADMIN_URL ?>units/get-available-quizzes/<?= $unit->course_id ?>', function(response) {
         if (response.success) {
-            let options = '<option value="">اختر كويز</option>';
+            let options = '<option value="">اختر اختبار</option>';
             response.quizzes.forEach(function(quiz) {
                 options += '<option value="' + quiz.id + '">' + quiz.title + '</option>';
             });
@@ -611,7 +611,7 @@ function loadQuizzes() {
 function saveQuizItem() {
     const quizId = $('#quiz_id').val();
     if (!quizId) {
-        toastr.error('يرجى اختيار كويز');
+        toastr.error('يرجى اختيار اختبار');
         return;
     }
 
@@ -622,11 +622,11 @@ function saveQuizItem() {
         '<?= csrf_token() ?>': '<?= csrf_hash() ?>'
     }, function(response) {
         if (response.success) {
-            toastr.success('تم إضافة الكويز بنجاح');
+            toastr.success('تم إضافة الاختبار بنجاح');
             $('#addQuizModal').modal('hide');
             loadUnitItems();
         } else {
-            toastr.error('حدث خطأ في إضافة الكويز');
+            toastr.error('حدث خطأ في إضافة الاختبار');
         }
     });
 }
@@ -693,7 +693,7 @@ function savePageItem() {
                         <div class="card text-center" style="cursor: pointer;" onclick="selectItemType('quiz')">
                             <div class="card-body">
                                 <i class="fas fa-question-circle fa-3x text-warning mb-3"></i>
-                                <h5>كويز</h5>
+                                <h5>اختبار</h5>
                                 <p class="text-muted">إضافة اختبار موجود</p>
                             </div>
                         </div>
@@ -761,21 +761,21 @@ function savePageItem() {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">إضافة كويز</h4>
+                <h4 class="modal-title">إضافة اختبار</h4>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>اختر الكويز *</label>
+                    <label>اختر الاختبار *</label>
                     <select class="form-control" id="quiz_id">
                         <option value="">جاري التحميل...</option>
                     </select>
                 </div>
                 <div class="text-center mt-3">
                     <a href="<?= ADMIN_URL ?>quizzes/add" class="btn btn-success" target="_blank">
-                        <i class="fas fa-plus"></i> إنشاء كويز جديد
+                        <i class="fas fa-plus"></i> إنشاء اختبار جديد
                     </a>
                 </div>
             </div>

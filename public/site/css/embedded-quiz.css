@@ -246,12 +246,12 @@
 }
 
 #quiz-timer-display.time-warning {
-    color: #ffc107;
+    color: #ffdc6b;
     animation: pulse 1s infinite;
 }
 
 #quiz-timer-display.time-critical {
-    color: #dc3545;
+    color: #ffffff;
     animation: pulse 0.5s infinite;
 }
 
@@ -674,61 +674,61 @@ body.quiz-modal-open {
         max-height: 95vh;
         margin: 10px;
     }
-    
+
     .quiz-modal-header {
         padding: 15px 20px;
         flex-direction: column;
         gap: 15px;
         align-items: stretch;
     }
-    
+
     .quiz-header-right {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
     }
-    
+
     .quiz-title {
         font-size: 1.3rem;
     }
-    
+
     .quiz-modal-body {
         padding: 20px;
     }
-    
+
     .quiz-question {
         padding: 20px;
     }
-    
+
     .quiz-modal-footer {
         padding: 15px 20px;
         flex-direction: column;
         gap: 15px;
     }
-    
+
     .quiz-nav-left,
     .quiz-nav-right {
         width: 100%;
         display: flex;
         justify-content: center;
     }
-    
+
     .quiz-nav-prev,
     .quiz-nav-next,
     .quiz-submit-btn {
         width: 100%;
         justify-content: center;
     }
-    
+
     .result-details {
         gap: 20px;
     }
-    
+
     .result-score {
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .result-score .score {
         font-size: 2.5rem;
     }
@@ -741,23 +741,23 @@ body.quiz-modal-open {
         max-height: 100vh;
         border-radius: 0;
     }
-    
+
     .quiz-timer {
         font-size: 1rem;
         padding: 6px 12px;
     }
-    
+
     .question-title {
         font-size: 1.1rem;
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
     }
-    
+
     .quiz-question-navigation {
         gap: 5px;
     }
-    
+
     .quiz-question-nav-btn {
         width: 35px;
         height: 35px;
@@ -850,16 +850,16 @@ body.quiz-modal-open {
         max-width: 90%;
         margin: 20px;
     }
-    
+
     .error-content {
         padding: 30px 20px;
     }
-    
+
     .error-actions {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .error-actions .btn {
         width: 100%;
         max-width: 250px;
@@ -871,11 +871,11 @@ body.quiz-modal-open {
     .quiz-modal-container {
         border: 3px solid #000;
     }
-    
+
     .quiz-option-label {
         border-width: 3px;
     }
-    
+
     .quiz-option-label:hover,
     .quiz-option-label:has(input:checked) {
         border-color: #000;
@@ -894,7 +894,7 @@ body.quiz-modal-open {
         animation: none;
         transition: none;
     }
-    
+
     .quiz-progress-fill::after {
         animation: none;
     }
