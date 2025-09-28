@@ -93,7 +93,7 @@ class AdminQuizzes extends BaseController
                 'shuffle_answers' => $this->request->getPost('shuffle_answers') ? 1 : 0,
                 'show_results' => $this->request->getPost('show_results') ? 1 : 0,
                 'active' => $this->request->getPost('active') ? 1 : 0,
-                'created_by' => session()->get('user_id')
+                'created_by' => session()->get('user')['id'] ?? null
             ];
 
             if ($this->quizzesModel->insert($data)) {
@@ -145,7 +145,7 @@ class AdminQuizzes extends BaseController
                 'shuffle_answers' => $this->request->getPost('shuffle_answers') ? 1 : 0,
                 'show_results' => $this->request->getPost('show_results') ? 1 : 0,
                 'active' => $this->request->getPost('active') ? 1 : 0,
-                'updated_by' => session()->get('user_id')
+                'updated_by' => session()->get('user')['id'] ?? null
             ];
 
             if ($this->quizzesModel->update($id, $data)) {

@@ -119,7 +119,8 @@ class Users extends BaseController
      */
     public function login()
     {
-        if (session()->get('user_id')) {
+        // Check if user is already logged in using CodeIgniter Shield
+        if (auth()->loggedIn() || (session()->get('user')['id'] ?? null)) {
             return redirect()->to('/dashboard');
         }
 

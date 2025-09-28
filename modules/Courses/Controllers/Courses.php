@@ -514,21 +514,21 @@ class Courses extends BaseController
         // Get unit items for each unit (enrolled and unenrolled)
         $flatItems = [];
         foreach ($units as &$unit) {
-            // Only get items for enrolled units
-            if ($unit->is_enrolled) {
-                $unit->items = $this->unitItemsModel->getUnitItemsWithDetails($unit->id, true); // Get items with related data
-            } else {
-                // For unenrolled units, get basic item info but mark as locked
-                $unit->items = $this->unitItemsModel->getUnitItemsWithDetails($unit->id, true);
-                // Mark all items as locked for unenrolled units
+            // Get items for all units (enrolled, free, and locked)
+            $unit->items = $this->unitItemsModel->getUnitItemsWithDetails($unit->id, true); // Get items with related data
+            
+            // Mark items as locked for unenrolled non-free units
+            if (!$unit->is_enrolled && !$unit->is_free) {
                 foreach ($unit->items as &$item) {
                     $item->is_locked = true;
                 }
                 unset($item);
             }
 
-            // Add items to flat array for navigation (only for enrolled units)
-            if ($unit->is_enrolled) {
+            // Add items to flat array for navigation (enrolled units + free units)
+            $includeInNavigation = $unit->is_enrolled || $unit->is_free;
+            
+            if ($includeInNavigation) {
                 foreach ($unit->items as $item) {
                     // Extract duration from metadata if it's a video item
                     $duration = 0;
@@ -567,7 +567,8 @@ class Courses extends BaseController
                         'metadata' => $parsedMetadata,
                         'quiz_details' => $item->quiz_details ?? null,
                         'page_details' => $item->page_details ?? null,
-                        'is_preview' => false // Will be determined by enrollment
+                        'is_preview' => false, // Will be determined by enrollment
+                        'is_free_unit' => $unit->is_free // Track if this item belongs to a free unit
                     ];
                 }
             }
@@ -604,6 +605,30 @@ class Courses extends BaseController
                 // Item exists - check if user has access to the unit
                 $unit = $this->unitsModel->find($requestedItem->unit_id);
                 if ($unit && $unit->course_id == $course->id) {
+                    // Check if unit is free and auto-enroll user
+                    if ($unit->is_free && !in_array($unit->id, $enrolledUnitIds)) {
+                        // Auto-enroll user in free unit
+                        $enrollmentData = [
+                            'user_id' => $userId,
+                            'unit_id' => $unit->id,
+                            'status' => 'approved',
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'processed_at' => date('Y-m-d H:i:s'),
+                            'processed_by' => $userId // Self-enrollment for free units
+                        ];
+                        
+                        $this->db->table('tb_unit_enrollments')->insert($enrollmentData);
+                        
+                        // Log the auto-enrollment
+                        file_put_contents('D:\laragon\www\msarlink\debug.log',
+                            date('Y-m-d H:i:s') . ' AUTO-ENROLLMENT - User ' . $userId . ' auto-enrolled in free unit ' . $unit->id . "\n",
+                            FILE_APPEND | LOCK_EX);
+                        
+                        // Redirect to refresh the page with updated enrollment
+                        return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $requestedItemId))
+                            ->with('success', 'تم تسجيلك في الوحدة المجانية بنجاح');
+                    }
+                    
                     // Check if user has access to this unit
                     $hasUnitAccess = $this->checkUnitAccess($userId, $unit->id);
                     if (!$hasUnitAccess && !$unit->is_free) {
@@ -620,14 +645,31 @@ class Courses extends BaseController
             }
         }
 
-        // 7) Determine next & prev items
-        $prevItem = ($currentIndex > 0)
-            ? $flatItems[$currentIndex - 1]
-            : null;
-
-        $nextItem = ($currentIndex !== false && $currentIndex < count($flatItems) - 1)
-            ? $flatItems[$currentIndex + 1]
-            : null;
+        // 7) Determine next & prev items with smart navigation (skip locked units)
+        $prevItem = null;
+        $nextItem = null;
+        
+        if ($currentIndex !== false) {
+            // Find previous available item (skip locked units)
+            for ($i = $currentIndex - 1; $i >= 0; $i--) {
+                $item = $flatItems[$i];
+                // Check if this item is accessible (enrolled or free unit)
+                if ($item['is_free_unit'] || in_array($item['unit_id'], $enrolledUnitIds)) {
+                    $prevItem = $item;
+                    break;
+                }
+            }
+            
+            // Find next available item (skip locked units)
+            for ($i = $currentIndex + 1; $i < count($flatItems); $i++) {
+                $item = $flatItems[$i];
+                // Check if this item is accessible (enrolled or free unit)
+                if ($item['is_free_unit'] || in_array($item['unit_id'], $enrolledUnitIds)) {
+                    $nextItem = $item;
+                    break;
+                }
+            }
+        }
 
         // 8) Mark correct unit open & the correct item active
         if ($currentItem) {
@@ -1240,7 +1282,7 @@ class Courses extends BaseController
             $courses = $this->coursesModel->searchCourses($query);
 
             // Add enrollment status for logged-in users
-            $userId = session()->get('user_id');
+            $userId = session()->get('user')['id'] ?? null;
             if ($userId) {
                 foreach ($courses as &$course) {
                     $course->is_enrolled = $this->coursesModel->isUserEnrolled($userId, $course->id);

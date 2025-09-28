@@ -35,7 +35,7 @@ class Quizzes extends BaseController
                 'message' => 'Embedded quizzes must be started via POST request'
             ]);
         }
-        
+
         // For non-AJAX requests, redirect back with error
         return redirect()->back()->with('error', 'Invalid quiz access method');
     }
@@ -49,7 +49,7 @@ class Quizzes extends BaseController
             'session_id' => session_id(),
             'session_data' => $_SESSION ?? [],
             'auth_logged_in' => auth()->loggedIn(),
-            'direct_user_id' => session()->get('user_id'),
+            'direct_user_id' => session()->get('user')['id'] ?? null,
             'session_keys' => array_keys($_SESSION ?? [])
         ];
 
@@ -84,7 +84,10 @@ class Quizzes extends BaseController
      */
     public function viewAttempt($attemptId)
     {
-        $userId = session()->get('user_id');
+        // Get user ID from session (Shield stores it as user.id)
+        $sessionUser = session()->get('user');
+        $userId = $sessionUser['id'] ?? null;
+        
         if (!$userId) {
             return redirect()->to('/users/login')->with('error', 'Please login to view your attempts.');
         }
@@ -115,14 +118,17 @@ class Quizzes extends BaseController
      */
     public function redirectToQuiz($quizId)
     {
-        $userId = session()->get('user_id');
+        // Get user ID from session (Shield stores it as user.id)
+        $sessionUser = session()->get('user');
+        $userId = $sessionUser['id'] ?? null;
+        
         if (!$userId) {
             return redirect()->to('/users/login')->with('error', 'Please login to take quizzes.');
         }
 
         // Check if user has an active attempt for this quiz
         $activeAttempt = $this->attemptsModel->getUserLatestAttempt($userId, $quizId);
-        
+
         if ($activeAttempt && $activeAttempt->score == 0) {
             // User has an incomplete attempt, redirect to continue
             return redirect()->to("/quizzes/continue/{$activeAttempt->id}");
@@ -153,10 +159,10 @@ class Quizzes extends BaseController
 
         // Check if user has exceeded max attempts
         $attemptCount = $this->attemptsModel->getUserAttemptCount($userId, $quizId);
-        
+
         // Debug logging for attempt count
         log_message('debug', "QUIZ_TAKE_DEBUG: User ID: {$userId}, Quiz ID: {$quizId}, Attempt Count: {$attemptCount}, Max Attempts: {$quiz->max_attempts}");
-        
+
         if ($attemptCount >= $quiz->max_attempts) {
             return redirect()->back()->with('error', 'You have exceeded the maximum number of attempts for this quiz.');
         }
@@ -181,9 +187,12 @@ class Quizzes extends BaseController
      */
     public function startAttempt($quizId)
     {
-        $userId = session()->get('user_id');
+        // Get user ID from session (Shield stores it as user.id)
+        $sessionUser = session()->get('user');
+        $userId = $sessionUser['id'] ?? null;
+        
         if (!$userId) {
-            return redirect()->to('/users/login');
+            return redirect()->to('/users/login')->with('error', 'Please login to start quiz attempts.');
         }
 
         $quiz = $this->quizzesModel->find($quizId);
@@ -292,9 +301,12 @@ class Quizzes extends BaseController
      */
     public function submitAnswers($attemptId)
     {
-        $userId = session()->get('user_id');
+        // Get user ID from session (Shield stores it as user.id)
+        $sessionUser = session()->get('user');
+        $userId = $sessionUser['id'] ?? null;
+        
         if (!$userId) {
-            return redirect()->to('/users/login');
+            return redirect()->to('/users/login')->with('error', 'Please login to submit quiz answers.');
         }
 
         $attempt = $this->attemptsModel->find($attemptId);
@@ -340,9 +352,12 @@ class Quizzes extends BaseController
      */
     public function results($attemptId)
     {
-        $userId = session()->get('user_id');
+        // Get user ID from session (Shield stores it as user.id)
+        $sessionUser = session()->get('user');
+        $userId = $sessionUser['id'] ?? null;
+        
         if (!$userId) {
-            return redirect()->to('/users/login');
+            return redirect()->to('/users/login')->with('error', 'Please login to view quiz results.');
         }
 
         $attempt = $this->attemptsModel->find($attemptId);
@@ -412,9 +427,12 @@ class Quizzes extends BaseController
      */
     public function myAttempts()
     {
-        $userId = session()->get('user_id');
+        // Get user ID from session (Shield stores it as user.id)
+        $sessionUser = session()->get('user');
+        $userId = $sessionUser['id'] ?? null;
+        
         if (!$userId) {
-            return redirect()->to('/login');
+            return redirect()->to('/users/login')->with('error', 'Please login to view your quiz attempts.');
         }
 
         // Get user's quiz history
@@ -528,12 +546,15 @@ class Quizzes extends BaseController
             ]);
         }
 
-        // Try multiple ways to get user ID from session
-        $userId = session()->get('user_id');
+        // Try multiple ways to get user ID from session (Shield compatibility)
+        $sessionUser = session()->get('user');
+        $userId = $sessionUser['id'] ?? null;
+        
         if (!$userId) {
-            $user = session()->get('user');
-            $userId = $user['id'] ?? null;
+            // Fallback to old method for backward compatibility
+            $userId = session()->get('user_id');
         }
+        
         if (!$userId) {
             return $this->response->setStatusCode(401)->setJSON([
                 'success' => false,
@@ -562,7 +583,7 @@ class Quizzes extends BaseController
 
         // Get current answers
         $currentAnswers = json_decode($attempt->user_answers, true) ?? [];
-        
+
         // Update the specific answer
         $currentAnswers[$questionIndex] = $answer;
 
@@ -583,13 +604,7 @@ class Quizzes extends BaseController
     public function submitEmbedded($attemptId)
     {
         // Force log to ensure we reach this point
-        error_log('SUBMIT_EMBEDDED: Function entry point reached');
-        log_message('debug', 'SUBMIT_EMBEDDED: Function called with attempt ID: ' . $attemptId);
-        log_message('debug', 'SUBMIT_EMBEDDED: Request method: ' . $this->request->getMethod());
-        log_message('debug', 'SUBMIT_EMBEDDED: Is AJAX: ' . ($this->request->isAJAX() ? 'yes' : 'no'));
-        log_message('debug', 'SUBMIT_EMBEDDED: Content Type: ' . $this->request->getHeaderLine('Content-Type'));
-        log_message('debug', 'SUBMIT_EMBEDDED: Headers: ' . json_encode($this->request->headers()));
-        
+
         try {
             // Accept both AJAX and regular POST requests for embedded quizzes
             log_message('debug', 'SUBMIT_EMBEDDED: Starting submission process');
@@ -599,7 +614,8 @@ class Quizzes extends BaseController
             }
 
             // Try multiple ways to get user ID from session
-            $userId = session()->get('user_id');
+            $userId = auth()->user()->id ?? null;
+
             if (!$userId) {
                 $user = session()->get('user');
                 $userId = $user['id'] ?? null;
@@ -638,7 +654,7 @@ class Quizzes extends BaseController
             } else {
                 log_message('debug', 'SUBMIT_EMBEDDED: Using JSON data: ' . json_encode($input));
             }
-            
+
             // If input is directly the answers array (not wrapped in 'answers' key)
             if (isset($input['answers'])) {
                 $answers = $input['answers'];
@@ -647,7 +663,7 @@ class Quizzes extends BaseController
                 $answers = $input;
             }
             $completionTime = $input['completion_time'] ?? 0;
-            
+
             log_message('debug', 'SUBMIT_EMBEDDED: Parsed answers: ' . json_encode($answers));
 
         // Calculate score
@@ -662,7 +678,7 @@ class Quizzes extends BaseController
         foreach ($questions as $index => $question) {
             $userAnswer = $answers[$index] ?? null;
             $correctAnswer = $question['correct_answer'] ?? null;
-            
+
             // If no correct_answer field exists, try to determine from options structure
             if ($correctAnswer === null && isset($question['options'])) {
                 // For backward compatibility, find correct options from the options array
@@ -738,7 +754,7 @@ class Quizzes extends BaseController
             'completion_time' => $completionTime,
             'next_item_url' => $nextItemUrl
         ]);
-        
+
         } catch (\Exception $e) {
             log_message('error', 'SUBMIT_EMBEDDED ERROR: ' . $e->getMessage() . ' - File: ' . $e->getFile() . ' - Line: ' . $e->getLine());
             return $this->response->setStatusCode(500)->setJSON([
@@ -756,7 +772,7 @@ class Quizzes extends BaseController
         try {
             // Load course progress model
             $progressModel = new \Modules\Progress\Models\UserItemProgressModel();
-            
+
             // Find the quiz item in tb_unit_items table
             // The quiz_id is stored in metadata as JSON, use JSON_EXTRACT for better compatibility
             $quizItem = $this->db->table('tb_unit_items')
@@ -764,7 +780,7 @@ class Quizzes extends BaseController
                                 ->where('JSON_EXTRACT(metadata, "$.quiz_id")', $quiz->id)
                                 ->get()
                                 ->getRow();
-            
+
             if ($quizItem) {
                 // Get enrollment ID
                 $enrollment = $this->db->table('tb_unit_enrollments')
@@ -772,12 +788,12 @@ class Quizzes extends BaseController
                                       ->where('course_id', $quiz->course_id)
                                       ->get()
                                       ->getRow();
-                
+
                 if (!$enrollment) {
                     log_message('error', 'No enrollment found for user ' . $userId . ' in course ' . $quiz->course_id);
                     return;
                 }
-                
+
                 // Update progress for this item using the correct fields
                 $progressData = [
                     'user_id' => $userId,
@@ -789,20 +805,20 @@ class Quizzes extends BaseController
                     'completed_at' => $passed ? date('Y-m-d H:i:s') : null,
                     'last_accessed_at' => date('Y-m-d H:i:s')
                 ];
-                
+
                 // Check if progress record exists
                 $existingProgress = $progressModel->where([
                     'user_id' => $userId,
                     'item_id' => $quizItem->id
                 ])->first();
-                
+
                 if ($existingProgress) {
                     $progressModel->update($existingProgress->id, $progressData);
                 } else {
                     $progressData['first_accessed_at'] = date('Y-m-d H:i:s');
                     $progressModel->insert($progressData);
                 }
-                
+
                 log_message('info', 'Quiz progress updated successfully for user ' . $userId . ', quiz ' . $quiz->id);
             } else {
                 log_message('error', 'Quiz item not found in tb_unit_items for quiz ID: ' . $quiz->id);

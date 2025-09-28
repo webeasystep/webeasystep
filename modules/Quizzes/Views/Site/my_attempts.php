@@ -1,7 +1,7 @@
 <?php
 /**
  * Quizzes Site My Attempts View
- * 
+ *
  * This view displays the user's quiz attempts history with modern design.
  */
 ?>
@@ -275,21 +275,21 @@
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .page-header h1 {
         font-size: 2rem;
     }
-    
+
     .attempt-stats {
         flex-direction: column;
         gap: 15px;
         text-align: center;
     }
-    
+
     .attempt-actions {
         flex-direction: column;
     }
-    
+
     .btn-action {
         min-width: auto;
     }
@@ -315,15 +315,15 @@
                                     <i class="fas fa-book"></i> <?= esc($attempt->course_title) ?>
                                 </div>
                             <?php endif; ?>
-                            
+
                             <h5><?= esc($attempt->quiz_title) ?></h5>
-                            
+
                             <div class="attempt-date">
                                 <i class="fas fa-calendar-alt"></i>
                                 <?= date('M j, Y \a\t g:i A', strtotime($attempt->created_at)) ?>
                             </div>
                         </div>
-                        
+
                         <div class="attempt-card-body">
                             <div class="attempt-stats">
                                 <div class="score-display">
@@ -349,7 +349,7 @@
                                         <?= $status === 'completed' ? lang('Quizzes.score') : lang('Quizzes.incomplete') ?>
                                     </div>
                                 </div>
-                                
+
                                 <div class="status-display">
                                     <?php
                                     $statusClass = '';
@@ -382,26 +382,26 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="attempt-actions">
                                 <?php if ($status === 'completed'): ?>
-                                    <a href="<?= base_url('quizzes/results/' . $attempt->id) ?>" 
+                                    <a href="<?= base_url('quizzes/results/' . $attempt->id) ?>"
                                        class="btn btn-action btn-outline-custom">
                                         <i class="fas fa-eye"></i> <?= lang('Quizzes.view_results') ?>
                                     </a>
                                 <?php elseif ($status === 'in_progress'): ?>
-                                    <a href="<?= base_url('quizzes/continue/' . $attempt->id) ?>" 
+                                    <a href="<?= base_url('quizzes/continue/' . $attempt->id) ?>"
                                        class="btn btn-action btn-primary-custom">
                                         <i class="fas fa-play"></i> <?= lang('Quizzes.continue') ?>
                                     </a>
                                 <?php endif; ?>
-                                
-                                <?php if ($status === 'completed'): ?>
-                                    <a href="<?= base_url('quizzes/take/' . $attempt->quiz_id) ?>" 
+                         <!--
+                                <?php /*if ($status === 'completed'): */?>
+                                    <a href="<?/*= base_url('quizzes/take/' . $attempt->quiz_id) */?>"
                                        class="btn btn-action btn-secondary-custom">
-                                        <i class="fas fa-redo"></i> <?= lang('Quizzes.retry') ?>
+                                        <i class="fas fa-redo"></i> <?/*= lang('Quizzes.retry') */?>
                                     </a>
-                                <?php endif; ?>
+                                --><?php /*endif; */?>
                             </div>
                         </div>
                     </div>

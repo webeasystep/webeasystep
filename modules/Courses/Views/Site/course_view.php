@@ -767,7 +767,24 @@
                                                     <?php if ($isUnitLocked): ?>
                                                     <div class="item-content locked-content">
                                                         <?php else: ?>
-                                                        <a href="<?= site_url('courses/course_view/' . $course->slug . '?video=' . $item->id) ?>" class="item-content">
+                                                        <?php
+                                                        // Generate correct URL parameter based on item type
+                                                        $urlParam = '';
+                                                        switch ($item->item_type) {
+                                                            case 'video':
+                                                                $urlParam = 'video=' . $item->id;
+                                                                break;
+                                                            case 'quiz':
+                                                                $urlParam = 'quiz=' . $item->id;
+                                                                break;
+                                                            case 'page':
+                                                                $urlParam = 'page=' . $item->id;
+                                                                break;
+                                                            default:
+                                                                $urlParam = 'video=' . $item->id; // fallback
+                                                        }
+                                                        ?>
+                                                        <a href="<?= site_url('courses/course_view/' . $course->slug . '?' . $urlParam) ?>" class="item-content">
                                                             <?php endif; ?>
 
                                                             <!-- Item Icon -->
