@@ -106,12 +106,16 @@ class BunnyNetService
         $duration = $video['length'] ?? 0;
         $formattedDuration = $this->formatDurationToMinutes($duration);
         
+        // Clean video title by removing .mp4 extension
+        $videoTitle = $video['title'] ?? 'Untitled Video';
+        $cleanVideoTitle = preg_replace('/\.mp4$/i', '', $videoTitle);
+        
         return [
             'video_id' => $video['guid'] ?? '',
-            'video_title' => $video['title'] ?? 'Untitled Video',
+            'video_title' => $cleanVideoTitle,
             'video_duration' => $formattedDuration,
             'video_thumbnail' => $this->getThumbnailUrl($video['guid'] ?? '', $video['thumbnailFileName'] ?? null),
-            'title' => $video['title'] ?? 'Untitled Video',
+            'title' => $cleanVideoTitle,
             'duration' => $duration,
             'thumbnail' => $this->getThumbnailUrl($video['guid'] ?? '', $video['thumbnailFileName'] ?? null),
             'status' => $video['status'] ?? 0,

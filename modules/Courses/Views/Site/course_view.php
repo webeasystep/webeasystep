@@ -49,7 +49,7 @@
     }
     .user-info-block {
         background-color: #fff;
-        padding: 25px;
+        padding: 10px;
         border-radius: 7px;
         margin-bottom: 20px;
         box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.08);
@@ -207,7 +207,11 @@
         border: none;
         border-radius: 15px;
     }
+    .quiz-content-area{
+        direction: ltr;
+    }
     .video-title-main-video {
+        direction: ltr;
         font-size: 1.8rem;
         color: #333;
         margin-bottom: 15px;
@@ -597,14 +601,187 @@
         font-weight: 500;
     }
 
-    /* Responsive adjustments */
+    /* Enhanced Progress Container Styles */
+    .progress-container {
+        background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #e3f2fd;
+        box-shadow: 0 2px 10px rgba(19, 106, 213, 0.06);
+    }
+
+    .progress-label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        font-weight: 600;
+        color: #333;
+        font-size: 1rem;
+    }
+
+    .progress-percentage {
+        background: linear-gradient(135deg, #136ad5, #00aeff);
+        color: white;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        box-shadow: 0 2px 6px rgba(19, 106, 213, 0.25);
+    }
+
+    .progress {
+        height: 10px;
+        background-color: #e9ecef;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 15px;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .progress-bar {
+        background: linear-gradient(135deg, #136ad5 0%, #00aeff 100%);
+        border-radius: 8px;
+        transition: width 0.6s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .progress-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-image: linear-gradient(
+            -45deg,
+            rgba(255, 255, 255, .2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, .2) 50%,
+            rgba(255, 255, 255, .2) 75%,
+            transparent 75%,
+            transparent
+        );
+        background-size: 25px 25px;
+        animation: move 2s linear infinite;
+    }
+
+    @keyframes move {
+        0% { background-position: 0 0; }
+        100% { background-position: 25px 25px; }
+    }
+
+    .progress-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .progress-stat {
+        text-align: center;
+        background: white;
+        padding: 12px 8px;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        transition: all 0.3s ease;
+    }
+
+    .progress-stat:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        border-color: #136ad5;
+    }
+
+    .progress-stat-number {
+        display: block;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #136ad5;
+        margin-bottom: 5px;
+    }
+
+    .progress-stat-label {
+        font-size: 0.85rem;
+        color: #666;
+        font-weight: 500;
+    }
+
+    /* Enhanced Navigation Buttons */
+    .nav-buttons {
+        display: flex;
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+    .nav-buttons .btn {
+        flex: 1;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        font-size: 0.9rem;
+    }
+
+    .nav-buttons .prev-btn {
+        background: white;
+        color: #666;
+        border-color: #e9ecef;
+    }
+
+    .nav-buttons .prev-btn:hover:not(:disabled) {
+        background: #f8f9fa;
+        border-color: #136ad5;
+        color: #136ad5;
+        transform: translateY(-1px);
+    }
+
+    .nav-buttons .next-btn {
+        background: linear-gradient(135deg, #136ad5, #00aeff);
+        color: white;
+        border: none;
+    }
+
+    .nav-buttons .next-btn:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(19, 106, 213, 0.25);
+    }
+
+    .nav-buttons .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    /* Responsive adjustments for progress */
+    @media (max-width: 767.98px) {
+        .progress-stats {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .progress-stat {
+            padding: 12px 8px;
+        }
+
+        .progress-stat-number {
+            font-size: 1.3rem;
+        }
+
+        .nav-buttons {
+            flex-direction: column;
+        }
+    }
     @media (max-width: 1199.98px) {
         .sidebar {
-            width: 350px;
+            width: 600px;
             padding-right: 30px;
         }
         .main-content {
-            padding-left: 15px;
+            padding-left: 25px;
         }
     }
 
@@ -656,19 +833,33 @@
 
 <div class="untree_co-section bg-light">
     <div class="container-fluid"> <!-- Changed to container-fluid for better space utilization -->
-        <!-- Header / Title & Short Description -->
-        <div class="course-header-wrapper" data-aos="fade-up" data-aos-delay="100">
-            <h2 class="section-title"><?= esc($title) ?></h2>
-            <p class="course-description">
-                <?= esc($course->course_desc) ?>
-            </p>
+
+        <!-- Header / Title & Short Description with Buy Units Block -->
+        <div class="course-header-wrapper d-flex justify-content-between align-items-start" data-aos="fade-up" data-aos-delay="100">
+            <div class="course-title-section flex-grow-1">
+                <h2 class="section-title"><?= esc($title) ?></h2>
+                <p class="course-description">
+                    <?= esc($course->course_desc) ?>
+                </p>
+            </div>
+
+            <!-- Compact Buy Units Block -->
+            <div class="buy-units-compact ml-4">
+                <a href="<?= site_url('courses/course_details/' . $course->slug) ?>"
+                   class="btn btn-primary"
+                   style="background: linear-gradient(135deg, #136ad5 0%, #0d5aa7 100%); border: none;
+                   padding: 17px 18px; font-weight: 600; border-radius: 6px; font-size: 0.9rem; white-space: nowrap;">
+                    <i class="fas fa-shopping-cart ml-1"></i>
+                    شراء وحدات
+                </a>
+            </div>
         </div>
 
         <div class="row">
             <!-- Left Space Utilization - Course Info Panel -->
 
             <!-- Enhanced Sidebar (Progress, Next/Prev, Videos List) -->
-            <div class="col-xl-4 col-lg-5 sidebar"> <!-- Increased from col-lg-4 -->
+            <div class="col-xl-6 col-lg-6 sidebar"> <!-- Further increased width for wider progress bar -->
                 <div class="user-info-block">
                     <!-- Enhanced Progress Bar -->
                     <div class="progress-container">
@@ -726,6 +917,7 @@
                         <?php endif; ?>
                     </div>
                 </div>
+
 
                 <!-- Accordion of Units & Items -->
                 <div class="videos-accordion accordion" id="videoAccordion">
@@ -906,7 +1098,7 @@
                                 <div class="card-header bg-success text-white">
                                     <h4 class="mb-0">
                                         <i class="fas fa-question-circle mr-2"></i>
-                                        اختبار تفاعلي
+                                        Interactive Quiz
                                     </h4>
                                 </div>
                                 <div class="card-body">
@@ -919,19 +1111,19 @@
                                                 <div class="col-md-4">
                                                     <div class="quiz-stat">
                                                         <i class="fas fa-clock text-warning"></i>
-                                                        <span>المدة: <?= esc($quiz_data->time_limit ?? 'غير محدد') ?> دقيقة</span>
+                                                        <span>Duration: <?= esc($quiz_data->time_limit ?? 'Unlimited') ?> minutes</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="quiz-stat">
                                                         <i class="fas fa-percentage text-info"></i>
-                                                        <span>النجاح: <?= esc($quiz_data->passing_score ?? '70') ?>%</span>
+                                                        <span>Pass Score: <?= esc($quiz_data->passing_score ?? '70') ?>%</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="quiz-stat">
                                                         <i class="fas fa-redo text-danger"></i>
-                                                        <span>المحاولات: <?= esc($quiz_data->user_attempt_count ?? 0) ?>/<?= esc($quiz_data->max_attempts ?? 3) ?></span>
+                                                        <span>Attempts: <?= esc($quiz_data->user_attempt_count ?? 0) ?>/<?= esc($quiz_data->max_attempts ?? 3) ?></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -939,14 +1131,14 @@
                                             <!-- User Progress Information -->
                                             <?php if (isset($quiz_data->user_attempt_count) && $quiz_data->user_attempt_count > 0): ?>
                                                 <div class="quiz-user-progress mt-3 p-3 bg-light rounded">
-                                                    <h6 class="mb-2"><i class="fas fa-chart-line text-primary"></i> تقدمك في هذا الاختبار</h6>
+                                                    <h6 class="mb-2"><i class="fas fa-chart-line text-primary"></i> Your Progress in This Quiz</h6>
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <small class="text-muted">أفضل نتيجة:</small>
+                                                            <small class="text-muted">Best Score:</small>
                                                             <strong class="text-success"><?= esc($quiz_data->user_best_score ?? 0) ?>%</strong>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <small class="text-muted">المحاولات المتبقية:</small>
+                                                            <small class="text-muted">Remaining Attempts:</small>
                                                             <strong class="<?= ($quiz_data->remaining_attempts ?? 0) > 0 ? 'text-info' : 'text-danger' ?>">
                                                                 <?= esc($quiz_data->remaining_attempts ?? 0) ?>
                                                             </strong>
@@ -960,12 +1152,12 @@
                                             <?php if (isset($quiz_data->has_exceeded_attempts) && $quiz_data->has_exceeded_attempts): ?>
                                                 <button class="btn btn-secondary btn-lg" disabled>
                                                     <i class="fas fa-ban mr-2"></i>
-                                                    تم استنفاد المحاولات المسموحة
+                                                    Maximum Attempts Exceeded
                                                 </button>
                                                 <p class="text-muted mt-2 small">
-                                                    لقد استخدمت جميع المحاولات المسموحة (<?= esc($quiz_data->max_attempts ?? 3) ?>) لهذا الاختبار.
+                                                    You have used all allowed attempts (<?= esc($quiz_data->max_attempts ?? 3) ?>) for this quiz.
                                                     <?php if (isset($quiz_data->user_best_score) && $quiz_data->user_best_score > 0): ?>
-                                                        أفضل نتيجة حققتها: <?= esc($quiz_data->user_best_score) ?>%
+                                                        Your best score: <?= esc($quiz_data->user_best_score) ?>%
                                                     <?php endif; ?>
                                                 </p>
                                             <?php else: ?>
@@ -974,15 +1166,15 @@
                                                         data-quiz-title="<?= esc($quiz_data->quiz_title) ?>">
                                                     <i class="fas fa-play mr-2"></i>
                                                     <?php if (isset($quiz_data->user_attempt_count) && $quiz_data->user_attempt_count > 0): ?>
-                                                        إعادة المحاولة
+                                                        Retry Quiz
                                                     <?php else: ?>
-                                                        ابدأ الاختبار
+                                                        Start Quiz
                                                     <?php endif; ?>
                                                 </button>
                                                 <?php if (isset($quiz_data->remaining_attempts) && $quiz_data->remaining_attempts > 0): ?>
                                                     <p class="text-info mt-2 small">
                                                         <i class="fas fa-info-circle"></i>
-                                                        لديك <?= esc($quiz_data->remaining_attempts) ?> محاولة متبقية
+                                                        You have <?= esc($quiz_data->remaining_attempts) ?> attempt(s) remaining
                                                     </p>
                                                 <?php endif; ?>
                                             <?php endif; ?>
@@ -990,7 +1182,7 @@
                                     <?php else: ?>
                                         <div class="text-center">
                                             <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
-                                            <p class="text-muted">الاختبار غير متاح حالياً</p>
+                                            <p class="text-muted">Quiz is currently unavailable</p>
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -1373,4 +1565,6 @@
 <link rel="stylesheet" href="<?= base_url() ?>site/css/embedded-quiz.css">
 <script src="<?= base_url() ?>site/js/embedded-quiz.js"></script>
 
-<?php $this->endSection(); ?>
+<?php $this->endSection();
+
+// ...existing code ...

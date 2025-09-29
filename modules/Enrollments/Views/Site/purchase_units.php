@@ -96,6 +96,22 @@
         background: linear-gradient(135deg, #d4541a 0%, #c04717 100%);
         color: white;
     }
+    .payment-method-card.free-payment {
+        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        border: 2px solid #4caf50;
+    }
+
+    .payment-method-card.free-payment:hover {
+        background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+        border-color: #388e3c;
+    }
+
+    .payment-method-card.free-payment.selected {
+        background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+        color: white;
+        border-color: #2e7d32;
+    }
+
     .whatsapp-contact-section {
         margin: 20px 0;
     }
@@ -157,7 +173,18 @@
                             <div class="mb-4">
                                 <h5 class="mb-3">طريقة الدفع:</h5>
 
-                                <div class="payment-method-card" onclick="selectPaymentMethod('instapay')">
+                                <!-- Free Payment Option (shown only for free units) -->
+                                <div class="payment-method-card free-payment" onclick="selectPaymentMethod('free')" id="free_payment_card" style="display: none;">
+                                    <div class="d-flex align-items-center">
+                                        <input type="radio" name="payment_method" value="free" id="free">
+                                        <label for="free" class="mb-0 ms-2">
+                                            <strong>مجاني</strong>
+                                            <small class="text-muted d-block">هذه الوحدة متاحة مجاناً</small>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="payment-method-card" onclick="selectPaymentMethod('instapay')" id="instapay_card">
                                     <div class="d-flex align-items-center">
                                         <input type="radio" name="payment_method" value="instapay" id="instapay" checked>
                                         <label for="instapay" class="mb-0 ms-2">
@@ -166,7 +193,7 @@
                                     </div>
                                 </div>
 
-                                <div class="payment-method-card" onclick="selectPaymentMethod('vodafone_cash')">
+                                <div class="payment-method-card" onclick="selectPaymentMethod('vodafone_cash')" id="vodafone_cash_card">
                                     <div class="d-flex align-items-center">
                                         <input type="radio" name="payment_method" value="vodafone_cash" id="vodafone_cash">
                                         <label for="vodafone_cash" class="mb-0 ms-2">
@@ -198,6 +225,14 @@
                             <!-- Payment Information -->
                             <div class="payment-info">
                                 <h5 class="mb-3">معلومات الدفع:</h5>
+
+                                <!-- Free Payment Info -->
+                                <div id="free_info" class="payment-details" style="display: none;">
+                                    <div class="alert alert-success">
+                                        <h6><i class="fas fa-gift me-2"></i>وحدة مجانية</h6>
+                                        <p class="mb-0">هذه الوحدة متاحة مجاناً. لا حاجة لإجراء أي دفعة.</p>
+                                    </div>
+                                </div>
 
                                 <div id="vodafone_cash_info" class="payment-details" style="display: none;">
                                     <div class="bank-details">
@@ -270,9 +305,25 @@
         submitBtn.disabled = true;
     });
 
-    // Initialize default selection
+    // Initialize default selection based on unit types
     document.addEventListener('DOMContentLoaded', function() {
-        selectPaymentMethod('instapay');
+        const allUnitsFree = <?= json_encode($all_units_free ?? false) ?>;
+        const hasFreeUnits = <?= json_encode($has_free_units ?? false) ?>;
+        
+        // Show/hide free payment option based on unit types
+        if (hasFreeUnits) {
+            document.getElementById('free_payment_card').style.display = 'block';
+        }
+        
+        // Auto-select free payment if all units are free
+        if (allUnitsFree) {
+            selectPaymentMethod('free');
+            // Hide paid payment options when all units are free
+            document.getElementById('instapay_card').style.display = 'none';
+            document.getElementById('vodafone_cash_card').style.display = 'none';
+        } else {
+            selectPaymentMethod('instapay');
+        }
     });
 </script>
 

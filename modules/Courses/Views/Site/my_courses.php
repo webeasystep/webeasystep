@@ -251,11 +251,19 @@
                                     </div>
                                 </div>
 
-                                <!-- Action Button -->
-                                <a href="<?= site_url('courses/course_view/' . $course->slug) ?>"
-                                   class="btn continue-course-btn">
-                                    <i class="icon-play-circle-o"></i> مشاهدة الدورة
-                                </a>
+                                <!-- Action Buttons -->
+                                <div class="d-inline-flex" style="gap: 5px; width: 100%;">
+                                    <!-- شراء وحدات button -->
+                                    <a href="<?= base_url('courses/course_details/' . $course->slug) ?>"
+                                       class="btn btn-primary btn-sm" style="flex: 1;">
+                                        شراء وحدات
+                                    </a>
+                                    <!-- مشاهدة button - always visible in my_courses since user is enrolled -->
+                                    <a href="<?= site_url('courses/course_view/' . $course->slug) ?>"
+                                       class="btn btn-secondary btn-sm" style="flex: 1;">
+                                        مشاهدة
+                                    </a>
+                                </div>
                             </div> <!-- /.course-content -->
                         </div> <!-- /.course-card -->
                     </div>

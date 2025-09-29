@@ -83,9 +83,12 @@
                 <?php foreach ($courses as $course): ?>
                     <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
                         <div class="custom-media">
-                            <a href="<?= $course['course_url'] ?>">
-                                <img src="<?= base_url($course['image_url']) ?>" alt="<?= esc($course['course_title']) ?>" class="img-fluid">
-                            </a>
+                            <img
+                                    alt="<?= esc($course['course_title']) ?>"
+                                    style="object-fit: cover;"
+                                    src="<?= thumb($course['image'], 540, 540) ?>"
+                                    class="card-img-top"
+                            >
                             <div class="custom-media-body">
                                 <div class="d-flex justify-content-between pb-3">
                                     <div class="text-primary">
@@ -107,25 +110,22 @@
                                         <span><?= $course['page_count'] ?> صفحة</span>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-center pb-3">
-                                    <div class="text-secondary">
-                                        <span class="uil uil-clock"></span>
-                                        <span><?= $course['duration_formatted'] ?></span>
-                                    </div>
-                                </div>
                                 <h3><?= esc($course['course_title']) ?></h3>
-                                <p class="text-muted small mb-3"><?= esc(substr($course['short_desc'], 0, 100)) ?>...</p>
+                                <p class="text-muted small mb-3"><?= esc(substr($course['short_desc'], 0)) ?>...</p>
                                 <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
                                     <div>
                                         <?php if ($course['is_free']): ?>
                                             <span class="badge bg-success">مجاني</span>
                                         <?php endif; ?>
                                     </div>
-                                    <?php if ($course['is_enrolled']): ?>
-                                        <a href="<?= $course['course_url'] ?>" class="btn btn-success">متابعة التعلم</a>
-                                    <?php else: ?>
-                                        <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>" class="btn btn-primary">ابدأ التعلم</a>
-                                    <?php endif; ?>
+                                    <div class="d-inline-flex" style="gap: 5px;">
+                                        <!-- شراء وحدات button - always visible -->
+                                        <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>" class="btn btn-primary btn-sm">شراء وحدات</a>
+                                        <!-- مشاهدة button - only visible if user is logged in and enrolled -->
+                                        <?php if (auth()->loggedIn() && $course['is_enrolled']): ?>
+                                            <a href="<?= $course['course_url'] ?>" class="btn btn-secondary btn-sm">مشاهدة</a>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -129,30 +129,23 @@
 
 
 
+
 <?= $this->endSection(); ?>
-
-
-
+<!-- Script -->
+<!-- .javascript section -->
 <?= $this->section('js'); ?>
 <?= $this->include('admin_layout/curd_js'); ?>
 <script>
-    $(document).ready(function() {
-        // مثال لتهيئة FireUploader
+    $(document).ready(function () {
         var uploader1 = new FireUploader({
             dropzoneId: 'dropzone1',
             inputName: "image[]",
             multipleFiles: true,
-            allowedExtensions: ["jpg", "png", "webp"],
-            files: <?= json_encode($files ?? []) ?>
-        });
-
-
-
-        // Form submission
-        $('#submit-btn').click(function(e) {
-            e.preventDefault();
-            $('#course-form').submit();
+            allowedExtensions: ["jpg", "png", "gif"],
+            files: <?= json_encode($files ?? '[]') ?>
         });
     });
 </script>
-<?= $this->endSection(); ?>
+<?php $this->endSection(); ?>
+
+

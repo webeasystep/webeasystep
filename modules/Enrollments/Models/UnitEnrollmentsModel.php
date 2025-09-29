@@ -66,6 +66,8 @@ class UnitEnrollmentsModel extends BaseModel
             $totalAmount = (float) $data['total_amount'];
             $unitCount = count($unitIds);
             $amountPerUnit = $unitCount > 0 ? $totalAmount / $unitCount : 0;
+            $paymentMethod = $data['payment_method'] ?? 'instapay';
+            $status = $data['status'] ?? 'pending';
 
             $enrollmentIds = [];
 
@@ -75,13 +77,18 @@ class UnitEnrollmentsModel extends BaseModel
                     'unit_id' => (int) $unitId,
                     'total_amount' => $amountPerUnit,
                     'payment_proof' => $data['payment_proof'] ?? null,
-                    'payment_method' => $data['payment_method'] ?? 'instapay',
-                    'status' => $data['status'] ?? 'pending'
+                    'payment_method' => $paymentMethod,
+                    'status' => $status
                 ];
 
                 $enrollmentId = $this->insert($enrollmentData);
                 if ($enrollmentId) {
                     $enrollmentIds[] = $enrollmentId;
+                    
+                    // For free enrollments with approved status, automatically grant unit access
+                    if ($paymentMethod === 'free' && $status === 'approved') {
+                        $this->grantUnitAccess($data['user_id'], $unitId, $enrollmentId, 0);
+                    }
                 } else {
                     throw new \Exception("Failed to create enrollment for unit ID: {$unitId}");
                 }
@@ -317,6 +324,33 @@ class UnitEnrollmentsModel extends BaseModel
                     ->where('unit_id', $unitId)
                     ->whereIn('status', ['pending', 'approved'])
                     ->first();
+    }
+
+    /**
+     * Grant unit access to user by creating purchase record
+     */
+    private function grantUnitAccess($userId, $unitId, $enrollmentId, $amount)
+    {
+        try {
+            if (class_exists('\Modules\Units\Models\UnitPurchasesModel')) {
+                $unitPurchasesModel = new \Modules\Units\Models\UnitPurchasesModel();
+                
+                $purchaseData = [
+                    'user_id' => $userId,
+                    'unit_id' => $unitId,
+                    'enrollment_id' => $enrollmentId,
+                    'amount' => $amount,
+                    'purchase_date' => date('Y-m-d H:i:s'),
+                    'status' => 'active'
+                ];
+                
+                return $unitPurchasesModel->insert($purchaseData);
+            }
+            return false;
+        } catch (\Exception $e) {
+            log_message('error', 'Failed to grant unit access: ' . $e->getMessage());
+            return false;
+        }
     }
 
     /**

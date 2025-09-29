@@ -145,8 +145,16 @@ class Enrollments extends BaseController
         }
 
         $totalPrice = 0;
+        $hasFreeUnits = false;
+        $allUnitsFree = true;
+        
         foreach ($selectedUnits as $unit) {
             $totalPrice += $unit->unit_price ?? 0;
+            if ($unit->is_free) {
+                $hasFreeUnits = true;
+            } else {
+                $allUnitsFree = false;
+            }
         }
 
         $data = [
@@ -154,6 +162,8 @@ class Enrollments extends BaseController
             'selected_units' => $selectedUnits,
             'total_price' => $totalPrice,
             'unit_ids' => $unitIds,
+            'has_free_units' => $hasFreeUnits,
+            'all_units_free' => $allUnitsFree,
             'files' => [] // Initialize empty files array for FireUploader
         ];
 
@@ -265,13 +275,13 @@ class Enrollments extends BaseController
         log_message('debug', 'All units free: ' . ($allUnitsFree ? 'Yes' : 'No'));
 
         // Handle free units - auto approve and redirect to course
-        if ($allUnitsFree) {
+        if ($allUnitsFree || $paymentMethod === 'free') {
             // Create individual enrollment requests with approved status
             $enrollmentIds = $this->unitEnrollmentsModel->createMultipleUnitEnrollments([
                 'user_id' => $userId,
                 'unit_ids' => $unitIds,
                 'total_amount' => 0,
-                'payment_method' => $paymentMethod,
+                'payment_method' => 'free',
                 'status' => 'approved'
             ]);
 

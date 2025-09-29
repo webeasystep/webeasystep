@@ -2012,6 +2012,13 @@
         border: 1px solid var(--text-light);
     }
 
+    .video-status.free {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid #20c997;
+    }
+
     .item-type {
         background: var(--bg-accent);
         padding: 0.25rem 0.5rem;
@@ -2675,8 +2682,15 @@
     <div class="container">
         <!-- Enhanced Course Header -->
         <div class="course-header-wrapper" data-aos="fade-up" data-aos-delay="100">
-            <h2 class="section-title"><?= esc($title) ?></h2>
-            <p class="course-description"><?= esc($course->course_desc) ?></p>
+            <div class="d-flex justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                    <h2 class="section-title"><?= esc($title) ?></h2>
+                    <p class="course-description"><?= esc($course->course_desc) ?></p>
+                </div>
+
+                <!-- Watch Course Button -->
+
+            </div>
 
             <!-- Course Stats Bar -->
             <div class="course-stats">
@@ -2695,6 +2709,7 @@
                         <div class="stat-label">فيديو</div>
                     </div>
                 </div>
+
                 <div class="stat-item">
                     <i class="icon-question-circle"></i>
                     <div>
@@ -2774,9 +2789,14 @@
                                                                     <?php
                                                                     $metadata = is_array($item->metadata) ? $item->metadata : json_decode($item->metadata ?? '{}', true);
                                                                     $isPreview = ($item->item_type === 'video' && isset($metadata['is_preview']) && $metadata['is_preview'] == 1);
+                                                                    $isUnitFree = isset($unit->is_free) && $unit->is_free == 1;
                                                                     ?>
                                                                     <?php if (!$isPreview): ?>
-                                                                        <span class="video-status locked">مغلق</span>
+                                                                        <?php if ($isUnitFree): ?>
+                                                                            <span class="video-status free">مجاني</span>
+                                                                        <?php else: ?>
+                                                                            <span class="video-status locked">مغلق</span>
+                                                                        <?php endif; ?>
                                                                     <?php endif; ?>
                                                                 </div>
                                                                 <div class="video-meta">
@@ -2885,41 +2905,42 @@
                     <ul class="course-features-list">
                         <li>
                             <div class="feature-icon">
-                                <i class="icon-certificate"></i>
+                                <i class="fas fa-users"></i> <!-- جروب مخصص للدعم -->
                             </div>
-                            <div class="feature-text">شهادة معتمدة عند الانتهاء</div>
+                            <div class="feature-text">جروب مخصص للدعم والاستفسارات</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="icon-clock-o"></i>
+                                <i class="fas fa-book-open"></i> <!-- تغطية المنهج -->
                             </div>
-                            <div class="feature-text">وصول مدى الحياة للمحتوى</div>
+                            <div class="feature-text">تغطية شاملة للمنهج العملي والنظري</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="icon-mobile"></i>
+                                <i class="fas fa-chalkboard-teacher"></i> <!-- محاكاة نظام Quero & Tofas -->
                             </div>
-                            <div class="feature-text">متاح على الهاتف والكمبيوتر</div>
+                            <div class="feature-text">محاكاة لنظام Quero & Tofas</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="icon-download"></i>
+                                <i class="fas fa-file-alt"></i> <!-- اختبارات -->
                             </div>
-                            <div class="feature-text">إمكانية تحميل المواد</div>
+                            <div class="feature-text">اختبارات عن كل نقاط المنهج</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="icon-users"></i>
+                                <i class="fas fa-laptop-code"></i> <!-- متاح على الهاتف والتابلت والكمبيوتر -->
                             </div>
-                            <div class="feature-text">دعم فني متواصل</div>
+                            <div class="feature-text">متاح على الهاتف والتابلت والكمبيوتر</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="icon-refresh"></i>
+                                <i class="fas fa-sync-alt"></i> <!-- ملخصات وتحديثات مستمرة -->
                             </div>
-                            <div class="feature-text">تحديثات مجانية</div>
+                            <div class="feature-text">ملخصات وتحديثات مستمرة</div>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </div>

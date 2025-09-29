@@ -14,7 +14,7 @@ class EmbeddedQuiz {
         this.quizData = null;
         this.attemptId = null;
         this.isSubmitting = false;
-        
+
         this.initializeEventListeners();
     }
 
@@ -33,7 +33,7 @@ class EmbeddedQuiz {
         $(document).on('click', '.quiz-nav-prev', () => this.previousQuestion());
         $(document).on('click', '.quiz-nav-next', () => this.nextQuestion());
         $(document).on('click', '.quiz-submit-btn', () => this.submitQuiz());
-        
+
         // Question navigation
         $(document).on('click', '.quiz-question-nav-btn', (e) => {
             const questionIndex = parseInt($(e.target).data('question')) - 1;
@@ -64,13 +64,13 @@ class EmbeddedQuiz {
      */
     async startQuiz(quizId, courseSlug = null, itemId = null) {
         console.log('COURSE_VIEW JS DEBUG - Starting quiz:', { quizId, courseSlug, itemId });
-        
+
         try {
             // Build the URL for starting the embedded quiz
             let url = `/quizzes/start-embedded/${quizId}`;
-            
+
             console.log('COURSE_VIEW JS DEBUG - Quiz URL:', url);
-            
+
             // Make the request to start the quiz
             const response = await fetch(url, {
                 method: 'POST',
@@ -84,9 +84,9 @@ class EmbeddedQuiz {
                     item_id: itemId
                 })
             });
-            
+
             console.log('COURSE_VIEW JS DEBUG - Response status:', response.status);
-            
+
             if (!response.ok) {
                 // Get the error response data for better error messages
                 let errorData;
@@ -95,7 +95,7 @@ class EmbeddedQuiz {
                 } catch (e) {
                     errorData = { message: `HTTP ${response.status}: ${response.statusText}` };
                 }
-                
+
                 // Handle specific error cases with user-friendly messages
                 if (response.status === 403) {
                     this.showErrorModal(errorData.message || 'تم استنفاد المحاولات المسموحة لهذا الكويز');
@@ -111,10 +111,10 @@ class EmbeddedQuiz {
                     return;
                 }
             }
-            
+
             const data = await response.json();
             console.log('COURSE_VIEW JS DEBUG - Response data:', data);
-            
+
             if (data.success) {
                 // Store quiz data
                 this.quiz = data.quiz;
@@ -122,11 +122,11 @@ class EmbeddedQuiz {
                 this.attemptId = data.attempt_id;
                 this.currentQuestionIndex = 0;
                 this.userAnswers = {};
-                
+
                 // Initialize timer
                 this.timeLimit = parseInt(data.quiz.time_limit_minutes) * 60;
                 this.timeRemaining = this.timeLimit;
-                
+
                 // Build and show the quiz modal
                 this.buildQuizModal();
                 this.showQuizModal();
@@ -134,7 +134,7 @@ class EmbeddedQuiz {
             } else {
                 throw new Error(data.message || 'Failed to start quiz');
             }
-            
+
         } catch (error) {
             console.error('Error starting quiz:', error);
             // Only show error modal if we haven't already handled the error above
@@ -165,10 +165,10 @@ class EmbeddedQuiz {
                             </div>
                             <div class="quiz-progress-info">
                                 <span class="quiz-question-counter">
-                                    السؤال <span id="current-question-num">1</span> من ${this.questions.length}
+                                    Question <span id="current-question-num">1</span> of ${this.questions.length}
                                 </span>
                             </div>
-                            <button class="quiz-modal-close" title="إغلاق الكويز">
+                            <button class="quiz-modal-close" title="Close Quiz">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -190,7 +190,7 @@ class EmbeddedQuiz {
                     <div class="quiz-modal-footer">
                         <div class="quiz-nav-left">
                             <button class="btn btn-secondary quiz-nav-prev" style="display: none;">
-                                <i class="fas fa-chevron-right"></i> السؤال السابق
+                                <i class="fas fa-chevron-left"></i> Previous Question
                             </button>
                         </div>
                         
@@ -202,10 +202,10 @@ class EmbeddedQuiz {
                         
                         <div class="quiz-nav-right">
                             <button class="btn btn-primary quiz-nav-next">
-                                السؤال التالي <i class="fas fa-chevron-left"></i>
+                                Next Question <i class="fas fa-chevron-right"></i>
                             </button>
                             <button class="btn btn-success quiz-submit-btn" style="display: none;">
-                                <i class="fas fa-check"></i> إنهاء الكويز
+                                <i class="fas fa-check"></i> Finish Quiz
                             </button>
                         </div>
                     </div>
@@ -228,8 +228,8 @@ class EmbeddedQuiz {
                 <div class="quiz-question ${isActive}" data-question-index="${index}">
                     <div class="question-header">
                         <h4 class="question-title">
-                            السؤال ${index + 1}
-                            <span class="question-points">${question.points || 1} نقطة</span>
+                            Question ${index + 1}
+                            <span class="question-points">${question.points || 1} Points</span>
                         </h4>
                     </div>
                     <div class="question-text">
@@ -247,8 +247,8 @@ class EmbeddedQuiz {
      * Build options for a specific question
      */
     buildQuestionOptions(question, questionIndex) {
-        const options = typeof question.options === 'string' 
-            ? JSON.parse(question.options) 
+        const options = typeof question.options === 'string'
+            ? JSON.parse(question.options)
             : question.options;
 
         switch (question.question_type) {
@@ -353,7 +353,7 @@ class EmbeddedQuiz {
     closeQuiz() {
         if (this.isSubmitting) return;
 
-        if (confirm('هل أنت متأكد من إغلاق الكويز؟ سيتم فقدان إجاباتك.')) {
+        if (confirm('Are you sure you want to close the quiz? Your answers will be lost.')) {
             this.stopTimer();
             $('#embedded-quiz-modal').fadeOut(300, () => {
                 $('#embedded-quiz-modal').remove();
@@ -398,15 +398,15 @@ class EmbeddedQuiz {
     showCurrentQuestion() {
         // Hide all questions
         $('.quiz-question').removeClass('active');
-        
+
         // Show current question
         $(`.quiz-question[data-question-index="${this.currentQuestionIndex}"]`).addClass('active');
-        
+
         // Update progress
         const progress = ((this.currentQuestionIndex + 1) / this.questions.length) * 100;
         $('#quiz-progress-fill').css('width', progress + '%');
         $('#current-question-num').text(this.currentQuestionIndex + 1);
-        
+
         // Update navigation
         this.updateNavigationButtons();
         this.updateQuestionNavigation();
@@ -418,7 +418,7 @@ class EmbeddedQuiz {
     updateNavigationButtons() {
         const isFirst = this.currentQuestionIndex === 0;
         const isLast = this.currentQuestionIndex === this.questions.length - 1;
-        
+
         $('.quiz-nav-prev').toggle(!isFirst);
         $('.quiz-nav-next').toggle(!isLast);
         $('.quiz-submit-btn').toggle(isLast);
@@ -429,10 +429,10 @@ class EmbeddedQuiz {
      */
     updateQuestionNavigation() {
         $('.quiz-question-nav-btn').removeClass('active answered');
-        
+
         // Mark current question as active
         $(`.quiz-question-nav-btn[data-question="${this.currentQuestionIndex + 1}"]`).addClass('active');
-        
+
         // Mark answered questions
         Object.keys(this.answers).forEach(questionIndex => {
             $(`.quiz-question-nav-btn[data-question="${parseInt(questionIndex) + 1}"]`).addClass('answered');
@@ -445,7 +445,7 @@ class EmbeddedQuiz {
     saveAnswer(event) {
         const questionIndex = parseInt($(event.target).data('question'));
         const questionType = this.questions[questionIndex].question_type;
-        
+
         if (questionType === 'multiple_choice') {
             // Handle multiple choice
             const checkedValues = [];
@@ -457,10 +457,10 @@ class EmbeddedQuiz {
             // Handle single choice, true/false, essay
             this.answers[questionIndex] = $(event.target).val();
         }
-        
+
         // Update question navigation
         this.updateQuestionNavigation();
-        
+
         // Auto-save answer to server
         this.autoSaveAnswer(questionIndex);
     }
@@ -532,7 +532,7 @@ class EmbeddedQuiz {
 
             // Show results and close quiz
             this.showQuizResults(data);
-            
+
             // Auto-close after showing results
             setTimeout(() => {
                 this.closeQuizAfterCompletion(data);
@@ -556,18 +556,18 @@ class EmbeddedQuiz {
                 <div class="result-icon ${passed ? 'success' : 'failure'}">
                     <i class="fas ${passed ? 'fa-check-circle' : 'fa-times-circle'}"></i>
                 </div>
-                <h3>${passed ? 'تهانينا! لقد نجحت' : 'للأسف، لم تنجح'}</h3>
+                <h3>${passed ? 'Congratulations! You Passed' : 'Sorry, You Did Not Pass'}</h3>
                 <div class="result-score">
                     <span class="score">${results.score}%</span>
-                    <span class="passing-score">النجاح: ${results.passing_score}%</span>
+                    <span class="passing-score">Passing Score: ${results.passing_score}%</span>
                 </div>
                 <div class="result-details">
                     <div class="detail-item">
-                        <span class="label">الإجابات الصحيحة:</span>
+                        <span class="label">Correct Answers:</span>
                         <span class="value">${results.correct_answers}</span>
                     </div>
                     <div class="detail-item">
-                        <span class="label">إجمالي الأسئلة:</span>
+                        <span class="label">Total Questions:</span>
                         <span class="value">${results.total_questions}</span>
                     </div>
                 </div>
@@ -585,7 +585,7 @@ class EmbeddedQuiz {
         $('#embedded-quiz-modal').fadeOut(300, () => {
             $('#embedded-quiz-modal').remove();
             $('body').removeClass('quiz-modal-open');
-            
+
             // Mark quiz item as complete and navigate to next
             if (results.next_item_url) {
                 window.location.href = results.next_item_url;
@@ -603,7 +603,7 @@ class EmbeddedQuiz {
         this.timerInterval = setInterval(() => {
             this.timeRemaining--;
             $('#quiz-timer-display').text(this.formatTime(this.timeRemaining));
-            
+
             // Change timer color when time is running low
             if (this.timeRemaining <= 300) { // 5 minutes
                 $('#quiz-timer-display').addClass('time-warning');
@@ -611,7 +611,7 @@ class EmbeddedQuiz {
             if (this.timeRemaining <= 60) { // 1 minute
                 $('#quiz-timer-display').addClass('time-critical');
             }
-            
+
             // Auto-submit when time is up
             if (this.timeRemaining <= 0) {
                 this.stopTimer();
@@ -649,12 +649,12 @@ class EmbeddedQuiz {
                 <div class="quiz-modal-container loading">
                     <div class="loading-content">
                         <i class="fas fa-spinner fa-spin fa-3x"></i>
-                        <h3>جاري تحميل الكويز...</h3>
+                        <h3>Loading Quiz...</h3>
                     </div>
                 </div>
             </div>
         `;
-        
+
         $('#embedded-quiz-modal').remove();
         $('body').append(loadingHtml);
         $('#embedded-quiz-modal').fadeIn(300);
@@ -666,13 +666,13 @@ class EmbeddedQuiz {
      */
     showErrorModal(message) {
         // Check if this is a maximum attempts error
-        const isMaxAttemptsError = message.toLowerCase().includes('maximum attempts') || 
+        const isMaxAttemptsError = message.toLowerCase().includes('maximum attempts') ||
                                    message.toLowerCase().includes('exceeded') ||
                                    message.toLowerCase().includes('استنفاد') ||
                                    message.toLowerCase().includes('المحاولات');
 
         let modalContent;
-        
+
         if (isMaxAttemptsError) {
             // Enhanced modal for maximum attempts exceeded
             modalContent = `
@@ -681,20 +681,20 @@ class EmbeddedQuiz {
                         <div class="error-icon">
                             <i class="fas fa-exclamation-triangle"></i>
                         </div>
-                        <h4>تم استنفاد المحاولات المسموحة</h4>
-                        <p>لقد استخدمت جميع المحاولات المتاحة لهذا الكويز.</p>
+                        <h4>Maximum Attempts Exceeded</h4>
+                        <p>You have used all available attempts for this quiz.</p>
                         <div class="error-actions">
                             <button class="btn btn-primary" onclick="location.reload()">
-                                <i class="fas fa-sync-alt"></i> تحديث الصفحة
+                                <i class="fas fa-sync-alt"></i> Refresh Page
                             </button>
                             <button class="btn btn-secondary" onclick="this.closest('.error-modal-overlay').remove()">
-                                <i class="fas fa-times"></i> إغلاق
+                                <i class="fas fa-times"></i> Close
                             </button>
                         </div>
                         <div class="error-help">
                             <small class="text-muted">
                                 <i class="fas fa-info-circle"></i>
-                                يمكنك مراجعة نتائجك السابقة أو الانتقال إلى العنصر التالي في الكورس
+                                You can review your previous results or move to the next item in the course
                             </small>
                         </div>
                     </div>
@@ -708,11 +708,11 @@ class EmbeddedQuiz {
                         <div class="error-icon">
                             <i class="fas fa-exclamation-triangle"></i>
                         </div>
-                        <h4>حدث خطأ</h4>
+                        <h4>An Error Occurred</h4>
                         <p>${this.escapeHtml(message)}</p>
                         <div class="error-actions">
                             <button class="btn btn-primary" onclick="this.closest('.error-modal-overlay').remove()">
-                                <i class="fas fa-times"></i> إغلاق
+                                <i class="fas fa-times"></i> Close
                             </button>
                         </div>
                     </div>
@@ -758,28 +758,28 @@ class EmbeddedQuiz {
 // Initialize embedded quiz when document is ready
 $(document).ready(function() {
     window.embeddedQuiz = new EmbeddedQuiz();
-    
+
     // Handle quiz start buttons
     $(document).on('click', '.take-embedded-quiz-btn, .start-embedded-quiz', function(e) {
         e.preventDefault();
-        
+
         const $button = $(this);
-        
+
         // Check if button is disabled (maximum attempts exceeded)
         if ($button.hasClass('disabled') || $button.prop('disabled')) {
             // Show informative modal instead of trying to start quiz
             window.embeddedQuiz.showErrorModal('تم استنفاد المحاولات المسموحة لهذا الكويز');
             return;
         }
-        
+
         // Add loading state to button
         const originalText = $button.html();
         $button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-2"></i> جاري التحميل...');
-        
+
         const quizId = $button.data('quiz-id');
         const courseSlug = $button.data('course-slug');
         const itemId = $button.data('item-id');
-        
+
         // Start quiz and handle completion/error
         window.embeddedQuiz.startQuiz(quizId, courseSlug, itemId)
             .finally(() => {

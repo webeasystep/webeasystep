@@ -50,17 +50,17 @@
                                 </span>
                                 </div>
                                 <div class="d-inline-flex" style="gap: 5px;">
-                                    <!-- Details button -->
+                                    <!-- شراء وحدات button - always visible -->
                                     <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>"
                                        class="btn btn-primary btn-sm">
                                         شراء وحدات
                                     </a>
-                                    <!-- If the user is already enrolled, show "استكمل" / "Go to Course" -->
-                                    <?php if ($course['is_enrolled']): ?>
+                                    <!-- مشاهدة button - only visible if user is logged in and enrolled -->
+                                    <?php if (auth()->loggedIn() && $course['is_enrolled']): ?>
                                         <a href="<?= base_url('courses/course_view/' . $course['slug']) ?>"
                                            class="btn btn-secondary btn-sm"
                                            style="font-weight:600;">
-                                            استكمل
+                                            مشاهدة
                                         </a>
                                     <?php endif; ?>
                                 </div>
