@@ -76,6 +76,29 @@ class UserIdentityModel extends Model
         $this->checkQueryReturn($return);
     }
 
+    /**
+     * Creates a new identity for this user with a mobile/password
+     * combination.
+     *
+     * @phpstan-param array{mobile: string, password: string} $credentials
+     */
+    public function createMobileIdentity(User $user, array $credentials): void
+    {
+        $this->checkUserId($user);
+
+        /** @var Passwords $passwords */
+        $passwords = service('passwords');
+
+        $return = $this->insert([
+            'user_id' => $user->id,
+            'type'    => 'mobile_password',
+            'secret'  => $credentials['mobile'],
+            'secret2' => $passwords->hash($credentials['password']),
+        ]);
+
+        $this->checkQueryReturn($return);
+    }
+
     private function checkUserId(User $user): void
     {
         if ($user->id === null) {

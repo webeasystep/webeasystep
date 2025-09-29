@@ -1261,16 +1261,6 @@
                     error_log('COURSE_VIEW DEBUG - current_id: ' . ($current_id ?? 'NOT_SET'));
                     error_log('COURSE_VIEW DEBUG - course_id: ' . ($course->id ?? 'NOT_SET'));
 
-                    // Write to custom debug file
-                    file_put_contents('D:\laragon\www\msarlink\debug.log',
-                        date('Y-m-d H:i:s') . ' COURSE_VIEW DEBUG - current_item: ' . json_encode($current_item ?? 'NOT_SET') . "\n",
-                        FILE_APPEND | LOCK_EX);
-                    file_put_contents('D:\laragon\www\msarlink\debug.log',
-                        date('Y-m-d H:i:s') . ' COURSE_VIEW DEBUG - current_id: ' . ($current_id ?? 'NOT_SET') . "\n",
-                        FILE_APPEND | LOCK_EX);
-                    file_put_contents('D:\laragon\www\msarlink\debug.log',
-                        date('Y-m-d H:i:s') . ' COURSE_VIEW DEBUG - course_id: ' . ($course->id ?? 'NOT_SET') . "\n",
-                        FILE_APPEND | LOCK_EX);
                     ?>
                     <?php if (isset($current_item) && !empty($current_item['id'])): ?>
                         <button class="btn btn-success btn-block mark-complete-button"

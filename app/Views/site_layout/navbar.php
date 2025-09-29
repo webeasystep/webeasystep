@@ -90,7 +90,11 @@
                     <li <?= current_url() == site_url() ? 'class="active"' : '' ?>>
                         <a href="<?= site_url() ?>">الرئيسية</a>
                     </li>
-
+                    <li <?= str_contains(current_url(), 'courses/my_courses') ? 'class="active"' : '' ?>>
+                        <a href="<?= site_url('courses/course_details/programming_first_secendary') ?>">
+                            <span class="icon-book mr-1"></span>كورس مادة البرمجة والذكاء الاصطناعي
+                        </a>
+                    </li>
                     <?php if (isset(auth()->user()->full_name)): ?>
                         <!-- User Navigation Links -->
                         <li <?= str_contains(current_url(), 'courses/my_courses') ? 'class="active"' : '' ?>>

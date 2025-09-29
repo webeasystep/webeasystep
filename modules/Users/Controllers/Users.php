@@ -41,7 +41,7 @@ class Users extends BaseController
     /**
      * Attempts to register the user.
      */
-    public function register()
+    public function register(): string|RedirectResponse
     {
 
         if (auth()->loggedIn()) {
@@ -76,11 +76,12 @@ class Users extends BaseController
             // Get Shield's user provider
             $users = auth()->getProvider();
             $mobile = $this->request->getPost('mobile');
+            $password = $this->request->getPost('password');
+            
             $credentials = [
                 'full_name' => $this->request->getPost('full_name'),
                 'email'    => $mobile.'@msarlink.com',
                 'mobile' => $this->request->getPost('mobile'),
-                'password' => $this->request->getPost('password'),
                 'active' => 1
             ];
 
@@ -90,13 +91,38 @@ class Users extends BaseController
                 $userId = $users->getInsertID();
                 // Reload the user with the ID to ensure it's complete
                 $user = $users->find($userId);
-                // Now login with the complete user object
-                auth()->login($user);
-                // إعادة توجيه إلى صفحة الكورسات
-                $this->show_msg('success','تم بنجاح','يمكنك استعراض الوحدات المتاحة وشراءها');
-                return redirect()->to('/courses');
+                
+                log_message('debug', 'Registration - User saved with ID: ' . $userId);
+                
+                // Create mobile_password identity in auth_identities table
+                /** @var \Modules\Users\Models\UserIdentityModel $identityModel */
+                $identityModel = model(\Modules\Users\Models\UserIdentityModel::class);
+                
+                try {
+                    // Create mobile identity with password
+                    $identityModel->createMobileIdentity($user, [
+                        'mobile' => $mobile,
+                        'password' => $password
+                    ]);
+                    
+                    log_message('debug', 'Registration - Mobile identity created successfully for user: ' . $userId);
+                    
+                    // Now login with the complete user object
+                    auth()->login($user);
+                    // إعادة توجيه إلى صفحة الكورسات
+                    $this->show_msg('success','تم بنجاح','يمكنك استعراض الوحدات المتاحة وشراءها');
+                    return redirect()->to('/courses');
+                    
+                } catch (\Exception $e) {
+                    log_message('error', 'Registration - Failed to create mobile identity: ' . $e->getMessage());
+                    $this->show_msg('danger', 'خطأ في التسجيل', 'حدث خطأ أثناء إنشاء الهوية المحمولة');
+                    return redirect()->back()->withInput();
+                }
+                
             } else {
-                file_put_contents('d:/laragon/www/msarlink/registration_test.log', date('Y-m-d H:i:s') . " - Failed to save user: " . json_encode($users->errors()) . "\n", FILE_APPEND);
+                log_message('error', 'Registration - Failed to save user: ' . json_encode($users->errors()));
+                $this->show_msg('danger', 'خطأ في التسجيل', 'فشل في حفظ بيانات المستخدم');
+                return redirect()->back()->withInput();
             }
 
         }
@@ -107,57 +133,94 @@ class Users extends BaseController
     }
 
     /**
-     * Show login form
+     * Display login form or redirect if already logged in
      */
     public function login()
     {
-        // Check if user is already logged in using CodeIgniter Shield
-        if (auth()->loggedIn() || (session()->get('user')['id'] ?? null)) {
-            return redirect()->to('/dashboard');
+        log_message('debug', 'Users::login - Method: ' . $this->request->getMethod());
+        log_message('debug', 'Users::login - Already logged in: ' . (auth()->loggedIn() ? 'true' : 'false'));
+
+        // If user is already logged in, redirect to dashboard
+        if (auth()->loggedIn()) {
+            log_message('debug', 'Users::login - User already logged in, redirecting to courses/my_courses');
+            return redirect()->to('/courses/my_courses');
         }
 
-        $data = [
-            'title' => 'Login',
-            'validation' => $this->validator
-        ];
+        // If it's a POST request, process the login
+        if (strtoupper($this->request->getMethod()) === 'POST') {
+            log_message('debug', 'Users::login - Processing POST request');
+            return $this->processLogin();
+        }
+
+        // Display login form
+        $data['title'] = 'تسجيل الدخول';
+        log_message('debug', 'Users::login - Displaying login form');
         return MainView('site_layout/shield/login', $data);
     }
 
     /**
-     * Process login using Shield authentication
+     * Process login using CodeIgniter Shield
      */
     public function processLogin()
     {
-        if (!$this->validate($this->loginRules)) {
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        log_message('debug', 'Users::processLogin - Method: ' . $this->request->getMethod());
+        log_message('debug', 'Users::processLogin - POST data: ' . json_encode($this->request->getPost()));
+
+        // Validation rules for mobile and password
+        $rules = [
+            'mobile' => 'required|egyptian_mobile',
+            'password' => 'required',
+        ];
+
+        if (!$this->validate($rules)) {
+            $errors = $this->validator->getErrors();
+            log_message('debug', 'Users::processLogin - Validation failed: ' . json_encode($errors));
+            session()->setFlashdata('errors', $errors);
+            return redirect()->back()->withInput();
         }
 
-        // Find user by mobile number
-        $mobile = $this->request->getPost('mobile');
-        $password = $this->request->getPost('password');
+        log_message('debug', 'Users::processLogin - Validation passed');
 
-        $user = $this->userModel->where('mobile', $mobile)->first();
+        // Get the credentials for login
+        $remember = (bool)$this->request->getPost('remember');
+        $credentials = [
+            'mobile'    => $this->request->getPost('mobile'),
+            'password' => $this->request->getPost('password')
+        ];
 
-        if (!$user || !password_verify($password, $user->password_hash)) {
-            return redirect()->back()->withInput()->with('error', 'رقم الهاتف أو كلمة المرور غير صحيحة.');
+        log_message('debug', 'Users::processLogin - Attempting login with credentials: ' . json_encode(['mobile' => $credentials['mobile']]));
+        log_message('debug', 'Users::processLogin - Remember me: ' . ($remember ? 'true' : 'false'));
+
+        // Use Shield's attempt method for authentication
+        $loginAttempt = auth()->remember($remember)->attempt($credentials);
+
+        log_message('debug', 'Users::processLogin - Login attempt completed');
+        log_message('debug', 'Users::processLogin - Login result isOK: ' . ($loginAttempt->isOK() ? 'true' : 'false'));
+
+        if (!$loginAttempt->isOK()) {
+            log_message('debug', 'Users::processLogin - Login failed: ' . $loginAttempt->reason());
+            log_message('debug', 'Users::processLogin - Extra info: ' . json_encode($loginAttempt->extraInfo()));
+
+            // Set error message in Arabic
+            $errorMessage = 'غير قادر على تسجيل دخولك. يرجى التحقق من بيانات الاعتماد الخاصة بك.';
+            session()->setFlashdata('error', $errorMessage);
+            return redirect()->back()->withInput();
         }
 
-        // Check if user is active
-        if (!$user->active) {
-            return redirect()->back()->withInput()->with('error', 'حسابك غير مفعل. يرجى التواصل مع الإدارة.');
-        }
+        log_message('debug', 'Users::processLogin - Login successful for user ID: ' . auth()->user()->id);
+        log_message('debug', 'Users::processLogin - User logged in check: ' . (auth()->loggedIn() ? 'true' : 'false'));
 
-        // Set session data
-        session()->set([
-            'user_id' => $user->id,
-            'user_mobile' => $user->mobile,
-            'user_name' => $user->full_name,
-            'logged_in' => true
-        ]);
+        // Shield handles session management automatically
+        // Redirect to intended URL or default dashboard
+        $redirectURL = session('redirect_url') ?? site_url('/courses/my_courses');
+        session()->remove('redirect_url');
 
-        $remember = (bool) $this->request->getPost('remember');
+        log_message('debug', 'Users::processLogin - Redirecting to: ' . $redirectURL);
 
-        return redirect()->to('/dashboard')->with('success', 'مرحباً بك مرة أخرى!');
+        // Set success message
+        session()->setFlashdata('success', 'تم تسجيل الدخول بنجاح');
+
+        return redirect()->to($redirectURL)->withCookies();
     }
 
     /**

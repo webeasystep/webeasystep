@@ -16,7 +16,7 @@
                             <p class="mb-4 small text-white" data-aos="fade-up" data-aos-delay="200">أول أكاديمية في مصر لتدريس مسار الهندسة وعلوم الحاسب</p>
                             <p class="mb-0" data-aos="fade-up" data-aos-delay="300">
                                 <!-- SEO: Internal anchor link to relevant section - Good -->
-                                <a href="#learning-tracks" class="btn btn-secondary">استكشف الدورات التعليمية</a>
+                                <a href="<?= site_url('courses/course_details/programming_first_secendary')?>" class="btn btn-secondary">استكشف الدورات التعليمية</a>
                             </p>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                 <p>تعلم البرمجة وعلوم الحاسب من خلال نظام تعليمي متطور يشمل حصص تفاعلية، اختبارات بعد كل درس، ومتابعة مستمرة مع أولياء الأمور.</p>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="courses">
             <!-- Modal -->
             <div class="modal fade" id="startNowModal" tabindex="-1" role="dialog" aria-labelledby="startNowModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -153,17 +153,16 @@
                     </div>
                     <p data-aos="fade-up" data-aos-delay="100">بخبرة عملية تمتد لأكثر من 12 عامًا في صناعة البرمجيات وتدريب المبرمجين، يقدم م/أحمد نظاماً تعليمياً متطوراً يشمل:</p>
                     <ul class="ul-check list-unstyled mb-5 primary" data-aos="fade-up" data-aos-delay="200">
-                        <li> نظام تعلم بالحصص مع اختبارات بعد كل درس</li>
-                        <li> عدم السماح بالانتقال للحصة التالية إلا بعد اجتياز الاختبار</li>
-                        <li> تنبيهات أسبوعية لأولياء الأمور بتقدم الطالب</li>
-                        <li> مجموعة دعم فني وأكاديمي طوال الأسبوع</li>
-                        <li> لقاء أسبوعي مباشر عبر Google Meet</li>
-                        <li> مشاريع عملية وتطبيقات تفاعلية</li>
-                        <li> محاكاة لنظام امتحانات TOFAS</li>
+                        <li> فيديوهات مسجلة بجودة عالية تغطي المنهج بالكامل (نظري + عملي)</li>
+                        <li> متابعة مستمرة عبر جروب تيليجرام مخصص للدعم والاستفسارات</li>
+                        <li> محاكاة كاملة لنظام Quero & Tofas</li>
+                        <li> اختبارات قصيرة بعد كل وحدة لقياس الاستيعاب</li>
+                        <li> ملخصات جاهزة وتحديثات مستمرة للمنهج</li>
+                        <li> إمكانية الوصول للكورس من الهاتف، التابلت أو الكمبيوتر</li>
                     </ul>
                     <p data-aos="fade-up" data-aos-delay="300">
                         <!-- SEO: Internal anchor link - Good -->
-                        <a href="#learning-tracks" class="btn btn-primary">استفد من خبرة +12 عامًا - اكتشف المسارات</a>
+                        <a href="#courses" class="btn btn-primary">استفد من خبرة +12 عامًا - اكتشف المسارات</a>
                     </p>
                 </div>
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
@@ -179,63 +178,64 @@
     <!-- End instructor Section -->
 
     <!-- Features/Benefits Section -->
-    <div class="untree_co-section">
-        <div class="container">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="0">
-                    <!-- SEO: H2 for section title - Good structure -->
-                    <h2 class="line-bottom text-center mb-4">لماذا تختار مسارلينك؟</h2>
-                    <p>نحن لا نعلم البرمجة فقط، بل نبني جيلاً مبدعاً ومؤهلاً للمستقبل، مع تجربة تعليمية فريدة ومتابعة لصيقة مصممة لطلاب نظام المسارات.</p>
+<div class="untree_co-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="0">
+                <!-- SEO: H2 for section title - Good structure -->
+                <h2 class="line-bottom text-center mb-4">لماذا تختار مسارلينك؟</h2>
+                <p>مع مسارلينك، لا نقدم مجرد كورس مسجل، بل نظام تعلم متكامل مصمم خصيصاً لطلاب البكالوريا مع متابعة لصيقة عبر تيليجرام وتجربة تعليمية عملية وفعّالة.</p>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Feature items -->
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature">
+                    <span class="uil uil-graduation-cap"></span>
+                    <h3>منهج شامل</h3>
+                    <p>تغطية كاملة للجانب النظري والعملي مع أمثلة وتمارين تطبيقية تناسب طلاب البكالوريا.</p>
                 </div>
             </div>
-            <div class="row">
-                <!-- Feature items use H3 which is good for sub-headings within this section -->
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature">
-                        <span class="uil uil-graduation-cap"></span>
-                        <h3>نظام تعلم متدرج</h3>
-                        <p>تعلم بالحصص مع اختبارات بعد كل درس، لا يمكن الانتقال للحصة التالية إلا بعد اجتياز الاختبار.</p>
-                    </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature">
+                    <span class="uil uil-video"></span>
+                    <h3>محاضرات مسجلة</h3>
+                    <p>فيديوهات عالية الجودة يمكن مشاهدتها في أي وقت ومن أي جهاز (هاتف، تابلت، كمبيوتر).</p>
                 </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature">
-                        <span class="uil uil-bell"></span>
-                        <h3>متابعة أولياء الأمور</h3>
-                        <p>تنبيهات أسبوعية لأولياء الأمور بتقدم الطالب ونتائج الاختبارات والواجبات.</p>
-                    </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature">
+                    <span class="uil uil-users-alt"></span>
+                    <h3>جروب تيليجرام للدعم</h3>
+                    <p>مجموعة تفاعلية على تيليجرام للأسئلة والاستفسارات، مع متابعة مستمرة من المدرب.</p>
                 </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature">
-                        <span class="uil uil-users-alt"></span>
-                        <h3>مجموعة دعم متواصلة</h3>
-                        <p>دعم فني وأكاديمي طوال الأسبوع مع مجموعة دعم متخصصة للإجابة على جميع الاستفسارات.</p>
-                    </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature">
+                    <span class="uil uil-constructor"></span>
+                    <h3>مشاريع عملية</h3>
+                    <p>تطبيقات عملية تحاكي مواقف حقيقية لتقوية المهارات البرمجية والتفكير المنطقي.</p>
                 </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature">
-                        <span class="uil uil-video"></span>
-                        <h3>لقاءات مباشرة أسبوعية</h3>
-                        <p>لقاء أسبوعي مباشر عبر Google Meet لمراجعة المفاهيم والإجابة على الأسئلة.</p>
-                    </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature">
+                    <span class="uil uil-clipboard-alt"></span>
+                    <h3>محاكاة امتحانات Quero & TOFAS</h3>
+                    <p>اختبارات تدريبية مماثلة للامتحانات الرسمية تساعد الطالب على الاستعداد بثقة.</p>
                 </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature">
-                        <span class="uil uil-constructor"></span>
-                        <h3>مشاريع عملية تطبيقية</h3>
-                        <p>تطبيقات ومشاريع عملية تفاعلية تطور المهارات البرمجية والتفكير المنطقي.</p>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature">
-                        <span class="uil uil-clipboard-alt"></span>
-                        <h3>محاكاة امتحانات TOFAS</h3>
-                        <p>تدريب على نظام امتحانات TOFAS لإعداد الطلاب للامتحانات الرسمية بثقة.</p>
-                    </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature">
+                    <span class="uil uil-refresh"></span>
+                    <h3>ملخصات وتحديثات مستمرة</h3>
+                    <p>توفير ملخصات مركزة وتحديثات للمنهج لضمان مواكبة كل جديد بسهولة.</p>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /.untree_co-section -->
+</div>
+
+<!-- /.untree_co-section -->
 
     <!-- Who We Are Section -->
     <div class="untree_co-section bg-light">
@@ -249,16 +249,14 @@
                         <li> نظام بيع كورسات بالحصص مع تقدم متدرج</li>
                         <li> اختبارات إجبارية بعد كل حصة لضمان الفهم</li>
                         <li> منع الوصول للحصة التالية قبل اجتياز الاختبار</li>
-                        <li> تنبيهات أسبوعية لأولياء الأمور بالتقدم</li>
                         <li> مجموعة دعم فني وأكاديمي طوال الأسبوع</li>
-                        <li> لقاءات أسبوعية مباشرة عبر Google Meet</li>
                         <li> مشاريع عملية وتطبيقات تفاعلية</li>
                         <li> محاكاة شاملة لنظام امتحانات TOFAS</li>
                     </ul>
                     <p data-aos="fade-up" data-aos-delay="300">
                         <!-- SEO: Internal anchor link & external link with noopener - Good -->
-                        <a href="#learning-tracks" class="btn btn-primary btn-lg">تصفح المسارات التعليمية</a>
-                        <a href="https://wa.me/201032863861" target="_blank" rel="noopener" class="btn btn-outline-primary">تحدث مع مستشار تعليمي</a>
+                        <a href="<?= site_url('courses/course_details/programming_first_secendary')?>" class="btn btn-primary btn-lg">تصفح المسارات التعليمية</a>
+                        <a href="https://wa.me/201032863861" target="_blank" rel="noopener" class="btn btn-outline-primary">تحدث مع مدرس المادة</a>
                     </p>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-delay="400">
@@ -270,31 +268,6 @@
     </div>
     <!-- /.untree_co-section -->
 
-<!-- Free Session Booking Section -->
-<div class="untree_co-section bg-light" id="book-free-session">}
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 text-center" data-aos="fade-up" data-aos-delay="0">
-                <figure class="mb-4">
-                    <!-- Option 1: Icon -->
-                    <span class="uil uil-calendar-alt display-4 text-primary mb-3"></span>
-                    <!-- Option 2: Remove icon if preferred -->
-                </figure>
-                <!-- SEO: H2 for section title - Good structure -->
-                <h2 class="mb-4">ابدأ رحلة التعلم مع نظامنا المتطور!</h2>
-                <p class="lead" style="font-size: 1.1rem;">
-                    انضم إلى نظام تعليمي فريد يجمع بين التعلم بالحصص والاختبارات التفاعلية. <br>
-                    مع متابعة مستمرة لأولياء الأمور ودعم أكاديمي طوال الأسبوع، بالإضافة إلى لقاءات مباشرة أسبوعية ومحاكاة امتحانات TOFAS.
-                </p>
-                <p class="mt-4">
-                    <!-- SEO: Clear Call to Action linking to courses -->
-                    <a href="#learning-tracks" class="btn btn-primary btn-lg">استكشف الكورسات المتاحة</a>
-                    <a href="https://wa.me/201032863861?text=أرغب في معرفة المزيد عن نظام التعلم بالحصص" target="_blank" rel="noopener" class="btn btn-outline-primary btn-lg ml-3">تحدث مع مستشار تعليمي</a>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- End Free Session Booking Section -->
 
 <?= $this->endSection(); ?>

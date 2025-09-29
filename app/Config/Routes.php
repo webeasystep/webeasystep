@@ -49,14 +49,14 @@ $routes->get('debug_session', function() {
 
 // 1) قبل shield routes:
 // $routes->match(['GET', 'POST'], 'register', [Site::class, 'register']); // تم تعطيله لصالح Users controller
-$routes->match(['GET', 'POST'], 'login', [Site::class, 'login']);
+// $routes->match(['GET', 'POST'], 'login', [Site::class, 'login']); // تم تعطيله لصالح Users controller
 $routes->get('activate-account', [Site::class, 'activateAccount']);
 $routes->get('activation-sent', function() {
     return MainView('site_layout/activation_sent');
 });
 
-// Shield routes - exclude both show and verify to avoid conflicts
-service('auth')->routes($routes, ['except' => ['auth/a/show', 'auth/a/verify']]);
+// Shield routes - exclude login, register, show and verify to avoid conflicts
+service('auth')->routes($routes, ['except' => ['login', 'register', 'auth/a/show', 'auth/a/verify']]);
 
 // Custom routes for Shield actions using dedicated ActivationController
 $routes->get('auth/a/show', 'ActivationController::show');

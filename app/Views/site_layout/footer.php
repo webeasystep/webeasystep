@@ -8,16 +8,21 @@
             <div class="col-lg-3 mr-auto">
                 <div class="widget">
                     <h3>معلومات عنا<span class="text-primary">.</span></h3>
-                    <p> +14 أول أكاديمية متخصصة في تدريس علوم الحاسب للطلبة
-                        وإعدادهم لوظائف المستقبل.</p>
+                    <p>أول أكاديمية في مصر لتدريس مسار الهندسة وعلوم الحاسب</p>
                 </div> <!-- /.widget -->
                 <div class="widget">
                     <h3>تواصل معنا</h3>
                     <ul class="list-unstyled social">
-                        <li><a href="https://t.me/msarlink"><span class="icon-telegram"></span></a></li>
-                        <li><a href="#"><span class="icon-instagram"></span></a></li>
-                        <li><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li><a href="#"><span class="icon-youtube"></span></a></li>
+                        <!-- Telegram -->
+                        <li><a href="https://t.me/msarlink" target="_blank"><span class="icon-telegram"></span></a></li>
+                        <!-- YouTube -->
+                        <li><a href="https://www.youtube.com/@msarlink" target="_blank"><span class="icon-youtube"></span></a></li>
+                        <!-- Facebook -->
+                        <li><a href="https://www.facebook.com/msarlink" target="_blank"><span class="icon-facebook"></span></a></li>
+                        <!-- Phone -->
+                        <li><a href="tel:+201234567890"><span class="icon-phone"></span></a></li>
+                        <!-- WhatsApp -->
+                        <li><a href="https://wa.me/201234567890" target="_blank"><span class="icon-whatsapp"></span></a></li>
                     </ul>
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-3 -->

@@ -40,7 +40,11 @@ $routes->group('/', ['namespace' => 'Modules\Users\Controllers'], static functio
     $routes->get('users/edit/(:num)', [Users::class, 'edit/$1']);
     $routes->get('users/delete/(:num)', [Users::class, 'delete/$1']);
 
-    // Authentication routes
+    // Authentication routes - Main login route
+    $routes->match(['GET', 'POST'], 'login', [Users::class, 'login']);
+    $routes->post('login', [Users::class, 'processLogin']);
+    
+    // Other authentication routes
     $routes->get('users/login', [Users::class, 'login']);
     $routes->post('users/login', [Users::class, 'processLogin']);
     $routes->get('users/logout', [Users::class, 'logout']);

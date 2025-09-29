@@ -156,7 +156,7 @@ class Courses extends BaseController
             foreach ($unitItems as $item) {
                 if ($item['item_type'] === 'video') {
                     $videoCount++;
-                    
+
                     // Calculate duration from metadata (video_duration in seconds)
                     if (!empty($item['metadata'])) {
                         $metadata = json_decode($item['metadata'], true);
@@ -178,11 +178,11 @@ class Courses extends BaseController
             $course['page_count'] = $pageCount;
             $course['unit_count'] = $unitCount;
             $course['quiz_count'] = $quizCount;
-            
+
             // Keep legacy fields for backward compatibility
             $course['lesson_count'] = $videoCount; // Videos are considered lessons
             $course['section_count'] = $unitCount;
-            
+
             $course['total_duration'] = $totalDuration;
             $course['duration_formatted'] = $this->formatDuration($totalDuration);
 
@@ -489,10 +489,8 @@ class Courses extends BaseController
     public function course_view(string $slug): string|RedirectResponse
     {
         // Debug: Log method entry
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' COURSE_VIEW METHOD - Starting with slug: ' . $slug . "\n",
-            FILE_APPEND | LOCK_EX);
-            
+
+
         // 1) Fetch the course by slug
         $course = $this->coursesModel->getCourseBySlug($slug);
         if (!$course) {
@@ -528,18 +526,16 @@ class Courses extends BaseController
         $units = [];
         foreach ($allUnits as $unit) {
             // Debug: Log unit properties before processing
-            file_put_contents('D:\laragon\www\msarlink\debug.log',
-                date('Y-m-d H:i:s') . ' UNIT DEBUG - Unit ID: ' . $unit->id . ', is_free: ' . ($unit->is_free ?? 'NOT SET') . "\n",
-                FILE_APPEND | LOCK_EX);
-            
+
+
             // Mark unit as enrolled or not
             $unit->is_enrolled = in_array($unit->id, $enrolledUnitIds);
-            
+
             // Ensure is_free property is preserved (it should already be there from database)
             if (!isset($unit->is_free)) {
                 $unit->is_free = 0; // Default to not free if not set
             }
-            
+
             $units[] = $unit;
         }
 
@@ -548,7 +544,7 @@ class Courses extends BaseController
         foreach ($units as &$unit) {
             // Get items for all units (enrolled, free, and locked)
             $unit->items = $this->unitItemsModel->getUnitItemsWithDetails($unit->id, true); // Get items with related data
-            
+
             // Mark items as locked for unenrolled non-free units
             if (!$unit->is_enrolled && !$unit->is_free) {
                 foreach ($unit->items as &$item) {
@@ -559,7 +555,7 @@ class Courses extends BaseController
 
             // Add items to flat array for navigation (enrolled units + free units)
             $includeInNavigation = $unit->is_enrolled || $unit->is_free;
-            
+
             if ($includeInNavigation) {
                 foreach ($unit->items as $item) {
                     // Extract duration from metadata if it's a video item
@@ -648,19 +644,15 @@ class Courses extends BaseController
                             'processed_at' => date('Y-m-d H:i:s'),
                             'processed_by' => $userId // Self-enrollment for free units
                         ];
-                        
+
                         $this->db->table('tb_unit_enrollments')->insert($enrollmentData);
-                        
-                        // Log the auto-enrollment
-                        file_put_contents('D:\laragon\www\msarlink\debug.log',
-                            date('Y-m-d H:i:s') . ' AUTO-ENROLLMENT - User ' . $userId . ' auto-enrolled in free unit ' . $unit->id . "\n",
-                            FILE_APPEND | LOCK_EX);
-                        
+
+
                         // Redirect to refresh the page with updated enrollment
                         return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $requestedItemId))
                             ->with('success', 'تم تسجيلك في الوحدة المجانية بنجاح');
                     }
-                    
+
                     // Check if user has access to this unit
                     $hasUnitAccess = $this->checkUnitAccess($userId, $unit->id);
                     if (!$hasUnitAccess && !$unit->is_free) {
@@ -680,7 +672,7 @@ class Courses extends BaseController
         // 7) Determine next & prev items with smart navigation (skip locked units)
         $prevItem = null;
         $nextItem = null;
-        
+
         if ($currentIndex !== false) {
             // Find previous available item (skip locked units)
             for ($i = $currentIndex - 1; $i >= 0; $i--) {
@@ -691,7 +683,7 @@ class Courses extends BaseController
                     break;
                 }
             }
-            
+
             // Find next available item (skip locked units)
             for ($i = $currentIndex + 1; $i < count($flatItems); $i++) {
                 $item = $flatItems[$i];
@@ -746,25 +738,11 @@ class Courses extends BaseController
             $itemTitle = $currentItem['title'];
             $itemDesc = $currentItem['description'];
 
-            // Debug logging for switch case
-            file_put_contents('d:/laragon/www/msarlink/debug.log',
-                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERING IF BLOCK' . "\n",
-                FILE_APPEND | LOCK_EX);
-            file_put_contents('d:/laragon/www/msarlink/debug.log',
-                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - item_type: ' . $currentItem['item_type'] . "\n",
-                FILE_APPEND | LOCK_EX);
-            file_put_contents('d:/laragon/www/msarlink/debug.log',
-                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - metadata: ' . json_encode($currentItem['metadata']) . "\n",
-                FILE_APPEND | LOCK_EX);
-            file_put_contents('d:/laragon/www/msarlink/debug.log',
-                date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ABOUT TO ENTER SWITCH' . "\n",
-                FILE_APPEND | LOCK_EX);
+
 
             switch ($currentItem['item_type']) {
                 case 'video':
-                    file_put_contents('d:/laragon/www/msarlink/debug.log',
-                        date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERED VIDEO CASE' . "\n",
-                        FILE_APPEND | LOCK_EX);
+
                     // Extract video_id and video_library_id from metadata
                     if (!empty($currentItem['metadata']) && is_array($currentItem['metadata'])) {
                         $videoId = $currentItem['metadata']['video_id'] ?? $currentItem['item_id'] ?? 'dQw4w9WgXcQ';
@@ -785,9 +763,7 @@ class Courses extends BaseController
                     }
                     break;
                 case 'quiz':
-                    file_put_contents('d:/laragon/www/msarlink/debug.log',
-                        date('Y-m-d H:i:s') . ' SWITCH CASE DEBUG - ENTERED QUIZ CASE' . "\n",
-                        FILE_APPEND | LOCK_EX);
+
                     // Extract quiz_id from metadata and fetch quiz data
                     if (!empty($currentItem['metadata']) && is_array($currentItem['metadata'])) {
                         $quizId = $currentItem['metadata']['quiz_id'] ?? $currentItem['item_id'];
@@ -797,20 +773,12 @@ class Courses extends BaseController
                             $quizzesModel = new \Modules\Quizzes\Models\QuizzesModel();
                             $quizData = $quizzesModel->getQuizById($quizId);
 
-                            // Debug logging for quiz loading
-                            file_put_contents('d:/laragon/www/msarlink/debug.log',
-                                date('Y-m-d H:i:s') . ' QUIZ LOADING DEBUG - quizId: ' . $quizId . "\n",
-                                FILE_APPEND | LOCK_EX);
-                            file_put_contents('d:/laragon/www/msarlink/debug.log',
-                                date('Y-m-d H:i:s') . ' QUIZ LOADING DEBUG - quizData result: ' . json_encode($quizData) . "\n",
-                                FILE_APPEND | LOCK_EX);
 
                             if ($quizData) {
                                 $itemDesc = $quizData->quiz_desc ?? $itemDesc;
 
                                 // Add user attempt information if user is logged in
-                                $user = session()->get('user');
-                                $userId = $user['id'] ?? null;
+                                $userId = auth()->loggedIn() ? auth()->user()->id : null;
 
                                 if ($userId) {
                                     $attemptsModel = new \Modules\Quizzes\Models\QuizAttemptsModel();
@@ -825,10 +793,6 @@ class Courses extends BaseController
                                     $quizData->has_exceeded_attempts = $userAttemptCount >= $quizData->max_attempts;
                                     $quizData->user_latest_attempt = $userLatestAttempt;
 
-                                    // Debug logging for attempt info
-                                    file_put_contents('d:/laragon/www/msarlink/debug.log',
-                                        date('Y-m-d H:i:s') . ' ATTEMPT INFO DEBUG - User: ' . $userId . ', Attempts: ' . $userAttemptCount . '/' . $quizData->max_attempts . "\n",
-                                        FILE_APPEND | LOCK_EX);
                                 }
                             }
                         }
@@ -858,13 +822,6 @@ class Courses extends BaseController
                     break;
             }
         }
-
-        // Debug logging for quiz data
-        log_message('debug', 'COURSES_CONTROLLER DEBUG - quizData: ' . json_encode($quizData));
-        error_log('COURSES_CONTROLLER DEBUG - quizData: ' . json_encode($quizData));
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - quizData: ' . json_encode($quizData) . "\n",
-            FILE_APPEND | LOCK_EX);
 
         $data = [
             'title'             => $course->course_title,
@@ -900,17 +857,6 @@ class Courses extends BaseController
         error_log('COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem));
         error_log('COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId);
         error_log('COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems));
-
-        // Write to custom debug file
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem) . "\n",
-            FILE_APPEND | LOCK_EX);
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId . "\n",
-            FILE_APPEND | LOCK_EX);
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems) . "\n",
-            FILE_APPEND | LOCK_EX);
 
         return view('site/course_view', $data);
     }
@@ -1314,7 +1260,7 @@ class Courses extends BaseController
             $courses = $this->coursesModel->searchCourses($query);
 
             // Add enrollment status for logged-in users
-            $userId = session()->get('user')['id'] ?? null;
+            $userId = auth()->loggedIn() ? auth()->user()->id : null;
             if ($userId) {
                 foreach ($courses as &$course) {
                     $course->is_enrolled = $this->coursesModel->isUserEnrolled($userId, $course->id);
