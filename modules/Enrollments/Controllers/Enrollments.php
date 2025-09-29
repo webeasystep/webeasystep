@@ -15,20 +15,20 @@ class Enrollments extends BaseController
 {
     protected EnrollmentsModel $enrollmentsModel;
     protected UnitEnrollmentsModel $unitEnrollmentsModel;
-    protected CoursesModel     $coursesModel;
-    protected UnitsModel       $unitsModel;
-    protected UsersModel       $usersModel;
-    protected FireUploader     $fireUploader;
+    protected CoursesModel $coursesModel;
+    protected UnitsModel $unitsModel;
+    protected UsersModel $usersModel;
+    protected FireUploader $fireUploader;
 
     /**
      * Validation rules for creating a new user (when not logged in & buying a paid course).
      */
     private array $rules = [
-        'name'            => 'required|min_length[3]',
-        'email'           => 'required|valid_email',
-        'country'         => 'required',
-        'phone'           => 'required',
-        'password'        => 'required|min_length[5]',
+        'name' => 'required|min_length[3]',
+        'email' => 'required|valid_email',
+        'country' => 'required',
+        'phone' => 'required',
+        'password' => 'required|min_length[5]',
         'confirmPassword' => 'required|matches[password]',
     ];
 
@@ -36,10 +36,10 @@ class Enrollments extends BaseController
     {
         $this->enrollmentsModel = new EnrollmentsModel();
         $this->unitEnrollmentsModel = new UnitEnrollmentsModel();
-        $this->coursesModel     = new CoursesModel();
-        $this->unitsModel       = new UnitsModel();
-        $this->usersModel       = new UsersModel();
-        $this->fireUploader     = new FireUploader();
+        $this->coursesModel = new CoursesModel();
+        $this->unitsModel = new UnitsModel();
+        $this->usersModel = new UsersModel();
+        $this->fireUploader = new FireUploader();
     }
 
     /**
@@ -99,7 +99,8 @@ class Enrollments extends BaseController
     {
         $userId = auth()->user()->id ?? null;
         if (!$userId) {
-            return redirect()->to('/login')->with('error', 'يرجى تسجيل الدخول أولاً');
+            $this->show_msg('danger', 'error', "يرجى تسجيل الدخول أولاً");
+            return redirect()->to('/login');
         }
 
         // Handle unit selection from GET parameters
@@ -124,7 +125,8 @@ class Enrollments extends BaseController
     {
         $userId = auth()->user()->id ?? null;
         if (!$userId) {
-            return redirect()->to('/login')->with('error', 'يرجى تسجيل الدخول أولاً');
+            $this->show_msg('danger', 'error', "يرجى تسجيل الدخول أولاً");
+            return redirect()->to('/login');
         }
 
         if ($this->request->is('post')) {
@@ -147,7 +149,7 @@ class Enrollments extends BaseController
         $totalPrice = 0;
         $hasFreeUnits = false;
         $allUnitsFree = true;
-        
+
         foreach ($selectedUnits as $unit) {
             $totalPrice += $unit->unit_price ?? 0;
             if ($unit->is_free) {
@@ -313,7 +315,7 @@ class Enrollments extends BaseController
             log_message('debug', 'Free enrollment successful, redirecting to course: ' . $course->slug);
 
             return redirect()->to('/courses/course_view/' . $course->slug)
-                            ->with('success', 'تم تسجيلك في الوحدات المجانية بنجاح! يمكنك الآن الوصول إلى المحتوى.');
+                ->with('success', 'تم تسجيلك في الوحدات المجانية بنجاح! يمكنك الآن الوصول إلى المحتوى.');
         }
 
         // Handle paid units - existing logic
@@ -344,7 +346,7 @@ class Enrollments extends BaseController
         session()->remove('selected_units');
 
         return redirect()->to('/enrollments/my-purchases')
-                        ->with('success', 'تم إرسال طلب الشراء بنجاح. سيتم مراجعته من قبل الإدارة وتفعيل الوحدات عند الموافقة. يرجى انتظار التفعيل.');
+            ->with('success', 'تم إرسال طلب الشراء بنجاح. سيتم مراجعته من قبل الإدارة وتفعيل الوحدات عند الموافقة. يرجى انتظار التفعيل.');
     }
 
 }

@@ -84,25 +84,17 @@ class Users extends BaseController
                 'active' => 1
             ];
 
-            file_put_contents('d:/laragon/www/msarlink/registration_test.log', date('Y-m-d H:i:s') . " - Creating User entity with data: " . json_encode($credentials) . "\n", FILE_APPEND);
             $user = new User($credentials);
-            file_put_contents('d:/laragon/www/msarlink/registration_test.log', date('Y-m-d H:i:s') . " - User entity created, toArray: " . json_encode($user->toArray()) . "\n", FILE_APPEND);
-            
             // Save the user first to get the ID
             if ($users->save($user)) {
                 $userId = $users->getInsertID();
-                file_put_contents('d:/laragon/www/msarlink/registration_test.log', date('Y-m-d H:i:s') . " - User saved successfully, ID: " . $userId . "\n", FILE_APPEND);
-                
                 // Reload the user with the ID to ensure it's complete
                 $user = $users->find($userId);
-                file_put_contents('d:/laragon/www/msarlink/registration_test.log', date('Y-m-d H:i:s') . " - User reloaded with ID: " . $user->id . "\n", FILE_APPEND);
-                
                 // Now login with the complete user object
                 auth()->login($user);
-                file_put_contents('d:/laragon/www/msarlink/registration_test.log', date('Y-m-d H:i:s') . " - User logged in successfully\n", FILE_APPEND);
-                
                 // إعادة توجيه إلى صفحة الكورسات
-                return redirect()->to('/courses/my_courses')->with('success', 'تم التسجيل بنجاح!');
+                $this->show_msg('success','تم بنجاح','يمكنك استعراض الوحدات المتاحة وشراءها');
+                return redirect()->to('/courses');
             } else {
                 file_put_contents('d:/laragon/www/msarlink/registration_test.log', date('Y-m-d H:i:s') . " - Failed to save user: " . json_encode($users->errors()) . "\n", FILE_APPEND);
             }
