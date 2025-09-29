@@ -1474,76 +1474,324 @@
 <!-- Embedded Quiz Modal -->
 <div id="embeddedQuizModal" class="embedded-quiz-modal" style="display: none;">
     <div class="embedded-quiz-container">
+        <!-- Mobile-optimized header -->
         <div class="embedded-quiz-header">
             <div class="quiz-title-section">
-                <h4 id="quizTitle">اختبار</h4>
-                <button class="close-quiz-btn" onclick="EmbeddedQuiz.close()">
+                <h4 id="quizTitle" class="quiz-title-responsive">اختبار</h4>
+                <button class="close-quiz-btn mobile-friendly-btn" onclick="EmbeddedQuiz.close()" aria-label="إغلاق الاختبار">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="quiz-progress-section">
-                <div class="quiz-timer">
+                <div class="quiz-timer mobile-timer">
                     <i class="fas fa-clock"></i>
                     <span id="quizTimer">00:00</span>
                 </div>
-                <div class="quiz-progress">
-                    <span id="questionCounter">1 من 5</span>
-                    <div class="progress-bar-container">
+                <div class="quiz-progress mobile-progress">
+                    <span id="questionCounter" class="question-counter-mobile">1 من 5</span>
+                    <div class="progress-bar-container mobile-progress-container">
                         <div class="progress-bar" id="quizProgressBar"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="embedded-quiz-content">
-            <div id="quizQuestions"></div>
+        <!-- Mobile swipe indicator -->
+        <div class="mobile-swipe-indicator" style="display: none;">
+            <div class="swipe-hint">
+                <i class="fas fa-hand-point-left"></i>
+                <span>اسحب يميناً أو يساراً للتنقل</span>
+            </div>
         </div>
 
-        <div class="embedded-quiz-navigation">
-            <button id="prevQuestionBtn" class="nav-btn prev-btn" onclick="EmbeddedQuiz.previousQuestion()">
-                <i class="fas fa-chevron-right"></i> السابق
-            </button>
-            <button id="nextQuestionBtn" class="nav-btn next-btn" onclick="EmbeddedQuiz.nextQuestion()">
-                التالي <i class="fas fa-chevron-left"></i>
-            </button>
-            <button id="submitQuizBtn" class="nav-btn submit-btn" onclick="EmbeddedQuiz.submitQuiz()" style="display: none;">
-                <i class="fas fa-check"></i> إرسال الإجابات
-            </button>
+        <!-- Quiz content with touch-friendly design -->
+        <div class="embedded-quiz-content mobile-quiz-content">
+            <div id="quizQuestions" class="quiz-questions-container"></div>
         </div>
 
-        <div id="quizResults" class="quiz-results" style="display: none;">
-            <div class="results-content">
-                <div class="results-header">
-                    <i class="fas fa-trophy results-icon"></i>
-                    <h3>نتائج الاختبار</h3>
+        <!-- Mobile-optimized navigation -->
+        <div class="embedded-quiz-navigation mobile-navigation">
+            <div class="nav-buttons-container">
+                <button id="prevQuestionBtn" class="nav-btn prev-btn mobile-nav-btn" onclick="EmbeddedQuiz.previousQuestion()" aria-label="السؤال السابق">
+                    <i class="fas fa-chevron-right"></i>
+                    <span class="btn-text">السابق</span>
+                </button>
+                
+                <!-- Mobile question indicator dots -->
+                <div class="mobile-question-dots" id="mobileQuestionDots" style="display: none;">
+                    <!-- Dots will be generated dynamically -->
                 </div>
-                <div class="results-stats">
-                    <div class="stat-item">
+                
+                <button id="nextQuestionBtn" class="nav-btn next-btn mobile-nav-btn" onclick="EmbeddedQuiz.nextQuestion()" aria-label="السؤال التالي">
+                    <span class="btn-text">التالي</span>
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            
+            <button id="submitQuizBtn" class="nav-btn submit-btn mobile-submit-btn" onclick="EmbeddedQuiz.submitQuiz()" style="display: none;" aria-label="إرسال الإجابات">
+                <i class="fas fa-check"></i>
+                <span class="btn-text">إرسال الإجابات</span>
+            </button>
+        </div>
+
+        <!-- Enhanced results section for mobile -->
+        <div id="quizResults" class="quiz-results mobile-results" style="display: none;">
+            <div class="results-content mobile-results-content">
+                <div class="results-header mobile-results-header">
+                    <i class="fas fa-trophy results-icon"></i>
+                    <h3 class="results-title">نتائج الاختبار</h3>
+                </div>
+                <div class="results-stats mobile-results-stats">
+                    <div class="stat-item mobile-stat-item">
                         <span class="stat-label">النتيجة:</span>
-                        <span class="stat-value" id="finalScore">0%</span>
+                        <span class="stat-value score-value" id="finalScore">0%</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item mobile-stat-item">
                         <span class="stat-label">الإجابات الصحيحة:</span>
                         <span class="stat-value" id="correctAnswers">0/0</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item mobile-stat-item">
                         <span class="stat-label">الوقت المستغرق:</span>
                         <span class="stat-value" id="completionTime">0 دقيقة</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item mobile-stat-item">
                         <span class="stat-label">الحالة:</span>
-                        <span class="stat-value" id="passStatus">-</span>
+                        <span class="stat-value pass-status" id="passStatus">-</span>
                     </div>
                 </div>
-                <div class="results-actions">
-                    <button class="btn btn-primary" onclick="EmbeddedQuiz.continueToNext()">
-                        <i class="fas fa-arrow-left"></i> متابعة للعنصر التالي
+                <div class="results-actions mobile-results-actions">
+                    <button class="btn btn-primary mobile-continue-btn" onclick="EmbeddedQuiz.continueToNext()">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>متابعة للعنصر التالي</span>
+                    </button>
+                    <button class="btn btn-secondary mobile-retry-btn" onclick="EmbeddedQuiz.retryQuiz()" style="display: none;">
+                        <i class="fas fa-redo"></i>
+                        <span>إعادة المحاولة</span>
                     </button>
                 </div>
             </div>
         </div>
+
+        <!-- Mobile loading indicator -->
+        <div class="mobile-loading-overlay" id="mobileLoadingOverlay" style="display: none;">
+            <div class="loading-spinner">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">جاري التحميل...</span>
+                </div>
+                <p class="loading-text">جاري تحميل الاختبار...</p>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Mobile-specific quiz styles -->
+<style>
+/* Mobile-first responsive enhancements */
+@media (max-width: 768px) {
+    .embedded-quiz-modal {
+        padding: 0;
+    }
+    
+    .embedded-quiz-container {
+        margin: 0;
+        border-radius: 0;
+        height: 100vh;
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .quiz-title-responsive {
+        font-size: 1.1rem !important;
+        margin: 0;
+    }
+    
+    .mobile-friendly-btn {
+        padding: 12px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .mobile-timer {
+        font-size: 0.9rem;
+    }
+    
+    .question-counter-mobile {
+        font-size: 0.85rem;
+    }
+    
+    .mobile-progress-container {
+        margin-top: 8px;
+    }
+    
+    .mobile-swipe-indicator {
+        display: block !important;
+        text-align: center;
+        padding: 8px;
+        background: rgba(0,0,0,0.05);
+        border-bottom: 1px solid #eee;
+    }
+    
+    .swipe-hint {
+        font-size: 0.8rem;
+        color: #666;
+    }
+    
+    .swipe-hint i {
+        margin-right: 5px;
+        animation: swipeAnimation 2s infinite;
+    }
+    
+    @keyframes swipeAnimation {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(-10px); }
+    }
+    
+    .mobile-quiz-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+    }
+    
+    .nav-buttons-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+    }
+    
+    .mobile-nav-btn {
+        min-width: 80px;
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .mobile-question-dots {
+        display: flex !important;
+        gap: 6px;
+    }
+    
+    .question-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ddd;
+        transition: background 0.3s;
+    }
+    
+    .question-dot.active {
+        background: #007bff;
+    }
+    
+    .question-dot.answered {
+        background: #28a745;
+    }
+    
+    .mobile-submit-btn {
+        width: calc(100% - 30px);
+        margin: 10px 15px;
+        padding: 15px;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    
+    .mobile-results-content {
+        padding: 20px 15px;
+    }
+    
+    .mobile-results-header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    
+    .results-title {
+        font-size: 1.3rem;
+        margin-top: 10px;
+    }
+    
+    .mobile-stat-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .score-value {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    
+    .pass-status {
+        font-weight: 600;
+    }
+    
+    .mobile-results-actions {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .mobile-continue-btn,
+    .mobile-retry-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .mobile-loading-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255,255,255,0.95);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+    
+    .loading-text {
+        margin-top: 15px;
+        color: #666;
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .embedded-quiz-container {
+        max-width: 90%;
+        margin: 2vh auto;
+    }
+    
+    .mobile-swipe-indicator {
+        display: none !important;
+    }
+}
+
+/* Touch-friendly improvements for all devices */
+@media (hover: none) and (pointer: coarse) {
+    .nav-btn,
+    .close-quiz-btn,
+    .mobile-friendly-btn {
+        min-width: 44px;
+        min-height: 44px;
+        padding: 12px;
+    }
+    
+    .quiz-option {
+        padding: 15px;
+        margin: 8px 0;
+    }
+}
+</style>
 
 
 

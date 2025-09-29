@@ -14,8 +14,125 @@ class EmbeddedQuiz {
         this.quizData = null;
         this.attemptId = null;
         this.isSubmitting = false;
+        this.isMobile = this.detectMobile();
+        this.isTablet = this.detectTablet();
+        this.touchStartY = 0;
+        this.touchEndY = 0;
 
         this.initializeEventListeners();
+        this.initializeResponsiveFeatures();
+    }
+
+    /**
+     * Detect if device is mobile
+     */
+    detectMobile() {
+        return window.innerWidth <= 480 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    /**
+     * Detect if device is tablet
+     */
+    detectTablet() {
+        return window.innerWidth > 480 && window.innerWidth <= 768;
+    }
+
+    /**
+     * Initialize responsive features
+     */
+    initializeResponsiveFeatures() {
+        // Handle orientation changes
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                this.handleOrientationChange();
+            }, 100);
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', this.debounce(() => {
+            this.handleResize();
+        }, 250));
+
+        // Prevent zoom on double tap for iOS
+        if (this.isMobile) {
+            document.addEventListener('touchend', (e) => {
+                const now = (new Date()).getTime();
+                if (now - this.lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
+                this.lastTouchEnd = now;
+            }, false);
+        }
+    }
+
+    /**
+     * Handle orientation change
+     */
+    handleOrientationChange() {
+        if ($('#embedded-quiz-modal').is(':visible')) {
+            this.adjustModalForOrientation();
+        }
+    }
+
+    /**
+     * Handle window resize
+     */
+    handleResize() {
+        this.isMobile = this.detectMobile();
+        this.isTablet = this.detectTablet();
+        
+        if ($('#embedded-quiz-modal').is(':visible')) {
+            this.adjustModalLayout();
+        }
+    }
+
+    /**
+     * Adjust modal for orientation changes
+     */
+    adjustModalForOrientation() {
+        const modal = $('#embedded-quiz-modal .quiz-modal-container');
+        
+        if (window.orientation === 90 || window.orientation === -90) {
+            // Landscape mode
+            modal.addClass('landscape-mode');
+        } else {
+            // Portrait mode
+            modal.removeClass('landscape-mode');
+        }
+    }
+
+    /**
+     * Adjust modal layout based on screen size
+     */
+    adjustModalLayout() {
+        const modal = $('#embedded-quiz-modal .quiz-modal-container');
+        
+        if (this.isMobile) {
+            modal.addClass('mobile-layout');
+        } else {
+            modal.removeClass('mobile-layout');
+        }
+        
+        if (this.isTablet) {
+            modal.addClass('tablet-layout');
+        } else {
+            modal.removeClass('tablet-layout');
+        }
+    }
+
+    /**
+     * Debounce function for performance
+     */
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
     }
 
     /**
@@ -45,6 +162,17 @@ class EmbeddedQuiz {
             this.saveAnswer(e);
         });
 
+        // Touch events for mobile swipe navigation
+        if (this.isMobile || this.isTablet) {
+            $(document).on('touchstart', '.quiz-question', (e) => {
+                this.handleTouchStart(e);
+            });
+
+            $(document).on('touchend', '.quiz-question', (e) => {
+                this.handleTouchEnd(e);
+            });
+        }
+
         // Keyboard navigation
         $(document).on('keydown', (e) => {
             if ($('#embedded-quiz-modal').is(':visible')) {
@@ -53,6 +181,53 @@ class EmbeddedQuiz {
                 if (e.key === 'Escape') this.closeQuiz();
             }
         });
+
+        // Prevent body scroll when modal is open on mobile
+        $(document).on('touchmove', (e) => {
+            if ($('#embedded-quiz-modal').is(':visible') && this.isMobile) {
+                if (!$(e.target).closest('.quiz-modal-body').length) {
+                    e.preventDefault();
+                }
+            }
+        });
+    }
+
+    /**
+     * Handle touch start for swipe navigation
+     */
+    handleTouchStart(e) {
+        this.touchStartY = e.originalEvent.touches[0].clientY;
+        this.touchStartX = e.originalEvent.touches[0].clientX;
+    }
+
+    /**
+     * Handle touch end for swipe navigation
+     */
+    handleTouchEnd(e) {
+        if (!this.touchStartY || !this.touchStartX) return;
+
+        this.touchEndY = e.originalEvent.changedTouches[0].clientY;
+        this.touchEndX = e.originalEvent.changedTouches[0].clientX;
+
+        const deltaX = this.touchStartX - this.touchEndX;
+        const deltaY = this.touchStartY - this.touchEndY;
+
+        // Only handle horizontal swipes (ignore vertical scrolling)
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+            if (deltaX > 0) {
+                // Swipe left - next question
+                this.nextQuestion();
+            } else {
+                // Swipe right - previous question
+                this.previousQuestion();
+            }
+        }
+
+        // Reset touch coordinates
+        this.touchStartY = 0;
+        this.touchStartX = 0;
+        this.touchEndY = 0;
+        this.touchEndX = 0;
     }
 
     /**
@@ -151,12 +326,12 @@ class EmbeddedQuiz {
     buildQuizModal() {
         const modalHtml = `
             <div id="embedded-quiz-modal" class="quiz-modal-overlay">
-                <div class="quiz-modal-container">
+                <div class="quiz-modal-container ${this.isMobile ? 'mobile-layout' : ''} ${this.isTablet ? 'tablet-layout' : ''}">
                     <!-- Quiz Header -->
                     <div class="quiz-modal-header">
                         <div class="quiz-header-left">
                             <h3 class="quiz-title">${this.escapeHtml(this.quiz.quiz_title)}</h3>
-                            <p class="quiz-description">${this.escapeHtml(this.quiz.quiz_desc || '')}</p>
+                            ${!this.isMobile ? `<p class="quiz-description">${this.escapeHtml(this.quiz.quiz_desc || '')}</p>` : ''}
                         </div>
                         <div class="quiz-header-right">
                             <div class="quiz-timer">
@@ -165,7 +340,8 @@ class EmbeddedQuiz {
                             </div>
                             <div class="quiz-progress-info">
                                 <span class="quiz-question-counter">
-                                    Question <span id="current-question-num">1</span> of ${this.questions.length}
+                                    ${this.isMobile ? '' : 'Question '}
+                                    <span id="current-question-num">1</span> ${this.isMobile ? '/' : 'of'} ${this.questions.length}
                                 </span>
                             </div>
                             <button class="quiz-modal-close" title="Close Quiz">
@@ -184,28 +360,30 @@ class EmbeddedQuiz {
                         <div id="quiz-questions-container">
                             ${this.buildQuestionsHtml()}
                         </div>
+                        
+                        ${this.isMobile ? this.buildMobileSwipeHint() : ''}
                     </div>
 
                     <!-- Quiz Navigation -->
                     <div class="quiz-modal-footer">
                         <div class="quiz-nav-left">
                             <button class="btn btn-secondary quiz-nav-prev" style="display: none;">
-                                <i class="fas fa-chevron-left"></i> Previous Question
+                                <i class="fas fa-chevron-left"></i> ${this.isMobile ? 'السابق' : 'Previous Question'}
                             </button>
                         </div>
                         
-                        <div class="quiz-nav-center">
+                        ${!this.isMobile ? `<div class="quiz-nav-center">
                             <div class="quiz-question-navigation">
                                 ${this.buildQuestionNavigation()}
                             </div>
-                        </div>
+                        </div>` : ''}
                         
                         <div class="quiz-nav-right">
                             <button class="btn btn-primary quiz-nav-next">
-                                Next Question <i class="fas fa-chevron-right"></i>
+                                ${this.isMobile ? 'التالي' : 'Next Question'} <i class="fas fa-chevron-right"></i>
                             </button>
                             <button class="btn btn-success quiz-submit-btn" style="display: none;">
-                                <i class="fas fa-check"></i> Finish Quiz
+                                <i class="fas fa-check"></i> ${this.isMobile ? 'إنهاء' : 'Finish Quiz'}
                             </button>
                         </div>
                     </div>
@@ -216,6 +394,164 @@ class EmbeddedQuiz {
         // Remove existing modal and add new one
         $('#embedded-quiz-modal').remove();
         $('body').append(modalHtml);
+        
+        // Apply responsive adjustments
+        this.adjustModalLayout();
+    }
+
+    /**
+     * Build mobile swipe hint
+     */
+    buildMobileSwipeHint() {
+        return `
+            <div class="mobile-swipe-hint" style="text-align: center; padding: 10px; color: #666; font-size: 0.8rem;">
+                <i class="fas fa-hand-point-left"></i> اسحب يميناً أو يساراً للتنقل بين الأسئلة
+            </div>
+        `;
+    }
+
+    /**
+     * Show the quiz modal with responsive adjustments
+     */
+    showQuizModal() {
+        $('#embedded-quiz-modal').fadeIn(300);
+        $('body').addClass('quiz-modal-open');
+        
+        // Prevent body scroll on mobile
+        if (this.isMobile) {
+            $('body').css('overflow', 'hidden');
+        }
+        
+        this.updateNavigationButtons();
+        this.updateQuestionNavigation();
+        
+        // Focus management for accessibility
+        setTimeout(() => {
+            $('#embedded-quiz-modal .quiz-modal-container').focus();
+        }, 350);
+    }
+
+    /**
+     * Close the quiz modal with responsive cleanup
+     */
+    closeQuiz() {
+        if (this.isSubmitting) return;
+
+        const confirmMessage = this.isMobile ? 
+            'هل أنت متأكد من إغلاق الاختبار؟ ستفقد إجاباتك.' : 
+            'Are you sure you want to close the quiz? Your answers will be lost.';
+
+        if (confirm(confirmMessage)) {
+            this.stopTimer();
+            $('#embedded-quiz-modal').fadeOut(300, () => {
+                $('#embedded-quiz-modal').remove();
+            });
+            $('body').removeClass('quiz-modal-open');
+            
+            // Restore body scroll
+            if (this.isMobile) {
+                $('body').css('overflow', '');
+            }
+        }
+    }
+
+    /**
+     * Enhanced navigation with haptic feedback on mobile
+     */
+    previousQuestion() {
+        if (this.currentQuestionIndex > 0) {
+            this.currentQuestionIndex--;
+            this.showCurrentQuestion();
+            this.triggerHapticFeedback();
+        }
+    }
+
+    /**
+     * Enhanced navigation with haptic feedback on mobile
+     */
+    nextQuestion() {
+        if (this.currentQuestionIndex < this.questions.length - 1) {
+            this.currentQuestionIndex++;
+            this.showCurrentQuestion();
+            this.triggerHapticFeedback();
+        }
+    }
+
+    /**
+     * Trigger haptic feedback on supported devices
+     */
+    triggerHapticFeedback() {
+        if (navigator.vibrate && this.isMobile) {
+            navigator.vibrate(50); // Short vibration
+        }
+    }
+
+    /**
+     * Enhanced question display with smooth transitions
+     */
+    showCurrentQuestion() {
+        // Hide all questions with fade effect
+        $('.quiz-question').removeClass('active').fadeOut(150);
+        
+        // Show current question with fade effect
+        setTimeout(() => {
+            $(`.quiz-question[data-question-index="${this.currentQuestionIndex}"]`)
+                .addClass('active')
+                .fadeIn(150);
+            
+            this.updateNavigationButtons();
+            this.updateQuestionNavigation();
+            this.updateProgressBar();
+            
+            // Scroll to top of question on mobile
+            if (this.isMobile) {
+                $('.quiz-modal-body').scrollTop(0);
+            }
+        }, 150);
+    }
+
+    /**
+     * Update progress bar with smooth animation
+     */
+    updateProgressBar() {
+        const progress = ((this.currentQuestionIndex + 1) / this.questions.length) * 100;
+        $('#quiz-progress-fill').css('width', `${progress}%`);
+        $('#current-question-num').text(this.currentQuestionIndex + 1);
+    }
+
+    /**
+     * Enhanced error modal for mobile devices
+     */
+    showErrorModal(message, isMaxAttempts = false) {
+        const modalClass = isMaxAttempts ? 'max-attempts-error' : 'error';
+        const iconClass = isMaxAttempts ? 'fas fa-exclamation-triangle' : 'fas fa-exclamation-circle';
+        const title = isMaxAttempts ? 'تم استنفاد المحاولات' : 'خطأ في تحميل الاختبار';
+        
+        const errorModalHtml = `
+            <div class="quiz-modal-overlay show">
+                <div class="quiz-modal-container ${modalClass}">
+                    <div class="error-content">
+                        <div class="error-icon">
+                            <i class="${iconClass}"></i>
+                        </div>
+                        <h4 class="error-title">${title}</h4>
+                        <div class="error-message">
+                            <p class="lead">${message}</p>
+                        </div>
+                        <div class="error-actions">
+                            <button class="btn btn-primary" onclick="location.reload()">
+                                <i class="fas fa-redo"></i> ${this.isMobile ? 'إعادة تحميل' : 'إعادة تحميل الصفحة'}
+                            </button>
+                            <button class="btn btn-secondary" onclick="$('.quiz-modal-overlay').remove()">
+                                <i class="fas fa-times"></i> ${this.isMobile ? 'إغلاق' : 'إغلاق'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        $('body').append(errorModalHtml);
     }
 
     /**
