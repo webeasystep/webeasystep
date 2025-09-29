@@ -960,23 +960,10 @@
                                                     <div class="item-content locked-content">
                                                         <?php else: ?>
                                                         <?php
-                                                        // Generate correct URL parameter based on item type
-                                                        $urlParam = '';
-                                                        switch ($item->item_type) {
-                                                            case 'video':
-                                                                $urlParam = 'video=' . $item->id;
-                                                                break;
-                                                            case 'quiz':
-                                                                $urlParam = 'quiz=' . $item->id;
-                                                                break;
-                                                            case 'page':
-                                                                $urlParam = 'page=' . $item->id;
-                                                                break;
-                                                            default:
-                                                                $urlParam = 'video=' . $item->id; // fallback
-                                                        }
+                                                        // Use consistent 'item=' parameter for all item types
+                                                        $urlParam = 'item=' . $item->id;
                                                         ?>
-                                                        <a href="<?= site_url('courses/course_view/' . $course->slug . '?' . $urlParam) ?>" class="item-content">
+                                                        <a href="<?= site_url('courses/course_view/' . $course->slug . '?' . $urlParam) ?>" class="item-content unit-item-link" data-item-id="<?= $item->id ?>" data-item-type="<?= $item->item_type ?>">
                                                             <?php endif; ?>
 
                                                             <!-- Item Icon -->
@@ -1333,11 +1320,23 @@
                                     // Auto-navigate to next item or unit without confirmation
                                     if (data.next_item) {
                                         console.log(1111111111111111)
+                                        // Store the next item as the last selected item
+                                        const courseSlug = '<?= $course->slug ?>';
+                                        const nextItemId = data.next_item.url.match(/item=(\d+)/);
+                                        if (nextItemId && nextItemId[1]) {
+                                            localStorage.setItem(`course_${courseSlug}_last_item`, nextItemId[1]);
+                                        }
                                         setTimeout(() => {
                                             window.location.href = data.next_item.url;
                                         }, 500);
                                     } else if (data.next_unit) {
                                         console.log(22222222222222)
+                                        // Store the next unit's first item as the last selected item
+                                        const courseSlug = '<?= $course->slug ?>';
+                                        const nextItemId = data.next_unit.url.match(/item=(\d+)/);
+                                        if (nextItemId && nextItemId[1]) {
+                                            localStorage.setItem(`course_${courseSlug}_last_item`, nextItemId[1]);
+                                        }
                                         setTimeout(() => {
                                             window.location.href = data.next_unit.url;
                                         }, 500);
@@ -1412,25 +1411,51 @@
             item.addEventListener('click', function(e) {
                 e.preventDefault();
 
+                // Store the selected item in localStorage for persistence
+                const itemId = this.getAttribute('data-item-id');
+                const courseSlug = '<?= $course->slug ?>';
+
+                if (itemId && courseSlug) {
+                    localStorage.setItem(`course_${courseSlug}_last_item`, itemId);
+                }
+
                 // Remove active class from all items
                 navItems.forEach(navItem => {
-                    navItem.classList.remove('active');
+                    navItem.closest('.course-item').classList.remove('active-item');
                 });
 
                 // Add active class to clicked item
-                this.classList.add('active');
+                this.closest('.course-item').classList.add('active-item');
 
-                // Get the item ID from the href
-                const href = this.getAttribute('href');
-                const urlParams = new URLSearchParams(href.split('?')[1]);
-                const itemId = urlParams.get('item_id');
-
-                if (itemId) {
-                    // Redirect to the new item
-                    window.location.href = href;
-                }
+                // Navigate to the selected item
+                window.location.href = this.getAttribute('href');
             });
         });
+
+        // Restore last selected item on page load
+        const courseSlug = '<?= $course->slug ?>';
+        const lastItemId = localStorage.getItem(`course_${courseSlug}_last_item`);
+        const currentItemId = '<?= $current_id ?? '' ?>';
+
+        // If no current item is specified in URL but we have a stored last item, redirect to it
+        if (!currentItemId && lastItemId) {
+            const targetUrl = `<?= site_url('courses/course_view/' . $course->slug) ?>?item=${lastItemId}`;
+            window.location.href = targetUrl;
+        }
+
+        // Add global function to get last item for external navigation
+        window.getCourseLastItem = function(courseSlug) {
+            return localStorage.getItem(`course_${courseSlug}_last_item`);
+        };
+
+        // Add global function to construct course URL with last item
+        window.getCourseUrlWithLastItem = function(courseSlug, baseUrl) {
+            const lastItem = localStorage.getItem(`course_${courseSlug}_last_item`);
+            if (lastItem) {
+                return `${baseUrl}?last_item=${lastItem}`;
+            }
+            return baseUrl;
+        };
 
         // Handle accordion functionality
         const accordionButtons = document.querySelectorAll('.accordion-button');
@@ -1456,7 +1481,7 @@
         });
 
         // Auto-expand accordion containing active item
-        const activeItem = document.querySelector('.unit-item-link.active');
+        const activeItem = document.querySelector('.course-item.active-item .unit-item-link');
         if (activeItem) {
             const accordionCollapse = activeItem.closest('.accordion-collapse');
             if (accordionCollapse) {
@@ -1467,6 +1492,11 @@
                     accordionButton.setAttribute('aria-expanded', 'true');
                 }
             }
+        }
+
+        // Store current item in localStorage when page loads (using already declared currentItemId)
+        if (currentItemId && courseSlug) {
+            localStorage.setItem(`course_${courseSlug}_last_item`, currentItemId);
         }
     });
 </script>
@@ -1516,18 +1546,18 @@
                     <i class="fas fa-chevron-right"></i>
                     <span class="btn-text">السابق</span>
                 </button>
-                
+
                 <!-- Mobile question indicator dots -->
                 <div class="mobile-question-dots" id="mobileQuestionDots" style="display: none;">
                     <!-- Dots will be generated dynamically -->
                 </div>
-                
+
                 <button id="nextQuestionBtn" class="nav-btn next-btn mobile-nav-btn" onclick="EmbeddedQuiz.nextQuestion()" aria-label="السؤال التالي">
                     <span class="btn-text">التالي</span>
                     <i class="fas fa-chevron-left"></i>
                 </button>
             </div>
-            
+
             <button id="submitQuizBtn" class="nav-btn submit-btn mobile-submit-btn" onclick="EmbeddedQuiz.submitQuiz()" style="display: none;" aria-label="إرسال الإجابات">
                 <i class="fas fa-check"></i>
                 <span class="btn-text">إرسال الإجابات</span>
@@ -1591,7 +1621,7 @@
     .embedded-quiz-modal {
         padding: 0;
     }
-    
+
     .embedded-quiz-container {
         margin: 0;
         border-radius: 0;
@@ -1600,30 +1630,30 @@
         display: flex;
         flex-direction: column;
     }
-    
+
     .quiz-title-responsive {
         font-size: 1.1rem !important;
         margin: 0;
     }
-    
+
     .mobile-friendly-btn {
         padding: 12px;
         min-width: 44px;
         min-height: 44px;
     }
-    
+
     .mobile-timer {
         font-size: 0.9rem;
     }
-    
+
     .question-counter-mobile {
         font-size: 0.85rem;
     }
-    
+
     .mobile-progress-container {
         margin-top: 8px;
     }
-    
+
     .mobile-swipe-indicator {
         display: block !important;
         text-align: center;
@@ -1631,46 +1661,46 @@
         background: rgba(0,0,0,0.05);
         border-bottom: 1px solid #eee;
     }
-    
+
     .swipe-hint {
         font-size: 0.8rem;
         color: #666;
     }
-    
+
     .swipe-hint i {
         margin-right: 5px;
         animation: swipeAnimation 2s infinite;
     }
-    
+
     @keyframes swipeAnimation {
         0%, 100% { transform: translateX(0); }
         50% { transform: translateX(-10px); }
     }
-    
+
     .mobile-quiz-content {
         flex: 1;
         overflow-y: auto;
         padding: 15px;
     }
-    
+
     .nav-buttons-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 10px 15px;
     }
-    
+
     .mobile-nav-btn {
         min-width: 80px;
         padding: 12px 16px;
         font-size: 0.9rem;
     }
-    
+
     .mobile-question-dots {
         display: flex !important;
         gap: 6px;
     }
-    
+
     .question-dot {
         width: 8px;
         height: 8px;
@@ -1678,15 +1708,15 @@
         background: #ddd;
         transition: background 0.3s;
     }
-    
+
     .question-dot.active {
         background: #007bff;
     }
-    
+
     .question-dot.answered {
         background: #28a745;
     }
-    
+
     .mobile-submit-btn {
         width: calc(100% - 30px);
         margin: 10px 15px;
@@ -1694,44 +1724,44 @@
         font-size: 1rem;
         font-weight: 600;
     }
-    
+
     .mobile-results-content {
         padding: 20px 15px;
     }
-    
+
     .mobile-results-header {
         text-align: center;
         margin-bottom: 25px;
     }
-    
+
     .results-title {
         font-size: 1.3rem;
         margin-top: 10px;
     }
-    
+
     .mobile-stat-item {
         display: flex;
         justify-content: space-between;
         padding: 12px 0;
         border-bottom: 1px solid #eee;
     }
-    
+
     .score-value {
         font-weight: bold;
         font-size: 1.1rem;
     }
-    
+
     .pass-status {
         font-weight: 600;
     }
-    
+
     .mobile-results-actions {
         margin-top: 25px;
         display: flex;
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .mobile-continue-btn,
     .mobile-retry-btn {
         width: 100%;
@@ -1742,7 +1772,7 @@
         justify-content: center;
         gap: 8px;
     }
-    
+
     .mobile-loading-overlay {
         position: absolute;
         top: 0;
@@ -1756,7 +1786,7 @@
         justify-content: center;
         z-index: 1000;
     }
-    
+
     .loading-text {
         margin-top: 15px;
         color: #666;
@@ -1770,7 +1800,7 @@
         max-width: 90%;
         margin: 2vh auto;
     }
-    
+
     .mobile-swipe-indicator {
         display: none !important;
     }
@@ -1785,7 +1815,7 @@
         min-height: 44px;
         padding: 12px;
     }
-    
+
     .quiz-option {
         padding: 15px;
         margin: 8px 0;
@@ -1800,8 +1830,8 @@
 <?= $this->section('js'); ?>
 <!-- Additional JS if needed -->
 <!-- Include Embedded Quiz CSS and JS -->
-<link rel="stylesheet" href="<?= base_url() ?>site/css/embedded-quiz.css">
-<script src="<?= base_url() ?>site/js/embedded-quiz.js"></script>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/embedded-quiz.css">
+<script src="<?= base_url() ?>assets/js/embedded-quiz.js"></script>
 
 <?php $this->endSection();
 

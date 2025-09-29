@@ -61,3 +61,30 @@
 2025-09-30 00:29:47 MARK_ITEM_COMPLETED DEBUG - Data to insert/update: {"user_id":10048,"unit_id":1,"item_id":7,"enrollment_id":2,"progress_percentage":100,"is_completed":1,"completed_at":"2025-09-30 00:29:47","last_accessed_at":"2025-09-30 00:29:47"}
 2025-09-30 00:29:47 MARK_ITEM_COMPLETED DEBUG - Existing record: NULL
 2025-09-30 00:29:47 MARK_ITEM_COMPLETED DEBUG - Insert result: true, Insert ID: 7
+2025-09-30 00:42:36 PROGRESS_CONTROLLER DEBUG - AJAX request received
+2025-09-30 00:42:36 PROGRESS_CONTROLLER DEBUG - Raw input: {"course_id":1,"item_id":1}
+2025-09-30 00:42:36 PROGRESS_CONTROLLER DEBUG - isUserEnrolled result: true
+2025-09-30 00:42:36 PROGRESS_CONTROLLER DEBUG - Looking for enrollment with userId=10048, unitId=1
+2025-09-30 00:42:36 PROGRESS_CONTROLLER DEBUG - Enrollment found: {"id":"2","user_id":"10048","unit_id":"1","total_amount":"0.00","payment_proof":null,"payment_method":"free","status":"approved","admin_notes":null,"processed_by":null,"processed_at":null,"created_at":"2025-09-29 16:45:21","updated_at":"2025-09-29 16:45:21"}
+2025-09-30 00:42:36 MARK_ITEM_COMPLETED DEBUG - Starting with userId=10048, unitId=1, itemId=1, enrollmentId=2
+2025-09-30 00:42:36 MARK_ITEM_COMPLETED DEBUG - Data to insert/update: {"user_id":10048,"unit_id":1,"item_id":1,"enrollment_id":2,"progress_percentage":100,"is_completed":1,"completed_at":"2025-09-30 00:42:36","last_accessed_at":"2025-09-30 00:42:36"}
+2025-09-30 00:42:36 MARK_ITEM_COMPLETED DEBUG - Existing record: {"id":"1","user_id":"10048","unit_id":"1","item_id":"1","enrollment_id":"2","progress_percentage":"100.00","watch_time":"0","last_position":"0","is_completed":"1","completed_at":"2025-09-30 00:29:22","first_accessed_at":"2025-09-29 17:27:26","last_accessed_at":"2025-09-30 00:29:22","created_at":"2025-09-29 17:27:26","updated_at":"2025-09-30 00:29:22"}
+2025-09-30 00:42:36 MARK_ITEM_COMPLETED DEBUG - Update result: true
+2025-09-30 00:49:58 PROGRESS_CONTROLLER DEBUG - AJAX request received
+2025-09-30 00:49:58 PROGRESS_CONTROLLER DEBUG - Raw input: {"course_id":1,"item_id":7}
+2025-09-30 00:49:58 PROGRESS_CONTROLLER DEBUG - isUserEnrolled result: true
+2025-09-30 00:49:58 PROGRESS_CONTROLLER DEBUG - Looking for enrollment with userId=10048, unitId=1
+2025-09-30 00:49:58 PROGRESS_CONTROLLER DEBUG - Enrollment found: {"id":"2","user_id":"10048","unit_id":"1","total_amount":"0.00","payment_proof":null,"payment_method":"free","status":"approved","admin_notes":null,"processed_by":null,"processed_at":null,"created_at":"2025-09-29 16:45:21","updated_at":"2025-09-29 16:45:21"}
+2025-09-30 00:49:58 MARK_ITEM_COMPLETED DEBUG - Starting with userId=10048, unitId=1, itemId=7, enrollmentId=2
+2025-09-30 00:49:58 MARK_ITEM_COMPLETED DEBUG - Data to insert/update: {"user_id":10048,"unit_id":1,"item_id":7,"enrollment_id":2,"progress_percentage":100,"is_completed":1,"completed_at":"2025-09-30 00:49:58","last_accessed_at":"2025-09-30 00:49:58"}
+2025-09-30 00:49:58 MARK_ITEM_COMPLETED DEBUG - Existing record: {"id":"7","user_id":"10048","unit_id":"1","item_id":"7","enrollment_id":"2","progress_percentage":"100.00","watch_time":"0","last_position":"0","is_completed":"1","completed_at":"2025-09-30 00:29:47","first_accessed_at":"2025-09-30 00:29:47","last_accessed_at":"2025-09-30 00:29:47","created_at":"2025-09-30 00:29:47","updated_at":"2025-09-30 00:29:47"}
+2025-09-30 00:49:58 MARK_ITEM_COMPLETED DEBUG - Update result: true
+2025-09-30 00:58:41 PROGRESS_CONTROLLER DEBUG - AJAX request received
+2025-09-30 00:58:41 PROGRESS_CONTROLLER DEBUG - Raw input: {"course_id":1,"item_id":2}
+2025-09-30 00:58:41 PROGRESS_CONTROLLER DEBUG - isUserEnrolled result: true
+2025-09-30 00:58:41 PROGRESS_CONTROLLER DEBUG - Looking for enrollment with userId=10048, unitId=1
+2025-09-30 00:58:41 PROGRESS_CONTROLLER DEBUG - Enrollment found: {"id":"2","user_id":"10048","unit_id":"1","total_amount":"0.00","payment_proof":null,"payment_method":"free","status":"approved","admin_notes":null,"processed_by":null,"processed_at":null,"created_at":"2025-09-29 16:45:21","updated_at":"2025-09-29 16:45:21"}
+2025-09-30 00:58:41 MARK_ITEM_COMPLETED DEBUG - Starting with userId=10048, unitId=1, itemId=2, enrollmentId=2
+2025-09-30 00:58:41 MARK_ITEM_COMPLETED DEBUG - Data to insert/update: {"user_id":10048,"unit_id":1,"item_id":2,"enrollment_id":2,"progress_percentage":100,"is_completed":1,"completed_at":"2025-09-30 00:58:41","last_accessed_at":"2025-09-30 00:58:41"}
+2025-09-30 00:58:41 MARK_ITEM_COMPLETED DEBUG - Existing record: {"id":"2","user_id":"10048","unit_id":"1","item_id":"2","enrollment_id":"2","progress_percentage":"100.00","watch_time":"0","last_position":"0","is_completed":"1","completed_at":"2025-09-30 00:29:25","first_accessed_at":"2025-09-29 17:27:31","last_accessed_at":"2025-09-30 00:29:25","created_at":"2025-09-29 17:27:31","updated_at":"2025-09-30 00:29:25"}
+2025-09-30 00:58:41 MARK_ITEM_COMPLETED DEBUG - Update result: true

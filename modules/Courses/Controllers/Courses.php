@@ -605,25 +605,70 @@ class Courses extends BaseController
 
         // 4) Check which item is requested in ?item=XYZ (generic parameter for all item types)
         $requestedItemId = $this->request->getGet('item') ?: $this->request->getGet('video') ?: $this->request->getGet('item_id');
+        
+        // Check for last_item parameter (used for external navigation)
+        $lastItemId = $this->request->getGet('last_item');
 
-        // 5) If no specific item is requested, jump to the first one
+        // 5) If no specific item is requested, handle last item or jump to the first one
         if (!$requestedItemId && !empty($flatItems)) {
-            $requestedItemId = $flatItems[0]['id'];
+            if ($lastItemId) {
+                // Validate that the last item exists and user has access
+                $lastItemExists = false;
+                foreach ($flatItems as $item) {
+                    if ($item['id'] == $lastItemId) {
+                        $lastItemExists = true;
+                        break;
+                    }
+                }
+                
+                if ($lastItemExists) {
+                    // Redirect to the last item with proper URL structure
+                    return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $lastItemId));
+                }
+            }
+            
+            // If no last_item parameter, let JavaScript handle localStorage redirect
+            // Only default to first item if this is a direct server-side request
+            if (!$lastItemId) {
+                // Check if this might be a JavaScript redirect attempt by looking for specific headers
+                $isAjaxOrFetch = $this->request->isAJAX() || 
+                               $this->request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest' ||
+                               strpos($this->request->getHeaderLine('Accept'), 'application/json') !== false;
+                
+                if (!$isAjaxOrFetch) {
+                    // This is likely a direct page load - let JavaScript handle localStorage
+                    // Set a flag to indicate no item was specified
+                    $requestedItemId = null;
+                } else {
+                    // This is an AJAX/fetch request, default to first item
+                    $requestedItemId = $flatItems[0]['id'];
+                }
+            } else {
+                // Default to first item if no valid last item found
+                $requestedItemId = $flatItems[0]['id'];
+            }
         }
 
         // 6) Find the current item in $flatItems (search by both id and item_id)
         $currentIndex = false;
         $currentItem = null;
 
-        // First try to find by id
-        $currentIndex = array_search($requestedItemId, array_column($flatItems, 'id'));
+        // Handle case where no item was specified (let JavaScript handle localStorage)
+        if ($requestedItemId === null) {
+            // Don't search for any item, let JavaScript redirect handle this
+            $currentItem = null;
+            $currentIndex = false;
+        } else {
+            // First try to find by id
+            $currentIndex = array_search($requestedItemId, array_column($flatItems, 'id'));
 
-        // If not found by id, try to find by item_id
-        if ($currentIndex === false) {
-            $currentIndex = array_search($requestedItemId, array_column($flatItems, 'item_id'));
+            // If not found by id, try to find by item_id
+            if ($currentIndex === false) {
+                $currentIndex = array_search($requestedItemId, array_column($flatItems, 'item_id'));
+            }
+
+            $currentItem = ($currentIndex !== false) ? $flatItems[$currentIndex] : null;
         }
-
-        $currentItem = ($currentIndex !== false) ? $flatItems[$currentIndex] : null;
 
         // If item not found and we have a specific item requested, check if it exists but user doesn't have access
         if (!$currentItem && $requestedItemId) {
