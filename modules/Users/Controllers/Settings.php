@@ -59,9 +59,6 @@ class Settings extends BaseController
         $validation->setRules([
             'full_name' => 'required|min_length[2]|max_length[100]',
             'email' => 'permit_empty|valid_email|is_unique[users.email,id,' . $user->id . ']',
-            'parent_name' => 'permit_empty|min_length[2]|max_length[100]',
-            'parent_email' => 'permit_empty|valid_email',
-            'parent_phone' => 'permit_empty|regex_match[/^01[0125][0-9]{8}$/]' // Egyptian mobile validation for parent
         ]);
 
         if (!$validation->withRequest($this->request)->run()) {
@@ -71,9 +68,6 @@ class Settings extends BaseController
         $updateData = [
             'full_name' => $this->request->getPost('full_name'),
             'email' => $this->request->getPost('email'),
-            'parent_name' => $this->request->getPost('parent_name'),
-            'parent_email' => $this->request->getPost('parent_email'),
-            'parent_phone' => $this->request->getPost('parent_phone'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
 

@@ -40,7 +40,7 @@ if (!function_exists('get_country_code_options')) {
      * @param string|null $selected Selected country code
      * @return string HTML options
      */
-    function get_country_code_options(?string $selected = '+20'): string
+    function get_country_code_options(?string $selected = '+966'): string
     {
         $options = '';
         foreach (get_country_codes() as $country) {
@@ -92,7 +92,7 @@ if (!function_exists('normalize_mobile')) {
      * @param string $countryCode Country code (e.g., '+20')
      * @return string Normalized mobile number
      */
-    function normalize_mobile(string $mobile, string $countryCode = '+20'): string
+    function normalize_mobile(string $mobile, string $countryCode = '+966'): string
     {
         // Remove spaces, dashes, and plus signs from mobile
         $mobile = preg_replace('/[\s\-\+]/', '', $mobile);
@@ -137,7 +137,7 @@ if (!function_exists('extract_country_code')) {
         }
         
         return [
-            'code' => '+20',
+            'code' => '+966',
             'number' => $fullMobile
         ];
     }

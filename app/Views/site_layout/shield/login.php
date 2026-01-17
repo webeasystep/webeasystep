@@ -24,11 +24,11 @@
                 <form  method="post">
                     <?= csrf_field() ?>
 
-                    <!-- Mobile Number -->
+                    <!-- Email -->
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingMobileInput" name="mobile" inputmode="tel" autocomplete="tel" placeholder="رقم الهاتف المحمول" value="<?= old('mobile') ?>" required>
-                        <label for="floatingMobileInput">رقم الهاتف المحمول</label>
-                        <small class="form-text text-muted">مثال: 01012345678</small>
+                        <input type="email" class="form-control" id="floatingEmailInput" name="email" inputmode="email" autocomplete="email" placeholder="البريد الإلكتروني" value="<?= old('email') ?>" required>
+                        <label for="floatingEmailInput">البريد الإلكتروني</label>
+                        <small class="form-text text-muted">أدخل بريدك الإلكتروني المسجل</small>
                     </div>
 
                     <!-- Password -->
@@ -54,7 +54,7 @@
 
                     <?php
                     if (setting('Auth.allowRegistration')) : ?>
-                        <p class="text-center"><?= lang('Auth.needAccount') ?> <a href="<?= base_url('users/register') ?>"><?= lang('Auth.register') ?></a></p>
+                        <p class="text-center"><?= lang('Auth.needAccount') ?> <a href="<?= base_url('register') ?>"><?= lang('Auth.register') ?></a></p>
                     <?php endif ?>
 
                 </form>

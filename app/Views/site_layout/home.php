@@ -1,22 +1,38 @@
+هذه النقطة هي "الجوكر" الخاص بك. في علم التسويق، هذا يسمى **"Niche Specialization"**.
+
+العميل (الطالب) دائماً يثق في "الأخصائي" أكثر من "الممارس العام". عندما تقول له: *"أنا لا أبيع لكل الجامعات، أنا أبيع لكليتك أنت فقط"*، يرتفع معدل الثقة فوراً.
+
+بصفتي خبير UX و Copywriting، المكان المثالي لهذه الرسالة ليس في الأسفل، بل **فوراً بعد الـ Hero Section (الواجهة)** وقبل عرض المميزات. لماذا؟ لكي تصفي الجمهور فوراً وتقول له: *"نعم، أنت في المكان الصحيح، هذا الموقع صُمم لك خصيصاً"*.
+
+إليك الكود المعدل بالكامل. أضفت قسماً جديداً (Section) بتصميم مميز يبرز هذه النقاط بوضوح بصري (Visual Hierarchy) لا يمكن تجاهله.
+
+**انسخ الكود التالي بالكامل (تم دمج القسم الجديد باحترافية):**
+
+```php
 <?= $this->extend('site_layout/template'); ?>
 <?= $this->section('content'); ?>
-    <!-- intro -->
     <div class="untree_co-hero overlay" style="background-image: url('<?= base_url() ?>site/images/main_banner.jpg');">
-        <!-- SEO Note: Background images are harder for SEO than <img> tags. Ensure surrounding text clearly describes the section's purpose. -->
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-12">
                     <div class="row justify-content-center ">
-                        <div class="col-lg-7 text-center ">
-                            <a href="https://wa.me/201032863861" class="whatsapp-float" target="_blank" rel="noopener">
-                                <i class="fab fa-whatsapp"></i> <span style="padding: .2rem;">لديك استفسار؟ تحدث معنا</span>
+                        <div class="col-lg-8 text-center ">
+                            <a href="https://www.youtube.com/@web_easy_step" target="_blank" class="d-inline-block mb-3">
+                                <span class="badge badge-warning text-dark py-2 px-3" style="font-size: 0.9rem; border-radius: 20px;">
+                                    <i class="fab fa-youtube text-danger mr-1"></i> انضم لأكثر من 20,000 مبرمج تعلموا معنا
+                                </span>
                             </a>
-                            <!-- SEO: H1 is the main page title - Good usage -->
-                            <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">جهز ابنك لوظائف المستقبل: تعلم البرمجة خطوة بخطوة</h1>
-                            <p class="mb-4 small text-white" data-aos="fade-up" data-aos-delay="200">أول أكاديمية في مصر لتدريس مسار الهندسة وعلوم الحاسب</p>
+
+                            <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">
+                                ضمن الـ A+ في مواد التخصص (CS/IT)<br>بدون حفظ سلايدات الجامعة المملة
+                            </h1>
+                            
+                            <p class="mb-4 text-white" style="font-size: 1.2rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="200">
+                                شرح عملي مخصص لطلاب <strong>الجامعة السعودية الإلكترونية (SEU)</strong>.. نفهمك كيف الكود بيشتغل في الرامات، مش بس بنقرأ المحاضرة.
+                            </p>
+
                             <p class="mb-0" data-aos="fade-up" data-aos-delay="300">
-                                <!-- SEO: Internal anchor link to relevant section - Good -->
-                                <a href="<?= site_url('courses/course_details/programming_first_secendary')?>" class="btn btn-secondary">استكشف الدورات التعليمية</a>
+                                <a href="#courses" class="btn btn-primary btn-lg" style="padding: 15px 40px; font-weight: bold;">اختر مادتك وابدأ الآن</a>
                             </p>
                         </div>
                     </div>
@@ -24,250 +40,220 @@
             </div>
         </div>
     </div>
-    <!-- /.untree_co-hero -->
 
-    <!-- Package Section -->
-    <!-- SEO: Added relevant ID for internal linking -->
-    <div class="untree_co-section bg-light">
-    <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-7 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
-                <h2 class="line-bottom text-center mb-4">كورساتنا التعليمية المتخصصة</h2>
-                <p>تعلم البرمجة وعلوم الحاسب من خلال نظام تعليمي متطور يشمل حصص تفاعلية، اختبارات بعد كل درس، ومتابعة مستمرة مع أولياء الأمور.</p>
-            </div>
-        </div>
-        <div class="row" id="courses">
-            <!-- Modal -->
-            <div class="modal fade" id="startNowModal" tabindex="-1" role="dialog" aria-labelledby="startNowModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="startNowModalLabel">بادر الأن وقم بحجز حصة مجانية</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
+    <div class="untree_co-section py-5" style="background-color: #fff; border-bottom: 1px solid #eee;">
+        <div class="container">
+             <div class="row justify-content-center text-center mb-4">
+                 <div class="col-lg-8">
+                     <span class="badge badge-primary text-uppercase mb-2" style="letter-spacing: 1px;">التخصص سر التفوق</span>
+                     <h2 style="font-size: 1.8rem; font-weight: 800;">ليه FakhrCS مش زي أي منصة تانية؟</h2>
+                     <p class="text-muted">أغلب المنصات "بتاعة كله".. بتشرح لكل الجامعات ولكل التخصصات (إدارة، قانون، آداب..).<br> <strong class="text-dark">إحنا هنا متخصصين في ملعب واحد بس:</strong></p>
+                 </div>
+             </div>
+             
+             <div class="row align-items-center justify-content-center">
+                 <div class="col-md-5 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                     <div class="p-4 bg-light shadow-sm rounded border" style="border-right: 5px solid #007bff !important;"> <div class="d-flex align-items-center">
+                            <div class="icon ml-3 text-primary"><i class="fas fa-university fa-3x"></i></div> <div class="text">
+                                <h5 class="font-weight-bold mb-1">كلية الحوسبة والمعلوماتية فقط</h5>
+                                <p class="mb-0 small text-muted">إحنا مش بنشتت نفسنا. تركيزنا 100% على منهج (CCI) في الجامعة السعودية الإلكترونية.</p>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="study-year">السنة الدراسية</label>
-                                    <select class="form-control" id="study-year">
-                                        <option>اولى ثانوي</option>
-                                        <option>ثانية ثانوي</option>
-                                        <option>ثالثة ثانوي</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">الاسم</label>
-                                    <input type="text" class="form-control" id="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">البريد الإلكتروني</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="notes">ملاحظات أخرى (اختياري)</label>
-                                    <textarea class="form-control" id="notes"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
-                            <button type="button" class="btn btn-primary">تقديم</button>
+                     </div>
+                 </div>
+
+                 <div class="col-md-7" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-4 bg-white shadow-sm rounded border">
+                        <h6 class="font-weight-bold text-center mb-4">بنخدم برامج البكالوريوس الثلاثة حصرياً:</h6>
+                        <div class="row text-center">
+                            <div class="col-4 border-left">
+                                <i class="fas fa-network-wired text-info mb-2 fa-2x"></i>
+                                <h6 class="small font-weight-bold">IT</h6>
+                                <span class="d-block x-small text-muted">تقنية المعلومات</span>
+                            </div>
+                            <div class="col-4 border-left">
+                                <i class="fas fa-code text-warning mb-2 fa-2x"></i>
+                                <h6 class="small font-weight-bold">CS</h6>
+                                <span class="d-block x-small text-muted">علوم الحاسب</span>
+                            </div>
+                            <div class="col-4">
+                                <i class="fas fa-database text-success mb-2 fa-2x"></i>
+                                <h6 class="small font-weight-bold">DS</h6>
+                                <span class="d-block x-small text-muted">علوم البيانات</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+             </div>
+        </div>
+    </div>
+    <div class="untree_co-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <h2 class="line-bottom text-center mb-4">إزاي بنحل مشكلة "الشرح النظري"؟</h2>
+                    <p class="lead">لاننا متخصصين في موادك، عارفين إن الامتحان بيجي "فهم" مش حفظ.</p>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-6 col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature text-center">
+                        <div class="icon-wrap bg-primary text-white d-inline-block rounded-circle mb-3" style="width: 60px; height: 60px; line-height: 60px; font-size: 24px;">
+                            <span class="uil uil-brain"></span>
+                        </div>
+                        <h3>فهم عميق (Memory Model)</h3>
+                        <p>مش هنحفظ أكواد. هنرسم الرامات ونشوف الداتا بتتحرك ازاي (Stack vs Heap) عشان تحل أي سؤال Tracing في الامتحان.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature text-center">
+                        <div class="icon-wrap bg-primary text-white d-inline-block rounded-circle mb-3" style="width: 60px; height: 60px; line-height: 60px; font-size: 24px;">
+                            <span class="uil uil-file-check-alt"></span>
+                        </div>
+                        <h3>بنك التجميعات (The Exam Hack)</h3>
+                        <p>ملخصات لأهم أسئلة الميدتيرم والفاينل للسنوات السابقة، محلولة ومشروحة بالتفصيل. (دي الخلاصة).</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature text-center">
+                        <div class="icon-wrap bg-primary text-white d-inline-block rounded-circle mb-3" style="width: 60px; height: 60px; line-height: 60px; font-size: 24px;">
+                            <span class="uil uil-user-md"></span>
+                        </div>
+                        <h3>شرح مهندس مش دكتور</h3>
+                        <p>المهندس أحمد فخر الدين (خبرة 12 سنة) بيشرحلك المادة بأسلوب سوق العمل، فبتفهم الـ Why قبل الـ How.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <?php if (!empty($courses)): ?>
-                <?php foreach ($courses as $course): ?>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
-                        <div class="custom-media">
-                            <img
-                                    alt="<?= esc($course['course_title']) ?>"
-                                    style="object-fit: cover;"
-                                    src="<?= thumb($course['image'], 540, 540) ?>"
-                                    class="card-img-top"
-                            >
-                            <div class="custom-media-body">
-                                <div class="d-flex justify-content-between pb-3">
-                                    <div class="text-primary">
-                                        <span class="uil uil-play-circle"></span>
-                                        <span><?= $course['video_count'] ?> فيديو</span>
-                                    </div>
-                                    <div class="text-info">
-                                        <span class="uil uil-layers"></span>
-                                        <span><?= $course['unit_count'] ?> وحدة</span>
-                                    </div>
+    <div class="untree_co-section bg-light" id="courses">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
+                    <h2 class="line-bottom text-center mb-4">المواد المتاحة للفصل الحالي</h2>
+                    <p>اختر المادة اللي شايل همها، واترك الباقي علينا.</p>
+                </div>
+            </div>
+            <div class="row">
+                <?php if (!empty($courses)): ?>
+                    <?php foreach ($courses as $course): ?>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
+                            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
+                                <div style="position: relative;">
+                                    <img
+                                        alt="<?= esc($course['course_title']) ?>"
+                                        style="object-fit: cover; height: 200px; width: 100%;"
+                                        src="<?= thumb($course['image'], 540, 400) ?>"
+                                        class="card-img-top"
+                                    >
+                                    <span style="position: absolute; top: 10px; right: 10px; background: #dc3545; color: white; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">
+                                        🔥 التسجيل مفتوح
+                                    </span>
                                 </div>
-                                <div class="d-flex justify-content-between pb-3">
-                                    <div class="text-success">
-                                        <span class="uil uil-clipboard-notes"></span>
-                                        <span><?= $course['quiz_count'] ?> اختبار</span>
-                                    </div>
-                                    <div class="text-warning">
-                                        <span class="uil uil-file-alt"></span>
-                                        <span><?= $course['page_count'] ?> صفحة</span>
-                                    </div>
-                                </div>
-                                <h3><?= esc($course['course_title']) ?></h3>
-                                <p class="text-muted small mb-3"><?= esc(substr($course['short_desc'], 0)) ?>...</p>
-                                <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                    <div>
-                                        <?php if ($course['is_free']): ?>
-                                            <span class="badge bg-success">مجاني</span>
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="d-inline-flex" style="gap: 5px;">
-                                        <!-- شراء وحدات button - always visible -->
-                                        <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>" class="btn btn-primary btn-sm">شراء وحدات</a>
-                                        <!-- مشاهدة button - only visible if user is logged in and enrolled -->
-                                        <?php if (auth()->loggedIn() && $course['is_enrolled']): ?>
-                                            <a href="<?= $course['course_url'] ?>" class="btn btn-secondary btn-sm">مشاهدة</a>
-                                        <?php endif; ?>
+                                
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title mb-2" style="font-weight: 700;">
+                                        <?= esc($course['course_title']) ?>
+                                    </h5>
+                                    <p class="text-muted small mb-3">
+                                        <?= esc(mb_substr($course['short_desc'] ?? '', 0, 80)) ?>...
+                                    </p>
+                                    
+                                    <ul class="list-unstyled small text-muted mb-3" style="flex-grow: 1;">
+                                        <li><i class="uil uil-check text-success"></i> شرح المنهج كاملاً</li>
+                                        <li><i class="uil uil-check text-success"></i> حل تجميعات الميدتيرم</li>
+                                    </ul>
+
+                                    <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                        <div style="font-size: 1.4rem; font-weight: 800; color: #333;">
+                                            <?php if ($course['is_free']): ?>
+                                                <span class="text-success">مجاني</span>
+                                            <?php else: ?>
+                                                <span><?= number_format($course['course_price'] ?? 0) ?></span>
+                                                <span style="font-size: 0.8rem; color: #777;">ر.س</span>
+                                            <?php endif; ?>
+                                        </div>
+                                        <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>" 
+                                           class="btn btn-primary" 
+                                           style="border-radius: 8px; font-weight: 600; padding: 8px 25px;">
+                                           اشترك الآن
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                 <div class="col-12 text-center">
-                     <p class="text-muted">لا توجد كورسات متاحة حالياً</p>
-                 </div>
-             <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                     <div class="col-12 text-center">
+                         <p class="text-muted">جاري تحديث المواد للفصل الدراسي الجديد...</p>
+                     </div>
+                 <?php endif; ?>
+            </div>
         </div>
     </div>
-</div>
-    <!--End Package Section-->
-    <br />
 
-    <!-- instructor Section -->
-    <div class="services-section" style="background-color: #f8f9fa; padding: 5em 0;">
+    <div class="services-section" style="padding: 5em 0;">
         <div class="container">
             <div class="row justify-content-between align-items-center">
-                <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="col-lg-5 mb-5 mb-lg-0">
                     <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="0">
-                        <!-- SEO: H2 for section title - Good structure -->
-                        <h2 class="line-bottom mb-4">المدرب: م/ أحمد فخر الدين</h2>
+                        <h2 class="line-bottom mb-4">مين هو المهندس أحمد فخر الدين؟</h2>
                     </div>
-                    <p data-aos="fade-up" data-aos-delay="100">بخبرة عملية تمتد لأكثر من 12 عامًا في صناعة البرمجيات وتدريب المبرمجين، يقدم م/أحمد نظاماً تعليمياً متطوراً يشمل:</p>
-                    <ul class="ul-check list-unstyled mb-5 primary" data-aos="fade-up" data-aos-delay="200">
-                        <li> فيديوهات مسجلة بجودة عالية تغطي المنهج بالكامل (نظري + عملي)</li>
-                        <li> متابعة مستمرة عبر جروب تيليجرام مخصص للدعم والاستفسارات</li>
-                        <li> محاكاة كاملة لنظام Quero & Tofas</li>
-                        <li> اختبارات قصيرة بعد كل وحدة لقياس الاستيعاب</li>
-                        <li> ملخصات جاهزة وتحديثات مستمرة للمنهج</li>
-                        <li> إمكانية الوصول للكورس من الهاتف، التابلت أو الكمبيوتر</li>
-                    </ul>
-                    <p data-aos="fade-up" data-aos-delay="300">
-                        <!-- SEO: Internal anchor link - Good -->
-                        <a href="#courses" class="btn btn-primary">استفد من خبرة +12 عامًا - اكتشف المسارات</a>
+                    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+                        "أنا مش دكتور جامعة، أنا Software Engineer بشتغل بإيدي كل يوم."
                     </p>
+                    <p data-aos="fade-up" data-aos-delay="100">
+                        بخبرة عملية +12 سنة في الـ Backend Development، ومؤسس قناة <strong>(الويب خطوة سهلة)</strong> التقنية.
+                    </p>
+                    <p data-aos="fade-up" data-aos-delay="200">
+                        هدفي إنك تتأسس صح عشان لما تتخرج تلاقي وظيفة بمرتب محترم، لأنك فاهم اللي بيحصل ورا الكواليس مش حافظه.
+                    </p>
+                    
+                    <div class="row mt-4" data-aos="fade-up" data-aos-delay="300">
+                         <div class="col-6">
+                             <h3 class="text-primary mb-0" style="font-weight: 800;">+20,000</h3>
+                             <span class="small text-muted">مشترك على يوتيوب</span>
+                         </div>
+                         <div class="col-6">
+                             <h3 class="text-primary mb-0" style="font-weight: 800;">+12</h3>
+                             <span class="small text-muted">سنة خبرة برمجية</span>
+                         </div>
+                    </div>
                 </div>
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="400">
                     <figure class="img-wrap-2">
-                        <!-- SEO: Added descriptive alt text for the instructor's image -->
-                        <img src="<?= base_url() ?>site/images/profile_image.jpg" alt="صورة المدرب المهندس أحمد فخر الدين خبير البرمجة" class="img-fluid">
-                        <div class="dotted"></div>
+                        <img src="<?= base_url() ?>site/images/fakhrcs.jpg" alt="م/ أحمد فخر الدين" class="img-fluid" style="border-radius: 15px;">
+                        
+                        <div style="position: absolute; bottom: -30px; right: -20px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); max-width: 350px;">
+                             <div class="d-flex align-items-start">
+                                 <i class="fas fa-quote-right text-primary mr-3" style="font-size: 24px;"></i>
+                                 <div>
+                                     <p class="mb-2 small font-weight-bold" style="line-height: 1.6; font-style: italic;">
+                                         "أشكر شعب مصر وعلماؤها هم من ينير الأمة العربية بالعلم والشرح والنشر.."
+                                     </p>
+                                     <div class="d-flex align-items-center">
+                                         <i class="fab fa-youtube text-danger mr-2"></i>
+                                         <small class="text-muted">تعليق متابع (Saif Amir)</small>
+                                     </div>
+                                 </div>
+                             </div>
+                        </div>
                     </figure>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End instructor Section -->
 
-    <!-- Features/Benefits Section -->
-<div class="untree_co-section">
-    <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="0">
-                <!-- SEO: H2 for section title - Good structure -->
-                <h2 class="line-bottom text-center mb-4">لماذا تختار مسارلينك؟</h2>
-                <p>مع مسارلينك، لا نقدم مجرد كورس مسجل، بل نظام تعلم متكامل مصمم خصيصاً لطلاب البكالوريا مع متابعة لصيقة عبر تيليجرام وتجربة تعليمية عملية وفعّالة.</p>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Feature items -->
-            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="feature">
-                    <span class="uil uil-graduation-cap"></span>
-                    <h3>منهج شامل</h3>
-                    <p>تغطية كاملة للجانب النظري والعملي مع أمثلة وتمارين تطبيقية تناسب طلاب البكالوريا.</p>
-                </div>
-            </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="feature">
-                    <span class="uil uil-video"></span>
-                    <h3>محاضرات مسجلة</h3>
-                    <p>فيديوهات عالية الجودة يمكن مشاهدتها في أي وقت ومن أي جهاز (هاتف، تابلت، كمبيوتر).</p>
-                </div>
-            </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="feature">
-                    <span class="uil uil-users-alt"></span>
-                    <h3>جروب تيليجرام للدعم</h3>
-                    <p>مجموعة تفاعلية على تيليجرام للأسئلة والاستفسارات، مع متابعة مستمرة من المدرب.</p>
-                </div>
-            </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="feature">
-                    <span class="uil uil-constructor"></span>
-                    <h3>مشاريع عملية</h3>
-                    <p>تطبيقات عملية تحاكي مواقف حقيقية لتقوية المهارات البرمجية والتفكير المنطقي.</p>
-                </div>
-            </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="feature">
-                    <span class="uil uil-clipboard-alt"></span>
-                    <h3>محاكاة امتحانات Quero & TOFAS</h3>
-                    <p>اختبارات تدريبية مماثلة للامتحانات الرسمية تساعد الطالب على الاستعداد بثقة.</p>
-                </div>
-            </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="feature">
-                    <span class="uil uil-refresh"></span>
-                    <h3>ملخصات وتحديثات مستمرة</h3>
-                    <p>توفير ملخصات مركزة وتحديثات للمنهج لضمان مواكبة كل جديد بسهولة.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- /.untree_co-section -->
-
-    <!-- Who We Are Section -->
-    <div class="untree_co-section bg-light">
+    <div class="untree_co-section bg-primary text-white text-center">
         <div class="container">
-            <div class="row justify-content-between align-items-center text-center aos-init aos-animate" >
-                <div class="col-lg-5 mb-5 mb-lg-0">
-                    <!-- SEO: H2 for section title - Good structure -->
-                    <h2 class="line-bottom mb-4" data-aos="fade-up" data-aos-delay="0">أكاديمية متخصصة لطلاب المسارات</h2>
-                    <p data-aos="fade-up" data-aos-delay="100">منصة تعليمية متطورة تقدم نظام تعلم بالحصص مع نظام اختبارات متقدم ومتابعة شاملة لأولياء الأمور.</p>
-                    <ul class="list-unstyled ul-check mb-5 primary" data-aos="fade-up" data-aos-delay="200">
-                        <li> نظام بيع كورسات بالحصص مع تقدم متدرج</li>
-                        <li> اختبارات إجبارية بعد كل حصة لضمان الفهم</li>
-                        <li> منع الوصول للحصة التالية قبل اجتياز الاختبار</li>
-                        <li> مجموعة دعم فني وأكاديمي طوال الأسبوع</li>
-                        <li> مشاريع عملية وتطبيقات تفاعلية</li>
-                        <li> محاكاة شاملة لنظام امتحانات TOFAS</li>
-                    </ul>
-                    <p data-aos="fade-up" data-aos-delay="300">
-                        <!-- SEO: Internal anchor link & external link with noopener - Good -->
-                        <a href="<?= site_url('courses/course_details/programming_first_secendary')?>" class="btn btn-primary btn-lg">تصفح المسارات التعليمية</a>
-                        <a href="https://wa.me/201032863861" target="_blank" rel="noopener" class="btn btn-outline-primary">تحدث مع مدرس المادة</a>
-                    </p>
-                </div>
-                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="400">
-                    <!-- SEO: Added descriptive alt text for the image -->
-                    <img src="<?= base_url() ?>site/images/students_girls.jpg" alt="طالبات يدرسن البرمجة في أكاديمية متخصصة لنظام المسارات" class="img-fluid rounded shadow-lg">
-                </div>
-            </div>
+             <h2 class="text-white mb-3">لسه متردد؟ جرب أول محاضرة مجاناً</h2>
+             <p class="mb-4 text-white-50">شوف الفرق بنفسك في أسلوب الشرح قبل ما تدفع ريال واحد.</p>
+             <a href="#courses" class="btn btn-light btn-lg font-weight-bold">تصفح المواد الآن</a>
         </div>
     </div>
-    <!-- /.untree_co-section -->
-
-<!-- End Free Session Booking Section -->
 
 <?= $this->endSection(); ?>
+
+```

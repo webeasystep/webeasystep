@@ -31,17 +31,17 @@
                             <small class="form-text text-muted">سيتم إرسال رابط تفعيل الحساب على هذا البريد</small>
                         </div>
 
-                        <!-- Mobile with Country Code -->
+                        <!-- Mobile (Saudi Arabia only) -->
                         <div class="form-group">
                             <label for="mobile"><?= lang('Auth.mobileNumber') ?> <span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <select name="country_code" id="country_code" class="form-select" style="max-width: 110px;">
-                                    <?= get_country_code_options(old('country_code', '+20')) ?>
-                                </select>
+                                <span class="input-group-text">🇸🇦 +966</span>
                                 <input type="text" class="form-control" name="mobile" id="mobile"
-                                       placeholder="1xxxxxxxxx" value="<?= old('mobile') ?>" required/>
+                                       placeholder="5xxxxxxxx" value="<?= old('mobile') ?>" 
+                                       pattern="5[0-9]{8}" maxlength="9" required/>
                             </div>
-                            <small class="form-text text-muted">أدخل رقم الهاتف بدون صفر في البداية</small>
+                            <small class="form-text text-muted">أدخل رقم الجوال بدون صفر (مثال: 5xxxxxxxx)</small>
+                            <input type="hidden" name="country_code" value="+966">
                         </div>
 
 

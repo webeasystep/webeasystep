@@ -24,10 +24,6 @@
                                 <?php endif; ?>
                             </div>
                             <div class="col-md-6 text-md-right">
-                                <div class="quiz-timer mb-2">
-                                    <i class="icon-clock-o text-primary mr-2"></i>
-                                    <span id="timer-display" class="h5 text-primary"><?= sprintf('%02d:%02d', $quiz->time_limit_minutes, 0) ?></span>
-                                </div>
                                 <div class="quiz-progress">
                                     <small class="text-muted"><?= lang('Quizzes.question') ?> <span id="current-question" class="text-primary font-weight-bold">1</span> <?= lang('Admin.of') ?> <?= count($questions) ?></small>
                                 </div>
@@ -229,12 +225,6 @@
 
 <?= $this->section('js') ?>
 <style>
-.quiz-timer {
-    font-size: 1.2em;
-    font-weight: 600;
-    color: var(--primary-color);
-}
-
 .question-container {
     animation: fadeIn 0.3s ease-in-out;
 }
@@ -291,15 +281,9 @@
 <script>
 let currentQuestion = 1;
 let totalQuestions = <?= count($questions) ?>;
-let timeLimit = <?= $quiz->time_limit_minutes * 60 ?>; // Convert to seconds
-let timeRemaining = timeLimit;
-let timerInterval;
 let startTime = Date.now();
 
 $(document).ready(function() {
-    // Start timer
-    startTimer();
-    
     // Update navigation
     updateNavigation();
     
@@ -318,47 +302,6 @@ $(document).ready(function() {
     // Update current question indicator
     updateCurrentQuestion();
 });
-
-function startTimer() {
-    timerInterval = setInterval(function() {
-        timeRemaining--;
-        
-        if (timeRemaining <= 0) {
-            clearInterval(timerInterval);
-            autoSubmitQuiz();
-            return;
-        }
-        
-        updateTimerDisplay();
-        
-        // Warning when 5 minutes left
-        if (timeRemaining === 300) {
-            showTimeWarning();
-        }
-    }, 1000);
-}
-
-function updateTimerDisplay() {
-    const minutes = Math.floor(timeRemaining / 60);
-    const seconds = timeRemaining % 60;
-    const display = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
-    
-    $('#timer-display').text(display);
-    
-    // Change color when time is running low
-    if (timeRemaining <= 300) { // 5 minutes
-        $('#timer-display').addClass('text-warning');
-    }
-    if (timeRemaining <= 60) { // 1 minute
-        $('#timer-display').removeClass('text-warning').addClass('text-danger');
-    }
-}
-
-function showTimeWarning() {
-    if (confirm('<?= lang('Quizzes.time_warning') ?>')) {
-        // User acknowledged the warning
-    }
-}
 
 function nextQuestion() {
     if (currentQuestion < totalQuestions) {
@@ -435,23 +378,6 @@ function submitQuiz() {
 function confirmSubmit() {
     // Calculate completion time
     const completionTime = Math.floor((Date.now() - startTime) / 1000);
-    $('#completion-time').val(completionTime);
-    
-    // Clear timer
-    clearInterval(timerInterval);
-    
-    // Remove beforeunload listener
-    window.removeEventListener('beforeunload', function() {});
-    
-    // Submit form
-    $('#quiz-form').submit();
-}
-
-function autoSubmitQuiz() {
-    alert('<?= lang('Quizzes.time_up_auto_submit') ?>');
-    
-    // Calculate completion time
-    const completionTime = timeLimit;
     $('#completion-time').val(completionTime);
     
     // Remove beforeunload listener

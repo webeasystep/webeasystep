@@ -74,7 +74,7 @@
                         <input type="number" name="course_price" step="0.01" min="0"
                                value="<?= set_value('course_price', $course->course_price ?? "0") ?>"
                                id="course_price" class="form-control">
-                        <span class="input-group-text">جنيه</span>
+                        <span class="input-group-text"><img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1.2em;"></span>
                     </div>
                     <small class="form-text text-muted">اتركه 0 إذا كانت الدورة مجانية</small>
                     <small class="invalid-feedback"></small>

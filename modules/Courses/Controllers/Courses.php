@@ -66,7 +66,7 @@ class Courses extends BaseController
                 // Redirect back to current course view with Arabic flash message
                 $currentUrl = $this->request->getServer('HTTP_REFERER') ?? site_url('courses/course_view/' . $course->slug);
                 return redirect()->to($currentUrl)
-                    ->with('error', 'يجب عليك شراء الوحدة أولاً حتى تتمكن من مشاهدتها');
+                    ->with('error', 'يجب عليك شراء الكورس أولاً حتى تتمكن من مشاهدة المحتوى');
             }
         }
 
@@ -703,7 +703,7 @@ class Courses extends BaseController
                     if (!$hasUnitAccess && !$unit->is_free) {
                         // User doesn't have access - redirect with Arabic message
                         return redirect()->to(site_url('courses/course_view/' . $slug))
-                            ->with('error', 'يجب عليك شراء الوحدة أولاً حتى تتمكن من مشاهدتها');
+                            ->with('error', 'يجب عليك شراء الكورس أولاً حتى تتمكن من مشاهدة المحتوى');
                     }
                 }
             }

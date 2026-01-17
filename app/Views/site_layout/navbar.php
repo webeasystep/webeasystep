@@ -107,9 +107,9 @@
                                 <span class="icon-clipboard mr-1"></span>اختباراتي
                             </a>
                         </li>-->
-                        <li <?= str_contains(current_url(), 'enrollments/my-purchases') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('enrollments/my-purchases') ?>">
-                                <span class="icon-shopping-cart mr-1"></span>مشترياتي
+                        <li <?= str_contains(current_url(), 'enrollments/my-courses') ? 'class="active"' : '' ?>>
+                            <a href="<?= site_url('enrollments/my-courses') ?>">
+                                <span class="icon-shopping-cart mr-1"></span>دوراتي
                             </a>
                         </li>
                         <li <?= str_contains(current_url(), 'settings') ? 'class="active"' : '' ?>>

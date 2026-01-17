@@ -106,7 +106,7 @@
                                     <?php if ($is_free): ?>
                                         <span class="course-price-display free">مجاني</span>
                                     <?php else: ?>
-                                        <span class="course-price-display"><?= number_format($course->course_price, 2) ?> جنيه</span>
+                                        <span class="course-price-display"><?= number_format($course->course_price, 2) ?> <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle;"></span>
                                     <?php endif; ?>
                                 </div>
                             </div>

@@ -29,7 +29,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>السعر:</strong></td>
-                                    <td><?= $course->is_free ? 'مجاني' : number_format($course->price, 2) . ' جنيه' ?></td>
+                                    <td><?= $course->is_free ? 'مجاني' : number_format($course->price, 2) ?> <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle;"></td>
                                 </tr>
                                 <tr>
                                     <td><strong>عدد الوحدات:</strong></td>

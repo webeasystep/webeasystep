@@ -100,7 +100,7 @@
                                     <span><i class="fas fa-credit-card me-1"></i> <?= esc($enrollment->payment_method) ?></span>
                                     <?php if ($enrollment->paid_amount > 0): ?>
                                         <span class="mx-2">|</span>
-                                        <span><i class="fas fa-money-bill me-1"></i> <?= number_format($enrollment->paid_amount, 2) ?> جنيه</span>
+                                        <span><i class="fas fa-money-bill me-1"></i> <?= number_format($enrollment->paid_amount, 2) ?> <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle;"></span>
                                     <?php endif; ?>
                                 </div>
                             </div>

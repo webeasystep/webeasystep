@@ -282,9 +282,9 @@ HTML;
         log_message('debug', 'Users::processLogin - Method: ' . $this->request->getMethod());
         log_message('debug', 'Users::processLogin - POST data: ' . json_encode($this->request->getPost()));
 
-        // Validation rules for mobile and password
+        // Validation rules for email and password
         $rules = [
-            'mobile' => 'required|egyptian_mobile',
+            'email' => 'required|valid_email',
             'password' => 'required',
         ];
 
@@ -300,11 +300,11 @@ HTML;
         // Get the credentials for login
         $remember = (bool)$this->request->getPost('remember');
         $credentials = [
-            'mobile'    => $this->request->getPost('mobile'),
+            'email'    => $this->request->getPost('email'),
             'password' => $this->request->getPost('password')
         ];
 
-        log_message('debug', 'Users::processLogin - Attempting login with credentials: ' . json_encode(['mobile' => $credentials['mobile']]));
+        log_message('debug', 'Users::processLogin - Attempting login with email: ' . $credentials['email']);
         log_message('debug', 'Users::processLogin - Remember me: ' . ($remember ? 'true' : 'false'));
 
         // Use Shield's attempt method for authentication

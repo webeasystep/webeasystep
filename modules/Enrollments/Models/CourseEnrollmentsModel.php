@@ -44,7 +44,7 @@ class CourseEnrollmentsModel extends BaseModel
      */
     public function getUserEnrollments(int $userId, ?string $status = null): array
     {
-        $builder = $this->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.course_desc, tb_courses.course_image, tb_courses.course_price')
+        $builder = $this->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.course_desc, tb_courses.image, tb_courses.course_price')
             ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
             ->where('tb_course_enrollments.user_id', $userId)
             ->orderBy('tb_course_enrollments.created_at', 'DESC');

@@ -33,6 +33,10 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Users\Controllers',
 
 /*** Route for Users Site ***/
 
+// Main register route (short URL) - outside group for proper routing
+$routes->get('register', '\Modules\Users\Controllers\Users::register');
+$routes->post('register', '\Modules\Users\Controllers\Users::register');
+
 $routes->group('/', ['namespace' => 'Modules\Users\Controllers'], static function ($routes) {
     $routes->get('users', [Users::class, 'index']);
     $routes->post('users/show/(:num)', [Users::class, 'show/$1']);

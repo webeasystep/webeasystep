@@ -2836,15 +2836,7 @@
                                                 <p class="text-muted">لا توجد عناصر في هذه الوحدة حالياً.</p>
                                             <?php endif; ?>
 
-                                            <div class="unit-purchase-section">
-                                                <button class="btn btn-primary add-to-cart"
-                                                        data-unit-id="<?= $unit->id ?>"
-                                                        data-unit-name="<?= esc($unit->unit_name ?? 'عنوان الوحدة') ?>"
-                                                        aria-label="شراء الوحدة: <?= esc($unit->unit_name ?? 'عنوان الوحدة') ?>">
-                                                    <i class="icon-shopping-cart" aria-hidden="true"></i>
-                                                    قم بشراء الوحدة
-                                                </button>
-                                            </div>
+                                            <!-- Unit purchase buttons removed - purchase is now at course level -->
                                         </div>
                                     </div>
                                 </div>
@@ -2882,6 +2874,27 @@
 
             <!-- Enhanced Sidebar -->
             <div class="col-lg-4 sidebar">
+                <!-- Top Subscribe Button -->
+                <div class="course-purchase-section mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div style="background: var(--bg-gradient-primary); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">
+                            <?php if ($course->is_free): ?>
+                                مجاني
+                            <?php else: ?>
+                                <?= number_format($course->course_price ?? 0) ?>
+                                <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1.2em; vertical-align: middle; filter: brightness(0) invert(1);">
+                            <?php endif; ?>
+                        </div>
+                        <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>" 
+                           class="btn btn-light btn-lg" 
+                           style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); width: 100%; margin-top: 0.5rem;">
+                            <i class="icon-shopping-cart"></i>
+                            اشترك الآن
+                        </a>
+                        <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">احصل على جميع الوحدات والاختبارات</small>
+                    </div>
+                </div>
+
                 <!-- Course Introduction Video -->
                 <div class="course-sidebar" data-aos="fade-up" data-aos-delay="300">
                     <h4>مقدمة الكورس</h4>
@@ -2941,6 +2954,27 @@
                         </li>
                     </ul>
 
+                    <!-- Course Purchase Button -->
+                    <div class="course-purchase-section mt-4">
+                        <div style="background: var(--bg-gradient-primary); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">
+                                <?php if ($course->is_free): ?>
+                                    مجاني
+                                <?php else: ?>
+                                    <?= number_format($course->course_price ?? 0) ?>
+                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1.2em; vertical-align: middle; filter: brightness(0) invert(1);">
+                                <?php endif; ?>
+                            </div>
+                            <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>" 
+                               class="btn btn-light btn-lg" 
+                               style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); width: 100%; margin-top: 0.5rem;">
+                                <i class="icon-shopping-cart"></i>
+                                اشترك الآن
+                            </a>
+                            <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">احصل على جميع الوحدات والاختبارات</small>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -2974,7 +3008,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
-                <button type="button" class="btn btn-primary">قم بشراء الوحدة</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='<?= site_url('enrollments/purchase-course/' . $course->id) ?>'">شراء الكورس كاملاً</button>
             </div>
         </div>
     </div>
@@ -3103,7 +3137,7 @@
 
             // Reset all buttons
             addToCartButtons.forEach(button => {
-                button.innerHTML = '<i class="icon-shopping-cart"></i> قم بشراء الوحدة';
+                button.innerHTML = '<i class="icon-shopping-cart"></i> شراء الكورس';
                 button.classList.remove('btn-outline-primary');
                 button.classList.add('btn-primary');
                 button.disabled = false;

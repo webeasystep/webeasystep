@@ -56,6 +56,7 @@ $routes->group('', [
     // Course-based enrollment routes
     $routes->get('enrollments/courses-shop', [Enrollments::class, 'coursesShop']);
     $routes->get('enrollments/my-courses', [Enrollments::class, 'myCourses']);
+    $routes->get('enrollments/my-purchases', [Enrollments::class, 'myCourses']); // Redirect legacy URL
     $routes->get('enrollments/purchase-course/(:num)', [Enrollments::class, 'purchaseCourse/$1']);
     $routes->get('enrollments/purchase-course', [Enrollments::class, 'purchaseCourse']);
     $routes->match(['GET', 'POST'], 'enrollments/course-checkout', [Enrollments::class, 'courseCheckout']);

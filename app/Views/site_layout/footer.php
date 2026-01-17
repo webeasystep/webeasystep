@@ -32,7 +32,7 @@
                     <h3>المسارات</h3>
                     <ul class="list-unstyled float-right links">
                         <li><a href="<?= base_url() ?>/courses">الكورسات </a></li>
-                        <li><a href="<?= base_url() ?>//enrollments/my-purchases">المشتريات </a></li>
+                        <li><a href="<?= base_url() ?>enrollments/my-courses">دوراتي</a></li>
                     </ul>
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-3 -->
