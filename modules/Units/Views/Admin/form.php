@@ -220,7 +220,29 @@
             </div>
             <div class="modal-body">
                 <form id="addVideoForm">
-                    <div class="row">
+                    <!-- Video Source Selection -->
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="font-weight-bold">
+                                    <i class="fas fa-globe mr-1"></i>مصدر الفيديو
+                                </label>
+                                <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                                    <label class="btn btn-outline-danger active" onclick="selectVideoSource('bunny')">
+                                        <input type="radio" name="video_source" id="source_bunny" value="bunny" checked>
+                                        <i class="fas fa-cloud mr-1"></i> Bunny.net
+                                    </label>
+                                    <label class="btn btn-outline-danger" onclick="selectVideoSource('youtube')">
+                                        <input type="radio" name="video_source" id="source_youtube" value="youtube">
+                                        <i class="fab fa-youtube mr-1"></i> YouTube
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bunny.net Video Input -->
+                    <div id="bunnyVideoSection" class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="video_id" class="font-weight-bold">
@@ -231,7 +253,7 @@
                                         <span class="input-group-text"><i class="fas fa-video"></i></span>
                                     </div>
                                     <input type="text" class="form-control" id="video_id" name="video_id"
-                                           placeholder="أدخل معرف الفيديو (مثال: abc123-def456)" required>
+                                           placeholder="أدخل معرف الفيديو (مثال: abc123-def456)">
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-primary" onclick="fetchVideoData()" id="fetchBtn">
                                             <i class="fas fa-download mr-1"></i>جلب البيانات
@@ -241,6 +263,46 @@
                                 <small class="form-text text-muted">
                                     <i class="fas fa-info-circle mr-1"></i>
                                     يمكنك العثور على معرف الفيديو في لوحة تحكم Bunny.net
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Video Input -->
+                    <div id="youtubeVideoSection" class="row" style="display: none;">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="youtube_url" class="font-weight-bold">
+                                    <i class="fab fa-youtube mr-1"></i>رابط فيديو YouTube
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fab fa-youtube text-danger"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="youtube_url" name="youtube_url"
+                                           placeholder="الصق رابط الفيديو من YouTube">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-danger" onclick="parseYoutubeUrl()" id="parseYoutubeBtn">
+                                            <i class="fas fa-magic mr-1"></i>استخراج البيانات
+                                        </button>
+                                    </div>
+                                </div>
+                                <small class="form-text text-muted">
+                                    <i class="fas fa-info-circle mr-1"></i>
+                                    أدخل الرابط الكامل للفيديو (مثال: https://www.youtube.com/watch?v=XXXXX أو https://youtu.be/XXXXX)
+                                </small>
+                            </div>
+                            
+                            <!-- YouTube Video Title (manual input) -->
+                            <div class="form-group" id="youtube_manual_fields" style="display: none;">
+                                <label for="youtube_video_title" class="font-weight-bold">
+                                    <i class="fas fa-heading mr-1"></i>عنوان الفيديو
+                                </label>
+                                <input type="text" class="form-control" id="youtube_video_title" name="youtube_video_title"
+                                       placeholder="أدخل عنوان الفيديو">
+                                <small class="form-text text-muted">
+                                    <i class="fas fa-info-circle mr-1"></i>
+                                    سيتم استخدام هذا العنوان لعرض الفيديو في الوحدة
                                 </small>
                             </div>
                         </div>
@@ -687,7 +749,46 @@ function saveVideoItem() {
     const videoDuration = $('#video_duration').val();
     const videoThumbnail = $('#video_thumbnail').val();
     const sortOrder = parseInt($('#video_sort_order').val()) || getNextSortOrder();
+    const videoSource = $('input[name="video_source"]:checked').val() || 'bunny';
 
+    // Handle based on video source
+    if (videoSource === 'youtube') {
+        const youtubeVideoId = currentVideoData ? currentVideoData.video_id : null;
+        const youtubeTitle = $('#youtube_video_title').val().trim();
+        
+        if (!youtubeVideoId || !youtubeTitle) {
+            toastr.error('يرجى استخراج بيانات فيديو YouTube وإدخال العنوان');
+            return;
+        }
+        
+        const item = {
+            item_type: 'video',
+            video_source: 'youtube',
+            video_id: youtubeVideoId,
+            video_title: youtubeTitle,
+            title: youtubeTitle,
+            duration: 0,
+            video_duration: 'غير محدد',
+            thumbnail: 'https://img.youtube.com/vi/' + youtubeVideoId + '/hqdefault.jpg',
+            video_thumbnail: 'https://img.youtube.com/vi/' + youtubeVideoId + '/hqdefault.jpg',
+            youtube_url: $('#youtube_url').val(),
+            embed_url: 'https://www.youtube.com/embed/' + youtubeVideoId,
+            sort_order: sortOrder,
+            is_active: 1,
+            id: 'video_' + Date.now()
+        };
+
+        unitItems.push(item);
+        displayUnitItems();
+
+        $('#addVideoModal').modal('hide');
+        resetVideoForm();
+
+        toastr.success('تم إضافة فيديو YouTube بنجاح');
+        return;
+    }
+
+    // Bunny.net video handling (original)
     if (!videoId || !videoTitle || !currentVideoData) {
         toastr.error('يرجى جلب بيانات الفيديو أولاً');
         return;
@@ -695,6 +796,7 @@ function saveVideoItem() {
 
     const item = {
         item_type: 'video',
+        video_source: 'bunny',
         video_id: videoId,
         video_title: videoTitle,
         title: videoTitle,
@@ -730,7 +832,93 @@ function resetVideoForm() {
     $('#videoDataSection').hide();
     $('#saveVideoBtn').prop('disabled', true);
     $('#video_sort_order').val('1');
-    currentVideoData = null; // Clear stored video data
+    currentVideoData = null;
+    
+    // Reset source selection
+    selectVideoSource('bunny');
+    $('#youtube_manual_fields').hide();
+    $('#youtube_url').val('');
+    $('#youtube_video_title').val('');
+}
+
+// Video Source Selection
+let currentVideoSource = 'bunny';
+
+function selectVideoSource(source) {
+    currentVideoSource = source;
+    
+    if (source === 'bunny') {
+        $('#bunnyVideoSection').show();
+        $('#youtubeVideoSection').hide();
+        $('#videoDataSection').hide();
+        $('label[for="source_bunny"]').addClass('active');
+        $('label[for="source_youtube"]').removeClass('active');
+        $('#source_bunny').prop('checked', true);
+    } else {
+        $('#bunnyVideoSection').hide();
+        $('#youtubeVideoSection').show();
+        $('#videoDataSection').hide();
+        $('label[for="source_youtube"]').addClass('active');
+        $('label[for="source_bunny"]').removeClass('active');
+        $('#source_youtube').prop('checked', true);
+    }
+    
+    $('#saveVideoBtn').prop('disabled', true);
+    currentVideoData = null;
+}
+
+// YouTube URL Parsing
+function parseYoutubeUrl() {
+    const url = $('#youtube_url').val().trim();
+    
+    if (!url) {
+        toastr.error('يرجى إدخال رابط فيديو YouTube');
+        return;
+    }
+    
+    const videoId = extractYoutubeVideoId(url);
+    
+    if (!videoId) {
+        toastr.error('رابط YouTube غير صالح. يرجى التحقق من الرابط');
+        return;
+    }
+    
+    // Store YouTube video data
+    currentVideoData = {
+        video_id: videoId,
+        video_source: 'youtube',
+        thumbnail: 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg',
+        embed_url: 'https://www.youtube.com/embed/' + videoId
+    };
+    
+    // Show title input and thumbnail preview
+    $('#youtube_manual_fields').show();
+    $('#video_thumbnail_preview').attr('src', currentVideoData.thumbnail).show();
+    $('#no_thumbnail').hide();
+    $('#videoDataSection').hide(); // We don't use the Bunny data section for YouTube
+    
+    // Enable save button
+    $('#saveVideoBtn').prop('disabled', false);
+    $('#video_sort_order').val(getNextSortOrder());
+    
+    toastr.success('تم استخراج معرف الفيديو: ' + videoId);
+}
+
+function extractYoutubeVideoId(url) {
+    // Regular expressions for different YouTube URL formats
+    const patterns = [
+        /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+        /^([a-zA-Z0-9_-]{11})$/ // Direct video ID
+    ];
+    
+    for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match) {
+            return match[1];
+        }
+    }
+    
+    return null;
 }
 
 // Quiz Functions

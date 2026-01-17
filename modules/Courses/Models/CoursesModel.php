@@ -11,7 +11,7 @@ class CoursesModel extends BaseModel
     protected $primaryKey    = 'id';
     protected $allowedFields = [
         'course_title', 'course_desc', 'short_desc', 'image', 'sort',
-        'is_free', 'active', 'slug',
+        'is_free', 'active', 'slug', 'course_price',
         'instructor_id', 'category_id', 'difficulty_level', 'language',
         'requirements', 'what_you_learn', 'enrollment_limit', 'intro_video_id',
     ];

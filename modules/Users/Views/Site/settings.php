@@ -87,41 +87,12 @@
                                         <div class="mb-3">
                                             <label for="mobile" class="form-label">رقم الهاتف المحمول *</label>
                                             <input type="tel" class="form-control" id="mobile" name="mobile"
-                                                   value="<?= esc($user->mobile ?? '') ?>" disabled readonly>
+                                                   value="<?= esc(format_mobile_display($user->mobile ?? '')) ?>" disabled readonly>
                                             <div class="form-text text-muted">لا يمكن تغيير رقم الهاتف المحمول المستخدم في تسجيل الدخول</div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <hr>
-                                <h5 class="mb-3">معلومات ولي الأمر/الوصي</h5>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="parent_name" class="form-label">اسم ولي الأمر/الوصي</label>
-                                            <input type="text" class="form-control" id="parent_name" name="parent_name"
-                                                   value="<?= esc($user->parent_name ?? '') ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="parent_email" class="form-label">بريد ولي الأمر الإلكتروني</label>
-                                            <input type="email" class="form-control" id="parent_email" name="parent_email"
-                                                   value="<?= esc($user->parent_email ?? '') ?>">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="parent_phone" class="form-label">هاتف ولي الأمر/الوصي</label>
-                                            <input type="tel" class="form-control" id="parent_phone" name="parent_phone"
-                                                   value="<?= esc($user->parent_phone ?? '') ?>">
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="d-flex justify-content-end">
                                     <button type="submit" class="btn btn-primary">

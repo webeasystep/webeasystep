@@ -47,11 +47,13 @@ class Validation extends BaseConfig
     
     /**
      * Registration validation rules for user registration
+     * Both email and mobile are now required
      */
     public array $registrationRules = [
         'full_name' => 'required|min_length[2]|max_length[100]',
-        'email' => 'permit_empty|valid_email|is_unique[auth_identities.secret]',
-        'mobile' => 'required|egyptian_mobile|is_unique[users.mobile]',
+        'email' => 'required|valid_email|is_unique[auth_identities.secret]',
+        'country_code' => 'required|valid_country_code',
+        'mobile' => 'required|valid_mobile',
         'password' => 'required|min_length[6]',
         'password_confirm' => 'required|matches[password]',
     ];

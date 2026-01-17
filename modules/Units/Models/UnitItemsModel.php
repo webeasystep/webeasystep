@@ -136,11 +136,37 @@ class UnitItemsModel extends Model
     }
 
     /**
-     * Create video item from bunny.net data
+     * Create video item from bunny.net or YouTube data
      */
     public function createVideoItem($unitId, $videoData, $sortOrder = null)
     {
-        // Prepare content_data with additional metadata
+        $videoSource = $videoData['video_source'] ?? 'bunny';
+        
+        if ($videoSource === 'youtube') {
+            // YouTube video metadata
+            $metadata = [
+                'video_id' => $videoData['video_id'] ?? '',
+                'video_source' => 'youtube',
+                'video_title' => $videoData['video_title'] ?? $videoData['title'] ?? '',
+                'video_thumbnail' => $videoData['video_thumbnail'] ?? $videoData['thumbnail'] ?? '',
+                'youtube_url' => $videoData['youtube_url'] ?? '',
+                'embed_url' => $videoData['embed_url'] ?? 'https://www.youtube.com/embed/' . ($videoData['video_id'] ?? '')
+            ];
+            
+            $data = [
+                'unit_id' => $unitId,
+                'item_type' => 'video',
+                'title' => $videoData['video_title'] ?? $videoData['title'] ?? 'فيديو YouTube',
+                'description' => $videoData['description'] ?? '',
+                'metadata' => json_encode($metadata),
+                'sort_order' => $sortOrder ?? $this->getNextSortOrder($unitId),
+                'is_active' => 1
+            ];
+            
+            return $this->insert($data);
+        }
+        
+        // Bunny.net video (original logic)
         $contentData = [
             'collection_id' => $videoData['collection_id'] ?? '',
             'stream_url' => $videoData['stream_url'] ?? '',
@@ -153,6 +179,7 @@ class UnitItemsModel extends Model
         // Prepare metadata JSON with video information
         $metadata = [
             'video_id' => $videoData['video_id'] ?? '',
+            'video_source' => 'bunny',
             'video_title' => $videoData['video_title'] ?? $videoData['title'] ?? '',
             'video_duration' => $videoData['video_duration'] ?? '',
             'video_thumbnail' => $videoData['video_thumbnail'] ?? $videoData['thumbnail'] ?? '',

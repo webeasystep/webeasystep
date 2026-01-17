@@ -68,11 +68,15 @@
             </div>
 
             <div class="form-group row">
-                <label for="price" class="col-sm-3 col-form-label"><?= lang("Courses.price") ?></label>
+                <label for="course_price" class="col-sm-3 col-form-label"><?= lang("Courses.course_price") ?></label>
                 <div class="col-sm-9">
-                    <input type="text" name="price"
-                           value="<?= set_value('price', $course->price ?? "") ?>"
-                           id="price" class="form-control">
+                    <div class="input-group">
+                        <input type="number" name="course_price" step="0.01" min="0"
+                               value="<?= set_value('course_price', $course->course_price ?? "0") ?>"
+                               id="course_price" class="form-control">
+                        <span class="input-group-text">جنيه</span>
+                    </div>
+                    <small class="form-text text-muted">اتركه 0 إذا كانت الدورة مجانية</small>
                     <small class="invalid-feedback"></small>
                 </div>
             </div>

@@ -15,6 +15,7 @@ return [
     'image' => "الصور",
     'sort' => "الترتيب",
     'price' => "السعر",
+    'course_price' => "سعر الدورة",
     'is_free' => "مجاني",
     'intro_video_id' => "معرف الفيديو التقديمي",
     'intro_video_id_placeholder' => "أدخل معرف الفيديو التقديمي للكورس",

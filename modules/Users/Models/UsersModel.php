@@ -16,8 +16,7 @@ class UsersModel extends Model
     protected $returnType     = User::class;
     protected $useSoftDeletes = false;
     protected $allowedFields  = [
-        'email', 'full_name', 'address', 'avatar', 'mobile', 'username',
-        'parent_name', 'parent_email', 'parent_phone', 'credits',
+        'email', 'full_name', 'address', 'avatar', 'mobile', 'username', 'credits',
         'email_verified_at', 'verification_token', 'phone_verified_at', 'phone_verification_code',
         'password_confirm', 'reset_hash', 'reset_at', 'reset_expires', 'activate_hash',
         'status', 'status_message', 'active', 'force_pass_reset', 'permissions', 'is_deleted',
@@ -103,22 +102,8 @@ class UsersModel extends Model
         return $this;
     }
 
-    /**
-     * Check if user is under 18 years old
-     */
-    public function isUnder18($userId)
-    {
-        $user = $this->find($userId);
-        if (!$user || !$user->birth_date) {
-            return false;
-        }
-        
-        $birthDate = new \DateTime($user->birth_date);
-        $today = new \DateTime();
-        $age = $today->diff($birthDate)->y;
-        
-        return $age < 18;
-    }
+
+    // isUnder18 method removed - parent/age tracking no longer supported
 
     /**
      * Get user's credit balance
@@ -220,18 +205,7 @@ class UsersModel extends Model
     // Login attempt logging is now handled by Shield's auth_logins table
     // The logLoginAttempt method has been removed as Shield automatically logs all login attempts
 
-    /**
-     * Get users who need parent notifications (under 18 with parent email)
-     */
-    public function getUsersForParentNotification()
-    {
-        return $this->select('users.*, tb_unit_enrollments.unit_ids, tb_unit_enrollments.total_amount')
-            ->join('tb_unit_enrollments', 'tb_unit_enrollments.user_id = users.id')
-            ->where('users.parent_email IS NOT NULL')
-            ->where('users.birth_date >', date('Y-m-d', strtotime('-18 years')))
-            ->where('tb_unit_enrollments.status', 'approved')
-            ->findAll();
-    }
+    // getUsersForParentNotification method removed - parent notification no longer supported
 
     /**
      * Clears the group to assign to newly created users.

@@ -31,13 +31,13 @@ $routes->group('dt_admin', [
     // Delete enrollment
     $routes->post('enrollments/delete', [AdminEnrollments::class, 'delete']);
 
-    // Admin routes for unit enrollments
-    $routes->match(['GET', 'POST'], 'enrollments/units', [AdminEnrollments::class, 'unitEnrollments']);
-    $routes->get('enrollments/units/show/(:num)', [AdminEnrollments::class, 'showUnitEnrollment/$1']);
-    $routes->post('enrollments/units/approve/(:num)', [AdminEnrollments::class, 'approveUnitEnrollment/$1']);
-    $routes->post('enrollments/units/reject/(:num)', [AdminEnrollments::class, 'rejectUnitEnrollment/$1']);
-    $routes->get('enrollments/units/stats', [AdminEnrollments::class, 'unitEnrollmentStats']);
-    $routes->get('enrollments/units/pending-count', [AdminEnrollments::class, 'getPendingUnitEnrollmentsCount']);
+    // Admin routes for course enrollments
+    $routes->match(['GET', 'POST'], 'enrollments/courses', [AdminEnrollments::class, 'courseEnrollments']);
+    $routes->get('enrollments/courses/show/(:num)', [AdminEnrollments::class, 'showCourseEnrollment/$1']);
+    $routes->post('enrollments/courses/approve/(:num)', [AdminEnrollments::class, 'approveCourseEnrollment/$1']);
+    $routes->post('enrollments/courses/reject/(:num)', [AdminEnrollments::class, 'rejectCourseEnrollment/$1']);
+    $routes->get('enrollments/courses/stats', [AdminEnrollments::class, 'getCourseEnrollmentStats']);
+    $routes->get('enrollments/courses/pending-count', [AdminEnrollments::class, 'getPendingCourseEnrollmentsCount']);
 });
 
 
@@ -49,22 +49,14 @@ $routes->group('', [
     'namespace' => 'Modules\Enrollments\Controllers',
 ], static function ($routes) {
 
-    // Test route to verify controller access
-    $routes->get('enrollments/test', function() {
-        return json_encode(['status' => 'success', 'message' => 'Enrollments controller accessible']);
-    });
-
-    // Test route using controller method
-    $routes->get('enrollments/controller-test', [Enrollments::class, 'test']);
-
     // Example route to show a list of enrollments or payments
     $routes->get('enrollments', [Enrollments::class, 'index']);
     $routes->post('enrollments/show/(:num)', [Enrollments::class, 'show/$1']);
 
-    // Site routes for unit purchases - consolidated to use purchase-units only
-    $routes->get('enrollments/units-shop', [Enrollments::class, 'unitsShop']);
-    $routes->match(['GET', 'POST'], 'enrollments/purchase-units', [Enrollments::class, 'purchaseUnits']);
-    $routes->match(['GET', 'POST'], 'enrollments/checkout', [Enrollments::class, 'checkout']);
-    $routes->post('enrollments/complete-enrollment', [Enrollments::class, 'completeEnrollment']);
-    $routes->get('enrollments/my-purchases', [Enrollments::class, 'myPurchases']);
+    // Course-based enrollment routes
+    $routes->get('enrollments/courses-shop', [Enrollments::class, 'coursesShop']);
+    $routes->get('enrollments/my-courses', [Enrollments::class, 'myCourses']);
+    $routes->get('enrollments/purchase-course/(:num)', [Enrollments::class, 'purchaseCourse/$1']);
+    $routes->get('enrollments/purchase-course', [Enrollments::class, 'purchaseCourse']);
+    $routes->match(['GET', 'POST'], 'enrollments/course-checkout', [Enrollments::class, 'courseCheckout']);
 });

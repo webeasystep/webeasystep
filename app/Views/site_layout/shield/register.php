@@ -23,21 +23,27 @@
                                    placeholder="<?= lang('Auth.enterFullName') ?>" value="<?= old('full_name') ?>" required/>
                         </div>
 
-                        <!-- Mobile -->
+                        <!-- Email -->
                         <div class="form-group">
-                            <label for="mobile"><?= lang('Auth.mobileNumber') ?></label>
-                            <input type="text" class="form-control" name="mobile"
-                                   placeholder="01xxxxxxxxx" value="<?= old('mobile') ?>" required/>
-                            <small class="form-text text-muted">يجب أن يكون الرقم مصري ويبدأ بـ 010 أو 011 أو 012 أو 015 ويتكون من 11 رقم</small>
+                            <label for="email"><?= lang('Auth.email') ?> <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" name="email" id="email"
+                                   placeholder="email@example.com" value="<?= old('email') ?>" required/>
+                            <small class="form-text text-muted">سيتم إرسال رابط تفعيل الحساب على هذا البريد</small>
                         </div>
 
-                        <!-- Note about parent information -->
+                        <!-- Mobile with Country Code -->
                         <div class="form-group">
-                            <div class="alert alert-info">
-                                <i class="fas fa-info-circle"></i>
-                                <strong>ملاحظة:</strong> يمكنك إضافة معلومات ولي الأمر والبريد الإلكتروني لاحقاً من صفحة الإعدادات بعد التسجيل.
+                            <label for="mobile"><?= lang('Auth.mobileNumber') ?> <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <select name="country_code" id="country_code" class="form-select" style="max-width: 110px;">
+                                    <?= get_country_code_options(old('country_code', '+20')) ?>
+                                </select>
+                                <input type="text" class="form-control" name="mobile" id="mobile"
+                                       placeholder="1xxxxxxxxx" value="<?= old('mobile') ?>" required/>
                             </div>
+                            <small class="form-text text-muted">أدخل رقم الهاتف بدون صفر في البداية</small>
                         </div>
+
 
 
                         <!-- Password -->

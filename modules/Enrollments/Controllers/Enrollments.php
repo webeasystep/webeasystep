@@ -3,43 +3,24 @@
 namespace Modules\Enrollments\Controllers;
 
 use App\Controllers\BaseController;
-use App\Libraries\FireUploader;
 use Modules\Courses\Models\CoursesModel;
 use Modules\Enrollments\Models\EnrollmentsModel;
-use Modules\Enrollments\Models\UnitEnrollmentsModel;
-use Modules\Units\Models\UnitsModel;
+use Modules\Enrollments\Models\CourseEnrollmentsModel;
 use Modules\Users\Models\UsersModel;
-use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Enrollments extends BaseController
 {
     protected EnrollmentsModel $enrollmentsModel;
-    protected UnitEnrollmentsModel $unitEnrollmentsModel;
+    protected CourseEnrollmentsModel $courseEnrollmentsModel;
     protected CoursesModel $coursesModel;
-    protected UnitsModel $unitsModel;
     protected UsersModel $usersModel;
-    protected FireUploader $fireUploader;
-
-    /**
-     * Validation rules for creating a new user (when not logged in & buying a paid course).
-     */
-    private array $rules = [
-        'name' => 'required|min_length[3]',
-        'email' => 'required|valid_email',
-        'country' => 'required',
-        'phone' => 'required',
-        'password' => 'required|min_length[5]',
-        'confirmPassword' => 'required|matches[password]',
-    ];
 
     public function __construct()
     {
         $this->enrollmentsModel = new EnrollmentsModel();
-        $this->unitEnrollmentsModel = new UnitEnrollmentsModel();
+        $this->courseEnrollmentsModel = new CourseEnrollmentsModel();
         $this->coursesModel = new CoursesModel();
-        $this->unitsModel = new UnitsModel();
         $this->usersModel = new UsersModel();
-        $this->fireUploader = new FireUploader();
     }
 
     /**
@@ -51,302 +32,141 @@ class Enrollments extends BaseController
     }
 
     /**
-     * Test method to verify controller access
+     * Display available courses for purchase
      */
-    public function test()
+    public function coursesShop()
     {
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Enrollments controller test method working']);
+        $data = [
+            'title' => 'شراء الدورات',
+            'courses' => $this->coursesModel->where('active', 1)->findAll()
+        ];
+
+        return view('site/courses_shop', $data);
     }
 
     /**
-     * Display user's unit purchases
+     * Display user's course purchases
      */
-    public function myPurchases()
+    public function myCourses()
     {
         if (!auth()->loggedIn()) {
             return redirect()->to('/login');
         }
 
         $userId = auth()->user()->id;
-        $purchases = $this->unitEnrollmentsModel->getUserEnrollments($userId);
+        $enrollments = $this->courseEnrollmentsModel->getUserEnrollments($userId);
 
         $data = [
-            'title' => 'مشترياتي',
-            'purchases' => $purchases
+            'title' => 'دوراتي',
+            'enrollments' => $enrollments
         ];
 
-        return view('site/my_purchases', $data);
-    }
-
-
-    /**
-     * Display units available for purchase
-     */
-    public function unitsShop()
-    {
-        $data = [
-            'title' => 'شراء الوحدات الدراسية',
-            'units' => $this->unitsModel->getPurchasableUnits()
-        ];
-
-        return view('site/purchase_units', $data);
+        return view('site/my_courses', $data);
     }
 
     /**
-     * Handle unit selection and redirect to checkout
+     * Handle course purchase - redirect to checkout
      */
-    public function purchaseUnits()
+    public function purchaseCourse($courseId = null)
     {
-        $userId = auth()->user()->id ?? null;
-        if (!$userId) {
+        if (!auth()->loggedIn()) {
             $this->show_msg('danger', 'error', "يرجى تسجيل الدخول أولاً");
             return redirect()->to('/login');
         }
 
-        // Handle unit selection from GET parameters
-        $unitIds = $this->request->getGet('units');
-        if ($unitIds) {
-            // Store selected units in session
-            $unitIds = explode(',', $unitIds);
-            session()->set('selected_units', $unitIds);
-
-            // Redirect to checkout
-            return redirect()->to('/enrollments/checkout');
+        if (!$courseId) {
+            $courseId = $this->request->getGet('course_id');
         }
 
-        // If no units specified, redirect to units shop
-        return redirect()->to('/enrollments/units-shop')->with('error', 'يرجى اختيار وحدة واحدة على الأقل');
+        if (!$courseId) {
+            return redirect()->to('/enrollments/courses-shop')->with('error', 'يرجى اختيار دورة');
+        }
+
+        // Store in session and redirect to checkout
+        session()->set('selected_course', $courseId);
+        return redirect()->to('/enrollments/course-checkout');
     }
 
     /**
-     * Handle checkout process
+     * Course checkout page
      */
-    public function checkout()
+    public function courseCheckout()
     {
-        $userId = auth()->user()->id ?? null;
-        if (!$userId) {
-            $this->show_msg('danger', 'error', "يرجى تسجيل الدخول أولاً");
-            return redirect()->to('/login');
-        }
-
-        if ($this->request->is('post')) {
-            return $this->processCheckout($userId);
-        }
-
-        // Get selected units from session
-        $unitIds = session()->get('selected_units');
-        if (!$unitIds) {
-            return redirect()->to('/enrollments/units-shop')->with('error', 'يرجى اختيار وحدة واحدة على الأقل');
-        }
-
-        $selectedUnits = $this->unitsModel->whereIn('id', $unitIds)->findAll();
-
-        if (empty($selectedUnits)) {
-            session()->remove('selected_units');
-            return redirect()->to('/enrollments/units-shop')->with('error', 'الوحدات المحددة غير متاحة');
-        }
-
-        $totalPrice = 0;
-        $hasFreeUnits = false;
-        $allUnitsFree = true;
-
-        foreach ($selectedUnits as $unit) {
-            $totalPrice += $unit->unit_price ?? 0;
-            if ($unit->is_free) {
-                $hasFreeUnits = true;
-            } else {
-                $allUnitsFree = false;
-            }
-        }
-
-        $data = [
-            'title' => 'إتمام شراء الوحدات',
-            'selected_units' => $selectedUnits,
-            'total_price' => $totalPrice,
-            'unit_ids' => $unitIds,
-            'has_free_units' => $hasFreeUnits,
-            'all_units_free' => $allUnitsFree,
-            'files' => [] // Initialize empty files array for FireUploader
-        ];
-
-        return view('site/purchase_units', $data);
-    }
-
-    /**
-     * Complete enrollment for free units or process paid enrollment
-     */
-    public function completeEnrollment()
-    {
-        // Check if user is logged in
         if (!auth()->loggedIn()) {
             return redirect()->to('/login');
         }
 
-        $userId = auth()->id();
+        $userId = auth()->user()->id;
+        $courseId = session()->get('selected_course');
 
-        // Get unit_ids from POST data
-        $unitIds = $this->request->getPost('unit_ids');
-
-        if (empty($unitIds)) {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'No units selected for enrollment'
-            ]);
+        if (!$courseId) {
+            return redirect()->to('/enrollments/courses-shop')->with('error', 'يرجى اختيار دورة');
         }
 
-        // Convert comma-separated string to array
-        $unitIdsArray = is_string($unitIds) ? explode(',', $unitIds) : $unitIds;
-        $unitIdsArray = array_map('trim', $unitIdsArray);
-
-        // Check for existing enrollments for these units
-        $duplicateEnrollments = $this->unitEnrollmentsModel->checkDuplicateEnrollmentsForUnits($userId, $unitIdsArray);
-
-        if (!empty($duplicateEnrollments)) {
-            $duplicateUnitIds = array_column($duplicateEnrollments, 'unit_id');
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'You have already enrolled in some of these units',
-                'duplicate_units' => $duplicateUnitIds
-            ]);
+        // Check if already enrolled
+        if ($this->courseEnrollmentsModel->isUserEnrolled($userId, $courseId, false)) {
+            session()->remove('selected_course');
+            return redirect()->to('/enrollments/my-courses')->with('error', 'أنت مشترك بالفعل في هذه الدورة');
         }
 
-        // Create individual enrollments for each unit
-        $enrollmentIds = $this->unitEnrollmentsModel->createMultipleUnitEnrollments([
-            'user_id' => $userId,
-            'unit_ids' => $unitIdsArray,
-            'total_amount' => 0, // Will be calculated per unit
-            'status' => 'pending'
-        ]);
+        $course = $this->coursesModel->find($courseId);
 
-        if ($enrollmentIds) {
-            return $this->response->setJSON([
-                'success' => true,
-                'message' => 'Enrollment completed successfully',
-                'enrollment_ids' => $enrollmentIds
-            ]);
-        } else {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Failed to complete enrollment'
-            ]);
+        if (!$course) {
+            session()->remove('selected_course');
+            return redirect()->to('/enrollments/courses-shop')->with('error', 'الدورة غير موجودة');
         }
+
+        // Handle POST - process purchase
+        if ($this->request->is('post')) {
+            return $this->processCourseCheckout($userId, $course);
+        }
+
+        $data = [
+            'title' => 'إتمام شراء الدورة',
+            'course' => $course,
+            'is_free' => ($course->course_price <= 0 || $course->is_free),
+            'files' => []
+        ];
+
+        return view('site/course_checkout', $data);
     }
 
     /**
-     * Process checkout with payment proof
+     * Process course enrollment
      */
-    private function processCheckout($userId)
+    private function processCourseCheckout($userId, $course)
     {
-        // Get selected units from session
-        $unitIds = session()->get('selected_units');
         $paymentMethod = $this->request->getPost('payment_method') ?? 'vodafone_cash';
+        $isFree = ($course->course_price <= 0 || $course->is_free);
 
-        // Debug logging
-        log_message('debug', 'ProcessCheckout - User ID: ' . $userId);
-        log_message('debug', 'ProcessCheckout - Unit IDs from session: ' . json_encode($unitIds));
-        log_message('debug', 'ProcessCheckout - Payment Method: ' . $paymentMethod);
-        log_message('debug', 'ProcessCheckout - All POST data: ' . json_encode($this->request->getPost()));
-
-        if (empty($unitIds)) {
-            session()->remove('selected_units');
-            return redirect()->to('/enrollments/units-shop')->with('error', 'يرجى اختيار وحدة واحدة على الأقل');
-        }
-
-        // Check for duplicate enrollments
-        $duplicateEnrollments = $this->unitEnrollmentsModel->checkDuplicateEnrollmentsForUnits($userId, $unitIds);
-        if (!empty($duplicateEnrollments)) {
-            $duplicateUnitIds = array_column($duplicateEnrollments, 'unit_id');
-            session()->remove('selected_units');
-            return redirect()->back()->with('error', 'لقد تم الاشتراك في بعض هذه الوحدات من قبل: ' . implode(', ', $duplicateUnitIds))->withInput();
-        }
-
-        // Calculate total price and check if all units are free
-        $units = $this->unitsModel->whereIn('id', $unitIds)->findAll();
-        $totalPrice = 0;
-        $allUnitsFree = true;
-
-        foreach ($units as $unit) {
-            $totalPrice += $unit->price ?? 0;
-            if (!$unit->is_free) {
-                $allUnitsFree = false;
-            }
-        }
-
-        log_message('debug', 'Units found: ' . count($units));
-        log_message('debug', 'Total price calculated: ' . $totalPrice);
-        log_message('debug', 'All units free: ' . ($allUnitsFree ? 'Yes' : 'No'));
-
-        // Handle free units - auto approve and redirect to course
-        if ($allUnitsFree || $paymentMethod === 'free') {
-            // Create individual enrollment requests with approved status
-            $enrollmentIds = $this->unitEnrollmentsModel->createMultipleUnitEnrollments([
-                'user_id' => $userId,
-                'unit_ids' => $unitIds,
-                'total_amount' => 0,
+        // Auto-approve free courses
+        if ($isFree || $paymentMethod === 'free') {
+            $enrollmentId = $this->courseEnrollmentsModel->createEnrollment($userId, $course->id, [
+                'paid_amount' => 0,
                 'payment_method' => 'free',
-                'status' => 'approved'
+                'auto_approve' => true
             ]);
 
-            log_message('debug', 'Free units enrollment IDs: ' . json_encode($enrollmentIds));
-
-            if (!$enrollmentIds) {
-                log_message('error', 'Failed to insert free units enrollment data');
-                session()->remove('selected_units');
-                return redirect()->back()->with('error', 'فشل في تسجيل الاشتراك المجاني')->withInput();
+            if ($enrollmentId) {
+                session()->remove('selected_course');
+                return redirect()->to('/courses/course_view/' . $course->slug)
+                    ->with('success', 'تم تسجيلك في الدورة بنجاح! يمكنك الآن الوصول إلى المحتوى.');
             }
-
-            // Clear session after successful enrollment
-            session()->remove('selected_units');
-
-            // Get the course ID from the first unit to redirect to course page
-            $firstUnit = $units[0];
-            $courseId = $firstUnit->course_id;
-
-            // Get course slug for proper redirect
-            $coursesModel = new \Modules\Courses\Models\CoursesModel();
-            $course = $coursesModel->getCourseById($courseId);
-
-            if (!$course) {
-                log_message('error', 'Course not found for ID: ' . $courseId);
-                session()->remove('selected_units');
-                return redirect()->to('/enrollments/units-shop')->with('error', 'خطأ في العثور على الكورس');
-            }
-
-            log_message('debug', 'Free enrollment successful, redirecting to course: ' . $course->slug);
-
-            return redirect()->to('/courses/course_view/' . $course->slug)
-                ->with('success', 'تم تسجيلك في الوحدات المجانية بنجاح! يمكنك الآن الوصول إلى المحتوى.');
         }
 
-        // Handle paid units - existing logic
-        if ($totalPrice <= 0) {
-            session()->remove('selected_units');
-            return redirect()->back()->with('error', 'خطأ في حساب المبلغ الإجمالي')->withInput();
-        }
-
-        // Create individual enrollment requests for paid units
-        $enrollmentIds = $this->unitEnrollmentsModel->createMultipleUnitEnrollments([
-            'user_id' => $userId,
-            'unit_ids' => $unitIds,
-            'total_amount' => $totalPrice,
+        // Handle paid course
+        $enrollmentId = $this->courseEnrollmentsModel->createEnrollment($userId, $course->id, [
+            'paid_amount' => $course->course_price,
             'payment_method' => $paymentMethod,
-            'status' => 'pending'
+            'auto_approve' => false
         ]);
 
-        log_message('debug', 'Paid units enrollment IDs: ' . json_encode($enrollmentIds));
-        log_message('debug', 'Database errors: ' . json_encode($this->unitEnrollmentsModel->errors()));
-
-        if (!$enrollmentIds) {
-            log_message('error', 'Failed to insert enrollment data');
-            session()->remove('selected_units');
-            return redirect()->back()->with('error', 'فشل في حفظ طلب الشراء')->withInput();
+        if (!$enrollmentId) {
+            return redirect()->back()->with('error', 'فشل في حفظ طلب الشراء');
         }
 
-        // Clear session after successful enrollment
-        session()->remove('selected_units');
-
-        return redirect()->to('/enrollments/my-purchases')
-            ->with('success', 'تم إرسال طلب الشراء بنجاح. سيتم مراجعته من قبل الإدارة وتفعيل الوحدات عند الموافقة. يرجى انتظار التفعيل.');
+        session()->remove('selected_course');
+        return redirect()->to('/enrollments/my-courses')
+            ->with('success', 'تم إرسال طلب الشراء بنجاح. سيتم مراجعته من قبل الإدارة.');
     }
-
 }

@@ -47,11 +47,16 @@ if (!function_exists('thumb')) {
             if (!file_exists($thumbnailPath)) {
                 // Thumbnail doesn't exist, generate it from the original image
                 if (file_exists($fullPath)) {
-                    // Create a new instance of the image library (Imagick)
-                    $image = \Config\Services::image()
-                        ->withFile($fullPath)
-                        ->resize($width, $height, true, 'height')
-                        ->save($thumbnailPath);
+                    try {
+                        // Create a new instance of the image library
+                        $image = \Config\Services::image()
+                            ->withFile($fullPath)
+                            ->fit($width, $height, 'center') // crop + resize to exact dimensions
+                            ->save($thumbnailPath);
+                    } catch (\Exception $e) {
+                        // In case of any image error, return fallback image
+                        return base_url('site/imgs/testim.png');
+                    }
                 } else {
                     // Original image not found, return a not found image
                     return base_url('site/imgs/testim.png');

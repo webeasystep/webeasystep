@@ -40,10 +40,11 @@ class Users extends BaseController
     }
     /**
      * Attempts to register the user.
+     * Now requires both email and mobile with country code selection.
+     * User must verify email before they can login.
      */
     public function register(): string|RedirectResponse
     {
-
         if (auth()->loggedIn()) {
             return redirect()->back();
         }
@@ -56,66 +57,94 @@ class Users extends BaseController
         if ($this->request->is('post')) {
             log_message('debug', 'Registration POST request received');
 
+            // Get validation rules from config
             $rules = config('Validation')->registrationRules ?? [
                 'full_name' => 'required|min_length[3]|max_length[50]',
-                'mobile' => 'required|egyptian_mobile',
+                'email' => 'required|valid_email|is_unique[auth_identities.secret]',
+                'country_code' => 'required|valid_country_code',
+                'mobile' => 'required|valid_mobile',
                 'password' => 'required|min_length[6]',
                 'password_confirm' => 'required|matches[password]',
             ];
-
 
             log_message('debug', 'Validation rules: ' . json_encode($rules));
             log_message('debug', 'POST data: ' . json_encode($this->request->getPost()));
 
             if (!$this->validate($rules)) {
                 log_message('debug', 'Validation failed: ' . json_encode($this->validator->getErrors()));
-                $this->show_msg('danger', lang('Auth.validationErrors'), $this->validator->getErrors(),1000000);
+                $this->show_msg('danger', lang('Auth.validationErrors'), $this->validator->getErrors(), 1000000);
                 return redirect()->back()->withInput();
             }
 
             // Get Shield's user provider
             $users = auth()->getProvider();
-            $mobile = $this->request->getPost('mobile');
+            
+            // Normalize mobile number with country code
+            $countryCode = $this->request->getPost('country_code');
+            $mobileNumber = $this->request->getPost('mobile');
+            $fullMobile = normalize_mobile($mobileNumber, $countryCode);
+            
+            $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');
             
+            // Check if mobile is already used
+            $existingMobile = $this->db->table('users')->where('mobile', $fullMobile)->get()->getRow();
+            if ($existingMobile) {
+                $this->show_msg('danger', 'خطأ في التسجيل', 'رقم الهاتف مسجل بالفعل');
+                return redirect()->back()->withInput();
+            }
+            
+            // Create user credentials - user is inactive until email is verified
             $credentials = [
                 'full_name' => $this->request->getPost('full_name'),
-                'email'    => $mobile.'@msarlink.com',
-                'mobile' => $this->request->getPost('mobile'),
-                'active' => 1
+                'email'    => $email,
+                'mobile' => $fullMobile,
+                'active' => 0  // User is inactive until email verified
             ];
 
             $user = new User($credentials);
+            
             // Save the user first to get the ID
             if ($users->save($user)) {
                 $userId = $users->getInsertID();
-                // Reload the user with the ID to ensure it's complete
                 $user = $users->find($userId);
                 
                 log_message('debug', 'Registration - User saved with ID: ' . $userId);
                 
-                // Create mobile_password identity in auth_identities table
+                // Create email_password identity in auth_identities table
                 /** @var \Modules\Users\Models\UserIdentityModel $identityModel */
                 $identityModel = model(\Modules\Users\Models\UserIdentityModel::class);
                 
                 try {
-                    // Create mobile identity with password
+                    // Create email identity with password
+                    $identityModel->createEmailIdentity($user, [
+                        'email' => $email,
+                        'password' => $password
+                    ]);
+                    
+                    log_message('debug', 'Registration - Email identity created successfully for user: ' . $userId);
+                    
+                    // Also create mobile identity for mobile login option
                     $identityModel->createMobileIdentity($user, [
-                        'mobile' => $mobile,
+                        'mobile' => $fullMobile,
                         'password' => $password
                     ]);
                     
                     log_message('debug', 'Registration - Mobile identity created successfully for user: ' . $userId);
                     
-                    // Now login with the complete user object
-                    auth()->login($user);
-                    // إعادة توجيه إلى صفحة الكورسات
-                    $this->show_msg('success','تم بنجاح','يمكنك استعراض الوحدات المتاحة وشراءها');
-                    return redirect()->to('/courses');
+                    // Generate email verification token
+                    $token = $this->userModel->generateVerificationToken($userId);
+                    
+                    // Send welcome email with activation link
+                    $this->sendWelcomeEmail($email, $this->request->getPost('full_name'), $token);
+                    
+                    // Redirect to verification sent page
+                    $this->show_msg('success', 'تم التسجيل بنجاح', 'تم إرسال رابط تفعيل الحساب إلى بريدك الإلكتروني. يرجى التحقق من البريد الوارد.');
+                    return redirect()->to('/users/verify-email-sent');
                     
                 } catch (\Exception $e) {
-                    log_message('error', 'Registration - Failed to create mobile identity: ' . $e->getMessage());
-                    $this->show_msg('danger', 'خطأ في التسجيل', 'حدث خطأ أثناء إنشاء الهوية المحمولة');
+                    log_message('error', 'Registration - Failed to create identity: ' . $e->getMessage());
+                    $this->show_msg('danger', 'خطأ في التسجيل', 'حدث خطأ أثناء إنشاء الحساب');
                     return redirect()->back()->withInput();
                 }
                 
@@ -130,6 +159,93 @@ class Users extends BaseController
         $data['title'] = lang('Site.register');
 
         return MainView('site_layout/shield/register', $data);
+    }
+
+    /**
+     * Send welcome email with activation link
+     */
+    private function sendWelcomeEmail(string $email, string $fullName, string $token): bool
+    {
+        $activationUrl = base_url("users/verify-email/{$token}");
+        
+        try {
+            $emailService = \Config\Services::email();
+            $emailService->setFrom(setting('Email.fromEmail') ?? 'noreply@msarlink.com', setting('Email.fromName') ?? 'مسار لينك');
+            $emailService->setTo($email);
+            $emailService->setSubject('مرحباً بك في مسار لينك - تفعيل الحساب');
+            
+            // Build welcome email HTML
+            $message = $this->buildWelcomeEmailHtml($fullName, $activationUrl);
+            $emailService->setMessage($message);
+            
+            if ($emailService->send()) {
+                log_message('info', "Welcome email sent to {$email}");
+                
+                // Log email
+                $this->db->table('tb_email_logs')->insert([
+                    'recipient_email' => $email,
+                    'email_type' => 'welcome_activation',
+                    'subject' => 'مرحباً بك في مسار لينك - تفعيل الحساب',
+                    'template_used' => 'welcome_email',
+                    'status' => 'sent',
+                    'sent_at' => date('Y-m-d H:i:s'),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]);
+                
+                return true;
+            } else {
+                log_message('error', "Failed to send welcome email to {$email}: " . $emailService->printDebugger(['headers']));
+                return false;
+            }
+        } catch (\Exception $e) {
+            log_message('error', "Exception sending welcome email: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Build welcome email HTML content
+     */
+    private function buildWelcomeEmailHtml(string $fullName, string $activationUrl): string
+    {
+        return <<<HTML
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مرحباً بك في مسار لينك</title>
+</head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; direction: rtl; text-align: right; background-color: #f5f5f5; margin: 0; padding: 20px;">
+    <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center;">
+            <h1 style="color: white; margin: 0; font-size: 28px;">🎉 مرحباً بك في مسار لينك!</h1>
+        </div>
+        <div style="padding: 30px;">
+            <p style="font-size: 18px; color: #333; margin-bottom: 20px;">عزيزي/عزيزتي <strong>{$fullName}</strong>،</p>
+            <p style="font-size: 16px; color: #555; line-height: 1.8;">شكراً لتسجيلك في منصة <strong>مسار لينك</strong> التعليمية. نحن سعداء بانضمامك إلينا!</p>
+            <p style="font-size: 16px; color: #555; line-height: 1.8;">لتفعيل حسابك والبدء في رحلتك التعليمية، يرجى الضغط على الزر أدناه:</p>
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="{$activationUrl}" 
+                   style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
+                          padding: 15px 40px; text-decoration: none; border-radius: 50px; font-size: 18px; font-weight: bold;
+                          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);">
+                    تفعيل الحساب ✓
+                </a>
+            </div>
+            <p style="font-size: 14px; color: #888; line-height: 1.6;">أو يمكنك نسخ الرابط التالي في متصفحك:</p>
+            <p style="font-size: 12px; color: #667eea; word-break: break-all; background: #f8f9fa; padding: 10px; border-radius: 5px;">{$activationUrl}</p>
+            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+            <p style="font-size: 12px; color: #999; text-align: center;">
+                إذا لم تقم بإنشاء هذا الحساب، يمكنك تجاهل هذه الرسالة.<br>
+                © مسار لينك - جميع الحقوق محفوظة
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+HTML;
     }
 
     /**

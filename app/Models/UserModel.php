@@ -173,8 +173,6 @@ class UserModel extends ShieldUserModel
                 $password_hash = $data['password_hash'];
                 unset($data['password_hash']);
 
-                $this->checkReturnType();
-
                 $user = new $this->returnType($data);
                 $user->email = $email_address;
                 $user->password_hash = $password_hash;
