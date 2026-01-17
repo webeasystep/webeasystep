@@ -171,7 +171,7 @@
                                                 <span class="text-success">مجاني</span>
                                             <?php else: ?>
                                                 <span><?= number_format($course['course_price'] ?? 0) ?></span>
-                                                <span style="font-size: 0.8rem; color: #777;">ر.س</span>
+                                                <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 0.8em; vertical-align: middle;">
                                             <?php endif; ?>
                                         </div>
                                         <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>" 

@@ -2882,7 +2882,7 @@
                                 مجاني
                             <?php else: ?>
                                 <?= number_format($course->course_price ?? 0) ?>
-                                <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1.2em; vertical-align: middle; filter: brightness(0) invert(1);">
+                                <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle; filter: brightness(0) invert(1);">
                             <?php endif; ?>
                         </div>
                         <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>" 
@@ -2962,7 +2962,7 @@
                                     مجاني
                                 <?php else: ?>
                                     <?= number_format($course->course_price ?? 0) ?>
-                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1.2em; vertical-align: middle; filter: brightness(0) invert(1);">
+                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle; filter: brightness(0) invert(1);">
                                 <?php endif; ?>
                             </div>
                             <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>" 
