@@ -55,12 +55,12 @@ $routes->get('activation-sent', function() {
     return MainView('site_layout/activation_sent');
 });
 
+// Custom routes for Shield actions MUST be defined before shield routes and with higher priority
+$routes->get('auth/a/show', [\App\Controllers\ActivationController::class, 'show'], ['priority' => 1]);
+$routes->post('auth/a/verify', [\App\Controllers\ActivationController::class, 'verify'], ['priority' => 1]);
+
 // Shield routes - exclude login, register, show and verify to avoid conflicts
 service('auth')->routes($routes, ['except' => ['login', 'register', 'auth/a/show', 'auth/a/verify']]);
-
-// Custom routes for Shield actions using dedicated ActivationController
-$routes->get('auth/a/show', 'ActivationController::show');
-$routes->post('auth/a/verify', 'ActivationController::verify');
 
 
 // Site main routes

@@ -37,11 +37,19 @@ class TestEmail extends BaseCommand
             CLI::write('- From Email: ' . $config->fromEmail);
             CLI::write('- From Name: ' . $config->fromName);
             
+            // Generate sample activation code
+            $code = '123456';
+            
+            // Use the actual email activation template via renderer service
+            $renderer = \Config\Services::renderer();
+            $message = $renderer->setData(['code' => $code], 'raw')
+                ->render('site_layout/shield/Email/email_activate_email');
+            
             // Test email settings
             $email->setFrom($config->fromEmail, $config->fromName);
             $email->setTo('test@example.com');
-            $email->setSubject('Test Email from MSARLink');
-            $email->setMessage('This is a test email to verify CodeIgniter email configuration.');
+            $email->setSubject(lang('Auth.emailActivateSubject'));
+            $email->setMessage($message);
             
             CLI::write('Attempting to send test email...', 'yellow');
             

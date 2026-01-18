@@ -96,6 +96,25 @@ class Site extends BaseController
         return redirect()->to('courses/my_courses');
     }
 
+    /**
+     * Handle email activation link from verification email.
+     * Redirects to the Shield activation verify form with the token.
+     */
+    public function activateAccount()
+    {
+        $token = $this->request->getGet('token');
+        
+        if (empty($token)) {
+            return redirect()->to('/login')->with('error', lang('Auth.invalidActivateToken'));
+        }
+        
+        // Set the token in session for the verification form
+        session()->setFlashdata('activation_token', $token);
+        
+        // Display the activation verification page
+        return MainView('site_layout/shield/email_activate_show', ['token' => $token]);
+    }
+
     //--------------------------------------------------------------------
     // Login/out
     //--------------------------------------------------------------------

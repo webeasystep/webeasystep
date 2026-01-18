@@ -62,7 +62,7 @@ class BaseController extends Controller
         $this->session->setFlashdata('msg_timeout', $timeout);
     }
 
-    public function show($id): ResponseInterface
+    public function showRecord($id): ResponseInterface
     {
         $table_name = $this->request->getPost('table');
         $columns = $this->request->getPost('columns');

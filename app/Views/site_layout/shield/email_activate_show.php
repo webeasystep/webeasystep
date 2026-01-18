@@ -15,13 +15,13 @@
 
             <p><?= lang('Auth.emailActivateBody') ?></p>
 
-            <form action="<?= url_to('auth-action-verify') ?>" method="post">
+            <form action="<?= site_url('auth/a/verify') ?>" method="post">
                 <?= csrf_field() ?>
 
                 <!-- Code -->
                 <div class="form-floating mb-2">
                     <input type="text" class="form-control" id="floatingTokenInput" name="token" placeholder="000000" inputmode="numeric"
-                        pattern="[0-9]*" autocomplete="one-time-code" value="<?= old('token') ?>" required>
+                        pattern="[0-9]*" autocomplete="one-time-code" value="<?= old('token') ?? ($token ?? '') ?>" required>
                     <label for="floatingTokenInput"><?= lang('Auth.token') ?></label>
                 </div>
 
