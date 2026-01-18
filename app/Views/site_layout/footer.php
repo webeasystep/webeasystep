@@ -33,6 +33,7 @@
                     <ul class="list-unstyled float-right links">
                         <li><a href="<?= base_url() ?>/courses">الكورسات </a></li>
                         <li><a href="<?= base_url() ?>enrollments/my-courses">دوراتي</a></li>
+                        <li><a href="<?= site_url('terms-conditions') ?>">الشروط والأحكام</a></li>
                     </ul>
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-3 -->

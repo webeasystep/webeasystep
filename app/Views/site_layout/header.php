@@ -14,6 +14,16 @@
     <meta property="og:image:width"   content="500"/>
     <meta property="og:image:height"  content="500"/>
     <meta property="og:site_name" content="msarlink.com"/>
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?= $title ?? setting('App.title'); ?>">
+    <meta name="twitter:description" content="<?= setting('App.site_description_ar'); ?>">
+    <meta name="twitter:image" content="<?= base_url() ?>site/images/feature_logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="<?= current_url(); ?>">
+    
     <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-16x16.png" sizes="16x16" />
 

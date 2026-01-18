@@ -95,6 +95,11 @@
                             <span class="icon-book mr-1"></span>كورس مادة البرمجة والذكاء الاصطناعي
                         </a>
                     </li>
+                    <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
+                        <a href="<?= site_url('terms-conditions') ?>">
+                            <span class="icon-document mr-1"></span>الشروط والأحكام
+                        </a>
+                    </li>
                     <?php if (isset(auth()->user()->full_name)): ?>
                         <!-- User Navigation Links -->
                         <li <?= str_contains(current_url(), 'courses/my_courses') ? 'class="active"' : '' ?>>

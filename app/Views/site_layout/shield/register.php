@@ -1,94 +1,72 @@
 <?=$this->extend('site_layout/template');?>
 <?= $this->section('content') ?>
 
-<!--Contact Info-->
-<div class="container mt-5">
-    <div class="row">
-        <div class="card col-12 col-md-5 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title mb-5"><?= lang('Auth.register') ?></h5>
-                <?= $this->include('site_layout/site_msg'); ?>
-                <form method="post">
-                    <div class="contact-form">
-                        <h1><?= lang('Auth.register') ?></h1>
+<!--Registration Form-->
+<div class="container mt-4 mb-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="card shadow-sm border-0" style="border-radius: 12px;">
+                <div class="card-body p-4">
+                    <h4 class="card-title text-center mb-3" style="font-weight: 700;"><?= lang('Auth.register') ?></h4>
+                    <p class="text-center text-muted small mb-3"><?= lang('Auth.haveAccount') ?> <a href="<?= url_to('login') ?>" class="text-primary"><?= lang('Auth.login') ?></a></p>
+                    
+                    <?= $this->include('site_layout/site_msg'); ?>
+                    
+                    <form method="post">
                         <?= csrf_field() ?>
 
-                        <p class="text-center"><?= lang('Auth.haveAccount') ?> <a
-                                    href="<?= url_to('login') ?>"><?= lang('Auth.login') ?></a></p>
-
                         <!-- Full Name -->
-                        <div class="form-group">
-                            <label for="full_name"><?= lang('Auth.fullName') ?></label>
-                            <input type="text" class="form-control" name="full_name"
+                        <div class="form-group mb-2">
+                            <label for="full_name" class="small mb-1"><?= lang('Auth.fullName') ?></label>
+                            <input type="text" class="form-control form-control-sm" name="full_name"
                                    placeholder="<?= lang('Auth.enterFullName') ?>" value="<?= old('full_name') ?>" required/>
                         </div>
-
                         <!-- Email -->
-                        <div class="form-group">
-                            <label for="email"><?= lang('Auth.email') ?> <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" name="email" id="email"
+                        <div class="form-group mb-2">
+                            <label for="email" class="small mb-1"><?= lang('Auth.email') ?> <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control form-control-sm" name="email" id="email"
                                    placeholder="email@example.com" value="<?= old('email') ?>" required/>
-                            <small class="form-text text-muted">سيتم إرسال رابط تفعيل الحساب على هذا البريد</small>
                         </div>
-
                         <!-- Mobile (Saudi Arabia only) -->
-                        <div class="form-group">
-                            <label for="mobile"><?= lang('Auth.mobileNumber') ?> <span class="text-danger">*</span></label>
-                            <div class="input-group">
+                        <div class="form-group mb-2">
+                            <label for="mobile" class="small mb-1"><?= lang('Auth.mobileNumber') ?> <span class="text-danger">*</span></label>
+                            <div class="input-group input-group-sm">
                                 <span class="input-group-text">🇸🇦 +966</span>
                                 <input type="text" class="form-control" name="mobile" id="mobile"
                                        placeholder="5xxxxxxxx" value="<?= old('mobile') ?>" 
                                        pattern="5[0-9]{8}" maxlength="9" required/>
                             </div>
-                            <small class="form-text text-muted">أدخل رقم الجوال بدون صفر (مثال: 5xxxxxxxx)</small>
                             <input type="hidden" name="country_code" value="+966">
                         </div>
-
-
-
                         <!-- Password -->
-                        <div class="form-group">
-                            <label for="password"><?= lang('Auth.password') ?></label>
-                            <input type="password" class="form-control" id="password" name="password" inputmode="text"
+                        <div class="form-group mb-2">
+                            <label for="password" class="small mb-1"><?= lang('Auth.password') ?></label>
+                            <input type="password" class="form-control form-control-sm" id="password" name="password" inputmode="text"
                                    autocomplete="current-password" placeholder="<?= lang('Auth.password') ?>" required/>
                         </div>
 
                         <!-- Password (Again) -->
-                        <div class="form-group">
-                            <label for="password"><?= lang('Auth.passwordConfirm') ?></label>
-                            <input type="password" class="form-control" name="password_confirm" inputmode="text"
+                        <div class="form-group mb-2">
+                            <label for="password" class="small mb-1"><?= lang('Auth.passwordConfirm') ?></label>
+                            <input type="password" class="form-control form-control-sm" name="password_confirm" inputmode="text"
                                    autocomplete="new-password" placeholder="<?= lang('Auth.passwordConfirm') ?>"
                                    required/>
                         </div>
 
-                        <!-- Remember me -->
-                        <?php if (setting('Auth.sessionConfig')['allowRemembering']): ?>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="rememberMe"
-                                       name="remember" <?php if (old('remember')): ?> checked<?php endif ?>>
-                                <label class="form-check-label" for="rememberMe">
-                                    <?= lang('Auth.rememberMe') ?>
-                                </label>
-                            </div>
-                        <?php endif; ?>
-
-
-                        <div class="d-grid col-12 col-md-8 mx-auto m-3">
-                            <button type="submit"
-                                    class="btn btn-primary btn-block"><?= lang('Auth.register') ?></button>
+                        <!-- Terms and Conditions Agreement -->
+                        <div class="form-check mb-2">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms"
+                                   name="agree_terms" required <?php if (old('agree_terms')): ?> checked<?php endif ?>>
+                            <label class="form-check-label small" for="agreeTerms">
+                                أوافق على <a href="<?= site_url('terms-conditions') ?>" target="_blank" class="text-primary fw-bold">الشروط والأحكام</a> <span class="text-danger">*</span>
+                            </label>
                         </div>
 
-                        <?php if (setting('Auth.allowMagicLinkLogins')) : ?>
-                            <p class="text-center mt-3"><?= lang('Auth.forgotPassword') ?> <a
-                                        href="<?= site_url('magic-link') ?>"><?= lang('Auth.useMagicLink') ?></a></p>
-                        <?php endif ?>
-
-                        <?php if (setting('Auth.allowRegistration')) : ?>
-                            <p class="text-center"><?= lang('Auth.needAccount') ?> <a
-                                        href="<?= site_url('users/register') ?>"><?= lang('Auth.register') ?></a></p>
-                        <?php endif ?>
-                    </div>
-                </form>
+                        <div class="d-grid mt-3">
+                            <button type="submit" class="btn btn-primary"><?= lang('Auth.register') ?></button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -69,4 +69,17 @@ class Pages extends BaseController
     }
 
 
+    /**
+     * Display Terms and Conditions page
+     */
+    public function termsConditions(): string
+    {
+        $data = [
+            'title' => 'الشروط والأحكام',
+        ];
+        
+        return view('site/terms_conditions', $data);
+    }
+
+
 }
