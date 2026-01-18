@@ -1,20 +1,6 @@
 <?= $this->extend('site_layout/template'); ?>
 <?= $this->section('content'); ?>
 
-<div class="untree_co-hero overlay" style="background-image: url('<?= base_url() ?>site/images/main_banner.jpg'); height: 250px; min-height: 250px;">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-12">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h1 class="heading text-white" data-aos="fade-up" data-aos-delay="100">الشروط والأحكام</h1>
-                        <p class="text-white" data-aos="fade-up" data-aos-delay="200">اتفاقية الاستخدام وحماية الحقوق</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="untree_co-section py-5">
     <div class="container">
@@ -55,9 +41,9 @@
                         <h5 class="text-success mb-3"><i class="fas fa-medal me-2"></i>3. سياسة الضمان الذهبي (الاسترجاع)</h5>
                         <p>نحن نثق في جودة ما نقدمه، ولأننا نريد لك الفائدة الحقيقية، نضمن لك حق استرداد المبلغ المدفوع بالكامل:</p>
                         <ul class="list-unstyled">
-                            <li class="mb-2">✅ <strong>المدة الزمنية:</strong> يحق لك طلب الاسترجاع خلال <strong>7 أيام</strong> من تاريخ الاشتراك.</li>
+                            <li class="mb-2">✅ <strong>المدة الزمنية:</strong> يحق لك طلب الاسترجاع خلال <strong>14 أيام</strong> من تاريخ الاشتراك.</li>
                             <li class="mb-2">✅ <strong>نسبة المشاهدة:</strong> يشترط ألا تكون قد شاهدت أكثر من <strong>25%</strong> من محتوى الدورة.</li>
-                            <li>✅ <strong>بدون أسئلة:</strong> إذا انطبقت عليك الشروط، يتم استرداد المبلغ خلال 14 يوم عمل.</li>
+                            <li>✅ <strong>بدون أسئلة:</strong> إذا انطبقت عليك الشروط، يتم استرداد المبلغ خلال 7 يوم عمل.</li>
                         </ul>
                     </div>
                 </div>

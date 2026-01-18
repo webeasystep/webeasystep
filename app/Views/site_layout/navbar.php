@@ -15,8 +15,8 @@
     <?php
     // If you want to show a logo only on homepage:
     if (current_url() == site_url()) {
-        echo '<a href="'.site_url().'" class="logo menu-absolute m-0 d-inline-block">
-              <img src="'.base_url('site/images/logo.png').'" alt="Site Logo" class="rounded-circle logo-image" style="object-fit:contain;">
+        echo '<a href="'.site_url().'" class="logo menu-absolute m-0 d-inline-block" style="top: 60px;">
+              <img src="'.base_url('site/images/logo.png').'" alt="Site Logo" class="rounded-circle logo-image" style="object-fit:contain; width: 300px; height: 300px;">
             </a>';
     }
     ?>
@@ -37,9 +37,9 @@
                         <span class="d-none d-lg-inline-block">+201032863861</span>
                     </a>
                     <!-- Email -->
-                    <a href="mailto:info@mydomain.com" class="small mr-3" dir="ltr">
+                    <a href="mailto:support@fakhrcs.com" class="small mr-3" dir="ltr">
                         <span class="icon-envelope mr-2"></span>
-                        <span class="d-none d-lg-inline-block">info@msarlink.com</span>
+                        <span class="d-none d-lg-inline-block">support@fakhrcs.com</span>
                     </a>
                 </div>
 
@@ -89,11 +89,6 @@
                 <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
                     <li <?= current_url() == site_url() ? 'class="active"' : '' ?>>
                         <a href="<?= site_url() ?>">الرئيسية</a>
-                    </li>
-                    <li <?= str_contains(current_url(), 'courses/my_courses') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('courses/course_details/programming_first_secendary') ?>">
-                            <span class="icon-book mr-1"></span>كورس مادة البرمجة والذكاء الاصطناعي
-                        </a>
                     </li>
                     <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
                         <a href="<?= site_url('terms-conditions') ?>">
@@ -188,7 +183,7 @@
             }
 
             .user-welcome-section .welcome-message {
-                max-width: 120px;
+                max-width: 150px;
                 font-size: 0.8rem;
             }
         }

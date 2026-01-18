@@ -13,16 +13,16 @@
                 <div class="widget">
                     <h3>تواصل معنا</h3>
                     <ul class="list-unstyled social">
-                        <!-- Telegram -->
-                        <li><a href="https://t.me/msarlink" target="_blank"><span class="icon-telegram"></span></a></li>
-                        <!-- YouTube -->
-                        <li><a href="https://www.youtube.com/@msarlink" target="_blank"><span class="icon-youtube"></span></a></li>
-                        <!-- Facebook -->
-                        <li><a href="https://www.facebook.com/msarlink" target="_blank"><span class="icon-facebook"></span></a></li>
-                        <!-- Phone -->
-                        <li><a href="tel:+201234567890"><span class="icon-phone"></span></a></li>
+                        <!-- YouTube - الويب خطوة سهلة -->
+                        <li><a href="https://www.youtube.com/@fakhrcs" target="_blank" title="الويب خطوة سهلة"><span class="icon-youtube"></span></a></li>
                         <!-- WhatsApp -->
-                        <li><a href="https://wa.me/201234567890" target="_blank"><span class="icon-whatsapp"></span></a></li>
+                        <li><a href="https://wa.me/201032863861" target="_blank" title="+201032863861"><span class="icon-whatsapp"></span></a></li>
+                        <!-- Telegram -->
+                        <li><a href="https://t.me/fakhrcs" target="_blank" title="@fakhrcs"><span class="icon-telegram"></span></a></li>
+                        <!-- TikTok -->
+                        <li><a href="https://www.tiktok.com/@fakhrcs" target="_blank" title="@fakhrcs"><span class="icon-music"></span></a></li>
+                        <!-- Phone -->
+                        <li><a href="tel:+201032863861" title="+201032863861"><span class="icon-phone"></span></a></li>
                     </ul>
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-3 -->
@@ -43,8 +43,8 @@
                 <div class="widget">
                     <h3>اتصل بنا</h3>
                     <ul class="list-unstyled links mb-4">
-                        <li dir="ltr"><a href="tel://00201032863861">+2010-328-638-61</a></li>
-                        <li dir="ltr"><a href="mailto:info@mydomain.com">info@msarlink.com</a></li>
+                        <li dir="ltr"><a href="tel:+201032863861">+201032863861</a></li>
+                        <li dir="ltr"><a href="mailto:support@fakhrcs.com">support@fakhrcs.com</a></li>
                     </ul>
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-3 -->
@@ -54,7 +54,7 @@
         <div class="row mt-5">
             <div class="col-12 text-center">
                 <p>حقوق النشر &copy;<script>document.write(new Date().getFullYear());</script>
-                    . جميع الحقوق محفوظة. &mdash; <a href="https://msarlink.com">msarlink.com</a>
+                    . جميع الحقوق محفوظة. &mdash; <a href="https://fakhrcs.com">FakhrCS</a>
             </div>
         </div>
     </div> <!-- /.container -->
