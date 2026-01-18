@@ -76,6 +76,8 @@ $routes->group('site', ['namespace' => 'App\Controllers'], function ($routes) {
 
 });
 
+// Leads API route (for fake door MVP)
+$routes->post('leads/save', [\App\Controllers\Leads::class, 'save']);
 
 // admin main routes 'filter' => 'admin_filter',
 

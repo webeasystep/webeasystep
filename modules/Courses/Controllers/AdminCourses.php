@@ -41,7 +41,7 @@ class AdminCourses extends BaseController
             DtTable::hideColumns(['id']);
             DtTable::searchableColumns(['course_title', 'course_desc', 'is_free']);
             DtTable::orderableColumns(['course_title', 'course_desc', 'sort', 'is_free', 'created_at']);
-            DtTable::setColumnImage('image');
+           // DtTable::setColumnImage('image');
             DtTable::setColumnSwitch('is_free'); // Add switch for is_free
             DtTable::setColumnSwitch('active'); // Add switch for is_free
             // Add a link around the course_title column using the slug
