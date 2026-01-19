@@ -33,7 +33,7 @@ class AdminCourses extends BaseController
 
         if ($this->request->isAJAX()) {
             $coursesModel = $this->courses
-                ->select('id, course_title, slug, image, sort, is_free, active, created_at')
+                ->select('id, course_title, slug, sort, is_free, active, created_at')
                 ->orderBy('id', 'desc')
                 ->builder();
 

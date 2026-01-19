@@ -15,7 +15,7 @@
                             <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">
                                 ضمن الـ A+ في مواد التخصص (CS/IT)<br>بدون حفظ سلايدات الجامعة المملة
                             </h1>
-                            
+
                             <p class="mb-4 text-white" style="font-size: 1.2rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="200">
                                 شرح عملي مخصص لطلاب <strong>الجامعة السعودية الإلكترونية (SEU)</strong>.. نفهمك كيف الكود بيشتغل في الرامات، مش بس بنقرأ المحاضرة.
                             </p>
@@ -42,7 +42,7 @@
                      </p>
                  </div>
              </div>
-             
+
              <div class="row justify-content-center">
                  <div class="col-lg-10 mb-4" data-aos="fade-up" data-aos-delay="100">
                      <div class="specialization-card p-4 rounded-lg shadow" style="background: linear-gradient(135deg, #136ad5 0%, #0d5bba 100%) !important; border-radius: 16px !important;">
@@ -62,7 +62,7 @@
                      </div>
                  </div>
              </div>
-             
+
              <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
                  <div class="col-lg-10">
                      <div class="bg-white p-4 rounded-lg shadow-sm" style="border-radius: 16px !important; border: 1px solid #e2e8f0;">
@@ -150,187 +150,71 @@
                 </div>
             </div>
             <div class="row">
-                <!-- OOP Course -->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-                    <div class="course-card h-100">
-                        <div class="course-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            <div class="course-icon">
-                                <i class="fas fa-cubes"></i>
-                            </div>
-                            <span class="course-badge">🔥 قريباً</span>
-                        </div>
-                        <div class="course-card-body">
-                            <h5 class="course-title">البرمجة الكائنية (OOP)</h5>
-                            <div class="course-codes">IT232 | CS230 | DS230</div>
-                            <p class="course-value">🚀 البوابة لدخول التخصص</p>
-                            <div class="course-footer">
-                                <div class="course-price">
-                                    <span class="price-amount">135</span>
-                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" class="riyal-icon">
+                <?php
+                // Define gradient colors for courses without images
+                $gradients = [
+                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                    'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
+                    'linear-gradient(135deg, #ff0844 0%, #ffb199 100%)',
+                ];
+                $icons = ['fa-cubes', 'fa-project-diagram', 'fa-database', 'fa-network-wired', 'fa-cogs', 'fa-globe', 'fa-brain'];
+                $courseIndex = 0;
+                ?>
+                <?php if (!empty($courses)): ?>
+                    <?php foreach ($courses as $course): ?>
+                        <?php
+                        $hasImage = !empty($course['image']) && $course['image'] !== '[]';
+                        $gradient = $gradients[$courseIndex % count($gradients)];
+                        $icon = $icons[$courseIndex % count($icons)];
+                        $courseIndex++;
+                        ?>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
+                            <div class="course-card h-100">
+                                <?php if ($hasImage): ?>
+                                    <div class="course-card-image">
+                                        <img src="<?= thumb($course['image'], 400, 200) ?>"
+                                             alt="<?= esc($course['course_title']) ?>"
+                                             class="course-img">
+                                        <span class="course-badge">🔥 قريباً</span>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="course-card-image" style="background: <?= $gradient ?>;">
+                                        <div class="course-icon">
+                                            <i class="fas <?= $icon ?>"></i>
+                                        </div>
+                                        <span class="course-badge">🔥 قريباً</span>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="course-card-body">
+                                    <h5 class="course-title"><?= esc($course['course_title']) ?></h5>
+                                    <div class="course-codes"><?= esc($course['short_desc'] ?? '') ?></div>
+                                    <p class="course-value"><?= esc($course['course_desc'] ?? '') ?></p>
+                                    <div class="course-footer">
+                                        <div class="course-price">
+                                            <?php if (!empty($course['is_free']) && $course['is_free']): ?>
+                                                <span class="price-amount text-success">مجاني</span>
+                                            <?php else: ?>
+                                                <span class="price-amount"><?= number_format($course['course_price'] ?? 135) ?></span>
+                                                <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" class="riyal-icon">
+                                            <?php endif; ?>
+                                        </div>
+                                        <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">
+                                            اشترك الآن
+                                        </button>
+                                    </div>
                                 </div>
-                                <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('البرمجة الكائنية (OOP)')">
-                                    اشترك الآن
-                                </button>
                             </div>
                         </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="col-12 text-center">
+                        <p class="text-muted">جاري تحديث المواد للفصل الدراسي الجديد...</p>
                     </div>
-                </div>
-
-                <!-- Data Structure Course -->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-                    <div class="course-card h-100">
-                        <div class="course-card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                            <div class="course-icon">
-                                <i class="fas fa-project-diagram"></i>
-                            </div>
-                            <span class="course-badge">🔥 قريباً</span>
-                        </div>
-                        <div class="course-card-body">
-                            <h5 class="course-title">هياكل البيانات (Data Structure)</h5>
-                            <div class="course-codes">IT245 | CS240 | DS240</div>
-                            <p class="course-value">💡 جوهر المنطق وأساس المقابلات</p>
-                            <div class="course-footer">
-                                <div class="course-price">
-                                    <span class="price-amount">135</span>
-                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" class="riyal-icon">
-                                </div>
-                                <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('هياكل البيانات (Data Structure)')">
-                                    اشترك الآن
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Database Course -->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-                    <div class="course-card h-100">
-                        <div class="course-card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                            <div class="course-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <span class="course-badge">🔥 قريباً</span>
-                        </div>
-                        <div class="course-card-body">
-                            <h5 class="course-title">مقدمة في قواعد البيانات</h5>
-                            <div class="course-codes">IT244 | CS350 | DS350</div>
-                            <p class="course-value">🏗️ العمود الفقري للتطبيقات</p>
-                            <div class="course-footer">
-                                <div class="course-price">
-                                    <span class="price-amount">135</span>
-                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" class="riyal-icon">
-                                </div>
-                                <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('مقدمة في قواعد البيانات')">
-                                    اشترك الآن
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Networks Course -->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-                    <div class="course-card h-100">
-                        <div class="course-card-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-                            <div class="course-icon">
-                                <i class="fas fa-network-wired"></i>
-                            </div>
-                            <span class="course-badge">🔥 قريباً</span>
-                        </div>
-                        <div class="course-card-body">
-                            <h5 class="course-title">شبكات الحاسب (Computer Networks)</h5>
-                            <div class="course-codes">IT351 | CS360 | DS360</div>
-                            <p class="course-value">🔌 تبسيط النظريات المعقدة</p>
-                            <div class="course-footer">
-                                <div class="course-price">
-                                    <span class="price-amount">135</span>
-                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" class="riyal-icon">
-                                </div>
-                                <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('شبكات الحاسب (Computer Networks)')">
-                                    اشترك الآن
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Operating Systems Course -->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-                    <div class="course-card h-100">
-                        <div class="course-card-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                            <div class="course-icon">
-                                <i class="fas fa-cogs"></i>
-                            </div>
-                            <span class="course-badge">🔥 قريباً</span>
-                        </div>
-                        <div class="course-card-body">
-                            <h5 class="course-title">نظم التشغيل (Operating Systems)</h5>
-                            <div class="course-codes">IT241 | CS351 | DS351</div>
-                            <p class="course-value">⚙️ غوص عميق في ميكانيكا الأنظمة</p>
-                            <div class="course-footer">
-                                <div class="course-price">
-                                    <span class="price-amount">135</span>
-                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" class="riyal-icon">
-                                </div>
-                                <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('نظم التشغيل (Operating Systems)')">
-                                    اشترك الآن
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Web Technologies Course -->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-                    <div class="course-card h-100">
-                        <div class="course-card-image" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">
-                            <div class="course-icon">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <span class="course-badge">🔥 قريباً</span>
-                        </div>
-                        <div class="course-card-body">
-                            <h5 class="course-title">تقنيات الويب (Web Technologies)</h5>
-                            <div class="course-codes">IT361 | CS361 | DS362</div>
-                            <p class="course-value">🌐 الأكثر تفاعلاً ونتائج ملموسة</p>
-                            <div class="course-footer">
-                                <div class="course-price">
-                                    <span class="price-amount">135</span>
-                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" class="riyal-icon">
-                                </div>
-                                <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('تقنيات الويب (Web Technologies)')">
-                                    اشترك الآن
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Algorithms Course -->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-                    <div class="course-card h-100">
-                        <div class="course-card-image" style="background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);">
-                            <div class="course-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <span class="course-badge">🔥 قريباً</span>
-                        </div>
-                        <div class="course-card-body">
-                            <h5 class="course-title">الخوارزميات (Algorithms)</h5>
-                            <div class="course-codes">CS353 | DS352</div>
-                            <p class="course-value">🧠 المستوى المتقدم - إتقان المنطق</p>
-                            <div class="course-footer">
-                                <div class="course-price">
-                                    <span class="price-amount">135</span>
-                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" class="riyal-icon">
-                                </div>
-                                <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('الخوارزميات (Algorithms)')">
-                                    اشترك الآن
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -356,7 +240,7 @@
                     <div class="selected-course-name mb-3" id="selectedCourseName"></div>
                     <form id="interestForm" class="interest-form">
                         <div class="form-group mb-3">
-                            <input type="email" class="form-control form-control-lg" id="userEmail" 
+                            <input type="email" class="form-control form-control-lg" id="userEmail"
                                    placeholder="أدخل بريدك الإلكتروني" required dir="ltr">
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block" id="submitBtn">
@@ -391,11 +275,18 @@
             box-shadow: 0 12px 40px rgba(0,0,0,0.15);
         }
         .course-card-image {
-            height: 140px;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            overflow: hidden;
+        }
+        .course-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
         }
         .course-icon {
             width: 70px;
@@ -571,14 +462,14 @@
             document.getElementById('userEmail').value = '';
             document.getElementById('interestForm').classList.remove('d-none');
             document.getElementById('successMessage').classList.add('d-none');
-            
+
             // Log click event to console
             console.log('[Fake Door] Subscribe clicked:', {
                 Course_Name: courseName,
                 Timestamp: new Date().toISOString(),
                 Action: 'MODAL_OPENED'
             });
-            
+
             $('#subscribeModal').modal('show');
         }
 
@@ -588,10 +479,10 @@
 
         document.getElementById('interestForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const email = document.getElementById('userEmail').value;
             const submitBtn = document.getElementById('submitBtn');
-            
+
             if (!email) {
                 alert('الرجاء إدخال البريد الإلكتروني');
                 return;
@@ -623,11 +514,11 @@
             .then(response => response.json())
             .then(data => {
                 console.log('[Fake Door] Server Response:', data);
-                
+
                 // Show success message
                 document.getElementById('interestForm').classList.add('d-none');
                 document.getElementById('successMessage').classList.remove('d-none');
-                
+
                 // Auto close after 3 seconds
                 setTimeout(() => {
                     closeModal();
@@ -638,7 +529,7 @@
                 // Still show success to user (fake door behavior)
                 document.getElementById('interestForm').classList.add('d-none');
                 document.getElementById('successMessage').classList.remove('d-none');
-                
+
                 setTimeout(() => {
                     closeModal();
                 }, 3000);
@@ -657,7 +548,7 @@
                     <div class="section-title mb-4" data-aos="fade-up" data-aos-delay="0">
                         <h2 class="line-bottom mb-4">مين هو المهندس أحمد فخر الدين؟</h2>
                     </div>
-                    
+
                     <p class="mb-4" data-aos="fade-up" data-aos-delay="100" style="font-size: 1.1rem; line-height: 1.8; color: #444;">
                          خبرة عملية لأكثر من <strong>12+ سنة</strong> في مجال صناعة البرمجيات داخل المملكة العربية السعودية وخارجها.
                     </p>
@@ -670,7 +561,7 @@
                             <li>أشرفت على العديد من مشاريع التخرج لطلبة علوم الحاسب.</li>
                         </ul>
                     </div>
-                    
+
                     <div class="row mt-4" data-aos="fade-up" data-aos-delay="300">
                          <div class="col-6">
                              <h3 class="text-primary mb-1" style="font-weight: 800;">+20,000</h3>
@@ -682,11 +573,11 @@
                          </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-5" data-aos="fade-left" data-aos-delay="400">
                     <figure class="img-wrap-2" style="max-width: 380px; margin: 0 auto;">
                         <img src="<?= base_url() ?>site/images/fakhrcs.webp" alt="م/ أحمد فخر الدين" class="img-fluid" style="border-radius: 15px; max-width: 100%;">
-                        
+
                         <div style="position: absolute; bottom: -20px; right: -15px; background: white; padding: 15px 18px; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.12); max-width: 300px;">
                              <div class="d-flex align-items-start">
                                  <i class="fas fa-quote-right text-primary mr-3" style="font-size: 20px;"></i>

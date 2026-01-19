@@ -51,7 +51,7 @@ if (!function_exists('thumb')) {
                         // Create a new instance of the image library
                         $image = \Config\Services::image()
                             ->withFile($fullPath)
-                            ->fit($width, $height, 'center') // crop + resize to exact dimensions
+                            ->fit($width, $height, 'top') // crop from top to preserve important content
                             ->save($thumbnailPath);
                     } catch (\Exception $e) {
                         // In case of any image error, return fallback image
