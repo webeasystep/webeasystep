@@ -437,3 +437,51 @@ $(document).ready(function () {
 	}
 });
 
+/* ============================================
+   DARK MODE TOGGLE - Theme Switcher
+   ============================================ */
+
+// Initialize dark mode on page load
+(function initDarkMode() {
+	var savedTheme = localStorage.getItem('theme');
+	var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+	// Apply saved theme or system preference
+	if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+		document.body.classList.add('dark-mode');
+	}
+})();
+
+// Toggle dark mode function
+function toggleDarkMode() {
+	var body = document.body;
+	var isDark = body.classList.toggle('dark-mode');
+
+	// Save preference to localStorage
+	localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+	// Log for debugging
+	console.log('[Theme] Switched to:', isDark ? 'Dark Mode' : 'Light Mode');
+}
+
+// Attach click handler using event delegation (works with cloned nav)
+$(document).ready(function () {
+	// Use event delegation on document for all toggle buttons
+	$(document).on('click', '.theme-toggle-btn, #themeToggle', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		toggleDarkMode();
+	});
+});
+
+// Listen for system theme changes
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+	// Only auto-switch if user hasn't set a preference
+	if (!localStorage.getItem('theme')) {
+		if (e.matches) {
+			document.body.classList.add('dark-mode');
+		} else {
+			document.body.classList.remove('dark-mode');
+		}
+	}
+});

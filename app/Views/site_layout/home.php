@@ -146,7 +146,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-7 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
-                    <h2 class="line-bottom text-center mb-4">المواد المتاحة للفصل الحالي</h2>
+                    <h2 class="line-bottom text-center mb-4">المواد المتاحة </h2>
                     <p>اختر المادة اللي شايل همها، واترك الباقي علينا.</p>
                 </div>
             </div>

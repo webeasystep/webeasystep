@@ -818,20 +818,20 @@ h4,
 }
 
 .sticky-wrapper .site-navbar .site-menu-toggle {
-    color: #000000;
+    color: var(--sticky-nav-text, #000000);
 }
 
 .sticky-wrapper .site-navbar .site-logo a {
-    color: #000000;
+    color: var(--sticky-nav-text, #000000);
 }
 
 .sticky-wrapper .site-navbar .site-menu>li>a {
-    color: rgba(0, 0, 0, 0.8) !important;
+    color: var(--sticky-nav-text, rgba(0, 0, 0, 0.8)) !important;
 }
 
 .sticky-wrapper .site-navbar .site-menu>li>a:hover,
 .sticky-wrapper .site-navbar .site-menu>li>a.active {
-    color: #000000 !important;
+    color: var(--sticky-nav-hover, #000000) !important;
 }
 
 .sticky-wrapper.is-sticky .burger:before,
@@ -844,27 +844,34 @@ h4,
 }
 
 .sticky-wrapper.is-sticky .site-navbar {
-    background: #000000;
-    border-bottom: 1px solid transparent;
+    background: var(--sticky-nav-bg, #ffffff);
+    border-bottom: 1px solid var(--border-color, transparent);
     -webkit-box-shadow: -4px 0 20px -5px rgba(0, 0, 0, 0.1);
     box-shadow: -4px 0 20px -5px rgba(0, 0, 0, 0.1);
 }
 
 .sticky-wrapper.is-sticky .site-navbar .site-logo a {
-    color: #000000 !important;
+    color: var(--sticky-nav-text, #000000) !important;
 }
 
 .sticky-wrapper.is-sticky .site-navbar .site-menu>li>a {
-    color: #000000 !important;
+    color: var(--sticky-nav-text, #000000) !important;
 }
 
 .sticky-wrapper.is-sticky .site-navbar .site-menu>li>a:hover,
 .sticky-wrapper.is-sticky .site-navbar .site-menu>li>a.active {
-    color: #136ad5 !important;
+    color: var(--sticky-nav-hover, #136ad5) !important;
 }
 
 .sticky-wrapper.is-sticky .site-navbar .site-menu>li.active a {
-    color: #136ad5 !important;
+    color: var(--sticky-nav-hover, #136ad5) !important;
+}
+
+/* Dark mode sticky navbar variables */
+body.dark-mode {
+    --sticky-nav-bg: #0f172a;
+    --sticky-nav-text: #e2e8f0;
+    --sticky-nav-hover: #60a5fa;
 }
 
 .sticky-wrapper .shrink {
@@ -899,20 +906,20 @@ h4,
 }
 
 .sticky-wrapper.is-sticky .sticky-nav .logo {
-    color: #000000 !important;
+    color: var(--sticky-nav-text, #000000) !important;
 }
 
 .sticky-wrapper.is-sticky .sticky-nav .site-menu>li>a {
-    color: #000000 !important;
+    color: var(--sticky-nav-text, #000000) !important;
 }
 
 .sticky-wrapper.is-sticky .sticky-nav .site-menu>li>a:hover,
 .sticky-wrapper.is-sticky .sticky-nav .site-menu>li>a.active {
-    color: #136ad5 !important;
+    color: var(--sticky-nav-hover, #136ad5) !important;
 }
 
 .sticky-wrapper.is-sticky .sticky-nav .site-menu>li.active a {
-    color: #136ad5 !important;
+    color: var(--sticky-nav-hover, #136ad5) !important;
 }
 
 /* Burger */
@@ -2880,4 +2887,571 @@ h4,
 .success-icon i {
     font-size: 36px;
     color: #38a169;
+}
+
+/* ============================================
+   DARK MODE TOGGLE BUTTON
+   ============================================ */
+
+.theme-toggle-item {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+/* Toggle Switch Container */
+.theme-toggle-btn {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    border: none;
+    border-radius: 50px;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 3px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Sliding Knob */
+.theme-toggle-btn::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 24px;
+    height: 24px;
+    background: #ffffff;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle-btn:hover {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.theme-toggle-btn:focus {
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Icons positioning */
+.theme-toggle-btn .theme-icon-light,
+.theme-toggle-btn .theme-icon-dark {
+    font-size: 12px;
+    transition: all 0.3s ease;
+    z-index: 1;
+    position: relative;
+}
+
+/* Sun icon - left side (visible in light mode) */
+.theme-toggle-btn .theme-icon-light {
+    color: #fef3c7;
+    margin-right: auto;
+    margin-left: 6px;
+}
+
+/* Moon icon - right side (hidden behind knob in light mode) */
+.theme-toggle-btn .theme-icon-dark {
+    color: rgba(255, 255, 255, 0.4);
+    margin-left: auto;
+    margin-right: 6px;
+}
+
+/* ===== Dark Mode Active - Slide knob to left ===== */
+body.dark-mode .theme-toggle-btn {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+/* Move knob to LEFT in dark mode */
+body.dark-mode .theme-toggle-btn::after {
+    right: auto;
+    left: 3px;
+    background: #fbbf24;
+}
+
+body.dark-mode .theme-toggle-btn:hover {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(251, 191, 36, 0.3);
+}
+
+/* Sun icon faded in dark mode */
+body.dark-mode .theme-toggle-btn .theme-icon-light {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Moon icon bright in dark mode */
+body.dark-mode .theme-toggle-btn .theme-icon-dark {
+    color: #60a5fa;
+}
+
+/* ============================================
+   DARK MODE - CSS VARIABLES
+   ============================================ */
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f7fafc;
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --border-color: #e2e8f0;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --card-bg: #1e293b;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   DARK MODE - GLOBAL STYLES
+   ============================================ */
+
+body.dark-mode {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+body.dark-mode .bg-light,
+body.dark-mode .untree_co-section {
+    background-color: var(--bg-secondary) !important;
+}
+
+body.dark-mode .text-muted {
+    color: var(--text-muted) !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: var(--text-primary);
+}
+
+body.dark-mode p {
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   DARK MODE - NAVBAR
+   ============================================ */
+
+body.dark-mode .top-bar {
+    background-color: #0f172a;
+}
+
+body.dark-mode .top-bar a {
+    color: #94a3b8 !important;
+}
+
+body.dark-mode .top-bar a:hover {
+    color: #f1f5f9 !important;
+}
+
+body.dark-mode .sticky-nav.js-sticky-header {
+    background-color: #1e293b;
+}
+
+body.dark-mode .site-nav {
+    background: #0f172a !important;
+}
+
+body.dark-mode .site-menu>li>a {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .site-menu>li>a:hover,
+body.dark-mode .site-menu>li.active>a {
+    color: #ffffff !important;
+}
+
+body.dark-mode .site-mobile-menu {
+    background-color: #1e293b;
+}
+
+body.dark-mode .site-mobile-menu a {
+    color: #f1f5f9;
+}
+
+/* Sticky wrapper when scrolled */
+body.dark-mode .sticky-wrapper .site-navbar {
+    background-color: #1e293b !important;
+}
+
+body.dark-mode .sticky-wrapper .site-navbar .site-menu-toggle {
+    color: #f1f5f9 !important;
+}
+
+body.dark-mode .sticky-wrapper .site-navbar .site-logo a {
+    color: #f1f5f9 !important;
+}
+
+body.dark-mode .sticky-wrapper .site-navbar .site-menu>li>a {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .sticky-wrapper .site-navbar .site-menu>li>a:hover,
+body.dark-mode .sticky-wrapper .site-navbar .site-menu>li>a.active {
+    color: #ffffff !important;
+}
+
+body.dark-mode .sticky-wrapper.is-sticky .burger:before,
+body.dark-mode .sticky-wrapper.is-sticky .burger span,
+body.dark-mode .sticky-wrapper.is-sticky .burger:after {
+    background: #f1f5f9 !important;
+}
+
+/* ===== CRITICAL: Sticky navbar when scrolled in dark mode ===== */
+body.dark-mode .sticky-wrapper.is-sticky .site-navbar {
+    background: #1e293b !important;
+    border-bottom: 1px solid #334155 !important;
+}
+
+body.dark-mode .sticky-wrapper.is-sticky .site-navbar .site-logo a {
+    color: #f1f5f9 !important;
+}
+
+body.dark-mode .sticky-wrapper.is-sticky .site-navbar .site-menu>li>a {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .sticky-wrapper.is-sticky .site-navbar .site-menu>li>a:hover,
+body.dark-mode .sticky-wrapper.is-sticky .site-navbar .site-menu>li>a.active,
+body.dark-mode .sticky-wrapper.is-sticky .site-navbar .site-menu>li.active>a {
+    color: #60a5fa !important;
+}
+
+/* ============================================
+   THEME TOGGLE BUTTON - DESKTOP FIX
+   ============================================ */
+
+/* Ensure toggle is visible and clickable on desktop */
+.theme-toggle-item {
+    display: inline-flex !important;
+    align-items: center;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.theme-toggle-btn {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 1000;
+}
+
+/* User welcome section in navbar */
+body.dark-mode .user-info,
+body.dark-mode .welcome-message {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .user-welcome-section strong {
+    color: #f1f5f9 !important;
+}
+
+/* ============================================
+   DARK MODE - COURSE CARDS
+   ============================================ */
+
+body.dark-mode .course-card {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+body.dark-mode .course-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .course-title {
+    color: var(--text-primary);
+}
+
+body.dark-mode .course-codes {
+    color: var(--text-muted);
+}
+
+body.dark-mode .course-value {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border-color: #3b82f6;
+}
+
+body.dark-mode .course-footer {
+    border-color: var(--border-color);
+}
+
+body.dark-mode .price-amount {
+    color: var(--text-primary);
+}
+
+body.dark-mode .course-badge {
+    background: rgba(30, 41, 59, 0.95);
+    color: #f1f5f9;
+}
+
+/* ============================================
+   DARK MODE - MODAL
+   ============================================ */
+
+body.dark-mode .modal-content,
+body.dark-mode .subscribe-modal-content {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .modal-title {
+    color: var(--text-primary);
+}
+
+body.dark-mode .modal-message {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .selected-course-name {
+    background: #1e3a5f;
+    color: #60a5fa;
+}
+
+body.dark-mode .form-control {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+body.dark-mode .form-control::placeholder {
+    color: var(--text-muted);
+}
+
+/* ============================================
+   DARK MODE - FOOTER
+   ============================================ */
+
+body.dark-mode .footer {
+    background-color: #0f172a !important;
+}
+
+body.dark-mode .footer h3,
+body.dark-mode .footer a {
+    color: #f1f5f9;
+}
+
+body.dark-mode .footer p,
+body.dark-mode .footer .text-muted {
+    color: #94a3b8 !important;
+}
+
+/* ============================================
+   DARK MODE - BUTTONS
+   ============================================ */
+
+body.dark-mode .btn-light {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .btn-outline-primary {
+    border-color: #3b82f6;
+    color: #60a5fa;
+}
+
+body.dark-mode .btn-outline-primary:hover {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+/* ============================================
+   DARK MODE - MISC ELEMENTS
+   ============================================ */
+
+body.dark-mode .ul-check li::before {
+    color: #60a5fa;
+}
+
+body.dark-mode .line-bottom::after {
+    background-color: #3b82f6;
+}
+
+body.dark-mode .feature {
+    background-color: var(--card-bg);
+}
+
+body.dark-mode .icon-wrap.bg-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+}
+
+/* Dark mode transition */
+body,
+body * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ============================================
+   DARK MODE - HOMEPAGE SPECIFIC ELEMENTS
+   ============================================ */
+
+/* White backgrounds must become dark */
+body.dark-mode .bg-white {
+    background-color: var(--card-bg) !important;
+}
+
+/* Program cards (IT, CS, DS) */
+body.dark-mode .program-card {
+    background: var(--bg-secondary) !important;
+}
+
+body.dark-mode .program-card h5 {
+    color: #60a5fa !important;
+}
+
+/* Shadow adjustments */
+body.dark-mode .shadow,
+body.dark-mode .shadow-sm {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Text dark class */
+body.dark-mode .text-dark {
+    color: #cbd5e1 !important;
+}
+
+/* Lead text */
+body.dark-mode .lead {
+    color: var(--text-secondary);
+}
+
+/* Make toggle visible on desktop */
+.site-menu .theme-toggle-item {
+    display: inline-flex !important;
+    align-items: center;
+    vertical-align: middle;
+}
+
+/* Dark mode navbar */
+body.dark-mode .site-nav {
+    background: #0f172a !important;
+}
+
+body.dark-mode .sticky-nav {
+    background-color: #1e293b !important;
+}
+
+/* Override inline styles for headings */
+body.dark-mode h2[style*="color"],
+body.dark-mode h3[style*="color"],
+body.dark-mode h4[style*="color"],
+body.dark-mode h5[style*="color"],
+body.dark-mode h6[style*="color"] {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode p[style*="color"] {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode strong.text-dark,
+body.dark-mode span.text-dark {
+    color: #e2e8f0 !important;
+}
+
+/* Section with light gray background */
+body.dark-mode .untree_co-section[style*="background-color: #f8fafc"],
+body.dark-mode div[style*="background-color: #f8fafc"] {
+    background-color: var(--bg-secondary) !important;
+}
+
+/* White cards with shadow */
+body.dark-mode div.bg-white,
+body.dark-mode div[class*="bg-white"] {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* ============================================
+   DARK MODE - FEATURE SECTION
+   ============================================ */
+
+/* Feature box */
+body.dark-mode .feature {
+    background-color: transparent;
+}
+
+body.dark-mode .feature h3 {
+    color: #f1f5f9 !important;
+}
+
+body.dark-mode .feature p {
+    color: #94a3b8 !important;
+}
+
+/* All paragraphs in sections */
+body.dark-mode .untree_co-section p,
+body.dark-mode .container p {
+    color: var(--text-secondary);
+}
+
+/* All h3 headings */
+body.dark-mode h3 {
+    color: var(--text-primary);
+}
+
+/* Badge styling */
+body.dark-mode .badge-primary {
+    background-color: #3b82f6 !important;
+}
+
+/* List items */
+body.dark-mode .ul-check li {
+    color: var(--text-secondary);
+}
+
+/* Section title */
+body.dark-mode .section-title h2 {
+    color: var(--text-primary) !important;
+}
+
+/* ============================================
+   DARK MODE - GOLDEN GUARANTEE SECTION
+   ============================================ */
+
+/* Override inline background: white */
+body.dark-mode div[style*="background: white"],
+body.dark-mode div[style*="background:white"],
+body.dark-mode div[style*="background:#fff"],
+body.dark-mode div[style*="background: #fff"] {
+    background: var(--card-bg) !important;
+}
+
+/* Golden section outer container */
+body.dark-mode [style*="background-color: #fffdf2"] {
+    background-color: var(--bg-secondary) !important;
+}
+
+/* Golden guarantee heading and text */
+body.dark-mode div[style*="border: 2px dashed"] h2 {
+    color: #fbbf24 !important;
+}
+
+body.dark-mode div[style*="border: 2px dashed"] p {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-mode div[style*="border: 2px dashed"] strong {
+    color: var(--text-primary) !important;
+}
+
+/* Golden icon color stays gold */
+body.dark-mode .fa-shield-alt[style*="color: #d4af37"] {
+    color: #fbbf24 !important;
 }

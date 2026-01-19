@@ -13,9 +13,9 @@
 
 <nav class="site-nav mb-5" role="navigation" aria-label="Main navigation">
     <?php
-    // If you want to show a logo only on homepage:
+    // If you want to show a logo only on homepage (hidden on mobile to prevent overlap):
     if (current_url() == site_url()) {
-        echo '<a href="'.site_url().'" class="logo menu-absolute m-0 d-inline-block" style="top: 60px;">
+        echo '<a href="'.site_url().'" class="logo menu-absolute m-0 d-none d-lg-inline-block" style="top: 60px;">
               <img src="'.base_url('site/images/logo.png').'" alt="Site Logo" class="rounded-circle logo-image" style="object-fit:contain; width: 300px; height: 300px;">
             </a>';
     }
@@ -44,10 +44,16 @@
                 </div>
 
                 <!-- Top Right: User Welcome Section or Login/Register -->
-                <div class="col-6 col-lg-3 text-right">
+                <div class="col-6 col-lg-3 text-right d-flex align-items-center justify-content-end">
+                    <!-- Theme Toggle - Always Visible -->
+                    <button type="button" class="theme-toggle-btn ml-2" id="themeToggleTop" aria-label="Toggle dark mode" title="تبديل الوضع الداكن">
+                        <i class="fas fa-sun theme-icon-light"></i>
+                        <i class="fas fa-moon theme-icon-dark"></i>
+                    </button>
+                    
                     <?php if (isset(auth()->user()->full_name)): ?>
                         <!-- User Welcome Section -->
-                        <div class="user-welcome-section d-flex align-items-center justify-content-end">
+                        <div class="user-welcome-section d-flex align-items-center justify-content-end mr-2">
                             <div class="user-info text-right mr-3">
                                 <div class="welcome-message small text-light">
                                     <span class="d-none d-md-inline">مرحباً، </span>
@@ -122,7 +128,7 @@
                                 <span class="icon-lock mr-1"></span>تسجيل الخروج
                             </a>
                         </li>
-                    <?php endif; ?>
+                <?php endif; ?>
                 </ul>
 
                 <!-- Mobile Toggle -->
