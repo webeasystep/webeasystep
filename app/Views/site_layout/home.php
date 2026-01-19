@@ -37,7 +37,7 @@
                      <span class="badge badge-primary text-uppercase mb-3 px-4 py-2" style="letter-spacing: 1px; font-size: 0.8rem;">التخصص سر التفوق</span>
                      <h2 class="mb-3" style="font-size: 2rem; font-weight: 800; color: #1a202c;">ليه FakhrCS مش زي أي منصة تانية؟</h2>
                      <p class="text-muted mb-0" style="font-size: 1.1rem; line-height: 1.7;">
-                         أغلب المنصات "بتاعة كله".. بتشرح لكل الجامعات ولكل التخصصات (إدارة، قانون، آداب..).<br>
+                         أغلب المنصات "بتاعة كله".. بتشرح لكل الجامعات ولكل التخصصات.<br>
                          <strong class="text-dark">إحنا هنا متخصصين في ملعب واحد بس:</strong>
                      </p>
                  </div>
@@ -101,12 +101,13 @@
              </div>
         </div>
     </div>
+
     <div class="untree_co-section py-4">
         <div class="container">
             <div class="row justify-content-center mb-3">
                 <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="0">
                     <h2 class="line-bottom text-center mb-4">إزاي بنحل مشكلة "الشرح النظري"؟</h2>
-                    <p class="lead">لاننا متخصصين في موادك، عارفين إن الامتحان بيجي "فهم" مش حفظ.</p>
+                    <p class="lead">لاننا متخصصين في موادك، بنقدم لك تجربة تعليمية VIP تضمن لك الدرجة الكاملة.</p>
                 </div>
             </div>
             <div class="row">
@@ -115,17 +116,17 @@
                         <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
                             <i class="fas fa-brain fa-lg" style="color: #ffffff;"></i>
                         </div>
-                        <h3>فهم عميق (Memory Model)</h3>
-                        <p>مش هنحفظ أكواد. هنرسم الرامات ونشوف الداتا بتتحرك ازاي (Stack vs Heap) عشان تحل أي سؤال Tracing في الامتحان.</p>
+                        <h3>فهم عميق ودعم VIP</h3>
+                        <p>شرح الـ Memory Model + دعم مباشر طوال العام عبر تيليجرام للإجابة على كل استفساراتك.</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="feature text-center">
                         <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-file-alt fa-lg" style="color: #ffffff;"></i>
+                            <i class="fas fa-vial fa-lg" style="color: #ffffff;"></i>
                         </div>
-                        <h3>بنك التجميعات (The Exam Hack)</h3>
-                        <p>ملخصات لأهم أسئلة الميدتيرم والفاينل للسنوات السابقة، محلولة ومشروحة بالتفصيل. (دي الخلاصة).</p>
+                        <h3>اختبارات محاكاة</h3>
+                        <p>اختبارات تفاعلية من واقع أسئلة الجامعة مع الحل النموذجي لكسر رهبة الامتحانات وتدريبك على الوقت.</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
@@ -133,8 +134,8 @@
                         <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
                             <i class="fas fa-user-tie fa-lg" style="color: #ffffff;"></i>
                         </div>
-                        <h3>شرح مهندس مش دكتور</h3>
-                        <p>المهندس أحمد فخر الدين (خبرة 12+ سنة) بيشرحلك المادة بأسلوب سوق العمل، فبتفهم الـ Why قبل الـ How.</p>
+                        <h3>شرح مهندس ممارس</h3>
+                        <p>المهندس أحمد فخر الدين (خبرة 12+ سنة) بينقلك "زبدة" العلم بأسلوب سوق العمل الحقيقي.</p>
                     </div>
                 </div>
             </div>
@@ -151,7 +152,6 @@
             </div>
             <div class="row">
                 <?php
-                // Define gradient colors for courses without images
                 $gradients = [
                     'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
@@ -176,16 +176,12 @@
                             <div class="course-card h-100">
                                 <?php if ($hasImage): ?>
                                     <div class="course-card-image">
-                                        <img src="<?= thumb($course['image'], 400, 200) ?>"
-                                             alt="<?= esc($course['course_title']) ?>"
-                                             class="course-img">
+                                        <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= esc($course['course_title']) ?>" class="course-img">
                                         <span class="course-badge">🔥 قريباً</span>
                                     </div>
                                 <?php else: ?>
                                     <div class="course-card-image" style="background: <?= $gradient ?>;">
-                                        <div class="course-icon">
-                                            <i class="fas <?= $icon ?>"></i>
-                                        </div>
+                                        <div class="course-icon"><i class="fas <?= $icon ?>"></i></div>
                                         <span class="course-badge">🔥 قريباً</span>
                                     </div>
                                 <?php endif; ?>
@@ -198,24 +194,71 @@
                                             <?php if (!empty($course['is_free']) && $course['is_free']): ?>
                                                 <span class="price-amount text-success">مجاني</span>
                                             <?php else: ?>
-                                                <span class="price-amount"><?= number_format($course['course_price'] ?? 135) ?></span>
+                                                <?php 
+                                                    $discountedPrice = $course['course_price'] ?? 135;
+                                                    $originalPrice = ceil($discountedPrice / 0.75); // Calculate original price before 25% discount
+                                                ?>
+                                                <span class="price-original"><?= number_format($originalPrice) ?></span>
+                                                <span class="price-amount"><?= number_format($discountedPrice) ?></span>
                                                 <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" class="riyal-icon">
                                             <?php endif; ?>
                                         </div>
-                                        <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">
-                                            اشترك الآن
-                                        </button>
+                                        <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">اشترك الآن</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
-                <?php else: ?>
-                    <div class="col-12 text-center">
-                        <p class="text-muted">جاري تحديث المواد للفصل الدراسي الجديد...</p>
-                    </div>
                 <?php endif; ?>
             </div>
+        </div>
+    </div>
+
+    <div class="untree_co-section" style="padding: 100px 0;">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="section-title mb-4" data-aos="fade-up" data-aos-delay="0">
+                        <h2 class="line-bottom mb-4">مين هو المهندس أحمد فخر الدين؟</h2>
+                    </div>
+                    <p class="mb-4" data-aos="fade-up" data-aos-delay="100" style="font-size: 1.1rem; line-height: 1.8; color: #444;">
+                         خبرة عملية لأكثر من <strong>12+ سنة</strong> في مجال صناعة البرمجيات داخل المملكة العربية السعودية وخارجها.
+                    </p>
+                    <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <ul class="list-unstyled ul-check primary">
+                            <li>أشرفت على العديد من الدورات في أشهر المنصات الإلكترونية.</li>
+                            <li>حاصل على شهادة <strong>MCSE</strong> من مايكروسوفت و <strong>CISCO 101</strong>.</li>
+                            <li>أشرفت على العديد من مشاريع التخرج لطلبة علوم الحاسب.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-5" data-aos="fade-left" data-aos-delay="400">
+                    <img src="<?= base_url() ?>site/images/fakhrcs.webp" alt="م/ أحمد فخر الدين" class="img-fluid" style="border-radius: 15px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="untree_co-section py-5" style="background-color: #fffdf2;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <div style="border: 2px dashed #d4af37; padding: 40px; border-radius: 20px; background: white;">
+                        <i class="fas fa-shield-alt fa-4x mb-4" style="color: #d4af37;"></i>
+                        <h2 style="color: #8a6d1c; font-weight: 800; margin-bottom: 20px;">الضمان الذهبي من FakhrCS 🛡️</h2>
+                        <p class="lead mb-4" style="color: #555;">أنا أضمن لك أن تفهم أعقد مفاهيم مادتك بسلاسة تامة.. <br> <strong>إما أن تفهم وتستمتع برحلتك التعليمية، أو تستعيد أموالك بالكامل بدون سؤال واحد لمدة 30 يوماً.</strong></p>
+                        <span class="badge badge-warning px-4 py-2" style="font-size: 1rem;">التزامنا تجاهك مطلق</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="untree_co-section bg-primary text-white text-center">
+        <div class="container">
+             <h2 class="text-white mb-3">ابدأ رحلة الـ A+ الحقيقية الآن</h2>
+             <p class="mb-4 text-white-50">انضم لأكثر من 20,000 طالب وثقوا في شرحنا العملي.</p>
+             <a href="#courses" class="btn btn-light btn-lg font-weight-bold">تصفح المواد المتاحة</a>
         </div>
     </div>
 
@@ -240,12 +283,10 @@
                     <div class="selected-course-name mb-3" id="selectedCourseName"></div>
                     <form id="interestForm" class="interest-form">
                         <div class="form-group mb-3">
-                            <input type="email" class="form-control form-control-lg" id="userEmail"
-                                   placeholder="أدخل بريدك الإلكتروني" required dir="ltr">
+                            <input type="email" class="form-control form-control-lg" id="userEmail" placeholder="أدخل بريدك الإلكتروني" required dir="ltr">
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block" id="submitBtn">
-                            <i class="fas fa-bell ml-2"></i>
-                            أعلمني عند فتح التسجيل
+                            <i class="fas fa-bell ml-2"></i> أعلمني عند فتح التسجيل
                         </button>
                     </form>
                     <div class="success-message d-none mt-4" id="successMessage">
@@ -260,351 +301,7 @@
         </div>
     </div>
 
-    <style>
-        /* Course Cards Styles */
-        .course-card {
-            background: #ffffff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        .course-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-        }
-        .course-card-image {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .course-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top center;
-        }
-        .course-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-        }
-        .course-icon i {
-            font-size: 28px;
-            color: #ffffff;
-        }
-        .course-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(255,255,255,0.95);
-            color: #333;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .course-card-body {
-            padding: 20px;
-        }
-        .course-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #1a202c;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-        .course-codes {
-            font-size: 0.85rem;
-            color: #718096;
-            margin-bottom: 12px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-        .course-value {
-            font-size: 0.95rem;
-            color: #4a5568;
-            margin-bottom: 16px;
-            padding: 10px 12px;
-            background: #f7fafc;
-            border-radius: 8px;
-            border-right: 3px solid #136ad5;
-        }
-        .course-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 16px;
-            border-top: 1px solid #e2e8f0;
-        }
-        .course-price {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .price-amount {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #1a202c;
-        }
-        .riyal-icon {
-            height: 1em;
-            vertical-align: middle;
-        }
-        .btn-subscribe {
-            background: linear-gradient(135deg, #136ad5 0%, #0d5bba 100%);
-            color: #ffffff;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-        .btn-subscribe:hover {
-            background: linear-gradient(135deg, #0d5bba 0%, #0a4a9e 100%);
-            color: #ffffff;
-            transform: scale(1.05);
-        }
-
-        /* Modal Styles */
-        .subscribe-modal-content {
-            border-radius: 20px;
-            border: none;
-            overflow: hidden;
-        }
-        .modal-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #136ad5 0%, #0d5bba 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-        }
-        .modal-icon i {
-            font-size: 32px;
-            color: #ffffff;
-        }
-        .modal-title {
-            font-weight: 700;
-            color: #1a202c;
-        }
-        .modal-message {
-            color: #4a5568;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-        .selected-course-name {
-            background: #f0f9ff;
-            color: #136ad5;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        .interest-form .form-control {
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 14px 16px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        .interest-form .form-control:focus {
-            border-color: #136ad5;
-            box-shadow: 0 0 0 3px rgba(19,106,213,0.15);
-        }
-        .interest-form .btn-success {
-            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
-            border: none;
-            border-radius: 10px;
-            padding: 14px 24px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .interest-form .btn-success:hover {
-            background: linear-gradient(135deg, #2f855a 0%, #276749 100%);
-            transform: translateY(-2px);
-        }
-        .success-icon {
-            width: 70px;
-            height: 70px;
-            background: #c6f6d5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-        }
-        .success-icon i {
-            font-size: 36px;
-            color: #38a169;
-        }
-    </style>
-
-    <script>
-        let currentCourseName = '';
-
-        function handleSubscribe(courseName) {
-            currentCourseName = courseName;
-            document.getElementById('selectedCourseName').textContent = '📚 ' + courseName;
-            document.getElementById('userEmail').value = '';
-            document.getElementById('interestForm').classList.remove('d-none');
-            document.getElementById('successMessage').classList.add('d-none');
-
-            // Log click event to console
-            console.log('[Fake Door] Subscribe clicked:', {
-                Course_Name: courseName,
-                Timestamp: new Date().toISOString(),
-                Action: 'MODAL_OPENED'
-            });
-
-            $('#subscribeModal').modal('show');
-        }
-
-        function closeModal() {
-            $('#subscribeModal').modal('hide');
-        }
-
-        document.getElementById('interestForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const email = document.getElementById('userEmail').value;
-            const submitBtn = document.getElementById('submitBtn');
-
-            if (!email) {
-                alert('الرجاء إدخال البريد الإلكتروني');
-                return;
-            }
-
-            // Disable button and show loading
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i> جاري التسجيل...';
-
-            // Log to console for tracking
-            const trackingData = {
-                Course_Name: currentCourseName,
-                Timestamp: new Date().toISOString(),
-                User_Email: email
-            };
-            console.log('[Fake Door] Lead Captured:', trackingData);
-
-            // Send to backend
-            fetch('<?= base_url('leads/save') ?>', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    course_name: currentCourseName,
-                    email: email
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('[Fake Door] Server Response:', data);
-
-                // Show success message
-                document.getElementById('interestForm').classList.add('d-none');
-                document.getElementById('successMessage').classList.remove('d-none');
-
-                // Auto close after 3 seconds
-                setTimeout(() => {
-                    closeModal();
-                }, 3000);
-            })
-            .catch(error => {
-                console.error('[Fake Door] Error:', error);
-                // Still show success to user (fake door behavior)
-                document.getElementById('interestForm').classList.add('d-none');
-                document.getElementById('successMessage').classList.remove('d-none');
-
-                setTimeout(() => {
-                    closeModal();
-                }, 3000);
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-bell ml-2"></i> أعلمني عند فتح التسجيل';
-            });
-        });
-    </script>
-
-    <div class="untree_co-section" style="padding: 100px 0;">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <div class="section-title mb-4" data-aos="fade-up" data-aos-delay="0">
-                        <h2 class="line-bottom mb-4">مين هو المهندس أحمد فخر الدين؟</h2>
-                    </div>
-
-                    <p class="mb-4" data-aos="fade-up" data-aos-delay="100" style="font-size: 1.1rem; line-height: 1.8; color: #444;">
-                         خبرة عملية لأكثر من <strong>12+ سنة</strong> في مجال صناعة البرمجيات داخل المملكة العربية السعودية وخارجها.
-                    </p>
-
-                    <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <ul class="list-unstyled ul-check primary">
-                            <li>أشرفت على العديد من الدورات في أشهر المنصات الإلكترونية.</li>
-                            <li>حاصل على شهادة <strong>MCSE</strong> من مايكروسوفت.</li>
-                            <li>حاصل على شهادة <strong>CISCO 101</strong>.</li>
-                            <li>أشرفت على العديد من مشاريع التخرج لطلبة علوم الحاسب.</li>
-                        </ul>
-                    </div>
-
-                    <div class="row mt-4" data-aos="fade-up" data-aos-delay="300">
-                         <div class="col-6">
-                             <h3 class="text-primary mb-1" style="font-weight: 800;">+20,000</h3>
-                             <span class="text-muted" style="font-size: 0.9rem;">مشترك على يوتيوب</span>
-                         </div>
-                         <div class="col-6">
-                             <h3 class="text-primary mb-1" style="font-weight: 800;">+12</h3>
-                             <span class="text-muted" style="font-size: 0.9rem;">سنة خبرة برمجية</span>
-                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-5" data-aos="fade-left" data-aos-delay="400">
-                    <figure class="img-wrap-2" style="max-width: 380px; margin: 0 auto;">
-                        <img src="<?= base_url() ?>site/images/fakhrcs.webp" alt="م/ أحمد فخر الدين" class="img-fluid" style="border-radius: 15px; max-width: 100%;">
-
-                        <div style="position: absolute; bottom: -20px; right: -15px; background: white; padding: 15px 18px; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.12); max-width: 300px;">
-                             <div class="d-flex align-items-start">
-                                 <i class="fas fa-quote-right text-primary mr-3" style="font-size: 20px;"></i>
-                                 <div>
-                                     <p class="mb-2" style="font-size: 0.85rem; line-height: 1.6; font-style: italic; color: #555;">
-                                         "أشكر شعب مصر وعلماؤها هم من ينير الأمة العربية بالعلم والشرح والنشر.."
-                                     </p>
-                                     <div class="d-flex align-items-center">
-                                         <i class="fab fa-youtube text-danger mr-2"></i>
-                                         <small class="text-muted">تعليق متابع (Saif Amir)</small>
-                                     </div>
-                                 </div>
-                             </div>
-                        </div>
-                    </figure>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="untree_co-section bg-primary text-white text-center">
-        <div class="container">
-             <h2 class="text-white mb-3">لسه متردد؟ جرب أول محاضرة مجاناً</h2>
-             <p class="mb-4 text-white-50">شوف الفرق بنفسك في أسلوب الشرح قبل ما تدفع ريال واحد.</p>
-             <a href="#courses" class="btn btn-light btn-lg font-weight-bold">تصفح المواد الآن</a>
-        </div>
-    </div>
+    <!-- Config for external JS -->
+    <script>window.leadsApiUrl = '<?= base_url('leads/save') ?>';</script>
 
 <?= $this->endSection(); ?>
-

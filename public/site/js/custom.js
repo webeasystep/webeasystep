@@ -4,37 +4,37 @@ AOS.init({
 	once: true
 });
 
-$(function(){
+$(function () {
 
 	'use strict';
 
 	$(".loader").delay(200).fadeOut("slow");
 	$("#overlayer").delay(200).fadeOut("slow");
 
-	var siteMenuClone = function() {
+	var siteMenuClone = function () {
 
-		$('.js-clone-nav').each(function() {
+		$('.js-clone-nav').each(function () {
 			var $this = $(this);
 			$this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
 		});
 
 
-		setTimeout(function() {
+		setTimeout(function () {
 
 			var counter = 0;
-			$('.site-mobile-menu .has-children').each(function(){
+			$('.site-mobile-menu .has-children').each(function () {
 				var $this = $(this);
 
 				$this.prepend('<span class="arrow-collapse collapsed">');
 
 				$this.find('.arrow-collapse').attr({
-					'data-toggle' : 'collapse',
-					'data-target' : '#collapseItem' + counter,
+					'data-toggle': 'collapse',
+					'data-target': '#collapseItem' + counter,
 				});
 
 				$this.find('> ul').attr({
-					'class' : 'collapse',
-					'id' : 'collapseItem' + counter,
+					'class': 'collapse',
+					'id': 'collapseItem' + counter,
 				});
 
 				counter++;
@@ -43,9 +43,9 @@ $(function(){
 
 		}, 1000);
 
-		$('body').on('click', '.arrow-collapse', function(e) {
+		$('body').on('click', '.arrow-collapse', function (e) {
 			var $this = $(this);
-			if ( $this.closest('li').find('.collapse').hasClass('show') ) {
+			if ($this.closest('li').find('.collapse').hasClass('show')) {
 				$this.removeClass('active');
 			} else {
 				$this.addClass('active');
@@ -54,22 +54,22 @@ $(function(){
 
 		});
 
-		$(window).resize(function() {
+		$(window).resize(function () {
 			var $this = $(this),
-			w = $this.width();
+				w = $this.width();
 
-			if ( w > 768 ) {
-				if ( $('body').hasClass('offcanvas-menu') ) {
+			if (w > 768) {
+				if ($('body').hasClass('offcanvas-menu')) {
 					$('body').removeClass('offcanvas-menu');
 				}
 			}
 		})
 
-		$('body').on('click', '.js-menu-toggle', function(e) {
+		$('body').on('click', '.js-menu-toggle', function (e) {
 			var $this = $(this);
 			e.preventDefault();
 
-			if ( $('body').hasClass('offcanvas-menu') ) {
+			if ($('body').hasClass('offcanvas-menu')) {
 				$('body').removeClass('offcanvas-menu');
 				$('body').find('.js-menu-toggle').removeClass('active');
 			} else {
@@ -79,10 +79,10 @@ $(function(){
 		})
 
 		// click outisde offcanvas
-		$(document).mouseup(function(e) {
+		$(document).mouseup(function (e) {
 			var container = $(".site-mobile-menu");
 			if (!container.is(e.target) && container.has(e.target).length === 0) {
-				if ( $('body').hasClass('offcanvas-menu') ) {
+				if ($('body').hasClass('offcanvas-menu')) {
 					$('body').removeClass('offcanvas-menu');
 					$('body').find('.js-menu-toggle').removeClass('active');
 				}
@@ -91,8 +91,8 @@ $(function(){
 	};
 	siteMenuClone();
 
-	var owlPlugin = function() {
-		if ( $('.owl-3-slider').length > 0 ) {
+	var owlPlugin = function () {
+		if ($('.owl-3-slider').length > 0) {
 			var owl3 = $('.owl-3-slider').owlCarousel({
 				rtl: true,
 				loop: true,
@@ -104,35 +104,35 @@ $(function(){
 				stagePadding: 0,
 				nav: true,
 				dots: true,
-				navText: ['<span class="icon-keyboard_backspace"></span>','<span class="icon-keyboard_backspace"></span>'],
-				responsive:{
-					0:{
-						items:1
+				navText: ['<span class="icon-keyboard_backspace"></span>', '<span class="icon-keyboard_backspace"></span>'],
+				responsive: {
+					0: {
+						items: 1
 					},
-					600:{
-						items:1
+					600: {
+						items: 1
 					},
 					800: {
-						items:2
+						items: 2
 					},
-					1000:{
-						items:2
+					1000: {
+						items: 2
 					},
-					1100:{
-						items:3
+					1100: {
+						items: 3
 					}
 				}
 			});
 		}
-		$('.js-custom-next-v2').click(function(e) {
+		$('.js-custom-next-v2').click(function (e) {
 			e.preventDefault();
 			owl3.trigger('next.owl.carousel');
 		})
-		$('.js-custom-prev-v2').click(function(e) {
+		$('.js-custom-prev-v2').click(function (e) {
 			e.preventDefault();
 			owl3.trigger('prev.owl.carousel');
 		})
-		if ( $('.owl-4-slider').length > 0 ) {
+		if ($('.owl-4-slider').length > 0) {
 			var owl4 = $('.owl-4-slider').owlCarousel({
 				rtl: true,
 				loop: true,
@@ -143,29 +143,29 @@ $(function(){
 				items: 4,
 				nav: false,
 				dots: true,
-				navText: ['<span class="icon-keyboard_backspace"></span>','<span class="icon-keyboard_backspace"></span>'],
-				responsive:{
-					0:{
-						items:1
+				navText: ['<span class="icon-keyboard_backspace"></span>', '<span class="icon-keyboard_backspace"></span>'],
+				responsive: {
+					0: {
+						items: 1
 					},
-					600:{
-						items:2
+					600: {
+						items: 2
 					},
 					800: {
-						items:2
+						items: 2
 					},
-					1000:{
-						items:3
+					1000: {
+						items: 3
 					},
-					1100:{
-						items:4
+					1100: {
+						items: 4
 					}
 				}
 			});
 		}
 
 
-		if ( $('.owl-single-text').length > 0 ) {
+		if ($('.owl-single-text').length > 0) {
 			var owlText = $('.owl-single-text').owlCarousel({
 				rtl: true,
 				loop: true,
@@ -175,11 +175,11 @@ $(function(){
 				smartSpeed: 1200,
 				items: 1,
 				nav: false,
-				navText: ['<span class="icon-keyboard_backspace"></span>','<span class="icon-keyboard_backspace"></span>']
+				navText: ['<span class="icon-keyboard_backspace"></span>', '<span class="icon-keyboard_backspace"></span>']
 			});
 		}
 
-		if ( $('.events-slider').length > 0 ) {
+		if ($('.events-slider').length > 0) {
 			var owl = $('.events-slider').owlCarousel({
 				rtl: true,
 				loop: true,
@@ -191,10 +191,10 @@ $(function(){
 				touchDrag: false,
 				items: 1,
 				nav: false,
-				navText: ['<span class="icon-keyboard_backspace"></span>','<span class="icon-keyboard_backspace"></span>'],
+				navText: ['<span class="icon-keyboard_backspace"></span>', '<span class="icon-keyboard_backspace"></span>'],
 			});
 		}
-		if ( $('.owl-single').length > 0 ) {
+		if ($('.owl-single').length > 0) {
 
 			var owl = $('.owl-single').owlCarousel({
 				rtl: true,
@@ -207,30 +207,30 @@ $(function(){
 				touchDrag: false,
 				items: 1,
 				nav: false,
-				navText: ['<span class="icon-keyboard_backspace"></span>','<span class="icon-keyboard_backspace"></span>'],
+				navText: ['<span class="icon-keyboard_backspace"></span>', '<span class="icon-keyboard_backspace"></span>'],
 				onChanged: changed,
 			});
 
 			function changed(event) {
 				var i = event.item.index;
 
-				if ( i == 0 || i == null) {
+				if (i == 0 || i == null) {
 					i = 1;
 				} else {
 					i = i - 1;
 
 					$('.js-custom-dots li').removeClass('active');
-					$('.js-custom-dots li[data-index="'+i+'"]').addClass('active');
+					$('.js-custom-dots li[data-index="' + i + '"]').addClass('active');
 				}
 			}
 
-			$('.js-custom-dots li').each(function(i) {
+			$('.js-custom-dots li').each(function (i) {
 
 				var i = i + 1;
 				$(this).attr('data-index', i);
 			});
 
-			$('.js-custom-dots a').on('click', function(e){
+			$('.js-custom-dots a').on('click', function (e) {
 				e.preventDefault();
 				owl.trigger('stop.owl.autoplay');
 				var k = $(this).closest('li').data('index');
@@ -241,29 +241,29 @@ $(function(){
 		}
 
 
-		if ( $('.wide-slider-testimonial').length > 0 ) {
+		if ($('.wide-slider-testimonial').length > 0) {
 			$('.wide-slider-testimonial').owlCarousel({
-				loop:true,
+				loop: true,
 				autoplay: true,
-				margin:0,
+				margin: 0,
 				nav: false,
 				autoplayHoverPause: false,
 				items: 1,
 				smartSpeed: 1000,
 				autoHeight: true,
-				navText : ["<span class='ion-android-arrow-dropleft'></span>","<span class='ion-android-arrow-dropright'></span>"],
-				responsive:{
-					0:{
-						items:1,
-						nav:false
+				navText: ["<span class='ion-android-arrow-dropleft'></span>", "<span class='ion-android-arrow-dropright'></span>"],
+				responsive: {
+					0: {
+						items: 1,
+						nav: false
 					},
-					600:{
-						items:1,
-						nav:false
+					600: {
+						items: 1,
+						nav: false
 					},
-					1000:{
-						items:1,
-						nav:false
+					1000: {
+						items: 1,
+						nav: false
 					}
 				}
 			});
@@ -272,34 +272,34 @@ $(function(){
 	}
 	owlPlugin();
 
-	var counter = function() {
+	var counter = function () {
 
-		$('.count-numbers').waypoint( function( direction ) {
+		$('.count-numbers').waypoint(function (direction) {
 
-			if( direction === 'down' && !$(this.element).hasClass('ut-animated') ) {
+			if (direction === 'down' && !$(this.element).hasClass('ut-animated')) {
 
 				var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
-				$('.counter > span').each(function(){
+				$('.counter > span').each(function () {
 					var $this = $(this),
-					num = $this.data('number');
+						num = $this.data('number');
 					$this.animateNumber(
-					{
-						number: num,
-						numberStep: comma_separator_number_step
-					}, 5000
+						{
+							number: num,
+							numberStep: comma_separator_number_step
+						}, 5000
 					);
 				});
 
 			}
 
-		} , { offset: '95%' } );
+		}, { offset: '95%' });
 
 	}
 	counter();
 
 	// jarallax
-	var jarallaxPlugin = function() {
-		if ( $('.jarallax').length > 0 ) {
+	var jarallaxPlugin = function () {
+		if ($('.jarallax').length > 0) {
 			$('.jarallax').jarallax({
 				speed: 0.2
 			});
@@ -309,7 +309,7 @@ $(function(){
 
 
 
-	var accordion = function() {
+	var accordion = function () {
 		$('.btn-link[aria-expanded="true"]').closest('.accordion-item').addClass('active');
 		$('.collapse').on('show.bs.collapse', function () {
 			$(this).closest('.accordion-item').addClass('active');
@@ -321,19 +321,119 @@ $(function(){
 	}
 	accordion();
 
-	var siteDatePicker = function() {
+	var siteDatePicker = function () {
 
-		if ( $('.datepicker').length > 0 ) {
+		if ($('.datepicker').length > 0) {
 			$('.datepicker').datepicker();
 		}
 
 	};
 	siteDatePicker();
 
-	var siteSticky = function() {
-		$(".js-sticky-header").sticky({topSpacing:0});
+	var siteSticky = function () {
+		$(".js-sticky-header").sticky({ topSpacing: 0 });
 	};
 	siteSticky();
 
 
 })
+
+/* ============================================
+   FAKE DOOR - Course Subscription Modal Handler
+   ============================================ */
+
+// Global variable for current course name
+var currentCourseName = '';
+
+// Handle subscribe button click - opens modal
+function handleSubscribe(courseName) {
+	currentCourseName = courseName;
+	document.getElementById('selectedCourseName').textContent = '📚 ' + courseName;
+	document.getElementById('userEmail').value = '';
+	document.getElementById('interestForm').classList.remove('d-none');
+	document.getElementById('successMessage').classList.add('d-none');
+
+	// Log click event to console
+	console.log('[Fake Door] Subscribe clicked:', {
+		Course_Name: courseName,
+		Timestamp: new Date().toISOString(),
+		Action: 'MODAL_OPENED'
+	});
+
+	$('#subscribeModal').modal('show');
+}
+
+// Close the subscription modal
+function closeModal() {
+	$('#subscribeModal').modal('hide');
+}
+
+// Initialize form submission handler when DOM is ready
+$(document).ready(function () {
+	var interestForm = document.getElementById('interestForm');
+	if (interestForm) {
+		interestForm.addEventListener('submit', function (e) {
+			e.preventDefault();
+
+			var email = document.getElementById('userEmail').value;
+			var submitBtn = document.getElementById('submitBtn');
+
+			if (!email) {
+				alert('الرجاء إدخال البريد الإلكتروني');
+				return;
+			}
+
+			// Disable button and show loading
+			submitBtn.disabled = true;
+			submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i>جاري التسجيل...';
+
+			// Log to console for tracking
+			var trackingData = {
+				Course_Name: currentCourseName,
+				Timestamp: new Date().toISOString(),
+				User_Email: email
+			};
+			console.log('[Fake Door] Lead Captured:', trackingData);
+
+			// Send to backend
+			fetch(window.leadsApiUrl || '/leads/save', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					course_name: currentCourseName,
+					email: email
+				})
+			})
+				.then(function (response) { return response.json(); })
+				.then(function (data) {
+					console.log('[Fake Door] Server Response:', data);
+
+					// Show success message
+					document.getElementById('interestForm').classList.add('d-none');
+					document.getElementById('successMessage').classList.remove('d-none');
+
+					// Auto close after 3 seconds
+					setTimeout(function () {
+						closeModal();
+					}, 3000);
+				})
+				.catch(function (error) {
+					console.error('[Fake Door] Error:', error);
+					// Still show success to user (fake door behavior)
+					document.getElementById('interestForm').classList.add('d-none');
+					document.getElementById('successMessage').classList.remove('d-none');
+
+					setTimeout(function () {
+						closeModal();
+					}, 3000);
+				})
+				.finally(function () {
+					submitBtn.disabled = false;
+					submitBtn.innerHTML = '<i class="fas fa-bell ml-2"></i>أعلمني عند فتح التسجيل';
+				});
+		});
+	}
+});
+

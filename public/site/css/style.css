@@ -3147,3 +3147,236 @@ html {
     left: 50%;
     transform: translateX(-50%);
 }
+
+/* ============================================
+   COURSE CARDS - Homepage Course Catalog
+   ============================================ */
+
+/* Course Card Container */
+.course-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Course Card Image Area */
+.course-card-image {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.course-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* Course Card Icon (for gradient fallback) */
+.course-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.course-icon i {
+    font-size: 28px;
+    color: #ffffff;
+}
+
+/* Course Badge */
+.course-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Course Card Body */
+.course-card-body {
+    padding: 20px;
+}
+
+.course-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.course-codes {
+    font-size: 0.85rem;
+    color: #718096;
+    margin-bottom: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.course-value {
+    font-size: 0.95rem;
+    color: #4a5568;
+    margin-bottom: 16px;
+    padding: 10px 12px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border-right: 3px solid #136ad5;
+}
+
+/* Course Card Footer */
+.course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.course-price {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.price-amount {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a202c;
+}
+
+.riyal-icon {
+    height: 1em;
+    vertical-align: middle;
+}
+
+/* Subscribe Button */
+.btn-subscribe {
+    background: linear-gradient(135deg, #136ad5 0%, #0d5bba 100%);
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.btn-subscribe:hover {
+    background: linear-gradient(135deg, #0d5bba 0%, #0a4a9e 100%);
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* ============================================
+   FAKE DOOR MODAL - Lead Capture Popup
+   ============================================ */
+
+.subscribe-modal-content {
+    border-radius: 20px;
+    border: none;
+    overflow: hidden;
+}
+
+.modal-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #136ad5 0%, #0d5bba 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.modal-icon i {
+    font-size: 32px;
+    color: #ffffff;
+}
+
+.modal-title {
+    font-weight: 700;
+    color: #1a202c;
+}
+
+.modal-message {
+    color: #4a5568;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.selected-course-name {
+    background: #f0f9ff;
+    color: #136ad5;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Interest Form */
+.interest-form .form-control {
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.interest-form .form-control:focus {
+    border-color: #136ad5;
+    box-shadow: 0 0 0 3px rgba(19, 106, 213, 0.15);
+}
+
+.interest-form .btn-success {
+    background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+    border: none;
+    border-radius: 10px;
+    padding: 14px 24px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.interest-form .btn-success:hover {
+    background: linear-gradient(135deg, #2f855a 0%, #276749 100%);
+    transform: translateY(-2px);
+}
+
+/* Success Message */
+.success-icon {
+    width: 70px;
+    height: 70px;
+    background: #c6f6d5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.success-icon i {
+    font-size: 36px;
+    color: #38a169;
+}
