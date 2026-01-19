@@ -177,12 +177,12 @@
                                 <?php if ($hasImage): ?>
                                     <div class="course-card-image">
                                         <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= esc($course['course_title']) ?>" class="course-img">
-                                        <span class="course-badge">🔥 قريباً</span>
+                                        <span class="course-badge">🔥 الحجز المبكر</span>
                                     </div>
                                 <?php else: ?>
                                     <div class="course-card-image" style="background: <?= $gradient ?>;">
                                         <div class="course-icon"><i class="fas <?= $icon ?>"></i></div>
-                                        <span class="course-badge">🔥 قريباً</span>
+                                        <span class="course-badge">🔥 الحجز المبكر</span>
                                     </div>
                                 <?php endif; ?>
                                 <div class="course-card-body">
@@ -214,26 +214,26 @@
         </div>
     </div>
 
-    <div class="untree_co-section" style="padding: 100px 0;">
+    <div class="untree_co-section" style="padding: 50px 0;">
         <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <div class="section-title mb-4" data-aos="fade-up" data-aos-delay="0">
-                        <h2 class="line-bottom mb-4">مين هو المهندس أحمد فخر الدين؟</h2>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="0">
+                        <h2 class="line-bottom mb-3" style="font-size: 1.6rem;">مين هو المهندس أحمد فخر الدين؟</h2>
                     </div>
-                    <p class="mb-4" data-aos="fade-up" data-aos-delay="100" style="font-size: 1.1rem; line-height: 1.8; color: #444;">
+                    <p class="mb-3" data-aos="fade-up" data-aos-delay="100" style="font-size: 1rem; line-height: 1.7; color: #444;">
                          خبرة عملية لأكثر من <strong>12+ سنة</strong> في مجال صناعة البرمجيات داخل المملكة العربية السعودية وخارجها.
                     </p>
-                    <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <ul class="list-unstyled ul-check primary">
-                            <li>أشرفت على العديد من الدورات في أشهر المنصات الإلكترونية.</li>
-                            <li>حاصل على شهادة <strong>MCSE</strong> من مايكروسوفت و <strong>CISCO 101</strong>.</li>
-                            <li>أشرفت على العديد من مشاريع التخرج لطلبة علوم الحاسب.</li>
+                    <div class="mb-0" data-aos="fade-up" data-aos-delay="200">
+                        <ul class="list-unstyled ul-check primary mb-0" style="font-size: 0.95rem;">
+                            <li class="mb-2">أشرفت على العديد من الدورات في أشهر المنصات الإلكترونية.</li>
+                            <li class="mb-2">حاصل على شهادة <strong>MCSE</strong> من مايكروسوفت و <strong>CISCO 101</strong>.</li>
+                            <li class="mb-0">أشرفت على العديد من مشاريع التخرج لطلبة علوم الحاسب.</li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-5" data-aos="fade-left" data-aos-delay="400">
-                    <img src="<?= base_url() ?>site/images/fakhrcs.webp" alt="م/ أحمد فخر الدين" class="img-fluid" style="border-radius: 15px;">
+                <div class="col-lg-4 col-md-5 col-6" data-aos="fade-left" data-aos-delay="300">
+                    <img src="<?= base_url() ?>site/images/fakhrcs.webp" alt="م/ أحمد فخر الدين" class="img-fluid" style="border-radius: 12px;">
                 </div>
             </div>
         </div>
@@ -273,12 +273,12 @@
                 </div>
                 <div class="modal-body text-center px-4 pb-4">
                     <div class="modal-icon mb-4">
-                        <i class="fas fa-bell"></i>
+                        <i class="fas fa-rocket"></i>
                     </div>
-                    <h4 class="modal-title mb-3" id="subscribeModalLabel">عفواً، التسجيل مغلق حالياً</h4>
+                    <h4 class="modal-title mb-3" id="subscribeModalLabel">جاري تحديث المحتوى لعام 2026 🚀</h4>
                     <p class="modal-message mb-4">
-                        التسجيل في هذه الدفعة مغلق حالياً و سيبدأ قريباً.<br>
-                        <strong class="text-success">سجل إيميلك لتكون أول من يعرف عند الفتح وتحصل على خصم 20% عند الإطلاق! 🎁</strong>
+                        بسبب التحديثات الجديدة في منهج <strong>كلية الحوسبة والمعلوماتية</strong> لعام <strong>2026</strong> ، نحن نقوم الآن بإنتاج محتوى فريد يضمن لك الفهم الكامل وحل الواجبات ببراعة.<br>
+                        <strong class="text-success">سجل إيميلك الآن لتكون في قائمة النخبة وتحصل على خصم 25% فور الانطلاق خلال أيام! 🎁</strong>
                     </p>
                     <div class="selected-course-name mb-3" id="selectedCourseName"></div>
                     <form id="interestForm" class="interest-form">
@@ -286,15 +286,15 @@
                             <input type="email" class="form-control form-control-lg" id="userEmail" placeholder="أدخل بريدك الإلكتروني" required dir="ltr">
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block" id="submitBtn">
-                            <i class="fas fa-bell ml-2"></i> أعلمني عند فتح التسجيل
+                            <i class="fas fa-crown ml-2"></i> انضم لقائمة النخبة الآن
                         </button>
                     </form>
                     <div class="success-message d-none mt-4" id="successMessage">
                         <div class="success-icon mb-3">
                             <i class="fas fa-check-circle"></i>
                         </div>
-                        <h5 class="text-success">تم التسجيل بنجاح! 🎉</h5>
-                        <p class="text-muted">سنتواصل معك فور فتح التسجيل</p>
+                        <h5 class="text-success">تم حجز مكانك في القائمة! 🎉</h5>
+                        <p class="text-muted">سنرسل لك كود الخصم فور الانطلاق</p>
                     </div>
                 </div>
             </div>

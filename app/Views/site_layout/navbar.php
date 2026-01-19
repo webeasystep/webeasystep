@@ -15,7 +15,7 @@
     <?php
     // If you want to show a logo only on homepage (hidden on mobile to prevent overlap):
     if (current_url() == site_url()) {
-        echo '<a href="'.site_url().'" class="logo menu-absolute m-0 d-none d-lg-inline-block" style="top: 60px;">
+        echo '<a href="'.site_url().'" class="logo menu-absolute m-0 d-none d-lg-inline-block" style="top: 20px;">
               <img src="'.base_url('site/images/logo.png').'" alt="Site Logo" class="rounded-circle logo-image" style="object-fit:contain; width: 300px; height: 300px;">
             </a>';
     }
@@ -75,12 +75,14 @@
                         </div>
                     <?php else: ?>
                         <!-- If not logged in -->
+                        <!-- TEMPORARILY HIDDEN: Login/Register links - DO NOT DELETE
                         <a href="<?= site_url('login') ?>" class="small mr-3">
                             <span class="icon-lock"></span>تسجيل الدخول
                         </a>
                         <a href="<?= site_url('users/register') ?>" class="small">
                             <span class="icon-person"></span>حساب جديد
                         </a>
+                        END TEMPORARILY HIDDEN -->
                     <?php endif; ?>
                 </div>
             </div>
