@@ -350,7 +350,7 @@
                     </div>
                     <h4 class="modal-title mb-3" id="subscribeModalLabel">عفواً، التسجيل مغلق حالياً</h4>
                     <p class="modal-message mb-4">
-                        التسجيل في هذه الدفعة مغلق حالياً أو سيبدأ قريباً.<br>
+                        التسجيل في هذه الدفعة مغلق حالياً و سيبدأ قريباً.<br>
                         <strong class="text-success">سجل إيميلك لتكون أول من يعرف عند الفتح وتحصل على خصم 20% عند الإطلاق! 🎁</strong>
                     </p>
                     <div class="selected-course-name mb-3" id="selectedCourseName"></div>
