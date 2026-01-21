@@ -177,12 +177,12 @@
                                 <?php if ($hasImage): ?>
                                     <div class="course-card-image">
                                         <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= esc($course['course_title']) ?>" class="course-img">
-                                        <span class="course-badge">🔥 الحجز المبكر</span>
+                                        <span class="course-badge">🔥 تحديث 2026 </span>
                                     </div>
                                 <?php else: ?>
                                     <div class="course-card-image" style="background: <?= $gradient ?>;">
                                         <div class="course-icon"><i class="fas <?= $icon ?>"></i></div>
-                                        <span class="course-badge">🔥 الحجز المبكر</span>
+                                        <span class="course-badge">🔥 تحديث 2026 </span>
                                     </div>
                                 <?php endif; ?>
                                 <div class="course-card-body">
@@ -194,7 +194,7 @@
                                             <?php if (!empty($course['is_free']) && $course['is_free']): ?>
                                                 <span class="price-amount text-success">مجاني</span>
                                             <?php else: ?>
-                                                <?php 
+                                                <?php
                                                     $discountedPrice = $course['course_price'] ?? 135;
                                                     $originalPrice = ceil($discountedPrice / 0.75); // Calculate original price before 25% discount
                                                 ?>

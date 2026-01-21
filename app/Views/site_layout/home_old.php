@@ -332,8 +332,7 @@
         <div class="row justify-content-between">
             <div class="col-lg-5 mb-5">
                 <h2 class="line-bottom mb-4" data-aos="fade-up" data-aos-delay="0">من نحن</h2>
-                <p data-aos="fade-up" data-aos-delay="100">أول منصة تعليمية متخصصة في تدريس نظام المسارات لطلبة الثانوية
-                    بالمملكة العربية السعودية.</p>
+                <p data-aos="fade-up" data-aos-delay="100">المنصة الأولى المتخصصة في هندسة مناهج كليات الحوسبة والمعلوماتية بالجامعات السعودية.</p>
                 <ul class="list-unstyled ul-check mb-5 primary" data-aos="fade-up" data-aos-delay="200">
                     <li>دورات خاصة عبر زووم</li>
                     <li>دورات مسجلة لسهولة الاسترجاع</li>
