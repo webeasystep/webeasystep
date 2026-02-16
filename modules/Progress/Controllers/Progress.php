@@ -1,0 +1,577 @@
+<?php
+
+namespace Modules\Progress\Controllers;
+
+use App\Controllers\BaseController;
+use Modules\Progress\Models\UserUnitProgressModel;
+use Modules\Courses\Models\CoursesModel;
+use Modules\Units\Models\UnitsModel;
+
+class Progress extends BaseController
+{
+    protected $progressModel;
+    protected $coursesModel;
+    protected $unitsModel;
+
+    public function __construct()
+    {
+        $this->progressModel = new UserUnitProgressModel();
+        $this->coursesModel = new CoursesModel();
+        $this->unitsModel = new UnitsModel();
+        $this->db = \Config\Database::connect();
+    }
+
+    public function index()
+    {
+        $session = session();
+        $userId = $session->get('user_id');
+
+        if (!$userId) {
+            return redirect()->to('/login');
+        }
+
+        $data = [
+            'title' => lang('Progress.my_progress'),
+            'user_progress' => $this->progressModel->getUserOverallProgress($userId),
+            'recent_activity' => $this->progressModel->getRecentActivity($userId, 10)
+        ];
+
+        return view('index', $data);
+    }
+
+    public function updateProgress()
+    {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setJSON(['success' => false, 'message' => lang('Progress.invalid_request')]);
+        }
+
+        $session = session();
+        $userId = $session->get('user_id');
+
+        if (!$userId) {
+            return $this->response->setJSON(['success' => false, 'message' => lang('Progress.user_not_authenticated')]);
+        }
+
+        $unitId = $this->request->getPost('unit_id');
+        $progressPercentage = (float) $this->request->getPost('progress_percentage');
+        $watchTime = (int) $this->request->getPost('watch_time');
+        $lastPositionSeconds = (int) $this->request->getPost('last_position_seconds');
+
+        if (!$unitId || $progressPercentage < 0 || $progressPercentage > 100) {
+            return $this->response->setJSON(['success' => false, 'message' => lang('Progress.invalid_data')]);
+        }
+
+        $unit = $this->unitsModel->find($unitId);
+        if (!$unit) {
+            return $this->response->setJSON(['success' => false, 'message' => lang('Progress.unit_not_found')]);
+        }
+
+        $course = $this->coursesModel->find($unit->course_id);
+        if (!$course) {
+            return $this->response->setJSON(['success' => false, 'message' => lang('Progress.course_not_found')]);
+        }
+
+        $isEnrolled = $this->coursesModel->isUserEnrolled($userId, $course->id);
+        if (!$isEnrolled) {
+            return $this->response->setJSON(['success' => false, 'message' => lang('Progress.not_enrolled')]);
+        }
+
+        $progressData = [
+            'progress_percentage' => $progressPercentage,
+            'watch_time' => $watchTime,
+            'last_position_seconds' => $lastPositionSeconds
+        ];
+
+        $success = $this->progressModel->updateProgress($userId, $unitId, $progressData);
+
+        if ($success) {
+            $courseCompletion = $this->progressModel->getCourseCompletionPercentage($userId, $course->id);
+
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => lang('Progress.update_success'),
+                'course_completion' => $courseCompletion,
+                'unit_completed' => $progressPercentage >= 100
+            ]);
+        } else {
+            return $this->response->setJSON(['success' => false, 'message' => lang('Progress.update_failed')]);
+        }
+    }
+
+    /**
+     * Mark item as completed (AJAX)
+     */
+    public function markCompleted()
+    {
+        // Debug logging for AJAX requests
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - AJAX request received');
+        error_log('PROGRESS_CONTROLLER DEBUG - AJAX request received');
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - AJAX request received' . "\n",
+            FILE_APPEND | LOCK_EX);
+
+        // Debug logging for raw input
+        $rawInput = $this->request->getBody();
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Raw input: ' . $rawInput);
+        error_log('PROGRESS_CONTROLLER DEBUG - Raw input: ' . $rawInput);
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Raw input: ' . $rawInput . "\n",
+            FILE_APPEND | LOCK_EX);
+
+        if (!$this->request->isAJAX()) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Invalid request']);
+        }
+
+        $session = session();
+        $user = $session->get('user');
+
+        if (!$user) {
+            return $this->response->setJSON(['success' => false, 'message' => 'User not authenticated']);
+        }
+
+        $userId = $user['id'];
+
+        // Get input data
+        $input = $this->request->getJSON();
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Raw input: ' . json_encode($input));
+
+        $courseId = isset($input->course_id) ? $input->course_id : (isset($input['course_id']) ? $input['course_id'] : null);
+        $itemId = isset($input->item_id) ? $input->item_id : (isset($input['item_id']) ? $input['item_id'] : null);
+
+        if (!$courseId || !$itemId) {
+            log_message('error', 'PROGRESS_CONTROLLER ERROR - Missing required parameters: courseId=' . $courseId . ', itemId=' . $itemId);
+            return $this->response->setJSON(['success' => false, 'message' => 'Course ID and Item ID are required']);
+        }
+
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Processing: courseId=' . $courseId . ', itemId=' . $itemId);
+
+        // Get item details to find unit_id
+        $unitItemsModel = new \Modules\Units\Models\UnitItemsModel();
+        $item = $unitItemsModel->find($itemId);
+        if (!$item) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Item not found']);
+        }
+
+        $unitId = $item->unit_id;
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Found unitId=' . $unitId . ' for itemId=' . $itemId);
+
+        // Verify user has access to this unit
+        $unit = $this->unitsModel->find($unitId);
+        if (!$unit) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Unit not found']);
+        }
+
+        $course = $this->coursesModel->find($unit->course_id);
+        if (!$course) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Course not found']);
+        }
+
+        // Check if user is enrolled in the course
+        $isEnrolled = $this->coursesModel->isUserEnrolled($userId, $course->id);
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - isUserEnrolled result: ' . ($isEnrolled ? 'true' : 'false'));
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - isUserEnrolled result: ' . ($isEnrolled ? 'true' : 'false') . "\n",
+            FILE_APPEND | LOCK_EX);
+
+        if (!$isEnrolled) {
+            return $this->response->setJSON(['success' => false, 'message' => 'User not enrolled in course']);
+        }
+
+        // Get enrollment ID - check if user has enrolled in this specific unit
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Looking for enrollment with userId=' . $userId . ', unitId=' . $unitId);
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Looking for enrollment with userId=' . $userId . ', unitId=' . $unitId . "\n",
+            FILE_APPEND | LOCK_EX);
+
+        $enrollment = $this->db->table('tb_unit_enrollments')
+                              ->where('user_id', $userId)
+                              ->where('unit_id', $unitId)
+                              ->where('status', 'approved')
+                              ->get()
+                              ->getRow();
+
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Enrollment found: ' . ($enrollment ? json_encode($enrollment) : 'NULL'));
+        file_put_contents('D:\laragon\www\msarlink\debug.log',
+            date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Enrollment found: ' . ($enrollment ? json_encode($enrollment) : 'NULL') . "\n",
+            FILE_APPEND | LOCK_EX);
+
+        // AUTO-ENROLLMENT LOGIC FOR FREE UNITS
+        if (!$enrollment && $unit->is_free) {
+            log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Auto-enrolling user in free unit: unitId=' . $unitId);
+            file_put_contents('D:\laragon\www\msarlink\debug.log',
+                date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Auto-enrolling user in free unit: unitId=' . $unitId . "\n",
+                FILE_APPEND | LOCK_EX);
+
+            // Create auto-enrollment for free unit
+            $enrollmentData = [
+                'user_id' => $userId,
+                'unit_id' => $unitId,
+                'total_amount' => 0,
+                'payment_method' => 'free',
+                'status' => 'approved',
+                'processed_at' => date('Y-m-d H:i:s'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+
+            $enrollmentId = $this->db->table('tb_unit_enrollments')->insert($enrollmentData);
+            
+            if ($enrollmentId) {
+                // Fetch the newly created enrollment
+                $enrollment = $this->db->table('tb_unit_enrollments')
+                                      ->where('id', $enrollmentId)
+                                      ->get()
+                                      ->getRow();
+                
+                log_message('debug', 'PROGRESS_CONTROLLER DEBUG - Auto-enrollment successful: enrollmentId=' . $enrollmentId);
+                file_put_contents('D:\laragon\www\msarlink\debug.log',
+                    date('Y-m-d H:i:s') . ' PROGRESS_CONTROLLER DEBUG - Auto-enrollment successful: enrollmentId=' . $enrollmentId . "\n",
+                    FILE_APPEND | LOCK_EX);
+            } else {
+                log_message('error', 'PROGRESS_CONTROLLER ERROR - Auto-enrollment failed for free unit: unitId=' . $unitId);
+                return $this->response->setJSON(['success' => false, 'message' => 'Failed to auto-enroll in free unit']);
+            }
+        }
+
+        if (!$enrollment) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Enrollment not found']);
+        }
+
+        // Load item progress model
+        $itemProgressModel = new \Modules\Progress\Models\UserItemProgressModel();
+
+        // Debug logging before marking item completed
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - About to mark item completed: userId=' . $userId . ', unitId=' . $unitId . ', itemId=' . $itemId . ', enrollmentId=' . $enrollment->id);
+
+        // Mark item as completed
+        $success = $itemProgressModel->markItemCompleted($userId, $unitId, $itemId, $enrollment->id);
+
+        log_message('debug', 'PROGRESS_CONTROLLER DEBUG - markItemCompleted result: ' . ($success ? 'true' : 'false'));
+
+        if ($success) {
+            // Check if unit is now fully completed
+            $unitCompleted = $itemProgressModel->isUnitCompleted($userId, $unitId);
+
+            if ($unitCompleted) {
+                // Update unit progress table
+                $this->progressModel->markUnitCompleted($userId, $unitId);
+            }
+
+            // Use the same navigation logic as the Next button - build flatItems array
+            // Get user's enrolled unit IDs
+            $enrollments = $this->db->table('tb_unit_enrollments')
+                ->select('unit_id')
+                ->where('user_id', $userId)
+                ->where('status', 'approved')
+                ->get()
+                ->getResultArray();
+
+            $enrolledUnitIds = array_column($enrollments, 'unit_id');
+
+            // Get all enrolled units for this course
+            $allUnits = $this->unitsModel->getUnitsByCourse($course->id);
+            $enrolledUnits = [];
+            foreach ($allUnits as $unit) {
+                if (in_array($unit->id, $enrolledUnitIds)) {
+                    $enrolledUnits[] = $unit;
+                }
+            }
+
+            // Build flatItems array (same logic as Courses controller)
+            $flatItems = [];
+            $unitItemsModel = new \Modules\Units\Models\UnitItemsModel();
+            foreach ($enrolledUnits as $unit) {
+                $unitItems = $unitItemsModel->getUnitItemsWithDetails($unit->id, true);
+                foreach ($unitItems as $unitItem) {
+                    $flatItems[] = [
+                        'id' => $unitItem->id,
+                        'unit_id' => $unit->id,
+                        'unit_name' => $unit->unit_name,
+                        'item_type' => $unitItem->item_type,
+                        'title' => $unitItem->title,
+                        'description' => $unitItem->description,
+                        'item_id' => $unitItem->item_id
+                    ];
+                }
+            }
+
+            // Find current item index in flatItems
+            $currentIndex = false;
+            foreach ($flatItems as $index => $flatItem) {
+                if ($flatItem['id'] == $itemId) {
+                    $currentIndex = $index;
+                    break;
+                }
+            }
+
+            // Get updated course completion percentage
+            $courseCompletion = $this->progressModel->getCourseCompletionPercentage($userId, $course->id);
+
+            $response = [
+                'success' => true,
+                'message' => 'Item marked as completed',
+                'course_completion' => $courseCompletion,
+                'unit_completed' => $unitCompleted
+            ];
+
+            // Determine next item using flatItems navigation (same as Next button)
+            if ($currentIndex !== false && $currentIndex < count($flatItems) - 1) {
+                $nextItem = $flatItems[$currentIndex + 1];
+                $response['next_item'] = [
+                    'id' => $nextItem['id'],
+                    'title' => $nextItem['title'],
+                    'type' => $nextItem['item_type'],
+                    'url' => base_url('courses/course_view/' . $course->slug . '?item=' . $nextItem['id'])
+                ];
+            } else {
+                // No next item means course is completed
+                $response['course_completed'] = true;
+                $response['redirect_url'] = base_url('courses/course_view/' . $course->slug);
+            }
+
+            return $this->response->setJSON($response);
+        } else {
+            return $this->response->setJSON(['success' => false, 'message' => 'Failed to mark item as completed']);
+        }
+    }
+
+    /**
+     * Get user's progress for a specific course
+     */
+    public function getCourseProgress($courseId = null)
+    {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Invalid request']);
+        }
+
+        $session = session();
+        $userId = $session->get('user_id');
+
+        if (!$userId) {
+            return $this->response->setJSON(['success' => false, 'message' => 'User not authenticated']);
+        }
+
+        if (!$courseId) {
+            $courseId = $this->request->getGet('course_id');
+        }
+
+        if (!$courseId) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Course ID required']);
+        }
+
+        // Check if user is enrolled in the course
+        $isEnrolled = $this->coursesModel->isUserEnrolled($userId, $courseId);
+        if (!$isEnrolled) {
+            return $this->response->setJSON(['success' => false, 'message' => 'User not enrolled in course']);
+        }
+
+        // Get detailed progress
+        $progress = $this->progressModel->getCourseProgress($userId, $courseId);
+        $completionPercentage = $this->progressModel->getCourseCompletionPercentage($userId, $courseId);
+
+        return $this->response->setJSON([
+            'success' => true,
+            'completion_percentage' => $completionPercentage,
+            'units_progress' => $progress
+        ]);
+    }
+
+    /**
+     * Get user's learning dashboard
+     */
+    public function dashboard()
+    {
+        $session = session();
+        $userId = $session->get('user_id');
+
+        if (!$userId) {
+            return redirect()->to('/login');
+        }
+
+        // Get user's learning statistics
+        $stats = $this->progressModel->getUserLearningStats($userId);
+
+        // Get recent activity
+        $recentActivity = $this->progressModel->getRecentActivity($userId, 10);
+
+        // Get units needing attention
+        $unitsNeedingAttention = $this->progressModel->getUnitsNeedingAttention($userId, 5);
+
+        // Get enrolled courses with progress
+        $enrolledCourses = $this->coursesModel->getAllUserCourses($userId, 'active');
+        foreach ($enrolledCourses as &$course) {
+            $course->completion_percentage = $this->progressModel->getCourseCompletionPercentage($userId, $course->course_id);
+        }
+
+        $data = [
+            'title' => 'Learning Dashboard',
+            'description' => 'Track your learning progress and achievements',
+            'stats' => $stats,
+            'recent_activity' => $recentActivity,
+            'units_needing_attention' => $unitsNeedingAttention,
+            'enrolled_courses' => $enrolledCourses
+        ];
+
+        return View('Site', 'dashboard', $data);
+    }
+
+    /**
+     * Get unit progress for video player
+     */
+    public function getUnitProgress($unitId = null)
+    {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Invalid request']);
+        }
+
+        $session = session();
+        $userId = $session->get('user_id');
+
+        if (!$userId) {
+            return $this->response->setJSON(['success' => false, 'message' => 'User not authenticated']);
+        }
+
+        if (!$unitId) {
+            $unitId = $this->request->getGet('unit_id');
+        }
+
+        if (!$unitId) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Unit ID required']);
+        }
+
+        // Get progress
+        $progress = $this->progressModel->getUserUnitProgress($userId, $unitId);
+
+        if ($progress) {
+            return $this->response->setJSON([
+                'success' => true,
+                'progress' => [
+                    'progress_percentage' => $progress->progress_percentage,
+                    'watch_time' => $progress->watch_time,
+                    'last_position_seconds' => $progress->last_position_seconds,
+                    'is_completed' => $progress->is_completed,
+                    'completed_at' => $progress->completed_at
+                ]
+            ]);
+        } else {
+            return $this->response->setJSON([
+                'success' => true,
+                'progress' => [
+                    'progress_percentage' => 0,
+                    'watch_time' => 0,
+                    'last_position_seconds' => 0,
+                    'is_completed' => false,
+                    'completed_at' => null
+                ]
+            ]);
+        }
+    }
+
+    /**
+     * Export user progress data
+     */
+    public function exportProgress()
+    {
+        $session = session();
+        $userId = $session->get('user_id');
+
+        if (!$userId) {
+            return redirect()->to('/login');
+        }
+
+        // Get all user's progress data
+        $progressData = $this->progressModel->where('user_id', $userId)
+                                           ->orderBy('updated_at', 'DESC')
+                                           ->findAll();
+
+        // Get learning stats
+        $stats = $this->progressModel->getUserLearningStats($userId);
+
+        $exportData = [
+            'user_id' => $userId,
+            'export_date' => date('Y-m-d H:i:s'),
+            'learning_statistics' => $stats,
+            'progress_data' => $progressData
+        ];
+
+        // Set headers for JSON download
+        $this->response->setHeader('Content-Type', 'application/json');
+        $this->response->setHeader('Content-Disposition', 'attachment; filename="learning_progress_' . $userId . '_' . date('Y-m-d') . '.json"');
+
+        return $this->response->setJSON($exportData);
+    }
+
+    /**
+     * Get progress analytics for admin (requires admin access)
+     */
+    public function analytics()
+    {
+        $session = session();
+        $userRole = $session->get('user_role');
+
+        if ($userRole !== 'admin') {
+            return $this->response->setStatusCode(403)->setJSON(['success' => false, 'message' => 'Access denied']);
+        }
+
+        if (!$this->request->isAJAX()) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Invalid request']);
+        }
+
+        $analytics = $this->progressModel->getProgressAnalytics();
+
+        return $this->response->setJSON([
+            'success' => true,
+            'analytics' => $analytics
+        ]);
+    }
+
+    /**
+     * Get unit progress by parameter (for video-progress.js)
+     */
+    public function getUnitProgressByParam()
+    {
+        // Use Shield authentication
+        $user = auth()->user();
+
+        if (!$user) {
+            return $this->response->setStatusCode(401)->setJSON([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ]);
+        }
+
+        $userId = $user->id;
+
+        $unitId = $this->request->getGet('unit_id');
+        if (!$unitId) {
+            return $this->response->setStatusCode(400)->setJSON([
+                'success' => false,
+                'message' => 'Unit ID is required'
+            ]);
+        }
+
+        // Get unit progress
+        $progress = $this->progressModel->getUserUnitProgress($userId, $unitId);
+
+        if ($progress) {
+            return $this->response->setJSON([
+                'success' => true,
+                'progress' => [
+                    'progress_percentage' => (float) $progress->progress_percentage,
+                    'watch_time_seconds' => (int) $progress->watch_time,
+                    'last_position_seconds' => (int) $progress->last_position
+                ]
+            ]);
+        } else {
+            // Return default progress if none exists
+            return $this->response->setJSON([
+                'success' => true,
+                'progress' => [
+                    'progress_percentage' => 0.0,
+                    'watch_time_seconds' => 0,
+                    'last_position_seconds' => 0
+                ]
+            ]);
+        }
+    }
+}

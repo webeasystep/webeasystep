@@ -1,0 +1,27 @@
+<?php
+return [
+    'lang' => 'en',
+    'lango' => 'ar',
+    'langx' => 'ع',
+    'dir' => 'ltr',
+    'ceo_name' => 'CEO Name',
+    'read_more' => 'Read More',
+    'message_name' => 'Message Name',
+    'sas hotels_and_resorts' => 'SAS Hotels and Resorts',
+    'sas_real_estate_services' => 'SAS Real Estate Services',
+    'sas_general_contracting' => 'SAS General Contracting and Investment',
+    'contracting_and_investment' => 'Our Clients',
+    'our_clients' => 'Contact SAS',
+    'contact_with_sas' => 'Terms of Use',
+    'terms_of_use' => 'About',
+    'about' => 'Media Center',
+    'design_develop' => 'Lean Contracting and Investment',
+    'media_center' => 'Contact Phones',
+    'lean_contracting_and_investment' => 'Contact Address',
+    'contactPhones' => 'Languages',
+    'contactAddress' => 'Home',
+    'languages' => 'Home',
+    'home' => 'Home',
+    'contact_us' => 'Contact us',
+
+];
