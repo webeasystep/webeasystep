@@ -54,8 +54,13 @@ $routes->group('/', ['namespace' => 'Modules\Users\Controllers'], static functio
     $routes->get('users/logout', [Users::class, 'logout']);
     $routes->get('users/register', [Users::class, 'register']);
     $routes->post('users/register', [Users::class, 'register']);
-    $routes->get('users/verify-email-sent', [Users::class, 'verifyEmailSent']);
-    $routes->get('users/verify-email/(:any)', [Users::class, 'verifyEmail/$1']);
+    $routes->get('users/register', [Users::class, 'register']);
+    $routes->post('users/register', [Users::class, 'register']);
+    
+    // Custom activation routes removed - handled by Shield
+    
+    // Test email route (keeping for now to test template view if needed, or remove if user wants strict cleanup)
+    // $routes->get('test-email', [Users::class, 'testEmail']);
 
     // Settings routes (require authentication)
     $routes->group('', ['filter' => 'site_filter'], static function ($routes) {

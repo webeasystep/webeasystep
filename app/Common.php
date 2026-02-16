@@ -30,7 +30,7 @@ if (!function_exists('view')) {
 
         // Default to Admin view type for admin controllers
         $viewType = 'Admin';
-        
+
         // Check if it's a site view (contains 'site/')
         if (str_contains($name, 'site/')) {
             $viewType = 'Site';

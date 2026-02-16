@@ -74,6 +74,44 @@ class ActivationController extends BaseController
     }
 
     /**
+     * Activates the account via GET request (Link click).
+     */
+    public function activate(): RedirectResponse
+    {
+        /** @var Session $authenticator */
+        $authenticator = auth('session')->getAuthenticator();
+
+        $token = $this->request->getGet('token');
+
+        $user = $authenticator->getPendingUser();
+        if ($user === null) {
+            return redirect()->to('/login')->with('error', lang('Auth.activateLinkExpired'));
+        }
+
+        // Get the identity for verification
+        $identity = $this->getIdentity($user);
+
+        if ($identity === null) {
+            return redirect()->to('/login')->with('error', lang('Auth.invalidActivateToken'));
+        }
+
+        // Check if token matches
+        if (! $authenticator->checkAction($identity, $token)) {
+            return redirect()->to('/login')->with('error', lang('Auth.invalidActivateToken'));
+        }
+
+        // Get the authenticated user after successful verification
+        $user = $authenticator->getUser();
+
+        // Activate the user
+        $user->activate();
+
+        // Success - redirect to login or dashboard
+        return redirect()->to(config('Auth')->registerRedirect())
+            ->with('message', lang('Auth.registerSuccess'));
+    }
+
+    /**
      * Get the identity for email activation.
      */
     private function getIdentity($user)

@@ -63,7 +63,28 @@ class Auth extends ShieldAuth
         'action_email_2fa_verify'     => 'App\Views\site_layout\shield\email_2fa_verify',
         'action_email_2fa_email'      => 'App\Views\site_layout\shield\Email\email_2fa_email',
         'action_email_activate_show'  => 'App\Views\site_layout\shield\email_activate_show',
-        'action_email_activate_email' => 'App\Views\site_layout\shield\Email\email_activate_email',
+        'action_email_activate_email' => 'Modules\Users\Views\Site\emails\activation',
+        'magic-link-login'            => 'App\Views\site_layout\shield\magic_link_form',
+        'magic-link-message'          => 'App\Views\site_layout\shield\magic_link_message',
+        'magic-link-email'            => 'App\Views\site_layout\shield\Email\magic_link_email',
+    ];
+
+    /**
+     * --------------------------------------------------------------------
+     * Shield Views Configuration
+     * --------------------------------------------------------------------
+     * Overriding Shield's default views to use our site views.
+     * This is required for Shield's internal actions (like EmailActivator).
+     */
+    public array $views = [
+        'login'                       => 'App\Views\site_layout\shield\login',
+        'register'                    => 'App\Views\site_layout\shield\register',
+        'layout'                      => 'App\Views\site_layout\shield\layout',
+        'action_email_2fa'            => 'App\Views\site_layout\shield\email_2fa_show',
+        'action_email_2fa_verify'     => 'App\Views\site_layout\shield\email_2fa_verify',
+        'action_email_2fa_email'      => 'App\Views\site_layout\shield\Email\email_2fa_email',
+        'action_email_activate_show'  => 'App\Views\site_layout\shield\email_activate_show',
+        'action_email_activate_email' => 'Modules\Users\Views\Site\emails\activation',
         'magic-link-login'            => 'App\Views\site_layout\shield\magic_link_form',
         'magic-link-message'          => 'App\Views\site_layout\shield\magic_link_message',
         'magic-link-email'            => 'App\Views\site_layout\shield\Email\magic_link_email',
@@ -120,7 +141,7 @@ class Auth extends ShieldAuth
      * @var array<string, class-string<ActionInterface>|null>
      */
     public array $actions = [
-        'register' => \App\Libraries\EmailActivator::class,
+        'register' => \App\Authentication\Actions\CustomEmailActivator::class,
         'login'    => null,
     ];
 
