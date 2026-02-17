@@ -2900,8 +2900,15 @@
                     <h4>مقدمة الكورس</h4>
                     <div class="video-block">
                         <div class="video-container">
+                            <?php
+                                $introVideoId = $course->intro_video_id ?? '';
+                                $isYouTube = (strlen($introVideoId) === 11);
+                                $embedUrl = $isYouTube 
+                                    ? "https://www.youtube.com/embed/{$introVideoId}" 
+                                    : "https://iframe.mediadelivery.net/embed/" . ($course->collection_id ?? '495222') . "/{$introVideoId}?autoplay=false";
+                            ?>
                             <iframe
-                                    src="https://iframe.mediadelivery.net/embed/<?= $course->collection_id ?? '495222' ?>/<?= $course->intro_video_id ?? '' ?>?autoplay=false"
+                                    src="<?= $embedUrl ?>"
                                     loading="lazy"
                                     style="border: none; position: absolute; top: 0; height: 100%; width: 100%;"
                                     allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"

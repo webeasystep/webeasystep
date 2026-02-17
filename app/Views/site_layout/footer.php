@@ -27,7 +27,7 @@
                     <h3>اتصل بنا</h3>
                     <ul class="list-unstyled links mb-4">
                         <li dir="ltr"><a href="https://wa.me/201032863861" target="_blank" aria-label="تواصل عبر واتساب على 201032863861">+201032863861</a></li>
-                        <li dir="ltr"><a href="mailto:support@webeasystep.com">support@webeasystep.com</a></li>
+                        <li dir="ltr"><a href="mailto:info@webeasystep.com">info@webeasystep.com</a></li>
                     </ul>
                 </div> </div> </div> <div class="row mt-3">
             <div class="col-12 text-center">

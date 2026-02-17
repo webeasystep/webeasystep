@@ -8,6 +8,9 @@ return [
     'payments_List'     => 'قائمة المدفوعات',
 
     // Common Fields
+    'full_name'         => 'الاسم الكامل',
+    'mobile'            => 'رقم الهاتف',
+    'paid_amount'       => 'المبلغ المدفوع',
     'user_name'         => 'اسم المستخدم',
     'course_title'       => 'اسم الدورة',
     'unit_name'         => 'اسم الوحدة',
@@ -27,6 +30,10 @@ return [
     'enrollment_status' => 'حالة الاشتراك',
      'enrolled_at'       => 'تاريخ الاشتراك',
 
+    'approved_by'       => 'تم الموافقة بواسطة',
+    'expires_at'        => 'تاريخ الانتهاء',
+    'notes'             => 'ملاحظات',
+
     'created_at'        => 'تاريخ الإنشاء',
     'updated_at'        => 'تاريخ التحديث',
 
@@ -34,4 +41,5 @@ return [
     'active'            => 'التفعيل',
     'done'              => 'تم بنجاح',
     'processed_at'  => 'تم معالجته',
+    'approved_at' => 'تم الموافقة',
 ];

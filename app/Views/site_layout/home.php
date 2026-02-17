@@ -111,14 +111,14 @@
                     <p class="lead">مش هسيبك تتوه في بحر الفيديوهات. أنا صممتلك بيئة متكاملة تسد فجوة غياب الدعم وتحطك على أول طريق الاحتراف الحقيقي.</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6 col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="row">
+      <div class="col-6 col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="feature text-center">
                         <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
                             <i class="fas fa-users fa-lg" style="color: #ffffff;"></i>
                         </div>
-                        <h3>مجتمع تفاعلي ودعم</h3>
-                        <p>مش هتقف قدام أي مشكلة برمجية (Error) لوحدك. أنا والمجتمع بتاعنا في ضهرك بنجاوب على كل استفساراتك.</p>
+                        <h3>بيئة داعمة.. بتعلمك "تصطاد"</h3>
+                        <p>في جروب التليجرام الخاص بينا، هتلاقي مجتمع من زمايلك لتبادل الخبرات. والأهم؟ هعلمك إزاي تخلي الـ AI هو مساعدك الشخصي اللي بيحللك أي (Error). دوري هو توجيه البوصلة، ودورك تبني استقلاليتك التقنية.</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
@@ -126,17 +126,16 @@
                         <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
                             <i class="fas fa-hammer fa-lg" style="color: #ffffff;"></i>
                         </div>
-                        <h3>مشاريع عملية 100%</h3>
-                        <p>بلاش النظري الممل. في كل كورس هنبني مع بعض مشروع حقيقي ينزل فوراً في معرض أعمالك (Portfolio).</p>
+                        <h3>تأسيس صح وتطبيق عملي</h3>
+                        <p>هنديك الجرعة النظرية اللي تبني أساسك البرمجي صح، وبعدها بنترجم ده فوراً لمشاريع حقيقية تبنيها بإيدك وتنزلها في الـ (Portfolio) بتاعك بثقة.</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="feature text-center">
                         <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-briefcase fa-lg" style="color: #ffffff;"></i>
-                        </div>
-                        <h3>جسر الاحتراف والتوظيف</h3>
-                        <p>هنقلك خلاصة خبرة 12 سنة في السوق، وهدعمك بتوجيهات تخليك تتخطى مقابلات العمل التقنية بقلب جامد.</p>
+                            <i class="fas fa-brain fa-lg" style="color: #ffffff;"></i> </div>
+                        <h3>عقلية المهندس مش مجرد كود</h3>
+                        <p>هدفي أنقلك خلاصة خبرة 12 سنة في السوق. هعلمك إزاي تفكر في حل المشاكل وتطوع أدوات العصر لخدمتك، عشان تكون مبرمج تقيل وجاهز لتحديات السوق الحقيقية.</p>
                     </div>
                 </div>
             </div>
@@ -204,7 +203,11 @@
                                                 <span class="text-muted mr-1" style="font-size: 0.8rem; font-weight: bold;">$</span>
                                             <?php endif; ?>
                                         </div>
-                                        <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">اشترك الآن</button>
+                                        <?php if (!empty($course['waiting_list']) && $course['waiting_list'] == 1): ?>
+                                            <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">اشترك الآن</button>
+                                        <?php else: ?>
+                                            <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>" class="btn btn-primary btn-block text-white" style="font-weight: bold;">تصفح الكورس</a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>

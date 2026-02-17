@@ -61,8 +61,9 @@ class CourseEnrollmentsModel extends BaseModel
      */
     public function getCourseEnrollments(int $courseId, ?string $status = null): array
     {
-        $builder = $this->select('tb_course_enrollments.*, users.full_name, users.email, users.mobile')
+        $builder = $this->select('tb_course_enrollments.*, users.full_name, users.email, auth_identities.secret as mobile')
             ->join('users', 'users.id = tb_course_enrollments.user_id')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "mobile_number"', 'left')
             ->where('tb_course_enrollments.course_id', $courseId)
             ->orderBy('tb_course_enrollments.created_at', 'DESC');
         
@@ -93,9 +94,10 @@ class CourseEnrollmentsModel extends BaseModel
      */
     public function getPendingEnrollments(): array
     {
-        return $this->select('tb_course_enrollments.*, tb_courses.course_title, users.full_name, users.email, users.mobile')
+        return $this->select('tb_course_enrollments.*, tb_courses.course_title, users.full_name, users.email, auth_identities.secret as mobile')
             ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
             ->join('users', 'users.id = tb_course_enrollments.user_id')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "mobile_number"', 'left')
             ->where('tb_course_enrollments.status', 'pending')
             ->orderBy('tb_course_enrollments.created_at', 'ASC')
             ->findAll();
@@ -178,9 +180,10 @@ class CourseEnrollmentsModel extends BaseModel
      */
     public function getDataTable()
     {
-        return $this->select('tb_course_enrollments.*, tb_courses.course_title, users.full_name, users.mobile')
+        return $this->select('tb_course_enrollments.*, tb_courses.course_title, users.full_name, auth_identities.secret as mobile')
             ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
             ->join('users', 'users.id = tb_course_enrollments.user_id')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "mobile_password"', 'left')
             ->orderBy('tb_course_enrollments.created_at', 'DESC');
     }
 }

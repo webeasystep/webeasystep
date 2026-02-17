@@ -782,15 +782,16 @@ class Quizzes extends BaseController
                                 ->getRow();
 
             if ($quizItem) {
-                // Get enrollment ID
-                $enrollment = $this->db->table('tb_unit_enrollments')
+                // Get enrollment ID (New System)
+                $enrollment = $this->db->table('tb_course_enrollments')
                                       ->where('user_id', $userId)
                                       ->where('course_id', $quiz->course_id)
+                                      ->where('status', 'approved')
                                       ->get()
                                       ->getRow();
 
                 if (!$enrollment) {
-                    log_message('error', 'No enrollment found for user ' . $userId . ' in course ' . $quiz->course_id);
+                    log_message('error', 'No approved course enrollment found for user ' . $userId . ' in course ' . $quiz->course_id);
                     return;
                 }
 
@@ -799,7 +800,7 @@ class Quizzes extends BaseController
                     'user_id' => $userId,
                     'unit_id' => $quizItem->unit_id,
                     'item_id' => $quizItem->id,
-                    'enrollment_id' => $enrollment->id,
+                    'course_enrollment_id' => $enrollment->id,
                     'progress_percentage' => $passed ? 100.00 : 0.00,
                     'is_completed' => $passed ? 1 : 0,
                     'completed_at' => $passed ? date('Y-m-d H:i:s') : null,

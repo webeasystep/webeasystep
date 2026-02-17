@@ -37,9 +37,9 @@
                         <span class="d-none d-lg-inline-block">+201032863861</span>
                     </a>
                     <!-- Email -->
-                    <a href="mailto:support@webeasystep.com" class="small mr-3 p-2" dir="ltr" aria-label="راسلنا على support@webeasystep.com">
+                    <a href="mailto:info@webeasystep.com" class="small mr-3 p-2" dir="ltr" aria-label="راسلنا على info@webeasystep.com">
                         <span class="icon-envelope mr-2"></span>
-                        <span class="d-none d-lg-inline-block">support@webeasystep.com</span>
+                        <span class="d-none d-lg-inline-block">info@webeasystep.com</span>
                     </a>
                 </div>
 

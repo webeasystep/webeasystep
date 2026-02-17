@@ -9,7 +9,7 @@ class UserItemProgressModel extends BaseModel
     protected $table         = 'tb_user_item_progress';
     protected $primaryKey    = 'id';
     protected $allowedFields = [
-        'user_id', 'unit_id', 'item_id', 'enrollment_id', 'progress_percentage', 
+        'user_id', 'unit_id', 'item_id', 'course_enrollment_id', 'progress_percentage', 
         'watch_time', 'last_position', 'is_completed', 'completed_at', 
         'first_accessed_at', 'last_accessed_at'
     ];
@@ -23,15 +23,12 @@ class UserItemProgressModel extends BaseModel
     {
         // Debug logging
         log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Starting with userId=' . $userId . ', unitId=' . $unitId . ', itemId=' . $itemId . ', enrollmentId=' . $enrollmentId);
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Starting with userId=' . $userId . ', unitId=' . $unitId . ', itemId=' . $itemId . ', enrollmentId=' . $enrollmentId . "\n",
-            FILE_APPEND | LOCK_EX);
-
+        
         $data = [
             'user_id' => $userId,
             'unit_id' => $unitId,
             'item_id' => $itemId,
-            'enrollment_id' => $enrollmentId,
+            'course_enrollment_id' => $enrollmentId,
             'progress_percentage' => 100.00,
             'is_completed' => 1,
             'completed_at' => date('Y-m-d H:i:s'),
@@ -39,9 +36,7 @@ class UserItemProgressModel extends BaseModel
         ];
 
         log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Data to insert/update: ' . json_encode($data));
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Data to insert/update: ' . json_encode($data) . "\n",
-            FILE_APPEND | LOCK_EX);
+
 
         // Check if record exists
         $existing = $this->where('user_id', $userId)
@@ -49,33 +44,25 @@ class UserItemProgressModel extends BaseModel
                         ->first();
 
         log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Existing record: ' . ($existing ? json_encode($existing) : 'NULL'));
-        file_put_contents('D:\laragon\www\msarlink\debug.log',
-            date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Existing record: ' . ($existing ? json_encode($existing) : 'NULL') . "\n",
-            FILE_APPEND | LOCK_EX);
+
 
         if ($existing) {
             $result = $this->update($existing->id, $data);
             log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Update result: ' . ($result ? 'true' : 'false'));
-            file_put_contents('D:\laragon\www\msarlink\debug.log',
-                date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Update result: ' . ($result ? 'true' : 'false') . "\n",
-                FILE_APPEND | LOCK_EX);
+
             return $result;
         } else {
             $data['first_accessed_at'] = date('Y-m-d H:i:s');
             $insertResult = $this->insert($data);
             $result = $insertResult !== false;
             log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Insert result: ' . ($result ? 'true' : 'false') . ', Insert ID: ' . ($insertResult ?: 'NULL'));
-            file_put_contents('D:\laragon\www\msarlink\debug.log',
-                date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Insert result: ' . ($result ? 'true' : 'false') . ', Insert ID: ' . ($insertResult ?: 'NULL') . "\n",
-                FILE_APPEND | LOCK_EX);
+
             
             // Check for database errors
             if (!$result) {
                 $error = $this->db->error();
                 log_message('debug', 'MARK_ITEM_COMPLETED DEBUG - Database error: ' . json_encode($error));
-                file_put_contents('D:\laragon\www\msarlink\debug.log',
-                    date('Y-m-d H:i:s') . ' MARK_ITEM_COMPLETED DEBUG - Database error: ' . json_encode($error) . "\n",
-                    FILE_APPEND | LOCK_EX);
+
             }
             
             return $result;
@@ -91,7 +78,7 @@ class UserItemProgressModel extends BaseModel
             'user_id' => $userId,
             'unit_id' => $unitId,
             'item_id' => $itemId,
-            'enrollment_id' => $enrollmentId,
+            'course_enrollment_id' => $enrollmentId,
             'progress_percentage' => $percentage,
             'watch_time' => $watchTime,
             'last_position' => $lastPosition,

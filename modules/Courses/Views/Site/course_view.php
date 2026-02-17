@@ -843,16 +843,7 @@
                 </p>
             </div>
 
-            <!-- Compact Buy Units Block -->
-            <div class="buy-units-compact ml-4">
-                <a href="<?= site_url('courses/course_details/' . $course->slug) ?>"
-                   class="btn btn-primary"
-                   style="background: linear-gradient(135deg, #136ad5 0%, #0d5aa7 100%); border: none;
-                   padding: 17px 18px; font-weight: 600; border-radius: 6px; font-size: 0.9rem; white-space: nowrap;">
-                    <i class="fas fa-shopping-cart ml-1"></i>
-                    شراء وحدات
-                </a>
-            </div>
+            <!-- Compact Buy Units Block Removed -->
         </div>
 
         <div class="row">
@@ -990,7 +981,7 @@
 
                                                                     // Display metadata based on item type
                                                                     if ($item->item_type === 'video') {
-                                                                        $duration = isset($metadata['video_duration']) ? round($metadata['video_duration'] / 60) : null;
+                                                                        $duration = isset($metadata['video_duration']) ? round((int)$metadata['video_duration'] / 60) : null;
                                                                         if ($duration) {
                                                                             echo '<span class="item-duration" style="' . ($isUnitLocked ? 'color: #adb5bd;' : 'color: #6c757d;') . '"><i class="fas fa-clock"></i> ' . esc($duration) . ' دقيقة</span>';
                                                                         } else {

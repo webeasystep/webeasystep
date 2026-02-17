@@ -184,18 +184,16 @@ class UnitItemsModel extends Model
             'video_duration' => $videoData['video_duration'] ?? '',
             'video_thumbnail' => $videoData['video_thumbnail'] ?? $videoData['thumbnail'] ?? '',
             'collection_id' => $videoData['collection_id'] ?? '',
-            'video_library_id' => $videoData['video_library_id'] ?? ''
+            'video_library_id' => $videoData['video_library_id'] ?? '',
+            'content_data' => $contentData
         ];
 
         $data = [
             'unit_id' => $unitId,
             'item_type' => 'video',
-            'video_id' => $videoData['video_id'] ?? '',
-            'video_title' => $videoData['video_title'] ?? $videoData['title'] ?? '',
-            'video_duration' => $videoData['video_duration'] ?? '',
+            'item_id' => $videoData['video_id'] ?? '', // Store video_id in generic item_id column
             'title' => $videoData['video_title'] ?? $videoData['title'] ?? 'فيديو جديد',
             'description' => $videoData['description'] ?? '',
-            'content_data' => json_encode($contentData),
             'metadata' => json_encode($metadata),
             'sort_order' => $sortOrder ?? $this->getNextSortOrder($unitId),
             'is_active' => 1

@@ -4,20 +4,17 @@ namespace Modules\Enrollments\Controllers;
 
 use App\Controllers\BaseController;
 use Modules\Courses\Models\CoursesModel;
-use Modules\Enrollments\Models\EnrollmentsModel;
 use Modules\Enrollments\Models\CourseEnrollmentsModel;
 use Modules\Users\Models\UsersModel;
 
 class Enrollments extends BaseController
 {
-    protected EnrollmentsModel $enrollmentsModel;
     protected CourseEnrollmentsModel $courseEnrollmentsModel;
     protected CoursesModel $coursesModel;
     protected UsersModel $usersModel;
 
     public function __construct()
     {
-        $this->enrollmentsModel = new EnrollmentsModel();
         $this->courseEnrollmentsModel = new CourseEnrollmentsModel();
         $this->coursesModel = new CoursesModel();
         $this->usersModel = new UsersModel();

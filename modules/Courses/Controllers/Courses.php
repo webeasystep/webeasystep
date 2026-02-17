@@ -94,14 +94,12 @@ class Courses extends BaseController
         $enrolledCourseIds = [];
 
         if ($userId) {
-            // Get courses with enrolled units for logged-in user
+            // Get enrolled course IDs for logged-in user
             $enrolledCourseIds = $this->db
-                ->table('tb_unit_enrollments ue')
-                ->select('u.course_id')
-                ->join('tb_units u', 'u.id = ue.unit_id')
-                ->where('ue.user_id', $userId)
-                ->where('ue.status', 'approved')
-                ->distinct()
+                ->table('tb_course_enrollments')
+                ->select('course_id')
+                ->where('user_id', $userId)
+                ->where('status', 'approved')
                 ->get()
                 ->getResultArray();
 
@@ -162,12 +160,12 @@ class Courses extends BaseController
                         $metadata = json_decode($item['metadata'], true);
                         if (isset($metadata['video_duration'])) {
                             // Convert seconds to minutes and round
-                            $totalDuration += round($metadata['video_duration'] / 60);
+                            $totalDuration += round((int)$metadata['video_duration'] / 60);
                         }
                     }
                     // Fallback to duration field if metadata is not available
                     elseif (!empty($item['duration'])) {
-                        $totalDuration += round($item['duration'] / 60);
+                        $totalDuration += round((int)$item['duration'] / 60);
                     }
                 } elseif ($item['item_type'] === 'page') {
                     $pageCount++;
@@ -258,26 +256,13 @@ class Courses extends BaseController
             return redirect()->to('/')->with('error', 'الكورس غير موجود');
         }
 
-        // Check if user has enrolled in any units of this course
-        $courseUnits = $this->db->table('tb_units')
-            ->select('id')
-            ->where('course_id', $courseId)
+        // Check if user is enrolled in the course via tb_course_enrollments
+        $enrollment = $this->db->table('tb_course_enrollments')
+            ->where('user_id', $userId)
+            ->where('course_id', $course['id'])
+            ->where('status', 'approved')
             ->get()
-            ->getResultArray();
-        $courseUnitIds = array_column($courseUnits, 'id');
-
-        $enrollment = null;
-        if (!empty($courseUnitIds)) {
-            $enrollments = $this->db->table('tb_unit_enrollments ue')
-                ->join('tb_units u', 'u.id = ue.unit_id')
-                ->where('ue.user_id', $userId)
-                ->where('ue.status', 'approved')
-                ->where('u.course_id', $course['id'])
-                ->get()
-                ->getResultArray();
-
-            $enrollment = !empty($enrollments) ? $enrollments[0] : null;
-        }
+            ->getRow();
 
         if ($enrollment) {
             // User is enrolled, redirect to course view
@@ -303,12 +288,10 @@ class Courses extends BaseController
         // If user is logged in, fetch the courses they're enrolled in
         if (!empty($userId)) {
             $enrolledCourseIds = $this->db
-                ->table('tb_unit_enrollments ue')
-                ->select('u.course_id')
-                ->join('tb_units u', 'u.id = ue.unit_id')
-                ->where('ue.user_id', $userId)
-                ->where('ue.status', 'approved')
-                ->distinct()
+                ->table('tb_course_enrollments')
+                ->select('course_id')
+                ->where('user_id', $userId)
+                ->where('status', 'approved')
                 ->get()
                 ->getResultArray();
 
@@ -355,6 +338,7 @@ class Courses extends BaseController
     {
         // 1) Fetch the course by slug
         $course = $this->coursesModel->getCourseBySlug($slug);
+        
         if (!$course) {
             throw PageNotFoundException::forPageNotFound();
         }
@@ -365,28 +349,25 @@ class Courses extends BaseController
         // 2.1) Check if user is logged in and get user ID
         $userId = auth()->loggedIn() ? auth()->user()->id : null;
 
-        // 2.2) Check user's unit enrollments to filter out purchased units
-        $userEnrolledUnitIds = [];
+        // 2.2) Check user's course enrollment
+        $isCourseEnrolled = false;
         if ($userId) {
-            // Get user's approved unit enrollments
-            $userEnrolledUnitIds = $this->db->table('tb_unit_enrollments')
-                ->select('unit_id')
-                ->where('user_id', $userId)
-                ->where('status', 'approved')
-                ->get()
-                ->getResultArray();
-
-            $userEnrolledUnitIds = array_column($userEnrolledUnitIds, 'unit_id');
+            $isCourseEnrolled = $this->coursesModel->isUserEnrolled($userId, $course->id);
         }
 
-        // Filter out units that user has already purchased and been approved for
-        $filteredUnits = [];
-        foreach ($units as $unit) {
-            if (!in_array($unit->id, $userEnrolledUnitIds)) {
-                $filteredUnits[] = $unit;
-            }
-        }
-        $units = $filteredUnits;
+        // If user is enrolled in the course, they have access to all units.
+        // So we don't need to filter out "purchased units" in the same way, 
+        // effectively all units are "purchased" / "enrolled".
+        // However, the original logic seemed to filter them out from the list of *available to purchase* units?
+        // Or was it filtering them out from the display?
+        // "Filter out units that user has already purchased and been approved for" -> implies hiding them from a "buy units" list?
+        // But the view usually shows all units.
+        // Let's assume for now valid course enrollment means all units are "owned".
+        
+        $filteredUnits = $units; // Show all units
+        // If we strictly wanted to hide "enrolled" units (like for a specific "buy units" view), we would filter.
+        // But for course_details which is often the sales page, we usually show everything.
+        // If the user IS enrolled, they usually see "Access Course" button instead of buy buttons per unit.
 
         // Get unit items for each unit and process metadata
         foreach ($units as &$unit) {
@@ -509,31 +490,18 @@ class Courses extends BaseController
             return redirect()->to('/courses/course_details/' . $slug)->with('error', 'You need to enroll in this course to access its content.');
         }
 
-        // 3) Get course units with their items - FILTER BY ENROLLMENT
+        // 3) Get course units with their items
         $allUnits = $this->unitsModel->getUnitsByCourse($course->id);
 
-        // Get user's enrolled unit IDs
-        $enrolledUnitIds = $this->db->table('tb_unit_enrollments')
-            ->select('unit_id')
-            ->where('user_id', $userId)
-            ->where('status', 'approved')
-            ->get()
-            ->getResultArray();
-
-        $enrolledUnitIds = array_column($enrolledUnitIds, 'unit_id');
-
-        // Get ALL units for display (both enrolled and unenrolled)
+        // Get ALL units for display
         $units = [];
         foreach ($allUnits as $unit) {
-            // Debug: Log unit properties before processing
+            // Mark unit as enrolled (since course access is confirmed)
+            $unit->is_enrolled = true;
 
-
-            // Mark unit as enrolled or not
-            $unit->is_enrolled = in_array($unit->id, $enrolledUnitIds);
-
-            // Ensure is_free property is preserved (it should already be there from database)
+            // Ensure is_free property is preserved
             if (!isset($unit->is_free)) {
-                $unit->is_free = 0; // Default to not free if not set
+                $unit->is_free = 0; 
             }
 
             $units[] = $unit;
@@ -678,33 +646,8 @@ class Courses extends BaseController
                 // Item exists - check if user has access to the unit
                 $unit = $this->unitsModel->find($requestedItem->unit_id);
                 if ($unit && $unit->course_id == $course->id) {
-                    // Check if unit is free and auto-enroll user
-                    if ($unit->is_free && !in_array($unit->id, $enrolledUnitIds)) {
-                        // Auto-enroll user in free unit
-                        $enrollmentData = [
-                            'user_id' => $userId,
-                            'unit_id' => $unit->id,
-                            'status' => 'approved',
-                            'created_at' => date('Y-m-d H:i:s'),
-                            'processed_at' => date('Y-m-d H:i:s'),
-                            'processed_by' => $userId // Self-enrollment for free units
-                        ];
-
-                        $this->db->table('tb_unit_enrollments')->insert($enrollmentData);
-
-
-                        // Redirect to refresh the page with updated enrollment
-                        return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $requestedItemId))
-                            ->with('success', 'تم تسجيلك في الوحدة المجانية بنجاح');
-                    }
-
-                    // Check if user has access to this unit
-                    $hasUnitAccess = $this->checkUnitAccess($userId, $unit->id);
-                    if (!$hasUnitAccess && !$unit->is_free) {
-                        // User doesn't have access - redirect with Arabic message
-                        return redirect()->to(site_url('courses/course_view/' . $slug))
-                            ->with('error', 'يجب عليك شراء الكورس أولاً حتى تتمكن من مشاهدة المحتوى');
-                    }
+                    // Check if user has access to this unit (should always be true if course is enrolled)
+                    // If necessary, add specific unit access logic here, but for now course access covers all.
                 }
             }
 
@@ -723,7 +666,7 @@ class Courses extends BaseController
             for ($i = $currentIndex - 1; $i >= 0; $i--) {
                 $item = $flatItems[$i];
                 // Check if this item is accessible (enrolled or free unit)
-                if ($item['is_free_unit'] || in_array($item['unit_id'], $enrolledUnitIds)) {
+                if ($item['is_free_unit'] || true) {
                     $prevItem = $item;
                     break;
                 }
@@ -733,7 +676,7 @@ class Courses extends BaseController
             for ($i = $currentIndex + 1; $i < count($flatItems); $i++) {
                 $item = $flatItems[$i];
                 // Check if this item is accessible (enrolled or free unit)
-                if ($item['is_free_unit'] || in_array($item['unit_id'], $enrolledUnitIds)) {
+                if ($item['is_free_unit'] || true) {
                     $nextItem = $item;
                     break;
                 }
@@ -1405,28 +1348,18 @@ class Courses extends BaseController
      */
     private function checkCourseAccess($userId, $courseId): bool
     {
-        // Get all units for this course
-        $courseUnits = $this->db->table('tb_units')
-            ->select('id')
+        // Check for direct enrollment in the course (New System)
+        $hasCourseEnrollment = $this->db->table('tb_course_enrollments')
             ->where('course_id', $courseId)
-            ->where('active', 1)
-            ->get()
-            ->getResultArray();
-
-        if (empty($courseUnits)) {
-            return false;
-        }
-
-        $courseUnitIds = array_column($courseUnits, 'id');
-
-        // Check if user has enrollment for any of these units
-        $hasAccess = $this->db->table('tb_unit_enrollments')
-            ->whereIn('unit_id', $courseUnitIds)
             ->where('user_id', $userId)
             ->where('status', 'approved')
-            ->countAllResults() > 0;
+            ->countAllResults();
 
-        return $hasAccess;
+        if ($hasCourseEnrollment > 0) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

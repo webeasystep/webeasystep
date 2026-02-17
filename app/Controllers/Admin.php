@@ -46,7 +46,7 @@ class Admin extends BaseController
         $this->db->query("SET time_zone='+3:00'");
 
         // Fetch counts for each table
-        $tables = ['articles','tb_unit_enrollments', 'tb_courses', 'users'];
+        $tables = ['articles','tb_course_enrollments', 'tb_courses', 'users'];
         foreach ($tables as $table) {
             $query = $this->db->query("SELECT COUNT(*) as count FROM $table");
             $result = $query->getRow();
@@ -83,6 +83,12 @@ class Admin extends BaseController
 
             if (!$loginAttempt->isOK()) {
                 return redirect()->back()->with('error', $loginAttempt->reason());
+            }
+
+            // Check if user has admin access permission
+            if (!auth()->user()->can('admin.access')) {
+                auth()->logout();
+                return redirect()->back()->with('error', lang('Auth.notEnoughPrivilege'));
             }
 
             $_SESSION['user_id'] = auth()->user()->id;

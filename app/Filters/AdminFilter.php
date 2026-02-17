@@ -31,8 +31,8 @@ class AdminFilter implements FilterInterface
         }
 
         // Check if the user has admin rights
-        // (Assuming 'admin' is a group name, modify as needed)
-        if (!$auth->user()->inGroup('superadmin')) {
+        // Using permission check instead of group check for better flexibility
+        if (!$auth->user()->can('admin.access')) {
             // For AJAX requests, return JSON error
             if ($request->isAJAX() || $request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest') {
                 return service('response')

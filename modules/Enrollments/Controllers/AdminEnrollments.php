@@ -4,14 +4,12 @@ namespace Modules\Enrollments\Controllers;
 
 use App\Controllers\BaseController;
 use App\Libraries\DtTable;
-use Modules\Enrollments\Models\EnrollmentsModel;
 use Modules\Enrollments\Models\CourseEnrollmentsModel;
 use Modules\Courses\Models\CoursesModel;
 use Modules\Users\Models\UsersModel;
 
 class AdminEnrollments extends BaseController
 {
-    protected EnrollmentsModel $enrollments;
     protected CourseEnrollmentsModel $courseEnrollments;
     protected CoursesModel $coursesModel;
     protected UsersModel $usersModel;
@@ -19,7 +17,6 @@ class AdminEnrollments extends BaseController
 
     public function __construct()
     {
-        $this->enrollments = new EnrollmentsModel();
         $this->courseEnrollments = new CourseEnrollmentsModel();
         $this->coursesModel = new CoursesModel();
         $this->usersModel = new UsersModel();
@@ -53,7 +50,7 @@ class AdminEnrollments extends BaseController
             return $this->response->setJSON($output);
         }
 
-        return view('Admin/course_enrollments', $data);
+        return view('index', $data);
     }
 
     /**
@@ -62,9 +59,10 @@ class AdminEnrollments extends BaseController
     public function showCourseEnrollment($id)
     {
         $enrollment = $this->courseEnrollments
-            ->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.course_price, users.full_name, users.email, users.mobile')
+            ->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.course_price, users.full_name, users.email, auth_identities.secret as mobile')
             ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
             ->join('users', 'users.id = tb_course_enrollments.user_id')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "mobile_password"', 'left')
             ->find($id);
 
         if (!$enrollment) {
@@ -76,7 +74,7 @@ class AdminEnrollments extends BaseController
             'enrollment' => $enrollment
         ];
 
-        return view('Admin/course_enrollment_details', $data);
+        return view('Admin\course_enrollment_details', $data);
     }
 
     /**

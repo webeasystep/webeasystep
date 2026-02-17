@@ -113,7 +113,7 @@ class AdminCourses extends BaseController
             'course_desc'       => $this->request->getPost('course_desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             'short_desc'        => $this->request->getPost('short_desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             'slug'              => $this->request->getPost('slug', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-            'intro_video_id'    => $this->request->getPost('intro_video_id'),
+            'intro_video_id'    => $this->extractYouTubeId($this->request->getPost('intro_video_id')),
             'sort'              => $this->request->getPost('sort', FILTER_SANITIZE_NUMBER_INT),
             'is_free'           => $this->request->getPost('is_free') ? '1' : '0',
             'active'            => $this->request->getPost('active') ? '1' : '0',
@@ -251,6 +251,26 @@ class AdminCourses extends BaseController
         ];
 
         return view('show', $data);
+    }
+
+    /**
+     * Extract YouTube Video ID from URL or return the input if it's already an ID
+     */
+    private function extractYouTubeId($url)
+    {
+        if (empty($url)) {
+            return '';
+        }
+
+        // Pattern to match various YouTube URL formats
+        $pattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i';
+
+        if (preg_match($pattern, $url, $matches)) {
+            return $matches[1];
+        }
+
+        // If no URL pattern matched, assume it's already an ID or plain text
+        return $url;
     }
 
 }

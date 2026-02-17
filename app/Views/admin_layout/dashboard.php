@@ -41,7 +41,7 @@
             <!-- small card -->
             <div class="small-box bg-gradient-cyan">
                 <div class="inner">
-                    <h3><?= esc($tb_unit_enrollments) ?></h3>
+                    <h3><?= esc($tb_course_enrollments) ?></h3>
                     <p><?= lang("Admin.enrollments") ?></p>
                 </div>
                 <div class="icon">
