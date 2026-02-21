@@ -599,6 +599,19 @@ let currentCourseId = null;
 // Initialize with existing data when editing
 <?php if ($isEdit && isset($existing_unit_items)): ?>
 unitItems = <?= $existing_unit_items ?>;
+// Parse metadata JSON string into flat fields for each item so saveUnitItems() can re-save correctly
+unitItems = unitItems.map(function(item) {
+    if (item.metadata && typeof item.metadata === 'string') {
+        try {
+            const meta = JSON.parse(item.metadata);
+            // Merge metadata fields into the item object
+            item = Object.assign({}, item, meta);
+        } catch(e) {
+            console.warn('Failed to parse metadata for item:', item.id, e);
+        }
+    }
+    return item;
+});
 console.log('Loaded existing unit items for editing:', unitItems);
 <?php else: ?>
 console.log('New unit form - unitItems initialized as empty array');
@@ -638,20 +651,26 @@ $(document).ready(function() {
             e.preventDefault();
             toastr.error('يرجى ملء جميع الحقول المطلوبة');
         } else {
-            // Add unit items to form data
-            if (unitItems.length > 0) {
-                // Remove any existing unit_items input
-                $(this).find('input[name="unit_items"]').remove();
+            // Remove any existing unit_items input first
+            $(this).find('input[name="unit_items"]').remove();
 
-                // Create a proper hidden input with escaped JSON
+            // Always submit unit_items in edit mode (even if unchanged) to preserve existing items
+            // In add mode, only submit if there are items to save
+            <?php if ($isEdit): ?>
+            const unitItemsJson = JSON.stringify(unitItems);
+            const hiddenInput = $('<input type="hidden" name="unit_items">');
+            hiddenInput.val(unitItemsJson);
+            $(this).append(hiddenInput);
+            console.log('Edit mode - submitting unit items:', unitItems.length, 'items');
+            <?php else: ?>
+            if (unitItems.length > 0) {
                 const unitItemsJson = JSON.stringify(unitItems);
                 const hiddenInput = $('<input type="hidden" name="unit_items">');
                 hiddenInput.val(unitItemsJson);
                 $(this).append(hiddenInput);
-
-                console.log('Unit items JSON length:', unitItemsJson.length);
-                console.log('Unit items data:', unitItems);
+                console.log('Add mode - submitting unit items:', unitItems.length, 'items');
             }
+            <?php endif; ?>
         }
     });
 });

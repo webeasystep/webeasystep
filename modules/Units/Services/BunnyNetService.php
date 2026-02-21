@@ -37,8 +37,8 @@ class BunnyNetService
                 throw new Exception('Video ID is required');
             }
 
-            // Prepare API request - Use /play endpoint to get complete video metadata
-            $url = $this->baseUrl . '/' . $videoId . '/play';
+            // Use /videos/{id} endpoint which returns full video metadata including thumbnailFileName
+            $url = $this->baseUrl . '/' . $videoId;
 
             $headers = [
                 'AccessKey: ' . $this->apiKey,
@@ -99,8 +99,9 @@ class BunnyNetService
      */
     private function formatVideoData($data)
     {
-        // Extract video data from the nested structure
-        $video = $data['video'] ?? [];
+        // /videos/{id} endpoint returns data directly (flat structure, not nested)
+        // The response IS the video object itself
+        $video = $data;
         
         // Format duration from seconds to MM:SS format
         $duration = $video['length'] ?? 0;
@@ -110,14 +111,18 @@ class BunnyNetService
         $videoTitle = $video['title'] ?? 'Untitled Video';
         $cleanVideoTitle = preg_replace('/\.mp4$/i', '', $videoTitle);
         
+        $videoId = $video['guid'] ?? '';
+        $thumbnailFileName = $video['thumbnailFileName'] ?? 'thumbnail.jpg';
+        $thumbnailUrl = $this->getThumbnailUrl($videoId, $thumbnailFileName);
+        
         return [
-            'video_id' => $video['guid'] ?? '',
+            'video_id' => $videoId,
             'video_title' => $cleanVideoTitle,
             'video_duration' => $formattedDuration,
-            'video_thumbnail' => $this->getThumbnailUrl($video['guid'] ?? '', $video['thumbnailFileName'] ?? null),
+            'video_thumbnail' => $thumbnailUrl,
             'title' => $cleanVideoTitle,
             'duration' => $duration,
-            'thumbnail' => $this->getThumbnailUrl($video['guid'] ?? '', $video['thumbnailFileName'] ?? null),
+            'thumbnail' => $thumbnailUrl,
             'status' => $video['status'] ?? 0,
             'views' => $video['views'] ?? 0,
             'created_at' => $video['dateUploaded'] ?? null,
@@ -128,9 +133,9 @@ class BunnyNetService
             'description' => $video['description'] ?? '',
             'collection_id' => $video['collectionId'] ?? '',
             'video_library_id' => $video['videoLibraryId'] ?? $this->libraryId,
-            'stream_url' => $data['videoPlaylistUrl'] ?? '',
-            'fallback_url' => $data['fallbackUrl'] ?? '',
-            'preview_url' => $data['previewUrl'] ?? ''
+            'stream_url' => '',
+            'fallback_url' => '',
+            'preview_url' => ''
         ];
     }
 
@@ -178,11 +183,22 @@ class BunnyNetService
      */
     public function getThumbnailUrl($videoId, $thumbnailFileName = null)
     {
-        if (empty($thumbnailFileName)) {
+        if (empty($videoId)) {
             return 'https://via.placeholder.com/640x360/0066cc/ffffff?text=No+Thumbnail';
         }
 
-        return 'https://vz-' . $this->libraryId . '.b-cdn.net/' . $videoId . '/' . $thumbnailFileName;
+        // Use thumbnailFileName if provided, otherwise fallback to thumbnail.jpg
+        $fileName = !empty($thumbnailFileName) ? $thumbnailFileName : 'thumbnail.jpg';
+
+        // Support custom CDN hostname via env variable (e.g. your-pullzone.b-cdn.net)
+        // Otherwise use the standard Bunny.net stream CDN format
+        $cdnHostname = env('BUNNY_NET_CDN_HOSTNAME', '');
+        if (!empty($cdnHostname)) {
+            return 'https://' . $cdnHostname . '/' . $videoId . '/' . $fileName;
+        }
+
+        // Standard Bunny.net stream CDN URL format
+        return 'https://vz-' . $this->libraryId . '.b-cdn.net/' . $videoId . '/' . $fileName;
     }
 
     /**

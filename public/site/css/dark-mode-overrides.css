@@ -124,3 +124,207 @@ body.dark-mode .empty-courses-message {
 body.dark-mode .empty-courses-icon i {
     color: #475569 !important;
 }
+
+/* ============================================
+   DARK MODE - COURSE DETAILS PAGE
+   ============================================ */
+
+/* CSS Variables Override for Dark Mode */
+body.dark-mode .untree_co-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+/* Course Header Wrapper */
+body.dark-mode .course-header-wrapper {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .course-header-wrapper .section-title {
+    color: #f8fafc !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #60a5fa 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+body.dark-mode .course-header-wrapper .course-description {
+    color: #94a3b8 !important;
+}
+
+/* Course Stats */
+body.dark-mode .stat-item {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .stat-item .stat-value {
+    color: #60a5fa !important;
+}
+
+body.dark-mode .stat-item .stat-label {
+    color: #94a3b8 !important;
+}
+
+/* Course Outline Section */
+body.dark-mode .course-outline {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .course-outline .section-title {
+    color: #f8fafc !important;
+}
+
+/* Accordion */
+body.dark-mode .custom-accordion {
+    background: #1e293b !important;
+}
+
+body.dark-mode .custom-accordion .accordion-item {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .custom-accordion .accordion-header {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+}
+
+body.dark-mode .custom-accordion .accordion-button {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .custom-accordion .accordion-button:hover {
+    background: linear-gradient(135deg, #162032 0%, #1e293b 100%) !important;
+    color: #60a5fa !important;
+}
+
+body.dark-mode .custom-accordion .accordion-body {
+    background: #1e293b !important;
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Video List */
+body.dark-mode .video-list {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .video-list li {
+    background: #1e293b !important;
+    border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+body.dark-mode .video-list li:hover {
+    background: rgba(96, 165, 250, 0.08) !important;
+}
+
+body.dark-mode .video-title {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .video-meta,
+body.dark-mode .video-time {
+    color: #64748b !important;
+}
+
+body.dark-mode .item-type {
+    background: rgba(30, 41, 59, 0.8) !important;
+    color: #94a3b8 !important;
+}
+
+/* Video Item (accordion body) */
+body.dark-mode .video-item {
+    background: #162032 !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .video-item:hover {
+    background: rgba(96, 165, 250, 0.08) !important;
+}
+
+body.dark-mode .video-info h6 {
+    color: #e2e8f0 !important;
+}
+
+/* Sidebar */
+body.dark-mode .course-sidebar {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .course-sidebar h4 {
+    color: #f8fafc !important;
+}
+
+/* Video Container */
+body.dark-mode .video-container {
+    background: #0f172a !important;
+}
+
+/* Modal */
+body.dark-mode .modal-content {
+    background: #1e293b !important;
+}
+
+body.dark-mode .modal-body {
+    background: #162032 !important;
+}
+
+body.dark-mode .modal-footer {
+    background: #1e293b !important;
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Unit Header */
+body.dark-mode .unit-header {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .custom-accordion .btn-link {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .custom-accordion .btn-link:hover {
+    color: #60a5fa !important;
+}
+
+body.dark-mode .video-count {
+    background: rgba(30, 41, 59, 0.8) !important;
+    color: #94a3b8 !important;
+}
+
+body.dark-mode .custom-accordion .accordion-button .unit-price {
+    background: #162032 !important;
+    border-color: rgba(96, 165, 250, 0.3) !important;
+}
+
+/* Selected Unit */
+body.dark-mode .selected-unit {
+    background: #162032 !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Floating Cart */
+body.dark-mode .floating-cart-summary {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .floating-cart-header {
+    background: rgba(96, 165, 250, 0.1) !important;
+}
+
+body.dark-mode .floating-selected-unit {
+    background: #162032 !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .floating-unit-name {
+    color: #e2e8f0 !important;
+}

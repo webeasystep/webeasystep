@@ -14,8 +14,8 @@ $routes->group('dt_admin', [
 ], static function ($routes) {
     // Admin routes for managing quizzes
     $routes->match(['GET', 'POST'], 'quizzes', [AdminQuizzes::class, 'index']);
-    $routes->get('quizzes/create', [AdminQuizzes::class, 'create']);
-    $routes->post('quizzes/store', [AdminQuizzes::class, 'create']);
+    $routes->match(['GET', 'POST'], 'quizzes/create', [AdminQuizzes::class, 'create']);
+    $routes->post('quizzes/store', [AdminQuizzes::class, 'create']); // backward compat
     $routes->get('quizzes/store', function() {
         return redirect()->to('/dt_admin/quizzes/create');
     });

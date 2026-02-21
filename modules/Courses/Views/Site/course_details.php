@@ -2682,15 +2682,8 @@
     <div class="container">
         <!-- Enhanced Course Header -->
         <div class="course-header-wrapper" data-aos="fade-up" data-aos-delay="100">
-            <div class="d-flex justify-content-between align-items-start">
-                <div class="flex-grow-1">
-                    <h2 class="section-title"><?= esc($title) ?></h2>
-                    <p class="course-description"><?= esc($course->course_desc) ?></p>
-                </div>
-
-                <!-- Watch Course Button -->
-
-            </div>
+            <h2 class="section-title text-center"><?= esc($title) ?></h2>
+            <p class="course-description text-center"><?= esc($course->course_desc) ?></p>
 
             <!-- Course Stats Bar -->
             <div class="course-stats">

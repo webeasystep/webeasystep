@@ -1,400 +1,359 @@
-<?php $this->extend('site_layout/template'); ?>
+﻿<?php $this->extend('site_layout/template'); ?>
 <?php $this->section('content'); ?>
 
 <style>
+    /* =============================================
+       COURSE VIEW - CSS VARIABLES (LIGHT MODE)
+       ============================================= */
+    :root {
+        --cv-primary: #136ad5;
+        --cv-primary-dark: #0f5bb8;
+        --cv-primary-light: #1573e8;
+        --cv-secondary: #00aeff;
+        --cv-accent: #f59e0b;
+        --cv-success: #10b981;
+        --cv-danger: #ef4444;
 
+        --cv-bg-page: #f0f4f8;
+        --cv-bg-card: #ffffff;
+        --cv-bg-sidebar: #ffffff;
+        --cv-bg-accent: rgba(19, 106, 213, 0.05);
+        --cv-bg-accent-hover: rgba(19, 106, 213, 0.1);
+        --cv-bg-item: #ffffff;
+        --cv-bg-item-active: linear-gradient(135deg, #f0f7ff 0%, #e0eeff 100%);
+        --cv-bg-item-locked: #f8f9fa;
+        --cv-bg-accordion-body: #fafbfc;
+        --cv-bg-progress: linear-gradient(135deg, #f0f7ff 0%, #e0eeff 100%);
+        --cv-bg-stat: #ffffff;
+        --cv-bg-nav-prev: #ffffff;
+
+        --cv-text-primary: #1a202c;
+        --cv-text-secondary: #4a5568;
+        --cv-text-muted: #718096;
+        --cv-text-light: #a0aec0;
+        --cv-text-title: #1a202c;
+
+        --cv-border: rgba(19, 106, 213, 0.12);
+        --cv-border-light: #e9ecef;
+        --cv-border-item-active: #136ad5;
+
+        --cv-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --cv-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --cv-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
+        --cv-shadow-primary: 0 4px 15px rgba(19, 106, 213, 0.2);
+
+        --cv-radius-sm: 8px;
+        --cv-radius-md: 12px;
+        --cv-radius-lg: 16px;
+        --cv-radius-xl: 20px;
+
+        --cv-gradient-primary: linear-gradient(135deg, #136ad5 0%, #00aeff 100%);
+        --cv-gradient-card: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    /* =============================================
+       DARK MODE VARIABLES
+       ============================================= */
+    body.dark-mode {
+        --cv-bg-page: #0f172a;
+        --cv-bg-card: #1e293b;
+        --cv-bg-sidebar: #1e293b;
+        --cv-bg-accent: rgba(96, 165, 250, 0.08);
+        --cv-bg-accent-hover: rgba(96, 165, 250, 0.14);
+        --cv-bg-item: #1e293b;
+        --cv-bg-item-active: linear-gradient(135deg, #162032 0%, #1a2a42 100%);
+        --cv-bg-item-locked: #162032;
+        --cv-bg-accordion-body: #162032;
+        --cv-bg-progress: linear-gradient(135deg, #162032 0%, #1a2a42 100%);
+        --cv-bg-stat: #162032;
+        --cv-bg-nav-prev: #1e293b;
+
+        --cv-text-primary: #f1f5f9;
+        --cv-text-secondary: #94a3b8;
+        --cv-text-muted: #64748b;
+        --cv-text-light: #475569;
+        --cv-text-title: #f8fafc;
+
+        --cv-border: rgba(255, 255, 255, 0.08);
+        --cv-border-light: rgba(255, 255, 255, 0.06);
+        --cv-border-item-active: #60a5fa;
+
+        --cv-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+        --cv-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+        --cv-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4);
+        --cv-shadow-primary: 0 4px 15px rgba(96, 165, 250, 0.2);
+
+        --cv-gradient-card: linear-gradient(135deg, #1e293b 0%, #162032 100%);
+        --cv-gradient-topbar: linear-gradient(135deg, #1a2540 0%, #0f1e35 100%);
+    }
+
+    body.dark-mode .course-topbar {
+        background: var(--cv-gradient-topbar);
+        border-bottom: 1px solid rgba(96, 165, 250, 0.12);
+    }
+
+    /* =============================================
+       PAGE LAYOUT
+       ============================================= */
     .untree_co-section {
-        padding-top: 80px;
-        padding-bottom: 80px;
+        padding-top: 0;
+        padding-bottom: 0;
+        background: var(--cv-bg-page);
+        min-height: 100vh;
     }
 
-    /* Centered Header for the course view page */
-    .course-header-wrapper {
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto 50px auto;
-    }
-    .course-header-wrapper .section-title {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #333;
-        margin-bottom: 15px;
+    /* =============================================
+       COURSE TOP BAR (Title + Description)
+       ============================================= */
+    .course-topbar {
+        background: var(--cv-gradient-primary);
+        padding: 1.5rem 2rem;
         position: relative;
-        display: inline-block;
+        overflow: hidden;
     }
-    .course-header-wrapper .section-title::after {
-        content: "";
+
+    .course-topbar::before {
+        content: '';
         position: absolute;
-        bottom: -6px;
-        right: 50%;
-        transform: translateX(50%);
-        width: 60px;
-        height: 3px;
-        background-color: #136ad5;
-        border-radius: 2px;
-    }
-    .course-header-wrapper .course-description {
-        font-size: 1.1rem;
-        color: #555;
-        line-height: 1.7;
-        margin: 0 auto;
-        max-width: 700px;
-    }
-
-    /* Sidebar & user info block */
-    .sidebar {
-        margin-bottom: 30px;
-        width: 320px;
-        padding-right: 30px;
-    }
-    .user-info-block {
-        background-color: #fff;
-        padding: 10px;
-        border-radius: 7px;
-        margin-bottom: 20px;
-        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.08);
-        border: 1px solid #eee;
-        text-align: center; /* Center the content inside the user info block */
-    }
-    .user-info-block .user-avatar {
-        width: 80px;
-        height: 80px;
+        top: -50%;
+        right: -10%;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.06);
         border-radius: 50%;
-        object-fit: cover;
-        display: block;
-        margin: 0 auto 15px auto;
-        border: 2px solid #fff;
-        box-shadow: 0 0 0 3px #e0e7ee;
-    }
-    .user-info-block h3 {
-        font-size: 1.4rem;
-        color: #343a40;
-        margin-bottom: 10px;
+        pointer-events: none;
     }
 
-    /* Next/Previous buttons styling */
-    .nav-buttons {
+    .course-topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .course-topbar-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #ffffff;
+        margin: 0;
+        line-height: 1.25;
+        letter-spacing: -0.3px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .course-topbar-desc {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.75);
+        margin: 0.35rem 0 0;
+        line-height: 1.5;
+        max-width: 600px;
+    }
+
+    .course-topbar-progress {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+    }
+
+    .topbar-progress-circle {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        border: 3px solid rgba(255, 255, 255, 0.4);
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-    .nav-buttons .btn {
-        flex: 0 0 auto;
-        white-space: nowrap;
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        flex-direction: column;
+        color: white;
+        font-weight: 700;
+        font-size: 0.85rem;
+        line-height: 1;
+        backdrop-filter: blur(4px);
     }
 
-    /* Accordion for the list of videos/sections */
-    .videos-accordion {
-        margin-top: 20px;
-        max-height: 500px;
-        overflow-y: auto;
-        direction: rtl;
-        text-align: right;
+    .topbar-progress-circle small {
+        font-size: 0.6rem;
+        opacity: 0.8;
+        font-weight: 500;
     }
+
+    /* =============================================
+       MAIN LAYOUT - TWO COLUMN
+       ============================================= */
+    .course-view-layout {
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        min-height: calc(100vh - 120px);
+    }
+
+    /* =============================================
+       SIDEBAR (LEFT PANEL - Course Outline)
+       ============================================= */
+    .course-sidebar-panel {
+        background: var(--cv-bg-sidebar);
+        border-left: 1px solid var(--cv-border);
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 120px);
+        position: sticky;
+        top: 70px;
+        overflow: hidden;
+    }
+
+    .sidebar-header {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid var(--cv-border);
+        background: var(--cv-bg-accent);
+        flex-shrink: 0;
+    }
+
+    .sidebar-header h6 {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--cv-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin: 0;
+    }
+
+    .sidebar-scroll {
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--cv-border) transparent;
+    }
+
+    .sidebar-scroll::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .sidebar-scroll::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .sidebar-scroll::-webkit-scrollbar-thumb {
+        background: var(--cv-border);
+        border-radius: 4px;
+    }
+
+    /* =============================================
+       ACCORDION (Units & Items)
+       ============================================= */
+    .videos-accordion {
+        direction: rtl;
+    }
+
     .videos-accordion .accordion-item {
         border: none;
-        margin-bottom: 0;
-        overflow: hidden;
-        background-color: transparent;
-        box-shadow: none;
+        border-bottom: 1px solid var(--cv-border-light);
+        background: transparent;
     }
+
+    .videos-accordion .accordion-item:last-child {
+        border-bottom: none;
+    }
+
     .videos-accordion .accordion-header {
-        margin-bottom: 0 !important;
+        margin: 0;
     }
+
     .videos-accordion .accordion-button {
-        font-size: 1rem;
-        font-weight: 500;
-        color: #444;
-        background-color: transparent;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--cv-text-primary);
+        background: var(--cv-bg-card);
         border: none;
         border-radius: 0;
         box-shadow: none;
-        padding: 10px 15px;
-        border-bottom: 1px solid #eee;
+        padding: 0.875rem 1.25rem;
         text-align: right;
-    }
-    .videos-accordion .accordion-button:not(.collapsed) {
-        background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
-        color: #136ad5;
-        box-shadow: none;
-    }
-    .videos-accordion .accordion-button:hover {
-        background: #f8f9fa;
-    }
-    .videos-accordion .accordion-button.unit-locked {
-        background: #fff5f5;
-        color: #dc3545;
-    }
-    .videos-accordion .accordion-collapse {
-        border-top: 1px solid #f1f3f4;
-    }
-    .videos-accordion .accordion-body {
-        padding: 0;
-        background: #fafbfc;
-    }
-    .videos-accordion .list-unstyled {
-        margin: 0;
-    }
-    .videos-accordion .list-unstyled li {
-        border-bottom: 1px solid #f1f3f4;
-    }
-    .videos-accordion .list-unstyled li:last-child {
-        border-bottom: none;
-    }
-    .videos-accordion .list-unstyled li a,
-    .videos-accordion .list-unstyled li span {
-        display: block;
-        padding: 15px 25px;
-        color: #555;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        font-size: 0.95rem;
-        position: relative;
-    }
-    .videos-accordion .list-unstyled li a:hover {
-        background: #f0f7ff;
-        color: #136ad5;
-        padding-right: 35px;
-    }
-    .videos-accordion .list-unstyled li a.active-video {
-        background: linear-gradient(135deg, #136ad5, #00aeff);
-        color: white;
-        font-weight: 600;
-        position: relative;
-    }
-    .videos-accordion .list-unstyled li a.active-video::after {
-        content: '';
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 8px;
-        height: 8px;
-        background: white;
-        border-radius: 50%;
-        animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-        0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
-        50% { opacity: 0.7; transform: translateY(-50%) scale(1.2); }
-    }
-
-    /* Main Content Column: Video & Description */
-    .main-content {
-        margin-top: 30px;
-        padding-left: 20px; /* Added padding for better spacing */
-    }
-    .course-preview-video .video-container {
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-        overflow: hidden;
-        border-radius: 15px;
-        box-shadow: 0 12px 35px rgba(0,0,0,0.15);
-        margin-bottom: 25px;
-        background: #000;
-    }
-    .course-preview-video .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-radius: 15px;
-    }
-    .quiz-content-area{
-        direction: ltr;
-    }
-    .video-title-main-video {
-        direction: ltr;
-        font-size: 1.8rem;
-        color: #333;
-        margin-bottom: 15px;
-        margin-top: 20px !important;
-        font-weight: 700;
-        line-height: 1.4;
-    }
-    .course-description-text {
-        color: #666;
-        line-height: 1.8;
-        margin-bottom: 30px;
-        font-size: 1.05rem;
-    }
-    .btn.btn-primary.btn-block.mark-complete-button {
-        padding: 16px 35px;
-        font-size: 1.1rem;
-        border-radius: 10px;
-        margin-top: 30px;
-        font-weight: 600;
-        background: linear-gradient(135deg, #136ad5, #00aeff);
-        border: none;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btn.btn-primary.btn-block.mark-complete-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(19, 106, 213, 0.3);
-    }
-    .btn.btn-primary.btn-block.mark-complete-button::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: left 0.5s;
-    }
-    .btn.btn-primary.btn-block.mark-complete-button:hover::before {
-        left: 100%;
-    }
-
-    /* Quiz Content Styles */
-    .quiz-content-area .card {
-        border: none;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        border-radius: 15px;
-        overflow: hidden;
-        background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-    }
-
-    .quiz-content-area .card-header {
-        border-bottom: 1px solid #e9ecef;
-        padding: 25px;
-        background: linear-gradient(135deg, #136ad5, #00aeff);
-        color: white;
-    }
-
-    .quiz-content-area .card-body {
-        padding: 35px;
-    }
-
-    .quiz-stat {
+        transition: all 0.2s ease;
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin-bottom: 12px;
-        font-size: 15px;
-        color: #555;
+        gap: 0.5rem;
     }
 
-    .quiz-stat i {
-        width: 22px;
-        text-align: center;
-        color: #136ad5;
+    .videos-accordion .accordion-button:not(.collapsed) {
+        background: var(--cv-bg-accent);
+        color: var(--cv-primary);
+        box-shadow: none;
     }
 
-    /* Page Content Styles */
-    .page-content-area .card {
-        border: none;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        border-radius: 15px;
-        overflow: hidden;
-        background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    .videos-accordion .accordion-button:hover {
+        background: var(--cv-bg-accent-hover);
     }
 
-    .page-content-area .card-header {
-        border-bottom: 1px solid #e9ecef;
-        padding: 25px;
-        background: linear-gradient(135deg, #136ad5, #00aeff);
-        color: white;
-    }
-
-    .page-content-area .card-body {
-        padding: 35px;
-    }
-
-    .page-content .page-body {
-        line-height: 1.9;
-        font-size: 16px;
-        color: #444;
-    }
-
-    .page-content .page-body h1,
-    .page-content .page-body h2,
-    .page-content .page-body h3,
-    .page-content .page-body h4,
-    .page-content .page-body h5,
-    .page-content .page-body h6 {
-        margin-top: 30px;
-        margin-bottom: 18px;
-        color: #333;
-        font-weight: 600;
-    }
-
-    .page-content .page-body p {
-        margin-bottom: 18px;
-    }
-
-    .page-content .page-body ul,
-    .page-content .page-body ol {
-        margin-bottom: 18px;
-        padding-right: 25px;
-    }
-
-    /* Default Content Styles */
-    .default-content-area .card {
-        border: 2px dashed #dee2e6;
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        border-radius: 15px;
-    }
-
-    /* Course Item Blocks - Modern Layout */
-    .unit-items-container {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        padding: 0;
-    }
-
-    .course-item {
-        background: #fff;
-        border: 1px solid #e9ecef;
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .course-item:hover {
-        border-color: #136ad5;
-        box-shadow: 0 4px 15px rgba(19, 106, 213, 0.1);
-        transform: translateY(-2px);
-    }
-
-    .course-item.active-item {
-        border-color: #136ad5;
-        background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
-        box-shadow: 0 4px 20px rgba(19, 106, 213, 0.15);
-    }
-
-    .course-item.locked-item {
-        background: #f8f9fa;
-        border-color: #dee2e6;
+    .videos-accordion .accordion-button.unit-locked {
+        color: var(--cv-danger);
         opacity: 0.7;
     }
 
-    .course-item.locked-item:hover {
-        transform: none;
-        box-shadow: none;
-        border-color: #dee2e6;
+    .videos-accordion .accordion-button::after {
+        filter: none;
+        opacity: 0.5;
+        margin-right: auto;
+        margin-left: 0;
+    }
+
+    .videos-accordion .accordion-collapse {
+        border-top: 1px solid var(--cv-border-light);
+    }
+
+    .videos-accordion .accordion-body {
+        padding: 0;
+        background: var(--cv-bg-accordion-body);
+    }
+
+    /* =============================================
+       COURSE ITEMS (in accordion)
+       ============================================= */
+    .unit-items-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .course-item {
+        background: var(--cv-bg-item);
+        border-bottom: 1px solid var(--cv-border-light);
+        transition: all 0.2s ease;
+        position: relative;
+    }
+
+    .course-item:last-child {
+        border-bottom: none;
+    }
+
+    .course-item:hover:not(.locked-item) {
+        background: var(--cv-bg-accent);
+    }
+
+    .course-item.active-item {
+        background: var(--cv-bg-item-active);
+        border-right: 3px solid var(--cv-primary);
+    }
+
+    body.dark-mode .course-item.active-item {
+        border-right-color: #60a5fa;
+    }
+
+    .course-item.locked-item {
+        background: var(--cv-bg-item-locked);
+        opacity: 0.65;
     }
 
     .item-content {
         display: flex;
         align-items: center;
-        padding: 16px 20px;
+        padding: 0.75rem 1.25rem;
         text-decoration: none;
         color: inherit;
         width: 100%;
-        gap: 15px;
+        gap: 0.75rem;
     }
 
     .item-content.locked-content {
@@ -405,23 +364,24 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        background: rgba(19, 106, 213, 0.1);
+        width: 34px;
+        height: 34px;
+        border-radius: var(--cv-radius-sm);
+        background: var(--cv-bg-accent);
         flex-shrink: 0;
+        transition: all 0.2s ease;
     }
 
     .course-item.active-item .item-icon {
-        background: rgba(19, 106, 213, 0.2);
+        background: rgba(19, 106, 213, 0.15);
     }
 
-    .course-item.locked-item .item-icon {
-        background: rgba(173, 181, 189, 0.1);
+    body.dark-mode .course-item.active-item .item-icon {
+        background: rgba(96, 165, 250, 0.15);
     }
 
     .item-icon i {
-        font-size: 18px;
+        font-size: 15px;
     }
 
     .item-details {
@@ -430,45 +390,48 @@
     }
 
     .item-title {
-        font-size: 15px;
+        font-size: 0.875rem;
         font-weight: 600;
-        color: #333;
-        margin-bottom: 4px;
+        color: var(--cv-text-primary);
+        margin-bottom: 2px;
         line-height: 1.4;
         display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .course-item.active-item .item-title {
-        color: #136ad5;
+        color: var(--cv-primary);
+    }
+
+    body.dark-mode .course-item.active-item .item-title {
+        color: #60a5fa;
     }
 
     .item-meta {
         display: flex;
         align-items: center;
-        gap: 8px;
-        font-size: 13px;
+        gap: 6px;
+        font-size: 0.75rem;
+        color: var(--cv-text-muted);
     }
 
     .item-duration,
     .item-type {
         display: flex;
         align-items: center;
-        gap: 4px;
-        font-size: 12px;
+        gap: 3px;
+        font-size: 0.72rem;
         font-weight: 500;
-    }
-
-    .item-duration i,
-    .item-type i {
-        font-size: 11px;
     }
 
     .item-status {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         flex-shrink: 0;
     }
 
@@ -476,172 +439,323 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 28px;
-        height: 28px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
-        font-size: 12px;
+        font-size: 10px;
+        transition: all 0.2s ease;
     }
 
     .status-indicator.current {
-        background: #136ad5;
+        background: var(--cv-gradient-primary);
         color: white;
+        box-shadow: var(--cv-shadow-primary);
     }
 
     .status-indicator.locked {
-        background: #dc3545;
-        color: white;
+        background: rgba(239, 68, 68, 0.1);
+        color: var(--cv-danger);
     }
 
     .status-indicator.available {
-        background: rgba(108, 117, 125, 0.1);
-        color: #6c757d;
+        background: var(--cv-bg-accent);
+        color: var(--cv-text-muted);
     }
 
     .course-item:hover .status-indicator.available {
-        background: rgba(19, 106, 213, 0.1);
-        color: #136ad5;
+        background: var(--cv-bg-accent-hover);
+        color: var(--cv-primary);
     }
 
-    /* Responsive Design for Item Blocks */
-    @media (max-width: 768px) {
-        .item-content {
-            padding: 14px 16px;
-            gap: 12px;
-        }
-
-        .item-icon {
-            width: 36px;
-            height: 36px;
-        }
-
-        .item-icon i {
-            font-size: 16px;
-        }
-
-        .item-title {
-            font-size: 14px;
-        }
-
-        .item-duration,
-        .item-type {
-            font-size: 11px;
-        }
-
-        .status-indicator {
-            width: 24px;
-            height: 24px;
-            font-size: 11px;
-        }
+    /* =============================================
+       MAIN CONTENT AREA (Right Panel)
+       ============================================= */
+    .course-main-content {
+        background: var(--cv-bg-page);
+        padding: 1.75rem;
+        overflow-y: auto;
     }
 
-    @media (max-width: 480px) {
-        .unit-items-container {
-            gap: 8px;
-        }
-
-        .item-content {
-            padding: 12px 14px;
-            gap: 10px;
-        }
-
-        .item-icon {
-            width: 32px;
-            height: 32px;
-        }
-
-        .item-icon i {
-            font-size: 14px;
-        }
+    /* =============================================
+       CONTENT TITLE
+       ============================================= */
+    .content-title-bar {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
     }
 
-    /* Left Space Utilization - Course Info Panel */
-    .course-info-panel {
-        background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-        border-radius: 15px;
-        padding: 25px;
-        margin-bottom: 25px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-        border: 1px solid #e9ecef;
-        position: sticky;
-        top: 100px;
+    .video-title-main-video {
+        font-size: 1.55rem;
+        color: var(--cv-text-title);
+        margin: 0 0 1.25rem 0;
+        font-weight: 800;
+        line-height: 1.3;
+        flex: 1;
+        padding-bottom: 0.85rem;
+        border-bottom: 3px solid transparent;
+        border-image: var(--cv-gradient-primary) 1;
+        position: relative;
+        letter-bottom: -0.3px;
     }
 
-    .course-info-panel h5 {
-        color: #136ad5;
-        font-weight: 700;
-        margin-bottom: 20px;
-        font-size: 1.1rem;
+    .video-title-main-video::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        right: 0;
+        width: 60px;
+        height: 3px;
+        background: var(--cv-accent);
+        border-radius: 2px;
     }
 
-    .course-info-item {
+    /* =============================================
+       VIDEO PLAYER
+       ============================================= */
+    .course-preview-video {
+        margin-bottom: 1.5rem;
+    }
+
+    .course-preview-video .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        border-radius: var(--cv-radius-lg);
+        box-shadow: var(--cv-shadow-lg);
+        background: #000;
+    }
+
+    .course-preview-video .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: var(--cv-radius-lg);
+    }
+
+    /* =============================================
+       VIDEO DESCRIPTION
+       ============================================= */
+    .course-description-text {
+        color: var(--cv-text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        background: var(--cv-bg-card);
+        padding: 1.25rem 1.5rem;
+        border-radius: var(--cv-radius-md);
+        border: 1px solid var(--cv-border);
+        box-shadow: var(--cv-shadow-sm);
+    }
+
+    /* =============================================
+       QUIZ CONTENT
+       ============================================= */
+    .quiz-content-area {
+        /* Removed enforced ltr to respect native RTL flow */
+    }
+
+    .quiz-content-area .card {
+        border: none;
+        box-shadow: var(--cv-shadow-md);
+        border-radius: var(--cv-radius-lg);
+        overflow: hidden;
+        background: var(--cv-bg-card);
+        border: 1px solid var(--cv-border);
+    }
+
+    .quiz-content-area .card-header {
+        border-bottom: 1px solid var(--cv-border);
+        padding: 1.5rem;
+        background: var(--cv-gradient-primary);
+        color: white;
+    }
+
+    .quiz-content-area .card-body {
+        padding: 2rem;
+        background: var(--cv-bg-card);
+        color: var(--cv-text-primary);
+    }
+
+    .quiz-stat {
         display: flex;
         align-items: center;
-        margin-bottom: 15px;
-        padding: 10px;
-        background: rgba(19, 106, 213, 0.05);
-        border-radius: 8px;
-        transition: all 0.3s ease;
+        gap: 10px;
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: var(--cv-text-secondary);
     }
 
-    .course-info-item:hover {
-        background: rgba(19, 106, 213, 0.1);
-        transform: translateX(5px);
-    }
-
-    .course-info-item i {
-        color: #136ad5;
-        margin-left: 12px;
-        width: 20px;
+    .quiz-stat i {
+        width: 22px;
         text-align: center;
+        color: var(--cv-primary);
     }
 
-    .course-info-item span {
-        color: #555;
-        font-size: 0.9rem;
-        font-weight: 500;
+    .quiz-user-progress {
+        background: var(--cv-bg-accent) !important;
+        border-radius: var(--cv-radius-md);
+        border: 1px solid var(--cv-border);
     }
 
-    /* Enhanced Progress Container Styles */
-    .progress-container {
-        background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 20px;
-        border: 1px solid #e3f2fd;
-        box-shadow: 0 2px 10px rgba(19, 106, 213, 0.06);
+    /* =============================================
+       PAGE CONTENT
+       ============================================= */
+    .page-content-area .card {
+        border: none;
+        box-shadow: var(--cv-shadow-md);
+        border-radius: var(--cv-radius-lg);
+        overflow: hidden;
+        background: var(--cv-bg-card);
+        border: 1px solid var(--cv-border);
+    }
+
+    .page-content-area .card-header {
+        border-bottom: 1px solid var(--cv-border);
+        padding: 1.5rem;
+        background: var(--cv-gradient-primary);
+        color: white;
+    }
+
+    .page-content-area .card-body {
+        padding: 2rem;
+        background: var(--cv-bg-card);
+    }
+
+    .page-content .page-body {
+        line-height: 1.9;
+        font-size: 16px;
+        color: var(--cv-text-secondary);
+    }
+
+    .page-content .page-body h1,
+    .page-content .page-body h2,
+    .page-content .page-body h3,
+    .page-content .page-body h4,
+    .page-content .page-body h5,
+    .page-content .page-body h6 {
+        margin-top: 1.75rem;
+        margin-bottom: 1rem;
+        color: var(--cv-text-title);
+        font-weight: 600;
+    }
+
+    .page-content .page-body p {
+        margin-bottom: 1rem;
+    }
+
+    .page-content .page-body ul,
+    .page-content .page-body ol {
+        margin-bottom: 1rem;
+        padding-right: 1.5rem;
+    }
+
+    /* =============================================
+       DEFAULT CONTENT
+       ============================================= */
+    .default-content-area .card {
+        border: 2px dashed var(--cv-border);
+        background: var(--cv-bg-accent);
+        border-radius: var(--cv-radius-lg);
+    }
+
+    .default-content-area .card-body {
+        color: var(--cv-text-muted);
+    }
+
+    /* =============================================
+       COMPLETION SECTION
+       ============================================= */
+    .completion-section {
+        margin-top: 1.5rem;
+    }
+
+    .btn.btn-success.btn-block.mark-complete-button {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+        border-radius: var(--cv-radius-md);
+        font-weight: 700;
+        background: var(--cv-gradient-primary);
+        border: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        box-shadow: var(--cv-shadow-primary);
+        letter-spacing: 0.3px;
+    }
+
+    .btn.btn-success.btn-block.mark-complete-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(19, 106, 213, 0.35);
+    }
+
+    .btn.btn-success.btn-block.mark-complete-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .btn.btn-success.btn-block.mark-complete-button:hover::before {
+        left: 100%;
+    }
+
+    /* =============================================
+       PROGRESS SECTION (in sidebar bottom)
+       ============================================= */
+    .sidebar-progress-section {
+        padding: 1.25rem 1.5rem;
+        border-top: 1px solid var(--cv-border);
+        background: var(--cv-bg-progress);
+        flex-shrink: 0;
     }
 
     .progress-label {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 12px;
+        margin-bottom: 0.625rem;
         font-weight: 600;
-        color: #333;
-        font-size: 1rem;
+        color: var(--cv-text-primary);
+        font-size: 0.85rem;
     }
 
     .progress-percentage {
-        background: linear-gradient(135deg, #136ad5, #00aeff);
+        background: var(--cv-gradient-primary);
         color: white;
-        padding: 4px 10px;
-        border-radius: 15px;
-        font-size: 0.85rem;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 0.78rem;
         font-weight: 700;
-        box-shadow: 0 2px 6px rgba(19, 106, 213, 0.25);
+        box-shadow: var(--cv-shadow-primary);
     }
 
     .progress {
-        height: 10px;
-        background-color: #e9ecef;
+        height: 8px;
+        background-color: var(--cv-border-light);
         border-radius: 8px;
         overflow: hidden;
-        margin-bottom: 15px;
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        margin-bottom: 1rem;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    body.dark-mode .progress {
+        background-color: rgba(255, 255, 255, 0.08);
     }
 
     .progress-bar {
-        background: linear-gradient(135deg, #136ad5 0%, #00aeff 100%);
+        background: var(--cv-gradient-primary);
         border-radius: 8px;
         transition: width 0.6s ease;
         position: relative;
@@ -651,616 +765,679 @@
     .progress-bar::after {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
+        top: 0; left: 0; bottom: 0; right: 0;
         background-image: linear-gradient(
             -45deg,
-            rgba(255, 255, 255, .2) 25%,
-            transparent 25%,
-            transparent 50%,
-            rgba(255, 255, 255, .2) 50%,
-            rgba(255, 255, 255, .2) 75%,
-            transparent 75%,
-            transparent
+            rgba(255,255,255,.2) 25%, transparent 25%,
+            transparent 50%, rgba(255,255,255,.2) 50%,
+            rgba(255,255,255,.2) 75%, transparent 75%, transparent
         );
-        background-size: 25px 25px;
-        animation: move 2s linear infinite;
+        background-size: 20px 20px;
+        animation: progress-move 2s linear infinite;
     }
 
-    @keyframes move {
+    @keyframes progress-move {
         0% { background-position: 0 0; }
-        100% { background-position: 25px 25px; }
+        100% { background-position: 20px 20px; }
     }
 
     .progress-stats {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        margin-top: 12px;
+        gap: 0.625rem;
     }
 
     .progress-stat {
         text-align: center;
-        background: white;
-        padding: 12px 8px;
-        border-radius: 8px;
-        border: 1px solid #e9ecef;
-        transition: all 0.3s ease;
+        background: var(--cv-bg-stat);
+        padding: 0.625rem 0.5rem;
+        border-radius: var(--cv-radius-sm);
+        border: 1px solid var(--cv-border);
+        transition: all 0.2s ease;
     }
 
     .progress-stat:hover {
         transform: translateY(-1px);
-        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-        border-color: #136ad5;
+        box-shadow: var(--cv-shadow-sm);
+        border-color: var(--cv-primary);
     }
 
     .progress-stat-number {
         display: block;
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         font-weight: 700;
-        color: #136ad5;
-        margin-bottom: 5px;
+        color: var(--cv-primary);
+        margin-bottom: 2px;
+        line-height: 1;
+    }
+
+    body.dark-mode .progress-stat-number {
+        color: #60a5fa;
     }
 
     .progress-stat-label {
-        font-size: 0.85rem;
-        color: #666;
+        font-size: 0.72rem;
+        color: var(--cv-text-muted);
         font-weight: 500;
     }
 
-    /* Enhanced Navigation Buttons */
-    .nav-buttons {
+    /* =============================================
+       NAVIGATION BUTTONS (in sidebar)
+       ============================================= */
+    .sidebar-nav-buttons {
+        padding: 1rem 1.25rem;
+        border-top: 1px solid var(--cv-border);
+        background: var(--cv-bg-sidebar);
+        flex-shrink: 0;
         display: flex;
-        gap: 8px;
-        margin-top: 15px;
+        gap: 0.625rem;
     }
 
-    .nav-buttons .btn {
+    .sidebar-nav-buttons .btn {
         flex: 1;
-        padding: 10px 16px;
-        border-radius: 8px;
+        padding: 0.625rem 1rem;
+        border-radius: var(--cv-radius-sm);
         font-weight: 600;
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
-        font-size: 0.9rem;
+        transition: all 0.25s ease;
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.375rem;
     }
 
-    .nav-buttons .prev-btn {
-        background: white;
-        color: #666;
-        border-color: #e9ecef;
+    .sidebar-nav-buttons .prev-btn {
+        background: var(--cv-bg-nav-prev);
+        color: var(--cv-text-secondary);
+        border: 1.5px solid var(--cv-border-light);
     }
 
-    .nav-buttons .prev-btn:hover:not(:disabled) {
-        background: #f8f9fa;
-        border-color: #136ad5;
-        color: #136ad5;
+    .sidebar-nav-buttons .prev-btn:hover:not(:disabled) {
+        background: var(--cv-bg-accent);
+        border-color: var(--cv-primary);
+        color: var(--cv-primary);
         transform: translateY(-1px);
     }
 
-    .nav-buttons .next-btn {
-        background: linear-gradient(135deg, #136ad5, #00aeff);
+    .sidebar-nav-buttons .next-btn {
+        background: var(--cv-gradient-primary);
         color: white;
         border: none;
+        box-shadow: var(--cv-shadow-primary);
     }
 
-    .nav-buttons .next-btn:hover:not(:disabled) {
+    .sidebar-nav-buttons .next-btn:hover:not(:disabled) {
         transform: translateY(-1px);
-        box-shadow: 0 4px 15px rgba(19, 106, 213, 0.25);
+        box-shadow: 0 6px 20px rgba(19, 106, 213, 0.3);
     }
 
-    .nav-buttons .btn:disabled {
-        opacity: 0.5;
+    .sidebar-nav-buttons .btn:disabled {
+        opacity: 0.4;
         cursor: not-allowed;
+        transform: none !important;
+        box-shadow: none !important;
     }
 
-    /* Responsive adjustments for progress */
-    @media (max-width: 767.98px) {
-        .progress-stats {
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
-
-        .progress-stat {
-            padding: 12px 8px;
-        }
-
-        .progress-stat-number {
-            font-size: 1.3rem;
-        }
-
-        .nav-buttons {
-            flex-direction: column;
-        }
+    /* =============================================
+       BADGE STYLES
+       ============================================= */
+    .badge-unit-count {
+        background: var(--cv-bg-accent);
+        color: var(--cv-primary);
+        font-size: 0.7rem;
+        padding: 2px 7px;
+        border-radius: 20px;
+        font-weight: 600;
+        border: 1px solid var(--cv-border);
+        margin-right: auto;
     }
+
+    body.dark-mode .badge-unit-count {
+        color: #60a5fa;
+    }
+
+    .badge-free {
+        background: rgba(16, 185, 129, 0.12);
+        color: var(--cv-success);
+        font-size: 0.7rem;
+        padding: 2px 7px;
+        border-radius: 20px;
+        font-weight: 600;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    /* =============================================
+       RESPONSIVE DESIGN
+       ============================================= */
     @media (max-width: 1199.98px) {
-        .sidebar {
-            width: 600px;
-            padding-right: 30px;
-        }
-        .main-content {
-            padding-left: 25px;
+        .course-view-layout {
+            grid-template-columns: 300px 1fr;
         }
     }
 
     @media (max-width: 991.98px) {
-        .sidebar {
-            margin-bottom: 30px;
-            padding-right: 0;
-            width: 100%;
+        .course-view-layout {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr;
         }
-        .main-content {
-            margin-top: 0;
-            padding-left: 0;
-        }
-        .user-info-block,
-        .videos-accordion .accordion-item {
-            border-left: none;
-            border-right: none;
-            border-radius: 0;
-            box-shadow: none;
-        }
-        .videos-accordion {
-            max-height: none;
-            border-radius: 0;
-        }
-        .nav-buttons {
-            flex-direction: row;
-        }
-        .nav-buttons .btn {
-            margin: 5px 2px;
-            font-size: 0.9rem;
-        }
-        .course-info-panel {
+
+        .course-sidebar-panel {
+            height: auto;
             position: static;
+            border-left: none;
+            border-bottom: 1px solid var(--cv-border);
+        }
+
+        .sidebar-scroll {
+            max-height: 350px;
+        }
+
+        .course-main-content {
+            padding: 1.25rem;
+        }
+
+        .course-topbar {
+            padding: 1rem 1.25rem;
+        }
+
+        .course-topbar-title {
+            font-size: 1.1rem;
         }
     }
 
     @media (max-width: 767.98px) {
-        .course-header-wrapper .section-title {
-            font-size: 1.8rem;
+        .course-topbar-inner {
+            flex-direction: column;
+            align-items: flex-start;
         }
-        .course-header-wrapper .course-description {
-            font-size: 1rem;
+
+        .course-topbar-progress {
+            align-self: flex-end;
         }
+
         .video-title-main-video {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
         }
+
+        .progress-stats {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .course-main-content {
+            padding: 1rem;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .sidebar-nav-buttons {
+            flex-direction: column;
+        }
+
+        .progress-stats {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+    }
+
+    /* =============================================
+       ANIMATIONS
+       ============================================= */
+    @keyframes pulse-dot {
+        0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+        50% { opacity: 0.7; transform: translateY(-50%) scale(1.2); }
+    }
+
+    .active-item .status-indicator.current {
+        animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(19, 106, 213, 0.4); }
+        50% { box-shadow: 0 0 0 6px rgba(19, 106, 213, 0); }
+    }
+
+    body.dark-mode .active-item .status-indicator.current {
+        animation: pulse-glow-dark 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow-dark {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4); }
+        50% { box-shadow: 0 0 0 6px rgba(96, 165, 250, 0); }
+    }
+
+    /* =============================================
+       EMPTY / NO VIDEO STATE
+       ============================================= */
+    .no-content-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 2rem;
+        background: var(--cv-bg-card);
+        border-radius: var(--cv-radius-lg);
+        border: 2px dashed var(--cv-border);
+        color: var(--cv-text-muted);
+        text-align: center;
+        min-height: 200px;
+    }
+
+    .no-content-placeholder i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.4;
+    }
+
+    .no-content-placeholder p {
+        margin: 0;
+        font-size: 0.95rem;
     }
 </style>
 
-<div class="untree_co-section bg-light">
-    <div class="container-fluid"> <!-- Changed to container-fluid for better space utilization -->
+<!-- ============================================
+     COURSE VIEW PAGE - NEW LAYOUT
+     ============================================ -->
 
-        <!-- Header / Title & Short Description with Buy Units Block -->
-        <div class="course-header-wrapper d-flex justify-content-between align-items-start" data-aos="fade-up" data-aos-delay="100">
-            <div class="course-title-section flex-grow-1">
-                <h2 class="section-title"><?= esc($title) ?></h2>
-                <p class="course-description">
-                    <?= esc($course->course_desc) ?>
-                </p>
+<!-- Top Bar: Course Title + Progress Circle -->
+<div class="course-topbar">
+    <div class="course-topbar-inner">
+        <div>
+            <h1 class="course-topbar-title"><?= esc($title) ?></h1>
+            <?php if (!empty($course->course_desc)): ?>
+                <p class="course-topbar-desc"><?= esc($course->course_desc) ?></p>
+            <?php endif; ?>
+        </div>
+        <div class="course-topbar-progress">
+            <div class="topbar-progress-circle">
+                <?= round($course_progress) ?>%
+                <small>مكتمل</small>
             </div>
+        </div>
+    </div>
+</div>
 
-            <!-- Compact Buy Units Block Removed -->
+<!-- Main Layout: Sidebar + Content -->
+<div class="course-view-layout">
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <div class="course-sidebar-panel">
+
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <h6><i class="icon-list-ul" style="margin-left:6px;"></i> محتوى الكورس</h6>
         </div>
 
-        <div class="row">
-            <!-- Left Space Utilization - Course Info Panel -->
-
-            <!-- Enhanced Sidebar (Progress, Next/Prev, Videos List) -->
-            <div class="col-xl-6 col-lg-6 sidebar"> <!-- Further increased width for wider progress bar -->
-                <div class="user-info-block">
-                    <!-- Enhanced Progress Bar -->
-                    <div class="progress-container">
-                        <div class="progress-label">
-                            <span>تقدم الكورس</span>
-                            <span class="progress-percentage"><?= esc($course_progress) ?>%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar"
-                                 style="width: <?= esc($course_progress) ?>%;"
-                                 aria-valuenow="<?= esc($course_progress) ?>"
-                                 aria-valuemin="0" aria-valuemax="100">
-                            </div>
-                        </div>
-
-                        <!-- Progress Statistics -->
-                        <div class="progress-stats">
-                            <div class="progress-stat">
-                                <span class="progress-stat-number"><?= count($units) ?></span>
-                                <span class="progress-stat-label">إجمالي الوحدات</span>
-                            </div>
-                            <div class="progress-stat">
-                                <span class="progress-stat-number"><?= round($course_progress) ?>%</span>
-                                <span class="progress-stat-label">مكتمل</span>
-                            </div>
-                            <div class="progress-stat">
-                                <span class="progress-stat-number"><?= 100 - round($course_progress) ?>%</span>
-                                <span class="progress-stat-label">متبقي</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Enhanced Previous / Next Buttons -->
-                    <div class="nav-buttons">
-                        <!-- Previous Button -->
-                        <?php if ($prevLessonUrl): ?>
-                            <a class="btn btn-outline-secondary prev-btn" href="<?= $prevLessonUrl ?>">
-                                <i class="fas fa-chevron-right ml-2"></i>السابق
-                            </a>
-                        <?php else: ?>
-                            <button class="btn btn-outline-secondary prev-btn" disabled>
-                                <i class="fas fa-chevron-right ml-2"></i>السابق
+        <!-- Scrollable Accordion -->
+        <div class="sidebar-scroll">
+            <div class="videos-accordion accordion" id="videoAccordion">
+                <?php foreach ($units as $unit): ?>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading<?= esc($unit->id) ?>">
+                            <button class="accordion-button <?= isset($unit->is_open) && $unit->is_open ? '' : 'collapsed' ?> <?= !($unit->is_enrolled ?? false) && !($unit->is_free ?? false) ? 'unit-locked' : '' ?>"
+                                    type="button"
+                                    data-toggle="collapse"
+                                    data-target="#collapse<?= esc($unit->id) ?>"
+                                    aria-expanded="<?= isset($unit->is_open) && $unit->is_open ? 'true' : 'false' ?>"
+                                    aria-controls="collapse<?= esc($unit->id) ?>">
+                                <?= esc($unit->unit_name) ?>
+                                <?php if (!($unit->is_enrolled ?? false) && !($unit->is_free ?? false)): ?>
+                                    <i class="fas fa-lock" style="font-size:11px; margin-right:4px; color:var(--cv-danger);"></i>
+                                <?php elseif (($unit->is_free ?? false) && !($unit->is_enrolled ?? false)): ?>
+                                    <span class="badge-free" style="margin-right:4px;">مجاني</span>
+                                <?php endif; ?>
+                                <span class="badge-unit-count"><?= count($unit->items ?? []) ?></span>
                             </button>
-                        <?php endif; ?>
+                        </h2>
+                        <div id="collapse<?= esc($unit->id) ?>"
+                             class="collapse <?= isset($unit->is_open) && $unit->is_open ? 'show' : '' ?>"
+                             aria-labelledby="heading<?= esc($unit->id) ?>"
+                             data-parent="#videoAccordion">
+                            <div class="accordion-body">
+                                <div class="unit-items-container">
+                                    <?php if (isset($unit->items)): ?>
+                                        <?php foreach ($unit->items as $item): ?>
+                                            <?php
+                                            $isUnitLocked = !($unit->is_enrolled ?? false) && !($unit->is_free ?? false);
+                                            $itemClass = $item->id == $current_id ? 'active-item' : '';
+                                            if ($isUnitLocked) {
+                                                $itemClass .= ' locked-item';
+                                            }
+                                            ?>
 
-                        <!-- Next Button -->
-                        <?php if ($nextLessonUrl): ?>
-                            <a class="btn btn-secondary next-btn" href="<?= $nextLessonUrl ?>">
-                                التالي<i class="fas fa-chevron-left mr-2"></i>
-                            </a>
-                        <?php else: ?>
-                            <button class="btn btn-secondary next-btn" disabled>
-                                التالي<i class="fas fa-chevron-left mr-2"></i>
-                            </button>
-                        <?php endif; ?>
-                    </div>
-                </div>
+                                            <div class="course-item <?= $itemClass ?>">
+                                                <?php if ($isUnitLocked): ?>
+                                                <div class="item-content locked-content">
+                                                <?php else: ?>
+                                                    <?php $urlParam = 'item=' . $item->id; ?>
+                                                    <a href="<?= site_url('courses/course_view/' . $course->slug . '?' . $urlParam) ?>" class="item-content unit-item-link" data-item-id="<?= $item->id ?>" data-item-type="<?= $item->item_type ?>">
+                                                <?php endif; ?>
 
-
-                <!-- Accordion of Units & Items -->
-                <div class="videos-accordion accordion" id="videoAccordion">
-                    <?php foreach ($units as $unit): ?>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="heading<?= esc($unit->id) ?>">
-                                <button class="accordion-button <?= isset($unit->is_open) && $unit->is_open ? '' : 'collapsed' ?> <?= !($unit->is_enrolled ?? false) && !($unit->is_free ?? false) ? 'unit-locked' : '' ?>"
-                                        type="button"
-                                        data-toggle="collapse"
-                                        data-target="#collapse<?= esc($unit->id) ?>"
-                                        aria-expanded="<?= isset($unit->is_open) && $unit->is_open ? 'true' : 'false' ?>"
-                                        aria-controls="collapse<?= esc($unit->id) ?>">
-                                    <?= esc($unit->unit_name) ?>
-                                    <?php if (!($unit->is_enrolled ?? false) && !($unit->is_free ?? false)): ?>
-                                        <i class="fas fa-lock ml-2" style="color: #dc3545;"></i>
-                                    <?php elseif (($unit->is_free ?? false) && !($unit->is_enrolled ?? false)): ?>
-                                        <span class="badge badge-success ml-2" style="background-color: #28a745; color: white; font-weight: bold;">مجاني</span>
-                                    <?php endif; ?>
-                                    <span class="badge badge-secondary ml-2"><?= count($unit->items ?? []) ?> عنصر</span>
-                                </button>
-                            </h2>
-                            <div id="collapse<?= esc($unit->id) ?>"
-                                 class="collapse <?= isset($unit->is_open) && $unit->is_open ? 'show' : '' ?>"
-                                 aria-labelledby="heading<?= esc($unit->id) ?>"
-                                 data-parent="#videoAccordion">
-                                <div class="accordion-body">
-                                    <div class="unit-items-container">
-                                        <?php if (isset($unit->items)): ?>
-                                            <?php foreach ($unit->items as $item): ?>
-                                                <?php
-                                                $isUnitLocked = !($unit->is_enrolled ?? false) && !($unit->is_free ?? false);
-                                                $itemClass = $item->id == $current_id ? 'active-item' : '';
-                                                if ($isUnitLocked) {
-                                                    $itemClass .= ' locked-item';
-                                                }
-                                                ?>
-
-                                                <div class="course-item <?= $itemClass ?>">
-                                                    <?php if ($isUnitLocked): ?>
-                                                    <div class="item-content locked-content">
+                                                    <!-- Item Icon -->
+                                                    <div class="item-icon">
+                                                        <?php if ($item->item_type === 'video'): ?>
+                                                            <i class="icon-play-circle-o" style="color:<?= $isUnitLocked ? 'var(--cv-text-light)' : 'var(--cv-primary)' ?>;"></i>
+                                                        <?php elseif ($item->item_type === 'quiz'): ?>
+                                                            <i class="icon-question-circle" style="color:<?= $isUnitLocked ? 'var(--cv-text-light)' : 'var(--cv-success)' ?>;"></i>
+                                                        <?php elseif ($item->item_type === 'page'): ?>
+                                                            <i class="icon-file-text-o" style="color:<?= $isUnitLocked ? 'var(--cv-text-light)' : '#17a2b8' ?>;"></i>
                                                         <?php else: ?>
-                                                        <?php
-                                                        // Use consistent 'item=' parameter for all item types
-                                                        $urlParam = 'item=' . $item->id;
-                                                        ?>
-                                                        <a href="<?= site_url('courses/course_view/' . $course->slug . '?' . $urlParam) ?>" class="item-content unit-item-link" data-item-id="<?= $item->id ?>" data-item-type="<?= $item->item_type ?>">
-                                                            <?php endif; ?>
-
-                                                            <!-- Item Icon -->
-                                                            <div class="item-icon">
-                                                                <?php if ($item->item_type === 'video'): ?>
-                                                                    <i class="icon-play-circle-o" style="color:<?= $isUnitLocked ? '#adb5bd' : '#136ad5' ?>;"></i>
-                                                                <?php elseif ($item->item_type === 'quiz'): ?>
-                                                                    <i class="icon-question-circle" style="color:<?= $isUnitLocked ? '#adb5bd' : '#28a745' ?>;"></i>
-                                                                <?php elseif ($item->item_type === 'page'): ?>
-                                                                    <i class="icon-file-text-o" style="color:<?= $isUnitLocked ? '#adb5bd' : '#17a2b8' ?>;"></i>
-                                                                <?php else: ?>
-                                                                    <i class="icon-circle" style="color:<?= $isUnitLocked ? '#adb5bd' : '#6c757d' ?>;"></i>
-                                                                <?php endif; ?>
-                                                            </div>
-
-                                                            <!-- Item Details -->
-                                                            <div class="item-details">
-                                                                <div class="item-title" style="<?= $isUnitLocked ? 'color: #adb5bd;' : '' ?>">
-                                                                    <?= esc($item->title) ?>
-                                                                </div>
-                                                                <div class="item-meta">
-                                                                    <?php
-                                                                    $metadata = json_decode($item->metadata ?? '{}', true);
-
-                                                                    // Display metadata based on item type
-                                                                    if ($item->item_type === 'video') {
-                                                                        $duration = isset($metadata['video_duration']) ? round((int)$metadata['video_duration'] / 60) : null;
-                                                                        if ($duration) {
-                                                                            echo '<span class="item-duration" style="' . ($isUnitLocked ? 'color: #adb5bd;' : 'color: #6c757d;') . '"><i class="fas fa-clock"></i> ' . esc($duration) . ' دقيقة</span>';
-                                                                        } else {
-                                                                            echo '<span class="item-type" style="' . ($isUnitLocked ? 'color: #adb5bd;' : 'color: #136ad5;') . '"><i class="fas fa-video"></i> فيديو</span>';
-                                                                        }
-                                                                    } elseif ($item->item_type === 'quiz') {
-                                                                        echo '<span class="item-type" style="' . ($isUnitLocked ? 'color: #adb5bd;' : 'color: #28a745;') . '"><i class="fas fa-question-circle"></i> اختبار تفاعلي</span>';
-                                                                    } elseif ($item->item_type === 'page') {
-                                                                        echo '<span class="item-type" style="' . ($isUnitLocked ? 'color: #adb5bd;' : 'color: #17a2b8;') . '"><i class="fas fa-file-alt"></i> صفحة إضافية</span>';
-                                                                    }
-                                                                    ?>
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Item Status -->
-                                                            <div class="item-status">
-                                                                <?php if ($item->id == $current_id && !$isUnitLocked): ?>
-                                                                    <div class="status-indicator current">
-                                                                        <i class="fas fa-play-circle"></i>
-                                                                    </div>
-                                                                <?php elseif ($isUnitLocked): ?>
-                                                                    <div class="status-indicator locked">
-                                                                        <i class="fas fa-lock"></i>
-                                                                    </div>
-                                                                <?php else: ?>
-                                                                    <div class="status-indicator available">
-                                                                        <i class="fas fa-chevron-left"></i>
-                                                                    </div>
-                                                                <?php endif; ?>
-                                                            </div>
-
-                                                            <?php if ($isUnitLocked): ?>
+                                                            <i class="icon-circle" style="color:var(--cv-text-muted);"></i>
+                                                        <?php endif; ?>
                                                     </div>
+
+                                                    <!-- Item Details -->
+                                                    <div class="item-details">
+                                                        <div class="item-title"><?= esc($item->title) ?></div>
+                                                        <div class="item-meta">
+                                                            <?php
+                                                            $metadata = json_decode($item->metadata ?? '{}', true);
+                                                            if ($item->item_type === 'video') {
+                                                                $duration = isset($metadata['video_duration']) ? round((int)$metadata['video_duration'] / 60) : null;
+                                                                if ($duration) {
+                                                                    echo '<span class="item-duration"><i class="fas fa-clock"></i> ' . esc($duration) . ' د</span>';
+                                                                } else {
+                                                                    echo '<span class="item-type"><i class="fas fa-video"></i> فيديو</span>';
+                                                                }
+                                                            } elseif ($item->item_type === 'quiz') {
+                                                                echo '<span class="item-type"><i class="fas fa-question-circle"></i> اختبار</span>';
+                                                            } elseif ($item->item_type === 'page') {
+                                                                echo '<span class="item-type"><i class="fas fa-file-alt"></i> صفحة</span>';
+                                                            }
+                                                            ?>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Item Status -->
+                                                    <div class="item-status">
+                                                        <?php if ($item->id == $current_id && !$isUnitLocked): ?>
+                                                            <div class="status-indicator current">
+                                                                <i class="fas fa-play"></i>
+                                                            </div>
+                                                        <?php elseif ($isUnitLocked): ?>
+                                                            <div class="status-indicator locked">
+                                                                <i class="fas fa-lock"></i>
+                                                            </div>
+                                                        <?php else: ?>
+                                                            <div class="status-indicator available">
+                                                                <i class="fas fa-chevron-left"></i>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    </div>
+
+                                                <?php if ($isUnitLocked): ?>
+                                                </div>
                                                 <?php else: ?>
                                                     </a>
                                                 <?php endif; ?>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
-                                    </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
-                </div><!-- End .videos-accordion -->
+                    </div>
+                <?php endforeach; ?>
+            </div><!-- End .videos-accordion -->
+        </div><!-- End .sidebar-scroll -->
+
+        <!-- Progress Section (bottom of sidebar) -->
+        <div class="sidebar-progress-section">
+            <div class="progress-label">
+                <span>تقدم الكورس</span>
+                <span class="progress-percentage"><?= esc($course_progress) ?>%</span>
             </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar"
+                     style="width: <?= esc($course_progress) ?>%;"
+                     aria-valuenow="<?= esc($course_progress) ?>"
+                     aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+            <div class="progress-stats">
+                <div class="progress-stat">
+                    <span class="progress-stat-number"><?= count($units) ?></span>
+                    <span class="progress-stat-label">الوحدات</span>
+                </div>
+                <div class="progress-stat">
+                    <span class="progress-stat-number"><?= round($course_progress) ?>%</span>
+                    <span class="progress-stat-label">مكتمل</span>
+                </div>
+                <div class="progress-stat">
+                    <span class="progress-stat-number"><?= 100 - round($course_progress) ?>%</span>
+                    <span class="progress-stat-label">متبقي</span>
+                </div>
+            </div>
+        </div>
 
-            <!-- Main Content (Video Player, Quiz, or Page Content) -->
-            <div class="col-lg-8 main-content">
-                <!-- Content Title -->
-                <h2 class="video-title-main-video mb-2">
-                    <?= esc($itemTitle ?? $video_title) ?>
-                </h2>
+        <!-- Navigation Buttons -->
+        <div class="sidebar-nav-buttons">
+            <?php if ($prevLessonUrl): ?>
+                <a class="btn prev-btn" href="<?= $prevLessonUrl ?>">
+                    <i class="fas fa-chevron-right"></i> السابق
+                </a>
+            <?php else: ?>
+                <button class="btn prev-btn" disabled>
+                    <i class="fas fa-chevron-right"></i> السابق
+                </button>
+            <?php endif; ?>
 
-                <!-- Dynamic Content Based on Item Type -->
-                <?php
+            <?php if ($nextLessonUrl): ?>
+                <a class="btn next-btn" href="<?= $nextLessonUrl ?>">
+                    التالي <i class="fas fa-chevron-left"></i>
+                </a>
+            <?php else: ?>
+                <button class="btn next-btn" disabled>
+                    التالي <i class="fas fa-chevron-left"></i>
+                </button>
+            <?php endif; ?>
+        </div>
 
-                if (isset($current_item_type)): ?>
+    </div><!-- End .course-sidebar-panel -->
 
-                    <?php if ($current_item_type === 'video'): ?>
-                        <!-- Video Player -->
-                        <div class="course-preview-video">
-                            <div class="video-container">
-                                <?php if ($video_id): ?>
-                                    <iframe
-                                            src="https://iframe.mediadelivery.net/embed/<?= $video_library_id ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
-                                            loading="lazy"
-                                            style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
-                                            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                                            allowfullscreen="true">
-                                    </iframe>
-                                <?php else: ?>
-                                    <div class="d-flex align-items-center justify-content-center h-100 bg-light">
-                                        <div class="text-center">
-                                            <i class="fas fa-video fa-3x text-muted mb-3"></i>
-                                            <p class="text-muted">لا يوجد فيديو متاح</p>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        </div>
 
-                        <!-- Video Description -->
-                        <p class="course-description-text">
-                            <?= esc($itemDesc ?? $video_desc) ?>
-                        </p>
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div class="course-main-content">
+        <!-- Content Title -->
+        <h2 class="video-title-main-video">
+            <?= esc($itemTitle ?? $video_title) ?>
+        </h2>
 
-                    <?php elseif ($current_item_type === 'quiz'): ?>
-                        <!-- Quiz Content -->
-                        <div class="quiz-content-area">
-                            <div class="card">
-                                <div class="card-header bg-success text-white">
-                                    <h4 class="mb-0">
-                                        <i class="fas fa-question-circle mr-2"></i>
-                                        Interactive Quiz
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <?php if (isset($quiz_data) && $quiz_data): ?>
-                                        <div class="quiz-info mb-4">
-                                            <h5><?= esc($quiz_data->quiz_title) ?></h5>
-                                            <p class="text-muted"><?= esc($quiz_data->quiz_desc) ?></p>
+        <!-- Dynamic Content Based on Item Type -->
+        <?php if (isset($current_item_type)): ?>
 
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="quiz-stat">
-                                                        <i class="fas fa-clock text-warning"></i>
-                                                        <span>Duration: <?= esc($quiz_data->time_limit ?? 'Unlimited') ?> minutes</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="quiz-stat">
-                                                        <i class="fas fa-percentage text-info"></i>
-                                                        <span>Pass Score: <?= esc($quiz_data->passing_score ?? '70') ?>%</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="quiz-stat">
-                                                        <i class="fas fa-redo text-danger"></i>
-                                                        <span>Attempts: <?= esc($quiz_data->user_attempt_count ?? 0) ?>/<?= esc($quiz_data->max_attempts ?? 3) ?></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- User Progress Information -->
-                                            <?php if (isset($quiz_data->user_attempt_count) && $quiz_data->user_attempt_count > 0): ?>
-                                                <div class="quiz-user-progress mt-3 p-3 bg-light rounded">
-                                                    <h6 class="mb-2"><i class="fas fa-chart-line text-primary"></i> Your Progress in This Quiz</h6>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <small class="text-muted">Best Score:</small>
-                                                            <strong class="text-success"><?= esc($quiz_data->user_best_score ?? 0) ?>%</strong>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <small class="text-muted">Remaining Attempts:</small>
-                                                            <strong class="<?= ($quiz_data->remaining_attempts ?? 0) > 0 ? 'text-info' : 'text-danger' ?>">
-                                                                <?= esc($quiz_data->remaining_attempts ?? 0) ?>
-                                                            </strong>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php endif; ?>
-                                        </div>
-
-                                        <div class="text-center">
-                                            <?php if (isset($quiz_data->has_exceeded_attempts) && $quiz_data->has_exceeded_attempts): ?>
-                                                <button class="btn btn-secondary btn-lg" disabled>
-                                                    <i class="fas fa-ban mr-2"></i>
-                                                    Maximum Attempts Exceeded
-                                                </button>
-                                                <p class="text-muted mt-2 small">
-                                                    You have used all allowed attempts (<?= esc($quiz_data->max_attempts ?? 3) ?>) for this quiz.
-                                                    <?php if (isset($quiz_data->user_best_score) && $quiz_data->user_best_score > 0): ?>
-                                                        Your best score: <?= esc($quiz_data->user_best_score) ?>%
-                                                    <?php endif; ?>
-                                                </p>
-                                            <?php else: ?>
-                                                <button class="btn btn-success btn-lg take-embedded-quiz-btn"
-                                                        data-quiz-id="<?= $quiz_data->id ?>"
-                                                        data-quiz-title="<?= esc($quiz_data->quiz_title) ?>">
-                                                    <i class="fas fa-play mr-2"></i>
-                                                    <?php if (isset($quiz_data->user_attempt_count) && $quiz_data->user_attempt_count > 0): ?>
-                                                        Retry Quiz
-                                                    <?php else: ?>
-                                                        Start Quiz
-                                                    <?php endif; ?>
-                                                </button>
-                                                <?php if (isset($quiz_data->remaining_attempts) && $quiz_data->remaining_attempts > 0): ?>
-                                                    <p class="text-info mt-2 small">
-                                                        <i class="fas fa-info-circle"></i>
-                                                        You have <?= esc($quiz_data->remaining_attempts) ?> attempt(s) remaining
-                                                    </p>
-                                                <?php endif; ?>
-                                            <?php endif; ?>
-                                        </div>
-                                    <?php else: ?>
-                                        <div class="text-center">
-                                            <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
-                                            <p class="text-muted">Quiz is currently unavailable</p>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                    <?php
-                    elseif ($current_item_type === 'page'): ?>
-                        <!-- Page Content -->
-                        <div class="page-content-area">
-                            <div class="card">
-                                <div class="card-header bg-info text-white">
-                                    <h4 class="mb-0">
-                                        <i class="fas fa-file-alt mr-2"></i>
-                                        صفحة إضافية
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <?php if (isset($page_data) && $page_data): ?>
-                                        <div class="page-content">
-                                            <?php if ($page_data->desc): ?>
-                                                <div class="page-description mb-3">
-                                                    <p class="text-muted"><?= esc($page_data->desc) ?></p>
-                                                </div>
-                                            <?php endif; ?>
-
-                                            <div class="page-body">
-                                                <?= $page_data->content ?? '<p>لا يوجد محتوى متاح</p>' ?>
-                                            </div>
-                                        </div>
-                                    <?php else: ?>
-                                        <div class="text-center">
-                                            <i class="fas fa-file-alt fa-3x text-muted mb-3"></i>
-                                            <p class="text-muted">المحتوى غير متاح حالياً</p>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                    <?php else: ?>
-                        <!-- Default/Unknown Content Type -->
-                        <div class="default-content-area">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <i class="fas fa-question fa-3x text-muted mb-3"></i>
-                                    <p class="text-muted">نوع المحتوى غير مدعوم</p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-                <?php else: ?>
-                    <!-- Fallback to original video content -->
-                    <div class="course-preview-video">
-                        <div class="video-container">
+            <?php if ($current_item_type === 'video'): ?>
+                <!-- Video Player -->
+                <div class="course-preview-video">
+                    <div class="video-container">
+                        <?php if ($video_id): ?>
                             <iframe
-                                    src="https://iframe.mediadelivery.net/embed/<?= $metadata['video_library_id'] ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
+                                    src="https://iframe.mediadelivery.net/embed/<?= $video_library_id ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
                                     loading="lazy"
                                     style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
                                     allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                                     allowfullscreen="true">
                             </iframe>
-                        </div>
+                        <?php else: ?>
+                            <div class="no-content-placeholder">
+                                <i class="fas fa-video"></i>
+                                <p>لا يوجد فيديو متاح</p>
+                            </div>
+                        <?php endif; ?>
                     </div>
-                    <p class="course-description-text">
-                        <?= esc($video_desc) ?>
-                    </p>
+                </div>
+                <!-- Video Description -->
+                <?php if (!empty($itemDesc ?? $video_desc)): ?>
+                    <p class="course-description-text"><?= esc($itemDesc ?? $video_desc) ?></p>
                 <?php endif; ?>
 
-                <!-- Mark as Complete Button -->
-                <div class="completion-section mt-4">
-                    <?php
-                    // Debug logging for current_item
-                    error_log('COURSE_VIEW DEBUG - current_item: ' . json_encode($current_item ?? 'NOT_SET'));
-                    error_log('COURSE_VIEW DEBUG - current_id: ' . ($current_id ?? 'NOT_SET'));
-                    error_log('COURSE_VIEW DEBUG - course_id: ' . ($course->id ?? 'NOT_SET'));
+            <?php elseif ($current_item_type === 'quiz'): ?>
+                <!-- Quiz Content -->
+                <div class="quiz-content-area">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">
+                                <i class="fas fa-question-circle mr-2"></i>
+                                اختبار تفاعلي
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <?php if (isset($quiz_data) && $quiz_data): ?>
+                                <div class="quiz-info mb-4">
+                                    <h5><?= esc($quiz_data->quiz_title) ?></h5>
+                                    <p class="text-muted"><?= esc($quiz_data->quiz_desc) ?></p>
 
-                    ?>
-                    <?php if (isset($current_item) && !empty($current_item['id'])): ?>
-                        <button class="btn btn-success btn-block mark-complete-button"
-                                onclick="markItemComplete(<?= $course->id ?>, <?= $current_item['id'] ?>)">
-                            <i class="fas fa-check mr-2"></i>
-                            تم الإكمال
-                        </button>
-                        <script>
-                            console.log('COURSE_VIEW JS DEBUG - Course ID:', <?= $course->id ?>);
-                            console.log('COURSE_VIEW JS DEBUG - Item ID:', <?= $current_item['id'] ?>);
-                            console.log('COURSE_VIEW JS DEBUG - Current Item:', <?= json_encode($current_item) ?>);
-                        </script>
-                    <?php else: ?>
-                        <button class="btn btn-secondary btn-block" disabled>
-                            <i class="fas fa-exclamation-triangle mr-2"></i>
-                            لا يمكن تحديد العنصر
-                        </button>
-                        <script>
-                            console.log('COURSE_VIEW JS DEBUG - Current item missing or invalid:', <?= json_encode($current_item ?? 'NOT_SET') ?>);
-                        </script>
-                    <?php endif; ?>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="quiz-stat">
+                                                <i class="fas fa-clock"></i>
+                                                <span>المدة: <?= esc($quiz_data->time_limit ?? 'غير محدود') ?> دقيقة</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="quiz-stat">
+                                                <i class="fas fa-percentage"></i>
+                                                <span>درجة النجاح: <span dir="ltr"><?= esc($quiz_data->passing_score ?? '70') ?>%</span></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="quiz-stat">
+                                                <i class="fas fa-redo"></i>
+                                                <span dir="rtl">المحاولات: <?= esc($quiz_data->user_attempt_count ?? 0) ?>/<?= esc($quiz_data->max_attempts ?? 3) ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <?php if (isset($quiz_data->user_attempt_count) && $quiz_data->user_attempt_count > 0): ?>
+                                        <div class="quiz-user-progress mt-3 p-3 bg-light rounded">
+                                            <h6 class="mb-2"><i class="fas fa-chart-line text-primary"></i> تقدمك في هذا الاختبار</h6>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <small class="text-muted">أفضل نتيجة:</small>
+                                                    <strong class="text-success" dir="ltr"><?= esc($quiz_data->user_best_score ?? 0) ?>%</strong>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <small class="text-muted">المحاولات المتبقية:</small>
+                                                    <strong class="<?= ($quiz_data->remaining_attempts ?? 0) > 0 ? 'text-info' : 'text-danger' ?>">
+                                                        <?= esc($quiz_data->remaining_attempts ?? 0) ?>
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="text-center">
+                                    <?php if (isset($quiz_data->has_exceeded_attempts) && $quiz_data->has_exceeded_attempts): ?>
+                                        <button class="btn btn-secondary btn-lg" disabled>
+                                            <i class="fas fa-ban mr-2"></i>
+                                            تجاوزت الحد الأقصى للمحاولات
+                                        </button>
+                                    <?php else: ?>
+                                        <button class="btn btn-success btn-lg take-embedded-quiz-btn"
+                                                data-quiz-id="<?= $quiz_data->id ?>"
+                                                data-quiz-title="<?= esc($quiz_data->quiz_title) ?>">
+                                            <i class="fas fa-play mr-2"></i>
+                                            <?= (isset($quiz_data->user_attempt_count) && $quiz_data->user_attempt_count > 0) ? 'إعادة الاختبار' : 'بدء الاختبار' ?>
+                                        </button>
+                                    <?php endif; ?>
+                                </div>
+                            <?php else: ?>
+                                <div class="no-content-placeholder">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <p>الاختبار غير متاح حالياً</p>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </div>
+
+            <?php elseif ($current_item_type === 'page'): ?>
+                <!-- Page Content -->
+                <div class="page-content-area">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                صفحة إضافية
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <?php if (isset($page_data) && $page_data): ?>
+                                <div class="page-content">
+                                    <?php if ($page_data->desc): ?>
+                                        <div class="page-description mb-3">
+                                            <p class="text-muted"><?= esc($page_data->desc) ?></p>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="page-body">
+                                        <?= $page_data->content ?? '<p>لا يوجد محتوى متاح</p>' ?>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+                                <div class="no-content-placeholder">
+                                    <i class="fas fa-file-alt"></i>
+                                    <p>المحتوى غير متاح حالياً</p>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+            <?php else: ?>
+                <!-- Default/Unknown Content Type -->
+                <div class="no-content-placeholder">
+                    <i class="fas fa-question"></i>
+                    <p>نوع المحتوى غير مدعوم</p>
+                </div>
+            <?php endif; ?>
+
+        <?php else: ?>
+            <!-- Fallback to original video content -->
+            <div class="course-preview-video">
+                <div class="video-container">
+                    <iframe
+                            src="https://iframe.mediadelivery.net/embed/<?= $metadata['video_library_id'] ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
+                            loading="lazy"
+                            style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+                            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                            allowfullscreen="true">
+                    </iframe>
+                </div>
+            </div>
+            <p class="course-description-text">
+                <?= esc($video_desc) ?>
+            </p>
+        <?php endif; ?>
+
+        <!-- Mark as Complete Button -->
+        <div class="completion-section mt-4">
+            <?php
+            error_log('COURSE_VIEW DEBUG - current_item: ' . json_encode($current_item ?? 'NOT_SET'));
+            error_log('COURSE_VIEW DEBUG - current_id: ' . ($current_id ?? 'NOT_SET'));
+            error_log('COURSE_VIEW DEBUG - course_id: ' . ($course->id ?? 'NOT_SET'));
+            ?>
+            <?php if (isset($current_item) && !empty($current_item['id'])): ?>
+                <button class="btn btn-success btn-block mark-complete-button"
+                        onclick="markItemComplete(<?= $course->id ?>, <?= $current_item['id'] ?>)">
+                    <i class="fas fa-check mr-2"></i>
+                    تم الإكمال
+                </button>
+                <script>
+                    console.log('COURSE_VIEW JS DEBUG - Course ID:', <?= $course->id ?>);
+                    console.log('COURSE_VIEW JS DEBUG - Item ID:', <?= $current_item['id'] ?>);
+                    console.log('COURSE_VIEW JS DEBUG - Current Item:', <?= json_encode($current_item) ?>);
+                </script>
+            <?php else: ?>
+                <button class="btn btn-secondary btn-block" disabled>
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    لا يمكن تحديد العنصر
+                </button>
+                <script>
+                    console.log('COURSE_VIEW JS DEBUG - Current item missing or invalid:', <?= json_encode($current_item ?? 'NOT_SET') ?>);
+                </script>
+            <?php endif; ?>
+        </div>
+
 
                 <script>
                     function markItemComplete(courseId, itemId) {

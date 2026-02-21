@@ -111,9 +111,10 @@ class UnitsModel extends BaseModel
             return true;
         }
 
-        // Check if user has purchased this unit
-        $purchasesModel = new UnitPurchasesModel();
-        return $purchasesModel->hasUnitAccess($userId, $unitId);
+        // Check if user is enrolled in the course
+        // We now check course enrollment instead of individual unit purchases
+        $enrollmentsModel = new \Modules\Enrollments\Models\CourseEnrollmentsModel();
+        return $enrollmentsModel->isUserEnrolled($userId, $unit->course_id);
     }
 
     /**

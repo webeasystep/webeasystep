@@ -1,27 +1,18 @@
 <?= $this->extend('site_layout/template'); ?>
 <?= $this->section('content'); ?>
 
-    <div class="untree_co-hero overlay" style="background-image: url('<?= base_url() ?>site/images/main_banner.webp');">
+    <div class="untree_co-hero overlay" style="background-color: #0a1730; background-image: url('<?= base_url() ?>site/images/vibe_coding_mastery.jpg'); background-position: center 50px; background-size: cover;">
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-12">
-                    <div class="row justify-content-center ">
-                        <div class="col-lg-8 text-center ">
-                            <a href="https://www.youtube.com/@web_easy_step" target="_blank" class="d-inline-block mb-3">
-                                <span class="badge badge-warning text-dark py-2 px-3" style="font-size: 0.9rem; border-radius: 20px;">
-                                    <i class="fab fa-youtube text-danger mr-1"></i> انضم لـ 20,000+ متدرب وثقوا في محتوانا
-                                </span>
-                            </a>
+                    <div class="row justify-content-end">
+                        <div class="col-lg-7 text-center " style="padding-left: 5%;">
 
                             <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">
                                 البرمجة اتغيرت.. احترف الـ Vibe Coding ووفر على نفسك شهور من "التوهان" في التعليم الذاتي.
                             </h1>
 
-                            <p class="mb-4 text-white" style="font-size: 1.1rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="200">
-                                هنا أنا مش ببيعلك مجرد فيديوهات مسجلة أو بحفظك أكواد. أنا هاخدك من إيدك عشان تتعلم إزاي تفكر كـ "مهندس حلول"، وإزاي تستخدم أحدث أدوات الذكاء الاصطناعي عشان تبني مشاريع حقيقية تفرض بيها نفسك على سوق العمل.
-                            </p>
-
-                            <p class="mb-0" data-aos="fade-up" data-aos-delay="300">
+                            <p class="mb-0 mt-4" data-aos="fade-up" data-aos-delay="300">
                                 <a href="#courses" class="btn btn-primary btn-lg" style="padding: 15px 40px; font-weight: bold;">تصفح الكورسات وابدأ رحلتك دلوقتي</a>
                             </p>
                         </div>
@@ -206,7 +197,9 @@
                                         <?php if (!empty($course['waiting_list']) && $course['waiting_list'] == 1): ?>
                                             <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">اشترك الآن</button>
                                         <?php else: ?>
-                                            <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>" class="btn btn-primary btn-block text-white" style="font-weight: bold;">تصفح الكورس</a>
+                                            <a href="<?= $course['course_url'] ?? base_url('courses/course_details/' . $course['slug']) ?>" class="btn btn-primary btn-block text-white" style="font-weight: bold;">
+                                                <?= !empty($course['is_enrolled']) ? 'متابعة الكورس' : 'تصفح الكورس' ?>
+                                            </a>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -281,10 +274,10 @@
                     <div class="modal-icon mb-4">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h4 class="modal-title mb-3" id="subscribeModalLabel">هندسة محتوى 2026 قيد التنفيذ! 🚀</h4>
+                    <h4 class="modal-title mb-3" id="subscribeModalLabel">الكورس قيد التحضير! </h4>
                     <p class="modal-message mb-4">
-                        لأني مؤمن إن كل مبرمج طموح يستحق حد خبير ياخد بإيده، أنا شغال دلوقتي بكامل طاقتي على تجهيز محتوى بيعالج فجوات التعليم الذاتي وبيضمنلك التميز الحقيقي في السوق.<br>
-                        <strong class="text-success">سجل بريدك دلوقتي عشان تكون في قائمة النخبة وتحصل على خصم 25% فور الانطلاق! 🎁</strong>
+                        لأني مؤمن إن وقتك غالي، أنا بجهز دلوقتي محتوى "عملي" يخرجك من دوامة التعليم الذاتي ويحطك على أول طريق الاحتراف الحقيقي .<br>
+                        <strong class="text-success">سجل بريدك دلوقتي عشان تكون أول واحد يعرف فور فتح باب الانضمام وتضمن مكانك في الدفعة الأولى! 💎</strong>
                     </p>
                     <div class="selected-course-name mb-3" id="selectedCourseName"></div>
                     <form id="interestForm" class="interest-form">

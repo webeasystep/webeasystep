@@ -10,7 +10,7 @@ use Modules\Courses\Models\CoursesModel;
 use Modules\Units\Models\UnitsModel;
 use Modules\Units\Models\UnitItemsModel;
 use Modules\Units\Models\PaymentAttachmentsModel;
-use Modules\Units\Models\UnitPurchasesModel;
+// use Modules\Units\Models\UnitPurchasesModel; // Removed
 use Modules\Quizzes\Models\QuizzesModel;
 use Modules\Pages\Models\PagesModel;
 use Modules\Units\Services\BunnyNetService;
@@ -21,7 +21,7 @@ class AdminUnits extends BaseController
     protected UnitsModel $units;
     protected UnitItemsModel $unitItems;
     protected PaymentAttachmentsModel $payments;
-    protected UnitPurchasesModel $purchases;
+    // protected UnitPurchasesModel $purchases; // Removed
     protected CoursesModel $coursesModel;
     // protected SectionsModel $sectionsModel; // Removed - sections table will be dropped
     protected QuizzesModel $quizzesModel;
@@ -36,7 +36,7 @@ class AdminUnits extends BaseController
         $this->units = new UnitsModel();
         $this->unitItems = new UnitItemsModel();
         $this->payments = new PaymentAttachmentsModel();
-        $this->purchases = new UnitPurchasesModel();
+        // $this->purchases = new UnitPurchasesModel(); // Removed
         $this->coursesModel = new CoursesModel();
         // $this->sectionsModel = new SectionsModel(); // Removed - sections table will be dropped
         $this->quizzesModel = new QuizzesModel();
@@ -136,24 +136,25 @@ class AdminUnits extends BaseController
             $unitItems = json_decode($unitItemsJson, true);
 
             if (json_last_error() === JSON_ERROR_NONE && is_array($unitItems) && !empty($unitItems)) {
-                // If editing (id exists), clear existing unit items first to prevent duplication
-                if ($id) {
-                    $this->db->table('tb_unit_items')->where('unit_id', $id)->delete();
-                }
+                // Only delete existing unit items when new items are actually being submitted
+                // This prevents clearing metadata when editing basic unit info without touching items
+                $this->db->table('tb_unit_items')->where('unit_id', $id)->delete();
                 $this->saveUnitItems($id, $unitItems);
             }
         }
+        // If unit_items is not submitted at all (empty/null), preserve existing items as-is
 
         // Handle quiz assignment if provided (for both add and edit)
         $quizIds = $this->request->getPost('quiz_ids');
         if (!empty($quizIds)) {
             $this->assignQuizzesToUnit($id, $quizIds);
-        } elseif ($id) {
-            // If editing and no quizzes selected, clear existing assignments
+        } elseif ($id && $this->request->getPost('quiz_ids') !== null) {
+            // Only clear quiz assignments if quiz_ids was explicitly submitted as empty
             $this->assignQuizzesToUnit($id, []);
         }
 
         return $id;
+
     }
 
     /**
@@ -242,30 +243,7 @@ class AdminUnits extends BaseController
     /**
      * Unit purchases management
      */
-    public function purchases()
-    {
-        $data['title'] = lang('Units.unit_purchases');
 
-        if ($this->request->isAJAX()) {
-            $purchasesModel = $this->purchases
-                ->select('tb_unit_purchases.*, users.username, tb_units.unit_name')
-                ->join('users', 'users.id = tb_unit_purchases.user_id', 'left')
-                ->join('tb_units', 'tb_units.id = tb_unit_purchases.unit_id', 'left')
-                ->orderBy('tb_unit_purchases.created_at', 'DESC')
-                ->builder();
-
-            DtTable::hideColumns(['id', 'user_id', 'unit_id']);
-            DtTable::searchableColumns(['username', 'unit_name']);
-            DtTable::orderableColumns(['username', 'unit_name', 'price_paid', 'access_granted', 'created_at']);
-            DtTable::setColumnSwitch('access_granted');
-            DtTable::setShowColumns('username,unit_name,price_paid,access_granted,access_expires_at,created_at');
-
-            $output = DtTable::tableRender($purchasesModel, false);
-            return $this->response->setJSON($output);
-        } else {
-            return view('purchases_index', $data);
-        }
-    }
 
     /**
      * Add new unit (Articles style)
@@ -337,6 +315,9 @@ class AdminUnits extends BaseController
     /**
      * Delete unit
      */
+    /**
+     * Delete unit
+     */
     public function deleteUnit($id): \CodeIgniter\HTTP\RedirectResponse
     {
         $unit = $this->units->find($id);
@@ -344,8 +325,30 @@ class AdminUnits extends BaseController
             return redirect()->back()->with('error', 'الوحدة غير موجودة');
         }
 
+        $db = \Config\Database::connect();
+
+        // 1. Get all unit items
+        $unitItems = $db->table('tb_unit_items')->where('unit_id', $id)->get()->getResultArray();
+        $unitItemIds = array_column($unitItems, 'id');
+
+        if (!empty($unitItemIds)) {
+            // 2. Delete progress for these items
+            $db->table('tb_user_item_progress')->whereIn('item_id', $unitItemIds)->delete();
+            
+            // 3. Delete unit items
+            $db->table('tb_unit_items')->whereIn('id', $unitItemIds)->delete();
+        }
+
+        // 4. Delete unit progress if exists (using the correct table)
+        // Note: UserUnitProgressModel uses tb_user_item_progress with unit_id
+        if ($db->fieldExists('unit_id', 'tb_user_item_progress')) {
+            $db->table('tb_user_item_progress')->where('unit_id', $id)->delete();
+        }
+        
+
+
         if ($this->units->delete($id)) {
-            return redirect()->to(ADMIN_URL . 'units')->with('success', 'تم حذف الوحدة بنجاح');
+            return redirect()->to(ADMIN_URL . 'units')->with('success', 'تم حذف الوحدة وكل البيانات المرتبطة بها بنجاح');
         }
 
         return redirect()->back()->with('error', 'حدث خطأ أثناء حذف الوحدة');

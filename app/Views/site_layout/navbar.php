@@ -12,15 +12,6 @@
 <!-- app/Views/layouts/navbar.php -->
 
 <nav class="site-nav mb-5" role="navigation" aria-label="Main navigation">
-    <?php
-    // If you want to show a logo only on homepage (hidden on mobile to prevent overlap):
-    if (current_url() == site_url()) {
-        echo '<a href="'.site_url().'" class="logo menu-absolute m-0 d-none d-lg-inline-block" style="top: 20px;">
-              <img src="'.base_url('site/images/logo.png').'" alt="Site Logo" class="rounded-circle logo-image" style="object-fit:contain; width: 300px; height: 300px;">
-            </a>';
-    }
-    ?>
-
     <!-- Top Bar -->
     <div class="pb-2 top-bar mb-3">
         <div class="container">
@@ -65,11 +56,7 @@
                     <li <?= current_url() == site_url() ? 'class="active"' : '' ?>>
                         <a href="<?= site_url() ?>">الرئيسية</a>
                     </li>
-                    <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('terms-conditions') ?>">
-                            <span class="icon-document mr-1"></span>الشروط والأحكام
-                        </a>
-                    </li>
+               
                     <?php if (auth()->loggedIn()): ?>
                         <!-- User Navigation Links -->
                         <li class="has-children">
@@ -108,12 +95,12 @@
                                 <span class="icon-lock mr-1"></span>تسجيل الدخول
                             </a>
                         </li>
-                        <li <?= str_contains(current_url(), 'register') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('register') ?>">
-                                <span class="icon-person mr-1"></span>حساب جديد
-                            </a>
-                        </li>
                     <?php endif; ?>
+                    <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
+                        <a href="<?= site_url('terms-conditions') ?>">
+                            <span class="icon-document mr-1"></span>الشروط والأحكام
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Mobile Toggle -->

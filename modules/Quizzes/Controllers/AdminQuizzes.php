@@ -360,6 +360,8 @@ class AdminQuizzes extends BaseController
             return redirect()->back();
         }
 
+        $id = (int) $id;
+
         $quiz = $this->quizzesModel->find($id);
         if (!$quiz) {
             return $this->response->setJSON([
@@ -368,15 +370,40 @@ class AdminQuizzes extends BaseController
             ]);
         }
 
-        // Check if quiz has attempts
-        $attemptCount = $this->attemptsModel->where('quiz_id', $id)->countAllResults();
-        if ($attemptCount > 0) {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => lang('Quizzes.cannot_delete_quiz_with_attempts')
-            ]);
+        $db = \Config\Database::connect();
+
+        // 1. Find all unit_items of type 'quiz' linked to this quiz
+        $linkedUnitItems = $db->table('tb_unit_items')
+            ->where('item_type', 'quiz')
+            ->where('item_id', $id)
+            ->get()
+            ->getResultArray();
+
+        $metadataLinkedItems = $db->table('tb_unit_items')
+            ->where('item_type', 'quiz')
+            ->like('metadata', '"quiz_id":' . $id)
+            ->get()
+            ->getResultArray();
+
+        $allLinkedItems = array_merge($linkedUnitItems, $metadataLinkedItems);
+        $uniqueItemIds = array_unique(array_column($allLinkedItems, 'id'));
+
+        if (!empty($uniqueItemIds)) {
+            // Delete progress records for these unit items
+            $db->table('tb_user_item_progress')
+               ->whereIn('item_id', $uniqueItemIds)
+               ->delete();
+
+            // Delete the unit items themselves
+            $db->table('tb_unit_items')
+               ->whereIn('id', $uniqueItemIds)
+               ->delete();
         }
 
+        // 2. Delete quiz attempts using raw query (most reliable approach)
+        $db->query('DELETE FROM tb_quiz_attempts WHERE quiz_id = ' . $id);
+
+        // 3. Delete the quiz
         if ($this->quizzesModel->delete($id)) {
             return $this->response->setJSON([
                 'success' => true,

@@ -6,7 +6,7 @@
         <div class="col-12 col-md-6 col-lg-5">
             <div class="card shadow-sm border-0" style="border-radius: 12px;">
                 <div class="card-body p-4">
-                    <h4 class="card-title text-center mb-3" style="font-weight: 700;"><?= lang('Auth.login') ?></h4>
+                    <h4 class="card-title text-center mb-3 w-100" style="font-weight: 700; text-align: center !important;"><?= lang('Auth.login') ?></h4>
 
                     <?= $this->include('site_layout/site_msg'); ?>
                     
@@ -52,16 +52,15 @@
                             </div>
                         <?php endif; ?>
 
-                        <div class="d-grid mt-3">
+                        <div class="d-grid gap-2 mt-3">
                             <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.login') ?></button>
+                             <?php if (setting('Auth.allowRegistration')) : ?>
+                                <a href="<?= url_to('register') ?>" class="btn btn-light btn-block border"><?= lang('Auth.register') ?></a>
+                            <?php endif ?>
                         </div>
 
                         <?php if (setting('Auth.allowMagicLinkLogins')) : ?>
                             <p class="text-center text-muted small mt-3"><?= lang('Auth.forgotPassword') ?> <a href="<?= url_to('magic-link') ?>"><?= lang('Auth.useMagicLink') ?></a></p>
-                        <?php endif ?>
-
-                        <?php if (setting('Auth.allowRegistration')) : ?>
-                            <p class="text-center text-muted small mt-3"><?= lang('Auth.needAccount') ?> <a href="<?= url_to('register') ?>"><?= lang('Auth.register') ?></a></p>
                         <?php endif ?>
 
                     </form>
