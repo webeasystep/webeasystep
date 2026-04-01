@@ -818,20 +818,6 @@
                                                 </button>
                                             </div>
 
-                                            <!-- Amount to send -->
-                                            <div class="pm-info-row">
-                                                <div class="info-icon instapay-icon">
-                                                    <i class="fas fa-dollar-sign"></i>
-                                                </div>
-                                                <div class="info-content">
-                                                    <div class="info-label">المبلغ المطلوب تحويله</div>
-                                                    <div class="info-value">$<?= esc($course->course_price) ?> USD</div>
-                                                </div>
-                                                <button type="button" class="btn-copy" onclick="copyToClipboard('<?= esc($course->course_price) ?>', this)">
-                                                    <i class="fas fa-copy"></i> نسخ المبلغ
-                                                </button>
-                                            </div>
-
                                             <div class="pm-steps">
                                                 <div class="pm-step">
                                                     <span class="step-num">1</span>

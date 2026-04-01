@@ -296,7 +296,7 @@
                                     <span><i class="fas fa-calendar-alt me-1"></i> <?= date('Y/m/d', strtotime($enrollment->created_at)) ?></span>
                                     <?php if ($enrollment->paid_amount > 0): ?>
                                         <span class="ms-auto" style="direction: ltr;">
-                                            <?= number_format($enrollment->paid_amount) ?> SAR
+                                            $<?= number_format($enrollment->paid_amount) ?>
                                         </span>
                                     <?php endif; ?>
                                 </div>
