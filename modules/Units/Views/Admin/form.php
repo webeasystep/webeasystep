@@ -111,16 +111,6 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input type="checkbox" name="is_free" id="is_free" class="form-check-input" value="1" <?= ($isEdit && $unit->is_free) ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="is_free">
-                                            وحدة مجانية
-                                        </label>
-                                        <small class="form-text text-muted">يمكن للمستخدمين غير المسجلين مشاهدة هذه الوحدة</small>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-check">
                                         <input type="checkbox" name="active" id="active" class="form-check-input" value="1" <?= ($isEdit && $unit->active) ? 'checked' : 'checked' ?>>
                                         <label class="form-check-label" for="active">
                                             وحدة نشطة
@@ -795,6 +785,7 @@ function saveVideoItem() {
             embed_url: 'https://www.youtube.com/embed/' + youtubeVideoId,
             sort_order: sortOrder,
             is_active: 1,
+            is_free: 0,
             id: 'video_' + Date.now()
         };
 
@@ -833,6 +824,7 @@ function saveVideoItem() {
         description: currentVideoData.description || '',
         sort_order: sortOrder,
         is_active: 1,
+        is_free: 0,
         id: 'video_' + Date.now()
     };
 
@@ -1008,6 +1000,7 @@ function saveQuizItem() {
         passing_score: selectedOption.data('passing') || 0,
         sort_order: sortOrder,
         is_active: 1,
+        is_free: 0,
         id: 'quiz_' + Date.now()
     };
 
@@ -1099,6 +1092,7 @@ function savePageItem() {
         url: selectedOption.data('url') || '',
         sort_order: sortOrder,
         is_active: 1,
+        is_free: 0,
         id: 'page_' + Date.now()
     };
 
@@ -1125,7 +1119,7 @@ function displayUnitItems() {
         return;
     }
 
-    let html = '<div class="table-responsive"><table class="table table-bordered"><thead><tr><th>الترتيب</th><th>النوع</th><th>العنوان</th><th>الحالة</th><th>الإجراءات</th></tr></thead><tbody>';
+    let html = '<div class="table-responsive"><table class="table table-bordered"><thead><tr><th>الترتيب</th><th>النوع</th><th>العنوان</th><th>مجاني</th><th>الحالة</th><th>الإجراءات</th></tr></thead><tbody>';
 
     unitItems.forEach(function(item, index) {
         let typeIcon = '';
@@ -1150,6 +1144,7 @@ function displayUnitItems() {
         html += '<td><input type="number" class="form-control form-control-sm" value="' + item.sort_order + '" onchange="updateItemOrder(' + index + ', this.value)" style="width: 80px;" min="1"></td>';
         html += '<td>' + typeIcon + ' ' + typeName + '</td>';
         html += '<td>' + (item.title || 'بدون عنوان') + '</td>';
+        html += '<td><div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="freeSwitch' + index + '" onclick="toggleItemFree(' + index + ', this.checked)" ' + (item.is_free == 1 ? 'checked' : '') + '><label class="custom-control-label" for="freeSwitch' + index + '"></label></div></td>';
         html += '<td><select class="form-control form-control-sm" onchange="toggleItemStatus(' + index + ', this.value)" style="width: 100px;"><option value="1"' + (item.is_active == 1 ? ' selected' : '') + '>مفعل</option><option value="0"' + (item.is_active == 0 ? ' selected' : '') + '>غير مفعل</option></select></td>';
         html += '<td><button class="btn btn-danger btn-sm" onclick="deleteItem(' + index + ')" title="حذف العنصر"><i class="fas fa-trash"></i></button> <button class="btn btn-info btn-sm" onclick="moveItemUp(' + index + ')" title="تحريك لأعلى" ' + (index === 0 ? 'disabled' : '') + '><i class="fas fa-arrow-up"></i></button> <button class="btn btn-info btn-sm" onclick="moveItemDown(' + index + ')" title="تحريك لأسفل" ' + (index === unitItems.length - 1 ? 'disabled' : '') + '><i class="fas fa-arrow-down"></i></button></td>';
         html += '</tr>';
@@ -1167,6 +1162,26 @@ function updateItemOrder(index, newOrder) {
     }
     unitItems[index].sort_order = order;
     toastr.success('تم تحديث الترتيب');
+}
+
+function toggleItemFree(index, isFree) {
+    // Update the item in the array, making sure it's an integer
+    unitItems[index].is_free = isFree ? 1 : 0;
+    
+    // Also update metadata if it exists to ensure consistency
+    if (!unitItems[index].metadata) {
+        unitItems[index].metadata = {};
+    } else if (typeof unitItems[index].metadata === 'string') {
+        try {
+            unitItems[index].metadata = JSON.parse(unitItems[index].metadata);
+        } catch(e) {}
+    }
+    
+    // Optional: Log to verify it's updating
+    console.log('Item updated:', index, 'is_free:', unitItems[index].is_free);
+    
+    const statusText = isFree ? 'مجاني' : 'مدفوع';
+    toastr.success('تم تحديث العنصر ليصبح: ' + statusText);
 }
 
 function toggleItemStatus(index, status) {

@@ -124,7 +124,6 @@ class AdminUnits extends BaseController
             'unit_desc' => $this->request->getPost('unit_desc'),
             'sort_order' => $this->request->getPost('sort_order', FILTER_SANITIZE_NUMBER_INT),
             'price' => $this->request->getPost('unit_price') ? floatval($this->request->getPost('unit_price')) : 0.00,
-            'is_free' => $this->request->getPost('is_free') ? '1' : '0',
             // 'is_purchasable' => $this->request->getPost('is_purchasable') ? '1' : '0', // Column doesn't exist
             'active' => $this->request->getPost('active') ? '1' : '0',
             // 'unit_type' => 'video', // Column doesn't exist
@@ -148,6 +147,9 @@ class AdminUnits extends BaseController
             $unitItems = json_decode($unitItemsJson, true);
 
             if (json_last_error() === JSON_ERROR_NONE && is_array($unitItems) && !empty($unitItems)) {
+                // Debug logging to track received items
+                log_message('debug', 'Received unit items for unit ' . $id . ': ' . json_encode($unitItems));
+                
                 // Only delete existing unit items when new items are actually being submitted
                 // This prevents clearing metadata when editing basic unit info without touching items
                 $this->db->table('tb_unit_items')->where('unit_id', $id)->delete();
@@ -418,7 +420,7 @@ class AdminUnits extends BaseController
         $stats = [
             'total' => $this->units->countAll(),
             'active' => $this->units->where('active', 1)->countAllResults(false),
-            'preview' => $this->units->where('is_free', 1)->countAllResults(false),
+            'preview' => $this->db->table('tb_unit_items')->where('is_free', 1)->countAllResults(),
             'with_quizzes' => $this->db->table('tb_quizzes')
                                       ->select('DISTINCT unit_id')
                                       ->where('active', 1)
@@ -472,7 +474,6 @@ class AdminUnits extends BaseController
             'unit_name' => $unit->unit_name . ' (نسخة)',
             'unit_desc' => $unit->unit_desc,
             'sort_order' => $this->getNextSortOrder($unit->course_id),
-            'is_free' => $unit->is_free,
             'active' => 0, // New units start as inactive
             // 'unit_type' => $unit->unit_type, // Column doesn't exist
             'unit_type' => 'video',
@@ -798,8 +799,12 @@ class AdminUnits extends BaseController
                 'description' => $item['description'] ?? null,
                 'sort_order' => $item['sort_order'] ?? 1,
                 'is_active' => $item['is_active'] ?? 1,
+                'is_free' => isset($item['is_free']) ? (int)$item['is_free'] : 0,
                 'created_at' => date('Y-m-d H:i:s')
             ];
+
+            // Debug logging to track is_free status during save
+            log_message('debug', 'Saving item: ' . $itemData['title'] . ' | is_free: ' . $itemData['is_free']);
 
             switch ($item['item_type']) {
                 case 'video':

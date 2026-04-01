@@ -501,13 +501,8 @@ class Courses extends BaseController
         // Get ALL units for display
         $units = [];
         foreach ($allUnits as $unit) {
-            // Mark unit as enrolled (since course access is confirmed)
-            $unit->is_enrolled = true;
-
-            // Ensure is_free property is preserved
-            if (!isset($unit->is_free)) {
-                $unit->is_free = 0; 
-            }
+            // Mark unit as enrolled if user has course access
+            $unit->is_enrolled = $hasAccess;
 
             $units[] = $unit;
         }
@@ -518,16 +513,18 @@ class Courses extends BaseController
             // Get items for all units (enrolled, free, and locked)
             $unit->items = $this->unitItemsModel->getUnitItemsWithDetails($unit->id, true); // Get items with related data
 
-            // Mark items as locked for unenrolled non-free units
-            if (!$unit->is_enrolled && !$unit->is_free) {
+            // Mark items as locked for unenrolled non-free items
+            if (!$unit->is_enrolled) {
                 foreach ($unit->items as &$item) {
-                    $item->is_locked = true;
+                    if (!isset($item->is_free) || $item->is_free != 1) {
+                        $item->is_locked = true;
+                    }
                 }
                 unset($item);
             }
 
             // Add items to flat array for navigation (enrolled units + free units)
-            $includeInNavigation = $unit->is_enrolled || $unit->is_free;
+            $includeInNavigation = $unit->is_enrolled || true; // Allow free items to be included
 
             if ($includeInNavigation) {
                 foreach ($unit->items as $item) {
@@ -569,7 +566,7 @@ class Courses extends BaseController
                         'quiz_details' => $item->quiz_details ?? null,
                         'page_details' => $item->page_details ?? null,
                         'is_preview' => false, // Will be determined by enrollment
-                        'is_free_unit' => $unit->is_free // Track if this item belongs to a free unit
+                        'is_free_item' => isset($item->is_free) ? $item->is_free : 0 // Track if this item is free
                     ];
                 }
             }
@@ -667,21 +664,21 @@ class Courses extends BaseController
         $nextItem = null;
 
         if ($currentIndex !== false) {
-            // Find previous available item (skip locked units)
+            // Find previous available item (skip locked items)
             for ($i = $currentIndex - 1; $i >= 0; $i--) {
                 $item = $flatItems[$i];
-                // Check if this item is accessible (enrolled or free unit)
-                if ($item['is_free_unit'] || true) {
+                // Check if this item is accessible (enrolled or free item)
+                if ($item['is_free_item'] || $hasAccess) {
                     $prevItem = $item;
                     break;
                 }
             }
 
-            // Find next available item (skip locked units)
+            // Find next available item (skip locked items)
             for ($i = $currentIndex + 1; $i < count($flatItems); $i++) {
                 $item = $flatItems[$i];
-                // Check if this item is accessible (enrolled or free unit)
-                if ($item['is_free_unit'] || true) {
+                // Check if this item is accessible (enrolled or free item)
+                if ($item['is_free_item'] || $hasAccess) {
                     $nextItem = $item;
                     break;
                 }
@@ -819,6 +816,7 @@ class Courses extends BaseController
         $data = [
             'title'             => $course->course_title,
             'course'            => $course,
+            'isEnrolled'        => $hasAccess,
             'units'             => $units, // Changed from 'structure' to 'units'
             'course_progress'   => $courseProgress,
             'current_id'        => $requestedItemId,

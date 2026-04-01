@@ -21,6 +21,7 @@ class UnitItemsModel extends Model
         'duration',
         'sort_order',
         'is_active',
+        'is_free',
         'metadata'
     ];
 

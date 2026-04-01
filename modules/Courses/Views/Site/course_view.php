@@ -1,4 +1,4 @@
-﻿<?php $this->extend('site_layout/template'); ?>
+<?php $this->extend('site_layout/template'); ?>
 <?php $this->section('content'); ?>
 
 <style>
@@ -1071,19 +1071,29 @@
         <div class="sidebar-scroll">
             <div class="videos-accordion accordion" id="videoAccordion">
                 <?php foreach ($units as $unit): ?>
+                    <?php
+                    $hasFreeItems = false;
+                    if (isset($unit->items)) {
+                        foreach ($unit->items as $itm) {
+                            if (isset($itm->is_free) && $itm->is_free == 1) {
+                                $hasFreeItems = true;
+                                break;
+                            }
+                        }
+                    }
+                    $isUnitLocked = !($unit->is_enrolled ?? false) && !$hasFreeItems;
+                    ?>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading<?= esc($unit->id) ?>">
-                            <button class="accordion-button <?= isset($unit->is_open) && $unit->is_open ? '' : 'collapsed' ?> <?= !($unit->is_enrolled ?? false) && !($unit->is_free ?? false) ? 'unit-locked' : '' ?>"
+                            <button class="accordion-button <?= isset($unit->is_open) && $unit->is_open ? '' : 'collapsed' ?> <?= $isUnitLocked ? 'unit-locked' : '' ?>"
                                     type="button"
                                     data-toggle="collapse"
                                     data-target="#collapse<?= esc($unit->id) ?>"
                                     aria-expanded="<?= isset($unit->is_open) && $unit->is_open ? 'true' : 'false' ?>"
                                     aria-controls="collapse<?= esc($unit->id) ?>">
                                 <?= esc($unit->unit_name) ?>
-                                <?php if (!($unit->is_enrolled ?? false) && !($unit->is_free ?? false)): ?>
+                                <?php if ($isUnitLocked): ?>
                                     <i class="fas fa-lock" style="font-size:11px; margin-right:4px; color:var(--cv-danger);"></i>
-                                <?php elseif (($unit->is_free ?? false) && !($unit->is_enrolled ?? false)): ?>
-                                    <span class="badge-free" style="margin-right:4px;">مجاني</span>
                                 <?php endif; ?>
                                 <span class="badge-unit-count"><?= count($unit->items ?? []) ?></span>
                             </button>
@@ -1097,15 +1107,16 @@
                                     <?php if (isset($unit->items)): ?>
                                         <?php foreach ($unit->items as $item): ?>
                                             <?php
-                                            $isUnitLocked = !($unit->is_enrolled ?? false) && !($unit->is_free ?? false);
+                                            $isItemFree = isset($item->is_free) && $item->is_free == 1;
+                                            $isItemLocked = !($unit->is_enrolled ?? false) && !$isItemFree;
                                             $itemClass = $item->id == $current_id ? 'active-item' : '';
-                                            if ($isUnitLocked) {
+                                            if ($isItemLocked) {
                                                 $itemClass .= ' locked-item';
                                             }
                                             ?>
 
                                             <div class="course-item <?= $itemClass ?>">
-                                                <?php if ($isUnitLocked): ?>
+                                                <?php if ($isItemLocked): ?>
                                                 <div class="item-content locked-content">
                                                 <?php else: ?>
                                                     <?php $urlParam = 'item=' . $item->id; ?>
@@ -1115,11 +1126,11 @@
                                                     <!-- Item Icon -->
                                                     <div class="item-icon">
                                                         <?php if ($item->item_type === 'video'): ?>
-                                                            <i class="icon-play-circle-o" style="color:<?= $isUnitLocked ? 'var(--cv-text-light)' : 'var(--cv-primary)' ?>;"></i>
+                                                            <i class="icon-play-circle-o" style="color:<?= $isItemLocked ? 'var(--cv-text-light)' : 'var(--cv-primary)' ?>;"></i>
                                                         <?php elseif ($item->item_type === 'quiz'): ?>
-                                                            <i class="icon-question-circle" style="color:<?= $isUnitLocked ? 'var(--cv-text-light)' : 'var(--cv-success)' ?>;"></i>
+                                                            <i class="icon-question-circle" style="color:<?= $isItemLocked ? 'var(--cv-text-light)' : 'var(--cv-success)' ?>;"></i>
                                                         <?php elseif ($item->item_type === 'page'): ?>
-                                                            <i class="icon-file-text-o" style="color:<?= $isUnitLocked ? 'var(--cv-text-light)' : '#17a2b8' ?>;"></i>
+                                                            <i class="icon-file-text-o" style="color:<?= $isItemLocked ? 'var(--cv-text-light)' : '#17a2b8' ?>;"></i>
                                                         <?php else: ?>
                                                             <i class="icon-circle" style="color:var(--cv-text-muted);"></i>
                                                         <?php endif; ?>
@@ -1149,11 +1160,11 @@
 
                                                     <!-- Item Status -->
                                                     <div class="item-status">
-                                                        <?php if ($item->id == $current_id && !$isUnitLocked): ?>
+                                                        <?php if ($item->id == $current_id && !$isItemLocked): ?>
                                                             <div class="status-indicator current">
                                                                 <i class="fas fa-play"></i>
                                                             </div>
-                                                        <?php elseif ($isUnitLocked): ?>
+                                                        <?php elseif ($isItemLocked): ?>
                                                             <div class="status-indicator locked">
                                                                 <i class="fas fa-lock"></i>
                                                             </div>
@@ -1164,7 +1175,7 @@
                                                         <?php endif; ?>
                                                     </div>
 
-                                                <?php if ($isUnitLocked): ?>
+                                                <?php if ($isItemLocked): ?>
                                                 </div>
                                                 <?php else: ?>
                                                     </a>
@@ -1251,7 +1262,7 @@
                     <div class="video-container">
                         <?php if ($video_id): ?>
                             <iframe
-                                    src="https://iframe.mediadelivery.net/embed/<?= $video_library_id ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
+                                    src="https://player.mediadelivery.net/embed/<?= $video_library_id ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
                                     loading="lazy"
                                     style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
                                     allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
@@ -1396,7 +1407,7 @@
             <div class="course-preview-video">
                 <div class="video-container">
                     <iframe
-                            src="https://iframe.mediadelivery.net/embed/<?= $metadata['video_library_id'] ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
+                                    src="https://player.mediadelivery.net/embed/<?= $metadata['video_library_id'] ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
                             loading="lazy"
                             style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
                             allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
@@ -1409,6 +1420,15 @@
             </p>
         <?php endif; ?>
 
+        <?php if (!isset($isEnrolled) || !$isEnrolled): ?>
+            <div class="alert alert-info mt-4">
+                <h5><i class="fas fa-info-circle mr-2"></i>هذا العنصر مجاني كمعاينة</h5>
+                <p>قم بالاشتراك في الكورس لمشاهدة باقي العناصر والمحتوى بالكامل.</p>
+                <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>" class="btn btn-primary">
+                    <i class="fas fa-shopping-cart mr-2"></i>اشترك الآن
+                </a>
+            </div>
+        <?php else: ?>
         <!-- Mark as Complete Button -->
         <div class="completion-section mt-4">
             <?php
@@ -1437,6 +1457,7 @@
                 </script>
             <?php endif; ?>
         </div>
+        <?php endif; ?>
 
 
                 <script>

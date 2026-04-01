@@ -209,6 +209,42 @@
         display: flex;
         align-items: center;
         gap: 1rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .video-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-shrink: 0;
+        margin-right: 1rem;
+    }
+
+    .video-item.video-previewable {
+        cursor: pointer;
+    }
+
+    .video-item.video-previewable .video-icon {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+    }
+
+    .btn-preview {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-width: 120px;
+        background: var(--primary-color);
+        color: #fff;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .btn-preview:hover {
+        background: var(--primary-dark);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
     }
 
     .video-icon {
@@ -2763,7 +2799,40 @@
                                         <div class="accordion-body">
                                             <?php if (!empty($unit->items)) : ?>
                                                 <?php foreach ($unit->items as $item) : ?>
-                                                    <div class="video-item" role="listitem">
+                                                    <?php
+                                                    $metadata = is_array($item->metadata) ? $item->metadata : json_decode($item->metadata ?? '{}', true);
+                                                    $isPreview = ($item->item_type === 'video' && isset($metadata['is_preview']) && $metadata['is_preview'] == 1);
+                                                    $isItemFree = isset($item->is_free) && $item->is_free == 1;
+                                                    $previewVideoId = '';
+                                                    $previewVideoSource = $metadata['video_source'] ?? 'bunny';
+                                                    $previewLibraryId = (!empty($metadata['video_library_id']) && is_numeric($metadata['video_library_id']))
+                                                        ? $metadata['video_library_id']
+                                                        : '495222';
+
+                                                    if ($item->item_type === 'video') {
+                                                        $previewVideoId = $item->item_id
+                                                            ?? ($item->video_id ?? '')
+                                                            ?? ($metadata['video_id'] ?? '');
+
+                                                        if (empty($previewVideoId) && !empty($metadata['video_id'])) {
+                                                            $previewVideoId = $metadata['video_id'];
+                                                        }
+
+                                                        if (empty($previewVideoId) && !empty($item->video_id)) {
+                                                            $previewVideoId = $item->video_id;
+                                                        }
+                                                    }
+                                                    ?>
+                                                    <div class="video-item <?= ($item->item_type === 'video' && ($isPreview || $isItemFree)) ? 'video-previewable preview-video-link' : '' ?>"
+                                                         role="listitem"
+                                                         <?php if ($item->item_type === 'video' && ($isPreview || $isItemFree) && !empty($previewVideoId ?? '')): ?>
+                                                             data-video-id="<?= esc($previewVideoId) ?>"
+                                                             data-video-source="<?= esc($previewVideoSource) ?>"
+                                                             data-video-library-id="<?= esc($previewLibraryId) ?>"
+                                                             data-video-title="<?= esc($item->title ?? 'عنوان العنصر') ?>"
+                                                             tabindex="0"
+                                                             aria-label="معاينة الفيديو: <?= esc($item->title ?? 'عنوان العنصر') ?>"
+                                                         <?php endif; ?>>
                                                         <div class="video-item-content">
                                                             <div class="video-icon" aria-hidden="true">
                                                                 <?php if ($item->item_type === 'video'): ?>
@@ -2779,13 +2848,8 @@
                                                             <div class="video-item-info">
                                                                 <div class="video-title">
                                                                     <?= esc($item->title ?? 'عنوان العنصر') ?>
-                                                                    <?php
-                                                                    $metadata = is_array($item->metadata) ? $item->metadata : json_decode($item->metadata ?? '{}', true);
-                                                                    $isPreview = ($item->item_type === 'video' && isset($metadata['is_preview']) && $metadata['is_preview'] == 1);
-                                                                    $isUnitFree = isset($unit->is_free) && $unit->is_free == 1;
-                                                                    ?>
                                                                     <?php if (!$isPreview): ?>
-                                                                        <?php if ($isUnitFree): ?>
+                                                                        <?php if ($isItemFree): ?>
                                                                             <span class="video-status free">مجاني</span>
                                                                         <?php else: ?>
                                                                             <span class="video-status locked">مغلق</span>
@@ -2815,11 +2879,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="video-actions">
-                                                            <?php if ($isPreview): ?>
-                                                                <button class="btn btn-preview preview-video-link"
-                                                                        data-video-id="<?= esc($item->item_id) ?>"
+                                                            <?php if ($item->item_type === 'video' && ($isPreview || $isItemFree) && !empty($previewVideoId)): ?>
+                                                                <button type="button"
+                                                                        class="btn btn-preview preview-video-link"
+                                                                        data-video-id="<?= esc($previewVideoId) ?>"
+                                                                        data-video-source="<?= esc($previewVideoSource) ?>"
+                                                                        data-video-library-id="<?= esc($previewLibraryId) ?>"
+                                                                        data-video-title="<?= esc($item->title ?? 'عنوان العنصر') ?>"
                                                                         aria-label="معاينة الفيديو: <?= esc($item->title ?? 'عنوان العنصر') ?>">
-                                                                    <i class="icon-eye" aria-hidden="true"></i> معاينة
+                                                                    <i class="icon-eye" aria-hidden="true"></i> شاهد الآن
                                                                 </button>
                                                             <?php endif; ?>
                                                         </div>
@@ -2897,7 +2965,7 @@
                                 $isYouTube = (strlen($introVideoId) === 11);
                                 $embedUrl = $isYouTube
                                     ? "https://www.youtube.com/embed/{$introVideoId}"
-                                    : "https://iframe.mediadelivery.net/embed/" . ($course->collection_id ?? '495222') . "/{$introVideoId}?autoplay=false";
+                                    : "https://player.mediadelivery.net/embed/" . ($course->collection_id ?? '495222') . "/{$introVideoId}?autoplay=false";
                             ?>
                             <iframe
                                     src="<?= $embedUrl ?>"
@@ -3021,34 +3089,51 @@
         // const clearCartBtn = document.getElementById("clearCart"); // Element doesn't exist
 
         // Preview video functionality with enhanced loading states
+        function openPreview(triggerElement) {
+            let videoId = triggerElement.getAttribute("data-video-id");
+            let videoSource = triggerElement.getAttribute("data-video-source") || "bunny";
+            let videoLibraryId = triggerElement.getAttribute("data-video-library-id") || "395633";
+
+            if (videoId) {
+                const videoContainer = document.querySelector(".modal-video-container");
+                videoContainer.classList.add("loading");
+
+                const videoTitle = triggerElement.getAttribute("data-video-title")
+                    || triggerElement.closest('.video-item').querySelector('.video-title')?.textContent?.trim()
+                    || 'معاينة الدرس';
+                document.getElementById("videoModalLabel").textContent = `معاينة: ${videoTitle}`;
+
+                let videoUrl = '';
+
+                if (videoSource === 'youtube') {
+                    videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                } else {
+                    videoUrl = `https://player.mediadelivery.net/embed/${videoLibraryId}/${videoId}?autoplay=true`;
+                }
+
+                modal.modal("show");
+
+                setTimeout(() => {
+                    videoFrame.setAttribute("src", videoUrl);
+
+                    videoFrame.onload = function() {
+                        videoContainer.classList.remove("loading");
+                    };
+                }, 500);
+            }
+        }
+
         previewLinks.forEach(link => {
             link.addEventListener("click", function (event) {
                 event.preventDefault();
-                let videoId = this.getAttribute("data-video-id");
-                if (videoId) {
-                    // Show loading state
-                    const videoContainer = document.querySelector(".modal-video-container");
-                    videoContainer.classList.add("loading");
+                event.stopPropagation();
+                openPreview(this);
+            });
 
-                    // Update modal title with video title
-                    const videoTitle = this.closest('.video-item').querySelector('h6').textContent;
-                    document.getElementById("videoModalLabel").textContent = `معاينة: ${videoTitle}`;
-
-                    // Construct the MediaDelivery embed URL
-                    let videoUrl = `https://iframe.mediadelivery.net/embed/395633/${videoId}?autoplay=true`;
-
-                    // Show modal first
-                    modal.modal("show");
-
-                    // Load video with delay to show loading animation
-                    setTimeout(() => {
-                        videoFrame.setAttribute("src", videoUrl);
-
-                        // Remove loading state when iframe loads
-                        videoFrame.onload = function() {
-                            videoContainer.classList.remove("loading");
-                        };
-                    }, 500);
+            link.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    openPreview(this);
                 }
             });
         });
