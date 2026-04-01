@@ -2870,16 +2870,15 @@
                 <!-- Top Subscribe Button -->
                 <div class="course-purchase-section mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div style="background: var(--bg-gradient-primary); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                        <div style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;" dir="ltr">
                             <?php if ($course->is_free): ?>
                                 مجاني
                             <?php else: ?>
-                                <?= number_format($course->course_price ?? 0) ?>
-                                <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle; filter: brightness(0) invert(1);">
+                                <span style="font-size: 1.5rem; vertical-align: middle;">$</span><?= number_format($course->course_price ?? 0) ?>
                             <?php endif; ?>
                         </div>
-                        <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>" 
-                           class="btn btn-light btn-lg" 
+                        <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>"
+                           class="btn btn-light btn-lg"
                            style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); width: 100%; margin-top: 0.5rem;">
                             <i class="icon-shopping-cart"></i>
                             اشترك الآن
@@ -2896,8 +2895,8 @@
                             <?php
                                 $introVideoId = $course->intro_video_id ?? '';
                                 $isYouTube = (strlen($introVideoId) === 11);
-                                $embedUrl = $isYouTube 
-                                    ? "https://www.youtube.com/embed/{$introVideoId}" 
+                                $embedUrl = $isYouTube
+                                    ? "https://www.youtube.com/embed/{$introVideoId}"
                                     : "https://iframe.mediadelivery.net/embed/" . ($course->collection_id ?? '495222') . "/{$introVideoId}?autoplay=false";
                             ?>
                             <iframe
@@ -2918,60 +2917,52 @@
                     <ul class="course-features-list">
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-users"></i> <!-- جروب مخصص للدعم -->
-                            </div>
-                            <div class="feature-text">جروب مخصص للدعم والاستفسارات</div>
+                                <i class="fas fa-users"></i> </div>
+                            <div class="feature-text">مجتمع تفاعلي لتبادل الخبرات</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-book-open"></i> <!-- تغطية المنهج -->
-                            </div>
-                            <div class="feature-text">تغطية شاملة للمنهج العملي والنظري</div>
+                                <i class="fas fa-briefcase"></i> </div>
+                            <div class="feature-text">تطبيق عملي وبناء مشاريع حقيقية </div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-chalkboard-teacher"></i> <!-- محاكاة نظام Quero & Tofas -->
-                            </div>
-                            <div class="feature-text">محاكاة لنظام Quero & Tofas</div>
+                                <i class="fas fa-robot"></i> </div>
+                            <div class="feature-text">توظيف الذكاء الاصطناعي لمضاعفة إنتاجيتك</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-file-alt"></i> <!-- اختبارات -->
-                            </div>
-                            <div class="feature-text">اختبارات عن كل نقاط المنهج</div>
+                                <i class="fas fa-infinity"></i> </div>
+                            <div class="feature-text">وصول مدى الحياة للمحتوى مع تحديثات مستمرة</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-laptop-code"></i> <!-- متاح على الهاتف والتابلت والكمبيوتر -->
-                            </div>
-                            <div class="feature-text">متاح على الهاتف والتابلت والكمبيوتر</div>
+                                <i class="fas fa-laptop-code"></i> </div>
+                            <div class="feature-text">متاح على كافة الأجهزة</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-sync-alt"></i> <!-- ملخصات وتحديثات مستمرة -->
-                            </div>
-                            <div class="feature-text">ملخصات وتحديثات مستمرة</div>
+                                <i class="fas fa-certificate"></i> </div>
+                            <div class="feature-text">نماذج لأوامر وأكواد برمجية</div>
                         </li>
                     </ul>
 
-                    <!-- Course Purchase Button -->
                     <div class="course-purchase-section mt-4">
                         <div style="background: var(--bg-gradient-primary); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                            <div style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;" dir="ltr">
                                 <?php if ($course->is_free): ?>
                                     مجاني
                                 <?php else: ?>
-                                    <?= number_format($course->course_price ?? 0) ?>
-                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle; filter: brightness(0) invert(1);">
+                                    <span style="font-size: 1.5rem; vertical-align: middle;">$</span><?= number_format($course->course_price ?? 0) ?>
                                 <?php endif; ?>
                             </div>
-                            <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>" 
-                               class="btn btn-light btn-lg" 
+                            <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>"
+                               class="btn btn-light btn-lg"
                                style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); width: 100%; margin-top: 0.5rem;">
                                 <i class="icon-shopping-cart"></i>
                                 اشترك الآن
                             </a>
-                            <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">احصل على جميع الوحدات والاختبارات</small>
+                            <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">وصول فوري لجميع الدروس والمشاريع</small>
                         </div>
                     </div>
 

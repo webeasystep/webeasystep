@@ -2352,36 +2352,44 @@ h4,
     color: #ffffff;
 }
 
-.site-footer .social li {
+#main-footer .social li {
     display: inline-block;
 }
 
-.site-footer .social li a {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    position: relative;
+#main-footer .social li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
     background-color: #ffffff;
     border-radius: 50%;
-    color: #000000;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.site-footer .social li a:before {
+#main-footer .social li a:before {
     display: none;
 }
 
-.site-footer .social li a>span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+#main-footer .social li a>span,
+#main-footer .social li a>i {
+    position: static;
+    transform: none;
+    font-size: 16px;
+    color: #136ad5 !important;
+    transition: all 0.3s ease;
 }
 
-.site-footer .social li a:hover {
-    background: #2f84ec;
-    color: #ffffff;
+#main-footer .social li a:hover {
+    background: #136ad5;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#main-footer .social li a:hover>span,
+#main-footer .social li a:hover>i {
+    color: #ffffff !important;
 }
 
 .site-footer .copyright {

@@ -57,9 +57,21 @@ class AdminUnits extends BaseController
      */
     public function index()
     {
-        $data['title'] = lang('Units.units_management');
-        $data['courses'] = $this->coursesModel->where('active', 1)->findAll();
-        // $data['sections'] = $this->sectionsModel->where('active', 1)->findAll(); // Removed - sections table will be dropped
+        $selectedCourseId = (int) ($this->request->getGet('course_id') ?? 0);
+        $selectedCourse = $selectedCourseId > 0 ? $this->coursesModel->find($selectedCourseId) : null;
+        $selectedCourseUnitsCount = 0;
+
+        if ($selectedCourse) {
+            $selectedCourseUnitsCount = $this->units->where('course_id', $selectedCourse->id)->countAllResults();
+        }
+
+        $data['title'] = $selectedCourse
+            ? 'وحدات الكورس: ' . $selectedCourse->course_title
+            : lang('Units.units_management');
+        $data['selected_course_id'] = $selectedCourse?->id ?? null;
+        $data['selected_course_title'] = $selectedCourse?->course_title ?? null;
+        $data['selected_course_units_count'] = $selectedCourseUnitsCount;
+
         if ($this->request->isAJAX()) {
             $unitsModel = $this->units
                 ->select('tb_units.id,tb_units.unit_name,tb_units.sort_order,tb_units.active,tb_units.created_at,tb_courses.course_title')
@@ -84,9 +96,9 @@ class AdminUnits extends BaseController
 
             DtTable::hideColumns(['id']);
             DtTable::setColumnSwitch('active');
-            DtTable::searchableColumns(['unit_name', 'course_title', 'section_name']);
-            DtTable::orderableColumns(['unit_name', 'course_title', 'section_name', 'sort_order', 'price']);
-            DtTable::setShowColumns('unit_name,course_title,section_name,price,active,sort_order');
+            DtTable::searchableColumns(['tb_units.unit_name', 'tb_courses.course_title']);
+            DtTable::orderableColumns(['tb_units.unit_name', 'tb_courses.course_title', 'tb_units.sort_order', 'tb_units.active', 'tb_units.created_at']);
+            DtTable::setShowColumns('unit_name,course_title,active,sort_order,created_at');
 
             $output = DtTable::tableRender($unitsModel, false);
 
@@ -251,6 +263,7 @@ class AdminUnits extends BaseController
     public function add()
     {
         $data['title'] = lang('Admin.add_data');
+        $data['selected_course_id'] = (int) ($this->request->getGet('course_id') ?? 0);
 
         if ($this->request->is('post')) {
             if ($this->validate($this->rules)) {

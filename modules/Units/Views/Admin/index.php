@@ -73,37 +73,29 @@
             <!-- Main Content Card -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">قائمة الوحدات</h3>
+                    <h3 class="card-title">
+                        <?= $selected_course_title ? 'وحدات الكورس: ' . esc($selected_course_title) : 'قائمة الوحدات' ?>
+                    </h3>
                     <div class="card-tools">
-                        <a href="<?= ADMIN_URL . 'units/add' ?>" class="btn btn-primary btn-sm">
+                        <a href="<?= ADMIN_URL . 'units/add' . ($selected_course_id ? '?course_id=' . (int) $selected_course_id : '') ?>" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> إضافة وحدة جديدة
                         </a>
                     </div>
                 </div>
                 <div class="card-body">
-                    <!-- Filters -->
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <select name="course_id" id="course-filter" class="form-control custom-filter">
-                                <option value="">جميع الكورسات</option>
-                                <?php
-
-                                if (isset($courses) && is_array($courses)): ?>
-                                    <?php foreach ($courses as $course): ?>
-                                        <option value="<?= $course->id ?>"><?= esc($course->course_title) ?></option>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </select>
+                    <?php if ($selected_course_title): ?>
+                        <div class="alert alert-info">
+                            يتم الآن عرض الوحدات التابعة للكورس: <strong><?= esc($selected_course_title) ?></strong>
+                            (<?= (int) ($selected_course_units_count ?? 0) ?> وحدة)
                         </div>
+                        <?php if ((int) ($selected_course_units_count ?? 0) === 0): ?>
+                            <div class="alert alert-warning">
+                                لا توجد وحدات مضافة لهذا الكورس حالياً. يمكنك إضافة أول وحدة من الزر بالأعلى.
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
 
-                        <div class="col-md-4">
-                            <select name="active" id="status-filter" class="form-control custom-filter">
-                                <option value="">جميع الحالات</option>
-                                <option value="1">نشط</option>
-                                <option value="0">غير نشط</option>
-                            </select>
-                        </div>
-                    </div>
+                    <input type="hidden" name="course_id" class="custom-filter" value="<?= esc((string) ($selected_course_id ?? '')) ?>">
 
                     <!-- Units Table -->
                     <div class="table-responsive">
@@ -123,19 +115,10 @@
 
 <?= $this->section('js') ?>
 <script>
-    // Call loadStatistics on document ready and set up filter classes/names
     $(document).ready(function() {
-        console.log("DEBUG VIEW: Main view script is ready. Firing loadStatistics() and setting up filters.");
         loadStatistics();
-        // We NO LONGER attach event handlers here. They are all in index_js.php now.
-        $('#course-filter').attr('name', 'course_filter');
-
-        $('#status-filter').attr('name', 'status_filter');
     });
 
-
-
-    // The statistics function is standalone and can remain
     function loadStatistics() {
         $.ajax({
             url: '<?= ADMIN_URL ?>units/statistics',

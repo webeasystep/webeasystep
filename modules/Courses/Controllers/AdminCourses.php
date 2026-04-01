@@ -22,6 +22,7 @@ class AdminCourses extends BaseController
             "course_title" => ['label' => lang("Courses.course_title"), 'rules' => "required"],
             "course_desc" => ['label' => lang("Courses.course_desc"), 'rules' => "required"],
             "short_desc" => ['label' => lang("Courses.short_desc"), 'rules' => "required|max_length[500]"],
+            "course_price" => ['label' => lang("Courses.course_price"), 'rules' => "permit_empty|decimal"],
             "slug" => ['label' => lang("Courses.slug"), 'rules' => "required|alpha_dash|is_unique[tb_courses.slug]"],
             "active" => ['label' => lang("Courses.active"), 'rules' => "permit_empty|in_list[0,1,on]"],
         ];
@@ -46,6 +47,7 @@ class AdminCourses extends BaseController
             DtTable::setColumnSwitch('active'); // Add switch for is_free
             // Add a link around the course_title column using the slug
             DtTable::setColumnLink('course_title', base_url('courses/course_details/{slug}'));
+            DtTable::setAction('units', 'fas fa-layer-group', ADMIN_URL . 'units?course_id=');
 
             DtTable::setShowColumns("course_title,course_desc,sort,is_free,created_at");
 
@@ -115,7 +117,11 @@ class AdminCourses extends BaseController
             'slug'              => $this->request->getPost('slug', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             'intro_video_id'    => $this->extractYouTubeId($this->request->getPost('intro_video_id')),
             'sort'              => $this->request->getPost('sort', FILTER_SANITIZE_NUMBER_INT),
+            'course_price'      => $this->request->getPost('course_price') !== null && $this->request->getPost('course_price') !== ''
+                ? number_format((float) $this->request->getPost('course_price'), 2, '.', '')
+                : '0.00',
             'is_free'           => $this->request->getPost('is_free') ? '1' : '0',
+            'waiting_list'      => $this->request->getPost('waiting_list') ? '1' : '0',
             'active'            => $this->request->getPost('active') ? '1' : '0',
         ];
 

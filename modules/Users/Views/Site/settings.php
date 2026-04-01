@@ -51,12 +51,6 @@
                                 <i class="fas fa-lock"></i> تغيير كلمة المرور
                             </button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="avatar-tab" data-bs-toggle="tab" data-bs-target="#avatar" 
-                                    type="button" role="tab" aria-controls="avatar" aria-selected="false">
-                                <i class="fas fa-camera"></i> صورة الملف الشخصي
-                            </button>
-                        </li>
                     </ul>
 
                     <div class="tab-content mt-4" id="settingsTabContent">
@@ -140,55 +134,6 @@
                                 </div>
                             </form>
                         </div>
-
-                        <!-- Profile Picture Tab -->
-                        <div class="tab-pane fade" id="avatar" role="tabpanel" aria-labelledby="avatar-tab">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="text-center">
-                                        <div class="mb-3">
-                                            <?php if (!empty($user->avatar)): ?>
-                                                <img src="<?= base_url('writable/uploads/profile/' . esc($user->avatar)) ?>"
-                                                     alt="صورة الملف الشخصي" class="img-thumbnail" style="width: 200px; height: 200px; object-fit: cover;">
-                                            <?php else: ?>
-                                                <div class="bg-light d-flex align-items-center justify-content-center"
-                                                     style="width: 200px; height: 200px; margin: 0 auto;">
-                                                    <i class="fas fa-user fa-5x text-muted"></i>
-                                                </div>
-                                            <?php endif; ?>
-                                        </div>
-
-                                        <?php if (!empty($user->avatar)): ?>
-                                            <form action="<?= base_url('settings/delete-avatar') ?>" method="post" class="d-inline">
-                                                <?= csrf_field() ?>
-                                                <button type="submit" class="btn btn-outline-danger btn-sm"
-                                                        onclick="return confirm('هل أنت متأكد من إزالة صورة الملف الشخصي؟')">>
-                                                    <i class="fas fa-trash"></i> إزالة الصورة
-                                                </button>
-                                            </form>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <form action="<?= base_url('settings/upload-avatar') ?>" method="post" enctype="multipart/form-data" id="avatar-form">
-                                        <?= csrf_field() ?>
-                                        <div class="mb-3">
-                                            <label for="avatar" class="form-label">رفع صورة ملف شخصي جديدة</label>
-                                            <div class="fireupload" id="avatar-dropzone"></div>
-                                            <div class="form-text">
-                                                الصيغ المقبولة: JPG, JPEG, PNG. الحد الأقصى للحجم: 2 ميجابايت.
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-success">
-                                                <i class="fas fa-upload"></i> رفع الصورة
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -203,15 +148,6 @@
 <?= $this->include('admin_layout/curd_js'); ?>
 <script>
 $(document).ready(function() {
-    // Initialize FireUploader for avatar
-    var avatarUploader = new FireUploader({
-        dropzoneId: 'avatar-dropzone',
-        inputName: "avatar[]",
-        multipleFiles: false,
-        allowedExtensions: ["jpg", "jpeg", "png"],
-        maxFileSize: 2048, // 2MB in KB
-        files: []
-    });
 
     // Tab navigation improvements
     const tabButtons = document.querySelectorAll('[data-bs-toggle="tab"]');

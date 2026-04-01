@@ -13,15 +13,15 @@ $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
 
 # --- Admin Login Credentials ---
 $loginData = @{
-    email    = "01123303370"
+    email    = "webeasystep@gmail.com"
     password = "123456"
 }
-Invoke-WebRequest -Uri "http://localhost:8080/msarlink/dt_admin/login" -Method POST -Body $loginData -WebSession $session
+Invoke-WebRequest -Uri "http://webeasystep.test/dt_admin/login" -Method POST -Body $loginData -WebSession $session
 # - Reuse $session for all subsequent requests
 # - Treat login as the first step in any test cycle
 
 # 3) After every request, always check logs
-Get-Content D:\laragon\www\msarlink\debug.log
+Get-Content D:\laragon\www\webeasystep\debug.log
 # - Inspect logs for errors, warnings, or SQL traces
 # - Use logs to validate if the request worked correctly
 # - Priority Rule: If any warnings or critical issues appear in the log,
@@ -45,14 +45,14 @@ D:\laragon\bin\mysql\mysql-8.0.41-winx64\bin\mysql.exe
 # 7) Cleanup Rule
 # - After finishing any testing cycle, always clean up temporary test files (e.g., downloaded HTML, logs, debug outputs).
 # Example:
-Remove-Item -Path "D:\laragon\www\msarlink\*.html" -Force -ErrorAction SilentlyContinue
-Remove-Item -Path "D:\laragon\www\msarlink\*.tmp" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "D:\laragon\www\webeasystep\*.html" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "D:\laragon\www\webeasystep\*.tmp" -Force -ErrorAction SilentlyContinue
 # - Ensure no leftover test data, temporary files, or debug artifacts remain.
 # - Keep only essential logs that are explicitly marked for long-term analysis.
 
 # 8) Design Rules
 # - All UI/UX designs MUST follow the same template stored at:
-#   msarlink/public/site/
+#   webeasystep/public/site/
 # - Rules include:
 #   * Use the same primary and secondary colors as defined in the template
 #   * Fonts must match the standard project font family

@@ -31,6 +31,7 @@
                 <?php
                 $isEdit = isset($unit) && $unit;
                 $formAction = $isEdit ? ADMIN_URL . 'units/edit/' . $unit->id : ADMIN_URL . 'units/add';
+                $selectedCourseId = old('course_id', $isEdit ? $unit->course_id : ($selected_course_id ?? null));
                 ?>
                 <?= form_open($formAction, ['id' => 'unit-form']) ?>
                 <div class="card-body">
@@ -42,7 +43,7 @@
                                 <select name="course_id" id="course_id" class="form-control" required>
                                     <option value="">اختر الكورس</option>
                                     <?php foreach ($courses as $course): ?>
-                                        <option value="<?= $course->id ?>" <?= ($isEdit && $unit->course_id == $course->id) ? 'selected' : '' ?>>
+                                        <option value="<?= $course->id ?>" <?= ((string) $selectedCourseId === (string) $course->id) ? 'selected' : '' ?>>
                                             <?= esc($course->course_title) ?>
                                         </option>
                                     <?php endforeach; ?>

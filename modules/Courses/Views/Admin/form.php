@@ -74,7 +74,7 @@
                         <input type="number" name="course_price" step="0.01" min="0"
                                value="<?= set_value('course_price', $course->course_price ?? "0") ?>"
                                id="course_price" class="form-control">
-                        <span class="input-group-text"><img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1.2em;"></span>
+                        <span class="input-group-text">$</span>
                     </div>
                     <small class="form-text text-muted">اتركه 0 إذا كانت الدورة مجانية</small>
                     <small class="invalid-feedback"></small>
@@ -105,6 +105,20 @@
                             <?= set_value('is_free', $course->is_free ?? 0) ? 'checked' : '' ?>>
                         <label class="custom-control-label" for="is_free"></label>
                     </div>
+                </div>
+            </div>
+
+            <!-- Switch for 'waiting_list' -->
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label"><?= lang("Courses.waiting_list") ?></label>
+                <div class="col-sm-9">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input"
+                               id="waiting_list" name="waiting_list"
+                            <?= set_value('waiting_list', $course->waiting_list ?? 0) ? 'checked' : '' ?>>
+                        <label class="custom-control-label" for="waiting_list"></label>
+                    </div>
+                    <small class="form-text text-muted"><?= lang("Courses.waiting_list_help") ?></small>
                 </div>
             </div>
 

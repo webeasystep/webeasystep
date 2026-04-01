@@ -32,7 +32,11 @@ class DtTable
     {
         foreach (self::$customFilters as $filterName => $callback) {
             $filterValue = request()->getPost($filterName);
-            if ($filterValue !== null) {
+            // Also check GET parameters if POST is empty or not set
+            if ($filterValue === null || $filterValue === '') {
+                $filterValue = request()->getGet($filterName);
+            }
+            if ($filterValue !== null && $filterValue !== '') {
                 // Add a debug statement here
                 log_message('debug', "Applying filter: $filterName with value: $filterValue");
                 $callback(self::$query, $filterValue);

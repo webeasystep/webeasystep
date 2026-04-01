@@ -20,26 +20,6 @@ class Enrollments extends BaseController
         $this->usersModel = new UsersModel();
     }
 
-    /**
-     * Example index method if you want to list enrollments.
-     */
-    public function index()
-    {
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Enrollments index working']);
-    }
-
-    /**
-     * Display available courses for purchase
-     */
-    public function coursesShop()
-    {
-        $data = [
-            'title' => 'شراء الدورات',
-            'courses' => $this->coursesModel->where('active', 1)->findAll()
-        ];
-
-        return view('site/courses_shop', $data);
-    }
 
     /**
      * Display user's course purchases
@@ -103,7 +83,7 @@ class Enrollments extends BaseController
         }
 
         if (!$courseId) {
-            return redirect()->to('/enrollments/courses-shop')->with('error', 'يرجى اختيار دورة');
+            return redirect()->to('/')->with('error', 'يرجى اختيار دورة');
         }
 
         // Store in session and redirect to checkout
@@ -124,7 +104,7 @@ class Enrollments extends BaseController
         $courseId = session()->get('selected_course');
 
         if (!$courseId) {
-            return redirect()->to('/enrollments/courses-shop')->with('error', 'يرجى اختيار دورة');
+            return redirect()->to('/')->with('error', 'يرجى اختيار دورة');
         }
 
         // Check if already enrolled
@@ -137,7 +117,7 @@ class Enrollments extends BaseController
 
         if (!$course) {
             session()->remove('selected_course');
-            return redirect()->to('/enrollments/courses-shop')->with('error', 'الدورة غير موجودة');
+            return redirect()->to('/')->with('error', 'الدورة غير موجودة');
         }
 
         // Handle POST - process purchase
@@ -145,10 +125,14 @@ class Enrollments extends BaseController
             return $this->processCourseCheckout($userId, $course);
         }
 
+        // A course is only free if the admin explicitly marked it as free with the is_free flag.
+        // Ignore price to avoid false positives with unpopulated prices.
+        $isFree = ($course->is_free == 1);
+
         $data = [
             'title' => 'إتمام شراء الدورة',
             'course' => $course,
-            'is_free' => ($course->course_price <= 0 || $course->is_free),
+            'is_free' => $isFree,
             'files' => []
         ];
 
@@ -160,8 +144,9 @@ class Enrollments extends BaseController
      */
     private function processCourseCheckout($userId, $course)
     {
-        $paymentMethod = $this->request->getPost('payment_method') ?? 'vodafone_cash';
-        $isFree = ($course->course_price <= 0 || $course->is_free);
+        $paymentMethod = $this->request->getPost('payment_method') ?? 'free';
+        // A course is only free if the admin explicitly marked it as free with the is_free flag.
+        $isFree = ($course->is_free == 1);
 
         // Auto-approve free courses
         if ($isFree || $paymentMethod === 'free') {
@@ -178,10 +163,24 @@ class Enrollments extends BaseController
             }
         }
 
+        // Handle payment proof upload
+        $paymentProofPath = null;
+        $proofFile = $this->request->getFile('payment_proof');
+        if ($proofFile && $proofFile->isValid() && !$proofFile->hasMoved()) {
+            $uploadPath = FCPATH . 'uploads' . DIRECTORY_SEPARATOR . 'enrollments';
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0775, true);
+            }
+            $randomName = $proofFile->getRandomName();
+            $proofFile->move($uploadPath, $randomName);
+            $paymentProofPath = 'uploads/enrollments/' . $randomName;
+        }
+
         // Handle paid course
         $enrollmentId = $this->courseEnrollmentsModel->createEnrollment($userId, $course->id, [
             'paid_amount' => $course->course_price,
             'payment_method' => $paymentMethod,
+            'payment_proof' => $paymentProofPath,
             'auto_approve' => false
         ]);
 
@@ -191,6 +190,6 @@ class Enrollments extends BaseController
 
         session()->remove('selected_course');
         return redirect()->to('/enrollments/my-courses')
-            ->with('success', 'تم إرسال طلب الشراء بنجاح. سيتم مراجعته من قبل الإدارة.');
+            ->with('success', 'تم إرسال طلب الشراء بنجاح. سيتم مراجعته من قبل الإدارة وتفعيل اشتراكك بعد التحقق من الدفع.');
     }
 }

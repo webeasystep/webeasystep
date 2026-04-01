@@ -33,7 +33,8 @@ $routes->group('dt_admin', [
 
     // Admin routes for course enrollments
     $routes->match(['GET', 'POST'], 'enrollments/courses', [AdminEnrollments::class, 'courseEnrollments']);
-    $routes->get('enrollments/courses/show/(:num)', [AdminEnrollments::class, 'showCourseEnrollment/$1']);
+    $routes->match(['GET', 'POST'], 'enrollments/courses/edit/(:num)', [AdminEnrollments::class, 'edit/$1']);
+    $routes->match(['GET', 'POST'], 'enrollments/courses/show/(:num)', [AdminEnrollments::class, 'showCourseEnrollment/$1']);
     $routes->post('enrollments/courses/approve/(:num)', [AdminEnrollments::class, 'approveCourseEnrollment/$1']);
     $routes->post('enrollments/courses/reject/(:num)', [AdminEnrollments::class, 'rejectCourseEnrollment/$1']);
     $routes->get('enrollments/courses/stats', [AdminEnrollments::class, 'getCourseEnrollmentStats']);
@@ -49,14 +50,9 @@ $routes->group('', [
     'namespace' => 'Modules\Enrollments\Controllers',
 ], static function ($routes) {
 
-    // Example route to show a list of enrollments or payments
-    $routes->get('enrollments', [Enrollments::class, 'index']);
-    $routes->post('enrollments/show/(:num)', [Enrollments::class, 'show/$1']);
-
     // Course-based enrollment routes
-    $routes->get('enrollments/courses-shop', [Enrollments::class, 'coursesShop']);
     $routes->get('enrollments/my-courses', [Enrollments::class, 'myCourses']);
-    $routes->get('enrollments/my-purchases', [Enrollments::class, 'myCourses']); // Redirect legacy URL
+    $routes->get('enrollments/my-purchases', [Enrollments::class, 'myCourses']); // Legacy URL alias
     $routes->get('enrollments/purchase-course/(:num)', [Enrollments::class, 'purchaseCourse/$1']);
     $routes->get('enrollments/purchase-course', [Enrollments::class, 'purchaseCourse']);
     $routes->match(['GET', 'POST'], 'enrollments/course-checkout', [Enrollments::class, 'courseCheckout']);

@@ -334,13 +334,18 @@ class Courses extends BaseController
     /**
      * Show a single course details page (e.g. 'course_details' view).
      */
-    public function course_details(string $slug): string
+    public function course_details(string $slug)
     {
         // 1) Fetch the course by slug
         $course = $this->coursesModel->getCourseBySlug($slug);
         
         if (!$course) {
             throw PageNotFoundException::forPageNotFound();
+        }
+
+        // Redirect to home if course is in waiting list mode
+        if ($course->waiting_list == 1) {
+            return redirect()->to('/')->with('info', 'هذه الدورة قيد الإعداد وستتوفر قريباً. ترقب!');
         }
 
         // 2) Get course units with their items

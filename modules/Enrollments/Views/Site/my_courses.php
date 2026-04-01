@@ -348,7 +348,7 @@
                         <i class="fas fa-folder-open"></i>
                         <h3>لا توجد دورات مسجلة حالياً</h3>
                         <p class="text-muted">استكشف مكتبة الدورات وابدأ رحلة التعلم اليوم</p>
-                        <a href="<?= site_url('enrollments/courses-shop') ?>" class="btn btn-primary mt-3">
+                        <a href="<?= site_url('/') ?>" class="btn btn-primary mt-3">
                             تصفح جميع الدورات
                         </a>
                     </div>

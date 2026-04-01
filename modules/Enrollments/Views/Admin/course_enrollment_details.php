@@ -42,11 +42,11 @@
                         </tr>
                         <tr>
                             <th>سعر الدورة:</th>
-                            <td><?= number_format($enrollment->course_price, 2) ?> <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle;"></td>
+                            <td>$<?= number_format($enrollment->course_price, 2) ?></td>
                         </tr>
                         <tr>
                             <th>المبلغ المدفوع:</th>
-                            <td><strong class="text-success"><?= number_format($enrollment->paid_amount, 2) ?> <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle;"></strong></td>
+                            <td><strong class="text-success">$<?= number_format($enrollment->paid_amount, 2) ?></strong></td>
                         </tr>
                         <tr>
                             <th>طريقة الدفع:</th>

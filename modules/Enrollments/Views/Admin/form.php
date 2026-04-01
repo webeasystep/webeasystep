@@ -18,28 +18,19 @@
                 </div>
             </div>
 
-            <!-- Multiple Units Selection -->
+            <!-- Course Selection -->
             <div class="form-group row">
-                <label for="unit_ids" class="col-sm-3 col-form-label"><?= lang("Enrollments.units") ?></label>
+                <label for="course_id" class="col-sm-3 col-form-label"><?= lang("Enrollments.course_title") ?></label>
                 <div class="col-sm-9">
-                    <select name="unit_ids[]" id="unit_ids" class="form-control select2" multiple="multiple" style="width: 100%;">
-                        <?php if (isset($units) && is_array($units)): ?>
-                            <?php foreach ($units as $unitId => $unitName): ?>
-                                <option value="<?= $unitId ?>"
-                                    <?= (isset($selected_units) && in_array($unitId, $selected_units)) ? 'selected' : '' ?>>
-                                    <?= esc($unitName) ?>
-                                </option>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </select>
+                    <?= form_dropdown('course_id', $courses, set_value('course_id', $enrollment->course_id ?? ""), ['class' => 'form-control select2', 'style' => 'width: 100%;', 'id' => 'course_id']) ?>
                     <small class="invalid-feedback"></small>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="total_amount" class="col-sm-3 col-form-label"><?= lang("Enrollments.total_amount") ?></label>
+                <label for="paid_amount" class="col-sm-3 col-form-label"><?= lang("Enrollments.paid_amount") ?></label>
                 <div class="col-sm-9">
-                    <input type="number" step="0.01" name="total_amount" value="<?= set_value('total_amount', $enrollment->total_amount ?? "") ?>" id="total_amount" class="form-control">
+                    <input type="number" step="0.01" name="paid_amount" value="<?= set_value('paid_amount', $enrollment->paid_amount ?? "") ?>" id="paid_amount" class="form-control">
                     <small class="invalid-feedback"></small>
                 </div>
             </div>
@@ -58,8 +49,15 @@
             <div class="form-group row">
                 <label for="payment_proof" class="col-sm-3 col-form-label"><?= lang("Enrollments.payment_proof") ?></label>
                 <div class="col-sm-9">
-                    <div class="fireupload" id="dropzone1"></div>
-                    <small class="invalid-feedback"></small>
+                    <?php if (!empty($enrollment->payment_proof)): ?>
+                        <div class="mb-2">
+                            <a href="<?= base_url($enrollment->payment_proof) ?>" target="_blank" class="btn btn-info">
+                                <i class="fas fa-image"></i> عرض الإثبات
+                            </a>
+                        </div>
+                    <?php else: ?>
+                        <span class="badge badge-secondary mt-2">لا يوجد إثبات</span>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -76,9 +74,9 @@
             </div>
 
             <div class="form-group row">
-                <label for="admin_notes" class="col-sm-3 col-form-label"><?= lang("Enrollments.admin_notes") ?></label>
+                <label for="notes" class="col-sm-3 col-form-label"><?= lang("Enrollments.admin_notes") ?></label>
                 <div class="col-sm-9">
-                    <textarea name="admin_notes" id="admin_notes" class="form-control" rows="3"><?= set_value('admin_notes', $enrollment->admin_notes ?? "") ?></textarea>
+                    <textarea name="notes" id="notes" class="form-control" rows="3"><?= set_value('notes', $enrollment->notes ?? "") ?></textarea>
                     <small class="invalid-feedback"></small>
                 </div>
             </div>
@@ -93,17 +91,5 @@
 
 <?= $this->section('js'); ?>
 <?= $this->include('admin_layout/curd_js'); ?>
-<script>
-    $(document).ready(function() {
-        // مثال لتهيئة FireUploader
-        var uploader1 = new FireUploader({
-            dropzoneId: 'dropzone1',
-            inputName: "payment_proof[]",
-            multipleFiles: true,
-            allowedExtensions: ["jpg", "png", "webp"],
-            files: <?= json_encode($files ?? []) ?>
-        });
-    });
-</script>
 <?= $this->endSection(); ?>
 

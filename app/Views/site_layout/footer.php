@@ -11,8 +11,7 @@
                         <li><a href="https://www.youtube.com/@web_easy_step" target="_blank" title="الويب خطوة سهلة" aria-label="تابعنا على يوتيوب"><span class="icon-youtube"></span></a></li>
                         <li><a href="https://wa.me/201032863861" target="_blank" title="+201032863861" aria-label="تواصل عبر واتساب"><span class="icon-whatsapp"></span></a></li>
                         <li><a href="https://t.me/webeasystep" target="_blank" title="@webeasystep" aria-label="تابعنا على تيليجرام"><span class="icon-telegram"></span></a></li>
-                        <li><a href="https://www.tiktok.com/@webeasystep" target="_blank" title="@webeasystep" aria-label="تابعنا على تيك توك"><span class="icon-music"></span></a></li>
-                        <li><a href="https://wa.me/201032863861" target="_blank" title="+201032863861" aria-label="تواصل معنا"><span class="icon-phone"></span></a></li>
+                        <li><a href="https://www.facebook.com/khtwasahla" target="_blank" title="تابعنا عبر فيسبوك" aria-label="تابعنا عبر فيسبوك"><span class="icon-facebook"></span></a></li>
                     </ul>
                 </div> </div> <div class="col-lg-2 ml-auto">
                 <div class="widget">
