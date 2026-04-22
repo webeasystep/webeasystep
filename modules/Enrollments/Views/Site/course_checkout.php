@@ -945,7 +945,7 @@
                                 <i class="fas fa-shield-alt"></i> محتوى آمن وموثوق
                             </span>
                             <span class="trust-badge">
-                                <i class="fas fa-certificate"></i> شهادة اتمام معتمدة
+                                <i class="fas fa-infinity"></i> وصول مدى الحياة
                             </span>
                             <span class="trust-badge">
                                 <i class="fas fa-headset"></i> دعم فني متواصل

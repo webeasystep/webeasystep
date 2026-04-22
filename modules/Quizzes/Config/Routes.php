@@ -28,6 +28,7 @@ $routes->group('dt_admin', [
     $routes->get('quizzes/attempts/(:num)', [AdminQuizzes::class, 'attempts/$1']);
     $routes->get('quizzes/attempts', [AdminQuizzes::class, 'attempts']);
     $routes->get('quizzes/view-attempt/(:num)', [AdminQuizzes::class, 'viewAttempt/$1']);
+    $routes->post('quizzes/delete', [AdminQuizzes::class, 'delete']);
     $routes->post('quizzes/delete/(:num)', [AdminQuizzes::class, 'delete/$1']);
     $routes->get('quizzes/export/(:num)', [AdminQuizzes::class, 'exportQuiz/$1']);
     $routes->get('quizzes/analytics', [AdminQuizzes::class, 'analytics']);

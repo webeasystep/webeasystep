@@ -190,36 +190,43 @@ class QuizzesModel extends BaseModel
      */
     public function validateQuizJSON($jsonData)
     {
-        // Check required fields
-        $required = ['quiz_title', 'questions'];
-        foreach ($required as $field) {
-            if (!isset($jsonData[$field]) || empty($jsonData[$field])) {
-                return false;
-            }
+        // Check required field: quiz_title
+        if (!isset($jsonData['quiz_title']) || empty($jsonData['quiz_title'])) {
+            return false;
+        }
+
+        // Accept both 'questions' and 'quiz_questions' as the questions key
+        $questions = $jsonData['questions'] ?? $jsonData['quiz_questions'] ?? null;
+
+        if (!is_array($questions) || empty($questions)) {
+            return false;
         }
 
         // Validate questions structure
-        if (isset($jsonData['questions']) && is_array($jsonData['questions'])) {
-            foreach ($jsonData['questions'] as $index => $question) {
-                // Check for question_text (not just 'question')
-                if (!isset($question['question_text']) || empty($question['question_text'])) {
-                    return false;
-                }
+        // Types that don't require correct_answer
+        $noAnswerTypes = ['essay'];
+        // Types that require options array
+        $requiresOptions = ['multiple_choice', 'single_choice'];
 
-                if (!isset($question['question_type'])) {
-                    return false;
-                }
-
-                if (in_array($question['question_type'], ['multiple_choice', 'single_choice']) && !isset($question['options'])) {
-                    return false;
-                }
-
-                if (!isset($question['correct_answer'])) {
-                    return false;
-                }
+        foreach ($questions as $index => $question) {
+            // Check for question_text
+            if (!isset($question['question_text']) || empty($question['question_text'])) {
+                return false;
             }
-        } else {
-            return false;
+
+            if (!isset($question['question_type'])) {
+                return false;
+            }
+
+            // options are only required for choice-based questions
+            if (in_array($question['question_type'], $requiresOptions) && !isset($question['options'])) {
+                return false;
+            }
+
+            // correct_answer is NOT required for essay questions
+            if (!in_array($question['question_type'], $noAnswerTypes) && !isset($question['correct_answer'])) {
+                return false;
+            }
         }
 
         return true;
@@ -242,20 +249,29 @@ class QuizzesModel extends BaseModel
                 }
             }
             
+            // Accept both 'questions' and 'quiz_questions' as the questions key
+            $questions = $jsonData['questions'] ?? $jsonData['quiz_questions'] ?? [];
+
+            // Accept both 'time_limit' and 'time_limit_minutes' as the time limit key
+            $timeLimit = $jsonData['time_limit_minutes'] ?? $jsonData['time_limit'] ?? 30;
+
+            // Accept both 'quiz_description' and 'quiz_desc' as the description key
+            $desc = $jsonData['quiz_desc'] ?? $jsonData['quiz_description'] ?? '';
+
             // Prepare quiz data
             $quizData = [
-                'course_id' => $jsonData['course_id'] ?? 1, // Default course if not provided
-                'quiz_title' => $jsonData['quiz_title'],
-                'quiz_desc' => $jsonData['quiz_description'] ?? '',
-                'time_limit_minutes' => $jsonData['time_limit'] ?? 30,
-                'passing_score' => $jsonData['passing_score'] ?? 70.00,
-                'max_attempts' => $jsonData['max_attempts'] ?? 3,
-                'shuffle_questions' => $jsonData['shuffle_questions'] ?? 0,
-                'shuffle_answers' => $jsonData['shuffle_answers'] ?? 0,
-                'show_results' => $jsonData['show_results'] ?? 1,
+                'course_id'               => $jsonData['course_id'] ?? 1,
+                'quiz_title'              => $jsonData['quiz_title'],
+                'quiz_desc'               => $desc,
+                'time_limit_minutes'      => $timeLimit,
+                'passing_score'           => $jsonData['passing_score'] ?? 70.00,
+                'max_attempts'            => $jsonData['max_attempts'] ?? 3,
+                'shuffle_questions'       => $jsonData['shuffle_questions'] ?? 0,
+                'shuffle_answers'         => $jsonData['shuffle_answers'] ?? 0,
+                'show_results'            => $jsonData['show_results'] ?? 1,
                 'show_results_immediately' => $jsonData['show_results_immediately'] ?? 1,
-                'active' => 1,
-                'quiz_questions' => json_encode($jsonData['questions'])
+                'active'                  => 1,
+                'quiz_questions'          => json_encode($questions)
             ];
 
             log_message('info', '[QUIZ_MODEL] Prepared quiz data: ' . json_encode($quizData));

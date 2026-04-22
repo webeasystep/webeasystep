@@ -2965,7 +2965,7 @@
                                 $isYouTube = (strlen($introVideoId) === 11);
                                 $embedUrl = $isYouTube
                                     ? "https://www.youtube.com/embed/{$introVideoId}"
-                                    : "https://player.mediadelivery.net/embed/" . ($course->collection_id ?? '495222') . "/{$introVideoId}?autoplay=false";
+                                    : "https://player.mediadelivery.net/embed/" . ($course->collection_id ?? '495222') . "/{$introVideoId}?autoplay=false&preload=false";
                             ?>
                             <iframe
                                     src="<?= $embedUrl ?>"

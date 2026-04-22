@@ -46,7 +46,7 @@ class AdminEnrollments extends BaseController
                 }
                 return '<span class="badge badge-secondary">لا يوجد إثبات</span>';
             });
-      
+
             $output = DtTable::tableRender($builder, false);
             return $this->response->setJSON($output);
         }
@@ -132,22 +132,30 @@ class AdminEnrollments extends BaseController
             'updated_at'     => date('Y-m-d H:i:s')
         ];
 
+        $isNewlyApproved = false;
         if ($data['status'] === 'approved' && (!$id || $this->courseEnrollments->find($id)->status !== 'approved')) {
             $data['approved_at'] = date('Y-m-d H:i:s');
             $data['approved_by'] = auth()->user()->id;
+            $isNewlyApproved = true;
         }
 
         // Handle file upload
         // Note: For a complete implementation, fireuploader needs a proper model method to handle files,
         // but here we can just accept it or let existing logic be.
         // The fireuploader uploads images directly and we should extract it from post data if necessary.
-        
+
         if ($id) {
             $builder->where('id', $id)->update($data);
+            if ($isNewlyApproved) {
+                $this->sendApprovalEmail($id);
+            }
         } else {
             $data['created_at'] = date('Y-m-d H:i:s');
             $builder->insert($data);
             $id = $this->db->insertID();
+            if ($isNewlyApproved) {
+                $this->sendApprovalEmail($id);
+            }
         }
 
         return $id;
@@ -188,10 +196,51 @@ class AdminEnrollments extends BaseController
         $expiresAt = $this->request->getPost('expires_at');
 
         if ($this->courseEnrollments->approveEnrollment($id, $adminId, $expiresAt)) {
+            $this->sendApprovalEmail($id);
             return redirect()->back()->with('success', 'تم الموافقة على الطلب وتفعيل الدورة بنجاح');
         } else {
             return redirect()->back()->with('error', 'فشل في الموافقة على الطلب');
         }
+    }
+
+    /**
+     * Send course approval email
+     */
+    private function sendApprovalEmail($enrollmentId)
+    {
+        $enrollment = $this->courseEnrollments
+            ->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.slug, users.full_name, auth_identities.secret as email')
+            ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
+            ->join('users', 'users.id = tb_course_enrollments.user_id')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "email_password"', 'left')
+            ->find($enrollmentId);
+
+        if (!$enrollment || empty($enrollment->email)) {
+            log_message('error', 'Could not send approval email for enrollment ID: ' . $enrollmentId . ' - User or email not found.');
+            return false;
+        }
+
+        $email = \Config\Services::email();
+        $email->setTo($enrollment->email);
+        $email->setSubject('تم تفعيل اشتراكك في دورة: ' . $enrollment->course_title);
+
+        $courseUrl = base_url('courses/course_view/' . $enrollment->slug);
+
+        $message = MainView('Modules\Enrollments\Views\Site\emails\course_approved', [
+            'full_name' => $enrollment->full_name,
+            'course_title' => $enrollment->course_title,
+            'course_url' => $courseUrl
+        ]);
+
+        $email->setMessage($message);
+        $email->setMailType('html');
+
+        $success = $email->send();
+        if (!$success) {
+            log_message('error', 'Failed to send approval email: ' . $email->printDebugger(['headers']));
+        }
+
+        return $success;
     }
 
     /**

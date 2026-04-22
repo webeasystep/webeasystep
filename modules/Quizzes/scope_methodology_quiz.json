@@ -1,0 +1,142 @@
+{
+  "quiz_title": "إتقان هندسة الأوامر - منهجية S.C.O.P.E",
+  "quiz_desc": "اختبار شامل بمستوى متوسط يغطي منهجية S.C.O.P.E، والـ Vibe Coding، وتقنيات الـ Prompt Engineering المتقدمة.",
+  "course_id": 7,
+  "time_limit_minutes": 20,
+  "passing_score": 70.0,
+  "max_attempts": 3,
+  "shuffle_questions": true,
+  "shuffle_answers": true,
+  "show_results": true,
+  "show_results_immediately": true,
+  "quiz_questions": [
+    {
+      "question_text": "ما هو الهدف الرئيسي لمنهجية S.C.O.P.E كما تم تقديمها في الدورة؟",
+      "question_type": "single_choice",
+      "points": 10,
+      "options": [
+        "جعل المحادثة مع الذكاء الاصطناعي أكثر ودية",
+        "تحويل الذكاء الاصطناعي إلى أداة برمجة دقيقة (Deterministic Output)",
+        "تعلم لغات برمجة معقدة مثل C++",
+        "توليد مخرجات إبداعية وعشوائية للغاية"
+      ],
+      "correct_answer": "تحويل الذكاء الاصطناعي إلى أداة برمجة دقيقة (Deterministic Output)",
+      "explanation": "الهدف الأساسي هو التحول من التعامل مع الذكاء الاصطناعي كـ Chatbot إلى التحكم فيه للحصول على مخرجات دقيقة وموثوقة باستخدام الـ Natural Language Programming."
+    },
+    {
+      "question_text": "أي من الحروف التالية ومعانيها تمت مطابقتها بشكل صحيح في منهجية S.C.O.P.E؟",
+      "question_type": "multiple_choice",
+      "points": 15,
+      "options": [
+        "S - Structure & Constraints",
+        "C - Chain of Thought",
+        "O - Output Formatting",
+        "P - Pattern Logic",
+        "E - Enhance & Refine"
+      ],
+      "correct_answer": [
+        "S - Structure & Constraints",
+        "C - Chain of Thought",
+        "P - Pattern Logic",
+        "E - Enhance & Refine"
+      ],
+      "explanation": "الحرف 'O' يرمز إلى Orientation & Persona، وليس Output Formatting. أما باقي الخيارات فهي صحيحة."
+    },
+    {
+      "question_text": "في مرحلة الـ 'Structure & Constraints' (S)، نشجع الذكاء الاصطناعي على كتابة مقدمات حوارية مثل 'إليك ما طلبته' لجعل المخرجات أسهل في القراءة.",
+      "question_type": "true_false",
+      "points": 5,
+      "correct_answer": false,
+      "explanation": "خطأ. مرحلة الـ 'S' تهدف إلى فرض قيود صارمة (Constraints)، وتوجيه الذكاء الاصطناعي صراحة بعدم كتابة مقدمات أو نهايات حوارية، مما يضمن أن تكون المخرجات عبارة عن بيانات صافية (مثل JSON) جاهزة للأتمتة."
+    },
+    {
+      "question_text": "ما هو الغرض الأساسي من تقنية الـ 'Chain of Thought' (C)؟",
+      "question_type": "single_choice",
+      "points": 10,
+      "options": [
+        "جعل الذكاء الاصطناعي يعالج المهام بشكل أسرع بكثير",
+        "بناء مسار تفكير منطقي وشفاف (Logic Trail) قبل توليد الكود النهائي",
+        "تقليل عدد الكلمات في المخرجات النهائية",
+        "إجبار المخرجات لتكون بتنسيق JSON"
+      ],
+      "correct_answer": "بناء مسار تفكير منطقي وشفاف (Logic Trail) قبل توليد الكود النهائي",
+      "explanation": "تقنية Chain of Thought تضمن أن يكون المنطق الأساسي للعمليات المعقدة (مثل حساب الخصومات والضرائب) شفافاً وموثوقاً قبل كتابة النتيجة النهائية."
+    },
+    {
+      "question_text": "تُستخدم تقنية الـ ______ لاستدعاء القدرات الهندسية المتقدمة للذكاء الاصطناعي من خلال تكليفه بدور معين، مثل Senior Backend Developer.",
+      "question_type": "fill_in_blank",
+      "points": 10,
+      "correct_answer": "Orientation",
+      "alternative_answers": [
+        "Persona",
+        "orientation",
+        "persona",
+        "Orientation & Persona"
+      ],
+      "case_sensitive": false,
+      "explanation": "تقنية Orientation (O) أو توجيه الدور توجه الذكاء الاصطناعي لتبني دور احترافي معين، مما يحفزه لإنتاج كود عالي الجودة وقابل للتوسع (Scalable) بدلاً من الحلول البسيطة."
+    },
+    {
+      "question_text": "أي تقنية تعتمد على تزويد الذكاء الاصطناعي بأمثلة سابقة لضمان تطابق المخرجات مع تنسيق معين بالمللي؟",
+      "question_type": "single_choice",
+      "points": 10,
+      "options": [
+        "Zero-Shot Prompting",
+        "Edge Case Analysis",
+        "Few-Shot Prompting (Pattern Logic)",
+        "Chain of Thought"
+      ],
+      "correct_answer": "Few-Shot Prompting (Pattern Logic)",
+      "explanation": "تُستخدم تقنية Few-Shot Prompting في مرحلة الـ Pattern Logic (P). من خلال تقديم الأمثلة، يتعلم الذكاء الاصطناعي تقليد النمط (Pattern) والتنسيق الدقيق المطلوب لمشروعك."
+    },
+    {
+      "question_text": "في مرحلة الـ 'Enhance & Refine' (E)، ما هي الإجراءات التي يتم اتخاذها عادة لتحسين الكود الناتج؟",
+      "question_type": "multiple_choice",
+      "points": 15,
+      "options": [
+        "ضبط الـ Temperature على 0.0 لضمان المنطق الصارم",
+        "طلب من الذكاء الاصطناعي أن يعمل كـ Senior Code Reviewer",
+        "تحديد ومعالجة الحالات الحدية (Edge Cases)",
+        "إضافة المزيد من النصوص الحوارية لشرح الكود"
+      ],
+      "correct_answer": [
+        "ضبط الـ Temperature على 0.0 لضمان المنطق الصارم",
+        "طلب من الذكاء الاصطناعي أن يعمل كـ Senior Code Reviewer",
+        "تحديد ومعالجة الحالات الحدية (Edge Cases)"
+      ],
+      "explanation": "تستخدم مرحلة الـ 'E' الذكاء الاصطناعي كمراجع آلي (غالباً مع ضبط الـ Temperature على 0.0) لاكتشاف الـ Edge Cases بشكل استباقي وتقوية الكود. يتم تجنب النصوص الحوارية تماماً."
+    },
+    {
+      "question_text": "يشير مصطلح 'Vibe Coding' إلى القدرة على بناء الأنظمة وتصميم التطبيقات المعقدة باستخدام اللغة الطبيعية (Natural Language)، دون الحاجة إلى خبرة سابقة في كتابة الأكواد البرمجية.",
+      "question_type": "true_false",
+      "points": 5,
+      "correct_answer": true,
+      "explanation": "صحيح. يصف مصطلح Vibe Coding العملية التي تقوم فيها بدور مهندس النظم (System Architect) وتوجيه الذكاء الاصطناعي باستخدام اللغة الطبيعية لبناء التطبيقات."
+    },
+    {
+      "question_text": "اشرح كيف تحول منهجية S.C.O.P.E التفاعل مع الذكاء الاصطناعي من دردشة بسيطة إلى برمجة باللغة الطبيعية (Natural Language Programming). قدم أمثلة باستخدام عنصرين على الأقل من عناصر S.C.O.P.E.",
+      "question_type": "essay",
+      "points": 10,
+      "max_words": 200,
+      "min_words": 30,
+      "grading_criteria": [
+        "يذكر التحول من الـ Conversational AI إلى المخرجات الدقيقة (Deterministic) والمهيكلة.",
+        "يشرح بشكل صحيح عنصرين على الأقل من S.C.O.P.E (مثل Structure/Constraints لصيغ البيانات، و Chain of Thought للمنطق، و Orientation للجودة، وما إلى ذلك)."
+      ],
+      "sample_answer": "تحول منهجية S.C.O.P.E دردشة الذكاء الاصطناعي إلى برمجة من خلال فرض قواعد وهياكل صارمة. على سبيل المثال، باستخدام Structure & Constraints (S)، نجبر الذكاء الاصطناعي على إرجاع بيانات JSON فقط بدلاً من النصوص الحوارية. وباستخدام Chain of Thought (C)، نضمن أن يقوم الذكاء الاصطناعي بمعالجة المنطق خطوة بخطوة، مما يجعل حساباته شفافة وموثوقة. هذا النهج ينتج مخرجات دقيقة يمكن دمجها مباشرة في التطبيقات البرمجية."
+    },
+    {
+      "question_text": "وفقًا لختام الدورة، ما هي الخطوة المنطقية التالية بعد التخطيط لتطبيق باستخدام الـ Master Prompt؟",
+      "question_type": "single_choice",
+      "points": 10,
+      "options": [
+        "إعادة كتابة الـ Master Prompt باستخدام منهجية مختلفة",
+        "نشر الخطة النصية مباشرة على متجر التطبيقات (App Store)",
+        "استخدام أدوات تطوير فعلية مثل Trae و Google Stitch لتنفيذ الخطة",
+        "توليد صور تسويقية للتطبيق"
+      ],
+      "correct_answer": "استخدام أدوات تطوير فعلية مثل Trae و Google Stitch لتنفيذ الخطة",
+      "explanation": "الخطوة الأخيرة هي الانتقال من التخطيط (الـ Master Prompt) إلى التنفيذ، باستخدام أدوات مثل Trae (AI Dev Toolkits) لإنشاء ملفات التطبيق والواجهات الفعلية."
+    }
+  ]
+}

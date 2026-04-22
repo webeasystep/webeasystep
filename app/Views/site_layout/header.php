@@ -14,22 +14,22 @@
     <meta property="og:image:width"   content="500"/>
     <meta property="og:image:height"  content="500"/>
     <meta property="og:site_name" content="webeasystep.com"/>
-    
+
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= $meta_title ?? ($title ?? setting('App.title')); ?>">
     <meta name="twitter:description" content="<?= $meta_description ?? setting('App.site_description_ar'); ?>">
     <meta name="twitter:image" content="<?= $meta_image ?? base_url() . 'site/images/feature_logo.png'; ?>">
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="<?= current_url(); ?>">
-    
+
     <!-- Preconnect to external resources for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-16x16.png" sizes="16x16" />
@@ -92,21 +92,18 @@
     <!-- Main CSS - Load async to prevent render blocking -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU" crossorigin="anonymous">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css"></noscript>
-    
+
     <link rel="preload" href="<?= base_url() ?>site/css/style_rtl.css?v=2.05" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="<?= base_url() ?>site/css/style_rtl.css?v=2.05"></noscript>
 
     <link rel="stylesheet" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=1.1">
-    
+
     <!-- Fonts - with display swap for better performance -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    
+
     <!-- Icons - Load asynchronously -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
-          crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
-    
+
     <link rel="stylesheet" href="<?= base_url() ?>site/fonts/icomoon/style.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="<?= base_url() ?>site/fonts/flaticon/font/flaticon.css" media="print" onload="this.media='all'">
 
@@ -116,6 +113,15 @@
     <link rel="stylesheet" href="<?= base_url() ?>site/css/owl.theme.default.min.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="<?= base_url() ?>site/css/jquery.fancybox.min.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="<?= base_url() ?>site/css/aos.css" media="print" onload="this.media='all'">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6CXJYVPP4B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-6CXJYVPP4B');
+    </script>
 </head>
 <?php
 /*echo password_hash('01123303370', PASSWORD_DEFAULT)

@@ -146,7 +146,7 @@
                                         <?php foreach ($attempts as $attempt): ?>
                                         <tr>
                                             <td><?= $attempt->id ?></td>
-                                            <td><?= esc($attempt->first_name . ' ' . $attempt->last_name) ?></td>
+                                            <td><?= esc($attempt->full_name ?? $attempt->username ?? 'N/A') ?></td>
                                             <td><?= $attempt->score ?>%</td>
                                             <td>
                                                 <?php if ($attempt->score > 0): ?>

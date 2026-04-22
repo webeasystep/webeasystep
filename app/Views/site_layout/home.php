@@ -1,6 +1,9 @@
 <?= $this->extend('site_layout/template'); ?>
 <?= $this->section('content'); ?>
-
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4T7TS76"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
     <div class="untree_co-hero overlay" style="background-color: #0a1730; background-image: url('<?= base_url() ?>site/images/vibe_coding_mastery.jpg'); background-position: center 50px; background-size: cover;">
         <div class="container">
             <div class="row align-items-center justify-content-center">

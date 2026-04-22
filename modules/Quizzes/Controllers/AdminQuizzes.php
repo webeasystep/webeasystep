@@ -185,10 +185,10 @@ class AdminQuizzes extends BaseController
         }
 
         $data = [
-            'title' => str_replace('{title}', $quiz->quiz_title, lang('Quizzes.quiz_details_title')),
-            'quiz' => $quiz,
+            'title'      => str_replace('{title}', $quiz->quiz_title, lang('Quizzes.quiz_details_title')),
+            'quiz'       => $quiz,
             'statistics' => $this->getQuizStatistics($id),
-            'recent_attempts' => $this->attemptsModel->getQuizAttempts($id, 10)
+            'attempts'   => $this->attemptsModel->getQuizAttemptsWithUsers($id, 20)
         ];
 
         return view('view', $data);
@@ -360,51 +360,63 @@ class AdminQuizzes extends BaseController
             return redirect()->back();
         }
 
-        $id = (int) $id;
-
-        $quiz = $this->quizzesModel->find($id);
-        if (!$quiz) {
+        $ids = $id !== null ? $id : $this->request->getPost('rows');
+        if (empty($ids)) {
             return $this->response->setJSON([
                 'success' => false,
                 'message' => lang('Quizzes.quiz_not_found')
             ]);
         }
 
+        $idsArray = is_string($ids) ? explode(',', $ids) : (is_array($ids) ? $ids : [$ids]);
         $db = \Config\Database::connect();
+        $deletedCount = 0;
 
-        // 1. Find all unit_items of type 'quiz' linked to this quiz
-        $linkedUnitItems = $db->table('tb_unit_items')
-            ->where('item_type', 'quiz')
-            ->where('item_id', $id)
-            ->get()
-            ->getResultArray();
+        foreach ($idsArray as $singleId) {
+            $singleId = (int) $singleId;
+            if ($singleId <= 0) continue;
 
-        $metadataLinkedItems = $db->table('tb_unit_items')
-            ->where('item_type', 'quiz')
-            ->like('metadata', '"quiz_id":' . $id)
-            ->get()
-            ->getResultArray();
+            $quiz = $this->quizzesModel->find($singleId);
+            if (!$quiz) continue;
 
-        $allLinkedItems = array_merge($linkedUnitItems, $metadataLinkedItems);
-        $uniqueItemIds = array_unique(array_column($allLinkedItems, 'id'));
+            // 1. Find all unit_items of type 'quiz' linked to this quiz
+            $linkedUnitItems = $db->table('tb_unit_items')
+                ->where('item_type', 'quiz')
+                ->where('item_id', $singleId)
+                ->get()
+                ->getResultArray();
 
-        if (!empty($uniqueItemIds)) {
-            // Delete progress records for these unit items
-            $db->table('tb_user_item_progress')
-               ->whereIn('item_id', $uniqueItemIds)
-               ->delete();
+            $metadataLinkedItems = $db->table('tb_unit_items')
+                ->where('item_type', 'quiz')
+                ->like('metadata', '"quiz_id":' . $singleId)
+                ->get()
+                ->getResultArray();
 
-            // Delete the unit items themselves
-            $db->table('tb_unit_items')
-               ->whereIn('id', $uniqueItemIds)
-               ->delete();
+            $allLinkedItems = array_merge($linkedUnitItems, $metadataLinkedItems);
+            $uniqueItemIds = array_unique(array_column($allLinkedItems, 'id'));
+
+            if (!empty($uniqueItemIds)) {
+                // Delete progress records for these unit items
+                $db->table('tb_user_item_progress')
+                   ->whereIn('item_id', $uniqueItemIds)
+                   ->delete();
+
+                // Delete the unit items themselves
+                $db->table('tb_unit_items')
+                   ->whereIn('id', $uniqueItemIds)
+                   ->delete();
+            }
+
+            // 2. Delete quiz attempts using raw query (most reliable approach)
+            $db->query('DELETE FROM tb_quiz_attempts WHERE quiz_id = ' . $singleId);
+
+            // 3. Delete the quiz
+            if ($this->quizzesModel->delete($singleId)) {
+                $deletedCount++;
+            }
         }
 
-        // 2. Delete quiz attempts using raw query (most reliable approach)
-        $db->query('DELETE FROM tb_quiz_attempts WHERE quiz_id = ' . $id);
-
-        // 3. Delete the quiz
-        if ($this->quizzesModel->delete($id)) {
+        if ($deletedCount > 0) {
             return $this->response->setJSON([
                 'success' => true,
                 'message' => lang('Quizzes.quiz_deleted_successfully')
