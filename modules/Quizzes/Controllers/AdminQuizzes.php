@@ -380,20 +380,33 @@ class AdminQuizzes extends BaseController
             if (!$quiz) continue;
 
             // 1. Find all unit_items of type 'quiz' linked to this quiz
-            $linkedUnitItems = $db->table('tb_unit_items')
-                ->where('item_type', 'quiz')
-                ->where('item_id', $singleId)
-                ->get()
-                ->getResultArray();
+            //    Match both: item_id = quizId  OR  metadata contains quiz_id (numeric or string)
+            $rawRows = $db->query(
+                "SELECT id FROM tb_unit_items
+                 WHERE item_type = 'quiz'
+                 AND (
+                     item_id = {$singleId}
+                     OR JSON_UNQUOTE(JSON_EXTRACT(metadata, '$.quiz_id')) = '{$singleId}'
+                 )"
+            )->getResultArray();
+            $uniqueItemIds = array_column($rawRows, 'id');
 
-            $metadataLinkedItems = $db->table('tb_unit_items')
-                ->where('item_type', 'quiz')
-                ->like('metadata', '"quiz_id":' . $singleId)
-                ->get()
-                ->getResultArray();
+            // Fallback: use LIKE for older MySQL / different formats
+            if (empty($uniqueItemIds)) {
+                $likeRows = $db->query(
+                    "SELECT id FROM tb_unit_items
+                     WHERE item_type = 'quiz'
+                     AND (
+                         metadata LIKE '%\"quiz_id\":{$singleId}%'
+                         OR metadata LIKE '%\"quiz_id\": {$singleId}%'
+                         OR metadata LIKE '%\"quiz_id\":\"{$singleId}\"%'
+                         OR metadata LIKE '%\"quiz_id\": \"{$singleId}\"%'
+                     )"
+                )->getResultArray();
+                $uniqueItemIds = array_column($likeRows, 'id');
+            }
 
-            $allLinkedItems = array_merge($linkedUnitItems, $metadataLinkedItems);
-            $uniqueItemIds = array_unique(array_column($allLinkedItems, 'id'));
+            $uniqueItemIds = array_unique($uniqueItemIds);
 
             if (!empty($uniqueItemIds)) {
                 // Delete progress records for these unit items
