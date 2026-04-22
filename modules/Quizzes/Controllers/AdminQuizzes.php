@@ -264,9 +264,11 @@ class AdminQuizzes extends BaseController
                 }
             }
 
-            if (!$this->quizzesModel->validateQuizJSON($quizData)) {
-                log_message('error', '[QUIZ_IMPORT] Validation failed');
-                return redirect()->back()->with('error', lang('Quizzes.invalid_quiz_json_structure'));
+            $validation = $this->quizzesModel->validateQuizJSON($quizData);
+            if (!$validation['valid']) {
+                $errorList = implode("\n• ", $validation['errors']);
+                log_message('error', '[QUIZ_IMPORT] Validation failed: ' . implode(' | ', $validation['errors']));
+                return redirect()->back()->with('error', "بنية JSON للاختبار غير صالحة:\n• " . $errorList);
             }
 
             log_message('info', '[QUIZ_IMPORT] Validation passed, attempting import');
