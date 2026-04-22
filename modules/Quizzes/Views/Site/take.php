@@ -72,6 +72,7 @@ body.dark-mode {
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    direction: rtl;
 }
 
 .quiz-take-wrapper {
@@ -228,11 +229,16 @@ body.dark-mode .question-points-badge {
 }
 
 .question-text {
-    font-size: 1.15rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 700;
     color: var(--qt-text-primary);
-    line-height: 1.6;
+    line-height: 1.8;
     margin-bottom: 1.75rem;
+    opacity: 1 !important;
+}
+
+body:not(.dark-mode) .question-text {
+    color: #1a202c;
 }
 
 /* =============================================
@@ -255,7 +261,7 @@ body.dark-mode .question-points-badge {
 .quiz-option:hover {
     border-color: var(--qt-border-primary);
     background: var(--qt-bg-option-hover);
-    transform: translateX(-3px);
+    transform: translateX(3px);
 }
 
 .quiz-option.selected {
@@ -323,10 +329,40 @@ body.dark-mode .quiz-option.selected .option-indicator {
 }
 
 .option-text {
-    font-size: 0.97rem;
+    font-size: 1rem;
     color: var(--qt-text-primary);
+    font-weight: 500;
     line-height: 1.5;
     flex: 1;
+}
+
+body:not(.dark-mode) .option-text {
+    color: #1a202c;
+}
+
+/* fill_in_blank input */
+.quiz-fill-input {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    border: 2px solid var(--qt-border);
+    border-radius: var(--qt-radius-sm);
+    background: var(--qt-bg-option);
+    color: var(--qt-text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: border-color 0.2s;
+    outline: none;
+    text-align: right;
+}
+
+.quiz-fill-input:focus {
+    border-color: var(--qt-primary);
+    box-shadow: 0 0 0 3px rgba(19,106,213,0.1);
+}
+
+body:not(.dark-mode) .quiz-fill-input {
+    color: #1a202c;
+    background: #f8fafc;
 }
 
 /* Essay textarea */
@@ -393,7 +429,7 @@ body.dark-mode .quiz-option.selected .option-indicator {
 
 .btn-quiz-next:hover {
     background: var(--qt-primary-dark);
-    transform: translateX(-3px);
+    transform: translateX(3px);
     box-shadow: 0 6px 20px rgba(19,106,213,0.4);
 }
 
@@ -404,7 +440,7 @@ body.dark-mode .quiz-option.selected .option-indicator {
 }
 
 .btn-quiz-submit:hover {
-    transform: translateX(-3px);
+    transform: translateX(3px);
     box-shadow: 0 6px 20px rgba(16,185,129,0.4);
 }
 
@@ -624,11 +660,25 @@ body.dark-mode .quiz-modal .alert-info {
                                 <span class="option-text"><i class="fas fa-times text-danger mr-2"></i><?= lang('Admin.false') ?></span>
                             </label>
 
+                        <?php elseif ($question['question_type'] === 'fill_in_blank'): ?>
+                            <div style="margin-bottom:0.5rem;">
+                                <label for="q<?= $index ?>_fill" style="font-size:0.9rem;color:var(--qt-text-muted);margin-bottom:0.5rem;display:block;">
+                                    <?= lang('Quizzes.type_your_answer') ?? 'اكتب إجابتك' ?>
+                                </label>
+                                <input type="text"
+                                       class="quiz-fill-input"
+                                       name="answers[<?= $index ?>]"
+                                       id="q<?= $index ?>_fill"
+                                       autocomplete="off"
+                                       placeholder="...">
+                            </div>
+
                         <?php elseif ($question['question_type'] === 'essay'): ?>
                             <textarea class="quiz-essay-textarea"
                                       name="answers[<?= $index ?>]"
                                       id="q<?= $index ?>_essay"
                                       rows="6"
+                                      style="text-align:right;"
                                       placeholder="<?= lang('Quizzes.enter_your_answer') ?>"></textarea>
                         <?php endif; ?>
                     </div>
@@ -679,25 +729,27 @@ body.dark-mode .quiz-modal .alert-info {
 </div><!-- .quiz-take-page -->
 
 <!-- Submit Confirmation Modal -->
-<div class="modal fade quiz-modal" id="submitModal" tabindex="-1" role="dialog">
+<div class="modal fade quiz-modal" id="submitModal" tabindex="-1" role="dialog" dir="rtl">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-paper-plane mr-2 text-primary"></i><?= lang('Quizzes.submit_quiz') ?></h5>
-                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <div class="modal-content" style="direction:rtl;text-align:right;">
+            <div class="modal-header" style="flex-direction:row-reverse;">
+                <h5 class="modal-title" style="font-weight:700;">
+                    <i class="fas fa-paper-plane ml-2 text-primary"></i><?= lang('Quizzes.submit_quiz') ?>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" style="margin:0;margin-left:auto;"><span>&times;</span></button>
             </div>
             <div class="modal-body">
-                <p><?= lang('Quizzes.submit_confirmation') ?></p>
-                <div class="alert alert-info">
+                <p style="font-size:1.05rem;font-weight:600;color:#1a202c;"><?= lang('Quizzes.submit_confirmation') ?></p>
+                <div class="alert alert-info" style="border-radius:10px;">
                     <strong><?= lang('Quizzes.answered_questions') ?>:</strong> <span id="answered-count">0</span> / <?= count($questions) ?><br>
                     <strong><?= lang('Quizzes.unanswered_questions') ?>:</strong> <span id="unanswered-count"><?= count($questions) ?></span>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= lang('Admin.cancel') ?></button>
+            <div class="modal-footer" style="justify-content:flex-start;">
                 <button type="button" class="btn btn-success" onclick="confirmSubmit()">
-                    <i class="fas fa-check mr-1"></i> <?= lang('Quizzes.submit_quiz') ?>
+                    <i class="fas fa-check ml-1"></i> <?= lang('Quizzes.submit_quiz') ?>
                 </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= lang('Admin.cancel') ?></button>
             </div>
         </div>
     </div>

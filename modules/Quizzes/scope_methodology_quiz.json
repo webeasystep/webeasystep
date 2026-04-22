@@ -63,17 +63,16 @@
       "explanation": "تقنية Chain of Thought تضمن أن يكون المنطق الأساسي للعمليات المعقدة (مثل حساب الخصومات والضرائب) شفافاً وموثوقاً قبل كتابة النتيجة النهائية."
     },
     {
-      "question_text": "تُستخدم تقنية الـ ______ لاستدعاء القدرات الهندسية المتقدمة للذكاء الاصطناعي من خلال تكليفه بدور معين، مثل Senior Backend Developer.",
-      "question_type": "fill_in_blank",
+      "question_text": "ما اسم التقنية التي تُستخدم لاستدعاء القدرات الهندسية المتقدمة للذكاء الاصطناعي من خلال تكليفه بدور معين، مثل Senior Backend Developer؟",
+      "question_type": "single_choice",
       "points": 10,
-      "correct_answer": "Orientation",
-      "alternative_answers": [
-        "Persona",
-        "orientation",
-        "persona",
-        "Orientation & Persona"
+      "options": [
+        "Orientation & Persona",
+        "Chain of Thought",
+        "Pattern Logic",
+        "Structure & Constraints"
       ],
-      "case_sensitive": false,
+      "correct_answer": "Orientation & Persona",
       "explanation": "تقنية Orientation (O) أو توجيه الدور توجه الذكاء الاصطناعي لتبني دور احترافي معين، مما يحفزه لإنتاج كود عالي الجودة وقابل للتوسع (Scalable) بدلاً من الحلول البسيطة."
     },
     {
