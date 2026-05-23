@@ -125,19 +125,27 @@ class Email extends BaseConfig
     public function __construct()
     {
         parent::__construct();
-        
+
+        $smtpUser = env('MAIL_USERNAME', env('MAIL_USER', ''));
+
         // Load email settings from environment variables
-        $this->fromEmail = env('MAIL_FROM_EMAIL', 'no-reply@msarlink.test');
-        $this->fromName = env('MAIL_FROM_NAME', 'MSARLink System');
+        $this->fromEmail = env('MAIL_FROM_EMAIL', $smtpUser !== '' ? $smtpUser : 'no-reply@webeasystep.test');
+        $this->fromName = env('MAIL_FROM_NAME', 'webeasystep System');
         $this->SMTPHost = env('MAIL_HOST', 'localhost');
         $this->SMTPPort = (int) env('MAIL_PORT', 587);
-        $this->SMTPUser = env('MAIL_USERNAME', env('MAIL_USER', ''));
+        $this->SMTPUser = $smtpUser;
         $this->SMTPPass = env('MAIL_PASSWORD', env('MAIL_PASS', ''));
-        
+
+        $envCrypto = (string) env('MAIL_CRYPTO', '');
+
         // Set protocol based on environment
         if (env('MAIL_DRIVER') === 'mailtrap' || env('MAIL_DRIVER') === 'smtp') {
             $this->protocol = 'smtp';
-            
+
+            if ($envCrypto !== '') {
+                $this->SMTPCrypto = $envCrypto;
+            }
+
             // Mailtrap specific configuration
             if (env('MAIL_DRIVER') === 'mailtrap') {
                 // For port 587, disable encryption as Mailtrap supports plain auth
@@ -150,10 +158,10 @@ class Email extends BaseConfig
                 } else {
                     $this->SMTPCrypto = ''; // Default to no encryption
                 }
-                
+
                 // Increase timeout for Mailtrap
                 $this->SMTPTimeout = 30;
-                
+
                 // Enable debugging for development
                 if (ENVIRONMENT === 'development') {
                     $this->validate = true;

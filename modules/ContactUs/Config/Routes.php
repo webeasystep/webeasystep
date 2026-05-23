@@ -41,6 +41,7 @@ $routes->group('/', ['namespace' => 'Modules\ContactUs\Controllers'], static fun
     $routes->match(['GET', 'POST'], 'contact_us',  [ContactUs::class, 'index']);
     $routes->match(['GET', 'POST'], 'contact_us',  [ContactUs::class, 'index']);
     $routes->match(['GET', 'POST'], 'contact_us/subscribe',  [ContactUs::class, 'subscribe']);
+    $routes->get('contact_us/test-email', [ContactUs::class, 'testEmail']);
 
 });
 

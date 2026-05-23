@@ -68,14 +68,34 @@ class CustomEmailActivator extends EmailActivator
         ));
 
         if ($email->send(false) === false) {
-            throw new RuntimeException('Cannot send email for user: ' . $user->email . "\n" . $email->printDebugger(['headers']));
+            log_message(
+                'error',
+                'Activation email failed for user: ' . $user->email . "\n" . $email->printDebugger(['headers'])
+            );
+
+            session()->setFlashdata(
+                'error',
+                'تعذر إرسال رسالة التفعيل حاليا. برجاء المحاولة مرة أخرى لاحقا أو التواصل مع الدعم الفني.'
+            );
+
+            $email->clear();
+
+            return $this->view(setting('Auth.views')['action_email_activate_show'], [
+                'user' => $user,
+                'token' => $code,
+                'activation_url' => $activationUrl,
+            ]);
         }
 
         // Clear the email
         $email->clear();
 
         // Display the info page
-        return $this->view(setting('Auth.views')['action_email_activate_show'], ['user' => $user]);
+        return $this->view(setting('Auth.views')['action_email_activate_show'], [
+            'user' => $user,
+            'token' => $code,
+            'activation_url' => $activationUrl,
+        ]);
     }
     /**
      * Overriding the view method to bypass the custom helper in Common.php

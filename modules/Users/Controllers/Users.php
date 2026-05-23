@@ -261,7 +261,11 @@ class Users extends BaseController
             return redirect()->back()->withInput();
         }
 
-        log_message('debug', 'Users::processLogin - Login successful for user ID: ' . auth()->user()->id);
+        $loggedInUser = auth()->user();
+        log_message(
+            'debug',
+            'Users::processLogin - Login successful for user ID: ' . ($loggedInUser->id ?? 'unknown')
+        );
         log_message('debug', 'Users::processLogin - User logged in check: ' . (auth()->loggedIn() ? 'true' : 'false'));
 
         // Shield handles session management automatically

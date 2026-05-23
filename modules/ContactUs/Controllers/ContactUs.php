@@ -4,6 +4,7 @@ namespace Modules\ContactUs\Controllers;
 
 use App\Controllers\BaseController;
 use Config\Database;
+use Config\Services;
 use Modules\ContactUs\Models\ContactUsModel;
 
 class ContactUs extends BaseController
@@ -96,6 +97,67 @@ class ContactUs extends BaseController
             // Handle non-POST request
             return $this->response->setJSON(['status' => false, 'message' => 'Request must be POST.']);
         }
+    }
+
+    /**
+     * Sends a default test email using the current SMTP settings.
+     */
+    public function testEmail()
+    {
+        $recipient = 'webeasystep@gmail.com';
+        $email = Services::email();
+        $sentAt = date('Y-m-d H:i:s');
+        $baseUrl = base_url();
+        $message = '
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>WebEasyStep Test Email</title>
+            </head>
+            <body style="margin:0; padding:24px; background:#f5f7fb; font-family:Arial, sans-serif; color:#1f2937;">
+                <div style="max-width:640px; margin:0 auto; background:#ffffff; border-radius:12px; padding:32px; border:1px solid #e5e7eb;">
+                    <h1 style="margin:0 0 16px; font-size:24px; color:#111827;">WebEasyStep Test Email</h1>
+                    <p style="margin:0 0 12px; line-height:1.7;">This is a default test email generated from the <strong>ContactUs</strong> module.</p>
+                    <p style="margin:0 0 12px; line-height:1.7;"><strong>Recipient:</strong> ' . esc($recipient) . '</p>
+                    <p style="margin:0 0 12px; line-height:1.7;"><strong>Sent At:</strong> ' . esc($sentAt) . '</p>
+                    <p style="margin:0; line-height:1.7;"><strong>Website:</strong> <a href="' . esc($baseUrl) . '">' . esc($baseUrl) . '</a></p>
+                </div>
+            </body>
+            </html>';
+
+        $email->setTo($recipient);
+        $email->setSubject('Test Email From WebEasyStep');
+        $email->setMessage($message);
+
+        // Keep the debugger output available so the browser response shows the SMTP result.
+        if ($email->send(false)) {
+            log_message('info', 'ContactUs::testEmail sent successfully to {email}', ['email' => $recipient]);
+
+            return $this->response
+                ->setContentType('text/html')
+                ->setBody(
+                    '<h2>Test email sent successfully.</h2>'
+                    . '<p>Recipient: ' . esc($recipient) . '</p>'
+                    . '<pre>' . esc($email->printDebugger(['headers'])) . '</pre>'
+                );
+        }
+
+        $debugger = $email->printDebugger(['headers', 'subject', 'body']);
+
+        log_message('error', 'ContactUs::testEmail failed for {email}: {debugger}', [
+            'email' => $recipient,
+            'debugger' => $debugger,
+        ]);
+
+        return $this->response
+            ->setStatusCode(500)
+            ->setContentType('text/html')
+            ->setBody(
+                '<h2>Test email failed.</h2>'
+                . '<p>Recipient: ' . esc($recipient) . '</p>'
+                . '<pre>' . esc($debugger) . '</pre>'
+            );
     }
 
 }
