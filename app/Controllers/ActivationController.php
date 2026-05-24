@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\Shield\Authentication\Authenticators\Session;
-use CodeIgniter\Shield\Exceptions\RuntimeException;
+use CodeIgniter\Shield\Models\UserIdentityModel;
 
 /**
  * Handles email activation verification for Shield.
@@ -78,33 +78,30 @@ class ActivationController extends BaseController
      */
     public function activate(): RedirectResponse
     {
-        /** @var Session $authenticator */
-        $authenticator = auth('session')->getAuthenticator();
-
         $token = $this->request->getGet('token');
+        if (! is_string($token) || trim($token) === '') {
+            return redirect()->to('/login')->with('error', lang('Auth.activateLinkExpired'));
+        }
 
-        $user = $authenticator->getPendingUser();
+        /** @var UserIdentityModel $identityModel */
+        $identityModel = model(UserIdentityModel::class);
+        $identity = $identityModel->getIdentityBySecret(Session::ID_TYPE_EMAIL_ACTIVATE, $token);
+
+        if ($identity === null) {
+            return redirect()->to('/login')->with('error', lang('Auth.activateLinkExpired'));
+        }
+
+        $user = auth()->getProvider()->findById($identity->user_id);
         if ($user === null) {
             return redirect()->to('/login')->with('error', lang('Auth.activateLinkExpired'));
         }
 
-        // Get the identity for verification
-        $identity = $this->getIdentity($user);
-
-        if ($identity === null) {
-            return redirect()->to('/login')->with('error', lang('Auth.invalidActivateToken'));
+        // If the user is already active, just make the link idempotent and clean any stale activation identities.
+        if ((int) ($user->active ?? 0) !== 1) {
+            $user->activate();
         }
 
-        // Check if token matches
-        if (! $authenticator->checkAction($identity, $token)) {
-            return redirect()->to('/login')->with('error', lang('Auth.invalidActivateToken'));
-        }
-
-        // Get the authenticated user after successful verification
-        $user = $authenticator->getUser();
-
-        // Activate the user
-        $user->activate();
+        $identityModel->deleteIdentitiesByType($user, Session::ID_TYPE_EMAIL_ACTIVATE);
 
         // Success - redirect to login or dashboard
         return redirect()->to(config('Auth')->registerRedirect())

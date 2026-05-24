@@ -4,6 +4,8 @@
 
 <?= $this->section('main') ?>
 
+<?php $showActivationDetails = ! empty($showActivationDetails); ?>
+
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-7">
@@ -27,31 +29,38 @@
                         If the email is not in your <strong>Inbox</strong>, please check <strong>Spam / Junk</strong> and mark it as safe.
                     </div>
 
-                    <div class="row g-3 mb-4">
-                        <div class="col-12">
-                            <div class="p-3 border rounded-3 bg-light">
-                                <div class="small text-primary fw-bold mb-2">Activation Code | كود التفعيل</div>
-                                <div class="fw-bold" style="direction: ltr; text-align: center; word-break: break-all; font-size: 1rem;">
-                                    <?= esc($token ?? '') ?>
-                                </div>
-                            </div>
-                        </div>
-                        <?php if (! empty($activation_url)) : ?>
+                    <?php if ($showActivationDetails) : ?>
+                        <div class="row g-3 mb-4">
                             <div class="col-12">
-                                <div class="p-3 border rounded-3 bg-white">
-                                    <div class="small text-primary fw-bold mb-2">Activation Link | رابط التفعيل</div>
-                                    <div style="direction: ltr; text-align: left; word-break: break-all; font-size: 0.9rem;">
-                                        <a href="<?= esc($activation_url) ?>" class="text-primary"><?= esc($activation_url) ?></a>
+                                <div class="p-3 border rounded-3 bg-light">
+                                    <div class="small text-primary fw-bold mb-2">Activation Code | كود التفعيل</div>
+                                    <div class="fw-bold" style="direction: ltr; text-align: center; word-break: break-all; font-size: 1rem;">
+                                        <?= esc($token ?? '') ?>
                                     </div>
                                 </div>
                             </div>
-                        <?php endif ?>
-                    </div>
+                            <?php if (! empty($activation_url)) : ?>
+                                <div class="col-12">
+                                    <div class="p-3 border rounded-3 bg-white">
+                                        <div class="small text-primary fw-bold mb-2">Activation Link | رابط التفعيل</div>
+                                        <div style="direction: ltr; text-align: left; word-break: break-all; font-size: 0.9rem;">
+                                            <a href="<?= esc($activation_url) ?>" class="text-primary"><?= esc($activation_url) ?></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif ?>
+                        </div>
 
-                    <p class="text-muted mb-3" style="line-height: 1.8;">
-                        يمكنك الضغط على الرابط مباشرة من الإيميل، أو لصق كود التفعيل هنا إذا كنت تريد التفعيل يدويًا.<br>
-                        You can click the activation link from the email, or paste the activation code here for manual activation.
-                    </p>
+                        <p class="text-muted mb-3" style="line-height: 1.8;">
+                            تعذر إرسال الرسالة حاليا، لذلك أظهرنا لك كود ورابط التفعيل هنا كحل بديل.<br>
+                            The email could not be sent right now, so the activation code and link are shown here as a fallback.
+                        </p>
+                    <?php else : ?>
+                        <p class="text-muted mb-3" style="line-height: 1.8;">
+                            أدخل كود التفعيل فقط إذا وصلك داخل البريد الإلكتروني، أو استخدم الرابط الموجود داخل الرسالة.<br>
+                            Enter the activation code only if you received it in the email, or use the activation link inside the message.
+                        </p>
+                    <?php endif ?>
 
                     <form action="<?= site_url('auth/a/verify') ?>" method="post">
                         <?= csrf_field() ?>
@@ -63,14 +72,14 @@
                                    name="token"
                                    placeholder="Activation Code"
                                    autocomplete="one-time-code"
-                                   value="<?= old('token') ?? ($token ?? '') ?>"
+                                   value="<?= old('token') ?>"
                                    required>
                             <label for="floatingTokenInput">Activation Code / <?= lang('Auth.token') ?></label>
                         </div>
 
                         <div class="d-grid gap-2 col-12 col-md-8 mx-auto">
                             <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.send') ?></button>
-                            <?php if (! empty($activation_url)) : ?>
+                            <?php if ($showActivationDetails && ! empty($activation_url)) : ?>
                                 <a href="<?= esc($activation_url) ?>" class="btn btn-outline-primary">Open Activation Link</a>
                             <?php endif ?>
                         </div>

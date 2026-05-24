@@ -84,6 +84,7 @@ class CustomEmailActivator extends EmailActivator
                 'user' => $user,
                 'token' => $code,
                 'activation_url' => $activationUrl,
+                'showActivationDetails' => true,
             ]);
         }
 
@@ -93,8 +94,7 @@ class CustomEmailActivator extends EmailActivator
         // Display the info page
         return $this->view(setting('Auth.views')['action_email_activate_show'], [
             'user' => $user,
-            'token' => $code,
-            'activation_url' => $activationUrl,
+            'showActivationDetails' => false,
         ]);
     }
     /**
