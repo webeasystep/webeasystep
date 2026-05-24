@@ -9,6 +9,7 @@ use CodeIgniter\Session\Session;
 use CodeIgniter\Shield\Entities\User;
 use CodeIgniter\Shield\Exceptions\ValidationException;
 use CodeIgniter\Shield\Models\UserModel;
+use Modules\Courses\Models\CoursesModel;
 use Modules\Pages\Controllers\Pages;
 use Modules\Pages\Models\PagesModel;
 
@@ -16,6 +17,7 @@ class Site extends BaseController
 {
     protected $auth;
     private BaseModel $baseModel;
+    private CoursesModel $coursesModel;
     protected $config;
     private $rules = [
         //     'name' => ['rules' => 'required'],
@@ -29,14 +31,15 @@ class Site extends BaseController
     {
         $this->config = config('Auth');
         $this->baseModel = new BaseModel();
+        $this->coursesModel = new CoursesModel();
     }
 
     public function index()
     {
-        $this->home();
+        return $this->home();
     }
 
-    public function home()
+    public function home(): string
     {
         $data['page_name'] = 'home';
         $data['title']     = lang('Site.home');
@@ -48,9 +51,27 @@ class Site extends BaseController
             ->get()
             ->getResultArray();
 
-        // 2) Get courses data from Courses controller
-        $coursesController = new \Modules\Courses\Controllers\Courses();
-        $data['courses'] = $coursesController->getCoursesForHome();
+        // 2) Fetch active roadmap courses ordered by sort ASC.
+        $courses = $this->db
+            ->table('tb_courses')
+            ->where('active', 1)
+            ->orderBy('sort', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        foreach ($courses as &$course) {
+            $course['course_desc'] = $course['course_desc'] ?? '';
+            $course['short_desc'] = $course['short_desc'] ?? '';
+            $course['waiting_list'] = (int) ($course['waiting_list'] ?? 0);
+            $course['is_free'] = (int) ($course['is_free'] ?? 0);
+            $course['sort'] = (int) ($course['sort'] ?? 0);
+            $course['is_available_now'] = $course['waiting_list'] === 0;
+            $course['details_url'] = site_url('courses/course_details/' . $course['slug']);
+            $course['checkout_url'] = site_url('enrollments/purchase-course/' . $course['id']);
+        }
+        unset($course);
+
+        $data['courses'] = $courses;
 
         // 4) Possibly fetch “about us” page or other custom pages
         $data['about_us'] = $this->db
@@ -64,7 +85,7 @@ class Site extends BaseController
         $data['data'] = $data;
 
         // 5) Render the main home view
-        echo MainView('site_layout/home', $data);
+        return MainView('site_layout/home', $data);
     }
 
     //--------------------------------------------------------------------
