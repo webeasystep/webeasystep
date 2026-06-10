@@ -1,5 +1,7 @@
+<p>مرحباً<?= !empty($user->username) ? ' ' . esc($user->username) : '' ?>،</p>
+<p>وصلنا طلب لإعادة تعيين كلمة المرور الخاصة بحساب لوحة التحكم.</p>
 <p>
-    <a href="<?= url_to('dt_admin/verify_magic_link') ?>?token=<?= $token ?>">
-        <?= lang('Auth.login') ?>
-    </a>
+    استخدم الرابط التالي لتعيين كلمة مرور جديدة:
+    <a href="<?= esc($resetUrl) ?>"><?= esc($resetUrl) ?></a>
 </p>
+<p>إذا لم تقم بهذا الطلب، يمكنك تجاهل هذه الرسالة ولن يتم تغيير أي شيء في حسابك.</p>

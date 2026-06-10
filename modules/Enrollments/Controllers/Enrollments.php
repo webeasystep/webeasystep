@@ -157,6 +157,7 @@ class Enrollments extends BaseController
             ]);
 
             if ($enrollmentId) {
+                $this->sendApprovalEmail($enrollmentId);
                 session()->remove('selected_course');
                 return redirect()->to('/courses/course_view/' . $course->slug)
                     ->with('success', 'تم تسجيلك في الدورة بنجاح! يمكنك الآن الوصول إلى المحتوى.');
@@ -188,8 +189,110 @@ class Enrollments extends BaseController
             return redirect()->back()->with('error', 'فشل في حفظ طلب الشراء');
         }
 
+        $this->sendPendingEnrollmentEmails($enrollmentId);
+
         session()->remove('selected_course');
         return redirect()->to('/enrollments/my-courses')
             ->with('success', 'تم إرسال طلب الشراء بنجاح. سيتم مراجعته من قبل الإدارة وتفعيل اشتراكك بعد التحقق من الدفع.');
+    }
+
+    /**
+     * Send enrollment request emails to the customer and the admin.
+     */
+    private function sendPendingEnrollmentEmails(int $enrollmentId): void
+    {
+        $enrollment = $this->courseEnrollmentsModel
+            ->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.slug, users.full_name, auth_identities.secret as email')
+            ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
+            ->join('users', 'users.id = tb_course_enrollments.user_id')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "email_password"', 'left')
+            ->find($enrollmentId);
+
+        if (!$enrollment || empty($enrollment->email)) {
+            log_message('error', 'Could not send pending enrollment emails for enrollment ID: ' . $enrollmentId . ' - User or email not found.');
+            return;
+        }
+
+        $adminEmail = setting('App.contact_email');
+        if (empty($adminEmail)) {
+            $emailConfig = config('Email');
+            $adminEmail = $emailConfig->fromEmail ?: 'webeasystep@gmail.com';
+        }
+
+        $email = \Config\Services::email();
+        $email->setMailType('html');
+
+        $commonData = [
+            'full_name'      => $enrollment->full_name,
+            'course_title'   => $enrollment->course_title,
+            'paid_amount'    => $enrollment->paid_amount,
+            'payment_method' => $enrollment->payment_method,
+            'submitted_at'   => $enrollment->created_at ?? date('Y-m-d H:i:s'),
+        ];
+
+        $customerMessage = MainView('Modules\Enrollments\Views\Site\emails\course_request_received', $commonData);
+        $email->setTo($enrollment->email);
+        $email->setSubject('تم استلام طلب اشتراكك في دورة: ' . $enrollment->course_title);
+        $email->setMessage($customerMessage);
+
+        if (!$email->send()) {
+            log_message('error', 'Failed to send enrollment confirmation email: ' . $email->printDebugger(['headers']));
+        }
+
+        $email->clear(true);
+        $email->setMailType('html');
+
+        $adminMessage = MainView('Modules\Enrollments\Views\Site\emails\course_request_admin_notification', $commonData + [
+            'customer_email' => $enrollment->email,
+            'review_url'     => base_url('dt_admin/enrollments/courses/show/' . $enrollmentId),
+        ]);
+
+        $email->setTo($adminEmail);
+        $email->setSubject('طلب اشتراك جديد في دورة: ' . $enrollment->course_title);
+        $email->setMessage($adminMessage);
+
+        if (!$email->send()) {
+            log_message('error', 'Failed to send admin enrollment notification email: ' . $email->printDebugger(['headers']));
+        }
+    }
+
+    /**
+     * Send course approval email after automatic activation flows.
+     */
+    private function sendApprovalEmail(int $enrollmentId): bool
+    {
+        $enrollment = $this->courseEnrollmentsModel
+            ->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.slug, users.full_name, auth_identities.secret as email')
+            ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
+            ->join('users', 'users.id = tb_course_enrollments.user_id')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "email_password"', 'left')
+            ->find($enrollmentId);
+
+        if (!$enrollment || empty($enrollment->email)) {
+            log_message('error', 'Could not send approval email for enrollment ID: ' . $enrollmentId . ' - User or email not found.');
+            return false;
+        }
+
+        $email = \Config\Services::email();
+        $email->setTo($enrollment->email);
+        $email->setSubject('تم تفعيل اشتراكك في دورة: ' . $enrollment->course_title);
+        $email->setMailType('html');
+
+        $courseUrl = base_url('courses/course_view/' . $enrollment->slug);
+        $message = MainView('Modules\Enrollments\Views\Site\emails\course_approved', [
+            'full_name'    => $enrollment->full_name,
+            'course_title' => $enrollment->course_title,
+            'course_url'   => $courseUrl,
+        ]);
+
+        $email->setMessage($message);
+
+        $success = $email->send();
+
+        if (!$success) {
+            log_message('error', 'Failed to send auto-approval email: ' . $email->printDebugger(['headers']));
+        }
+
+        return $success;
     }
 }

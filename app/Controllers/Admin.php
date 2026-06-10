@@ -196,10 +196,6 @@ class Admin extends BaseController
     {
         // If it's a POST request, we'll handle the forgot password attempt
         if ($this->request->is('post')) {
-            if (!setting('Auth.allowMagicLinkLogins')) {
-                return redirect()->route('dt_admin/login')->with('error', lang('Auth.forgotDisabled'));
-            }
-
             $rules = [
                 'email' => [
                     'label' => lang('Auth.emailAddress'),
@@ -210,57 +206,67 @@ class Admin extends BaseController
             if (!$this->validate($rules)) {
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
-            $user = model(UserModel::class)->findByCredentials(['email' => $this->request->getPost('email')]);
 
-            if (!$user) {
-                return redirect()->back()->with('error', lang('Auth.invalidEmail'));
+            /** @var UserModel $users */
+            $users = model(UserModel::class);
+            $user = $users->findByCredentials(['email' => $this->request->getPost('email')]);
+
+            if ($user === null) {
+                return redirect()->back()->with('error', lang('Auth.forgotNoUser'));
             }
 
+            /** @var UserIdentityModel $identityModel */
             $identityModel = model(UserIdentityModel::class);
 
-            // Delete any previous forget_password identities
+            // Delete any previous reset links before issuing a fresh one.
             $identityModel->deleteIdentitiesByType($user, Authenticators\Session::ID_TYPE_MAGIC_LINK);
 
-            // Generate the code and save it as an identity
             helper('text');
-            $token = random_string('crypto', 20);
+            $resetToken = random_string('crypto', 64);
 
             $identityModel->insert([
                 'user_id' => $user->id,
-                'type' => Authenticators\Session::ID_TYPE_MAGIC_LINK,
-                'secret' => $token,
+                'type'    => Authenticators\Session::ID_TYPE_MAGIC_LINK,
+                'secret'  => $resetToken,
                 'expires' => Time::now()->addSeconds(setting('Auth.magicLinkLifetime'))->format('Y-m-d H:i:s'),
             ]);
 
-            $this->send_mail($user, $token);
+            if (!$this->sendResetPasswordEmail($user, $resetToken)) {
+                return redirect()->back()->withInput()->with('error', lang('Auth.unableSendEmailToUser', [$user->email]));
+            }
 
-            return redirect()->route('dt_admin/reset_password')->with('message', lang('Auth.forgotEmailSent'));
+            return redirect()->to(base_url('dt_admin/reset_password'))->with('message', lang('Auth.forgotEmailSent'));
         }
 
         // If it's a GET request, we'll display the forgot password form
-        if (!setting('Auth.allowMagicLinkLogins')) {
-            return redirect()->route('dt_admin/login')->with('error', lang('Auth.forgotDisabled'));
-        }
-        $data['title'] = lang('Auth.useMagicLink');
+        $data['title'] = lang('Auth.forgotPassword');
         return MainView($this->config->adminViews['forget_password'], $data);
     }
 
-    public function send_mail($user, $token): RedirectResponse
+    private function sendResetPasswordEmail(User $user, string $token): bool
     {
         $email = \Config\Services::email();
         $email->setFrom(setting('Email.fromEmail'), setting('Email.fromName') ?? "");
         $email->setTo($user->email);
-        $email->setSubject(lang('Auth.magicLinkSubject'));
-        $email->setMessage(MainView($this->config->adminViews['magic-link-email'], ['token' => $token]));
-        // Clear the email
-        if ($email->send()) {
-            echo 'Email successfully sent';
-            $email->clear();
-        } else {
-            log_message('error', $email->printDebugger(['headers']));
-            return redirect()->route('dt_admin/magic_link')->with('error', lang('Auth.unableSendEmailToUser', [$user->email]));
+        $email->setSubject(lang('Auth.forgetSubject'));
+
+        $resetUrl = base_url('dt_admin/reset_password?token=' . urlencode($token) . '&email=' . urlencode((string) $user->email));
+
+        $email->setMessage(MainView($this->config->adminViews['magic-link-email'], [
+            'token'    => $token,
+            'user'     => $user,
+            'resetUrl' => $resetUrl,
+        ]));
+
+        $sent = $email->send();
+
+        if (!$sent) {
+            log_message('error', $email->printDebugger(['headers', 'subject']));
         }
 
+        $email->clear();
+
+        return $sent;
     }
 
 
@@ -338,19 +344,21 @@ class Admin extends BaseController
     {
         // If it's a POST request, we'll handle the password reset attempt
         if ($this->request->is('post')) {
-            if (!setting('Auth.allowMagicLinkLogins')) {
-                return redirect()->route('dt_admin/login')->with('error', lang('Auth.forgotDisabled'));
+            /** @var UserModel $users */
+            $users = model(UserModel::class);
+            $emailAddress = (string) $this->request->getPost('email');
+            $token = (string) $this->request->getPost('token');
+
+            // Log the reset attempt when the optional Shield table exists.
+            if ($this->db->tableExists('auth_reset_attempts')) {
+                $this->db->table('auth_reset_attempts')->insert([
+                    'email'      => $emailAddress,
+                    'ip_address' => $this->request->getIPAddress(),
+                    'user_agent' => (string) $this->request->getUserAgent(),
+                    'token'      => $token,
+                    'created_at' => date('Y-m-d H:i:s'),
+                ]);
             }
-
-            $users = model(PagesModel::class);
-
-            // First things first - log the reset attempt.
-            $users->logResetAttempt(
-                $this->request->getPost('email'),
-                $this->request->getPost('token'),
-                $this->request->getIPAddress(),
-                (string)$this->request->getUserAgent()
-            );
 
             $rules = [
                 'token' => 'required',
@@ -363,38 +371,38 @@ class Admin extends BaseController
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
 
-            $user = $users->where('email', $this->request->getPost('email'))
-                ->where('reset_hash', $this->request->getPost('token'))
-                ->first();
+            $user = $users->findByCredentials(['email' => $emailAddress]);
 
-            if (null === $user) {
+            if ($user === null) {
+                return redirect()->back()->with('error', lang('Auth.forgotNoUser'));
+            }
+
+            /** @var UserIdentityModel $identityModel */
+            $identityModel = model(UserIdentityModel::class);
+            $identity = $identityModel->getIdentityBySecret(Authenticators\Session::ID_TYPE_MAGIC_LINK, $token);
+
+            if ($identity === null || (int) $identity->user_id !== (int) $user->id) {
                 return redirect()->back()->with('error', lang('Auth.forgotNoUser'));
             }
 
             // Reset token still valid?
-            if (!empty($user->reset_expires) && time() > $user->reset_expires->getTimestamp()) {
+            if (!empty($identity->expires) && Time::now()->isAfter($identity->expires)) {
                 return redirect()->back()->withInput()->with('error', lang('Auth.resetTokenExpired'));
             }
 
-            // Success! Save the new password, and cleanup the reset hash.
+            // Success! Save the new password, and cleanup the reset identity.
             $user->password = $this->request->getPost('password');
-            $user->reset_hash = null;
-            $user->reset_at = date('Y-m-d H:i:s');
-            $user->reset_expires = null;
-            $user->force_pass_reset = false;
             $users->save($user);
 
-            return redirect()->route('dt_admin/login')->with('message', lang('Auth.resetSuccess'));
+            $identityModel->delete($identity->id);
+
+            return redirect()->to(base_url('dt_admin/login'))->with('message', lang('Auth.resetSuccess'));
         }
 
         // If it's a GET request, we'll display the reset password form
-        if (!setting('Auth.allowMagicLinkLogins')) {
-            return redirect()->route('dt_admin/login')->with('error', lang('Auth.forgotDisabled'));
-        }
-
-        $token = $this->request->getGet('token');
-        $data['title'] = lang('Auth.login');
-        $data['token'] = $token;
+        $data['title'] = lang('Auth.resetPassword');
+        $data['token'] = (string) $this->request->getGet('token');
+        $data['email'] = (string) $this->request->getGet('email');
         return MainView($this->config->adminViews['reset_password'], $data);
     }
 
