@@ -13,6 +13,7 @@ class AdminFilter implements FilterInterface
     {
         $auth = service('auth');
         $session = service('session');
+        $path = $request->getUri()->getPath();
 
         // Check if the user is logged in
         if (!$auth->loggedIn()) {
@@ -32,7 +33,11 @@ class AdminFilter implements FilterInterface
 
         // Check if the user has admin rights
         // Using permission check instead of group check for better flexibility
-        if (!$auth->user()->can('admin.access')) {
+        $currentUser = $auth->user();
+        $hasAdminAccess = $currentUser?->can('admin.access') ?? false;
+        if (!$hasAdminAccess) {
+            $auth->logout();
+            $session->remove(['user_id', 'user_name', 'redirect_url']);
             // For AJAX requests, return JSON error
             if ($request->isAJAX() || $request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest') {
                 return service('response')

@@ -86,7 +86,9 @@ class Admin extends BaseController
             }
 
             // Check if user has admin access permission
-            if (!auth()->user()->can('admin.access')) {
+            $currentUser = auth()->user();
+            $hasAdminAccess = $currentUser?->can('admin.access') ?? false;
+            if (!$hasAdminAccess) {
                 auth()->logout();
                 return redirect()->back()->with('error', lang('Auth.notEnoughPrivilege'));
             }
@@ -102,6 +104,16 @@ class Admin extends BaseController
 
         // If it's a GET request, we'll display the login form or redirect if already logged in
         if (auth()->loggedIn()) {
+            $currentUser = auth()->user();
+            $hasAdminAccess = $currentUser?->can('admin.access') ?? false;
+
+            if (!$hasAdminAccess) {
+                auth()->logout();
+                session()->remove(['user_id', 'user_name', 'redirect_url']);
+                return redirect()->to(site_url('/dt_admin/login'))
+                    ->with('error', lang('Auth.notEnoughPrivilege'));
+            }
+
             $redirectURL =  site_url('/dt_admin/dashboard');
             return redirect()->to($redirectURL);
         }

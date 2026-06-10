@@ -11,66 +11,31 @@
 
 
             <div class="form-group row">
-                <label for="user" class="col-sm-3 col-form-label"><?= lang("Users.username") ?></label>
+                <label for="username" class="col-sm-3 col-form-label"><?= lang("Users.username") ?></label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="username" name="username" value="<?= $user->username ?>" readonly>
+                    <input type="text" class="form-control" id="username" name="username" value="<?= esc($user->username ?? '') ?>" <?= !empty($user->id) ? 'readonly' : '' ?> required>
                     <small class="invalid-feedback"></small>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="user" class="col-sm-3 col-form-label"><?= lang("Users.full_name") ?></label>
+                <label for="full_name" class="col-sm-3 col-form-label"><?= lang("Users.full_name") ?></label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="full_name" name="full_name" value="<?= $user->full_name ?>">
+                    <input type="text" class="form-control" id="full_name" name="full_name" value="<?= esc($user->full_name ?? '') ?>" required>
                     <small class="invalid-feedback"></small>
                 </div>
             </div>
-
-            <!-- Gender Radio Buttons -->
-   <!--         <div class="form-group row">
-                <label class="col-sm-3 col-form-label"><?/*= lang("users.gender") */?></label>
-                <div class="col-sm-9">
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <?/*= form_radio('gender', 'male', $user->gender == 'male', ['class' => 'custom-control-input', 'id' => 'male']) */?>
-                        <label class="custom-control-label" for="male">Male</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <?/*= form_radio('gender', 'female', $user->gender == 'female', ['class' => 'custom-control-input', 'id' => 'female']) */?>
-                        <label class="custom-control-label" for="female">Female</label>
-                    </div>
-                    <small class="invalid-feedback"></small>
-                </div>
-            </div>-->
-
-
-   <!--         <div class="form-group row">
-                <label for="phone" class="col-sm-3 col-form-label"><?/*= lang("Users.mobile") */?></label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="mobile" name="mobile" value="<?/*= $user->mobile */?>">
-                    <small class="invalid-feedback"></small>
-                </div>
-            </div>-->
-
-            <div class="form-group row ">
-                <label for="address" class="col-sm-3 col-form-label"><?= lang('Users.address') ?></label>
-                <div class="col-sm-9">
-                    <div class="i18n-input">
-                <textarea name="address"  class="form-control ckeditor " id="address" data-i18n="ar,en"
-                          data-ar="عنوان عربي"
-                          data-en="ENGLISH ADDRESS" ></textarea>
-                        <small class="invalid-feedback"></small>
-                    </div>
-                </div>
-            </div>
-
-
             <div class="form-group row">
-                <label for="address2" class="col-sm-3 col-form-label"><?= lang('Users.address') ?></label>
+                <label for="email" class="col-sm-3 col-form-label"><?= lang("Users.email") ?></label>
                 <div class="col-sm-9">
-                    <div class="i18n-input">
-                        <textarea name="address2" class="form-control" id="address2" data-i18n="ar,en" data-ar="عنوان عربي" data-en="ENGLISH ADDRESS">
-                        </textarea>
-                        <small class="invalid-feedback"></small>
-                    </div>
+                    <input type="email" class="form-control" id="email" name="email" value="<?= esc(!empty($user->id) ? $user->email : '') ?>" required>
+                    <small class="invalid-feedback"></small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="mobile" class="col-sm-3 col-form-label"><?= lang("Users.mobile") ?></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="mobile" name="mobile" value="<?= esc(!empty($user->id) ? $user->mobile : '') ?>" required>
+                    <small class="invalid-feedback"></small>
                 </div>
             </div>
 

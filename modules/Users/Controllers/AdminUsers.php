@@ -18,37 +18,28 @@ class AdminUsers extends BaseController
         $this->users = new UsersModel();
         $this->rules = [
             "full_name" => ['label' => lang("Users.full_name"), 'rules' => "required"],
-            "password" => ['label' => lang("Users.password"), 'rules' => "required"],
         ];
     }
-/**/
+
     public function index()
     {
-        // i want to detect controller path automatically
-        // set edit and view
         $data['title'] = lang('Users.users_List');
 
         if ($this->request->isAJAX()) {
-        /*    $this->db = \Config\Database::connect();
-            $builder = $this->db->table('users')
-                ->select('users.id,category_name, avatar, status, active,  full_name, mobile, address, users.created_at, users.updated_at')
-                ->join('tb_category', 'tb_category.id = users.category_id', 'inner')
-                ->where(['users.id !=' => 1]);
-
-            DtTable::setColumns($builder);*/
             $usersModel = $this->users
-                ->select('users.id, status, active,  full_name,  mobile, address, users.created_at, users.updated_at')
-               // ->join('tb_category', 'tb_category.id = users.category_id', 'inner')
-               // ->where(['users.id !=' => 1])
+                ->select('users.id, users.full_name, ident_email.secret as email, ident_mobile.secret as mobile, users.status, users.active, users.created_at')
+                ->join('auth_identities as ident_email', 'ident_email.user_id = users.id AND ident_email.type = "email_password"', 'left')
+                ->join('auth_identities as ident_mobile', 'ident_mobile.user_id = users.id AND ident_mobile.type = "mobile_password"', 'left')
                 ->builder();
 
-
-           // DtTable::searchableColumns(['category_name']);
-            DtTable::orderableColumns(['full_name', 'mobile', 'address']);
+            DtTable::hideColumns(['id']);
+            DtTable::searchableColumns(['full_name', 'email', 'mobile']);
+            DtTable::orderableColumns(['full_name', 'email', 'mobile', 'status', 'active', 'created_at']);
+            DtTable::setShowColumns('full_name,email,mobile,status,active,created_at');
             DtTable::setColumnSwitch('active');
             DtTable::setColumnSwitch('status');
-            DtTable::hideActions(['delete'], ['id' =>1]);
-            //  DtTable::stateSave('false',120);
+            DtTable::hideActions(['delete'], ['id' => 1]);
+            
             $output = DtTable::tableRender($usersModel, false);
 
             return $this->response->setJSON($output);
@@ -62,7 +53,10 @@ class AdminUsers extends BaseController
         $data['title'] = lang("Admin.add_data");
 
         if ($this->request->is('post')) {
-             $this->rules['mobile'] = "required|is_unique[users.mobile]";
+            $this->rules['password'] = ['label' => lang("Users.password"), 'rules' => "required"];
+            $this->rules['email'] = ['label' => 'البريد الإلكتروني', 'rules' => "required|valid_email|is_unique[auth_identities.secret]"];
+            $this->rules['mobile'] = ['label' => 'رقم الهاتف', 'rules' => "required|is_unique[auth_identities.secret]"];
+            $this->rules['username'] = ['label' => lang("Users.username"), 'rules' => "required|alpha_numeric_punct|min_length[3]|max_length[30]|is_unique[users.username]"];
 
             if ($this->validate($this->rules)) {
                 $id = $this->data_arr();
@@ -73,36 +67,46 @@ class AdminUsers extends BaseController
             }
         }
 
+        $data['user'] = new \CodeIgniter\Shield\Entities\User();
         return view('form', $data);
     }
 
-
-    //$validationErrors = $this->validation->getErrors();
-    // return redirect()->back()->withInput()->with('errors', $validationErrors);
     public function edit($id)
     {
-
         $data['title'] = lang("Admin.add_data");
 
         if ($this->request->is('post')) {
-
-             $this->rules['mobile'] = "required|is_unique[users.mobile,id,{$id}]";
+            $this->rules['email'] = ['label' => 'البريد الإلكتروني', 'rules' => "required|valid_email"];
+            $this->rules['mobile'] = ['label' => 'رقم الهاتف', 'rules' => "required"];
 
             if ($this->validate($this->rules)) {
                 $id = $this->data_arr($id);
-
-                // Print the updated query
-                /*  $query = $this->users->getLastQuery()->getQuery();
-                echo "Updated Query: " . $query;*/
                 $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
-
                 return redirect()->to(ADMIN_URL . "users");
             } else {
                 $this->show_msg('danger', lang("Admin.validation_errors"), validation_errors());
             }
         }
 
-        $data['user'] = $this->users->find($id); // Fetch the user data by ID
+        $user = $this->users->find($id);
+        if (!$user) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $db = \Config\Database::connect();
+        $emailIdentity = $db->table('auth_identities')
+            ->where('user_id', $id)
+            ->where('type', 'email_password')
+            ->get()->getRow();
+        $mobileIdentity = $db->table('auth_identities')
+            ->where('user_id', $id)
+            ->where('type', 'mobile_password')
+            ->get()->getRow();
+
+        $user->email = $emailIdentity ? $emailIdentity->secret : '';
+        $user->mobile = $mobileIdentity ? $mobileIdentity->secret : '';
+
+        $data['user'] = $user;
 
         return view('form', $data);
     }
@@ -111,11 +115,19 @@ class AdminUsers extends BaseController
         // add new page data
         $data = [
             'full_name' => $this->request->getPost('full_name'),
-            'password' => password_hash('2231989', PASSWORD_DEFAULT), // 2231989
-            'mobile' => $this->request->getPost('mobile'),
             'active' => $this->request->getPost('active') ? 1 : 0,
             'status' => $this->request->getPost('status') ? 1 : 0,
         ];
+
+        $username = $this->request->getPost('username');
+        if (!empty($username)) {
+            $data['username'] = $username;
+        }
+
+        $password = $this->request->getPost('password');
+        if (!empty($password)) {
+            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
 
         // Save the data using the save method
         if ($id) {
@@ -124,8 +136,94 @@ class AdminUsers extends BaseController
         } else {
             // Insert a new record
             $this->users->insert($data);
+            $id = $this->users->getInsertID();
         }
-        return $id ?? $this->users->getInsertID();
+
+        // Save email and mobile in auth_identities
+        $email = $this->request->getPost('email');
+        $mobile = $this->request->getPost('mobile');
+
+        $db = \Config\Database::connect();
+        
+        if (!empty($email)) {
+            $existingEmail = $db->table('auth_identities')
+                ->where('user_id', $id)
+                ->where('type', 'email_password')
+                ->get()->getRow();
+                
+            if ($existingEmail) {
+                $db->table('auth_identities')
+                    ->where('id', $existingEmail->id)
+                    ->update(['secret' => $email]);
+            } else {
+                $db->table('auth_identities')->insert([
+                    'user_id' => $id,
+                    'type' => 'email_password',
+                    'secret' => $email,
+                    'secret2' => password_hash('123456', PASSWORD_DEFAULT),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]);
+            }
+        }
+
+        if (!empty($mobile)) {
+            $existingMobile = $db->table('auth_identities')
+                ->where('user_id', $id)
+                ->where('type', 'mobile_password')
+                ->get()->getRow();
+                
+            if ($existingMobile) {
+                $db->table('auth_identities')
+                    ->where('id', $existingMobile->id)
+                    ->update(['secret' => $mobile]);
+            } else {
+                $db->table('auth_identities')->insert([
+                    'user_id' => $id,
+                    'type' => 'mobile_password',
+                    'secret' => $mobile,
+                    'secret2' => password_hash('123456', PASSWORD_DEFAULT),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]);
+            }
+        }
+
+        return $id;
+    }
+
+    public function show($id): \CodeIgniter\HTTP\ResponseInterface
+    {
+        $user = $this->users->find($id);
+        if (!$user) {
+            return $this->response->setJSON(['data' => []]);
+        }
+
+        $db = \Config\Database::connect();
+        $emailIdentity = $db->table('auth_identities')
+            ->where('user_id', $id)
+            ->where('type', 'email_password')
+            ->get()->getRow();
+        $mobileIdentity = $db->table('auth_identities')
+            ->where('user_id', $id)
+            ->where('type', 'mobile_password')
+            ->get()->getRow();
+
+        $email = $emailIdentity ? $emailIdentity->secret : '';
+        $mobile = $mobileIdentity ? $mobileIdentity->secret : '';
+
+        // Prepare the translated keys for the show modal
+        $module = 'Users';
+        $new_array = [
+            lang("{$module}.full_name") => $user->full_name,
+            lang("{$module}.email") => $email,
+            lang("{$module}.mobile") => $mobile,
+            lang("{$module}.status") => $user->status,
+            lang("{$module}.active") => $user->active,
+            lang("{$module}.created_at") => $user->created_at,
+        ];
+
+        return $this->response->setJSON(['data' => $new_array]);
     }
 
     public function send()

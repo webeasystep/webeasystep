@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'coupons' => 'الكوبونات',
+    'add_coupon' => 'إضافة كوبون',
+    'edit_coupon' => 'تعديل الكوبون',
+    'coupon_code' => 'كود الكوبون',
+    'discount_type' => 'نوع الخصم',
+    'discount_type_percentage' => 'نسبة مئوية من الفاتورة',
+    'discount_type_fixed' => 'مبلغ محدد من الفاتورة',
+    'discount_percentage' => 'نسبة الخصم (%)',
+    'discount_value' => 'قيمة الخصم (مبلغ ثابت)',
+    'end_date' => 'تاريخ نهاية الصلاحية',
+    'usage_limit' => 'عدد مرات الاستخدام',
+    'usage_limit_per_account' => 'الحد الأقصى للاستخدام لكل حساب (0 = بدون حد)',
+    'usage_limit_per_account_exceeds_total' => 'الحد الأقصى للاستخدام لكل حساب لا يمكن أن يتجاوز إجمالي عدد مرات الاستخدام',
+    'coupon_usage_limit_per_account_exceeded' => 'لقد وصلت إلى الحد الأقصى لاستخدام هذا الكوبون',
+    'used_count' => 'عدد مرات الاستخدام الحالية',
+    'active' => 'التفعيل',
+    'created_at' => 'تاريخ الإنشاء',
+    'updated_at' => 'تاريخ التحديث',
+    'coupon_not_found' => 'الكوبون غير موجود',
+    'invalid_coupon' => 'الكوبون غير صالح',
+    'coupon_applied' => 'تم تطبيق الكوبون بنجاح',
+    'coupon_removed' => 'تم حذف الكوبون من السلة',
+    'coupon_discount_amount' => 'خصم الكوبون',
+    'end_date_before_today' => 'تاريخ نهاية الصلاحية لا يمكن أن يكون قبل يوم العمل الحالي',
+];
