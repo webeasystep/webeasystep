@@ -55,6 +55,8 @@ $routes->get('activation-sent', function() {
     return MainView('site_layout/activation_sent');
 });
 
+$routes->match(['GET', 'POST'], 'send-special-invite', [Site::class, 'sendSpecialInvite']);
+
 // Custom routes for Shield actions MUST be defined before shield routes and with higher priority
 // Custom routes for Shield actions removed to use standard Shield routes
 // $routes->get('auth/a/show', [\App\Controllers\ActivationController::class, 'show'], ['priority' => 1]);
