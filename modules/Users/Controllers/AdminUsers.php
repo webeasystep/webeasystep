@@ -37,7 +37,7 @@ class AdminUsers extends BaseController
 
             DtTable::setColumns($builder);*/
             $usersModel = $this->users
-                ->select('users.id, avatar, status, active,  full_name,  mobile, address, users.created_at, users.updated_at')
+                ->select('users.id, status, active,  full_name,  mobile, address, users.created_at, users.updated_at')
                // ->join('tb_category', 'tb_category.id = users.category_id', 'inner')
                // ->where(['users.id !=' => 1])
                 ->builder();
@@ -47,7 +47,6 @@ class AdminUsers extends BaseController
             DtTable::orderableColumns(['full_name', 'mobile', 'address']);
             DtTable::setColumnSwitch('active');
             DtTable::setColumnSwitch('status');
-            DtTable::setColumnImage('avatar');
             DtTable::hideActions(['delete'], ['id' =>1]);
             //  DtTable::stateSave('false',120);
             $output = DtTable::tableRender($usersModel, false);
@@ -67,7 +66,6 @@ class AdminUsers extends BaseController
 
             if ($this->validate($this->rules)) {
                 $id = $this->data_arr();
-                $this->fireUploader->upload_photos($this->users, 'avatar', $id);
                 $this->show_msg('success', lang("Admin.add"), lang("Admin.add_success"));
                 return redirect()->to(ADMIN_URL . "users");
             } else {
@@ -88,19 +86,14 @@ class AdminUsers extends BaseController
 
         if ($this->request->is('post')) {
 
-            // if the profile photo is updated
              $this->rules['mobile'] = "required|is_unique[users.mobile,id,{$id}]";
-            if ($this->request->getFile('avatar')) {
-                $this->rules['avatar'] = 'max_size[avatar,1024]|is_image[avatar]';
-            }
 
             if ($this->validate($this->rules)) {
-                $this->data_arr($id);
+                $id = $this->data_arr($id);
 
                 // Print the updated query
                 /*  $query = $this->users->getLastQuery()->getQuery();
                 echo "Updated Query: " . $query;*/
-                $this->fireUploader->upload_photos($this->users, 'avatar', $id);
                 $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
 
                 return redirect()->to(ADMIN_URL . "users");
@@ -111,7 +104,6 @@ class AdminUsers extends BaseController
 
         $data['user'] = $this->users->find($id); // Fetch the user data by ID
 
-        $data['files'] = json_decode($data['user']->avatar, true);
         return view('form', $data);
     }
 

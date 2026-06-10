@@ -9,14 +9,7 @@
             <?= $this->include('admin_layout/admin_msg'); ?>
             <?= form_open_multipart(); ?>
 
-            <div class="form-group row">
-                <label for="user" class="col-sm-3 col-form-label"><?= lang("Users.avatar") ?></label>
-                <div class="col-sm-9">
-                    <div class="fireupload" id="dropzone1"></div>
-                    <!--  <input id="avatar" name="avatar" type="file"  data-preview-file-type="any" data-upload-url="#">
-                    -->   <small class="invalid-feedback"></small>
-                </div>
-            </div>
+
             <div class="form-group row">
                 <label for="user" class="col-sm-3 col-form-label"><?= lang("Users.username") ?></label>
                 <div class="col-sm-9">
@@ -142,15 +135,4 @@
  <!-- .javascript section -->
 <?= $this->section('js'); ?>
 <?= $this->include('admin_layout/curd_js'); ?>
-    <script>
-        $(document).ready(function () {
-            var uploader1 = new FireUploader({
-                dropzoneId: 'dropzone1',
-                inputName: "images[]",
-                multipleFiles: true,
-                allowedExtensions: ["jpg", "png", "gif"],
-                files: <?= json_encode($files ?? '[]') ?>
-            });
-        });
-    </script>
 <?php $this->endSection(); ?>
