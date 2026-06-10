@@ -1,13 +1,15 @@
 <?php
 
 return [
-    'coupons' => 'الكوبونات',
-    'add_coupon' => 'إضافة كوبون',
-    'edit_coupon' => 'تعديل الكوبون',
+    'coupons' => 'كوبونات الخصم',
+    'add_coupon' => 'إضافة كوبون خصم',
+    'edit_coupon' => 'تعديل كوبون الخصم',
+    'course' => 'الكورس المرتبط',
+    'all_courses' => 'جميع الكورسات',
     'coupon_code' => 'كود الكوبون',
     'discount_type' => 'نوع الخصم',
-    'discount_type_percentage' => 'نسبة مئوية من الفاتورة',
-    'discount_type_fixed' => 'مبلغ محدد من الفاتورة',
+    'discount_type_percentage' => 'نسبة مئوية من سعر الكورس',
+    'discount_type_fixed' => 'مبلغ ثابت من سعر الكورس',
     'discount_percentage' => 'نسبة الخصم (%)',
     'discount_value' => 'قيمة الخصم (مبلغ ثابت)',
     'end_date' => 'تاريخ نهاية الصلاحية',
@@ -22,7 +24,9 @@ return [
     'coupon_not_found' => 'الكوبون غير موجود',
     'invalid_coupon' => 'الكوبون غير صالح',
     'coupon_applied' => 'تم تطبيق الكوبون بنجاح',
-    'coupon_removed' => 'تم حذف الكوبون من السلة',
+    'coupon_removed' => 'تم حذف الكوبون من الطلب',
     'coupon_discount_amount' => 'خصم الكوبون',
     'end_date_before_today' => 'تاريخ نهاية الصلاحية لا يمكن أن يكون قبل يوم العمل الحالي',
+    'course_help' => 'اتركه فارغًا ليعمل الكوبون على جميع الكورسات، أو اختر كورسًا محددًا.',
+    'customer_limit_help' => '0 يعني أن المستخدم يمكنه استخدام الكوبون دون حد لكل حساب.',
 ];

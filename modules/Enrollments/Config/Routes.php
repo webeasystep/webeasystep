@@ -56,4 +56,5 @@ $routes->group('', [
     $routes->get('enrollments/purchase-course/(:num)', [Enrollments::class, 'purchaseCourse/$1']);
     $routes->get('enrollments/purchase-course', [Enrollments::class, 'purchaseCourse']);
     $routes->match(['GET', 'POST'], 'enrollments/course-checkout', [Enrollments::class, 'courseCheckout']);
+    $routes->post('enrollments/validate-coupon', [Enrollments::class, 'validateCoupon']);
 });

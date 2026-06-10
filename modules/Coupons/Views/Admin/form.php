@@ -9,6 +9,21 @@
             <?= form_open(); ?>
 
             <div class="form-group row">
+                <label for="course_id" class="col-sm-3 col-form-label"><?= lang('Coupons.course') ?></label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="course_id" name="course_id">
+                        <option value=""><?= lang('Coupons.all_courses') ?></option>
+                        <?php foreach (($courses ?? []) as $courseOption): ?>
+                            <option value="<?= esc($courseOption->id) ?>" <?= set_value('course_id', $coupon->course_id ?? '') == $courseOption->id ? 'selected' : '' ?>>
+                                <?= esc($courseOption->course_title) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <small class="text-muted"><?= lang('Coupons.course_help') ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label for="coupon_code" class="col-sm-3 col-form-label"><?= lang('Coupons.coupon_code') ?></label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="coupon_code" name="coupon_code" value="<?= set_value('coupon_code', $coupon->coupon_code ?? '') ?>" pattern="[A-Za-z0-9]+" maxlength="50" required>
@@ -69,7 +84,7 @@
                 <label for="usage_limit_per_account" class="col-sm-3 col-form-label"><?= lang('Coupons.usage_limit_per_account') ?></label>
                 <div class="col-sm-9">
                     <input type="number" class="form-control" id="usage_limit_per_account" name="usage_limit_per_account" value="<?= set_value('usage_limit_per_account', $coupon->usage_limit_per_account ?? '1') ?>" min="0" step="1" placeholder="0">
-                    <small class="text-muted"><?= lang('Coupons.usage_limit_per_account') ?></small>
+                    <small class="text-muted"><?= lang('Coupons.customer_limit_help') ?></small>
                     <small id="per_account_error" class="text-danger d-none"></small>
                 </div>
             </div>

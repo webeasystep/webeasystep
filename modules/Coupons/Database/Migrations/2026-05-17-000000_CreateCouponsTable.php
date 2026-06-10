@@ -8,6 +8,10 @@ class CreateCouponsTable extends Migration
 {
     public function up()
     {
+        if ($this->db->tableExists('tb_coupons')) {
+            return;
+        }
+
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
@@ -15,14 +19,30 @@ class CreateCouponsTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
+            'course_id' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'unsigned' => true,
+                'null' => true,
+            ],
             'coupon_code' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
                 'null' => false,
             ],
+            'discount_type' => [
+                'type' => 'ENUM',
+                'constraint' => ['percentage', 'fixed'],
+                'default' => 'percentage',
+            ],
             'discount_percentage' => [
                 'type' => 'DECIMAL',
                 'constraint' => '5,2',
+                'default' => 0,
+            ],
+            'discount_value' => [
+                'type' => 'DECIMAL',
+                'constraint' => '10,2',
                 'default' => 0,
             ],
             'end_date' => [
@@ -66,53 +86,63 @@ class CreateCouponsTable extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->addUniqueKey('coupon_code');
+        $this->forge->addKey('course_id');
         $this->forge->addKey('active');
         $this->forge->addKey('end_date');
-        $this->forge->createTable('fd_coupons');
+        $this->forge->createTable('tb_coupons');
 
-        $this->forge->addColumn('fd_cart', [
-            'coupon_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
-                'null' => true,
-                'after' => 'quantity',
-            ],
-            'coupon_code' => [
-                'type' => 'VARCHAR',
-                'constraint' => 50,
-                'null' => true,
-                'after' => 'coupon_id',
-            ],
-        ]);
+        if ($this->db->tableExists('tb_course_enrollments')) {
+            $fields = $this->db->getFieldData('tb_course_enrollments');
+            $existingColumns = array_map(static fn($field) => $field->name, $fields);
 
-        $this->forge->addColumn('fd_orders', [
-            'coupon_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
-                'null' => true,
-                'after' => 'discount_amount',
-            ],
-            'coupon_code' => [
-                'type' => 'VARCHAR',
-                'constraint' => 50,
-                'null' => true,
-                'after' => 'coupon_id',
-            ],
-            'coupon_discount_amount' => [
-                'type' => 'DECIMAL',
-                'constraint' => '12,2',
-                'default' => 0,
-                'after' => 'coupon_code',
-            ],
-        ]);
+            $columnsToAdd = [];
+
+            if (!in_array('coupon_id', $existingColumns, true)) {
+                $columnsToAdd['coupon_id'] = [
+                    'type' => 'INT',
+                    'constraint' => 11,
+                    'unsigned' => true,
+                    'null' => true,
+                    'after' => 'paid_amount',
+                ];
+            }
+
+            if (!in_array('coupon_code', $existingColumns, true)) {
+                $columnsToAdd['coupon_code'] = [
+                    'type' => 'VARCHAR',
+                    'constraint' => 50,
+                    'null' => true,
+                    'after' => 'coupon_id',
+                ];
+            }
+
+            if (!in_array('coupon_discount_amount', $existingColumns, true)) {
+                $columnsToAdd['coupon_discount_amount'] = [
+                    'type' => 'DECIMAL',
+                    'constraint' => '10,2',
+                    'default' => 0,
+                    'after' => 'coupon_code',
+                ];
+            }
+
+            if (!empty($columnsToAdd)) {
+                $this->forge->addColumn('tb_course_enrollments', $columnsToAdd);
+            }
+        }
     }
 
     public function down()
     {
-        $this->forge->dropColumn('fd_orders', ['coupon_id', 'coupon_code', 'coupon_discount_amount']);
-        $this->forge->dropColumn('fd_cart', ['coupon_id', 'coupon_code']);
-        $this->forge->dropTable('fd_coupons');
+        if ($this->db->tableExists('tb_course_enrollments')) {
+            $fields = $this->db->getFieldData('tb_course_enrollments');
+            $existingColumns = array_map(static fn($field) => $field->name, $fields);
+            $columnsToDrop = array_values(array_intersect(['coupon_id', 'coupon_code', 'coupon_discount_amount'], $existingColumns));
+
+            if (!empty($columnsToDrop)) {
+                $this->forge->dropColumn('tb_course_enrollments', $columnsToDrop);
+            }
+        }
+
+        $this->forge->dropTable('tb_coupons', true);
     }
 }

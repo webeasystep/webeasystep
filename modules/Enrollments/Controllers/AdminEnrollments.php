@@ -4,6 +4,7 @@ namespace Modules\Enrollments\Controllers;
 
 use App\Controllers\BaseController;
 use App\Libraries\DtTable;
+use Modules\Coupons\Models\CouponsModel;
 use Modules\Enrollments\Models\CourseEnrollmentsModel;
 use Modules\Courses\Models\CoursesModel;
 use Modules\Users\Models\UsersModel;
@@ -11,6 +12,7 @@ use Modules\Users\Models\UsersModel;
 class AdminEnrollments extends BaseController
 {
     protected CourseEnrollmentsModel $courseEnrollments;
+    protected CouponsModel $couponsModel;
     protected CoursesModel $coursesModel;
     protected UsersModel $usersModel;
     protected string $table = 'tb_course_enrollments';
@@ -18,6 +20,7 @@ class AdminEnrollments extends BaseController
     public function __construct()
     {
         $this->courseEnrollments = new CourseEnrollmentsModel();
+        $this->couponsModel = new CouponsModel();
         $this->coursesModel = new CoursesModel();
         $this->usersModel = new UsersModel();
     }
@@ -147,6 +150,7 @@ class AdminEnrollments extends BaseController
         if ($id) {
             $builder->where('id', $id)->update($data);
             if ($isNewlyApproved) {
+                $this->incrementCouponUsageIfNeeded($id);
                 $this->sendApprovalEmail($id);
             }
         } else {
@@ -154,6 +158,7 @@ class AdminEnrollments extends BaseController
             $builder->insert($data);
             $id = $this->db->insertID();
             if ($isNewlyApproved) {
+                $this->incrementCouponUsageIfNeeded($id);
                 $this->sendApprovalEmail($id);
             }
         }
@@ -194,8 +199,13 @@ class AdminEnrollments extends BaseController
         $adminId = auth()->user()->id;
         $notes = $this->request->getPost('admin_notes');
         $expiresAt = $this->request->getPost('expires_at');
+        $enrollmentBefore = $this->courseEnrollments->find($id);
+        $isNewlyApproved = $enrollmentBefore && $enrollmentBefore->status !== 'approved';
 
         if ($this->courseEnrollments->approveEnrollment($id, $adminId, $expiresAt)) {
+            if ($isNewlyApproved) {
+                $this->incrementCouponUsageIfNeeded($id);
+            }
             $this->sendApprovalEmail($id);
             return redirect()->back()->with('success', 'تم الموافقة على الطلب وتفعيل الدورة بنجاح');
         } else {
@@ -241,6 +251,20 @@ class AdminEnrollments extends BaseController
         }
 
         return $success;
+    }
+
+    /**
+     * Increment coupon usage only after the enrollment becomes approved.
+     */
+    private function incrementCouponUsageIfNeeded(int $enrollmentId): void
+    {
+        $enrollment = $this->courseEnrollments->find($enrollmentId);
+
+        if (!$enrollment || empty($enrollment->coupon_id)) {
+            return;
+        }
+
+        $this->couponsModel->incrementUsage((int) $enrollment->coupon_id);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Modules\Enrollments\Controllers;
 
 use App\Controllers\BaseController;
+use Modules\Coupons\Models\CouponsModel;
 use Modules\Courses\Models\CoursesModel;
 use Modules\Enrollments\Models\CourseEnrollmentsModel;
 use Modules\Users\Models\UsersModel;
@@ -10,12 +11,14 @@ use Modules\Users\Models\UsersModel;
 class Enrollments extends BaseController
 {
     protected CourseEnrollmentsModel $courseEnrollmentsModel;
+    protected CouponsModel $couponsModel;
     protected CoursesModel $coursesModel;
     protected UsersModel $usersModel;
 
     public function __construct()
     {
         $this->courseEnrollmentsModel = new CourseEnrollmentsModel();
+        $this->couponsModel = new CouponsModel();
         $this->coursesModel = new CoursesModel();
         $this->usersModel = new UsersModel();
     }
@@ -140,23 +143,116 @@ class Enrollments extends BaseController
     }
 
     /**
+     * Validate a coupon against the selected course and current user.
+     */
+    public function validateCoupon()
+    {
+        if (!auth()->loggedIn()) {
+            return $this->response->setStatusCode(401)->setJSON([
+                'success' => false,
+                'message' => 'يرجى تسجيل الدخول أولاً.',
+                'csrf_hash' => csrf_hash(),
+            ]);
+        }
+
+        $userId = auth()->user()->id;
+        $courseId = (int) ($this->request->getPost('course_id') ?? session()->get('selected_course'));
+        $couponCode = trim((string) $this->request->getPost('coupon_code'));
+
+        if (!$courseId || $couponCode === '') {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'يرجى إدخال كود كوبون صالح.',
+                'csrf_hash' => csrf_hash(),
+            ]);
+        }
+
+        $course = $this->coursesModel->find($courseId);
+        if (!$course) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'الكورس غير موجود.',
+                'csrf_hash' => csrf_hash(),
+            ]);
+        }
+
+        $coupon = $this->couponsModel->getValidCouponByCode($couponCode, $courseId);
+        if (!$coupon) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => lang('Coupons.invalid_coupon'),
+                'csrf_hash' => csrf_hash(),
+            ]);
+        }
+
+        if (!$this->couponsModel->isAvailableForUser($coupon, (int) $userId)) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => lang('Coupons.coupon_usage_limit_per_account_exceeded'),
+                'csrf_hash' => csrf_hash(),
+            ]);
+        }
+
+        $originalAmount = (float) ($course->course_price ?? 0);
+        $discountAmount = $this->couponsModel->calculateDiscountAmount($originalAmount, $coupon);
+        $finalAmount = max(0, $originalAmount - $discountAmount);
+
+        return $this->response->setJSON([
+            'success' => true,
+            'message' => lang('Coupons.coupon_applied'),
+            'coupon_code' => $coupon->coupon_code,
+            'original_amount' => number_format($originalAmount, 2, '.', ''),
+            'discount_amount' => number_format($discountAmount, 2, '.', ''),
+            'final_amount' => number_format($finalAmount, 2, '.', ''),
+            'is_fully_discounted' => $finalAmount <= 0,
+            'csrf_hash' => csrf_hash(),
+        ]);
+    }
+
+    /**
      * Process course enrollment
      */
     private function processCourseCheckout($userId, $course)
     {
         $paymentMethod = $this->request->getPost('payment_method') ?? 'free';
+        $couponCode = trim((string) ($this->request->getPost('coupon_code') ?? ''));
         // A course is only free if the admin explicitly marked it as free with the is_free flag.
         $isFree = ($course->is_free == 1);
 
+        $coupon = null;
+        $couponDiscountAmount = 0.0;
+        $finalAmount = (float) ($course->course_price ?? 0);
+
+        if ($couponCode !== '') {
+            $coupon = $this->couponsModel->getValidCouponByCode($couponCode, (int) $course->id);
+
+            if (!$coupon) {
+                return redirect()->back()->withInput()->with('error', lang('Coupons.invalid_coupon'));
+            }
+
+            if (!$this->couponsModel->isAvailableForUser($coupon, (int) $userId)) {
+                return redirect()->back()->withInput()->with('error', lang('Coupons.coupon_usage_limit_per_account_exceeded'));
+            }
+
+            $couponDiscountAmount = $this->couponsModel->calculateDiscountAmount((float) $course->course_price, $coupon);
+            $finalAmount = max(0, (float) $course->course_price - $couponDiscountAmount);
+        }
+
         // Auto-approve free courses
-        if ($isFree || $paymentMethod === 'free') {
+        if ($isFree || $paymentMethod === 'free' || $finalAmount <= 0) {
             $enrollmentId = $this->courseEnrollmentsModel->createEnrollment($userId, $course->id, [
                 'paid_amount' => 0,
+                'coupon_id' => $coupon->id ?? null,
+                'coupon_code' => $coupon->coupon_code ?? null,
+                'coupon_discount_amount' => $couponDiscountAmount,
                 'payment_method' => 'free',
                 'auto_approve' => true
             ]);
 
             if ($enrollmentId) {
+                if ($coupon) {
+                    $this->couponsModel->incrementUsage((int) $coupon->id);
+                }
                 $this->sendApprovalEmail($enrollmentId);
                 session()->remove('selected_course');
                 return redirect()->to('/courses/course_view/' . $course->slug)
@@ -179,7 +275,10 @@ class Enrollments extends BaseController
 
         // Handle paid course
         $enrollmentId = $this->courseEnrollmentsModel->createEnrollment($userId, $course->id, [
-            'paid_amount' => $course->course_price,
+            'paid_amount' => $finalAmount,
+            'coupon_id' => $coupon->id ?? null,
+            'coupon_code' => $coupon->coupon_code ?? null,
+            'coupon_discount_amount' => $couponDiscountAmount,
             'payment_method' => $paymentMethod,
             'payment_proof' => $paymentProofPath,
             'auto_approve' => false
@@ -213,11 +312,7 @@ class Enrollments extends BaseController
             return;
         }
 
-        $adminEmail = setting('App.contact_email');
-        if (empty($adminEmail)) {
-            $emailConfig = config('Email');
-            $adminEmail = $emailConfig->fromEmail ?: 'webeasystep@gmail.com';
-        }
+        $adminEmail = 'webeasystep@gmail.com';
 
         $email = \Config\Services::email();
         $email->setMailType('html');

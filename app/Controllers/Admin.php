@@ -53,6 +53,22 @@ class Admin extends BaseController
             $data[$table] = $result->count ?? 0;
         }
 
+        // Videos count
+        $queryVideos = $this->db->query("SELECT COUNT(*) as count FROM tb_unit_items WHERE item_type = 'video'");
+        $data['videos_count'] = $queryVideos->getRow()->count ?? 0;
+
+        // Payments stats
+        if ($this->db->tableExists('tb_payment_attachments')) {
+            $queryPending = $this->db->query("SELECT COUNT(*) as count FROM tb_payment_attachments WHERE status = 'pending'");
+            $data['pending_payments'] = $queryPending->getRow()->count ?? 0;
+
+            $queryRevenue = $this->db->query("SELECT SUM(total_price) as total_revenue FROM tb_payment_attachments WHERE status = 'approved'");
+            $data['total_revenue'] = $queryRevenue->getRow()->total_revenue ?? 0;
+        } else {
+            $data['pending_payments'] = 0;
+            $data['total_revenue'] = 0;
+        }
+
         return MainView('admin_layout/dashboard', $data);
     }
     //--------------------------------------------------------------------

@@ -665,6 +665,144 @@
         font-weight: 600;
         opacity: 0.9;
     }
+    .coupon-panel {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 18px;
+        margin-bottom: 18px;
+    }
+    body.dark-mode .coupon-panel {
+        background: #0f172a;
+        border-color: rgba(255,255,255,0.08);
+    }
+    .coupon-panel-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        font-weight: 700;
+        color: #1e293b;
+    }
+    body.dark-mode .coupon-panel-header { color: #f1f5f9; }
+    .coupon-panel-header i { color: #136ad5; }
+    .coupon-row {
+        display: flex;
+        gap: 10px;
+    }
+    .coupon-input {
+        flex: 1;
+        border-radius: 12px;
+        border: 1px solid #cbd5e1;
+        padding: 12px 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    .coupon-input:focus {
+        outline: none;
+        border-color: #136ad5;
+        box-shadow: 0 0 0 3px rgba(19,106,213,0.12);
+    }
+    .coupon-apply-btn {
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #136ad5 0%, #1e88e5 100%);
+        color: #fff;
+        padding: 12px 18px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+    .coupon-help {
+        margin-top: 8px;
+        font-size: 0.84rem;
+        color: #64748b;
+    }
+    body.dark-mode .coupon-help { color: #94a3b8; }
+    .coupon-feedback {
+        display: none;
+        margin-top: 12px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+    .coupon-feedback.visible { display: block; }
+    .coupon-feedback.success {
+        background: #ecfdf5;
+        border: 1px solid #86efac;
+        color: #166534;
+    }
+    .coupon-feedback.error {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+        color: #991b1b;
+    }
+    body.dark-mode .coupon-feedback.success {
+        background: rgba(34,197,94,0.08);
+        border-color: rgba(34,197,94,0.3);
+        color: #86efac;
+    }
+    body.dark-mode .coupon-feedback.error {
+        background: rgba(239,68,68,0.08);
+        border-color: rgba(239,68,68,0.3);
+        color: #fca5a5;
+    }
+    .price-breakdown {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 14px 18px;
+        margin-bottom: 18px;
+    }
+    body.dark-mode .price-breakdown {
+        background: #0f172a;
+        border-color: rgba(255,255,255,0.08);
+    }
+    .price-breakdown-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        color: #334155;
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+    }
+    .price-breakdown-row:last-child { margin-bottom: 0; }
+    body.dark-mode .price-breakdown-row { color: #cbd5e1; }
+    .price-breakdown-row.discount {
+        color: #15803d;
+        display: none;
+    }
+    .price-breakdown-row.discount.visible { display: flex; }
+    body.dark-mode .price-breakdown-row.discount { color: #4ade80; }
+    .price-breakdown-row.total {
+        padding-top: 10px;
+        border-top: 1px dashed #cbd5e1;
+        font-weight: 800;
+        color: #0f172a;
+        font-size: 1rem;
+    }
+    body.dark-mode .price-breakdown-row.total {
+        border-top-color: rgba(255,255,255,0.12);
+        color: #f8fafc;
+    }
+    .fully-discounted-note {
+        display: none;
+        margin-bottom: 18px;
+        background: linear-gradient(135deg, #ecfdf5, #dcfce7);
+        border: 1px solid #86efac;
+        color: #166534;
+        border-radius: 14px;
+        padding: 16px 18px;
+        font-weight: 700;
+        line-height: 1.7;
+    }
+    .fully-discounted-note.visible { display: block; }
+    body.dark-mode .fully-discounted-note {
+        background: rgba(34,197,94,0.08);
+        border-color: rgba(34,197,94,0.3);
+        color: #86efac;
+    }
 
     /* ── Steps indicator ── */
     .pm-steps {
@@ -775,14 +913,58 @@
                             <div class="section-divider">اختر وسيلة الدفع</div>
 
                             <!-- Price Display -->
-                            <div class="amount-display">
+                            <div class="amount-display" id="amountDisplay">
                                 <i class="fas fa-coins"></i>
-                                <span>$<?= esc($course->course_price) ?></span>
+                                <span id="finalAmountDisplay">$<?= esc(number_format((float) $course->course_price, 2)) ?></span>
                                 <span class="currency">USD</span>
                             </div>
 
                             <form action="<?= site_url('enrollments/course-checkout') ?>" method="post" id="checkoutForm" enctype="multipart/form-data">
                                 <?= csrf_field() ?>
+                                <input type="hidden" name="course_id" value="<?= esc($course->id) ?>">
+
+                                <div class="coupon-panel">
+                                    <div class="coupon-panel-header">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        <span>هل لديك كوبون خصم؟</span>
+                                    </div>
+                                    <div class="coupon-row">
+                                        <input
+                                            type="text"
+                                            class="coupon-input"
+                                            id="couponCodeInput"
+                                            name="coupon_code"
+                                            value="<?= esc(old('coupon_code')) ?>"
+                                            placeholder="اكتب الكود هنا"
+                                            maxlength="50"
+                                            autocomplete="off"
+                                        >
+                                        <button type="button" class="coupon-apply-btn" id="applyCouponBtn">تطبيق الكوبون</button>
+                                    </div>
+                                    <div class="coupon-help">يمكنك استخدام كوبون عام لكل الكورسات أو كوبون مخصص لهذا الكورس فقط.</div>
+                                    <div class="coupon-feedback<?= session('error') && old('coupon_code') ? ' visible error' : '' ?>" id="couponFeedback">
+                                        <?= session('error') && old('coupon_code') ? esc(session('error')) : '' ?>
+                                    </div>
+                                </div>
+
+                                <div class="price-breakdown" id="priceBreakdown">
+                                    <div class="price-breakdown-row">
+                                        <span>سعر الكورس</span>
+                                        <strong id="originalAmountText">$<?= esc(number_format((float) $course->course_price, 2)) ?></strong>
+                                    </div>
+                                    <div class="price-breakdown-row discount" id="discountRow">
+                                        <span>قيمة الخصم</span>
+                                        <strong id="discountAmountText">-$0.00</strong>
+                                    </div>
+                                    <div class="price-breakdown-row total">
+                                        <span>المبلغ المطلوب دفعه</span>
+                                        <strong id="finalAmountText">$<?= esc(number_format((float) $course->course_price, 2)) ?></strong>
+                                    </div>
+                                </div>
+
+                                <div class="fully-discounted-note" id="fullyDiscountedNote">
+                                    تم تغطية سعر الكورس بالكامل بالكوبون. يمكنك إرسال الطلب الآن وسيتم تفعيل الكورس مباشرة بدون رفع إثبات دفع.
+                                </div>
 
                                 <div class="payment-methods-grid">
 
@@ -860,18 +1042,18 @@
                                                 </div>
                                                 <div class="info-content">
                                                     <div class="info-label">رابط الدفع عبر PayPal</div>
-                                                    <div class="info-value" id="paypal-link-display">paypal.me/webeasystep/<?= esc($course->course_price) ?></div>
+                                                    <div class="info-value" id="paypalLinkDisplay">paypal.me/webeasystep/<?= esc(number_format((float) $course->course_price, 2, '.', '')) ?></div>
                                                 </div>
-                                                <button type="button" class="btn-copy" onclick="copyToClipboard('https://paypal.me/webeasystep/<?= esc($course->course_price) ?>', this)">
+                                                <button type="button" class="btn-copy" id="paypalCopyBtn" data-copy-text="https://paypal.me/webeasystep/<?= esc(number_format((float) $course->course_price, 2, '.', '')) ?>" onclick="copyToClipboard(this.dataset.copyText, this)">
                                                     <i class="fas fa-copy"></i> نسخ
                                                 </button>
                                             </div>
 
                                             <!-- Pay Now Button -->
                                             <div class="text-center mb-3">
-                                                <a href="https://paypal.me/webeasystep/<?= esc($course->course_price) ?>" target="_blank" class="btn-pay-link btn-paypal-pay">
+                                                <a href="https://paypal.me/webeasystep/<?= esc(number_format((float) $course->course_price, 2, '.', '')) ?>" target="_blank" class="btn-pay-link btn-paypal-pay" id="paypalPayBtn">
                                                     <i class="fab fa-paypal"></i>
-                                                    ادفع $<?= esc($course->course_price) ?> عبر PayPal
+                                                    <span id="paypalPayBtnText">ادفع $<?= esc(number_format((float) $course->course_price, 2)) ?> عبر PayPal</span>
                                                     <i class="fas fa-external-link-alt" style="font-size: 0.75em;"></i>
                                                 </a>
                                             </div>
@@ -968,6 +1150,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('checkoutForm');
     if (!form) return;
 
+    const baseAmount = <?= json_encode(number_format((float) ($course->course_price ?? 0), 2, '.', '')) ?>;
+    let currentAmount = parseFloat(baseAmount);
+    let isFullyDiscounted = false;
+
     // ── Payment method selection ──
     const cards = document.querySelectorAll('.payment-method-card');
     const radios = form.querySelectorAll('input[name="payment_method"][type="radio"]');
@@ -978,6 +1164,97 @@ document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('paymentProofInput');
     const previewImage = document.getElementById('previewImage');
     const removeBtn = document.getElementById('removePreview');
+    const couponCodeInput = document.getElementById('couponCodeInput');
+    const applyCouponBtn = document.getElementById('applyCouponBtn');
+    const couponFeedback = document.getElementById('couponFeedback');
+    const discountRow = document.getElementById('discountRow');
+    const discountAmountText = document.getElementById('discountAmountText');
+    const finalAmountDisplay = document.getElementById('finalAmountDisplay');
+    const finalAmountText = document.getElementById('finalAmountText');
+    const originalAmountText = document.getElementById('originalAmountText');
+    const fullyDiscountedNote = document.getElementById('fullyDiscountedNote');
+    const paypalLinkDisplay = document.getElementById('paypalLinkDisplay');
+    const paypalCopyBtn = document.getElementById('paypalCopyBtn');
+    const paypalPayBtn = document.getElementById('paypalPayBtn');
+    const paypalPayBtnText = document.getElementById('paypalPayBtnText');
+    const csrfInput = form.querySelector('input[name="<?= csrf_token() ?>"]');
+
+    function formatMoney(value) {
+        return '$' + Number(value).toFixed(2);
+    }
+
+    function updatePaypalAmount(amount) {
+        const normalizedAmount = Number(amount).toFixed(2);
+        const paypalUrl = 'https://paypal.me/webeasystep/' + normalizedAmount;
+
+        if (paypalLinkDisplay) {
+            paypalLinkDisplay.textContent = 'paypal.me/webeasystep/' + normalizedAmount;
+        }
+        if (paypalCopyBtn) {
+            paypalCopyBtn.dataset.copyText = paypalUrl;
+        }
+        if (paypalPayBtn) {
+            paypalPayBtn.href = paypalUrl;
+        }
+        if (paypalPayBtnText) {
+            paypalPayBtnText.textContent = 'ادفع $' + normalizedAmount + ' عبر PayPal';
+        }
+    }
+
+    function showCouponFeedback(message, type) {
+        if (!couponFeedback) return;
+        couponFeedback.textContent = message;
+        couponFeedback.classList.remove('success', 'error');
+        couponFeedback.classList.add('visible', type);
+    }
+
+    function resetCouponPricing() {
+        currentAmount = parseFloat(baseAmount);
+        isFullyDiscounted = false;
+
+        if (discountRow) discountRow.classList.remove('visible');
+        if (discountAmountText) discountAmountText.textContent = '-$0.00';
+        if (originalAmountText) originalAmountText.textContent = formatMoney(baseAmount);
+        if (finalAmountDisplay) finalAmountDisplay.textContent = formatMoney(baseAmount);
+        if (finalAmountText) finalAmountText.textContent = formatMoney(baseAmount);
+        if (fullyDiscountedNote) fullyDiscountedNote.classList.remove('visible');
+        updatePaypalAmount(baseAmount);
+    }
+
+    function applyPricingState(finalAmount, discountAmount) {
+        currentAmount = Number(finalAmount);
+        isFullyDiscounted = currentAmount <= 0;
+
+        if (discountRow) {
+            if (Number(discountAmount) > 0) {
+                discountRow.classList.add('visible');
+                discountAmountText.textContent = '-$' + Number(discountAmount).toFixed(2);
+            } else {
+                discountRow.classList.remove('visible');
+            }
+        }
+
+        if (finalAmountDisplay) finalAmountDisplay.textContent = formatMoney(currentAmount);
+        if (finalAmountText) finalAmountText.textContent = formatMoney(currentAmount);
+        updatePaypalAmount(currentAmount);
+
+        if (isFullyDiscounted) {
+            if (fullyDiscountedNote) fullyDiscountedNote.classList.add('visible');
+            if (uploadInstructions) uploadInstructions.classList.remove('visible');
+            if (uploadArea) uploadArea.classList.remove('visible');
+            if (uploadPreview) uploadPreview.classList.remove('visible');
+            if (submitBtn) {
+                submitBtn.classList.add('visible');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تفعيل الدورة الآن';
+            }
+        } else if (submitBtn) {
+            if (fullyDiscountedNote) fullyDiscountedNote.classList.remove('visible');
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال طلب الاشتراك';
+        }
+
+        updateSubmitState();
+    }
 
     // Handle card click / radio change
     radios.forEach(radio => {
@@ -993,6 +1270,80 @@ document.addEventListener('DOMContentLoaded', function() {
             updateSubmitState();
         });
     });
+
+    if (couponCodeInput) {
+        couponCodeInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+            if (!this.value.trim()) {
+                resetCouponPricing();
+                if (couponFeedback) {
+                    couponFeedback.textContent = '';
+                    couponFeedback.classList.remove('visible', 'success', 'error');
+                }
+            }
+        });
+    }
+
+    if (applyCouponBtn) {
+        applyCouponBtn.addEventListener('click', async function() {
+            const couponCode = couponCodeInput ? couponCodeInput.value.trim() : '';
+
+            if (!couponCode) {
+                showCouponFeedback('يرجى إدخال كود الكوبون أولاً.', 'error');
+                resetCouponPricing();
+                return;
+            }
+
+            applyCouponBtn.disabled = true;
+            const originalText = applyCouponBtn.textContent;
+            applyCouponBtn.textContent = 'جارٍ التحقق...';
+
+            try {
+                const formData = new FormData();
+                formData.append('course_id', form.querySelector('input[name="course_id"]').value);
+                formData.append('coupon_code', couponCode);
+                if (csrfInput) {
+                    formData.append(csrfInput.name, csrfInput.value);
+                }
+
+                const response = await fetch('<?= site_url('enrollments/validate-coupon') ?>', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (csrfInput && data.csrf_hash) {
+                    csrfInput.value = data.csrf_hash;
+                }
+
+                if (!data.success) {
+                    resetCouponPricing();
+                    showCouponFeedback(data.message || 'تعذر التحقق من الكوبون.', 'error');
+                    return;
+                }
+
+                if (couponCodeInput) {
+                    couponCodeInput.value = data.coupon_code || couponCode;
+                }
+
+                applyPricingState(data.final_amount, data.discount_amount);
+                showCouponFeedback(
+                    `${data.message} - تم خصم ${formatMoney(data.discount_amount)} وأصبح المبلغ ${formatMoney(data.final_amount)}.`,
+                    'success'
+                );
+            } catch (error) {
+                resetCouponPricing();
+                showCouponFeedback('حدث خطأ أثناء التحقق من الكوبون. حاول مرة أخرى.', 'error');
+            } finally {
+                applyCouponBtn.disabled = false;
+                applyCouponBtn.textContent = originalText;
+            }
+        });
+    }
 
     // ── File Upload Logic ──
     if (uploadArea && fileInput) {
@@ -1066,7 +1417,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const methodSelected = form.querySelector('input[name="payment_method"]:checked');
         const hasFile = fileInput && fileInput.files.length > 0;
         if (submitBtn) {
-            submitBtn.disabled = !(methodSelected && hasFile);
+            submitBtn.disabled = isFullyDiscounted ? false : !(methodSelected && hasFile);
         }
     }
 
@@ -1078,6 +1429,8 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.disabled = true;
         }
     });
+
+    resetCouponPricing();
 });
 
 // ── Copy to clipboard ──

@@ -7,9 +7,10 @@ use DateTime;
 
 class CouponsModel extends BaseModel
 {
-    protected $table = 'fd_coupons';
+    protected $table = 'tb_coupons';
     protected $primaryKey = 'id';
     protected $allowedFields = [
+        'course_id',
         'coupon_code', 'discount_type', 'discount_percentage', 'discount_value',
         'end_date', 'usage_limit', 'usage_limit_per_account', 'used_count', 'active', 'is_deleted',
         'created_at', 'updated_at', 'deleted_at',
@@ -47,6 +48,7 @@ class CouponsModel extends BaseModel
         $discountType = $data['discount_type'] ?? 'percentage';
 
         $couponData = [
+            'course_id'                 => !empty($data['course_id']) ? (int) $data['course_id'] : null,
             'coupon_code'              => $this->normalizeCouponCode($data['coupon_code'] ?? ''),
             'discount_type'            => $discountType,
             'discount_percentage'      => ($discountType === 'percentage') ? (int) ($data['discount_percentage'] ?? 0) : 0,
@@ -69,13 +71,14 @@ class CouponsModel extends BaseModel
     }
 
     /**
-     * Count how many times a specific client has used a given coupon (completed orders).
+     * Count how many times a specific user has used a given coupon on course enrollments.
      */
-    public function getClientUsageCount(int $couponId, int $clientId): int
+    public function getUserUsageCount(int $couponId, int $userId): int
     {
-        return (int) $this->db->table('fd_orders')
+        return (int) $this->db->table('tb_course_enrollments')
             ->where('coupon_id', $couponId)
-            ->where('client_id', $clientId)
+            ->where('user_id', $userId)
+            ->whereIn('status', ['pending', 'approved'])
             ->countAllResults();
     }
 
@@ -93,7 +96,7 @@ class CouponsModel extends BaseModel
         ])->update();
     }
 
-    public function getValidCouponByCode(string $couponCode): ?object
+    public function getValidCouponByCode(string $couponCode, ?int $courseId = null): ?object
     {
         $couponCode = $this->normalizeCouponCode($couponCode);
 
@@ -118,25 +121,29 @@ class CouponsModel extends BaseModel
             return null;
         }
 
+        if ($courseId !== null && !empty($coupon->course_id) && (int) $coupon->course_id !== $courseId) {
+            return null;
+        }
+
         return $coupon;
     }
 
-    public function calculateDiscountAmount(float $itemsPrice, object $coupon): int
+    public function calculateDiscountAmount(float $coursePrice, object $coupon): float
     {
-        if ($itemsPrice <= 0) {
-            return 0;
+        if ($coursePrice <= 0) {
+            return 0.0;
         }
 
         $type = $coupon->discount_type ?? 'percentage';
 
         if ($type === 'fixed') {
-            // Fixed amount — cap at items price so total never goes negative
-            $discountAmount = min((int) $coupon->discount_value, $itemsPrice);
+            // Fixed amount - cap at course price so total never goes negative.
+            $discountAmount = min((float) $coupon->discount_value, $coursePrice);
         } else {
-            $discountAmount = ($itemsPrice * (int) $coupon->discount_percentage) / 100;
+            $discountAmount = ($coursePrice * (float) $coupon->discount_percentage) / 100;
         }
 
-        return (int) floor($discountAmount);
+        return (float) number_format($discountAmount, 2, '.', '');
     }
 
     public function incrementUsage(int $couponId): void
@@ -146,5 +153,33 @@ class CouponsModel extends BaseModel
             ->set('updated_at', date('Y-m-d H:i:s'))
             ->where('id', $couponId)
             ->update();
+    }
+
+    /**
+     * Validate coupon usage limit for a specific user.
+     */
+    public function isAvailableForUser(object $coupon, int $userId): bool
+    {
+        $perAccountLimit = (int) ($coupon->usage_limit_per_account ?? 0);
+
+        if ($perAccountLimit <= 0) {
+            return true;
+        }
+
+        return $this->getUserUsageCount((int) $coupon->id, $userId) < $perAccountLimit;
+    }
+
+    /**
+     * Get active courses list for admin coupon forms.
+     */
+    public function getCourseOptions(): array
+    {
+        return $this->db->table('tb_courses')
+            ->select('id, course_title')
+            ->where('active', 1)
+            ->orderBy('sort', 'ASC')
+            ->orderBy('course_title', 'ASC')
+            ->get()
+            ->getResult();
     }
 }

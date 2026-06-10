@@ -19,12 +19,16 @@ class AdminCoupons extends BaseController
     protected function buildRules(?int $id = null): array
     {
         $uniqueRule = !empty($id)
-            ? "is_unique[fd_coupons.coupon_code,id,{$id}]"
-            : "is_unique[fd_coupons.coupon_code]";
+            ? "is_unique[tb_coupons.coupon_code,id,{$id}]"
+            : "is_unique[tb_coupons.coupon_code]";
 
         $discountType = request()->getPost('discount_type') ?? 'percentage';
 
         return [
+            'course_id' => [
+                'label' => lang('Coupons.course'),
+                'rules' => 'permit_empty|integer|is_not_unique[tb_courses.id]',
+            ],
             'coupon_code' => [
                 'label' => lang('Coupons.coupon_code'),
                 'rules' => "required|alpha_numeric|min_length[2]|max_length[50]|{$uniqueRule}",
@@ -84,14 +88,15 @@ class AdminCoupons extends BaseController
 
         if ($this->request->isAJAX()) {
             $couponsModel = $this->coupons
-                ->select('id, coupon_code, discount_percentage, discount_type, discount_value, end_date, usage_limit, used_count, active, created_at, updated_at')
-                ->from('fd_coupons', true)
-                ->where('is_deleted', 0)
+                ->select('tb_coupons.id, tb_coupons.coupon_code, tb_coupons.discount_percentage, tb_coupons.discount_type, tb_coupons.discount_value, tb_coupons.end_date, tb_coupons.usage_limit, tb_coupons.used_count, tb_coupons.active, tb_coupons.created_at, tb_coupons.updated_at, tb_courses.course_title')
+                ->join('tb_courses', 'tb_courses.id = tb_coupons.course_id', 'left')
+                ->from('tb_coupons', true)
+                ->where('tb_coupons.is_deleted', 0)
                 ->builder();
 
             DtTable::setColumnSwitch('active');
-            DtTable::searchableColumns(['coupon_code']);
-            DtTable::orderableColumns(['coupon_code', 'discount_percentage', 'end_date', 'usage_limit', 'used_count', 'created_at']);
+            DtTable::searchableColumns(['tb_coupons.coupon_code', 'tb_courses.course_title']);
+            DtTable::orderableColumns(['tb_coupons.coupon_code', 'tb_courses.course_title', 'tb_coupons.discount_percentage', 'tb_coupons.end_date', 'tb_coupons.usage_limit', 'tb_coupons.used_count', 'tb_coupons.created_at']);
             DtTable::hideActions(['show']);
 
             return $this->response->setJSON(DtTable::tableRender($couponsModel, false));
@@ -104,6 +109,7 @@ class AdminCoupons extends BaseController
     {
         $data['title'] = lang('Coupons.add_coupon');
         $data['business_date'] = $this->coupons->getBusinessDate();
+        $data['courses'] = $this->coupons->getCourseOptions();
 
         if ($this->request->is('post')) {
             $postData = $this->getF();
@@ -125,6 +131,7 @@ class AdminCoupons extends BaseController
         $data['title'] = lang('Coupons.edit_coupon');
         $data['coupon'] = $this->coupons->find($id);
         $data['business_date'] = $this->coupons->getBusinessDate();
+        $data['courses'] = $this->coupons->getCourseOptions();
 
         if (empty($data['coupon'])) {
             $this->show_msg('danger', lang('Admin.error'), lang('Coupons.coupon_not_found'));
