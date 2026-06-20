@@ -41,7 +41,7 @@ class CourseEnrollmentsModel extends BaseModel
     protected $validationRules = [
         'user_id' => 'required|integer',
         'course_id' => 'required|integer',
-        'payment_method' => 'required|in_list[fawry,vodafone_cash,instapay,bank_transfer,credits,free,paypal]',
+        'payment_method' => 'required|in_list[fawry,vodafone_cash,instapay,bank_transfer,credits,free,paypal,usdt]',
     ];
 
     /**

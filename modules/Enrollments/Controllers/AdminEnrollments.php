@@ -36,7 +36,7 @@ class AdminEnrollments extends BaseController
         if ($this->request->isAJAX()) {
             $builder = $this->courseEnrollments->getDataTable()->builder();
 
-            DtTable::hideColumns(['id', 'user_id', 'course_id', 'coupon_id', 'coupon_code', 'coupon_discount_amount', 'approved_at', 'approved_by', 'expires_at', 'notes', 'updated_at']);
+            DtTable::hideColumns(['id', 'user_id', 'course_id', 'coupon_id', 'coupon_code', 'coupon_discount_amount', 'approved_at', 'approved_by', 'expires_at', 'notes', 'updated_at', 'refund_proof', 'refunded_at']);
             DtTable::searchableColumns(['full_name', 'auth_identities.secret', 'course_title', 'payment_proof', 'status']);
             DtTable::orderableColumns(['full_name', 'course_title', 'paid_amount', 'status', 'created_at']);
             DtTable::setShowColumns('full_name,mobile,course_title,paid_amount,payment_method,payment_proof,status,created_at');

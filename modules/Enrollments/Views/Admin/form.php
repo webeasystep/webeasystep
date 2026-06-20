@@ -74,6 +74,8 @@
                     <select name="payment_method" id="payment_method" class="form-control">
                         <option value="instapay" <?= set_select('payment_method', 'instapay', ($enrollment->payment_method ?? 'instapay') == 'instapay') ?>>انستاباي</option>
                         <option value="vodafone_cash" <?= set_select('payment_method', 'vodafone_cash', ($enrollment->payment_method ?? "") == 'vodafone_cash') ?>>فودافون كاش</option>
+                        <option value="usdt" <?= set_select('payment_method', 'usdt', ($enrollment->payment_method ?? "") == 'usdt') ?>>USDT</option>
+                        <option value="paypal" <?= set_select('payment_method', 'paypal', ($enrollment->payment_method ?? "") == 'paypal') ?>>باي بال (PayPal)</option>
                     </select>
                     <small class="invalid-feedback"></small>
                 </div>
