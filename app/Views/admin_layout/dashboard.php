@@ -111,17 +111,17 @@
             </div>
         </div>
 
-        <!-- Articles -->
+        <!-- Approved Enrollments -->
         <div class="col-lg-4 col-12">
             <div class="small-box bg-gradient-dark">
                 <div class="inner">
-                    <h3><?= esc($articles) ?></h3>
-                    <p>المقالات المنشورة</p>
+                    <h3><?= esc($approved_enrollments ?? 0) ?></h3>
+                    <p>الاشتراكات المفعلة (Approved)</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-file-alt"></i>
+                    <i class="fas fa-check-circle"></i>
                 </div>
-                <a href="<?= ADMIN_URL . 'articles' ?>" class="small-box-footer">
+                <a href="<?= ADMIN_URL . 'enrollments' ?>" class="small-box-footer">
                     المزيد <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>

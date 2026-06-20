@@ -268,6 +268,9 @@
                                 } elseif ($enrollment->status === 'pending') {
                                     $statusClass = 'status-pending';
                                     $statusText = 'قيد المراجعة';
+                                } elseif ($enrollment->status === 'refunded') {
+                                    $statusClass = 'status-rejected';
+                                    $statusText = 'تم الاسترجاع';
                                 } else {
                                     $statusClass = 'status-rejected';
                                     $statusText = 'مرفوض';
@@ -318,6 +321,10 @@
                                 <?php elseif ($enrollment->status === 'rejected'): ?>
                                     <div class="alert alert-danger p-2 mb-0" style="font-size: 0.85rem;">
                                         <strong>سبب الرفض:</strong> <?= esc($enrollment->notes) ?>
+                                    </div>
+                                <?php elseif ($enrollment->status === 'refunded'): ?>
+                                    <div class="alert alert-dark p-2 mb-0" style="font-size: 0.85rem;">
+                                        تم استرجاع قيمة هذه الدورة وتم إيقاف الوصول إليها.
                                     </div>
                                 <?php elseif ($enrollment->status === 'pending'): ?>
                                     <div class="alert alert-warning p-2 mb-0" style="font-size: 0.85rem;">

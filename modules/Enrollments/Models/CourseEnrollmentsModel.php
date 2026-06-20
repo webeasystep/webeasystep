@@ -25,8 +25,10 @@ class CourseEnrollmentsModel extends BaseModel
         'coupon_discount_amount',
         'payment_method',
         'payment_proof',
+        'refund_proof',
         'status',
         'approved_at',
+        'refunded_at',
         'approved_by',
         'expires_at',
         'notes',
@@ -133,6 +135,27 @@ class CourseEnrollmentsModel extends BaseModel
             'status' => 'rejected',
             'notes' => $reason,
         ]);
+    }
+
+    /**
+     * Mark an enrollment as refunded and revoke course access.
+     */
+    public function refundEnrollment(int $enrollmentId, ?string $refundProof = null, ?string $notes = null): bool
+    {
+        $data = [
+            'status'      => 'refunded',
+            'refunded_at' => date('Y-m-d H:i:s'),
+        ];
+
+        if ($refundProof !== null) {
+            $data['refund_proof'] = $refundProof;
+        }
+
+        if ($notes !== null) {
+            $data['notes'] = $notes;
+        }
+
+        return $this->update($enrollmentId, $data);
     }
 
     /**

@@ -36,7 +36,7 @@ $(document).ready(function() {
     $('#jq-table').on('draw.dt', function() {
         $('#jq-table tbody tr').each(function() {
             var row = $(this);
-            var status = row.find('td:contains("pending"), td:contains("approved"), td:contains("rejected")').text().trim();
+            var status = row.find('td:contains("pending"), td:contains("approved"), td:contains("rejected"), td:contains("refunded")').text().trim();
             var id = row.data('id') || row.find('td:first').text();
             
             // Status badge styling
@@ -46,6 +46,8 @@ $(document).ready(function() {
                     $(this).html('<span class="badge bg-warning">قيد المراجعة</span>');
                 } else if (text === 'approved') {
                     $(this).html('<span class="badge bg-success">مفعّل</span>');
+                } else if (text === 'refunded') {
+                    $(this).html('<span class="badge bg-dark">تم الاسترجاع</span>');
                 } else if (text === 'rejected') {
                     $(this).html('<span class="badge bg-danger">مرفوض</span>');
                 }

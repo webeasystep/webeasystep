@@ -65,6 +65,9 @@
                                 if ($enrollment->status === 'approved') {
                                     $statusClass = 'bg-success';
                                     $statusText = 'مفعّل';
+                                } elseif ($enrollment->status === 'refunded') {
+                                    $statusClass = 'bg-dark';
+                                    $statusText = 'تم الاسترجاع';
                                 } elseif ($enrollment->status === 'rejected') {
                                     $statusClass = 'bg-danger';
                                     $statusText = 'مرفوض';
@@ -83,6 +86,22 @@
                         <tr>
                             <th>تاريخ الموافقة:</th>
                             <td><?= date('Y/m/d H:i', strtotime($enrollment->approved_at)) ?></td>
+                        </tr>
+                        <?php endif; ?>
+                        <?php if (!empty($enrollment->refunded_at)): ?>
+                        <tr>
+                            <th>تاريخ الاسترجاع:</th>
+                            <td><?= date('Y/m/d H:i', strtotime($enrollment->refunded_at)) ?></td>
+                        </tr>
+                        <?php endif; ?>
+                        <?php if (!empty($enrollment->refund_proof)): ?>
+                        <tr>
+                            <th>إثبات الاسترجاع:</th>
+                            <td>
+                                <a href="<?= base_url($enrollment->refund_proof) ?>" target="_blank" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-image me-1"></i> عرض الإثبات
+                                </a>
+                            </td>
                         </tr>
                         <?php endif; ?>
                     </table>
@@ -129,6 +148,41 @@
                             <i class="fas fa-times me-1"></i> رفض الطلب
                         </button>
                     </form>
+                </div>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($enrollment->status === 'approved'): ?>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 bg-dark text-white">
+                    <h6 class="m-0 font-weight-bold">تنفيذ الاسترجاع</h6>
+                </div>
+                <div class="card-body">
+                    <form action="<?= ADMIN_URL . 'enrollments/courses/refund/' . $enrollment->id ?>" method="post" enctype="multipart/form-data">
+                        <?= csrf_field() ?>
+                        <div class="mb-3">
+                            <label class="form-label">صورة إثبات الاسترجاع</label>
+                            <input type="file" name="refund_proof" class="form-control" accept="image/*" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">ملاحظات الاسترجاع</label>
+                            <textarea name="refund_notes" class="form-control" rows="2" placeholder="سبب أو ملاحظة داخلية عن الاسترجاع"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-dark w-100">
+                            <i class="fas fa-undo me-1"></i> تنفيذ Refund
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <?php elseif ($enrollment->status === 'refunded'): ?>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 bg-dark text-white">
+                    <h6 class="m-0 font-weight-bold">حالة الاسترجاع</h6>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-dark mb-0">
+                        تم استرجاع قيمة هذا الاشتراك وإيقاف وصول العميل إلى الدورة.
+                    </div>
                 </div>
             </div>
             <?php endif; ?>

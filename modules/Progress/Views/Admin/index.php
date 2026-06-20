@@ -39,12 +39,27 @@
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3 id="total-users"><?= $stats['total_users'] ?? 0 ?></h3>
-                            <p><?= lang('Progress.total_users') ?></p>
+                            <p>الطلاب النشطين</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
+                        <a href="<?= ADMIN_URL . 'users' ?>" class="small-box-footer">
+                            <?= lang('Admin.more_info') ?> <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-primary">
+                        <div class="inner">
+                            <h3 id="total-enrollments"><?= $stats['total_enrollments'] ?? 0 ?></h3>
+                            <p>الاشتراكات المفعلة بالكورسات</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <a href="<?= ADMIN_URL . 'enrollments' ?>" class="small-box-footer">
                             <?= lang('Admin.more_info') ?> <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
@@ -66,25 +81,10 @@
                 </div>
 
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3 id="in-progress-units"><?= $stats['in_progress_units'] ?? 0 ?></h3>
-                            <p><?= lang('Progress.in_progress_units') ?></p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">
-                            <?= lang('Admin.more_info') ?> <i class="fas fa-arrow-circle-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3 id="completion-rate"><?= number_format($stats['completion_rate'] ?? 0, 1) ?>%</h3>
-                            <p><?= lang('Progress.completion_rate') ?></p>
+                            <p>متوسط الإنجاز العام</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-chart-line"></i>

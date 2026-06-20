@@ -36,7 +36,7 @@ class AdminEnrollments extends BaseController
         if ($this->request->isAJAX()) {
             $builder = $this->courseEnrollments->getDataTable()->builder();
 
-            DtTable::hideColumns(['id', 'user_id', 'course_id', 'approved_at', 'approved_by', 'expires_at', 'notes', 'updated_at']);
+            DtTable::hideColumns(['id', 'user_id', 'course_id', 'coupon_id', 'coupon_code', 'coupon_discount_amount', 'approved_at', 'approved_by', 'expires_at', 'notes', 'updated_at']);
             DtTable::searchableColumns(['full_name', 'mobile', 'course_title', 'payment_proof', 'status']);
             DtTable::orderableColumns(['full_name', 'course_title', 'paid_amount', 'status', 'created_at']);
             DtTable::setShowColumns('full_name,mobile,course_title,paid_amount,payment_method,payment_proof,status,created_at');
@@ -117,6 +117,13 @@ class AdminEnrollments extends BaseController
             ];
         }
         $data['files'] = $files;
+        $data['refund_files'] = [];
+        if (!empty($data['enrollment']->refund_proof)) {
+            $data['refund_files'][] = [
+                'full_path' => $data['enrollment']->refund_proof,
+                'name' => basename($data['enrollment']->refund_proof)
+            ];
+        }
 
         return view('form', $data);
     }
@@ -126,26 +133,48 @@ class AdminEnrollments extends BaseController
         $builder = $this->db->table('tb_course_enrollments');
 
         $data = [
-            'user_id'        => $this->request->getPost('user_id'),
-            'course_id'      => $this->request->getPost('course_id'),
-            'paid_amount'    => $this->request->getPost('paid_amount') ?? 0,
-            'payment_method' => $this->request->getPost('payment_method'),
-            'status'         => $this->request->getPost('status'),
-            'notes'          => $this->request->getPost('notes', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-            'updated_at'     => date('Y-m-d H:i:s')
+            'user_id'                => $this->request->getPost('user_id'),
+            'course_id'              => $this->request->getPost('course_id'),
+            'paid_amount'            => $this->request->getPost('paid_amount') ?? 0,
+            'coupon_id'              => $this->request->getPost('coupon_id') ?: null,
+            'coupon_code'            => $this->request->getPost('coupon_code') ?: null,
+            'coupon_discount_amount' => $this->request->getPost('coupon_discount_amount') ?: 0,
+            'payment_method'         => $this->request->getPost('payment_method'),
+            'status'                 => $this->request->getPost('status'),
+            'notes'                  => $this->request->getPost('notes', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            'updated_at'             => date('Y-m-d H:i:s')
         ];
 
+        $currentEnrollment = $id ? $this->courseEnrollments->find($id) : null;
+
         $isNewlyApproved = false;
-        if ($data['status'] === 'approved' && (!$id || $this->courseEnrollments->find($id)->status !== 'approved')) {
+        if ($data['status'] === 'approved' && (!$currentEnrollment || $currentEnrollment->status !== 'approved')) {
             $data['approved_at'] = date('Y-m-d H:i:s');
             $data['approved_by'] = auth()->user()->id;
             $isNewlyApproved = true;
         }
 
-        // Handle file upload
-        // Note: For a complete implementation, fireuploader needs a proper model method to handle files,
-        // but here we can just accept it or let existing logic be.
-        // The fireuploader uploads images directly and we should extract it from post data if necessary.
+        $paymentProofPath = $this->handleEnrollmentProofUpload('payment_proof');
+        if ($paymentProofPath !== null) {
+            $data['payment_proof'] = $paymentProofPath;
+        }
+
+        $refundProofPath = $this->handleEnrollmentProofUpload('refund_proof');
+        if ($refundProofPath !== null) {
+            $data['refund_proof'] = $refundProofPath;
+        }
+
+        if ($data['status'] === 'refunded') {
+            if ($refundProofPath !== null) {
+                $data['refund_proof'] = $refundProofPath;
+            } elseif (!empty($currentEnrollment?->refund_proof)) {
+                $data['refund_proof'] = $currentEnrollment->refund_proof;
+            }
+
+            if (empty($currentEnrollment?->refunded_at)) {
+                $data['refunded_at'] = date('Y-m-d H:i:s');
+            }
+        }
 
         if ($id) {
             $builder->where('id', $id)->update($data);
@@ -200,6 +229,15 @@ class AdminEnrollments extends BaseController
         $notes = $this->request->getPost('admin_notes');
         $expiresAt = $this->request->getPost('expires_at');
         $enrollmentBefore = $this->courseEnrollments->find($id);
+
+        if (!$enrollmentBefore) {
+            return redirect()->back()->with('error', 'طلب الشراء غير موجود');
+        }
+
+        if ($enrollmentBefore->status === 'refunded') {
+            return redirect()->back()->with('error', 'لا يمكن إعادة تفعيل اشتراك تم استرجاعه.');
+        }
+
         $isNewlyApproved = $enrollmentBefore && $enrollmentBefore->status !== 'approved';
 
         if ($this->courseEnrollments->approveEnrollment($id, $adminId, $expiresAt)) {
@@ -273,12 +311,58 @@ class AdminEnrollments extends BaseController
     public function rejectCourseEnrollment($id)
     {
         $reason = $this->request->getPost('rejection_reason');
+        $enrollment = $this->courseEnrollments->find($id);
+
+        if (!$enrollment) {
+            return redirect()->back()->with('error', 'طلب الشراء غير موجود');
+        }
+
+        if ($enrollment->status === 'refunded') {
+            return redirect()->back()->with('error', 'لا يمكن رفض اشتراك تم استرجاعه.');
+        }
 
         if ($this->courseEnrollments->rejectEnrollment($id, $reason)) {
             return redirect()->back()->with('success', 'تم رفض الطلب');
         } else {
             return redirect()->back()->with('error', 'فشل في رفض الطلب');
         }
+    }
+
+    /**
+     * Refund an approved enrollment and revoke course access.
+     */
+    public function refundCourseEnrollment($id)
+    {
+        $enrollment = $this->courseEnrollments->find($id);
+
+        if (!$enrollment) {
+            return redirect()->back()->with('error', 'طلب الشراء غير موجود');
+        }
+
+        if ($enrollment->status === 'refunded') {
+            return redirect()->back()->with('error', 'تم تنفيذ الاسترجاع مسبقاً لهذا الاشتراك.');
+        }
+
+        if ($enrollment->status !== 'approved') {
+            return redirect()->back()->with('error', 'يمكن تنفيذ الاسترجاع فقط للاشتراكات المفعلة.');
+        }
+
+        $refundProofPath = $this->handleEnrollmentProofUpload('refund_proof');
+        if ($refundProofPath === null && empty($enrollment->refund_proof)) {
+            return redirect()->back()->with('error', 'يرجى رفع صورة إثبات الاسترجاع أولاً.');
+        }
+
+        $notes = $this->request->getPost('refund_notes', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: $enrollment->notes;
+
+        if ($this->courseEnrollments->refundEnrollment(
+            (int) $id,
+            $refundProofPath ?? $enrollment->refund_proof,
+            $notes
+        )) {
+            return redirect()->back()->with('success', 'تم تنفيذ الاسترجاع وإيقاف وصول العميل إلى الدورة.');
+        }
+
+        return redirect()->back()->with('error', 'فشل في تنفيذ الاسترجاع.');
     }
 
     /**
@@ -297,5 +381,72 @@ class AdminEnrollments extends BaseController
     {
         $count = $this->courseEnrollments->where('status', 'pending')->countAllResults();
         return $this->response->setJSON(['count' => $count]);
+    }
+
+    /**
+     * AJAX endpoint: Validate coupon code from admin enrollment form.
+     */
+    public function validateCouponAdmin()
+    {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid request']);
+        }
+
+        $couponCode = trim($this->request->getPost('coupon_code') ?? '');
+        $courseId   = (int) $this->request->getPost('course_id');
+
+        if (empty($couponCode)) {
+            return $this->response->setJSON(['valid' => false, 'message' => 'يرجى إدخال كود الكوبون.']);
+        }
+
+        if (empty($courseId)) {
+            return $this->response->setJSON(['valid' => false, 'message' => 'يرجى اختيار الدورة أولاً.']);
+        }
+
+        $coupon = $this->couponsModel->getValidCouponByCode($couponCode, $courseId);
+
+        if (!$coupon) {
+            return $this->response->setJSON(['valid' => false, 'message' => 'كود الكوبون غير صالح أو منتهي الصلاحية.']);
+        }
+
+        // Get course price to calculate discount
+        $course = $this->coursesModel->find($courseId);
+        if (!$course) {
+            return $this->response->setJSON(['valid' => false, 'message' => 'الدورة غير موجودة.']);
+        }
+
+        $coursePrice     = (float) $course->course_price;
+        $discountAmount  = $this->couponsModel->calculateDiscountAmount($coursePrice, $coupon);
+        $finalPrice      = max(0, $coursePrice - $discountAmount);
+
+        return $this->response->setJSON([
+            'valid'            => true,
+            'coupon_id'        => (int) $coupon->id,
+            'coupon_code'      => $coupon->coupon_code,
+            'discount_type'    => $coupon->discount_type,
+            'discount_amount'  => $discountAmount,
+            'course_price'     => $coursePrice,
+            'final_price'      => $finalPrice,
+            'message'          => 'تم تطبيق الكوبون بنجاح! الخصم: ' . number_format($discountAmount, 2) . ' - السعر النهائي: ' . number_format($finalPrice, 2),
+        ]);
+    }
+
+    private function handleEnrollmentProofUpload(string $fieldName): ?string
+    {
+        $proofFile = $this->request->getFile($fieldName);
+
+        if (!$proofFile || !$proofFile->isValid() || $proofFile->hasMoved()) {
+            return null;
+        }
+
+        $uploadPath = FCPATH . 'uploads' . DIRECTORY_SEPARATOR . 'enrollments';
+        if (!is_dir($uploadPath)) {
+            mkdir($uploadPath, 0775, true);
+        }
+
+        $randomName = $proofFile->getRandomName();
+        $proofFile->move($uploadPath, $randomName);
+
+        return 'uploads/enrollments/' . $randomName;
     }
 }

@@ -37,8 +37,10 @@ $routes->group('dt_admin', [
     $routes->match(['GET', 'POST'], 'enrollments/courses/show/(:num)', [AdminEnrollments::class, 'showCourseEnrollment/$1']);
     $routes->post('enrollments/courses/approve/(:num)', [AdminEnrollments::class, 'approveCourseEnrollment/$1']);
     $routes->post('enrollments/courses/reject/(:num)', [AdminEnrollments::class, 'rejectCourseEnrollment/$1']);
+    $routes->post('enrollments/courses/refund/(:num)', [AdminEnrollments::class, 'refundCourseEnrollment/$1']);
     $routes->get('enrollments/courses/stats', [AdminEnrollments::class, 'getCourseEnrollmentStats']);
     $routes->get('enrollments/courses/pending-count', [AdminEnrollments::class, 'getPendingCourseEnrollmentsCount']);
+    $routes->post('enrollments/validate-coupon', [AdminEnrollments::class, 'validateCouponAdmin']);
 });
 
 
