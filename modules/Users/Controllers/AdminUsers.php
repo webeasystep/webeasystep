@@ -33,7 +33,7 @@ class AdminUsers extends BaseController
                 ->builder();
 
             DtTable::hideColumns(['id']);
-            DtTable::searchableColumns(['full_name', 'email', 'mobile']);
+            DtTable::searchableColumns(['full_name', 'ident_email.secret', 'ident_mobile.secret']);
             DtTable::orderableColumns(['full_name', 'email', 'mobile', 'status', 'active', 'created_at']);
             DtTable::setShowColumns('full_name,email,mobile,status,active,created_at');
             DtTable::setColumnSwitch('active');

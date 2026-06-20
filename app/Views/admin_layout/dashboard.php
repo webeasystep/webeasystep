@@ -25,15 +25,15 @@
             </div>
         </div>
 
-        <!-- 2. Enrollments -->
+        <!-- 2. Approved Enrollments -->
         <div class="col-lg-3 col-6">
             <div class="small-box bg-gradient-success">
                 <div class="inner">
-                    <h3><?= esc($tb_course_enrollments) ?></h3>
-                    <p>الاشتراكات (Enrollments)</p>
+                    <h3><?= esc($approved_enrollments ?? 0) ?></h3>
+                    <p>الاشتراكات المفعلة</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-user-graduate"></i>
+                    <i class="fas fa-check-circle"></i>
                 </div>
                 <a href="<?= ADMIN_URL . 'enrollments' ?>" class="small-box-footer">
                     المزيد <i class="fas fa-arrow-circle-right"></i>
@@ -41,18 +41,18 @@
             </div>
         </div>
 
-        <!-- 3. Videos -->
+        <!-- 3. Pending Payments -->
         <div class="col-lg-3 col-6">
-            <div class="small-box bg-gradient-danger">
+            <div class="small-box bg-gradient-secondary">
                 <div class="inner">
-                    <h3><?= esc($videos_count) ?></h3>
-                    <p>الفيديوهات التعليمية</p>
+                    <h3><?= esc($pending_payments ?? 0) ?></h3>
+                    <p>طلبات دفع معلقة</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-video"></i>
+                    <i class="fas fa-hourglass-half"></i>
                 </div>
-                <a href="<?= ADMIN_URL . 'courses' ?>" class="small-box-footer">
-                    المزيد <i class="fas fa-arrow-circle-right"></i>
+                <a href="<?= ADMIN_URL . 'enrollments' ?>" class="small-box-footer">
+                    مراجعة الطلبات <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -67,7 +67,7 @@
                 <div class="icon">
                     <i class="fas fa-dollar-sign"></i>
                 </div>
-                <a href="<?= ADMIN_URL . 'units/payments' ?>" class="small-box-footer">
+                <a href="<?= ADMIN_URL . 'enrollments' ?>" class="small-box-footer">
                     المزيد <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -79,24 +79,24 @@
             <h4 class="mb-3">إحصائيات إضافية هامة</h4>
         </div>
 
-        <!-- Pending Payments -->
-        <div class="col-lg-4 col-6">
-            <div class="small-box bg-gradient-secondary">
+        <!-- Videos -->
+        <div class="col-lg-6 col-6">
+            <div class="small-box bg-gradient-danger">
                 <div class="inner">
-                    <h3><?= esc($pending_payments ?? 0) ?></h3>
-                    <p>طلبات دفع معلقة</p>
+                    <h3><?= esc($videos_count) ?></h3>
+                    <p>الفيديوهات التعليمية</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-hourglass-half"></i>
+                    <i class="fas fa-video"></i>
                 </div>
-                <a href="<?= ADMIN_URL . 'units/payments' ?>" class="small-box-footer">
-                    مراجعة الطلبات <i class="fas fa-arrow-circle-right"></i>
+                <a href="<?= ADMIN_URL . 'courses' ?>" class="small-box-footer">
+                    المزيد <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
 
         <!-- Courses -->
-        <div class="col-lg-4 col-6">
+        <div class="col-lg-6 col-6">
             <div class="small-box bg-gradient-primary">
                 <div class="inner">
                     <h3><?= esc($tb_courses) ?></h3>
@@ -106,22 +106,6 @@
                     <i class="fas fa-book"></i>
                 </div>
                 <a href="<?= ADMIN_URL . 'courses' ?>" class="small-box-footer">
-                    المزيد <i class="fas fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- Approved Enrollments -->
-        <div class="col-lg-4 col-12">
-            <div class="small-box bg-gradient-dark">
-                <div class="inner">
-                    <h3><?= esc($approved_enrollments ?? 0) ?></h3>
-                    <p>الاشتراكات المفعلة (Approved)</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <a href="<?= ADMIN_URL . 'enrollments' ?>" class="small-box-footer">
                     المزيد <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
