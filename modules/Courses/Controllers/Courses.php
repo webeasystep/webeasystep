@@ -575,48 +575,23 @@ class Courses extends BaseController
 
         // 4) Check which item is requested in ?item=XYZ (generic parameter for all item types)
         $requestedItemId = $this->request->getGet('item') ?: $this->request->getGet('video') ?: $this->request->getGet('item_id');
-        
+
         // Check for last_item parameter (used for external navigation)
         $lastItemId = $this->request->getGet('last_item');
 
-        // 5) If no specific item is requested, handle last item or jump to the first one
+        // 5) If no specific item is requested, redirect to a valid item (server-side)
         if (!$requestedItemId && !empty($flatItems)) {
             if ($lastItemId) {
-                // Validate that the last item exists and user has access
-                $lastItemExists = false;
+                // Validate that the last item exists in the flat items list
                 foreach ($flatItems as $item) {
                     if ($item['id'] == $lastItemId) {
-                        $lastItemExists = true;
-                        break;
+                        return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $lastItemId));
                     }
                 }
-                
-                if ($lastItemExists) {
-                    // Redirect to the last item with proper URL structure
-                    return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $lastItemId));
-                }
             }
-            
-            // If no last_item parameter, let JavaScript handle localStorage redirect
-            // Only default to first item if this is a direct server-side request
-            if (!$lastItemId) {
-                // Check if this might be a JavaScript redirect attempt by looking for specific headers
-                $isAjaxOrFetch = $this->request->isAJAX() || 
-                               $this->request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest' ||
-                               strpos($this->request->getHeaderLine('Accept'), 'application/json') !== false;
-                
-                if (!$isAjaxOrFetch) {
-                    // This is likely a direct page load - let JavaScript handle localStorage
-                    // Set a flag to indicate no item was specified
-                    $requestedItemId = null;
-                } else {
-                    // This is an AJAX/fetch request, default to first item
-                    $requestedItemId = $flatItems[0]['id'];
-                }
-            } else {
-                // Default to first item if no valid last item found
-                $requestedItemId = $flatItems[0]['id'];
-            }
+
+            // Default: redirect to the first available item
+            return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $flatItems[0]['id']));
         }
 
         // 6) Find the current item in $flatItems (search by both id and item_id)
@@ -711,15 +686,27 @@ class Courses extends BaseController
 
         // 9) Calculate progress using the Progress module
         $courseProgress = 0;
+        $completedItemIds = [];
         if ($hasAccess) {
             $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
             $courseProgress = $progressModel->getCourseCompletionPercentage($userId, $course->id);
+
+            // Fetch completed items for this course and user
+            $completedItems = $this->db->table('tb_user_item_progress')
+                ->select('tb_user_item_progress.item_id')
+                ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
+                ->where('tb_user_item_progress.user_id', $userId)
+                ->where('tb_units.course_id', $course->id)
+                ->where('tb_user_item_progress.is_completed', 1)
+                ->get()
+                ->getResultArray();
+            $completedItemIds = array_column($completedItems, 'item_id');
         }
 
         // 10) Prepare data for the view based on current item type
-        $videoId = 'dQw4w9WgXcQ'; // Default fallback
+        $videoId = null;
         $videoLibraryId = '495222'; // Default fallback
-        $itemTitle = 'Default Item Title';
+        $itemTitle = '';
         $itemDesc = 'Default item description';
         $quizData = null;
         $pageData = null;
@@ -837,17 +824,9 @@ class Courses extends BaseController
             'nextLessonUrl'     => $nextItem
                 ? site_url('courses/course_view/'.$slug.'?item='.$nextItem['id'])
                 : null,
+            'completedItemIds'  => $completedItemIds,
         ];
 
-        // Debug logging
-        log_message('debug', 'COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem));
-        log_message('debug', 'COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId);
-        log_message('debug', 'COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems));
-
-        // Also use error_log for immediate visibility
-        error_log('COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem));
-        error_log('COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId);
-        error_log('COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems));
 
         return view('site/course_view', $data);
     }

@@ -1123,9 +1123,12 @@
                                                     <a href="<?= site_url('courses/course_view/' . $course->slug . '?' . $urlParam) ?>" class="item-content unit-item-link" data-item-id="<?= $item->id ?>" data-item-type="<?= $item->item_type ?>">
                                                 <?php endif; ?>
 
+                                                    <?php $isCompleted = isset($completedItemIds) && in_array($item->id, $completedItemIds); ?>
                                                     <!-- Item Icon -->
                                                     <div class="item-icon">
-                                                        <?php if ($item->item_type === 'video'): ?>
+                                                        <?php if ($isCompleted): ?>
+                                                            <i class="fas fa-check-circle" style="color:var(--cv-success);"></i>
+                                                        <?php elseif ($item->item_type === 'video'): ?>
                                                             <i class="icon-play-circle-o" style="color:<?= $isItemLocked ? 'var(--cv-text-light)' : 'var(--cv-primary)' ?>;"></i>
                                                         <?php elseif ($item->item_type === 'quiz'): ?>
                                                             <i class="icon-question-circle" style="color:<?= $isItemLocked ? 'var(--cv-text-light)' : 'var(--cv-success)' ?>;"></i>
@@ -1431,30 +1434,20 @@
         <?php else: ?>
         <!-- Mark as Complete Button -->
         <div class="completion-section mt-4">
-            <?php
-            error_log('COURSE_VIEW DEBUG - current_item: ' . json_encode($current_item ?? 'NOT_SET'));
-            error_log('COURSE_VIEW DEBUG - current_id: ' . ($current_id ?? 'NOT_SET'));
-            error_log('COURSE_VIEW DEBUG - course_id: ' . ($course->id ?? 'NOT_SET'));
-            ?>
+
             <?php if (isset($current_item) && !empty($current_item['id'])): ?>
                 <button class="btn btn-success btn-block mark-complete-button"
                         onclick="markItemComplete(<?= $course->id ?>, <?= $current_item['id'] ?>)">
                     <i class="fas fa-check mr-2"></i>
                     تم الإكمال
                 </button>
-                <script>
-                    console.log('COURSE_VIEW JS DEBUG - Course ID:', <?= $course->id ?>);
-                    console.log('COURSE_VIEW JS DEBUG - Item ID:', <?= $current_item['id'] ?>);
-                    console.log('COURSE_VIEW JS DEBUG - Current Item:', <?= json_encode($current_item) ?>);
-                </script>
+
             <?php else: ?>
                 <button class="btn btn-secondary btn-block" disabled>
                     <i class="fas fa-exclamation-triangle mr-2"></i>
                     لا يمكن تحديد العنصر
                 </button>
-                <script>
-                    console.log('COURSE_VIEW JS DEBUG - Current item missing or invalid:', <?= json_encode($current_item ?? 'NOT_SET') ?>);
-                </script>
+
             <?php endif; ?>
         </div>
         <?php endif; ?>
@@ -1508,7 +1501,7 @@
 
                                     // Auto-navigate to next item or unit without confirmation
                                     if (data.next_item) {
-                                        console.log(1111111111111111)
+
                                         // Store the next item as the last selected item
                                         const courseSlug = '<?= $course->slug ?>';
                                         const nextItemId = data.next_item.url.match(/item=(\d+)/);
@@ -1519,7 +1512,7 @@
                                             window.location.href = data.next_item.url;
                                         }, 500);
                                     } else if (data.next_unit) {
-                                        console.log(22222222222222)
+
                                         // Store the next unit's first item as the last selected item
                                         const courseSlug = '<?= $course->slug ?>';
                                         const nextItemId = data.next_unit.url.match(/item=(\d+)/);
@@ -1530,7 +1523,7 @@
                                             window.location.href = data.next_unit.url;
                                         }, 500);
                                     } else if (data.course_completed && data.redirect_url) {
-                                        console.log(333333333333333333)
+
                                         // Course is completed, redirect to my_courses
                                         setTimeout(() => {
                                             window.location.href = data.redirect_url;
@@ -1621,16 +1614,8 @@
             });
         });
 
-        // Restore last selected item on page load
         const courseSlug = '<?= $course->slug ?>';
-        const lastItemId = localStorage.getItem(`course_${courseSlug}_last_item`);
         const currentItemId = '<?= $current_id ?? '' ?>';
-
-        // If no current item is specified in URL but we have a stored last item, redirect to it
-        if (!currentItemId && lastItemId) {
-            const targetUrl = `<?= site_url('courses/course_view/' . $course->slug) ?>?item=${lastItemId}`;
-            window.location.href = targetUrl;
-        }
 
         // Add global function to get last item for external navigation
         window.getCourseLastItem = function(courseSlug) {
