@@ -592,6 +592,19 @@ class AdminUnits extends BaseController
         return ($maxSort->sort_order ?? 0) + 1;
     }
 
+    /**
+     * Get next sort order for course (AJAX)
+     */
+    public function getNextSortOrderAjax($courseId)
+    {
+        $nextOrder = $this->getNextSortOrder($courseId);
+
+        return $this->response->setJSON([
+            'success' => true,
+            'next_sort_order' => $nextOrder
+        ]);
+    }
+
     // ==================== Unit Items Management ====================
 
     /**

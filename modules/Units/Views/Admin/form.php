@@ -622,7 +622,16 @@ $(document).ready(function() {
     // Course selection handler
     $('#course_id').on('change', function() {
         currentCourseId = $(this).val();
+        if (currentCourseId) {
+            fetchNextSortOrder(currentCourseId);
+        }
     });
+
+    // Auto-fetch sort order on page load for ADD mode when course is pre-selected
+    <?php if (!$isEdit && !empty($selected_course_id)): ?>
+    currentCourseId = '<?= $selected_course_id ?>';
+    fetchNextSortOrder(currentCourseId);
+    <?php endif; ?>
 
     // Form validation
     $('#unit-form').on('submit', function(e) {
@@ -665,6 +674,30 @@ $(document).ready(function() {
         }
     });
 });
+
+/**
+ * Fetch the next available sort order for a given course from the backend
+ */
+function fetchNextSortOrder(courseId) {
+    if (!courseId) return;
+
+    $.get('<?= ADMIN_URL ?>units/get-next-sort-order/' + courseId, function(response) {
+        if (response.success && response.next_sort_order) {
+            <?php if (!$isEdit): ?>
+            // In add mode, always auto-set the sort order
+            $('#sort_order').val(response.next_sort_order);
+            <?php else: ?>
+            // In edit mode, only update if the course has changed from original
+            var originalCourseId = '<?= $unit->course_id ?? '' ?>';
+            if (String(courseId) !== String(originalCourseId)) {
+                $('#sort_order').val(response.next_sort_order);
+            }
+            <?php endif; ?>
+        }
+    }).fail(function() {
+        console.warn('Failed to fetch next sort order for course:', courseId);
+    });
+}
 
 // Item Type Selection
 function selectItemType(type) {
@@ -1223,6 +1256,10 @@ function moveItemDown(index) {
 function deleteItem(index) {
     if (confirm('هل تريد حذف هذا العنصر؟')) {
         unitItems.splice(index, 1);
+        // Renormalize sort orders after deletion
+        unitItems.forEach(function(item, i) {
+            item.sort_order = i + 1;
+        });
         displayUnitItems();
         toastr.success('تم حذف العنصر');
     }

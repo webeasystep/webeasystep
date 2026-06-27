@@ -26,6 +26,7 @@ $routes->group('dt_admin', [
     $routes->get('units/get-available-pages', 'AdminUnits::getAvailablePages');
 $routes->post('units/fetch-video-data', 'AdminUnits::fetchVideoData');
 $routes->get('units/get-available-quizzes/(:num)', 'AdminUnits::getAvailableQuizzes/$1');
+    $routes->get('units/get-next-sort-order/(:num)', 'AdminUnits::getNextSortOrderAjax/$1');
     $routes->get('units/statistics', 'AdminUnits::statistics');
     $routes->get('units/statistics/(:num)', 'AdminUnits::unitStatistics/$1');
     $routes->post('units/duplicate/(:num)', 'AdminUnits::duplicate/$1');
