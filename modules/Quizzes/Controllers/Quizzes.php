@@ -206,12 +206,14 @@ class Quizzes extends BaseController
             return redirect()->back()->with('error', 'Maximum attempts exceeded.');
         }
 
-        // Create new attempt
+        // Create new attempt with pre-shuffled questions
+        $shuffledQuestions = $this->getShuffledQuestions($quiz->quiz_questions, $quiz->shuffle_questions, $quiz->shuffle_answers);
+
         $attemptData = [
             'quiz_id' => $quizId,
             'user_id' => $userId,
             'user_answers' => json_encode([]),
-            'quiz_questions' => $quiz->quiz_questions,
+            'quiz_questions' => json_encode($shuffledQuestions, JSON_UNESCAPED_UNICODE),
             'attempt_date' => date('Y-m-d H:i:s')
         ];
 
@@ -263,20 +265,8 @@ class Quizzes extends BaseController
             }
         }
 
-        // Prepare questions (shuffle if enabled)
-        $questions = json_decode($attempt->quiz_questions, true);
-        if ($quiz->shuffle_questions) {
-            shuffle($questions);
-        }
-
-        // Shuffle answers if enabled
-        if ($quiz->shuffle_answers) {
-            foreach ($questions as &$question) {
-                if (isset($question['options'])) {
-                    shuffle($question['options']);
-                }
-            }
-        }
+        // Questions are already pre-shuffled and stored in $attempt->quiz_questions
+        $questions = json_decode($attempt->quiz_questions, true) ?? [];
 
         // Get attempt count for display
         $attemptCount = $this->attemptsModel->getUserAttemptCount($userId, $attempt->quiz_id);
@@ -324,9 +314,7 @@ class Quizzes extends BaseController
 
         foreach ($questions as $index => $question) {
             $userAnswer = $answers[$index] ?? null;
-            $correctAnswer = $question['correct_answer'] ?? null;
-
-            if ($userAnswer == $correctAnswer) {
+            if ($this->gradeQuestion($question, $userAnswer)) {
                 $correctAnswers++;
             }
         }
@@ -380,8 +368,7 @@ class Quizzes extends BaseController
 
         foreach ($questions as $index => $question) {
             $userAnswer = $userAnswers[$index] ?? null;
-            $correctAnswer = $question['correct_answer'] ?? null;
-            if ($userAnswer == $correctAnswer) {
+            if ($this->gradeQuestion($question, $userAnswer)) {
                 $correctAnswers++;
             }
         }
@@ -486,37 +473,25 @@ class Quizzes extends BaseController
             ]);
         }
 
-        // Check if user has an active attempt
-        $activeAttempt = $this->attemptsModel->getActiveAttempt($userId, $quizId);
+        $questions = [];
         if ($activeAttempt) {
             // Continue existing attempt
             $attemptId = $activeAttempt->id;
+            $questions = json_decode($activeAttempt->quiz_questions, true) ?? [];
         } else {
             // Create new attempt
+            $shuffledQuestions = $this->getShuffledQuestions($quiz->quiz_questions, $quiz->shuffle_questions, $quiz->shuffle_answers);
+            
             $attemptData = [
                 'quiz_id' => $quizId,
                 'user_id' => $userId,
                 'user_answers' => json_encode([]),
-                'quiz_questions' => $quiz->quiz_questions,
+                'quiz_questions' => json_encode($shuffledQuestions, JSON_UNESCAPED_UNICODE),
                 'attempt_date' => date('Y-m-d H:i:s')
             ];
 
             $attemptId = $this->attemptsModel->insert($attemptData);
-        }
-
-        // Prepare questions (shuffle if enabled)
-        $questions = json_decode($quiz->quiz_questions, true);
-        if ($quiz->shuffle_questions) {
-            shuffle($questions);
-        }
-
-        // Shuffle answers if enabled
-        if ($quiz->shuffle_answers) {
-            foreach ($questions as &$question) {
-                if (isset($question['options'])) {
-                    shuffle($question['options']);
-                }
-            }
+            $questions = $shuffledQuestions;
         }
 
         return $this->response->setJSON([
@@ -677,49 +652,11 @@ class Quizzes extends BaseController
 
         foreach ($questions as $index => $question) {
             $userAnswer = $answers[$index] ?? null;
-            $correctAnswer = $question['correct_answer'] ?? null;
-
-            // If no correct_answer field exists, try to determine from options structure
-            if ($correctAnswer === null && isset($question['options'])) {
-                // For backward compatibility, find correct options from the options array
-                $correctAnswer = [];
-                foreach ($question['options'] as $optIndex => $option) {
-                    if (isset($option['is_correct']) && $option['is_correct']) {
-                        $correctAnswer[] = $optIndex;
-                    }
-                }
-                // If no is_correct flags found, assume first option is correct
-                if (empty($correctAnswer)) {
-                    $correctAnswer = [0];
-                }
-                log_message('debug', 'SUBMIT_EMBEDDED: Question ' . $index . ' - No correct_answer field, derived from options: ' . json_encode($correctAnswer));
-            }
-
-            log_message('debug', "SUBMIT_EMBEDDED: Question $index - Type: {$question['question_type']}, User Answer: " . json_encode($userAnswer) . ", Correct Answer: " . json_encode($correctAnswer));
-
-            // Handle different question types
-            if ($question['question_type'] === 'multiple_choice') {
-                // For multiple choice, compare arrays
-                if (is_array($userAnswer) && is_array($correctAnswer)) {
-                    sort($userAnswer);
-                    sort($correctAnswer);
-                    if ($userAnswer == $correctAnswer) {
-                        $correctAnswers++;
-                        log_message('debug', "SUBMIT_EMBEDDED: Question $index - CORRECT (multiple choice)");
-                    } else {
-                        log_message('debug', "SUBMIT_EMBEDDED: Question $index - INCORRECT (multiple choice) - User: " . json_encode($userAnswer) . " vs Correct: " . json_encode($correctAnswer));
-                    }
-                } else {
-                    log_message('debug', "SUBMIT_EMBEDDED: Question $index - INCORRECT (multiple choice) - Invalid format - User is array: " . (is_array($userAnswer) ? 'yes' : 'no') . ", Correct is array: " . (is_array($correctAnswer) ? 'yes' : 'no'));
-                }
+            if ($this->gradeQuestion($question, $userAnswer)) {
+                $correctAnswers++;
+                log_message('debug', "SUBMIT_EMBEDDED: Question $index - CORRECT");
             } else {
-                // For single choice, true/false, essay
-                if ($userAnswer == $correctAnswer) {
-                    $correctAnswers++;
-                    log_message('debug', "SUBMIT_EMBEDDED: Question $index - CORRECT (single choice)");
-                } else {
-                    log_message('debug', "SUBMIT_EMBEDDED: Question $index - INCORRECT (single choice) - User: " . json_encode($userAnswer) . " vs Correct: " . json_encode($correctAnswer));
-                }
+                log_message('debug', "SUBMIT_EMBEDDED: Question $index - INCORRECT");
             }
         }
 
@@ -840,4 +777,176 @@ class Quizzes extends BaseController
         return null;
     }
 
+    /**
+     * Grade a single question based on user answer, supporting both original text values
+     * and index-based correct answer values.
+     */
+    private function gradeQuestion($question, $userAnswer)
+    {
+        $questionType = $question['question_type'] ?? 'single_choice';
+        $correct = $question['correct'] ?? null;
+        $correctAnswer = $question['correct_answer'] ?? null;
+
+        if ($questionType === 'true_false') {
+            $normCorrect = ($correctAnswer !== null) ? $correctAnswer : $correct;
+            if (is_bool($normCorrect)) {
+                $normCorrect = $normCorrect ? 'true' : 'false';
+            }
+            $normUser = is_bool($userAnswer) ? ($userAnswer ? 'true' : 'false') : (string)$userAnswer;
+            return strtolower(trim((string)$normUser)) === strtolower(trim((string)$normCorrect));
+        }
+
+        if ($questionType === 'single_choice') {
+            $normCorrect = ($correct !== null) ? $correct : $correctAnswer;
+            if ($normCorrect === null) return false;
+            
+            if (is_numeric($userAnswer) && is_numeric($normCorrect)) {
+                return (string)$userAnswer === (string)$normCorrect;
+            }
+            
+            if (isset($question['options'])) {
+                $options = $question['options'];
+                if (isset($options[$userAnswer]) && $options[$userAnswer] === $normCorrect) {
+                    return true;
+                }
+            }
+            return (string)$userAnswer === (string)$normCorrect;
+        }
+
+        if ($questionType === 'multiple_choice') {
+            $userAnswers = is_array($userAnswer) ? $userAnswer : [];
+            $correctIndices = ($correct !== null) ? $correct : $correctAnswer;
+            if (!is_array($correctIndices)) {
+                $correctIndices = ($correctIndices !== null) ? [$correctIndices] : [];
+            }
+            
+            $userAnswers = array_map('strval', $userAnswers);
+            $correctIndices = array_map('strval', $correctIndices);
+            
+            sort($userAnswers);
+            sort($correctIndices);
+            
+            if ($userAnswers == $correctIndices) {
+                return true;
+            }
+            
+            if (isset($question['options'])) {
+                $options = $question['options'];
+                $userTexts = [];
+                foreach ($userAnswers as $ua) {
+                    if (isset($options[$ua])) {
+                        $userTexts[] = $options[$ua];
+                    }
+                }
+                
+                $correctTexts = [];
+                foreach ($correctIndices as $ci) {
+                    if (is_numeric($ci) && isset($options[$ci])) {
+                        $correctTexts[] = $options[$ci];
+                    } else {
+                        $correctTexts[] = $ci;
+                    }
+                }
+                
+                sort($userTexts);
+                sort($correctTexts);
+                if (!empty($correctTexts) && $userTexts == $correctTexts) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        $normCorrect = ($correctAnswer !== null) ? $correctAnswer : $correct;
+        return trim((string)$userAnswer) === trim((string)$normCorrect);
+    }
+
+    /**
+     * Shuffles options and questions for an attempt, while maintaining correct answers.
+     */
+    private function getShuffledQuestions($quizQuestionsJson, $shuffleQuestions, $shuffleAnswers)
+    {
+        $questions = json_decode($quizQuestionsJson, true) ?? [];
+        
+        foreach ($questions as &$question) {
+            if (isset($question['options']) && is_array($question['options'])) {
+                $originalOptions = $question['options'];
+                $questionType = $question['question_type'] ?? 'single_choice';
+                $originalCorrect = isset($question['correct']) ? $question['correct'] : null;
+                
+                if ($originalCorrect === null && isset($question['correct_answer'])) {
+                    $ca = $question['correct_answer'];
+                    if (is_array($ca)) {
+                        $originalCorrect = [];
+                        foreach ($ca as $val) {
+                            $idx = array_search($val, $originalOptions);
+                            if ($idx !== false) {
+                                $originalCorrect[] = $idx;
+                            } elseif (is_numeric($val) && isset($originalOptions[$val])) {
+                                $originalCorrect[] = (int)$val;
+                            }
+                        }
+                    } else {
+                        $idx = array_search($ca, $originalOptions);
+                        if ($idx !== false) {
+                            $originalCorrect = $idx;
+                        } elseif (is_numeric($ca) && isset($originalOptions[$ca])) {
+                            $originalCorrect = (int)$ca;
+                        }
+                    }
+                }
+                
+                if ($shuffleAnswers) {
+                    $shuffledOptions = $originalOptions;
+                    shuffle($shuffledOptions);
+                    $question['options'] = $shuffledOptions;
+                    
+                    if ($originalCorrect !== null) {
+                        if ($questionType === 'multiple_choice') {
+                            $originalCorrectArray = is_array($originalCorrect) ? $originalCorrect : [$originalCorrect];
+                            $newCorrect = [];
+                            foreach ($originalCorrectArray as $origIdx) {
+                                $optValue = $originalOptions[$origIdx] ?? null;
+                                if ($optValue !== null) {
+                                    $newIdx = array_search($optValue, $shuffledOptions);
+                                    if ($newIdx !== false) {
+                                        $newCorrect[] = (string)$newIdx;
+                                    }
+                                }
+                            }
+                            $question['correct'] = $newCorrect;
+                            $question['correct_answer'] = $newCorrect;
+                        } else {
+                            $optValue = $originalOptions[$originalCorrect] ?? null;
+                            if ($optValue !== null) {
+                                $newIdx = array_search($optValue, $shuffledOptions);
+                                if ($newIdx !== false) {
+                                    $question['correct'] = $newIdx;
+                                    $question['correct_answer'] = (string)$newIdx;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if ($originalCorrect !== null) {
+                        if ($questionType === 'multiple_choice') {
+                            $originalCorrectArray = is_array($originalCorrect) ? $originalCorrect : [$originalCorrect];
+                            $normalized = array_map('strval', $originalCorrectArray);
+                            $question['correct'] = $normalized;
+                            $question['correct_answer'] = $normalized;
+                        } else {
+                            $question['correct'] = $originalCorrect;
+                            $question['correct_answer'] = (string)$originalCorrect;
+                        }
+                    }
+                }
+            }
+        }
+        
+        if ($shuffleQuestions) {
+            shuffle($questions);
+        }
+        
+        return $questions;
+    }
 }
