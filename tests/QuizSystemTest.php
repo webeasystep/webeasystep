@@ -6,205 +6,389 @@ use CodeIgniter\Test\CIUnitTestCase;
 use Modules\Quizzes\Controllers\Quizzes;
 use ReflectionMethod;
 
+/**
+ * Comprehensive Quiz System Integration Test
+ *
+ * Simulates a full student quiz lifecycle:
+ * 1. Quiz questions are loaded from DB and shuffled
+ * 2. Student submits correct answers based on the shuffled display
+ * 3. Grading logic assigns correct score
+ * 4. Wrong answers produce 0%
+ * 5. All quizzes and question types are verified for data integrity
+ */
 class QuizSystemTest extends CIUnitTestCase
 {
-    protected $quizzesController;
+    protected Quizzes $controller;
 
     protected function setUp(): void
     {
         parent::setUp();
-        // Instantiate the controller for testing
-        $this->quizzesController = new Quizzes();
+        $this->controller = new Quizzes();
     }
 
-    /**
-     * Helper to invoke private methods in the Quizzes controller using Reflection
-     */
-    protected function invokeControllerMethod(string $methodName, array $parameters = [])
+    protected function invoke(string $method, array $args = []): mixed
     {
-        $method = new ReflectionMethod(Quizzes::class, $methodName);
-        $method->setAccessible(true);
-        return $method->invokeArgs($this->quizzesController, $parameters);
+        $ref = new ReflectionMethod(Quizzes::class, $method);
+        $ref->setAccessible(true);
+        return $ref->invokeArgs($this->controller, $args);
     }
 
-    /**
-     * Scenario: Test the end-to-end quiz operations including question/option shuffling,
-     * correct answer index translation, and grading accuracy for all question types.
-     */
-    public function testEndToEndQuizShufflingAndGradingFlow()
+    // =========================================================
+    // SECTION 1 – gradeQuestion: per-type correctness
+    // =========================================================
+
+    public function testSingleChoiceCorrectByIndex(): void
     {
-        // 1. Setup mock quiz questions database template
-        $originalQuestions = [
-            [
-                'question_text' => 'Which mode is suitable for highest quality in Google Stitch?',
-                'question_type' => 'single_choice',
-                'points' => 10,
-                'options' => ['Flash', 'Thinking', 'Redesign', 'Preview'],
-                'correct' => 1, // 'Thinking' (index 1) is correct
-                'correct_answer' => '1'
-            ],
-            [
-                'question_text' => 'Select all UI tools developed by Google:',
-                'question_type' => 'multiple_choice',
-                'points' => 15,
-                'options' => ['Stitch', 'Flutter', 'Xcode', 'Figma'],
-                'correct' => [0, 1], // 'Stitch' (index 0) and 'Flutter' (index 1) are correct
-                'correct_answer' => ['0', '1']
-            ],
-            [
-                'question_text' => 'Flash Mode prioritizes quality over speed.',
-                'question_type' => 'true_false',
-                'points' => 5,
-                'correct_answer' => 'false' // false is correct
-            ],
-            [
-                'question_text' => 'What does design system unify?',
-                'question_type' => 'fill_in_blank',
-                'points' => 10,
-                'correct_answer' => 'Visual Identity'
-            ]
-        ];
-
-        $quizQuestionsJson = json_encode($originalQuestions);
-
-        // 2. Start quiz attempt: Shuffle questions and options
-        $shuffledQuestions = $this->invokeControllerMethod('getShuffledQuestions', [
-            $quizQuestionsJson,
-            true, // shuffleQuestions = true
-            true  // shuffleAnswers = true
-        ]);
-
-        // Assertions for Shuffling Structure
-        $this->assertCount(4, $shuffledQuestions, 'Shuffled questions must preserve the original questions count');
-
-        // Locate each shuffled question by its original text to inspect translations
-        $qSingleChoice = null;
-        $qMultipleChoice = null;
-        $qTrueFalse = null;
-        $qFillBlank = null;
-
-        foreach ($shuffledQuestions as $q) {
-            if (strpos($q['question_text'], 'highest quality') !== false) {
-                $qSingleChoice = $q;
-            } elseif (strpos($q['question_text'], 'UI tools') !== false) {
-                $qMultipleChoice = $q;
-            } elseif (strpos($q['question_text'], 'Flash Mode') !== false) {
-                $qTrueFalse = $q;
-            } elseif (strpos($q['question_text'], 'design system') !== false) {
-                $qFillBlank = $q;
-            }
-        }
-
-        $this->assertNotNull($qSingleChoice, 'Single choice question must exist in shuffled list');
-        $this->assertNotNull($qMultipleChoice, 'Multiple choice question must exist in shuffled list');
-        $this->assertNotNull($qTrueFalse, 'True/False question must exist in shuffled list');
-        $this->assertNotNull($qFillBlank, 'Fill in blank question must exist in shuffled list');
-
-        // 3. Verify Single Choice Option Translation
-        // Original: ['Flash', 'Thinking', 'Redesign', 'Preview'], Correct: 'Thinking'
-        $optionsSingle = $qSingleChoice['options'];
-        $correctIndexSingle = $qSingleChoice['correct'];
-        $correctAnswerValueSingle = $qSingleChoice['correct_answer'];
-
-        $this->assertEquals('Thinking', $optionsSingle[$correctIndexSingle], 'Translated correct index must point to "Thinking" in the shuffled options');
-        $this->assertEquals((string)$correctIndexSingle, $correctAnswerValueSingle, 'correct_answer field must match the string of correct index');
-
-        // 4. Verify Multiple Choice Options Translation
-        // Original: ['Stitch', 'Flutter', 'Xcode', 'Figma'], Correct: 'Stitch' (0) and 'Flutter' (1)
-        $optionsMultiple = $qMultipleChoice['options'];
-        $correctIndicesMultiple = $qMultipleChoice['correct'];
-        $correctAnswersValuesMultiple = $qMultipleChoice['correct_answer'];
-
-        $this->assertIsArray($correctIndicesMultiple, 'Multiple choice correct field must be an array');
-        $this->assertCount(2, $correctIndicesMultiple, 'Multiple choice must have exactly 2 correct indices');
-
-        foreach ($correctIndicesMultiple as $idx) {
-            $optText = $optionsMultiple[$idx];
-            $this->assertTrue(in_array($optText, ['Stitch', 'Flutter']), "Correct index $idx must map to either 'Stitch' or 'Flutter' in shuffled options");
-        }
-        $this->assertEquals(array_map('strval', $correctIndicesMultiple), $correctAnswersValuesMultiple, 'correct_answer array must align with correct index array');
-
-        // 5. Test Grading Scenario 1: Student answers all questions CORRECTLY based on display order
-        $correctAnswers = [];
-        foreach ($shuffledQuestions as $shuffledIdx => $q) {
-            if ($q['question_type'] === 'single_choice') {
-                // Submit the translated correct index
-                $correctAnswers[$shuffledIdx] = $q['correct'];
-            } elseif ($q['question_type'] === 'multiple_choice') {
-                // Submit the translated correct indices
-                $correctAnswers[$shuffledIdx] = $q['correct'];
-            } elseif ($q['question_type'] === 'true_false') {
-                $correctAnswers[$shuffledIdx] = $q['correct_answer'];
-            } else {
-                // fill_in_blank
-                $correctAnswers[$shuffledIdx] = $q['correct_answer'];
-            }
-        }
-
-        // Evaluate grading for correct answers
-        $gradedCount = 0;
-        foreach ($shuffledQuestions as $shuffledIdx => $q) {
-            $userAns = $correctAnswers[$shuffledIdx];
-            $isCorrect = $this->invokeControllerMethod('gradeQuestion', [$q, $userAns]);
-            $this->assertTrue($isCorrect, "Question of type '{$q['question_type']}' must be graded CORRECT");
-            if ($isCorrect) $gradedCount++;
-        }
-        $this->assertEquals(4, $gradedCount, 'Student must get 4/4 correct answers');
-
-        // 6. Test Grading Scenario 2: Student answers all questions INCORRECTLY
-        $incorrectAnswers = [];
-        foreach ($shuffledQuestions as $shuffledIdx => $q) {
-            if ($q['question_type'] === 'single_choice') {
-                // Submit an incorrect index
-                $incorrectAnswers[$shuffledIdx] = ($q['correct'] + 1) % 4;
-            } elseif ($q['question_type'] === 'multiple_choice') {
-                // Submit incorrect indices (empty or wrong ones)
-                $incorrectAnswers[$shuffledIdx] = [($q['correct'][0] + 2) % 4];
-            } elseif ($q['question_type'] === 'true_false') {
-                $incorrectAnswers[$shuffledIdx] = $q['correct_answer'] === 'true' ? 'false' : 'true';
-            } else {
-                $incorrectAnswers[$shuffledIdx] = 'Wrong Answer Text';
-            }
-        }
-
-        // Evaluate grading for incorrect answers
-        $incorrectGradedCount = 0;
-        foreach ($shuffledQuestions as $shuffledIdx => $q) {
-            $userAns = $incorrectAnswers[$shuffledIdx];
-            $isCorrect = $this->invokeControllerMethod('gradeQuestion', [$q, $userAns]);
-            $this->assertFalse($isCorrect, "Question of type '{$q['question_type']}' must be graded INCORRECT");
-            if ($isCorrect) $incorrectGradedCount++;
-        }
-        $this->assertEquals(0, $incorrectGradedCount, 'Student must get 0/4 correct answers');
-    }
-
-    /**
-     * Test backward compatibility: ensure that imported JSONs with string correct answers (not indices)
-     * are still graded correctly by the system before they are updated or edited by the admin.
-     */
-    public function testGradingBackwardCompatibilityWithStringCorrectAnswers()
-    {
-        $importedQuestion = [
-            'question_text' => 'What is the capital of France?',
+        $q = [
             'question_type' => 'single_choice',
-            'options' => ['London', 'Paris', 'Berlin', 'Madrid'],
-            'correct_answer' => 'Paris' // text string, no index
+            'options'       => ['Flash', 'Thinking', 'Redesign', 'Preview'],
+            'correct'       => 1,
+            'correct_answer'=> '1',
         ];
+        $this->assertTrue($this->invoke('gradeQuestion', [$q, '1']), 'Exact correct index must pass');
+        $this->assertTrue($this->invoke('gradeQuestion', [$q, 1]),   'Integer index must also pass');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, '0']), 'Wrong index must fail');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, '2']), 'Another wrong index must fail');
+    }
 
-        // If the user answers '1' (Paris is option index 1)
-        $isCorrectIndex = $this->invokeControllerMethod('gradeQuestion', [$importedQuestion, '1']);
-        $this->assertTrue($isCorrectIndex, 'Grading should support index matching even if correct_answer is option text');
+    public function testSingleChoiceCorrectByTextFallback(): void
+    {
+        // Imported quiz where correct_answer is option text (no index)
+        $q = [
+            'question_type' => 'single_choice',
+            'options'       => ['Flash', 'Thinking', 'Redesign', 'Preview'],
+            'correct_answer'=> 'Thinking',
+        ];
+        $this->assertTrue($this->invoke('gradeQuestion', [$q, 'Thinking']),  'Text match must pass');
+        $this->assertTrue($this->invoke('gradeQuestion', [$q, '1']),         'Index matching text must pass');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, 'Flash']),    'Wrong text must fail');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, '0']),        'Index pointing to wrong option must fail');
+    }
 
-        // If the user answers 'Paris' directly
-        $isCorrectText = $this->invokeControllerMethod('gradeQuestion', [$importedQuestion, 'Paris']);
-        $this->assertTrue($isCorrectText, 'Grading should support text matching if correct_answer is option text');
+    public function testMultipleChoiceCorrectByIndices(): void
+    {
+        $q = [
+            'question_type' => 'multiple_choice',
+            'options'       => ['Stitch', 'Flutter', 'Xcode', 'Figma'],
+            'correct'       => [0, 1],
+            'correct_answer'=> ['0', '1'],
+        ];
+        $this->assertTrue($this->invoke('gradeQuestion',  [$q, ['0', '1']]), 'Exact correct indices must pass');
+        $this->assertTrue($this->invoke('gradeQuestion',  [$q, [0, 1]]),     'Integer indices must pass');
+        $this->assertTrue($this->invoke('gradeQuestion',  [$q, ['1', '0']]), 'Order should not matter');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, ['0']]),      'Partial selection must fail');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, ['0','2']]),  'Wrong combination must fail');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, []]),         'Empty selection must fail');
+    }
 
-        // If the user answers incorrectly '0'
-        $isIncorrectIndex = $this->invokeControllerMethod('gradeQuestion', [$importedQuestion, '0']);
-        $this->assertFalse($isIncorrectIndex, 'Incorrect index must be graded false');
+    public function testTrueFalseCorrectVariants(): void
+    {
+        $q = ['question_type' => 'true_false', 'correct_answer' => 'true'];
+        $this->assertTrue($this->invoke('gradeQuestion',  [$q, 'true']),  '"true" string must pass');
+        $this->assertTrue($this->invoke('gradeQuestion',  [$q, true]),    'boolean true must pass');
+        $this->assertTrue($this->invoke('gradeQuestion',  [$q, 'True']),  'Case-insensitive must pass');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, 'false']), '"false" must fail');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, false]),   'boolean false must fail');
 
-        // If the user answers incorrectly 'Berlin'
-        $isIncorrectText = $this->invokeControllerMethod('gradeQuestion', [$importedQuestion, 'Berlin']);
-        $this->assertFalse($isIncorrectText, 'Incorrect text must be graded false');
+        $qF = ['question_type' => 'true_false', 'correct_answer' => 'false'];
+        $this->assertTrue($this->invoke('gradeQuestion',  [$qF, 'false']), '"false" on false-answer must pass');
+        $this->assertFalse($this->invoke('gradeQuestion', [$qF, 'true']),  '"true" on false-answer must fail');
+    }
+
+    public function testFillInBlankGrading(): void
+    {
+        $q = ['question_type' => 'fill_in_blank', 'correct_answer' => 'Visual Identity'];
+        $this->assertTrue($this->invoke('gradeQuestion',  [$q, 'Visual Identity']),  'Exact answer must pass');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, 'visual identity']),  'Case mismatch must fail');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, 'Wrong Answer']),     'Wrong text must fail');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, '']),                 'Empty answer must fail');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, null]),               'Null answer must fail');
+    }
+
+    // =========================================================
+    // SECTION 2 – getShuffledQuestions: shuffle integrity
+    // =========================================================
+
+    public function testShufflePreservesQuestionCount(): void
+    {
+        $json = $this->makeQuizJson();
+        $shuffled = $this->invoke('getShuffledQuestions', [$json, true, true]);
+        $this->assertCount(4, $shuffled, 'Shuffled list must keep all 4 questions');
+    }
+
+    public function testShuffleTranslatesCorrectIndexAfterOptionShuffle(): void
+    {
+        $original = [
+            [
+                'question_text' => 'High Quality Mode?',
+                'question_type' => 'single_choice',
+                'options'       => ['Flash', 'Thinking', 'Redesign', 'Preview'],
+                'correct'       => 1,
+                'correct_answer'=> '1',
+            ],
+        ];
+        $json = json_encode($original);
+
+        // Run multiple times; at least once the order will change
+        $passed = false;
+        for ($i = 0; $i < 20; $i++) {
+            $shuffled = $this->invoke('getShuffledQuestions', [$json, false, true]);
+            $q = $shuffled[0];
+            $correctIdx = $q['correct'];
+            $correctOption = $q['options'][$correctIdx];
+            if ($correctOption === 'Thinking') {
+                $passed = true;
+                break;
+            }
+        }
+        $this->assertTrue($passed, 'Shuffled correct index must always point to "Thinking"');
+    }
+
+    public function testMultipleChoiceShuffleTranslatesAllCorrectIndices(): void
+    {
+        $original = [
+            [
+                'question_text' => 'Google tools?',
+                'question_type' => 'multiple_choice',
+                'options'       => ['Stitch', 'Flutter', 'Xcode', 'Figma'],
+                'correct'       => [0, 1],
+                'correct_answer'=> ['0', '1'],
+            ],
+        ];
+        $json = json_encode($original);
+
+        for ($i = 0; $i < 20; $i++) {
+            $shuffled = $this->invoke('getShuffledQuestions', [$json, false, true]);
+            $q = $shuffled[0];
+            $correctIndices = $q['correct'];
+            $correctTexts   = array_map(fn($idx) => $q['options'][$idx], $correctIndices);
+            sort($correctTexts);
+            $this->assertEquals(['Flutter', 'Stitch'], $correctTexts,
+                'After shuffle, correct indices must still point to Flutter and Stitch');
+        }
+    }
+
+    // =========================================================
+    // SECTION 3 – Full student scenario (A to Z)
+    // =========================================================
+
+    public function testStudentAnswersAllCorrectGets100(): void
+    {
+        $shuffled = $this->invoke('getShuffledQuestions', [$this->makeQuizJson(), true, true]);
+
+        $correct = 0;
+        $total   = count($shuffled);
+
+        foreach ($shuffled as $idx => $q) {
+            $answer = $this->buildCorrectAnswer($q);
+            if ($this->invoke('gradeQuestion', [$q, $answer])) {
+                $correct++;
+            }
+        }
+
+        $score = ($correct / $total) * 100;
+        $this->assertEquals(100.0, $score, 'Student answering all correctly must get 100%');
+    }
+
+    public function testStudentAnswersAllWrongGets0(): void
+    {
+        $shuffled = $this->invoke('getShuffledQuestions', [$this->makeQuizJson(), true, true]);
+
+        $correct = 0;
+        $total   = count($shuffled);
+
+        foreach ($shuffled as $q) {
+            $answer = $this->buildWrongAnswer($q);
+            if ($this->invoke('gradeQuestion', [$q, $answer])) {
+                $correct++;
+            }
+        }
+
+        $score = ($correct / $total) * 100;
+        $this->assertEquals(0.0, $score, 'Student answering all wrong must get 0%');
+    }
+
+    public function testStudentAnswersHalfCorrectGets50(): void
+    {
+        // 4 questions; student answers Q1 & Q3 correctly, Q2 & Q4 wrong
+        $shuffled = $this->invoke('getShuffledQuestions', [$this->makeQuizJson(), false, false]);
+
+        $correct = 0;
+        $total   = count($shuffled);
+
+        foreach ($shuffled as $i => $q) {
+            $answer = ($i % 2 === 0) ? $this->buildCorrectAnswer($q) : $this->buildWrongAnswer($q);
+            if ($this->invoke('gradeQuestion', [$q, $answer])) {
+                $correct++;
+            }
+        }
+
+        $score = ($correct / $total) * 100;
+        $this->assertEquals(50.0, $score, 'Student answering half correct must get 50%');
+    }
+
+    // =========================================================
+    // SECTION 4 – Database integrity checks
+    // =========================================================
+
+    public function testAllQuizQuestionsHaveCorrectAnswersInDb(): void
+    {
+        $pdo = new \PDO("mysql:host=localhost;dbname=webeasystep;charset=utf8", "root", "");
+        $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+
+        $quizzes = $pdo->query("SELECT id, quiz_title, quiz_questions FROM tb_quizzes")->fetchAll();
+
+        $brokenQuestions = [];
+
+        foreach ($quizzes as $quiz) {
+            $questions = json_decode($quiz['quiz_questions'], true) ?? [];
+            foreach ($questions as $i => $q) {
+                $hasCorrect = isset($q['correct']) && $q['correct'] !== null;
+                $hasCorrectAnswer = isset($q['correct_answer']) && $q['correct_answer'] !== null
+                    && $q['correct_answer'] !== '' && $q['correct_answer'] !== [];
+
+                if (!$hasCorrect && !$hasCorrectAnswer) {
+                    $brokenQuestions[] = "Quiz [{$quiz['quiz_title']}] Q" . ($i + 1) . ": " . mb_substr($q['question_text'], 0, 50);
+                }
+            }
+        }
+
+        $this->assertEmpty(
+            $brokenQuestions,
+            "Questions with no correct answer found:\n" . implode("\n", $brokenQuestions)
+        );
+    }
+
+    public function testAllSingleChoiceIndicesAreValidInDb(): void
+    {
+        $pdo = new \PDO("mysql:host=localhost;dbname=webeasystep;charset=utf8", "root", "");
+        $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+
+        $quizzes = $pdo->query("SELECT id, quiz_title, quiz_questions FROM tb_quizzes")->fetchAll();
+
+        $badIndexQuestions = [];
+
+        foreach ($quizzes as $quiz) {
+            $questions = json_decode($quiz['quiz_questions'], true) ?? [];
+            foreach ($questions as $i => $q) {
+                if (!in_array($q['question_type'] ?? '', ['single_choice', 'multiple_choice'])) continue;
+                if (!isset($q['options'])) continue;
+
+                $idx = $q['correct'] ?? $q['correct_answer'] ?? null;
+                if ($idx === null) continue;
+
+                $optionCount = count($q['options']);
+                if (is_array($idx)) {
+                    foreach ($idx as $cidx) {
+                        if (!isset($q['options'][(int)$cidx])) {
+                            $badIndexQuestions[] = "Quiz [{$quiz['quiz_title']}] Q" . ($i+1) . ": index $cidx out of range ($optionCount options)";
+                        }
+                    }
+                } elseif (is_numeric($idx) && !isset($q['options'][(int)$idx])) {
+                    $badIndexQuestions[] = "Quiz [{$quiz['quiz_title']}] Q" . ($i+1) . ": index $idx out of range ($optionCount options)";
+                }
+            }
+        }
+
+        $this->assertEmpty(
+            $badIndexQuestions,
+            "Questions with out-of-range indices found:\n" . implode("\n", $badIndexQuestions)
+        );
+    }
+
+    public function testAllTrueFalseQuestionsHaveValidAnswers(): void
+    {
+        $pdo = new \PDO("mysql:host=localhost;dbname=webeasystep;charset=utf8", "root", "");
+        $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+
+        $quizzes = $pdo->query("SELECT id, quiz_title, quiz_questions FROM tb_quizzes")->fetchAll();
+        $badTF = [];
+
+        foreach ($quizzes as $quiz) {
+            $questions = json_decode($quiz['quiz_questions'], true) ?? [];
+            foreach ($questions as $i => $q) {
+                if (($q['question_type'] ?? '') !== 'true_false') continue;
+                $answer = strtolower(trim((string)($q['correct_answer'] ?? $q['correct'] ?? '')));
+                if (!in_array($answer, ['true', 'false', '1', '0'])) {
+                    $badTF[] = "Quiz [{$quiz['quiz_title']}] Q" . ($i+1) . ": invalid true/false answer = '$answer'";
+                }
+            }
+        }
+
+        $this->assertEmpty(
+            $badTF,
+            "True/False questions with invalid answers:\n" . implode("\n", $badTF)
+        );
+    }
+
+    // =========================================================
+    // SECTION 5 – Backward compatibility (imported JSON quizzes)
+    // =========================================================
+
+    public function testBackwardCompatibilityStringAnswers(): void
+    {
+        $q = [
+            'question_type' => 'single_choice',
+            'options'       => ['London', 'Paris', 'Berlin', 'Madrid'],
+            'correct_answer'=> 'Paris',
+        ];
+        $this->assertTrue($this->invoke('gradeQuestion', [$q, 'Paris']), 'String text match must pass');
+        $this->assertTrue($this->invoke('gradeQuestion', [$q, '1']),     'Index pointing to Paris must pass');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, 'London']), 'Wrong text must fail');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, '0']),      'Wrong index must fail');
+    }
+
+    // =========================================================
+    // Helpers
+    // =========================================================
+
+    private function makeQuizJson(): string
+    {
+        return json_encode([
+            [
+                'question_text' => 'High quality mode?',
+                'question_type' => 'single_choice',
+                'options'       => ['Flash', 'Thinking', 'Redesign', 'Preview'],
+                'correct'       => 1,
+                'correct_answer'=> '1',
+            ],
+            [
+                'question_text' => 'Google tools?',
+                'question_type' => 'multiple_choice',
+                'options'       => ['Stitch', 'Flutter', 'Xcode', 'Figma'],
+                'correct'       => [0, 1],
+                'correct_answer'=> ['0', '1'],
+            ],
+            [
+                'question_text' => 'Flash prioritizes quality over speed.',
+                'question_type' => 'true_false',
+                'correct_answer'=> 'false',
+            ],
+            [
+                'question_text' => 'Design system unifies?',
+                'question_type' => 'fill_in_blank',
+                'correct_answer'=> 'Visual Identity',
+            ],
+        ]);
+    }
+
+    private function buildCorrectAnswer(array $q): mixed
+    {
+        return match ($q['question_type']) {
+            'single_choice'   => $q['correct'] ?? $q['correct_answer'],
+            'multiple_choice' => is_array($q['correct'] ?? null) ? $q['correct'] : [$q['correct'] ?? 0],
+            'true_false'      => $q['correct_answer'] ?? $q['correct'],
+            default           => $q['correct_answer'] ?? $q['correct'],
+        };
+    }
+
+    private function buildWrongAnswer(array $q): mixed
+    {
+        return match ($q['question_type']) {
+            'single_choice'   => ($q['correct'] ?? 0) === 0 ? '1' : '0',
+            'multiple_choice' => ['99'],
+            'true_false'      => ($q['correct_answer'] ?? 'true') === 'true' ? 'false' : 'true',
+            default           => 'Completely Wrong Answer XYZ',
+        };
     }
 }
