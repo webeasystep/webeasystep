@@ -473,6 +473,9 @@ class Quizzes extends BaseController
             ]);
         }
 
+        // Check if user has an active attempt
+        $activeAttempt = $this->attemptsModel->getActiveAttempt($userId, $quizId);
+
         $questions = [];
         if ($activeAttempt) {
             // Continue existing attempt
