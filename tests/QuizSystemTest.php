@@ -338,6 +338,25 @@ class QuizSystemTest extends CIUnitTestCase
         $this->assertFalse($this->invoke('gradeQuestion', [$q, '0']),      'Wrong index must fail');
     }
 
+    /**
+     * Regression test: Design System Q2 correct answer is Markdown (index 2),
+     * NOT JSON — because DESIGN.md is a Markdown file.
+     */
+    public function testDesignSystemQ2CorrectAnswerIsMarkdown(): void
+    {
+        $q = [
+            'question_type' => 'single_choice',
+            'options'       => ['JSON', 'XML', 'Markdown', 'YAML'],
+            'correct'       => 2,
+            'correct_answer'=> '2',
+        ];
+        $this->assertTrue($this->invoke('gradeQuestion',  [$q, '2']),  'Markdown (index 2) must be correct');
+        $this->assertTrue($this->invoke('gradeQuestion',  [$q, 2]),    'Integer index 2 must be correct');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, '0']),  'JSON (index 0) must be wrong');
+        $this->assertFalse($this->invoke('gradeQuestion', [$q, '3']),  'YAML (index 3) must be wrong');
+    }
+
+
     // =========================================================
     // Helpers
     // =========================================================
