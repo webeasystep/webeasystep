@@ -590,6 +590,54 @@ class Courses extends BaseController
                 }
             }
 
+            // TRY TO FIND LAST WATCHED ITEM IN DB
+            $lastAccessedItem = $this->db->table('tb_user_item_progress')
+                ->select('tb_user_item_progress.item_id, tb_user_item_progress.is_completed')
+                ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
+                ->where('tb_user_item_progress.user_id', $userId)
+                ->where('tb_units.course_id', $course->id)
+                ->orderBy('tb_user_item_progress.updated_at', 'DESC')
+                ->limit(1)
+                ->get()
+                ->getRow();
+
+            if ($lastAccessedItem) {
+                // Fetch all completed item IDs to know which ones to skip if the last item is completed
+                $completedItems = $this->db->table('tb_user_item_progress')
+                    ->select('tb_user_item_progress.item_id')
+                    ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
+                    ->where('tb_user_item_progress.user_id', $userId)
+                    ->where('tb_units.course_id', $course->id)
+                    ->where('tb_user_item_progress.is_completed', 1)
+                    ->get()
+                    ->getResultArray();
+                $completedItemIds = array_column($completedItems, 'item_id');
+
+                $lastIndex = -1;
+                foreach ($flatItems as $index => $item) {
+                    if ($item['id'] == $lastAccessedItem->item_id) {
+                        $lastIndex = $index;
+                        break;
+                    }
+                }
+
+                if ($lastIndex !== -1) {
+                    $targetItemId = $lastAccessedItem->item_id;
+
+                    // If the last accessed item is completed, find the next uncompleted item
+                    if ($lastAccessedItem->is_completed == 1) {
+                        for ($i = $lastIndex + 1; $i < count($flatItems); $i++) {
+                            if (!in_array($flatItems[$i]['id'], $completedItemIds)) {
+                                $targetItemId = $flatItems[$i]['id'];
+                                break;
+                            }
+                        }
+                    }
+
+                    return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $targetItemId));
+                }
+            }
+
             // Default: redirect to the first available item
             return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $flatItems[0]['id']));
         }

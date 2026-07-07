@@ -1,0 +1,111 @@
+{
+    "quiz_title": "Unit 4: Vibe Coding & Logic",
+    "shuffle_questions": 1,
+    "shuffle_answers": 1,
+    "questions": [
+        {
+            "question_text": "MCP اختصار لـ:",
+            "question_type": "single_choice",
+            "options": [
+                "Model Context Protocol",
+                "Multi Code Platform",
+                "Managed Coding Process",
+                "Modern Coding Pattern"
+            ],
+            "correct": "0",
+            "correct_answer": "0"
+        },
+        {
+            "question_text": "ما فائدة MCP ؟",
+            "question_type": "single_choice",
+            "options": [
+                "نقل وربط السياق بين الأدوات",
+                "تسريع الإنترنت",
+                "ضغط الملفات",
+                "إنشاء قواعد البيانات"
+            ],
+            "correct": "0",
+            "correct_answer": "0"
+        },
+        {
+            "question_text": "MCP يسمح للـ AI بالتعامل مع أدوات خارجية.",
+            "question_type": "true_false",
+            "correct_answer": "true"
+        },
+        {
+            "question_text": "Stitch MCP يستخدم من أجل:",
+            "question_type": "single_choice",
+            "options": [
+                "استيراد التصميم للمشروع",
+                "إنشاء Database",
+                "رفع المشروع",
+                "إدارة Git"
+            ],
+            "correct": "0",
+            "correct_answer": "0"
+        },
+        {
+            "question_text": "ما وظيفة rules.md؟",
+            "question_type": "single_choice",
+            "options": [
+                "فرض معايير كتابة الكود",
+                "تخزين البيانات",
+                "إدارة التصميم",
+                "إدارة Git"
+            ],
+            "correct": "0",
+            "correct_answer": "0"
+        },
+        {
+            "question_text": "rules.md يساعد على ثبات جودة الكود.",
+            "question_type": "true_false",
+            "correct_answer": "true"
+        },
+        {
+            "question_text": "AI يقرأ الملف تلقائياً كمصدر تعليمات.",
+            "question_type": "true_false",
+            "correct_answer": "true"
+        },
+        {
+            "question_text": "skills.md يمثل:",
+            "question_type": "single_choice",
+            "options": [
+                "ذاكرة للأنماط والحلول المعتمدة",
+                "قاعدة بيانات",
+                "ملف إعدادات",
+                "ملف تصميم"
+            ],
+            "correct": "0",
+            "correct_answer": "0"
+        },
+        {
+            "question_text": "متى نضيف Skill جديدة؟",
+            "question_type": "single_choice",
+            "options": [
+                "عند اكتشاف نمط ناجح متكرر",
+                "عند حذف ملف",
+                "عند إنشاء Branch",
+                "عند إنشاء Repository"
+            ],
+            "correct": "0",
+            "correct_answer": "0"
+        },
+        {
+            "question_text": "skills.md يقلل إعادة اختراع الحلول.",
+            "question_type": "true_false",
+            "correct_answer": "true"
+        },
+        {
+            "question_text": "أين كانت البيانات تحفظ قبل استخدام supabase؟",
+            "question_type": "single_choice",
+            "options": [
+                "MySQL",
+                "Supabase",
+                "Local Storage",
+                "Firebase"
+            ],
+            "correct": "2",
+            "correct_answer": "2"
+        }
+    ]
+}

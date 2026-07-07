@@ -410,4 +410,18 @@ class QuizSystemTest extends CIUnitTestCase
             default           => 'Completely Wrong Answer XYZ',
         };
     }
+
+    public function testUnit4JsonIsValid(): void
+    {
+        $json = file_get_contents(__DIR__ . '/../unit4_vibe_coding_logic.json');
+        $data = json_decode($json, true);
+        $questions = $data['questions'] ?? [];
+        $this->assertIsArray($questions, 'Questions should be a valid array');
+        $this->assertCount(11, $questions, 'There should be 11 questions');
+        
+        foreach ($questions as $q) {
+            $answer = $this->buildCorrectAnswer($q);
+            $this->assertTrue($this->invoke('gradeQuestion', [$q, $answer]), "Failed grading for question: " . $q['question_text']);
+        }
+    }
 }
