@@ -1,0 +1,488 @@
+[
+    {
+        "title": "81-working with nullability.mp4",
+        "guid": "3ef1face-326e-4caf-836c-49dd081e9bfc",
+        "length": 517,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/3ef1face-326e-4caf-836c-49dd081e9bfc"
+    },
+    {
+        "title": "80-nullability.mp4",
+        "guid": "be3559b0-fe8f-40e2-96a9-220214be183c",
+        "length": 612,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/be3559b0-fe8f-40e2-96a9-220214be183c"
+    },
+    {
+        "title": "79-working with isolate.mp4",
+        "guid": "97734079-9c60-43f3-afa0-3022823a194f",
+        "length": 340,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/97734079-9c60-43f3-afa0-3022823a194f"
+    },
+    {
+        "title": "74-real world example with async await.mp4",
+        "guid": "6a3911e3-2f93-42d1-80bf-15af42fa2505",
+        "length": 780,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/6a3911e3-2f93-42d1-80bf-15af42fa2505"
+    },
+    {
+        "title": "67-sync vs async.mp4",
+        "guid": "fa85d7ba-892d-4f05-bffd-8285baa926df",
+        "length": 362,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/fa85d7ba-892d-4f05-bffd-8285baa926df"
+    },
+    {
+        "title": "68-concurrency vs parallelism.mp4",
+        "guid": "ee6f7316-cfa0-46a7-ae79-7253dc69ea33",
+        "length": 382,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/ee6f7316-cfa0-46a7-ae79-7253dc69ea33"
+    },
+    {
+        "title": "69-event loops.mp4",
+        "guid": "17a4c482-3a91-4a9d-8c5c-3933ea07c4f9",
+        "length": 333,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/17a4c482-3a91-4a9d-8c5c-3933ea07c4f9"
+    },
+    {
+        "title": "70-futures.mp4",
+        "guid": "664903dd-ea91-4817-9fe4-0a315b869666",
+        "length": 344,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/664903dd-ea91-4817-9fe4-0a315b869666"
+    },
+    {
+        "title": "71-working_with_future_callbackss.mp4",
+        "guid": "a9201a96-4097-4ac2-9228-1af40d7f8730",
+        "length": 213,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/a9201a96-4097-4ac2-9228-1af40d7f8730"
+    },
+    {
+        "title": "72-async await.mp4",
+        "guid": "47749e1b-4adf-49c1-b340-e8d19d611abd",
+        "length": 425,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/47749e1b-4adf-49c1-b340-e8d19d611abd"
+    },
+    {
+        "title": "73-async await working with.mp4",
+        "guid": "0b8fa13f-757f-45a7-a633-4cfaac83562c",
+        "length": 316,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/0b8fa13f-757f-45a7-a633-4cfaac83562c"
+    },
+    {
+        "title": "76-working with stream.mp4",
+        "guid": "191ff112-aad7-4d67-9c4d-d62f7ba41e2d",
+        "length": 838,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/191ff112-aad7-4d67-9c4d-d62f7ba41e2d"
+    },
+    {
+        "title": "75-streams.mp4",
+        "guid": "ae4e2195-1f20-4f4d-8920-0aec938e86a4",
+        "length": 453,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/ae4e2195-1f20-4f4d-8920-0aec938e86a4"
+    },
+    {
+        "title": "77-isolate meaning.mp4",
+        "guid": "05e06e03-bdff-416c-9fc7-902ef3c7d346",
+        "length": 337,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/05e06e03-bdff-416c-9fc7-902ef3c7d346"
+    },
+    {
+        "title": "78-isolate terms and cyclet.mp4",
+        "guid": "f799b738-3a16-42fa-8da4-1f936d406836",
+        "length": 170,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/f799b738-3a16-42fa-8da4-1f936d406836"
+    },
+    {
+        "title": "58-defining class.mp4",
+        "guid": "ccad315d-d536-4a2d-94a2-7eefe017800d",
+        "length": 587,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/ccad315d-d536-4a2d-94a2-7eefe017800d"
+    },
+    {
+        "title": "57-oop intro.mp4",
+        "guid": "f0dfdbf4-e0b6-42d1-bcd2-099790821812",
+        "length": 614,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/f0dfdbf4-e0b6-42d1-bcd2-099790821812"
+    },
+    {
+        "title": "59-what is constructors.mp4",
+        "guid": "8a5fcbd8-fe50-4cf7-a65a-be58d78fb43e",
+        "length": 247,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/8a5fcbd8-fe50-4cf7-a65a-be58d78fb43e"
+    },
+    {
+        "title": "61-unnamed constructors.mp4",
+        "guid": "fb8ccd89-a445-4a5c-8104-ccc16993c18a",
+        "length": 238,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/fb8ccd89-a445-4a5c-8104-ccc16993c18a"
+    },
+    {
+        "title": "60-default constructor.mp4",
+        "guid": "25ab3668-e31e-4240-aa65-1ca345b13100",
+        "length": 172,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/25ab3668-e31e-4240-aa65-1ca345b13100"
+    },
+    {
+        "title": "63-factory constructors.mp4",
+        "guid": "5379c2a4-66ea-4a40-8eff-0ed96f96d4ec",
+        "length": 372,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/5379c2a4-66ea-4a40-8eff-0ed96f96d4ec"
+    },
+    {
+        "title": "62-named constructors.mp4",
+        "guid": "0aa81fe4-6485-4bed-9767-7ce21c35fd7d",
+        "length": 194,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/0aa81fe4-6485-4bed-9767-7ce21c35fd7d"
+    },
+    {
+        "title": "66-inheritance_2.mp4",
+        "guid": "21bdda13-b4a9-4d3a-b023-65dca137b2f6",
+        "length": 478,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/21bdda13-b4a9-4d3a-b023-65dca137b2f6"
+    },
+    {
+        "title": "64-factory constructors_2.mp4",
+        "guid": "9f6c2f68-ad60-4af1-aac2-1846ba5ec9bd",
+        "length": 412,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/9f6c2f68-ad60-4af1-aac2-1846ba5ec9bd"
+    },
+    {
+        "title": "65-getters and setters.mp4",
+        "guid": "3143909b-8b60-465c-a435-7beeff2f4a27",
+        "length": 627,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/3143909b-8b60-465c-a435-7beeff2f4a27"
+    },
+    {
+        "title": "51-define_functions.mp4",
+        "guid": "5d494196-800b-4cde-8033-6268857e8668",
+        "length": 614,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/5d494196-800b-4cde-8033-6268857e8668"
+    },
+    {
+        "title": "52-parameters.mp4",
+        "guid": "cbce99c9-a2e7-45a5-9d38-507c2fe6fdef",
+        "length": 581,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/cbce99c9-a2e7-45a5-9d38-507c2fe6fdef"
+    },
+    {
+        "title": "54-higher_order_functions.mp4",
+        "guid": "f178c639-7c06-4918-ab3e-80576b0c8379",
+        "length": 569,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/f178c639-7c06-4918-ab3e-80576b0c8379"
+    },
+    {
+        "title": "53-recursive_functions.mp4",
+        "guid": "08d38094-fd3a-4b22-88bb-e08e103059b9",
+        "length": 371,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/08d38094-fd3a-4b22-88bb-e08e103059b9"
+    },
+    {
+        "title": "56-scope and nested functions.mp4",
+        "guid": "55bc6558-f257-49ff-b378-cb39283e9870",
+        "length": 591,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/55bc6558-f257-49ff-b378-cb39283e9870"
+    },
+    {
+        "title": "55-anonymous_functions.mp4",
+        "guid": "1e572c54-81b2-4f1a-a0c8-7368982749b3",
+        "length": 253,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/1e572c54-81b2-4f1a-a0c8-7368982749b3"
+    },
+    {
+        "title": "30-list_1.mp4",
+        "guid": "34784222-c6c2-4462-ad6e-15c00cf2f9fc",
+        "length": 289,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/34784222-c6c2-4462-ad6e-15c00cf2f9fc"
+    },
+    {
+        "title": "37-Control Flow Statements intro.mp4",
+        "guid": "37d73061-740b-4521-b82e-bc2c6fd1b828",
+        "length": 552,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/37d73061-740b-4521-b82e-bc2c6fd1b828"
+    },
+    {
+        "title": "39-if_2.mp4",
+        "guid": "1e28efef-8ae0-441c-8617-1b6b3943e92d",
+        "length": 351,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/1e28efef-8ae0-441c-8617-1b6b3943e92d"
+    },
+    {
+        "title": "40-if_3_4.mp4",
+        "guid": "766794a6-a034-455c-b117-1ce63cb06584",
+        "length": 267,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/766794a6-a034-455c-b117-1ce63cb06584"
+    },
+    {
+        "title": "38-if_1.mp4",
+        "guid": "4906d9f9-8967-4216-bb6f-5c87bf5bac2c",
+        "length": 289,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/4906d9f9-8967-4216-bb6f-5c87bf5bac2c"
+    },
+    {
+        "title": "43-while_1.mp4",
+        "guid": "63796038-cacb-49e9-8ae8-20b0d238167c",
+        "length": 188,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/63796038-cacb-49e9-8ae8-20b0d238167c"
+    },
+    {
+        "title": "44-while_2.mp4",
+        "guid": "1facb533-b9ae-4bdb-bf6c-61079a470275",
+        "length": 251,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/1facb533-b9ae-4bdb-bf6c-61079a470275"
+    },
+    {
+        "title": "45-break_continue_1.mp4",
+        "guid": "efafd4b2-3aef-4a69-aef8-0e02de036bee",
+        "length": 318,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/efafd4b2-3aef-4a69-aef8-0e02de036bee"
+    },
+    {
+        "title": "46-break_continue_2.mp4",
+        "guid": "9e123aca-be58-4d35-8ebf-d2df4fe208b4",
+        "length": 205,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/9e123aca-be58-4d35-8ebf-d2df4fe208b4"
+    },
+    {
+        "title": "47-switch_and_case_1.mp4",
+        "guid": "a042339f-847a-4279-b9de-62f6ddf56ec8",
+        "length": 325,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/a042339f-847a-4279-b9de-62f6ddf56ec8"
+    },
+    {
+        "title": "48-switch_and_case_2.mp4",
+        "guid": "6c0ef68c-d19d-48e0-84b2-ae300089e74b",
+        "length": 136,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/6c0ef68c-d19d-48e0-84b2-ae300089e74b"
+    },
+    {
+        "title": "49-assert_1.mp4",
+        "guid": "de153ab0-c7ff-4ae1-9b13-3a78788a356c",
+        "length": 222,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/de153ab0-c7ff-4ae1-9b13-3a78788a356c"
+    },
+    {
+        "title": "50-assert_2.mp4",
+        "guid": "2ffff08c-5544-45a8-b06c-944dad84fc31",
+        "length": 149,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/2ffff08c-5544-45a8-b06c-944dad84fc31"
+    },
+    {
+        "title": "42-for_2.mp4",
+        "guid": "29c98cb6-3f5c-4ad2-a47c-47f00f9d9ae2",
+        "length": 454,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/29c98cb6-3f5c-4ad2-a47c-47f00f9d9ae2"
+    },
+    {
+        "title": "41-for_1.mp4",
+        "guid": "6dffd010-93e1-407b-aaaf-0c2e645e13f8",
+        "length": 287,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/6dffd010-93e1-407b-aaaf-0c2e645e13f8"
+    },
+    {
+        "title": "27-collections_intro.mp4",
+        "guid": "2185b56f-4860-4733-b038-ebc08eb1ed9e",
+        "length": 366,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/2185b56f-4860-4733-b038-ebc08eb1ed9e"
+    },
+    {
+        "title": "28-functions_intro.mp4",
+        "guid": "546e5712-d50c-4825-a279-36da6ea5eec2",
+        "length": 511,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/546e5712-d50c-4825-a279-36da6ea5eec2"
+    },
+    {
+        "title": "29-functions_2.mp4",
+        "guid": "237526de-fc35-4e2f-a01c-07f8a2431440",
+        "length": 279,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/237526de-fc35-4e2f-a01c-07f8a2431440"
+    },
+    {
+        "title": "31-list_2.mp4",
+        "guid": "0a4a78a4-d0ff-409c-812c-2f39332d9fce",
+        "length": 645,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/0a4a78a4-d0ff-409c-812c-2f39332d9fce"
+    },
+    {
+        "title": "32-list_3.mp4",
+        "guid": "36080889-f75d-425c-8de4-717495d84fce",
+        "length": 359,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/36080889-f75d-425c-8de4-717495d84fce"
+    },
+    {
+        "title": "33-maps.mp4",
+        "guid": "1295ec9f-d3e2-4fc3-af59-cd4a0495cf7f",
+        "length": 271,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/1295ec9f-d3e2-4fc3-af59-cd4a0495cf7f"
+    },
+    {
+        "title": "34-maps_2.mp4",
+        "guid": "2b4d1c74-e409-4e16-8ce8-64ffc80309f8",
+        "length": 571,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/2b4d1c74-e409-4e16-8ce8-64ffc80309f8"
+    },
+    {
+        "title": "36-sets_2.mp4",
+        "guid": "298f1e86-bacb-4178-8cba-4d6e08419741",
+        "length": 793,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/298f1e86-bacb-4178-8cba-4d6e08419741"
+    },
+    {
+        "title": "35-sets.mp4",
+        "guid": "8a050c1c-bfab-4a55-b619-6db42270887a",
+        "length": 301,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/8a050c1c-bfab-4a55-b619-6db42270887a"
+    },
+    {
+        "title": "19-operators.mp4",
+        "guid": "cc93b838-76c2-4fd7-9e41-84692da76cb5",
+        "length": 238,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/cc93b838-76c2-4fd7-9e41-84692da76cb5"
+    },
+    {
+        "title": "20-operators and expressions.mp4",
+        "guid": "92cfadcd-8e51-4333-b6a2-a10d710fa012",
+        "length": 397,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/92cfadcd-8e51-4333-b6a2-a10d710fa012"
+    },
+    {
+        "title": "21-arthematic operators.mp4",
+        "guid": "a01c0c62-b139-4a08-9871-277831c63092",
+        "length": 670,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/a01c0c62-b139-4a08-9871-277831c63092"
+    },
+    {
+        "title": "23-comparison_operators.mp4",
+        "guid": "36efa2b4-5f13-4850-b498-91b1fdefc94c",
+        "length": 468,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/36efa2b4-5f13-4850-b498-91b1fdefc94c"
+    },
+    {
+        "title": "22-assignment_operators.mp4",
+        "guid": "d3ee817f-e42c-4bfd-b971-4cfdac46ad66",
+        "length": 252,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/d3ee817f-e42c-4bfd-b971-4cfdac46ad66"
+    },
+    {
+        "title": "24-logical_operators.mp4",
+        "guid": "9867594e-07d4-422e-b5e9-1d48c19e41cb",
+        "length": 429,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/9867594e-07d4-422e-b5e9-1d48c19e41cb"
+    },
+    {
+        "title": "25-operator_precedence.mp4",
+        "guid": "365be274-7892-4ae4-b5c5-843bc51e4df7",
+        "length": 177,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/365be274-7892-4ae4-b5c5-843bc51e4df7"
+    },
+    {
+        "title": "26-type_test_operators.mp4",
+        "guid": "766cb312-9774-49ac-81e9-4915fbdb930e",
+        "length": 195,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/766cb312-9774-49ac-81e9-4915fbdb930e"
+    },
+    {
+        "title": "13-variables.mp4",
+        "guid": "26538ef9-cc60-476b-9617-9d676af3362d",
+        "length": 516,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/26538ef9-cc60-476b-9617-9d676af3362d"
+    },
+    {
+        "title": "15-strings.mp4",
+        "guid": "5fc4630a-4d20-4f1c-a711-c5e30ad00e32",
+        "length": 461,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/5fc4630a-4d20-4f1c-a711-c5e30ad00e32"
+    },
+    {
+        "title": "17-final_const.mp4",
+        "guid": "6c5d0064-2b54-469e-a613-09de4e72311b",
+        "length": 764,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/6c5d0064-2b54-469e-a613-09de4e72311b"
+    },
+    {
+        "title": "14-numbers.mp4",
+        "guid": "09d8012f-055c-40fe-b22a-8e75d7370aa2",
+        "length": 389,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/09d8012f-055c-40fe-b22a-8e75d7370aa2"
+    },
+    {
+        "title": "16-boolean.mp4",
+        "guid": "e3af77fc-ef9f-45d4-8da9-bde672b6e5e3",
+        "length": 401,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/e3af77fc-ef9f-45d4-8da9-bde672b6e5e3"
+    },
+    {
+        "title": "18-comments.mp4",
+        "guid": "6a017134-fe0f-4a62-9ff4-b47a3bd60e67",
+        "length": 132,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/6a017134-fe0f-4a62-9ff4-b47a3bd60e67"
+    },
+    {
+        "title": "11-dart data types are objects.mp4",
+        "guid": "5dc56d86-ec8a-443c-aa21-1f9db8f22e97",
+        "length": 285,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/5dc56d86-ec8a-443c-aa21-1f9db8f22e97"
+    },
+    {
+        "title": "12-working_with_data_types.mp4",
+        "guid": "5e6e1930-82af-4865-bd67-b9afcf9e6c66",
+        "length": 506,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/5e6e1930-82af-4865-bd67-b9afcf9e6c66"
+    },
+    {
+        "title": "10-values_and_refrences.mp4",
+        "guid": "201a24cc-ed98-4ed4-986d-9c205dbc170c",
+        "length": 251,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/201a24cc-ed98-4ed4-986d-9c205dbc170c"
+    },
+    {
+        "title": "8-data_types and objects.mp4",
+        "guid": "f3579bf2-1236-44f9-882c-c2cef79857ab",
+        "length": 469,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/f3579bf2-1236-44f9-882c-c2cef79857ab"
+    },
+    {
+        "title": "9-dart built-in data_types.mp4",
+        "guid": "6939fbdb-9329-423e-8541-bb2a910560ce",
+        "length": 90,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/6939fbdb-9329-423e-8541-bb2a910560ce"
+    },
+    {
+        "title": "7-the main_method.mp4",
+        "guid": "98a9fdf7-105b-4e1b-b94d-783cde712ede",
+        "length": 321,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/98a9fdf7-105b-4e1b-b94d-783cde712ede"
+    },
+    {
+        "title": "6-explore_project_structure.mp4",
+        "guid": "06b6aced-7741-4ccc-bb5f-2202f2502a57",
+        "length": 375,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/06b6aced-7741-4ccc-bb5f-2202f2502a57"
+    },
+    {
+        "title": "3-dart intro.mp4",
+        "guid": "5a89c205-0c96-4185-bce3-389492ab358b",
+        "length": 1100,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/5a89c205-0c96-4185-bce3-389492ab358b"
+    },
+    {
+        "title": "4-setup enviroment.mp4",
+        "guid": "f4f6a84b-3108-4a77-8edc-6fb7cb744ff0",
+        "length": 472,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/f4f6a84b-3108-4a77-8edc-6fb7cb744ff0"
+    },
+    {
+        "title": "5-create_first_project.mp4",
+        "guid": "5cc6fe98-ba24-47fd-88c8-b65a900ab52b",
+        "length": 294,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/5cc6fe98-ba24-47fd-88c8-b65a900ab52b"
+    },
+    {
+        "title": "2-course quizzes.mp4",
+        "guid": "5f8c3c82-eb9d-4787-bc95-bb9479132b53",
+        "length": 137,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/5f8c3c82-eb9d-4787-bc95-bb9479132b53"
+    },
+    {
+        "title": "1-course_intro.mp4",
+        "guid": "f2029621-b085-4f6d-a610-57eeb45987fc",
+        "length": 106,
+        "embed_url": "https://iframe.mediadelivery.net/embed/495222/f2029621-b085-4f6d-a610-57eeb45987fc"
+    }
+]

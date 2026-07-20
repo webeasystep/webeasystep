@@ -56,6 +56,9 @@
                     <li <?= current_url() == site_url() ? 'class="active"' : '' ?>>
                         <a href="<?= site_url() ?>">الرئيسية</a>
                     </li>
+                    <li <?= current_url() == site_url('courses/fundamentals') ? 'class="active"' : '' ?>>
+                        <a href="<?= site_url('courses/fundamentals') ?>">كورسات الأساسيات</a>
+                    </li>
                
                     <?php if (auth()->loggedIn()): ?>
                         <!-- User Navigation Links -->

@@ -55,6 +55,7 @@ class Site extends BaseController
         $courses = $this->db
             ->table('tb_courses')
             ->where('active', 1)
+            ->where('is_fundamentals', 0)
             ->orderBy('sort', 'ASC')
             ->get()
             ->getResultArray();

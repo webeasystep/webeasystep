@@ -25,6 +25,7 @@ class AdminCourses extends BaseController
             "course_price" => ['label' => lang("Courses.course_price"), 'rules' => "permit_empty|decimal"],
             "slug" => ['label' => lang("Courses.slug"), 'rules' => "required|alpha_dash|is_unique[tb_courses.slug]"],
             "active" => ['label' => lang("Courses.active"), 'rules' => "permit_empty|in_list[0,1,on]"],
+            "is_fundamentals" => ['label' => lang("Courses.is_fundamentals"), 'rules' => "permit_empty|in_list[0,1,on]"],
         ];
     }
 
@@ -123,6 +124,7 @@ class AdminCourses extends BaseController
             'is_free'           => $this->request->getPost('is_free') ? '1' : '0',
             'waiting_list'      => $this->request->getPost('waiting_list') ? '1' : '0',
             'active'            => $this->request->getPost('active') ? '1' : '0',
+            'is_fundamentals'   => $this->request->getPost('is_fundamentals') ? '1' : '0',
         ];
 
         if ($id) {

@@ -35,6 +35,7 @@ $routes->group('', [
     'namespace' => 'Modules\Courses\Controllers'
 ], static function ($routes) {
     $routes->get('courses', 'Courses::index');
+    $routes->get('courses/fundamentals', 'Courses::fundamentals');
     $routes->get('courses/course_details/(:any)', 'Courses::course_details/$1');
 });
 

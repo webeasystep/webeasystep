@@ -136,6 +136,20 @@
                 </div>
             </div>
 
+            <!-- Switch for 'is_fundamentals' -->
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">كورس أساسيات (لا يظهر في الرئيسية)</label>
+                <div class="col-sm-9">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input"
+                               id="is_fundamentals" name="is_fundamentals"
+                            <?= set_value('is_fundamentals', $course->is_fundamentals ?? 0) ? 'checked' : '' ?>>
+                        <label class="custom-control-label" for="is_fundamentals"></label>
+                    </div>
+                    <small class="form-text text-muted">تفعيل هذا الخيار يجعل الكورس يظهر في شاشة الأساسيات فقط ولا يظهر في الصفحة الرئيسية.</small>
+                </div>
+            </div>
+
 
 
             <a class="btn btn-secondary" href="<?= ADMIN_URL . 'courses' ?>"><?= lang("Admin.cancel") ?></a>

@@ -84,6 +84,7 @@ class Courses extends BaseController
         $courses = $this->db
             ->table('tb_courses')
             ->where('active', 1)
+            ->where('is_fundamentals', 0)
             ->orderBy('sort', 'ASC')
             ->orderBy('created_at', 'DESC')
             ->get()
@@ -279,7 +280,7 @@ class Courses extends BaseController
     public function index(): string
     {
         // 3) Courses with stats (unit_count and quiz_count)
-        $data['courses'] = $this->coursesModel->getAllCoursesWithStats();
+        $data['courses'] = $this->coursesModel->getAllCoursesWithStats(0);
 
         // (Optional) Check if user is logged in
         $userId = auth()->loggedIn() ? auth()->user()->id : null;
@@ -325,9 +326,65 @@ class Courses extends BaseController
 
         $data['title']  = 'All Courses' ;
         $data['desc']  = 'Browse our comprehensive course catalog' ;
-        $data['featured_courses'] = $this->coursesModel->getFeaturedCourses(3);
-        $data['popular_courses'] = $this->coursesModel->getPopularCourses(3);
+        $data['featured_courses'] = $this->coursesModel->getFeaturedCourses(3, 0);
+        $data['popular_courses'] = $this->coursesModel->getPopularCourses(3, 0);
         return view('site/index', $data);
+    }
+
+    /**
+     * Show a paginated list of fundamentals courses.
+     */
+    public function fundamentals(): string
+    {
+        // 3) Courses with stats (unit_count and quiz_count)
+        $data['courses'] = $this->coursesModel->getAllCoursesWithStats(1);
+
+        // (Optional) Check if user is logged in
+        $userId = auth()->loggedIn() ? auth()->user()->id : null;
+        $enrolledCourseIds = [];
+
+        // If user is logged in, fetch the courses they're enrolled in
+        if (!empty($userId)) {
+            $enrolledCourseIds = $this->db
+                ->table('tb_course_enrollments')
+                ->select('course_id')
+                ->where('user_id', $userId)
+                ->where('status', 'approved')
+                ->get()
+                ->getResultArray();
+
+            $enrolledCourseIds = array_column($enrolledCourseIds, 'course_id');
+        }
+
+        // Pre-process each course
+        foreach ($data['courses'] as &$course) {
+            // Convert object to array for consistency
+            $course = (array) $course;
+
+            // Provide a fallback if short_desc doesn't exist
+            $course['short_desc'] = $course['short_desc'] ?? '';
+
+            // Count lessons from units system
+            $lessonCount = 0;
+            $units = $this->unitItemsModel->getUnitItems($course['id'], true);
+            if (!empty($units)) {
+                foreach ($units as $unit) {
+                    if (!empty($unit->items)) {
+                        $lessonCount += count($unit->items);
+                    }
+                }
+            }
+            $course['lesson_count'] = $lessonCount;
+
+            // Mark if user is enrolled
+            $course['is_enrolled'] = in_array($course['id'], $enrolledCourseIds);
+        }
+        unset($course); // Good practice after reference loops
+
+        $data['title']  = 'كورسات الأساسيات' ;
+        $data['desc']  = 'تصفح كورسات الأساسيات المتاحة' ;
+        
+        return view('site/fundamentals', $data);
     }
 
 

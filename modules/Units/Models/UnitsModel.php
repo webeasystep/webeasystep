@@ -102,12 +102,12 @@ class UnitsModel extends BaseModel
     public function hasUserAccess($userId, $unitId)
     {
         $unit = $this->find($unitId);
-        if (!$unit || !$unit->active) {
+        if (!$unit || !(isset($unit->active) ? $unit->active : 1)) {
             return false;
         }
 
         // If it's a preview unit, allow access
-        if ($unit->is_free) {
+        if (isset($unit->is_free) && $unit->is_free) {
             return true;
         }
 
@@ -264,10 +264,10 @@ class UnitsModel extends BaseModel
         ];
 
         foreach ($units as $unit) {
-            if ($unit->active) {
+            if (isset($unit->active) && $unit->active) {
                 $stats['active_units']++;
             }
-            if ($unit->is_free) {
+            if (isset($unit->is_free) && $unit->is_free) {
                 $stats['preview_units']++;
             }
 

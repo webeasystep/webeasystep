@@ -13,7 +13,7 @@ class CoursesModel extends BaseModel
         'course_title', 'course_desc', 'short_desc', 'image', 'sort',
         'is_free', 'active', 'slug', 'course_price',
         'instructor_id', 'category_id', 'difficulty_level', 'language',
-        'requirements', 'what_you_learn', 'enrollment_limit', 'intro_video_id', 'waiting_list',
+        'requirements', 'what_you_learn', 'enrollment_limit', 'intro_video_id', 'waiting_list', 'is_fundamentals',
     ];
     protected $useTimestamps = true;
     protected $returnType    = 'object';
@@ -78,9 +78,10 @@ class CoursesModel extends BaseModel
     /**
      * Get all active courses with enrollment counts and statistics
      */
-    public function getAllCoursesWithStats(): array
+    public function getAllCoursesWithStats(int $isFundamentals = 0): array
     {
         $courses = $this->where('active', 1)
+                       ->where('is_fundamentals', $isFundamentals)
                        ->orderBy('sort', 'ASC')
                        ->findAll();
 
@@ -128,9 +129,10 @@ class CoursesModel extends BaseModel
     /**
      * Get featured courses (top courses by sort order)
      */
-    public function getFeaturedCourses(int $limit = 6): array
+    public function getFeaturedCourses(int $limit = 6, int $isFundamentals = 0): array
     {
         return $this->where('active', 1)
+                   ->where('is_fundamentals', $isFundamentals)
                    ->orderBy('sort', 'ASC')
                    ->limit($limit)
                    ->findAll();
@@ -145,6 +147,7 @@ class CoursesModel extends BaseModel
                    ->orLike('course_desc', $query)
                    ->orLike('short_desc', $query)
                    ->where('active', 1)
+                   ->where('is_fundamentals', 0)
                    ->orderBy('course_title', 'ASC')
                    ->findAll();
     }
@@ -428,10 +431,12 @@ class CoursesModel extends BaseModel
     /**
      * Get popular courses based on unit enrollment count
      */
-    public function getPopularCourses(int $limit = 10): array
+    public function getPopularCourses(int $limit = 10, int $isFundamentals = 0): array
     {
         // Get all courses with their enrollment counts
-        $courses = $this->where('active', 1)->findAll();
+        $courses = $this->where('active', 1)
+                        ->where('is_fundamentals', $isFundamentals)
+                        ->findAll();
 
         foreach ($courses as &$course) {
             $course->enrollment_count = $this->getEnrollmentCount($course->id);
