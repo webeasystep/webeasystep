@@ -2723,43 +2723,59 @@
 
             <!-- Course Stats Bar -->
             <div class="course-stats">
+                <?php $unitCount = $course->unit_count ?? count($units); ?>
+                <?php if ($unitCount > 0): ?>
                 <div class="stat-item">
                     <i class="icon-book"></i>
                     <div>
-                        <div class="stat-value"><?= $course->unit_count ?? count($units) ?></div>
+                        <div class="stat-value"><?= $unitCount ?></div>
                         <div class="stat-label">وحدة</div>
                     </div>
                 </div>
+                <?php endif; ?>
 
+                <?php if (!empty($course->video_count)): ?>
                 <div class="stat-item">
                     <i class="icon-video"></i>
                     <div>
-                        <div class="stat-value"><?= $course->video_count ?? 0 ?></div>
+                        <div class="stat-value"><?= $course->video_count ?></div>
                         <div class="stat-label">فيديو</div>
                     </div>
                 </div>
+                <?php endif; ?>
 
+                <?php if (!empty($course->quiz_count)): ?>
                 <div class="stat-item">
                     <i class="icon-question-circle"></i>
                     <div>
-                        <div class="stat-value"><?= $course->quiz_count ?? 0 ?></div>
+                        <div class="stat-value"><?= $course->quiz_count ?></div>
                         <div class="stat-label">اختبار</div>
                     </div>
                 </div>
+                <?php endif; ?>
+
+                <?php if (!empty($course->page_count)): ?>
                 <div class="stat-item">
                     <i class="icon-file-text"></i>
                     <div>
-                        <div class="stat-value"><?= $course->page_count ?? 0 ?></div>
+                        <div class="stat-value"><?= $course->page_count ?></div>
                         <div class="stat-label">صفحة</div>
                     </div>
                 </div>
+                <?php endif; ?>
+
+                <?php 
+                $duration = $course->duration ?? '0:00';
+                if ($duration !== '0:00' && $duration !== '0 دقيقة' && $duration !== '0'): 
+                ?>
                 <div class="stat-item">
                     <i class="icon-clock-o"></i>
                     <div>
-                        <div class="stat-value"><?= $course->duration ?? '0:00' ?></div>
+                        <div class="stat-value"><?= $duration ?></div>
                         <div class="stat-label">دقائق</div>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
 
             <!-- Cart Summary Area - REMOVED -->

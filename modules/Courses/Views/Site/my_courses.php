@@ -108,7 +108,6 @@
     }
     .course-excerpt {
         font-size: 0.95rem;
-        color: #666;
         margin-bottom: 15px;
         height: 50px;       /* Limit excerpt height if you want */
         overflow: hidden;   /* Hide overflow */
@@ -232,7 +231,7 @@
                             <!-- Course Content -->
                             <div class="course-content">
                                 <h3 class="course-title"><?= esc($course->course_title) ?></h3>
-                                <p class="course-excerpt">
+                                <p class="course-excerpt text-secondary">
                                     <?= character_limiter(strip_tags($course->course_desc), 90) ?>
                                 </p>
 

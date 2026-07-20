@@ -83,18 +83,21 @@ body.dark-mode .my-courses-header p.course-description {
     color: #cbd5e1 !important;
 }
 
-/* Course Card */
-body.dark-mode .course-card {
+/* Course Card & Custom Media */
+body.dark-mode .course-card,
+body.dark-mode .custom-media {
     background-color: #1e293b !important;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-body.dark-mode .course-title {
+body.dark-mode .course-title,
+body.dark-mode .custom-media h3 {
     color: #f8fafc !important;
 }
 
-body.dark-mode .course-excerpt {
+body.dark-mode .course-excerpt,
+body.dark-mode .custom-media p {
     color: #cbd5e1 !important;
 }
 

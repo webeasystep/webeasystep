@@ -65,18 +65,18 @@
                             </h3>
 
                             <!-- Short Description -->
-                            <div style="font-size: 14px; color: #666; margin-bottom: 10px;">
+                            <div class="text-secondary" style="font-size: 14px; margin-bottom: 10px;">
                                 <?= esc($course['short_desc']) ?>
                             </div>
 
 
                             <!-- Course Info & Action Buttons -->
                             <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div class="course-stats">
-                                <span class="units-count" style="font-size: 0.9rem; color: #666; margin-left: 15px;">
+                                <div class="course-stats text-secondary">
+                                <span class="units-count" style="font-size: 0.9rem; margin-left: 15px;">
                                   <i class="fas fa-book"></i> <?= $course['unit_count'] ?? 0 ?> وحدة
                                 </span>
-                                <span class="quizzes-count" style="font-size: 0.9rem; color: #666;">
+                                <span class="quizzes-count" style="font-size: 0.9rem;">
                                   <i class="fas fa-question-circle"></i> <?= $course['quiz_count'] ?? 0 ?> اختبار
                                 </span>
                                 </div>
