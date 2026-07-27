@@ -46,9 +46,15 @@ class Settings extends BaseController
             $userData->email = $emailIdentity->secret;
         }
 
+        // Fetch user devices for security tab
+        /** @var \Modules\Users\Models\UserDeviceModel $deviceModel */
+        $deviceModel = model(\Modules\Users\Models\UserDeviceModel::class);
+        $userDevices = $deviceModel->where('user_id', $user->id)->orderBy('updated_at', 'DESC')->findAll();
+
         $data = [
             'title' => 'إعدادات الحساب',
-            'user' => $userData
+            'user' => $userData,
+            'userDevices' => $userDevices
         ];
 
         return view('site/settings', $data);

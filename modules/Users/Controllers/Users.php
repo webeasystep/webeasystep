@@ -315,6 +315,23 @@ class Users extends BaseController
         );
         log_message('debug', 'Users::processLogin - User logged in check: ' . (auth()->loggedIn() ? 'true' : 'false'));
 
+        // Register/update device session for student
+        if ($loggedInUser && !$loggedInUser->inGroup('superadmin') && !$loggedInUser->inGroup('admin')) {
+            /** @var \Modules\Users\Models\UserDeviceModel $deviceModel */
+            $deviceModel = model(\Modules\Users\Models\UserDeviceModel::class);
+            $agent = $this->request->getUserAgent();
+            $deviceKey = md5((string)$agent);
+            $deviceName = ($agent->getBrowser() ?: 'Browser') . ' on ' . ($agent->getPlatform() ?: 'Device');
+            $deviceModel->registerOrUpdateDevice(
+                $loggedInUser->id,
+                $deviceKey,
+                $deviceName,
+                (string)$agent,
+                $this->request->getIPAddress(),
+                session_id()
+            );
+        }
+
         // Shield handles session management automatically
         // Redirect to intended URL or default dashboard
         $redirectURL = session('redirect_url') ?? site_url('/enrollments/my-courses');
