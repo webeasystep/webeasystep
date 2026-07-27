@@ -1,0 +1,333 @@
+/* ============================================
+   DARK MODE OVERRIDES
+   ============================================ */
+
+/* TERMS & CONDITIONS */
+
+body.dark-mode .card {
+    background-color: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #cbd5e1;
+}
+
+body.dark-mode .card .text-primary {
+    color: #3b82f6 !important;
+}
+
+body.dark-mode .card .text-muted {
+    color: #94a3b8 !important;
+    opacity: 0.7;
+}
+
+/* Alert Info */
+body.dark-mode .alert-info {
+    background-color: rgba(14, 165, 233, 0.15) !important;
+    border-color: rgba(14, 165, 233, 0.3) !important;
+    color: #38bdf8 !important;
+}
+
+body.dark-mode .alert-info strong {
+    color: #bfdbfe !important;
+}
+
+/* Success Card (Golden Guarantee) */
+body.dark-mode .bg-success.bg-opacity-10 {
+    background-color: rgba(34, 197, 94, 0.1) !important;
+    border-color: rgba(34, 197, 94, 0.3) !important;
+}
+
+body.dark-mode .text-success {
+    color: #4ade80 !important;
+}
+
+/* List Items in Terms */
+body.dark-mode .list-unstyled li {
+    color: #cbd5e1;
+}
+
+body.dark-mode .list-unstyled i.text-danger {
+    color: #f87171 !important;
+    /* Soft Red */
+}
+
+body.dark-mode .list-unstyled i.text-warning {
+    color: #fbbf24 !important;
+    /* Soft Amber */
+}
+
+body.dark-mode .list-unstyled i.text-success {
+    color: #4ade80 !important;
+    /* Soft Green */
+}
+
+body.dark-mode .list-unstyled i.text-info {
+    color: #38bdf8 !important;
+    /* Soft Sky Blue */
+}
+
+/* ============================================
+   DARK MODE - MY COURSES
+   ============================================ */
+
+/* Section Background */
+body.dark-mode .untree_co-section.bg-light {
+    background-color: #0f172a !important;
+}
+
+/* Header Text */
+body.dark-mode .my-courses-header h1.section-title {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .my-courses-header p.course-description {
+    color: #cbd5e1 !important;
+}
+
+/* Course Card & Custom Media */
+body.dark-mode .course-card,
+body.dark-mode .custom-media {
+    background-color: #1e293b !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .course-title,
+body.dark-mode .custom-media h3 {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .course-excerpt,
+body.dark-mode .custom-media p {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .progress-label {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .progress {
+    background-color: #334155 !important;
+}
+
+/* Empty State */
+body.dark-mode .empty-courses-container {
+    background-color: #1e293b !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .empty-courses-title {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .empty-courses-message {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .empty-courses-icon i {
+    color: #475569 !important;
+}
+
+/* ============================================
+   DARK MODE - COURSE DETAILS PAGE
+   ============================================ */
+
+/* CSS Variables Override for Dark Mode */
+body.dark-mode .untree_co-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+/* Course Header Wrapper */
+body.dark-mode .course-header-wrapper {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .course-header-wrapper .section-title {
+    color: #f8fafc !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #60a5fa 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+body.dark-mode .course-header-wrapper .course-description {
+    color: #94a3b8 !important;
+}
+
+/* Course Stats */
+body.dark-mode .stat-item {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .stat-item .stat-value {
+    color: #60a5fa !important;
+}
+
+body.dark-mode .stat-item .stat-label {
+    color: #94a3b8 !important;
+}
+
+/* Course Outline Section */
+body.dark-mode .course-outline {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .course-outline .section-title {
+    color: #f8fafc !important;
+}
+
+/* Accordion */
+body.dark-mode .custom-accordion {
+    background: #1e293b !important;
+}
+
+body.dark-mode .custom-accordion .accordion-item {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .custom-accordion .accordion-header {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+}
+
+body.dark-mode .custom-accordion .accordion-button {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .custom-accordion .accordion-button:hover {
+    background: linear-gradient(135deg, #162032 0%, #1e293b 100%) !important;
+    color: #60a5fa !important;
+}
+
+body.dark-mode .custom-accordion .accordion-body {
+    background: #1e293b !important;
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Video List */
+body.dark-mode .video-list {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .video-list li {
+    background: #1e293b !important;
+    border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+body.dark-mode .video-list li:hover {
+    background: rgba(96, 165, 250, 0.08) !important;
+}
+
+body.dark-mode .video-title {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .video-meta,
+body.dark-mode .video-time {
+    color: #64748b !important;
+}
+
+body.dark-mode .item-type {
+    background: rgba(30, 41, 59, 0.8) !important;
+    color: #94a3b8 !important;
+}
+
+/* Video Item (accordion body) */
+body.dark-mode .video-item {
+    background: #162032 !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .video-item:hover {
+    background: rgba(96, 165, 250, 0.08) !important;
+}
+
+body.dark-mode .video-info h6 {
+    color: #e2e8f0 !important;
+}
+
+/* Sidebar */
+body.dark-mode .course-sidebar {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .course-sidebar h4 {
+    color: #f8fafc !important;
+}
+
+/* Video Container */
+body.dark-mode .video-container {
+    background: #0f172a !important;
+}
+
+/* Modal */
+body.dark-mode .modal-content {
+    background: #1e293b !important;
+}
+
+body.dark-mode .modal-body {
+    background: #162032 !important;
+}
+
+body.dark-mode .modal-footer {
+    background: #1e293b !important;
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Unit Header */
+body.dark-mode .unit-header {
+    background: linear-gradient(135deg, #1e293b 0%, #162032 100%) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .custom-accordion .btn-link {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .custom-accordion .btn-link:hover {
+    color: #60a5fa !important;
+}
+
+body.dark-mode .video-count {
+    background: rgba(30, 41, 59, 0.8) !important;
+    color: #94a3b8 !important;
+}
+
+body.dark-mode .custom-accordion .accordion-button .unit-price {
+    background: #162032 !important;
+    border-color: rgba(96, 165, 250, 0.3) !important;
+}
+
+/* Selected Unit */
+body.dark-mode .selected-unit {
+    background: #162032 !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Floating Cart */
+body.dark-mode .floating-cart-summary {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .floating-cart-header {
+    background: rgba(96, 165, 250, 0.1) !important;
+}
+
+body.dark-mode .floating-selected-unit {
+    background: #162032 !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .floating-unit-name {
+    color: #e2e8f0 !important;
+}

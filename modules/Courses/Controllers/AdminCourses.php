@@ -18,10 +18,11 @@ class AdminCourses extends BaseController
         $this->fireUploader = new FireUploader();
         $this->courses = new CoursesModel();
         $this->rules = [
-            "intro_video_id" => ['label' => lang("Courses.intro_video_id"), 'rules' => "required"],
+            "intro_video_id" => ['label' => lang("Courses.intro_video_id"), 'rules' => "permit_empty"],
             "course_title" => ['label' => lang("Courses.course_title"), 'rules' => "required"],
             "course_desc" => ['label' => lang("Courses.course_desc"), 'rules' => "required"],
             "short_desc" => ['label' => lang("Courses.short_desc"), 'rules' => "required|max_length[500]"],
+            "course_price" => ['label' => lang("Courses.course_price"), 'rules' => "permit_empty|decimal"],
             "slug" => ['label' => lang("Courses.slug"), 'rules' => "required|alpha_dash|is_unique[tb_courses.slug]"],
             "active" => ['label' => lang("Courses.active"), 'rules' => "permit_empty|in_list[0,1,on]"],
         ];
@@ -33,7 +34,7 @@ class AdminCourses extends BaseController
 
         if ($this->request->isAJAX()) {
             $coursesModel = $this->courses
-                ->select('id, course_title, slug, sort, is_free, active, created_at')
+                ->select('id, course_title,image, slug, sort, is_free, active, created_at')
                 ->orderBy('id', 'desc')
                 ->builder();
 
@@ -41,11 +42,12 @@ class AdminCourses extends BaseController
             DtTable::hideColumns(['id']);
             DtTable::searchableColumns(['course_title', 'course_desc', 'is_free']);
             DtTable::orderableColumns(['course_title', 'course_desc', 'sort', 'is_free', 'created_at']);
-           // DtTable::setColumnImage('image');
+            DtTable::setColumnImage('image');
             DtTable::setColumnSwitch('is_free'); // Add switch for is_free
             DtTable::setColumnSwitch('active'); // Add switch for is_free
             // Add a link around the course_title column using the slug
             DtTable::setColumnLink('course_title', base_url('courses/course_details/{slug}'));
+            DtTable::setAction('units', 'fas fa-layer-group', ADMIN_URL . 'units?course_id=');
 
             DtTable::setShowColumns("course_title,course_desc,sort,is_free,created_at");
 
@@ -113,9 +115,13 @@ class AdminCourses extends BaseController
             'course_desc'       => $this->request->getPost('course_desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             'short_desc'        => $this->request->getPost('short_desc', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             'slug'              => $this->request->getPost('slug', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-            'intro_video_id'    => $this->request->getPost('intro_video_id'),
+            'intro_video_id'    => $this->extractYouTubeId($this->request->getPost('intro_video_id')),
             'sort'              => $this->request->getPost('sort', FILTER_SANITIZE_NUMBER_INT),
+            'course_price'      => $this->request->getPost('course_price') !== null && $this->request->getPost('course_price') !== ''
+                ? number_format((float) $this->request->getPost('course_price'), 2, '.', '')
+                : '0.00',
             'is_free'           => $this->request->getPost('is_free') ? '1' : '0',
+            'waiting_list'      => $this->request->getPost('waiting_list') ? '1' : '0',
             'active'            => $this->request->getPost('active') ? '1' : '0',
         ];
 
@@ -251,6 +257,26 @@ class AdminCourses extends BaseController
         ];
 
         return view('show', $data);
+    }
+
+    /**
+     * Extract YouTube Video ID from URL or return the input if it's already an ID
+     */
+    private function extractYouTubeId($url)
+    {
+        if (empty($url)) {
+            return '';
+        }
+
+        // Pattern to match various YouTube URL formats
+        $pattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i';
+
+        if (preg_match($pattern, $url, $matches)) {
+            return $matches[1];
+        }
+
+        // If no URL pattern matched, assume it's already an ID or plain text
+        return $url;
     }
 
 }

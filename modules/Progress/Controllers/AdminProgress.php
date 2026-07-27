@@ -36,41 +36,61 @@ class AdminProgress extends BaseController
         $data['title'] = lang('Progress.progress_management');
 
         if ($this->request->isAJAX()) {
-            $progressModel = $this->progress
-                ->select('tb_user_item_progress.id, tb_user_item_progress.progress_percentage, tb_user_item_progress.watch_time, tb_user_item_progress.is_completed, tb_user_item_progress.created_at, users.username as user_name, tb_units.unit_name as unit_title, tb_courses.course_title as course_title')
-                ->join('users', 'users.id = tb_user_item_progress.user_id')
-                ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
+            $progressModel = $this->db->table('tb_course_enrollments')
+                ->select('tb_course_enrollments.id, tb_course_enrollments.user_id, tb_course_enrollments.course_id, 0 as progress_percentage, tb_course_enrollments.created_at as enrolled_at, users.full_name as user_name, auth_identities.secret as email, tb_courses.course_title as course_title')
+                ->join('users', 'users.id = tb_course_enrollments.user_id')
+                ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "email_password"', 'left')
+                ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
+                ->where('tb_course_enrollments.status', 'approved')
+                ->orderBy('tb_course_enrollments.id', 'desc');
 
-                ->join('tb_courses', 'tb_courses.id = tb_units.course_id')
-                ->orderBy('tb_user_item_progress.id', 'desc')
-                ->builder();
-
-            DtTable::hideColumns(['id']);
-            DtTable::searchableColumns(['user_name', 'unit_title', 'course_title']);
-            DtTable::orderableColumns(['user_name', 'unit_title', 'course_title', 'progress_percentage', 'watch_time', 'is_completed', 'created_at']);
+            DtTable::hideColumns(['id', 'user_id', 'course_id']);
+            DtTable::searchableColumns(['user_name', 'email', 'course_title']);
+            DtTable::orderableColumns(['user_name', 'email', 'course_title', 'enrolled_at']);
 
             DtTable::changeColumn('progress_percentage', function ($data, $row) {
-                $percentage = (float) $data;
+                $percentage = $this->progress->getCourseCompletionPercentage($row->user_id, $row->course_id);
                 $color = $percentage >= 100 ? 'success' : ($percentage >= 50 ? 'warning' : 'danger');
                 return "<div class='progress'><div class='progress-bar bg-{$color}' style='width: {$percentage}%'>{$percentage}%</div></div>";
             });
 
-            DtTable::changeColumn('watch_time', function ($data, $row) {
-                $hours = floor($data / 3600);
-                $minutes = floor(($data % 3600) / 60);
-                $seconds = $data % 60;
-                return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+            DtTable::changeColumn('enrolled_at', function ($data, $row) {
+                return date('Y-m-d', strtotime($data));
             });
 
-            DtTable::changeColumn('is_completed', function ($data, $row) {
-                return $data ? '<span class="badge badge-success">'.lang('Progress.completed').'</span>' : '<span class="badge badge-secondary">'.lang('Progress.in_progress').'</span>';
-            });
-
-            DtTable::setShowColumns("user_name,unit_title,course_title,progress_percentage,watch_time,is_completed,created_at");
+            DtTable::setShowColumns("user_name,email,course_title,progress_percentage,enrolled_at");
 
             $output = DtTable::tableRender($progressModel, false);
             return $this->response->setJSON($output);
         } else {
+            $analytics = $this->progress->getProgressAnalytics();
+            
+            $totalUnits = 0;
+            $completedUnits = 0;
+            $labels = [];
+            $rates = [];
+
+            foreach ($analytics['course_completion_rates'] as $rate) {
+                $totalUnits += $rate['total_units'];
+                $completedUnits += $rate['units_completed'];
+                $labels[] = $rate['course_title'];
+                $rates[] = $rate['total_units'] > 0 ? round(($rate['units_completed'] / ($rate['total_units'] * max(1, $rate['users_started']))) * 100, 2) : 0;
+            }
+
+            $data['stats'] = [
+                'total_users' => $this->db->table('tb_course_enrollments')->select('user_id')->where('status', 'approved')->distinct()->countAllResults(),
+                'total_enrollments' => $this->db->table('tb_course_enrollments')->where('status', 'approved')->countAllResults(),
+                'completed_units' => $this->progress->where('is_completed', 1)->countAllResults(),
+                'completion_rate' => $totalUnits > 0 ? round(($completedUnits / $totalUnits) * 100, 1) : 0
+            ];
+            
+            $data['chart_data'] = [
+                'labels' => $labels,
+                'completion_rates' => $rates
+            ];
+            
+            $data['recent_activities'] = $this->getRecentCompletions(5);
+
             return view('index', $data);
         }
     }
@@ -320,15 +340,15 @@ class AdminProgress extends BaseController
      */
     private function getRecentCompletions($limit = 10)
     {
-        return $this->progressModel
-                   ->select('tb_user_item_progress.*, users.username, tb_units.unit_name as unit_title, tb_courses.course_title')
+        return $this->progress
+                   ->select('tb_user_item_progress.*, users.full_name as username, tb_units.unit_name as unit_title, tb_courses.course_title')
                    ->join('users', 'users.id = tb_user_item_progress.user_id')
                    ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
-
                    ->join('tb_courses', 'tb_courses.id = tb_units.course_id')
                    ->where('tb_user_item_progress.is_completed', 1)
                    ->orderBy('tb_user_item_progress.completed_at', 'DESC')
                    ->limit($limit)
+                   ->asArray()
                    ->findAll();
     }
 
@@ -337,13 +357,14 @@ class AdminProgress extends BaseController
      */
     private function getTopPerformers($limit = 10)
     {
-        return $this->progressModel
-                   ->select('users.username, users.email, COUNT(*) as completed_units, SUM(tb_user_item_progress.watch_time) as total_watch_time')
+        return $this->progress
+                   ->select('users.full_name as username, users.email, COUNT(*) as completed_units, SUM(tb_user_item_progress.watch_time) as total_watch_time')
                    ->join('users', 'users.id = tb_user_item_progress.user_id')
                    ->where('tb_user_item_progress.is_completed', 1)
                    ->groupBy('tb_user_item_progress.user_id')
                    ->orderBy('completed_units', 'DESC')
                    ->limit($limit)
+                   ->asArray()
                    ->findAll();
     }
 
@@ -393,17 +414,13 @@ class AdminProgress extends BaseController
         $courseUnitIds = array_column($courseUnits, 'id');
 
         $enrolledUsers = 0;
-        if (!empty($courseUnitIds)) {
-            // Get unique users enrolled in any unit of this course
-            $enrollments = $this->db->table('tb_unit_enrollments')
-                                   ->select('DISTINCT user_id')
-                                   ->where('status', 'approved')
-                                   ->whereIn('unit_id', $courseUnitIds)
-                                   ->get()
-                                   ->getResultArray();
-
-            $enrolledUsers = count($enrollments);
-        }
+        $enrolledUsers = 0;
+        
+        // Count users enrolled in this course via tb_course_enrollments
+        $enrolledUsers = $this->db->table('tb_course_enrollments')
+            ->where('course_id', $courseId)
+            ->where('status', 'approved')
+            ->countAllResults();
 
         return [
             'total_units' => $totalUnits,

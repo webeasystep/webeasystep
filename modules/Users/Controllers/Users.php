@@ -9,6 +9,9 @@ use CodeIgniter\Shield\Entities\User;
 use CodeIgniter\Shield\Models\UserIdentityModel;
 use Hermawan\DataTables\DataTable;
 use Modules\Users\Models\UsersModel;
+use Modules\Pages\Models\PagesModel;
+use CodeIgniter\Shield\Models\UserModel;
+use CodeIgniter\Events\Events;
 
 class Users extends BaseController
 {
@@ -61,8 +64,8 @@ class Users extends BaseController
             $rules = config('Validation')->registrationRules ?? [
                 'full_name' => 'required|min_length[3]|max_length[50]',
                 'email' => 'required|valid_email|is_unique[auth_identities.secret]',
-                'country_code' => 'required|valid_country_code',
-                'mobile' => 'required|valid_mobile',
+                // 'country_code' => 'required|valid_country_code', // Removed
+                'mobile' => 'required', // Simplified validation
                 'password' => 'required|min_length[6]',
                 'password_confirm' => 'required|matches[password]',
             ];
@@ -79,27 +82,32 @@ class Users extends BaseController
             // Get Shield's user provider
             $users = auth()->getProvider();
             
-            // Normalize mobile number with country code
-            $countryCode = $this->request->getPost('country_code');
+            // Normalize mobile number with country code - REMOVED
+            // $countryCode = $this->request->getPost('country_code');
             $mobileNumber = $this->request->getPost('mobile');
-            $fullMobile = normalize_mobile($mobileNumber, $countryCode);
+            // $fullMobile = normalize_mobile($mobileNumber, $countryCode);
+            $fullMobile = $mobileNumber; // Use mobile as is
             
             $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');
             
             // Check if mobile is already used
-            $existingMobile = $this->db->table('users')->where('mobile', $fullMobile)->get()->getRow();
+            // Query auth_identities instead of users table
+            $existingMobile = $this->db->table('auth_identities')
+                ->where('type', 'mobile_password')
+                ->where('secret', $fullMobile)
+                ->get()->getRow();
             if ($existingMobile) {
+                log_message('debug', 'Registration failed: Mobile number ' . $fullMobile . ' already exists.');
                 $this->show_msg('danger', 'خطأ في التسجيل', 'رقم الهاتف مسجل بالفعل');
                 return redirect()->back()->withInput();
             }
             
-            // Create user credentials - user is inactive until email is verified
+            // Create user credentials
+            // Shield's EmailActivator will handle the activation email automatically if configured in Auth.php
             $credentials = [
                 'full_name' => $this->request->getPost('full_name'),
-                'email'    => $email,
-                'mobile' => $fullMobile,
-                'active' => 0  // User is inactive until email verified
+                // 'active' is handled by Shield based on requireActivation config
             ];
 
             $user = new User($credentials);
@@ -111,7 +119,6 @@ class Users extends BaseController
                 
                 log_message('debug', 'Registration - User saved with ID: ' . $userId);
                 
-                // Create email_password identity in auth_identities table
                 /** @var \Modules\Users\Models\UserIdentityModel $identityModel */
                 $identityModel = model(\Modules\Users\Models\UserIdentityModel::class);
                 
@@ -131,16 +138,27 @@ class Users extends BaseController
                     ]);
                     
                     log_message('debug', 'Registration - Mobile identity created successfully for user: ' . $userId);
+
+                    // Trigger Shield's register action (Email Activator)
+                    $authenticator = auth('session')->getAuthenticator();
+
+                    // Clear any pending or stale session data to prevent LogicException
+                    auth()->logout();
                     
-                    // Generate email verification token
-                    $token = $this->userModel->generateVerificationToken($userId);
+                    // Set the user in session so they are "pending"
+                    // This is required for the ActionController to access the user
+                    $authenticator->startLogin($user);
                     
-                    // Send welcome email with activation link
-                    $this->sendWelcomeEmail($email, $this->request->getPost('full_name'), $token);
+                    // Set up the activation action in session
+                    // This creates the initial identity and sets 'auth_action' session key
+                    if ($authenticator->startUpAction('register', $user)) {
+                        // Redirect to the action controller which will send the email and show the view
+                        return redirect()->route('auth-action-show');
+                    }
                     
-                    // Redirect to verification sent page
-                    $this->show_msg('success', 'تم التسجيل بنجاح', 'تم إرسال رابط تفعيل الحساب إلى بريدك الإلكتروني. يرجى التحقق من البريد الوارد.');
-                    return redirect()->to('/users/verify-email-sent');
+                    // Fallback if no action is defined (though it should be)
+                    // Redirect based on Auth config or default
+                    return redirect()->to(config('Auth')->redirects['register'] ?? '/');
                     
                 } catch (\Exception $e) {
                     log_message('error', 'Registration - Failed to create identity: ' . $e->getMessage());
@@ -161,91 +179,14 @@ class Users extends BaseController
         return MainView('site_layout/shield/register', $data);
     }
 
-    /**
-     * Send welcome email with activation link
-     */
-    private function sendWelcomeEmail(string $email, string $fullName, string $token): bool
-    {
-        $activationUrl = base_url("users/verify-email/{$token}");
-        
-        try {
-            $emailService = \Config\Services::email();
-            $emailService->setFrom(setting('Email.fromEmail') ?? 'noreply@msarlink.com', setting('Email.fromName') ?? 'مسار لينك');
-            $emailService->setTo($email);
-            $emailService->setSubject('مرحباً بك في مسار لينك - تفعيل الحساب');
-            
-            // Build welcome email HTML
-            $message = $this->buildWelcomeEmailHtml($fullName, $activationUrl);
-            $emailService->setMessage($message);
-            
-            if ($emailService->send()) {
-                log_message('info', "Welcome email sent to {$email}");
-                
-                // Log email
-                $this->db->table('tb_email_logs')->insert([
-                    'recipient_email' => $email,
-                    'email_type' => 'welcome_activation',
-                    'subject' => 'مرحباً بك في مسار لينك - تفعيل الحساب',
-                    'template_used' => 'welcome_email',
-                    'status' => 'sent',
-                    'sent_at' => date('Y-m-d H:i:s'),
-                    'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
-                ]);
-                
-                return true;
-            } else {
-                log_message('error', "Failed to send welcome email to {$email}: " . $emailService->printDebugger(['headers']));
-                return false;
-            }
-        } catch (\Exception $e) {
-            log_message('error', "Exception sending welcome email: " . $e->getMessage());
-            return false;
-        }
-    }
+    // sendWelcomeEmail and buildWelcomeEmailHtml removed in favor of Shield's EmailActivator
 
-    /**
-     * Build welcome email HTML content
-     */
-    private function buildWelcomeEmailHtml(string $fullName, string $activationUrl): string
+    public function testEmail()
     {
-        return <<<HTML
-<!DOCTYPE html>
-<html dir="rtl" lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مرحباً بك في مسار لينك</title>
-</head>
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; direction: rtl; text-align: right; background-color: #f5f5f5; margin: 0; padding: 20px;">
-    <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center;">
-            <h1 style="color: white; margin: 0; font-size: 28px;">🎉 مرحباً بك في مسار لينك!</h1>
-        </div>
-        <div style="padding: 30px;">
-            <p style="font-size: 18px; color: #333; margin-bottom: 20px;">عزيزي/عزيزتي <strong>{$fullName}</strong>،</p>
-            <p style="font-size: 16px; color: #555; line-height: 1.8;">شكراً لتسجيلك في منصة <strong>مسار لينك</strong> التعليمية. نحن سعداء بانضمامك إلينا!</p>
-            <p style="font-size: 16px; color: #555; line-height: 1.8;">لتفعيل حسابك والبدء في رحلتك التعليمية، يرجى الضغط على الزر أدناه:</p>
-            <div style="text-align: center; margin: 30px 0;">
-                <a href="{$activationUrl}" 
-                   style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
-                          padding: 15px 40px; text-decoration: none; border-radius: 50px; font-size: 18px; font-weight: bold;
-                          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);">
-                    تفعيل الحساب ✓
-                </a>
-            </div>
-            <p style="font-size: 14px; color: #888; line-height: 1.6;">أو يمكنك نسخ الرابط التالي في متصفحك:</p>
-            <p style="font-size: 12px; color: #667eea; word-break: break-all; background: #f8f9fa; padding: 10px; border-radius: 5px;">{$activationUrl}</p>
-            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-            <p style="font-size: 12px; color: #999; text-align: center;">
-                إذا لم تقم بإنشاء هذا الحساب، يمكنك تجاهل هذه الرسالة.<br>
-                © مسار لينك - جميع الحقوق محفوظة
-            </p>
-        </div>
-    </div>
-</body>
-</html>
-HTML;
+        return view('Modules\Users\Views\Site\emails\activation', [
+            'full_name' => 'تجربة المستخدم',
+            'activation_url' => base_url('users/verify-email/test-token-123')
+        ]);
     }
 
     /**
@@ -258,12 +199,12 @@ HTML;
 
         // If user is already logged in, redirect to dashboard
         if (auth()->loggedIn()) {
-            log_message('debug', 'Users::login - User already logged in, redirecting to courses/my_courses');
-            return redirect()->to('/courses/my_courses');
+            log_message('debug', 'Users::login - User already logged in, redirecting to enrollments/my-courses');
+            return redirect()->to('/enrollments/my-courses');
         }
 
         // If it's a POST request, process the login
-        if (strtoupper($this->request->getMethod()) === 'POST') {
+        if ($this->request->is('post')) {
             log_message('debug', 'Users::login - Processing POST request');
             return $this->processLogin();
         }
@@ -307,6 +248,9 @@ HTML;
         log_message('debug', 'Users::processLogin - Attempting login with email: ' . $credentials['email']);
         log_message('debug', 'Users::processLogin - Remember me: ' . ($remember ? 'true' : 'false'));
 
+        // Clear any pending or stale session data to prevent LogicException
+        auth()->logout();
+
         // Use Shield's attempt method for authentication
         $loginAttempt = auth()->remember($remember)->attempt($credentials);
 
@@ -323,12 +267,16 @@ HTML;
             return redirect()->back()->withInput();
         }
 
-        log_message('debug', 'Users::processLogin - Login successful for user ID: ' . auth()->user()->id);
+        $loggedInUser = auth()->user();
+        log_message(
+            'debug',
+            'Users::processLogin - Login successful for user ID: ' . ($loggedInUser->id ?? 'unknown')
+        );
         log_message('debug', 'Users::processLogin - User logged in check: ' . (auth()->loggedIn() ? 'true' : 'false'));
 
         // Shield handles session management automatically
         // Redirect to intended URL or default dashboard
-        $redirectURL = session('redirect_url') ?? site_url('/courses/my_courses');
+        $redirectURL = session('redirect_url') ?? site_url('/enrollments/my-courses');
         session()->remove('redirect_url');
 
         log_message('debug', 'Users::processLogin - Redirecting to: ' . $redirectURL);
@@ -340,63 +288,144 @@ HTML;
     }
 
     /**
+     * Handle post-login redirect to intended course or my_courses
+     */
+    public function handlePostLoginRedirect()
+    {
+        // Log the redirect handling
+        log_message('debug', 'POST_LOGIN_REDIRECT: Handling post-login redirect');
+
+        // Verify user is still logged in
+        if (!auth()->loggedIn()) {
+            log_message('error', 'POST_LOGIN_REDIRECT: User not logged in during redirect handling');
+            return redirect()->to('/login')->with('error', 'Session expired. Please log in again.');
+        }
+
+        log_message('debug', 'POST_LOGIN_REDIRECT: User authenticated, proceeding with redirect');
+
+        // Check for intended course first
+        $intendedCourse = session()->get('intended_course');
+        if ($intendedCourse) {
+            session()->remove('intended_course');
+            log_message('debug', 'POST_LOGIN_REDIRECT: Redirecting to intended course: ' . $intendedCourse);
+            return redirect()->to('courses/course_view/' . $intendedCourse);
+        }
+
+        // Default redirect to my_courses
+        log_message('debug', 'POST_LOGIN_REDIRECT: Redirecting to enrollments/my-courses');
+        return redirect()->to('enrollments/my-courses');
+    }
+
+    /**
+     * Handle email activation link from verification email.
+     * Redirects to the Shield activation verify form with the token.
+     */
+    // activateAccount removed
+
+    /**
      * Logout user using Shield authentication
      */
     public function logout()
     {
         auth()->logout();
-        return redirect()->to('/users/login')->with('success', 'You have been logged out successfully.');
+        return redirect()->to(site_url('/'));
+    }
+
+    public function ForgotPassword()
+    {
+        $config = config('Auth');
+        if ($config->activeResetter === null) {
+            return redirect()->route('login')->with('error', lang('Auth.forgotDisabled'));
+        }
+
+        if ($this->request->is('post')) {
+            $rules = [
+                'email' => [
+                    'label' => lang('Auth.emailAddress'),
+                    'rules' => 'required|valid_email',
+                ],
+            ];
+
+            if (!$this->validate($rules)) {
+                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            }
+
+            $users = model(PagesModel::class);
+            $user = $users->where('email', $this->request->getPost('email'))->first();
+
+            if (null === $user) {
+                return redirect()->back()->with('error', lang('Auth.forgotNoUser'));
+            }
+
+            // Save the reset hash
+            $user->generateResetHash();
+            $users->save($user);
+
+            $resetter = service('resetter');
+            if (ENVIRONMENT !== "production") {
+                return redirect()->back()->withInput()->with('errors', lang('Auth.unknownError'));
+            }
+
+            $sent = $resetter->send($user);
+
+            if (!$sent) {
+                return redirect()->back()->withInput()->with('error', $resetter->error() ?? lang('Auth.unknownError'));
+            }
+
+            return redirect()->route('reset-password')->with('message', lang('Auth.forgotEmailSent'));
+        }
+
+        return MainView($config->views['forgot'], ['config' => $config]);
+    }
+
+    public function ResetPassword()
+    {
+        if ($this->request->is('post')) {
+            $users = model(UserModel::class);
+
+            $rules = [
+                'token' => 'required',
+                'email' => 'required|valid_email',
+                'password' => 'required|strong_password',
+                'password_confirm' => 'required|matches[password]',
+            ];
+
+            if (!$this->validate($rules)) {
+                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            }
+
+            $user = $users->where('email', $this->request->getPost('email'))
+                ->where('reset_hash', $this->request->getPost('token'))
+                ->first();
+
+            if (null === $user) {
+                return redirect()->back()->with('error', lang('Auth.forgotNoUser'));
+            }
+
+            // Reset token still valid?
+            if (!empty($user->reset_expires) && time() > $user->reset_expires->getTimestamp()) {
+                return redirect()->back()->withInput()->with('error', lang('Auth.resetTokenExpired'));
+            }
+
+            // Save the new password and cleanup the reset hash
+            $user->password = $this->request->getPost('password');
+            $user->reset_hash = null;
+            $user->reset_at = date('Y-m-d H:i:s');
+            $user->reset_expires = null;
+            $user->force_pass_reset = false;
+            $users->save($user);
+
+            return redirect()->route('login')->with('message', lang('Auth.resetSuccess'));
+        }
+
+        $token = $this->request->getGet('token');
+        return MainView('site_layout/shield/reset', ['token' => $token]);
     }
 
     /**
      * Verify email with token
      */
-    public function verifyEmail($token = null)
-    {
-        if (!$token) {
-            return redirect()->to('/users/login')->with('error', 'Invalid verification token.');
-        }
-
-        $user = $this->userModel->verifyEmail($token);
-
-        if ($user) {
-            return redirect()->to('/users/login')->with('success', 'Email verified successfully! You can now login.');
-        }
-
-        return redirect()->to('/users/login')->with('error', 'Invalid or expired verification token.');
-    }
-
-    /**
-     * Show email verification sent page
-     */
-    public function verifyEmailSent()
-    {
-        $data = ['title' => 'Email Verification Sent'];
-        return View('Site', 'verify_email_sent', $data);
-    }
-
-    /**
-     * Send verification email
-     */
-    private function sendVerificationEmail($email, $token)
-    {
-        $verificationUrl = base_url("users/verify-email/{$token}");
-
-        // Log email attempt
-        $this->db->table('tb_email_logs')->insert([
-            'recipient_email' => $email,
-            'email_type' => 'verification',
-            'subject' => 'Verify Your Email Address',
-            'template_used' => 'email_verification',
-            'status' => 'sent',
-            'sent_at' => date('Y-m-d H:i:s'),
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);
-
-        // Here you would integrate with your email service
-        // For now, we'll just log it
-        log_message('info', "Verification email sent to {$email} with URL: {$verificationUrl}");
-    }
+    // Custom activation methods removed (verifyEmail, verifyEmailSent, sendVerificationEmail)
+    // Shield handles these via its RegisterController and EmailActivator
 
 }

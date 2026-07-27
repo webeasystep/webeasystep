@@ -46,9 +46,10 @@
                             <?php endif; ?>
 
                             <?php if (session()->getFlashdata('error')): ?>
-                                <div class="alert alert-danger alert-dismissible">
+                                <div class="alert alert-danger alert-dismissible" style="white-space:pre-line;font-size:0.92rem;line-height:1.7;">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                    <?= session()->getFlashdata('error') ?>
+                                    <strong><i class="fas fa-exclamation-triangle mr-1"></i> أخطاء التحقق:</strong><br>
+                                    <?= nl2br(esc(session()->getFlashdata('error'))) ?>
                                 </div>
                             <?php endif; ?>
 

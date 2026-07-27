@@ -13,13 +13,13 @@ class CoursesModel extends BaseModel
         'course_title', 'course_desc', 'short_desc', 'image', 'sort',
         'is_free', 'active', 'slug', 'course_price',
         'instructor_id', 'category_id', 'difficulty_level', 'language',
-        'requirements', 'what_you_learn', 'enrollment_limit', 'intro_video_id',
+        'requirements', 'what_you_learn', 'enrollment_limit', 'intro_video_id', 'waiting_list',
     ];
     protected $useTimestamps = true;
     protected $returnType    = 'object';
 
     // Additional table references
-    protected $enrollmentsTable        = 'tb_unit_enrollments';
+    protected $enrollmentsTable        = 'tb_course_enrollments';
     protected $videoCompletionsTable  = 'tb_video_completions';
 
     /**
@@ -59,35 +59,18 @@ class CoursesModel extends BaseModel
     /**
      * Fetch all courses that contain units a user has enrolled in
      */
+    /**
+     * Fetch all courses that a user has enrolled in
+     */
     public function getAllUserCourses(int $userId)
     {
-        // Get approved unit enrollments for the user
-        $allUnitIds = $this->db->table('tb_unit_enrollments')
-                              ->select('unit_id')
-                              ->where('user_id', $userId)
-                              ->where('status', 'approved')
-                              ->get()
-                              ->getResultArray();
-
-        if (empty($allUnitIds)) {
-            return [];
-        }
-
-        // Extract unit IDs
-        $allUnitIds = array_column($allUnitIds, 'unit_id');
-
-        if (empty($allUnitIds)) {
-            return [];
-        }
-
-        // Get courses that contain these units
         $builder = $this->db->table($this->table);
-        $builder->select('tb_courses.*, COUNT(DISTINCT u.id) as enrolled_units_count');
-        $builder->join('tb_units u', 'u.course_id = tb_courses.id');
-        $builder->whereIn('u.id', array_unique($allUnitIds));
+        $builder->select('tb_courses.*, tb_course_enrollments.enrolled_at, tb_course_enrollments.status as enrollment_status');
+        $builder->join('tb_course_enrollments', 'tb_course_enrollments.course_id = tb_courses.id');
+        $builder->where('tb_course_enrollments.user_id', $userId);
+        $builder->where('tb_course_enrollments.status', 'approved');
         $builder->where('tb_courses.active', 1);
-        $builder->groupBy('tb_courses.id');
-        $builder->orderBy('enrolled_units_count', 'DESC');
+        $builder->orderBy('tb_course_enrollments.enrolled_at', 'DESC');
 
         return $builder->get()->getResult();
     }
@@ -172,7 +155,11 @@ class CoursesModel extends BaseModel
      * Enroll a user in a course if not already enrolled.
      * Creates or reactivates a record in tb_unit_enrollments.
      */
-    public function enrollUser(int $userId, int $courseId)
+    /**
+     * Enroll a user in a course if not already enrolled.
+     * Creates or reactivates a record in tb_course_enrollments.
+     */
+    public function enrollUser(int $userId, int $courseId, string $paymentMethod = 'free', float $amount = 0.00)
     {
         $builder = $this->db->table($this->enrollmentsTable);
 
@@ -183,20 +170,25 @@ class CoursesModel extends BaseModel
             ->getRow();
 
         if ($existing) {
-            // If previously 'cancelled', reactivate
-            if ($existing->status === 'cancelled') {
-                $builder->where('id', $existing->id)
-                    ->update(['status' => 'active']);
+            // If previously 'cancelled' or 'pending', reactivate/update
+            if ($existing->status !== 'approved') {
+                 $builder->where('id', $existing->id)
+                    ->update([
+                        'status' => 'approved',
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ]);
             }
             return $existing->id; // Return the existing enrollment ID
         }
 
         // Otherwise, create a new enrollment
         $data = [
-            'user_id'     => $userId,
-            'course_id'   => $courseId,
-            'enrolled_at' => date('Y-m-d H:i:s'),
-            'status'      => 'active',
+            'user_id'        => $userId,
+            'course_id'      => $courseId,
+            'enrolled_at'    => date('Y-m-d H:i:s'),
+            'status'         => 'approved',
+            'payment_method' => $paymentMethod,
+            'amount_paid'    => $amount
         ];
         $builder->insert($data);
 
@@ -208,24 +200,11 @@ class CoursesModel extends BaseModel
      */
     public function isUserEnrolled(int $userId, int $courseId): bool
     {
-        // Get course units
-        $courseUnits = $this->db->table('tb_units')
-            ->select('id')
+        // Check if user has enrolled in the course via tb_course_enrollments
+        $hasEnrollment = $this->db->table('tb_course_enrollments')
             ->where('course_id', $courseId)
-            ->get()
-            ->getResultArray();
-
-        if (empty($courseUnits)) {
-            return false;
-        }
-
-        $courseUnitIds = array_column($courseUnits, 'id');
-
-        // Check if user has enrolled in any units of this course
-        $hasEnrollment = $this->db->table($this->enrollmentsTable)
-            ->whereIn('unit_id', $courseUnitIds)
             ->where('user_id', $userId)
-            ->where('status !=', 'cancelled')
+            ->where('status', 'approved')
             ->countAllResults() > 0;
 
         return $hasEnrollment;
@@ -234,30 +213,17 @@ class CoursesModel extends BaseModel
     /**
      * Retrieve a single enrollment record
      */
+    /**
+     * Retrieve a single enrollment record
+     */
     public function getEnrollment(int $userId, int $courseId)
     {
-        // Get course units
-        $courseUnits = $this->db->table('tb_units')
-            ->select('id')
-            ->where('course_id', $courseId)
-            ->get()
-            ->getResultArray();
-
-        if (empty($courseUnits)) {
-            return null;
-        }
-
-        $courseUnitIds = array_column($courseUnits, 'id');
-
-        // Find enrollment that includes units from this course
-        $enrollment = $this->db->table($this->enrollmentsTable)
-            ->whereIn('unit_id', $courseUnitIds)
+        return $this->db->table($this->enrollmentsTable)
             ->where('user_id', $userId)
-            ->where('status !=', 'cancelled')
+            ->where('course_id', $courseId)
+            ->where('status', 'approved')
             ->get()
             ->getRow();
-
-        return $enrollment;
     }
 
     /* ================== LESSON COMPLETION METHODS ================== */
@@ -398,22 +364,13 @@ class CoursesModel extends BaseModel
     /**
      * Get enrollment count for a course
      */
+    /**
+     * Get enrollment count for a course
+     */
     public function getEnrollmentCount(int $courseId): int
     {
-        // Get all units for this course
-        $unitsModel = new \Modules\Units\Models\UnitsModel();
-        $units = $unitsModel->where('course_id', $courseId)->findAll();
-        $unitIds = array_column($units, 'id');
-
-        if (empty($unitIds)) {
-            return 0;
-        }
-
-        // Count distinct users enrolled in any units of this course
         return $this->db->table($this->enrollmentsTable)
-            ->select('user_id')
-            ->distinct()
-            ->whereIn('unit_id', $unitIds)
+            ->where('course_id', $courseId)
             ->where('status', 'approved')
             ->countAllResults();
     }
@@ -436,32 +393,20 @@ class CoursesModel extends BaseModel
     /**
      * Get course completion rate
      */
+    /**
+     * Get course completion rate
+     */
     public function getCourseCompletionRate(int $courseId): float
     {
-        // Get all units for this course
-        $unitsModel = new \Modules\Units\Models\UnitsModel();
-        $units = $unitsModel->where('course_id', $courseId)->findAll();
-        $unitIds = array_column($units, 'id');
-
-        if (empty($unitIds)) {
+        // Get total approved enrollments
+        $totalEnrollments = $this->getEnrollmentCount($courseId);
+        
+        if ($totalEnrollments == 0) {
             return 0.0;
         }
 
-        // Get distinct users enrolled in any units of this course
-        $enrolledUsers = $this->db->table($this->enrollmentsTable)
-                                 ->select('user_id')
-                                 ->distinct()
-                                 ->whereIn('unit_id', $unitIds)
-                                 ->where('status', 'approved')
-                                 ->get()
-                                 ->getResult();
-
-        if (empty($enrolledUsers)) {
-            return 0.0;
-        }
-
-        // For now, return a basic completion rate
-        // This can be enhanced with actual progress tracking
+        // Logic to calculate average completion would go here.
+        // For now returning 0.0 as per original placeholder logic but cleaned up.
         return 0.0;
     }
 
@@ -486,7 +431,8 @@ class CoursesModel extends BaseModel
     public function getPopularCourses(int $limit = 10): array
     {
         // Get all courses with their enrollment counts
-        $courses = $this->where('active', 1)->findAll();
+        $courses = $this->where('active', 1)
+                        ->findAll();
 
         foreach ($courses as &$course) {
             $course->enrollment_count = $this->getEnrollmentCount($course->id);
@@ -518,7 +464,7 @@ class CoursesModel extends BaseModel
     {
         $totalCourses = $this->where('active', 1)->countAllResults();
         $totalEnrollments = $this->db->table($this->enrollmentsTable)
-                                   ->where('status', 'active')
+                                   ->where('status', 'approved')
                                    ->countAllResults();
 
         $avgEnrollmentsPerCourse = $totalCourses > 0 ? round($totalEnrollments / $totalCourses, 2) : 0;
@@ -526,7 +472,7 @@ class CoursesModel extends BaseModel
         // Get monthly enrollment trends
         $monthlyEnrollments = $this->db->table($this->enrollmentsTable)
                                       ->select('YEAR(enrolled_at) as year, MONTH(enrolled_at) as month, COUNT(*) as count')
-                                      ->where('status', 'active')
+                                      ->where('status', 'approved')
                                       ->where('enrolled_at >=', date('Y-m-d', strtotime('-12 months')))
                                       ->groupBy('YEAR(enrolled_at), MONTH(enrolled_at)')
                                       ->orderBy('year, month')

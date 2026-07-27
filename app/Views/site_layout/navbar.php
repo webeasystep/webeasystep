@@ -12,78 +12,36 @@
 <!-- app/Views/layouts/navbar.php -->
 
 <nav class="site-nav mb-5" role="navigation" aria-label="Main navigation">
-    <?php
-    // If you want to show a logo only on homepage (hidden on mobile to prevent overlap):
-    if (current_url() == site_url()) {
-        echo '<a href="'.site_url().'" class="logo menu-absolute m-0 d-none d-lg-inline-block" style="top: 20px;">
-              <img src="'.base_url('site/images/logo.png').'" alt="Site Logo" class="rounded-circle logo-image" style="object-fit:contain; width: 300px; height: 300px;">
-            </a>';
-    }
-    ?>
-
     <!-- Top Bar -->
     <div class="pb-2 top-bar mb-3">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-6 col-lg-9">
                     <!-- “Have a question?” -->
-                    <a href="#" class="small mr-3">
+                    <a href="https://wa.me/201032863861" class="small mr-3 p-2" aria-label="هل لديك استفسار - تواصل عبر واتساب" target="_blank">
                         <span class="icon-question-circle-o mr-2"></span>
                         <span class="d-none d-lg-inline-block">هل لديك استفسار ؟</span>
                     </a>
                     <!-- Phone -->
-                    <a href="tel://201032863861" class="small mr-3" dir="ltr">
+                    <a href="tel:+201032863861" class="small mr-3 p-2" dir="ltr" aria-label="اتصل بنا على 201032863861">
                         <span class="icon-phone mr-2"></span>
                         <span class="d-none d-lg-inline-block">+201032863861</span>
                     </a>
                     <!-- Email -->
-                    <a href="mailto:support@fakhrcs.com" class="small mr-3" dir="ltr">
+                    <a href="mailto:info@webeasystep.com" class="small mr-3 p-2" dir="ltr" aria-label="راسلنا على info@webeasystep.com">
                         <span class="icon-envelope mr-2"></span>
-                        <span class="d-none d-lg-inline-block">support@fakhrcs.com</span>
+                        <span class="d-none d-lg-inline-block">info@webeasystep.com</span>
                     </a>
                 </div>
 
                 <!-- Top Right: User Welcome Section or Login/Register -->
+                <!-- Top Right: Theme Toggle -->
                 <div class="col-6 col-lg-3 text-right d-flex align-items-center justify-content-end">
                     <!-- Theme Toggle - Always Visible -->
                     <button type="button" class="theme-toggle-btn ml-2" id="themeToggleTop" aria-label="Toggle dark mode" title="تبديل الوضع الداكن">
                         <i class="fas fa-sun theme-icon-light"></i>
                         <i class="fas fa-moon theme-icon-dark"></i>
                     </button>
-                    
-                    <?php if (isset(auth()->user()->full_name)): ?>
-                        <!-- User Welcome Section -->
-                        <div class="user-welcome-section d-flex align-items-center justify-content-end mr-2">
-                            <div class="user-info text-right mr-3">
-                                <div class="welcome-message small text-light">
-                                    <span class="d-none d-md-inline">مرحباً، </span>
-                                    <strong><?= esc(auth()->user()->full_name ?? auth()->user()->username) ?></strong>
-                                </div>
-                            </div>
-                            <div class="user-avatar">
-                                <?php if (!empty(auth()->user()->avatar)): ?>
-                                    <img src="<?= base_url('writable/uploads/profile/' . esc(auth()->user()->avatar)) ?>"
-                                         alt="Profile Picture" class="rounded-circle"
-                                         style="width: 32px; height: 32px; object-fit: cover; border: 2px solid #fff;">
-                                <?php else: ?>
-                                    <div class="bg-light rounded-circle d-flex align-items-center justify-content-center"
-                                         style="width: 32px; height: 32px; border: 2px solid #fff;">
-                                        <i class="icon-user text-primary" style="font-size: 16px;"></i>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    <?php else: ?>
-                        <!-- If not logged in -->
-                        <!-- TEMPORARILY HIDDEN: Login/Register links - DO NOT DELETE
-                        <a href="<?= site_url('login') ?>" class="small mr-3">
-                            <span class="icon-lock"></span>تسجيل الدخول
-                        </a>
-                        <a href="<?= site_url('users/register') ?>" class="small">
-                            <span class="icon-person"></span>حساب جديد
-                        </a>
-                        END TEMPORARILY HIDDEN -->
-                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -103,34 +61,51 @@
                             <span class="icon-document mr-1"></span>الشروط والأحكام
                         </a>
                     </li>
-                    <?php if (isset(auth()->user()->full_name)): ?>
+
+                    <?php if (auth()->loggedIn()): ?>
                         <!-- User Navigation Links -->
-                        <li <?= str_contains(current_url(), 'courses/my_courses') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('courses/my_courses') ?>">
-                                <span class="icon-book mr-1"></span>كورساتي
+                        <li class="has-children">
+                            <a href="#">
+                                <span>مرحباً، <?= esc(auth()->user()->full_name ?? auth()->user()->username) ?></span>
+                                <?php if (!empty(auth()->user()->avatar)): ?>
+                                    <img src="<?= base_url('writable/uploads/profile/' . esc(auth()->user()->avatar)) ?>"
+                                         alt="Avatar" class="rounded-circle ml-1"
+                                         style="width: 25px; height: 25px; object-fit: cover; border: 1px solid #fff; display: inline-block; vertical-align: middle;">
+                                <?php else: ?>
+                                    <i class="icon-user ml-1" style="vertical-align: middle;"></i>
+                                <?php endif; ?>
+                            </a>
+                            <ul class="dropdown">
+                                <li>
+                                    <a href="<?= site_url('enrollments/my-courses') ?>">
+                                        <span class="icon-book mr-2"></span>كورساتي
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= site_url('settings') ?>">
+                                        <span class="icon-cog mr-2"></span>الإعدادات
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= site_url('logout') ?>">
+                                        <span class="icon-lock mr-2"></span>تسجيل الخروج
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php else: ?>
+                        <!-- Guest Links -->
+                        <li <?= str_contains(current_url(), 'login') ? 'class="active"' : '' ?>>
+                            <a href="<?= site_url('login') ?>">
+                                <span class="icon-lock mr-1"></span>تسجيل الدخول
                             </a>
                         </li>
-            <!--            <li <?/*= str_contains(current_url(), 'quizzes/my-attempts') ? 'class="active"' : '' */?>>
-                            <a href="<?/*= site_url('quizzes/my-attempts') */?>">
-                                <span class="icon-clipboard mr-1"></span>اختباراتي
-                            </a>
-                        </li>-->
-                        <li <?= str_contains(current_url(), 'enrollments/my-courses') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('enrollments/my-courses') ?>">
-                                <span class="icon-shopping-cart mr-1"></span>دوراتي
-                            </a>
-                        </li>
-                        <li <?= str_contains(current_url(), 'settings') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('settings') ?>">
-                                <span class="icon-cog mr-1"></span>الإعدادات
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= site_url('logout') ?>">
-                                <span class="icon-lock mr-1"></span>تسجيل الخروج
-                            </a>
-                        </li>
-                <?php endif; ?>
+                    <?php endif; ?>
+                    <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
+                        <a href="<?= site_url('terms-conditions') ?>">
+                            <span class="icon-document mr-1"></span>الشروط والأحكام
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Mobile Toggle -->
@@ -237,6 +212,51 @@
         .untree_co-section.bg-light {
             padding-top: 60px;
             padding-bottom: 60px;
+        }
+
+        /* ===== DROPDOWN MENU FIX ===== */
+        .site-navigation .site-menu .has-children .dropdown {
+            background-color: #ffffff !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 10px 0;
+            border: 1px solid #eee;
+            margin-top: 10px;
+            z-index: 1002; /* Ensure it stays above other elements */
+        }
+
+        /* Override the global white text for dropdown items */
+        .site-navigation .site-menu .has-children .dropdown > li > a {
+            color: #333333 !important; /* Dark text for visibility */
+            padding: 8px 20px;
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .site-navigation .site-menu .has-children .dropdown > li > a:hover {
+            background-color: #f8f9fa;
+            color: #136ad5 !important;
+            padding-right: 25px;
+        }
+
+        .site-navigation .site-menu .has-children .dropdown > li > a span {
+            color: inherit !important; /* Icons inherit text color */
+        }
+
+        /* Dark mode overrides */
+        body.dark-mode .site-navigation .site-menu .has-children .dropdown {
+            background-color: #1a202c !important;
+            border-color: #2d3748;
+        }
+
+        body.dark-mode .site-navigation .site-menu .has-children .dropdown > li > a {
+            color: #e2e8f0 !important;
+        }
+
+        body.dark-mode .site-navigation .site-menu .has-children .dropdown > li > a:hover {
+            background-color: #2d3748;
+            color: #136ad5 !important;
         }
     </style>
 <?php endif; ?>

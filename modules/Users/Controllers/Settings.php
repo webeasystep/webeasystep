@@ -11,11 +11,13 @@ class Settings extends BaseController
 {
     protected $usersModel;
     protected $fireUploader;
+    protected $userIdentityModel;
 
     public function __construct()
     {
         $this->usersModel = new UsersModel();
         $this->fireUploader = new FireUploader();
+        $this->userIdentityModel = new \Modules\Users\Models\UserIdentityModel();
     }
 
     /**
@@ -31,6 +33,18 @@ class Settings extends BaseController
 
         // Get user data from the users model
         $userData = $this->usersModel->find($user->id);
+
+        // Fetch mobile from auth_identities
+        $mobileIdentity = $this->userIdentityModel->getIdentityByType($user, 'mobile_password');
+        if ($mobileIdentity) {
+            $userData->mobile = $mobileIdentity->secret;
+        }
+
+        // Fetch email from auth_identities
+        $emailIdentity = $this->userIdentityModel->getIdentityByType($user, 'email_password');
+        if ($emailIdentity) {
+            $userData->email = $emailIdentity->secret;
+        }
 
         $data = [
             'title' => 'إعدادات الحساب',
@@ -51,32 +65,64 @@ class Settings extends BaseController
             return redirect()->to('/login')->with('error', 'يجب تسجيل الدخول أولاً');
         }
 
-        if ($this->request->getMethod() !== 'POST') {
+        if (!$this->request->is('post')) {
             return redirect()->back();
         }
 
         $validation = \Config\Services::validation();
         $validation->setRules([
             'full_name' => 'required|min_length[2]|max_length[100]',
-            'email' => 'permit_empty|valid_email|is_unique[users.email,id,' . $user->id . ']',
+            // We use Shield's identity rules to check email uniqueness properly or custom logic
+            'email' => 'permit_empty|valid_email',
         ]);
 
         if (!$validation->withRequest($this->request)->run()) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
-
-        $updateData = [
-            'full_name' => $this->request->getPost('full_name'),
-            'email' => $this->request->getPost('email'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ];
-
+        
+        $email = $this->request->getPost('email');
+        
         try {
-            if ($this->usersModel->update($user->id, $updateData)) {
-                return redirect()->back()->with('success', 'تم تحديث الملف الشخصي بنجاح!');
-            } else {
-                return redirect()->back()->with('error', 'فشل في تحديث الملف الشخصي.');
+            // Check if the email provided is valid and unique in auth_identities (except for current user)
+            if (!empty($email)) {
+                $existingIdentity = $this->userIdentityModel->where('type', 'email_password')
+                                          ->where('secret', $email)
+                                          ->where('user_id !=', $user->id)
+                                          ->first();
+                if ($existingIdentity) {
+                    return redirect()->back()->withInput()->with('errors', ['email' => 'هذا البريد الإلكتروني مستخدم بالفعل']);
+                }
             }
+
+            // Update full_name in the usersModel
+            $updateData = [
+                'full_name' => $this->request->getPost('full_name'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->usersModel->update($user->id, $updateData);
+            
+            // Update or create email in auth_identities
+            if (!empty($email)) {
+                $emailIdentity = $this->userIdentityModel->getIdentityByType($user, 'email_password');
+                if ($emailIdentity) {
+                    // Update existing
+                    $this->userIdentityModel->update($emailIdentity->id, ['secret' => $email]);
+                } else {
+                    // Create new
+                    $this->userIdentityModel->insert([
+                        'user_id' => $user->id,
+                        'type' => 'email_password',
+                        'secret' => $email,
+                        'secret2' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT), // Dummy password since Shield expects one for this type
+                        'expires' => null,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ]);
+                }
+            }
+
+            return redirect()->back()->with('success', 'تم تحديث الملف الشخصي بنجاح!');
         } catch (\Exception $e) {
             log_message('error', 'Profile update error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'حدث خطأ أثناء تحديث الملف الشخصي.');
@@ -94,7 +140,7 @@ class Settings extends BaseController
             return redirect()->to('/login')->with('error', 'يجب تسجيل الدخول أولاً');
         }
 
-        if ($this->request->getMethod() !== 'POST') {
+        if (!$this->request->is('post')) {
             return redirect()->back();
         }
 

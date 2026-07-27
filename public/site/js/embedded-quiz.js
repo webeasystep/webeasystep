@@ -583,12 +583,14 @@ class EmbeddedQuiz {
      * Build options for a specific question
      */
     buildQuestionOptions(question, questionIndex) {
-        const options = typeof question.options === 'string'
-            ? JSON.parse(question.options)
-            : question.options;
+        const rawOptions = question.options;
+        const options = Array.isArray(rawOptions)
+            ? rawOptions
+            : (typeof rawOptions === 'string' ? JSON.parse(rawOptions) : null);
 
         switch (question.question_type) {
             case 'single_choice':
+                if (!options) return '<p class="text-muted text-center py-3">⚠️ لا توجد خيارات لهذا السؤال</p>';
                 return options.map((option, optIndex) => `
                     <div class="quiz-option">
                         <label class="quiz-option-label">
@@ -603,6 +605,7 @@ class EmbeddedQuiz {
                 `).join('');
 
             case 'multiple_choice':
+                if (!options) return '<p class="text-muted text-center py-3">⚠️ لا توجد خيارات لهذا السؤال</p>';
                 return options.map((option, optIndex) => `
                     <div class="quiz-option">
                         <label class="quiz-option-label">
@@ -644,21 +647,40 @@ class EmbeddedQuiz {
                     </div>
                 `;
 
+            case 'fill_in_blank':
+                return `
+                    <div class="quiz-option" style="display:block;padding:0;">
+                        <label style="display:block;font-size:0.88rem;color:#64748b;margin-bottom:6px;">اكتب إجابتك:</label>
+                        <input type="text"
+                               class="form-control quiz-answer-input"
+                               name="answer_${questionIndex}"
+                               data-question="${questionIndex}"
+                               autocomplete="off"
+                               dir="rtl"
+                               placeholder="..."
+                               style="text-align:right;border-radius:8px;padding:0.75rem 1rem;">
+                    </div>
+                `;
+
             case 'essay':
                 return `
-                    <div class="quiz-option">
+                    <div class="quiz-option" style="display:block;padding:0;">
                         <textarea class="form-control quiz-answer-input" 
                                   name="answer_${questionIndex}"
                                   data-question="${questionIndex}"
-                                  rows="5" 
-                                  placeholder="اكتب إجابتك هنا..."></textarea>
+                                  rows="5"
+                                  dir="rtl"
+                                  placeholder="اكتب إجابتك هنا..."
+                                  style="text-align:right;border-radius:8px;resize:vertical;"></textarea>
+                        ${question.max_words ? `<small class="text-muted" style="display:block;margin-top:4px;">الحد الأقصى: ${question.max_words} كلمة</small>` : ''}
                     </div>
                 `;
 
             default:
-                return '<p class="text-muted">نوع السؤال غير مدعوم</p>';
+                return `<p class="text-muted text-center py-3">نوع السؤال غير مدعوم: ${question.question_type}</p>`;
         }
     }
+
 
     /**
      * Build question navigation buttons

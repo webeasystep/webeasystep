@@ -8,6 +8,9 @@ return [
     'payments_List'     => 'قائمة المدفوعات',
 
     // Common Fields
+    'full_name'         => 'الاسم الكامل',
+    'mobile'            => 'رقم الهاتف',
+    'paid_amount'       => 'المبلغ المدفوع',
     'user_name'         => 'اسم المستخدم',
     'course_title'       => 'اسم الدورة',
     'unit_name'         => 'اسم الوحدة',
@@ -18,14 +21,20 @@ return [
     'payment_status'    => 'حالة الدفع',
     'proof_image'       => 'إثبات الدفع',
     'payment_proof'     => 'إثبات الدفع',
+    'refund_proof'      => 'إثبات الاسترجاع',
     'admin_notes'       => 'ملاحظات الإدارة',
      'status'            => 'الحالة',
      'show'              => 'عرض تفاصيل التسجيل',
      'attach_payment_proof' => 'إرفاق إثبات الدفع',
+    'attach_refund_proof' => 'إرفاق إثبات الاسترجاع',
 
     'enrollment_method' => 'طريقة الاشتراك',
     'enrollment_status' => 'حالة الاشتراك',
      'enrolled_at'       => 'تاريخ الاشتراك',
+
+    'approved_by'       => 'تم الموافقة بواسطة',
+    'expires_at'        => 'تاريخ الانتهاء',
+    'notes'             => 'ملاحظات',
 
     'created_at'        => 'تاريخ الإنشاء',
     'updated_at'        => 'تاريخ التحديث',
@@ -34,4 +43,12 @@ return [
     'active'            => 'التفعيل',
     'done'              => 'تم بنجاح',
     'processed_at'  => 'تم معالجته',
+    'approved_at' => 'تم الموافقة',
+    'refunded_at' => 'تم الاسترجاع',
+    'status_refunded' => 'تم الاسترجاع',
+    'refund_success' => 'تم تنفيذ الاسترجاع بنجاح',
+    'refund_failed' => 'فشل في تنفيذ الاسترجاع',
+    'coupon_id' => 'رقم الكوبون',
+    'coupon_code' => 'كود الكوبون',
+    'coupon_discount_amount' => 'قيمة خصم الكوبون',
 ];

@@ -6,7 +6,9 @@
 
 <?= $this->include('site_layout/navbar'); ?>
 
+<main role="main" id="main-content">
 <?= $this->renderSection('content'); ?>
+</main>
 
 <?= $this->include('site_layout/footer'); ?>
 

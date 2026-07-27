@@ -186,43 +186,159 @@ class QuizzesModel extends BaseModel
     }
 
     /**
-     * Validate quiz JSON structure
+     * Supported question types
      */
-    public function validateQuizJSON($jsonData)
+    public const SUPPORTED_TYPES = ['single_choice', 'multiple_choice', 'true_false', 'essay', 'fill_in_blank'];
+
+    /**
+     * Types that require an options array
+     */
+    public const REQUIRES_OPTIONS = ['single_choice', 'multiple_choice'];
+
+    /**
+     * Types that do NOT require a correct_answer
+     */
+    public const NO_ANSWER_TYPES = ['essay', 'fill_in_blank'];
+
+    /**
+     * Validate quiz JSON structure — returns ['valid' => bool, 'errors' => [...]]
+     */
+    public function validateQuizJSON($jsonData): array
     {
-        // Check required fields
-        $required = ['quiz_title', 'questions'];
-        foreach ($required as $field) {
-            if (!isset($jsonData[$field]) || empty($jsonData[$field])) {
-                return false;
-            }
+        $errors = [];
+
+        // ── 1. Quiz-level fields ──────────────────────────────────────────
+        if (empty($jsonData['quiz_title'])) {
+            $errors[] = 'حقل "quiz_title" مطلوب ولا يمكن أن يكون فارغاً.';
         }
 
-        // Validate questions structure
-        if (isset($jsonData['questions']) && is_array($jsonData['questions'])) {
-            foreach ($jsonData['questions'] as $index => $question) {
-                // Check for question_text (not just 'question')
-                if (!isset($question['question_text']) || empty($question['question_text'])) {
-                    return false;
+        // Accept both key names for questions
+        $questions = $jsonData['questions'] ?? $jsonData['quiz_questions'] ?? null;
+
+        if (!is_array($questions) || empty($questions)) {
+            $errors[] = 'يجب أن يحتوي الملف على مفتاح "questions" أو "quiz_questions" وأن يكون مصفوفة غير فارغة.';
+            return ['valid' => false, 'errors' => $errors];
+        }
+
+        if (count($questions) < 1) {
+            $errors[] = 'يجب أن يحتوي الاختبار على سؤال واحد على الأقل.';
+        }
+
+        if (count($questions) > 200) {
+            $errors[] = 'لا يمكن أن يتجاوز عدد الأسئلة 200 سؤال.';
+        }
+
+        $passingScore = $jsonData['passing_score'] ?? null;
+        if ($passingScore !== null && (!is_numeric($passingScore) || $passingScore < 1 || $passingScore > 100)) {
+            $errors[] = '"passing_score" يجب أن يكون رقماً بين 1 و 100.';
+        }
+
+        $timeLimit = $jsonData['time_limit_minutes'] ?? $jsonData['time_limit'] ?? null;
+        if ($timeLimit !== null && (!is_numeric($timeLimit) || $timeLimit < 1 || $timeLimit > 360)) {
+            $errors[] = '"time_limit_minutes" يجب أن يكون رقماً بين 1 و 360 دقيقة.';
+        }
+
+        // ── 2. Question-level validation ──────────────────────────────────
+        foreach ($questions as $i => $question) {
+            $num = $i + 1;
+            $prefix = "السؤال #{$num}";
+
+            if (!is_array($question)) {
+                $errors[] = "{$prefix}: يجب أن يكون كائن (object) وليس نصاً أو رقماً.";
+                continue;
+            }
+
+            // question_text
+            if (empty($question['question_text'])) {
+                $errors[] = "{$prefix}: حقل \"question_text\" مطلوب ولا يمكن أن يكون فارغاً.";
+            } elseif (mb_strlen(trim($question['question_text'])) < 5) {
+                $errors[] = "{$prefix}: نص السؤال قصير جداً (5 أحرف على الأقل).";
+            }
+
+            // question_type
+            if (empty($question['question_type'])) {
+                $errors[] = "{$prefix}: حقل \"question_type\" مطلوب.";
+                continue; // skip further checks without a type
+            }
+
+            $type = $question['question_type'];
+
+            if (!in_array($type, self::SUPPORTED_TYPES)) {
+                $errors[] = "{$prefix}: نوع السؤال \"{$type}\" غير مدعوم. الأنواع المدعومة: " . implode(', ', self::SUPPORTED_TYPES) . '.';
+                continue;
+            }
+
+            // options validation
+            if (in_array($type, self::REQUIRES_OPTIONS)) {
+                if (empty($question['options']) || !is_array($question['options'])) {
+                    $errors[] = "{$prefix} ({$type}): حقل \"options\" مطلوب ويجب أن يكون مصفوفة.";
+                } else {
+                    $optCount = count($question['options']);
+                    if ($type === 'single_choice' && $optCount < 2) {
+                        $errors[] = "{$prefix}: أسئلة الاختيار من متعدد تحتاج خيارَين على الأقل (وُجد {$optCount}).";
+                    }
+                    if ($type === 'multiple_choice' && $optCount < 2) {
+                        $errors[] = "{$prefix}: أسئلة الاختيار المتعدد تحتاج خيارَين على الأقل (وُجد {$optCount}).";
+                    }
+                    if ($optCount > 10) {
+                        $errors[] = "{$prefix}: عدد الخيارات لا يجب أن يتجاوز 10 (وُجد {$optCount}).";
+                    }
+                    // Each option must be a non-empty string
+                    foreach ($question['options'] as $oi => $opt) {
+                        if (!is_string($opt) && !is_numeric($opt)) {
+                            $errors[] = "{$prefix}: الخيار #{$oi} يجب أن يكون نصاً.";
+                        } elseif (empty(trim((string)$opt))) {
+                            $errors[] = "{$prefix}: الخيار #{$oi} لا يمكن أن يكون فارغاً.";
+                        }
+                    }
                 }
 
-                if (!isset($question['question_type'])) {
-                    return false;
-                }
-
-                if (in_array($question['question_type'], ['multiple_choice', 'single_choice']) && !isset($question['options'])) {
-                    return false;
-                }
-
+                // correct_answer must be present and valid index
                 if (!isset($question['correct_answer'])) {
-                    return false;
+                    $errors[] = "{$prefix} ({$type}): حقل \"correct_answer\" مطلوب.";
+                } else {
+                    $options = $question['options'] ?? [];
+                    $ca = $question['correct_answer'];
+
+                    if ($type === 'single_choice') {
+                        // correct_answer can be an index (int) or the option text
+                        if (is_int($ca) && ($ca < 0 || $ca >= count($options))) {
+                            $errors[] = "{$prefix}: \"correct_answer\" ({$ca}) خارج نطاق الخيارات المتاحة (0-" . (count($options) - 1) . ').';
+                        }
+                    }
+
+                    if ($type === 'multiple_choice') {
+                        if (!is_array($ca)) {
+                            $errors[] = "{$prefix}: \"correct_answer\" في أسئلة الاختيار المتعدد يجب أن يكون مصفوفة.";
+                        } elseif (empty($ca)) {
+                            $errors[] = "{$prefix}: \"correct_answer\" يجب أن يحتوي على إجابة صحيحة واحدة على الأقل.";
+                        }
+                    }
                 }
             }
-        } else {
-            return false;
+
+            // true_false correct_answer
+            if ($type === 'true_false') {
+                if (!isset($question['correct_answer'])) {
+                    $errors[] = "{$prefix}: \"correct_answer\" مطلوب لأسئلة صح/خطأ (true أو false).";
+                } elseif (!in_array($question['correct_answer'], [true, false, 'true', 'false', 1, 0], true)) {
+                    $errors[] = "{$prefix}: \"correct_answer\" في أسئلة صح/خطأ يجب أن يكون true أو false فقط.";
+                }
+            }
+
+            // points
+            if (isset($question['points'])) {
+                $pts = $question['points'];
+                if (!is_numeric($pts) || $pts < 0 || $pts > 1000) {
+                    $errors[] = "{$prefix}: \"points\" يجب أن يكون رقماً بين 0 و 1000 (وُجد: {$pts}).";
+                }
+            }
         }
 
-        return true;
+        return [
+            'valid'  => empty($errors),
+            'errors' => $errors,
+        ];
     }
 
     /**
@@ -242,20 +358,29 @@ class QuizzesModel extends BaseModel
                 }
             }
             
+            // Accept both 'questions' and 'quiz_questions' as the questions key
+            $questions = $jsonData['questions'] ?? $jsonData['quiz_questions'] ?? [];
+
+            // Accept both 'time_limit' and 'time_limit_minutes' as the time limit key
+            $timeLimit = $jsonData['time_limit_minutes'] ?? $jsonData['time_limit'] ?? 30;
+
+            // Accept both 'quiz_description' and 'quiz_desc' as the description key
+            $desc = $jsonData['quiz_desc'] ?? $jsonData['quiz_description'] ?? '';
+
             // Prepare quiz data
             $quizData = [
-                'course_id' => $jsonData['course_id'] ?? 1, // Default course if not provided
-                'quiz_title' => $jsonData['quiz_title'],
-                'quiz_desc' => $jsonData['quiz_description'] ?? '',
-                'time_limit_minutes' => $jsonData['time_limit'] ?? 30,
-                'passing_score' => $jsonData['passing_score'] ?? 70.00,
-                'max_attempts' => $jsonData['max_attempts'] ?? 3,
-                'shuffle_questions' => $jsonData['shuffle_questions'] ?? 0,
-                'shuffle_answers' => $jsonData['shuffle_answers'] ?? 0,
-                'show_results' => $jsonData['show_results'] ?? 1,
+                'course_id'               => $jsonData['course_id'] ?? 1,
+                'quiz_title'              => $jsonData['quiz_title'],
+                'quiz_desc'               => $desc,
+                'time_limit_minutes'      => $timeLimit,
+                'passing_score'           => $jsonData['passing_score'] ?? 70.00,
+                'max_attempts'            => $jsonData['max_attempts'] ?? 3,
+                'shuffle_questions'       => $jsonData['shuffle_questions'] ?? 0,
+                'shuffle_answers'         => $jsonData['shuffle_answers'] ?? 0,
+                'show_results'            => $jsonData['show_results'] ?? 1,
                 'show_results_immediately' => $jsonData['show_results_immediately'] ?? 1,
-                'active' => 1,
-                'quiz_questions' => json_encode($jsonData['questions'])
+                'active'                  => 1,
+                'quiz_questions'          => json_encode($questions)
             ];
 
             log_message('info', '[QUIZ_MODEL] Prepared quiz data: ' . json_encode($quizData));

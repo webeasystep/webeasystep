@@ -12,4 +12,9 @@ return [
     'add_user'=>'Add user',
     'users_List'=>'users List',
     'avatar'=> 'avatar',
+    'full_name' => 'Full Name',
+    'email' => 'Email',
+    'status' => 'Status',
+    'active' => 'Active',
+    'created_at' => 'Created At',
 ];

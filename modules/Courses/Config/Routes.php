@@ -45,7 +45,9 @@ $routes->group('', [
 ], static function ($routes) {
     $routes->get('courses/course_view/(:any)', 'Courses::course_view/$1');
     $routes->get('courses/item/(:num)', 'Courses::item/$1');
-    $routes->get('courses/my_courses', 'Courses::my_courses');
+    $routes->get('courses/item/(:num)', 'Courses::item/$1');
+    // $routes->get('courses/my_courses', 'Courses::my_courses'); // Deprecated - use enrollments/my-courses
+    $routes->post('courses/enroll/(:num)', 'Courses::enroll/$1');
     $routes->post('courses/enroll/(:num)', 'Courses::enroll/$1');
     $routes->post('courses/markLessonComplete', 'Courses::markLessonComplete');
 });

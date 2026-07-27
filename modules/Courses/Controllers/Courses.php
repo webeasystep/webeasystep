@@ -94,14 +94,12 @@ class Courses extends BaseController
         $enrolledCourseIds = [];
 
         if ($userId) {
-            // Get courses with enrolled units for logged-in user
+            // Get enrolled course IDs for logged-in user
             $enrolledCourseIds = $this->db
-                ->table('tb_unit_enrollments ue')
-                ->select('u.course_id')
-                ->join('tb_units u', 'u.id = ue.unit_id')
-                ->where('ue.user_id', $userId)
-                ->where('ue.status', 'approved')
-                ->distinct()
+                ->table('tb_course_enrollments')
+                ->select('course_id')
+                ->where('user_id', $userId)
+                ->where('status', 'approved')
                 ->get()
                 ->getResultArray();
 
@@ -162,12 +160,12 @@ class Courses extends BaseController
                         $metadata = json_decode($item['metadata'], true);
                         if (isset($metadata['video_duration'])) {
                             // Convert seconds to minutes and round
-                            $totalDuration += round($metadata['video_duration'] / 60);
+                            $totalDuration += round((int)$metadata['video_duration'] / 60);
                         }
                     }
                     // Fallback to duration field if metadata is not available
                     elseif (!empty($item['duration'])) {
-                        $totalDuration += round($item['duration'] / 60);
+                        $totalDuration += round((int)$item['duration'] / 60);
                     }
                 } elseif ($item['item_type'] === 'page') {
                     $pageCount++;
@@ -258,26 +256,13 @@ class Courses extends BaseController
             return redirect()->to('/')->with('error', 'الكورس غير موجود');
         }
 
-        // Check if user has enrolled in any units of this course
-        $courseUnits = $this->db->table('tb_units')
-            ->select('id')
-            ->where('course_id', $courseId)
+        // Check if user is enrolled in the course via tb_course_enrollments
+        $enrollment = $this->db->table('tb_course_enrollments')
+            ->where('user_id', $userId)
+            ->where('course_id', $course['id'])
+            ->where('status', 'approved')
             ->get()
-            ->getResultArray();
-        $courseUnitIds = array_column($courseUnits, 'id');
-
-        $enrollment = null;
-        if (!empty($courseUnitIds)) {
-            $enrollments = $this->db->table('tb_unit_enrollments ue')
-                ->join('tb_units u', 'u.id = ue.unit_id')
-                ->where('ue.user_id', $userId)
-                ->where('ue.status', 'approved')
-                ->where('u.course_id', $course['id'])
-                ->get()
-                ->getResultArray();
-
-            $enrollment = !empty($enrollments) ? $enrollments[0] : null;
-        }
+            ->getRow();
 
         if ($enrollment) {
             // User is enrolled, redirect to course view
@@ -303,12 +288,10 @@ class Courses extends BaseController
         // If user is logged in, fetch the courses they're enrolled in
         if (!empty($userId)) {
             $enrolledCourseIds = $this->db
-                ->table('tb_unit_enrollments ue')
-                ->select('u.course_id')
-                ->join('tb_units u', 'u.id = ue.unit_id')
-                ->where('ue.user_id', $userId)
-                ->where('ue.status', 'approved')
-                ->distinct()
+                ->table('tb_course_enrollments')
+                ->select('course_id')
+                ->where('user_id', $userId)
+                ->where('status', 'approved')
                 ->get()
                 ->getResultArray();
 
@@ -351,12 +334,18 @@ class Courses extends BaseController
     /**
      * Show a single course details page (e.g. 'course_details' view).
      */
-    public function course_details(string $slug): string
+    public function course_details(string $slug)
     {
         // 1) Fetch the course by slug
         $course = $this->coursesModel->getCourseBySlug($slug);
+        
         if (!$course) {
             throw PageNotFoundException::forPageNotFound();
+        }
+
+        // Redirect to home if course is in waiting list mode
+        if ($course->waiting_list == 1) {
+            return redirect()->to('/')->with('info', 'هذه الدورة قيد الإعداد وستتوفر قريباً. ترقب!');
         }
 
         // 2) Get course units with their items
@@ -365,28 +354,25 @@ class Courses extends BaseController
         // 2.1) Check if user is logged in and get user ID
         $userId = auth()->loggedIn() ? auth()->user()->id : null;
 
-        // 2.2) Check user's unit enrollments to filter out purchased units
-        $userEnrolledUnitIds = [];
+        // 2.2) Check user's course enrollment
+        $isCourseEnrolled = false;
         if ($userId) {
-            // Get user's approved unit enrollments
-            $userEnrolledUnitIds = $this->db->table('tb_unit_enrollments')
-                ->select('unit_id')
-                ->where('user_id', $userId)
-                ->where('status', 'approved')
-                ->get()
-                ->getResultArray();
-
-            $userEnrolledUnitIds = array_column($userEnrolledUnitIds, 'unit_id');
+            $isCourseEnrolled = $this->coursesModel->isUserEnrolled($userId, $course->id);
         }
 
-        // Filter out units that user has already purchased and been approved for
-        $filteredUnits = [];
-        foreach ($units as $unit) {
-            if (!in_array($unit->id, $userEnrolledUnitIds)) {
-                $filteredUnits[] = $unit;
-            }
-        }
-        $units = $filteredUnits;
+        // If user is enrolled in the course, they have access to all units.
+        // So we don't need to filter out "purchased units" in the same way, 
+        // effectively all units are "purchased" / "enrolled".
+        // However, the original logic seemed to filter them out from the list of *available to purchase* units?
+        // Or was it filtering them out from the display?
+        // "Filter out units that user has already purchased and been approved for" -> implies hiding them from a "buy units" list?
+        // But the view usually shows all units.
+        // Let's assume for now valid course enrollment means all units are "owned".
+        
+        $filteredUnits = $units; // Show all units
+        // If we strictly wanted to hide "enrolled" units (like for a specific "buy units" view), we would filter.
+        // But for course_details which is often the sales page, we usually show everything.
+        // If the user IS enrolled, they usually see "Access Course" button instead of buy buttons per unit.
 
         // Get unit items for each unit and process metadata
         foreach ($units as &$unit) {
@@ -509,32 +495,14 @@ class Courses extends BaseController
             return redirect()->to('/courses/course_details/' . $slug)->with('error', 'You need to enroll in this course to access its content.');
         }
 
-        // 3) Get course units with their items - FILTER BY ENROLLMENT
+        // 3) Get course units with their items
         $allUnits = $this->unitsModel->getUnitsByCourse($course->id);
 
-        // Get user's enrolled unit IDs
-        $enrolledUnitIds = $this->db->table('tb_unit_enrollments')
-            ->select('unit_id')
-            ->where('user_id', $userId)
-            ->where('status', 'approved')
-            ->get()
-            ->getResultArray();
-
-        $enrolledUnitIds = array_column($enrolledUnitIds, 'unit_id');
-
-        // Get ALL units for display (both enrolled and unenrolled)
+        // Get ALL units for display
         $units = [];
         foreach ($allUnits as $unit) {
-            // Debug: Log unit properties before processing
-
-
-            // Mark unit as enrolled or not
-            $unit->is_enrolled = in_array($unit->id, $enrolledUnitIds);
-
-            // Ensure is_free property is preserved (it should already be there from database)
-            if (!isset($unit->is_free)) {
-                $unit->is_free = 0; // Default to not free if not set
-            }
+            // Mark unit as enrolled if user has course access
+            $unit->is_enrolled = $hasAccess;
 
             $units[] = $unit;
         }
@@ -545,16 +513,18 @@ class Courses extends BaseController
             // Get items for all units (enrolled, free, and locked)
             $unit->items = $this->unitItemsModel->getUnitItemsWithDetails($unit->id, true); // Get items with related data
 
-            // Mark items as locked for unenrolled non-free units
-            if (!$unit->is_enrolled && !$unit->is_free) {
+            // Mark items as locked for unenrolled non-free items
+            if (!$unit->is_enrolled) {
                 foreach ($unit->items as &$item) {
-                    $item->is_locked = true;
+                    if (!isset($item->is_free) || $item->is_free != 1) {
+                        $item->is_locked = true;
+                    }
                 }
                 unset($item);
             }
 
             // Add items to flat array for navigation (enrolled units + free units)
-            $includeInNavigation = $unit->is_enrolled || $unit->is_free;
+            $includeInNavigation = $unit->is_enrolled || true; // Allow free items to be included
 
             if ($includeInNavigation) {
                 foreach ($unit->items as $item) {
@@ -596,7 +566,7 @@ class Courses extends BaseController
                         'quiz_details' => $item->quiz_details ?? null,
                         'page_details' => $item->page_details ?? null,
                         'is_preview' => false, // Will be determined by enrollment
-                        'is_free_unit' => $unit->is_free // Track if this item belongs to a free unit
+                        'is_free_item' => isset($item->is_free) ? $item->is_free : 0 // Track if this item is free
                     ];
                 }
             }
@@ -605,48 +575,71 @@ class Courses extends BaseController
 
         // 4) Check which item is requested in ?item=XYZ (generic parameter for all item types)
         $requestedItemId = $this->request->getGet('item') ?: $this->request->getGet('video') ?: $this->request->getGet('item_id');
-        
+
         // Check for last_item parameter (used for external navigation)
         $lastItemId = $this->request->getGet('last_item');
 
-        // 5) If no specific item is requested, handle last item or jump to the first one
+        // 5) If no specific item is requested, redirect to a valid item (server-side)
         if (!$requestedItemId && !empty($flatItems)) {
             if ($lastItemId) {
-                // Validate that the last item exists and user has access
-                $lastItemExists = false;
+                // Validate that the last item exists in the flat items list
                 foreach ($flatItems as $item) {
                     if ($item['id'] == $lastItemId) {
-                        $lastItemExists = true;
+                        return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $lastItemId));
+                    }
+                }
+            }
+
+            // TRY TO FIND LAST WATCHED ITEM IN DB
+            $lastAccessedItem = $this->db->table('tb_user_item_progress')
+                ->select('tb_user_item_progress.item_id, tb_user_item_progress.is_completed')
+                ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
+                ->where('tb_user_item_progress.user_id', $userId)
+                ->where('tb_units.course_id', $course->id)
+                ->orderBy('tb_user_item_progress.updated_at', 'DESC')
+                ->limit(1)
+                ->get()
+                ->getRow();
+
+            if ($lastAccessedItem) {
+                // Fetch all completed item IDs to know which ones to skip if the last item is completed
+                $completedItems = $this->db->table('tb_user_item_progress')
+                    ->select('tb_user_item_progress.item_id')
+                    ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
+                    ->where('tb_user_item_progress.user_id', $userId)
+                    ->where('tb_units.course_id', $course->id)
+                    ->where('tb_user_item_progress.is_completed', 1)
+                    ->get()
+                    ->getResultArray();
+                $completedItemIds = array_column($completedItems, 'item_id');
+
+                $lastIndex = -1;
+                foreach ($flatItems as $index => $item) {
+                    if ($item['id'] == $lastAccessedItem->item_id) {
+                        $lastIndex = $index;
                         break;
                     }
                 }
-                
-                if ($lastItemExists) {
-                    // Redirect to the last item with proper URL structure
-                    return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $lastItemId));
+
+                if ($lastIndex !== -1) {
+                    $targetItemId = $lastAccessedItem->item_id;
+
+                    // If the last accessed item is completed, find the next uncompleted item
+                    if ($lastAccessedItem->is_completed == 1) {
+                        for ($i = $lastIndex + 1; $i < count($flatItems); $i++) {
+                            if (!in_array($flatItems[$i]['id'], $completedItemIds)) {
+                                $targetItemId = $flatItems[$i]['id'];
+                                break;
+                            }
+                        }
+                    }
+
+                    return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $targetItemId));
                 }
             }
-            
-            // If no last_item parameter, let JavaScript handle localStorage redirect
-            // Only default to first item if this is a direct server-side request
-            if (!$lastItemId) {
-                // Check if this might be a JavaScript redirect attempt by looking for specific headers
-                $isAjaxOrFetch = $this->request->isAJAX() || 
-                               $this->request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest' ||
-                               strpos($this->request->getHeaderLine('Accept'), 'application/json') !== false;
-                
-                if (!$isAjaxOrFetch) {
-                    // This is likely a direct page load - let JavaScript handle localStorage
-                    // Set a flag to indicate no item was specified
-                    $requestedItemId = null;
-                } else {
-                    // This is an AJAX/fetch request, default to first item
-                    $requestedItemId = $flatItems[0]['id'];
-                }
-            } else {
-                // Default to first item if no valid last item found
-                $requestedItemId = $flatItems[0]['id'];
-            }
+
+            // Default: redirect to the first available item
+            return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $flatItems[0]['id']));
         }
 
         // 6) Find the current item in $flatItems (search by both id and item_id)
@@ -678,33 +671,8 @@ class Courses extends BaseController
                 // Item exists - check if user has access to the unit
                 $unit = $this->unitsModel->find($requestedItem->unit_id);
                 if ($unit && $unit->course_id == $course->id) {
-                    // Check if unit is free and auto-enroll user
-                    if ($unit->is_free && !in_array($unit->id, $enrolledUnitIds)) {
-                        // Auto-enroll user in free unit
-                        $enrollmentData = [
-                            'user_id' => $userId,
-                            'unit_id' => $unit->id,
-                            'status' => 'approved',
-                            'created_at' => date('Y-m-d H:i:s'),
-                            'processed_at' => date('Y-m-d H:i:s'),
-                            'processed_by' => $userId // Self-enrollment for free units
-                        ];
-
-                        $this->db->table('tb_unit_enrollments')->insert($enrollmentData);
-
-
-                        // Redirect to refresh the page with updated enrollment
-                        return redirect()->to(site_url('courses/course_view/' . $slug . '?item=' . $requestedItemId))
-                            ->with('success', 'تم تسجيلك في الوحدة المجانية بنجاح');
-                    }
-
-                    // Check if user has access to this unit
-                    $hasUnitAccess = $this->checkUnitAccess($userId, $unit->id);
-                    if (!$hasUnitAccess && !$unit->is_free) {
-                        // User doesn't have access - redirect with Arabic message
-                        return redirect()->to(site_url('courses/course_view/' . $slug))
-                            ->with('error', 'يجب عليك شراء الكورس أولاً حتى تتمكن من مشاهدة المحتوى');
-                    }
+                    // Check if user has access to this unit (should always be true if course is enrolled)
+                    // If necessary, add specific unit access logic here, but for now course access covers all.
                 }
             }
 
@@ -719,21 +687,21 @@ class Courses extends BaseController
         $nextItem = null;
 
         if ($currentIndex !== false) {
-            // Find previous available item (skip locked units)
+            // Find previous available item (skip locked items)
             for ($i = $currentIndex - 1; $i >= 0; $i--) {
                 $item = $flatItems[$i];
-                // Check if this item is accessible (enrolled or free unit)
-                if ($item['is_free_unit'] || in_array($item['unit_id'], $enrolledUnitIds)) {
+                // Check if this item is accessible (enrolled or free item)
+                if ($item['is_free_item'] || $hasAccess) {
                     $prevItem = $item;
                     break;
                 }
             }
 
-            // Find next available item (skip locked units)
+            // Find next available item (skip locked items)
             for ($i = $currentIndex + 1; $i < count($flatItems); $i++) {
                 $item = $flatItems[$i];
-                // Check if this item is accessible (enrolled or free unit)
-                if ($item['is_free_unit'] || in_array($item['unit_id'], $enrolledUnitIds)) {
+                // Check if this item is accessible (enrolled or free item)
+                if ($item['is_free_item'] || $hasAccess) {
                     $nextItem = $item;
                     break;
                 }
@@ -766,15 +734,27 @@ class Courses extends BaseController
 
         // 9) Calculate progress using the Progress module
         $courseProgress = 0;
+        $completedItemIds = [];
         if ($hasAccess) {
             $progressModel = new \Modules\Progress\Models\UserUnitProgressModel();
             $courseProgress = $progressModel->getCourseCompletionPercentage($userId, $course->id);
+
+            // Fetch completed items for this course and user
+            $completedItems = $this->db->table('tb_user_item_progress')
+                ->select('tb_user_item_progress.item_id')
+                ->join('tb_units', 'tb_units.id = tb_user_item_progress.unit_id')
+                ->where('tb_user_item_progress.user_id', $userId)
+                ->where('tb_units.course_id', $course->id)
+                ->where('tb_user_item_progress.is_completed', 1)
+                ->get()
+                ->getResultArray();
+            $completedItemIds = array_column($completedItems, 'item_id');
         }
 
         // 10) Prepare data for the view based on current item type
-        $videoId = 'dQw4w9WgXcQ'; // Default fallback
+        $videoId = null;
         $videoLibraryId = '495222'; // Default fallback
-        $itemTitle = 'Default Item Title';
+        $itemTitle = '';
         $itemDesc = 'Default item description';
         $quizData = null;
         $pageData = null;
@@ -871,6 +851,7 @@ class Courses extends BaseController
         $data = [
             'title'             => $course->course_title,
             'course'            => $course,
+            'isEnrolled'        => $hasAccess,
             'units'             => $units, // Changed from 'structure' to 'units'
             'course_progress'   => $courseProgress,
             'current_id'        => $requestedItemId,
@@ -891,17 +872,9 @@ class Courses extends BaseController
             'nextLessonUrl'     => $nextItem
                 ? site_url('courses/course_view/'.$slug.'?item='.$nextItem['id'])
                 : null,
+            'completedItemIds'  => $completedItemIds,
         ];
 
-        // Debug logging
-        log_message('debug', 'COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem));
-        log_message('debug', 'COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId);
-        log_message('debug', 'COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems));
-
-        // Also use error_log for immediate visibility
-        error_log('COURSES_CONTROLLER DEBUG - currentItem: ' . json_encode($currentItem));
-        error_log('COURSES_CONTROLLER DEBUG - requestedItemId: ' . $requestedItemId);
-        error_log('COURSES_CONTROLLER DEBUG - flatItems count: ' . count($flatItems));
 
         return view('site/course_view', $data);
     }
@@ -924,7 +897,7 @@ class Courses extends BaseController
         // Enroll user in the course
         $this->coursesModel->enrollUser($userId, $courseId);
 
-        return redirect()->to('/courses/my_courses')->with('success', 'Enrolled in course!');
+        return redirect()->to('/enrollments/my-courses')->with('success', 'Enrolled in course!');
     }
 
     /**
@@ -1094,7 +1067,7 @@ class Courses extends BaseController
         // Check if course is free
         if ($course->is_free) {
             $this->coursesModel->enrollUser($userId, $courseId);
-            return redirect()->to('/courses/my_courses')->with('success', 'Successfully enrolled in free course!');
+            return redirect()->to('/enrollments/my-courses')->with('success', 'Successfully enrolled in free course!');
         }
 
         // For paid courses, redirect to unit enrollment since pricing is now unit-based
@@ -1106,7 +1079,7 @@ class Courses extends BaseController
      */
     public function mark_complete()
     {
-        if (!$this->request->getMethod() === 'POST') {
+        if (!$this->request->is('post')) {
             return redirect()->back()->with('error', 'Invalid request method.');
         }
 
@@ -1405,28 +1378,18 @@ class Courses extends BaseController
      */
     private function checkCourseAccess($userId, $courseId): bool
     {
-        // Get all units for this course
-        $courseUnits = $this->db->table('tb_units')
-            ->select('id')
+        // Check for direct enrollment in the course (New System)
+        $hasCourseEnrollment = $this->db->table('tb_course_enrollments')
             ->where('course_id', $courseId)
-            ->where('active', 1)
-            ->get()
-            ->getResultArray();
-
-        if (empty($courseUnits)) {
-            return false;
-        }
-
-        $courseUnitIds = array_column($courseUnits, 'id');
-
-        // Check if user has enrollment for any of these units
-        $hasAccess = $this->db->table('tb_unit_enrollments')
-            ->whereIn('unit_id', $courseUnitIds)
             ->where('user_id', $userId)
             ->where('status', 'approved')
-            ->countAllResults() > 0;
+            ->countAllResults();
 
-        return $hasAccess;
+        if ($hasCourseEnrollment > 0) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

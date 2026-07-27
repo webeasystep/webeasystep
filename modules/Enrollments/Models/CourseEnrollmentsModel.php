@@ -20,10 +20,15 @@ class CourseEnrollmentsModel extends BaseModel
         'user_id',
         'course_id',
         'paid_amount',
+        'coupon_id',
+        'coupon_code',
+        'coupon_discount_amount',
         'payment_method',
         'payment_proof',
+        'refund_proof',
         'status',
         'approved_at',
+        'refunded_at',
         'approved_by',
         'expires_at',
         'notes',
@@ -36,7 +41,7 @@ class CourseEnrollmentsModel extends BaseModel
     protected $validationRules = [
         'user_id' => 'required|integer',
         'course_id' => 'required|integer',
-        'payment_method' => 'required|in_list[fawry,vodafone_cash,instapay,bank_transfer,credits,free]',
+        'payment_method' => 'required|in_list[fawry,vodafone_cash,instapay,bank_transfer,credits,free,paypal,usdt]',
     ];
 
     /**
@@ -44,7 +49,7 @@ class CourseEnrollmentsModel extends BaseModel
      */
     public function getUserEnrollments(int $userId, ?string $status = null): array
     {
-        $builder = $this->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.course_desc, tb_courses.image, tb_courses.course_price')
+        $builder = $this->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.course_desc, tb_courses.image, tb_courses.course_price, tb_courses.slug')
             ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
             ->where('tb_course_enrollments.user_id', $userId)
             ->orderBy('tb_course_enrollments.created_at', 'DESC');
@@ -61,8 +66,9 @@ class CourseEnrollmentsModel extends BaseModel
      */
     public function getCourseEnrollments(int $courseId, ?string $status = null): array
     {
-        $builder = $this->select('tb_course_enrollments.*, users.full_name, users.email, users.mobile')
+        $builder = $this->select('tb_course_enrollments.*, users.full_name, users.email, auth_identities.secret as mobile')
             ->join('users', 'users.id = tb_course_enrollments.user_id')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "mobile_number"', 'left')
             ->where('tb_course_enrollments.course_id', $courseId)
             ->orderBy('tb_course_enrollments.created_at', 'DESC');
         
@@ -93,9 +99,10 @@ class CourseEnrollmentsModel extends BaseModel
      */
     public function getPendingEnrollments(): array
     {
-        return $this->select('tb_course_enrollments.*, tb_courses.course_title, users.full_name, users.email, users.mobile')
+        return $this->select('tb_course_enrollments.*, tb_courses.course_title, users.full_name, users.email, auth_identities.secret as mobile')
             ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
             ->join('users', 'users.id = tb_course_enrollments.user_id')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "mobile_number"', 'left')
             ->where('tb_course_enrollments.status', 'pending')
             ->orderBy('tb_course_enrollments.created_at', 'ASC')
             ->findAll();
@@ -131,6 +138,27 @@ class CourseEnrollmentsModel extends BaseModel
     }
 
     /**
+     * Mark an enrollment as refunded and revoke course access.
+     */
+    public function refundEnrollment(int $enrollmentId, ?string $refundProof = null, ?string $notes = null): bool
+    {
+        $data = [
+            'status'      => 'refunded',
+            'refunded_at' => date('Y-m-d H:i:s'),
+        ];
+
+        if ($refundProof !== null) {
+            $data['refund_proof'] = $refundProof;
+        }
+
+        if ($notes !== null) {
+            $data['notes'] = $notes;
+        }
+
+        return $this->update($enrollmentId, $data);
+    }
+
+    /**
      * Create new enrollment for a user
      */
     public function createEnrollment(int $userId, int $courseId, array $paymentData): int|false
@@ -144,6 +172,9 @@ class CourseEnrollmentsModel extends BaseModel
             'user_id' => $userId,
             'course_id' => $courseId,
             'paid_amount' => $paymentData['paid_amount'] ?? 0,
+            'coupon_id' => $paymentData['coupon_id'] ?? null,
+            'coupon_code' => $paymentData['coupon_code'] ?? null,
+            'coupon_discount_amount' => $paymentData['coupon_discount_amount'] ?? 0,
             'payment_method' => $paymentData['payment_method'] ?? 'fawry',
             'payment_proof' => $paymentData['payment_proof'] ?? null,
             'status' => $paymentData['auto_approve'] ?? false ? 'approved' : 'pending',
@@ -178,9 +209,10 @@ class CourseEnrollmentsModel extends BaseModel
      */
     public function getDataTable()
     {
-        return $this->select('tb_course_enrollments.*, tb_courses.course_title, users.full_name, users.mobile')
+        return $this->select('tb_course_enrollments.*, tb_courses.course_title, users.full_name, auth_identities.secret as mobile')
             ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
             ->join('users', 'users.id = tb_course_enrollments.user_id')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "mobile_password"', 'left')
             ->orderBy('tb_course_enrollments.created_at', 'DESC');
     }
 }

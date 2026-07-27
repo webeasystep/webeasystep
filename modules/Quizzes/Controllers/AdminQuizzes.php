@@ -69,7 +69,7 @@ class AdminQuizzes extends BaseController
      */
     public function create()
     {
-        if ($this->request->getMethod() === 'POST') {
+        if ($this->request->is('post')) {
             if (!$this->validate($this->rules)) {
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
@@ -121,7 +121,7 @@ class AdminQuizzes extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
-        if ($this->request->getMethod() === 'POST') {
+        if ($this->request->is('post')) {
             if (!$this->validate($this->rules)) {
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
@@ -185,10 +185,10 @@ class AdminQuizzes extends BaseController
         }
 
         $data = [
-            'title' => str_replace('{title}', $quiz->quiz_title, lang('Quizzes.quiz_details_title')),
-            'quiz' => $quiz,
+            'title'      => str_replace('{title}', $quiz->quiz_title, lang('Quizzes.quiz_details_title')),
+            'quiz'       => $quiz,
             'statistics' => $this->getQuizStatistics($id),
-            'recent_attempts' => $this->attemptsModel->getQuizAttempts($id, 10)
+            'attempts'   => $this->attemptsModel->getQuizAttemptsWithUsers($id, 20)
         ];
 
         return view('view', $data);
@@ -232,7 +232,7 @@ class AdminQuizzes extends BaseController
         log_message('info', '[QUIZ_IMPORT] Method check - comparison result: ' . ($this->request->getMethod() === 'post' ? 'true' : 'false'));
         log_message('info', '[QUIZ_IMPORT] Method check - case insensitive comparison: ' . (strtolower($this->request->getMethod()) === 'post' ? 'true' : 'false'));
         
-        if (strtolower($this->request->getMethod()) === 'post') {
+        if ($this->request->is('post')) {
             log_message('info', '[QUIZ_IMPORT] Starting quiz import process');
             
             $file = $this->request->getFile('quiz_file');
@@ -264,9 +264,11 @@ class AdminQuizzes extends BaseController
                 }
             }
 
-            if (!$this->quizzesModel->validateQuizJSON($quizData)) {
-                log_message('error', '[QUIZ_IMPORT] Validation failed');
-                return redirect()->back()->with('error', lang('Quizzes.invalid_quiz_json_structure'));
+            $validation = $this->quizzesModel->validateQuizJSON($quizData);
+            if (!$validation['valid']) {
+                $errorList = implode("\n• ", $validation['errors']);
+                log_message('error', '[QUIZ_IMPORT] Validation failed: ' . implode(' | ', $validation['errors']));
+                return redirect()->back()->with('error', "بنية JSON للاختبار غير صالحة:\n• " . $errorList);
             }
 
             log_message('info', '[QUIZ_IMPORT] Validation passed, attempting import');
@@ -360,24 +362,76 @@ class AdminQuizzes extends BaseController
             return redirect()->back();
         }
 
-        $quiz = $this->quizzesModel->find($id);
-        if (!$quiz) {
+        $ids = $id !== null ? $id : $this->request->getPost('rows');
+        if (empty($ids)) {
             return $this->response->setJSON([
                 'success' => false,
                 'message' => lang('Quizzes.quiz_not_found')
             ]);
         }
 
-        // Check if quiz has attempts
-        $attemptCount = $this->attemptsModel->where('quiz_id', $id)->countAllResults();
-        if ($attemptCount > 0) {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => lang('Quizzes.cannot_delete_quiz_with_attempts')
-            ]);
+        $idsArray = is_string($ids) ? explode(',', $ids) : (is_array($ids) ? $ids : [$ids]);
+        $db = \Config\Database::connect();
+        $deletedCount = 0;
+
+        foreach ($idsArray as $singleId) {
+            $singleId = (int) $singleId;
+            if ($singleId <= 0) continue;
+
+            $quiz = $this->quizzesModel->find($singleId);
+            if (!$quiz) continue;
+
+            // 1. Find all unit_items of type 'quiz' linked to this quiz
+            //    Match both: item_id = quizId  OR  metadata contains quiz_id (numeric or string)
+            $rawRows = $db->query(
+                "SELECT id FROM tb_unit_items
+                 WHERE item_type = 'quiz'
+                 AND (
+                     item_id = {$singleId}
+                     OR JSON_UNQUOTE(JSON_EXTRACT(metadata, '$.quiz_id')) = '{$singleId}'
+                 )"
+            )->getResultArray();
+            $uniqueItemIds = array_column($rawRows, 'id');
+
+            // Fallback: use LIKE for older MySQL / different formats
+            if (empty($uniqueItemIds)) {
+                $likeRows = $db->query(
+                    "SELECT id FROM tb_unit_items
+                     WHERE item_type = 'quiz'
+                     AND (
+                         metadata LIKE '%\"quiz_id\":{$singleId}%'
+                         OR metadata LIKE '%\"quiz_id\": {$singleId}%'
+                         OR metadata LIKE '%\"quiz_id\":\"{$singleId}\"%'
+                         OR metadata LIKE '%\"quiz_id\": \"{$singleId}\"%'
+                     )"
+                )->getResultArray();
+                $uniqueItemIds = array_column($likeRows, 'id');
+            }
+
+            $uniqueItemIds = array_unique($uniqueItemIds);
+
+            if (!empty($uniqueItemIds)) {
+                // Delete progress records for these unit items
+                $db->table('tb_user_item_progress')
+                   ->whereIn('item_id', $uniqueItemIds)
+                   ->delete();
+
+                // Delete the unit items themselves
+                $db->table('tb_unit_items')
+                   ->whereIn('id', $uniqueItemIds)
+                   ->delete();
+            }
+
+            // 2. Delete quiz attempts using raw query (most reliable approach)
+            $db->query('DELETE FROM tb_quiz_attempts WHERE quiz_id = ' . $singleId);
+
+            // 3. Delete the quiz
+            if ($this->quizzesModel->delete($singleId)) {
+                $deletedCount++;
+            }
         }
 
-        if ($this->quizzesModel->delete($id)) {
+        if ($deletedCount > 0) {
             return $this->response->setJSON([
                 'success' => true,
                 'message' => lang('Quizzes.quiz_deleted_successfully')

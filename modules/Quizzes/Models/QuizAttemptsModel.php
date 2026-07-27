@@ -90,8 +90,7 @@ class QuizAttemptsModel extends BaseModel
         $builder = $this->select([
             'tb_quiz_attempts.*',
             'users.full_name',
-            'users.username',
-            'users.email'
+            'users.username'
         ])
         ->join('users', 'users.id = tb_quiz_attempts.user_id')
         ->where('tb_quiz_attempts.quiz_id', $quizId)
@@ -287,8 +286,7 @@ class QuizAttemptsModel extends BaseModel
             'tb_quizzes.quiz_title',
             'tb_quizzes.passing_score',
             'users.full_name',
-            'users.username',
-            'users.email'
+            'users.username'
         ])
         ->join('tb_quizzes', 'tb_quizzes.id = tb_quiz_attempts.quiz_id')
         ->join('users', 'users.id = tb_quiz_attempts.user_id')

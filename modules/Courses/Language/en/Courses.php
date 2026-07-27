@@ -16,6 +16,8 @@ return [
     'sort' => "Sort",
     'price' => "Price",
     'is_free' => "Is Free",
+    'waiting_list' => "Waiting List",
+    'waiting_list_help' => "Enable waiting list for users instead of direct registration",
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
     'status' => 'Status',

@@ -9,9 +9,9 @@ This guide provides a complete reference for importing quizzes using JSON format
 ```json
 {
   "quiz_title": "string (required)",
-  "quiz_description": "string (optional)", 
+  "quiz_description": "string (optional, alias: quiz_desc)", 
   "course_id": "integer (required - will be overridden by UI selection)",
-  "time_limit": "integer (minutes, optional)",
+  "time_limit": "integer (minutes, optional, alias: time_limit_minutes)",
   "time_limit_minutes": "integer (alias for time_limit)",
   "passing_score": "float (0-100, default: 70.00)",
   "max_attempts": "integer (default: 3)",
@@ -19,9 +19,14 @@ This guide provides a complete reference for importing quizzes using JSON format
   "shuffle_answers": "boolean (default: false)", 
   "show_results": "boolean (default: true)",
   "show_results_immediately": "boolean (default: false)",
-  "questions": "array (required)"
+  "questions": "array (required, alias: quiz_questions)"
 }
 ```
+
+> **ملاحظة:** يقبل النظام أسماء مفاتيح بديلة لتوافق أكبر مع ملفات JSON المختلفة:
+> - `questions` **أو** `quiz_questions` → مصفوفة الأسئلة
+> - `quiz_description` **أو** `quiz_desc` → وصف الاختبار
+> - `time_limit` **أو** `time_limit_minutes` → مدة الاختبار بالدقائق
 
 ## Question Types
 
@@ -221,6 +226,12 @@ This guide provides a complete reference for importing quizzes using JSON format
 - **Missing required fields**: Check all required properties
 - **Invalid question types**: Use only supported types
 - **Course not found**: Verify course_id exists
+- **"بنية JSON للاختبار غير صالحة"**: تحقق من الأمور التالية:
+  - يجب أن يحتوي الملف على مفتاح `questions` أو `quiz_questions`
+  - يجب أن يكون `question_text` موجوداً في كل سؤال
+  - يجب أن يكون `question_type` موجوداً في كل سؤال
+  - أسئلة `single_choice` و `multiple_choice` تحتاج إلى مصفوفة `options`
+  - يجب وجود `correct_answer` في كل سؤال
 
 ### Question Display Issues
 - **Options not showing**: Check options array format

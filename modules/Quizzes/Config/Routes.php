@@ -14,8 +14,8 @@ $routes->group('dt_admin', [
 ], static function ($routes) {
     // Admin routes for managing quizzes
     $routes->match(['GET', 'POST'], 'quizzes', [AdminQuizzes::class, 'index']);
-    $routes->get('quizzes/create', [AdminQuizzes::class, 'create']);
-    $routes->post('quizzes/store', [AdminQuizzes::class, 'create']);
+    $routes->match(['GET', 'POST'], 'quizzes/create', [AdminQuizzes::class, 'create']);
+    $routes->post('quizzes/store', [AdminQuizzes::class, 'create']); // backward compat
     $routes->get('quizzes/store', function() {
         return redirect()->to('/dt_admin/quizzes/create');
     });
@@ -28,6 +28,7 @@ $routes->group('dt_admin', [
     $routes->get('quizzes/attempts/(:num)', [AdminQuizzes::class, 'attempts/$1']);
     $routes->get('quizzes/attempts', [AdminQuizzes::class, 'attempts']);
     $routes->get('quizzes/view-attempt/(:num)', [AdminQuizzes::class, 'viewAttempt/$1']);
+    $routes->post('quizzes/delete', [AdminQuizzes::class, 'delete']);
     $routes->post('quizzes/delete/(:num)', [AdminQuizzes::class, 'delete/$1']);
     $routes->get('quizzes/export/(:num)', [AdminQuizzes::class, 'exportQuiz/$1']);
     $routes->get('quizzes/analytics', [AdminQuizzes::class, 'analytics']);

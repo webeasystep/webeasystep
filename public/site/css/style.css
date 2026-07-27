@@ -97,7 +97,7 @@ h3,
 h4,
 .h4 {
     font-family: "Display Playfair", serif;
-    color: #black;
+    color: black;
 }
 
 .btn {
@@ -2296,13 +2296,27 @@ h4,
     background: #136ad5;
     font-size: 14px;
     color: #ffffff;
-    padding: 70px 0;
+    color: #ffffff;
+    padding: 20px 0;
 }
 
 .site-footer a {
-    color: #ffffff;
+    color: #ffffff !important;
     position: relative;
     display: inline-block;
+}
+
+.site-footer h3,
+.site-footer p,
+.site-footer .text-muted,
+.site-footer .copyright,
+.site-footer .widget .links li a {
+    color: #ffffff !important;
+}
+
+.site-footer .widget .links li a:hover {
+    color: #ffffff !important;
+    opacity: 0.8;
 }
 
 .site-footer .btn:before {
@@ -2338,36 +2352,44 @@ h4,
     color: #ffffff;
 }
 
-.site-footer .social li {
+#main-footer .social li {
     display: inline-block;
 }
 
-.site-footer .social li a {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    position: relative;
+#main-footer .social li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
     background-color: #ffffff;
     border-radius: 50%;
-    color: #000000;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.site-footer .social li a:before {
+#main-footer .social li a:before {
     display: none;
 }
 
-.site-footer .social li a>span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+#main-footer .social li a>span,
+#main-footer .social li a>i {
+    position: static;
+    transform: none;
+    font-size: 16px;
+    color: #136ad5 !important;
+    transition: all 0.3s ease;
 }
 
-.site-footer .social li a:hover {
-    background: #2f84ec;
-    color: #ffffff;
+#main-footer .social li a:hover {
+    background: #136ad5;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#main-footer .social li a:hover>span,
+#main-footer .social li a:hover>i {
+    color: #ffffff !important;
 }
 
 .site-footer .copyright {
@@ -3379,4 +3401,42 @@ html {
 .success-icon i {
     font-size: 36px;
     color: #38a169;
+}
+
+
+/* ============================================
+   FOOTER COLOR FIX (ID-BASED SUPREMACY)
+   ============================================ */
+
+/* Using ID selector (#main-footer) gives 1-0-0 specificity */
+/* This overrides classes, pseudo-classes, and attributes */
+#main-footer,
+#main-footer * {
+    color: #ffffff !important;
+}
+
+#main-footer a,
+#main-footer h3,
+#main-footer p,
+#main-footer li,
+#main-footer span,
+#main-footer .text-muted,
+#main-footer .copyright {
+    color: #ffffff !important;
+}
+
+#main-footer a:hover {
+    color: #ffffff !important;
+    opacity: 0.8;
+}
+
+/* EXCEPTION: Social Icons should be black (on white circle) */
+#main-footer .social li a,
+#main-footer .social li a span {
+    color: #000000 !important;
+}
+
+#main-footer .social li a:hover,
+#main-footer .social li a:hover span {
+    color: #ffffff !important;
 }

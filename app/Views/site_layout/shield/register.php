@@ -27,16 +27,12 @@
                             <input type="email" class="form-control form-control-sm" name="email" id="email"
                                    placeholder="email@example.com" value="<?= old('email') ?>" required/>
                         </div>
-                        <!-- Mobile (Saudi Arabia only) -->
+                        <!-- Mobile -->
                         <div class="form-group mb-2">
                             <label for="mobile" class="small mb-1"><?= lang('Auth.mobileNumber') ?> <span class="text-danger">*</span></label>
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-text">🇸🇦 +966</span>
-                                <input type="text" class="form-control" name="mobile" id="mobile"
-                                       placeholder="5xxxxxxxx" value="<?= old('mobile') ?>" 
-                                       pattern="5[0-9]{8}" maxlength="9" required/>
-                            </div>
-                            <input type="hidden" name="country_code" value="+966">
+                            <input type="text" class="form-control form-control-sm" name="mobile" id="mobile"
+                                   placeholder="<?= lang('Auth.mobileNumber') ?>" value="<?= old('mobile') ?>" 
+                                   required/>
                         </div>
                         <!-- Password -->
                         <div class="form-group mb-2">

@@ -257,7 +257,10 @@
                                         <i class="fas fa-save"></i> <?= lang('Admin.save') ?>
                                     </button>
                                     <?php if (isset($quiz)): ?>
-                                        <a href="<?= base_url('dt_admin/quizzes/view/' . $quiz->id) ?>" class="btn btn-info">
+                                        <a href="<?= base_url('quizzes/take/' . $quiz->id) ?>" target="_blank" class="btn btn-success mt-2 mb-2">
+                                            <i class="fas fa-play"></i> تجربة الاختبار
+                                        </a>
+                                        <a href="<?= base_url('dt_admin/quizzes/view/' . $quiz->id) ?>" class="btn btn-info mb-2">
                                             <i class="fas fa-eye"></i> <?= lang('Admin.view') ?>
                                         </a>
                                     <?php endif; ?>

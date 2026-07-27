@@ -209,6 +209,42 @@
         display: flex;
         align-items: center;
         gap: 1rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .video-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-shrink: 0;
+        margin-right: 1rem;
+    }
+
+    .video-item.video-previewable {
+        cursor: pointer;
+    }
+
+    .video-item.video-previewable .video-icon {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+    }
+
+    .btn-preview {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-width: 120px;
+        background: var(--primary-color);
+        color: #fff;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .btn-preview:hover {
+        background: var(--primary-dark);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
     }
 
     .video-icon {
@@ -2682,55 +2718,64 @@
     <div class="container">
         <!-- Enhanced Course Header -->
         <div class="course-header-wrapper" data-aos="fade-up" data-aos-delay="100">
-            <div class="d-flex justify-content-between align-items-start">
-                <div class="flex-grow-1">
-                    <h2 class="section-title"><?= esc($title) ?></h2>
-                    <p class="course-description"><?= esc($course->course_desc) ?></p>
-                </div>
-
-                <!-- Watch Course Button -->
-
-            </div>
+            <h2 class="section-title text-center"><?= esc($title) ?></h2>
+            <p class="course-description text-center"><?= esc($course->course_desc) ?></p>
 
             <!-- Course Stats Bar -->
             <div class="course-stats">
+                <?php $unitCount = $course->unit_count ?? count($units); ?>
+                <?php if ($unitCount > 0): ?>
                 <div class="stat-item">
                     <i class="icon-book"></i>
                     <div>
-                        <div class="stat-value"><?= $course->unit_count ?? count($units) ?></div>
+                        <div class="stat-value"><?= $unitCount ?></div>
                         <div class="stat-label">وحدة</div>
                     </div>
                 </div>
+                <?php endif; ?>
 
+                <?php if (!empty($course->video_count)): ?>
                 <div class="stat-item">
                     <i class="icon-video"></i>
                     <div>
-                        <div class="stat-value"><?= $course->video_count ?? 0 ?></div>
+                        <div class="stat-value"><?= $course->video_count ?></div>
                         <div class="stat-label">فيديو</div>
                     </div>
                 </div>
+                <?php endif; ?>
 
+                <?php if (!empty($course->quiz_count)): ?>
                 <div class="stat-item">
                     <i class="icon-question-circle"></i>
                     <div>
-                        <div class="stat-value"><?= $course->quiz_count ?? 0 ?></div>
+                        <div class="stat-value"><?= $course->quiz_count ?></div>
                         <div class="stat-label">اختبار</div>
                     </div>
                 </div>
+                <?php endif; ?>
+
+                <?php if (!empty($course->page_count)): ?>
                 <div class="stat-item">
                     <i class="icon-file-text"></i>
                     <div>
-                        <div class="stat-value"><?= $course->page_count ?? 0 ?></div>
+                        <div class="stat-value"><?= $course->page_count ?></div>
                         <div class="stat-label">صفحة</div>
                     </div>
                 </div>
+                <?php endif; ?>
+
+                <?php 
+                $duration = $course->duration ?? '0:00';
+                if ($duration !== '0:00' && $duration !== '0 دقيقة' && $duration !== '0'): 
+                ?>
                 <div class="stat-item">
                     <i class="icon-clock-o"></i>
                     <div>
-                        <div class="stat-value"><?= $course->duration ?? '0:00' ?></div>
+                        <div class="stat-value"><?= $duration ?></div>
                         <div class="stat-label">دقائق</div>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
 
             <!-- Cart Summary Area - REMOVED -->
@@ -2770,7 +2815,40 @@
                                         <div class="accordion-body">
                                             <?php if (!empty($unit->items)) : ?>
                                                 <?php foreach ($unit->items as $item) : ?>
-                                                    <div class="video-item" role="listitem">
+                                                    <?php
+                                                    $metadata = is_array($item->metadata) ? $item->metadata : json_decode($item->metadata ?? '{}', true);
+                                                    $isPreview = ($item->item_type === 'video' && isset($metadata['is_preview']) && $metadata['is_preview'] == 1);
+                                                    $isItemFree = isset($item->is_free) && $item->is_free == 1;
+                                                    $previewVideoId = '';
+                                                    $previewVideoSource = $metadata['video_source'] ?? 'bunny';
+                                                    $previewLibraryId = (!empty($metadata['video_library_id']) && is_numeric($metadata['video_library_id']))
+                                                        ? $metadata['video_library_id']
+                                                        : '495222';
+
+                                                    if ($item->item_type === 'video') {
+                                                        $previewVideoId = $item->item_id
+                                                            ?? ($item->video_id ?? '')
+                                                            ?? ($metadata['video_id'] ?? '');
+
+                                                        if (empty($previewVideoId) && !empty($metadata['video_id'])) {
+                                                            $previewVideoId = $metadata['video_id'];
+                                                        }
+
+                                                        if (empty($previewVideoId) && !empty($item->video_id)) {
+                                                            $previewVideoId = $item->video_id;
+                                                        }
+                                                    }
+                                                    ?>
+                                                    <div class="video-item <?= ($item->item_type === 'video' && ($isPreview || $isItemFree)) ? 'video-previewable preview-video-link' : '' ?>"
+                                                         role="listitem"
+                                                         <?php if ($item->item_type === 'video' && ($isPreview || $isItemFree) && !empty($previewVideoId ?? '')): ?>
+                                                             data-video-id="<?= esc($previewVideoId) ?>"
+                                                             data-video-source="<?= esc($previewVideoSource) ?>"
+                                                             data-video-library-id="<?= esc($previewLibraryId) ?>"
+                                                             data-video-title="<?= esc($item->title ?? 'عنوان العنصر') ?>"
+                                                             tabindex="0"
+                                                             aria-label="معاينة الفيديو: <?= esc($item->title ?? 'عنوان العنصر') ?>"
+                                                         <?php endif; ?>>
                                                         <div class="video-item-content">
                                                             <div class="video-icon" aria-hidden="true">
                                                                 <?php if ($item->item_type === 'video'): ?>
@@ -2786,13 +2864,8 @@
                                                             <div class="video-item-info">
                                                                 <div class="video-title">
                                                                     <?= esc($item->title ?? 'عنوان العنصر') ?>
-                                                                    <?php
-                                                                    $metadata = is_array($item->metadata) ? $item->metadata : json_decode($item->metadata ?? '{}', true);
-                                                                    $isPreview = ($item->item_type === 'video' && isset($metadata['is_preview']) && $metadata['is_preview'] == 1);
-                                                                    $isUnitFree = isset($unit->is_free) && $unit->is_free == 1;
-                                                                    ?>
                                                                     <?php if (!$isPreview): ?>
-                                                                        <?php if ($isUnitFree): ?>
+                                                                        <?php if ($isItemFree): ?>
                                                                             <span class="video-status free">مجاني</span>
                                                                         <?php else: ?>
                                                                             <span class="video-status locked">مغلق</span>
@@ -2822,11 +2895,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="video-actions">
-                                                            <?php if ($isPreview): ?>
-                                                                <button class="btn btn-preview preview-video-link"
-                                                                        data-video-id="<?= esc($item->item_id) ?>"
+                                                            <?php if ($item->item_type === 'video' && ($isPreview || $isItemFree) && !empty($previewVideoId)): ?>
+                                                                <button type="button"
+                                                                        class="btn btn-preview preview-video-link"
+                                                                        data-video-id="<?= esc($previewVideoId) ?>"
+                                                                        data-video-source="<?= esc($previewVideoSource) ?>"
+                                                                        data-video-library-id="<?= esc($previewLibraryId) ?>"
+                                                                        data-video-title="<?= esc($item->title ?? 'عنوان العنصر') ?>"
                                                                         aria-label="معاينة الفيديو: <?= esc($item->title ?? 'عنوان العنصر') ?>">
-                                                                    <i class="icon-eye" aria-hidden="true"></i> معاينة
+                                                                    <i class="icon-eye" aria-hidden="true"></i> شاهد الآن
                                                                 </button>
                                                             <?php endif; ?>
                                                         </div>
@@ -2877,16 +2954,15 @@
                 <!-- Top Subscribe Button -->
                 <div class="course-purchase-section mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div style="background: var(--bg-gradient-primary); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                        <div style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;" dir="ltr">
                             <?php if ($course->is_free): ?>
                                 مجاني
                             <?php else: ?>
-                                <?= number_format($course->course_price ?? 0) ?>
-                                <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle; filter: brightness(0) invert(1);">
+                                <span style="font-size: 1.5rem; vertical-align: middle;">$</span><?= number_format($course->course_price ?? 0) ?>
                             <?php endif; ?>
                         </div>
-                        <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>" 
-                           class="btn btn-light btn-lg" 
+                        <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>"
+                           class="btn btn-light btn-lg"
                            style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); width: 100%; margin-top: 0.5rem;">
                             <i class="icon-shopping-cart"></i>
                             اشترك الآن
@@ -2900,8 +2976,15 @@
                     <h4>مقدمة الكورس</h4>
                     <div class="video-block">
                         <div class="video-container">
+                            <?php
+                                $introVideoId = $course->intro_video_id ?? '';
+                                $isYouTube = (strlen($introVideoId) === 11);
+                                $embedUrl = $isYouTube
+                                    ? "https://www.youtube.com/embed/{$introVideoId}"
+                                    : "https://player.mediadelivery.net/embed/" . ($course->collection_id ?? '495222') . "/{$introVideoId}?autoplay=false&preload=false";
+                            ?>
                             <iframe
-                                    src="https://iframe.mediadelivery.net/embed/<?= $course->collection_id ?? '495222' ?>/<?= $course->intro_video_id ?? '' ?>?autoplay=false"
+                                    src="<?= $embedUrl ?>"
                                     loading="lazy"
                                     style="border: none; position: absolute; top: 0; height: 100%; width: 100%;"
                                     allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
@@ -2918,60 +3001,52 @@
                     <ul class="course-features-list">
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-users"></i> <!-- جروب مخصص للدعم -->
-                            </div>
-                            <div class="feature-text">جروب مخصص للدعم والاستفسارات</div>
+                                <i class="fas fa-users"></i> </div>
+                            <div class="feature-text">مجتمع تفاعلي لتبادل الخبرات</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-book-open"></i> <!-- تغطية المنهج -->
-                            </div>
-                            <div class="feature-text">تغطية شاملة للمنهج العملي والنظري</div>
+                                <i class="fas fa-briefcase"></i> </div>
+                            <div class="feature-text">تطبيق عملي وبناء مشاريع حقيقية </div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-chalkboard-teacher"></i> <!-- محاكاة نظام Quero & Tofas -->
-                            </div>
-                            <div class="feature-text">محاكاة لنظام Quero & Tofas</div>
+                                <i class="fas fa-robot"></i> </div>
+                            <div class="feature-text">توظيف الذكاء الاصطناعي لمضاعفة إنتاجيتك</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-file-alt"></i> <!-- اختبارات -->
-                            </div>
-                            <div class="feature-text">اختبارات عن كل نقاط المنهج</div>
+                                <i class="fas fa-infinity"></i> </div>
+                            <div class="feature-text">وصول مدى الحياة للمحتوى مع تحديثات مستمرة</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-laptop-code"></i> <!-- متاح على الهاتف والتابلت والكمبيوتر -->
-                            </div>
-                            <div class="feature-text">متاح على الهاتف والتابلت والكمبيوتر</div>
+                                <i class="fas fa-laptop-code"></i> </div>
+                            <div class="feature-text">متاح على كافة الأجهزة</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-sync-alt"></i> <!-- ملخصات وتحديثات مستمرة -->
-                            </div>
-                            <div class="feature-text">ملخصات وتحديثات مستمرة</div>
+                                <i class="fas fa-certificate"></i> </div>
+                            <div class="feature-text">نماذج لأوامر وأكواد برمجية</div>
                         </li>
                     </ul>
 
-                    <!-- Course Purchase Button -->
                     <div class="course-purchase-section mt-4">
                         <div style="background: var(--bg-gradient-primary); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                            <div style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;" dir="ltr">
                                 <?php if ($course->is_free): ?>
                                     مجاني
                                 <?php else: ?>
-                                    <?= number_format($course->course_price ?? 0) ?>
-                                    <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle; filter: brightness(0) invert(1);">
+                                    <span style="font-size: 1.5rem; vertical-align: middle;">$</span><?= number_format($course->course_price ?? 0) ?>
                                 <?php endif; ?>
                             </div>
-                            <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>" 
-                               class="btn btn-light btn-lg" 
+                            <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>"
+                               class="btn btn-light btn-lg"
                                style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); width: 100%; margin-top: 0.5rem;">
                                 <i class="icon-shopping-cart"></i>
                                 اشترك الآن
                             </a>
-                            <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">احصل على جميع الوحدات والاختبارات</small>
+                            <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">وصول فوري لجميع الدروس والمشاريع</small>
                         </div>
                     </div>
 
@@ -3030,34 +3105,51 @@
         // const clearCartBtn = document.getElementById("clearCart"); // Element doesn't exist
 
         // Preview video functionality with enhanced loading states
+        function openPreview(triggerElement) {
+            let videoId = triggerElement.getAttribute("data-video-id");
+            let videoSource = triggerElement.getAttribute("data-video-source") || "bunny";
+            let videoLibraryId = triggerElement.getAttribute("data-video-library-id") || "395633";
+
+            if (videoId) {
+                const videoContainer = document.querySelector(".modal-video-container");
+                videoContainer.classList.add("loading");
+
+                const videoTitle = triggerElement.getAttribute("data-video-title")
+                    || triggerElement.closest('.video-item').querySelector('.video-title')?.textContent?.trim()
+                    || 'معاينة الدرس';
+                document.getElementById("videoModalLabel").textContent = `معاينة: ${videoTitle}`;
+
+                let videoUrl = '';
+
+                if (videoSource === 'youtube') {
+                    videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                } else {
+                    videoUrl = `https://player.mediadelivery.net/embed/${videoLibraryId}/${videoId}?autoplay=true`;
+                }
+
+                modal.modal("show");
+
+                setTimeout(() => {
+                    videoFrame.setAttribute("src", videoUrl);
+
+                    videoFrame.onload = function() {
+                        videoContainer.classList.remove("loading");
+                    };
+                }, 500);
+            }
+        }
+
         previewLinks.forEach(link => {
             link.addEventListener("click", function (event) {
                 event.preventDefault();
-                let videoId = this.getAttribute("data-video-id");
-                if (videoId) {
-                    // Show loading state
-                    const videoContainer = document.querySelector(".modal-video-container");
-                    videoContainer.classList.add("loading");
+                event.stopPropagation();
+                openPreview(this);
+            });
 
-                    // Update modal title with video title
-                    const videoTitle = this.closest('.video-item').querySelector('h6').textContent;
-                    document.getElementById("videoModalLabel").textContent = `معاينة: ${videoTitle}`;
-
-                    // Construct the MediaDelivery embed URL
-                    let videoUrl = `https://iframe.mediadelivery.net/embed/395633/${videoId}?autoplay=true`;
-
-                    // Show modal first
-                    modal.modal("show");
-
-                    // Load video with delay to show loading animation
-                    setTimeout(() => {
-                        videoFrame.setAttribute("src", videoUrl);
-
-                        // Remove loading state when iframe loads
-                        videoFrame.onload = function() {
-                            videoContainer.classList.remove("loading");
-                        };
-                    }, 500);
+            link.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    openPreview(this);
                 }
             });
         });
