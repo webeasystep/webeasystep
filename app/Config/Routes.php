@@ -56,8 +56,8 @@ $routes->get('activation-sent', function() {
 });
 
 // Custom routes for Shield actions MUST be defined before shield routes and with higher priority
-$routes->get('auth/a/show', [\App\Controllers\ActivationController::class, 'show'], ['priority' => 1]);
-$routes->post('auth/a/verify', [\App\Controllers\ActivationController::class, 'verify'], ['priority' => 1]);
+$routes->get('auth/a/show', [\App\Controllers\ActivationController::class, 'show'], ['as' => 'auth-action-show', 'priority' => 1]);
+$routes->post('auth/a/verify', [\App\Controllers\ActivationController::class, 'verify'], ['as' => 'auth-action-verify', 'priority' => 1]);
 
 // Shield routes - exclude login, register, show and verify to avoid conflicts
 service('auth')->routes($routes, ['except' => ['login', 'register', 'auth/a/show', 'auth/a/verify']]);

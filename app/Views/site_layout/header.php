@@ -120,7 +120,26 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-6CXJYVPP4B');
+    <!-- Device Key Generator -->
+    <script>
+    (function() {
+        function getOrGenerateDeviceKey() {
+            let key = localStorage.getItem('fk_device_key');
+            if (!key) {
+                var rawStr = (navigator.userAgent || '') + (screen.width || '') + 'x' + (screen.height || '') + (navigator.language || '') + Math.random();
+                var hash = 0;
+                for (var i = 0; i < rawStr.length; i++) {
+                    hash = ((hash << 5) - hash) + rawStr.charCodeAt(i);
+                    hash |= 0;
+                }
+                key = 'dev_' + Math.abs(hash).toString(36) + '_' + Math.random().toString(36).substring(2, 9);
+                localStorage.setItem('fk_device_key', key);
+            }
+            document.cookie = "fk_device_key=" + key + "; path=/; max-age=31536000; SameSite=Lax";
+            return key;
+        }
+        getOrGenerateDeviceKey();
+    })();
     </script>
 </head>
 <?php

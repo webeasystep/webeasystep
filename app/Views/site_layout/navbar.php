@@ -100,12 +100,12 @@
                                 <span class="icon-lock mr-1"></span>تسجيل الدخول
                             </a>
                         </li>
+                        <li <?= str_contains(current_url(), 'register') ? 'class="active"' : '' ?>>
+                            <a href="<?= site_url('register') ?>">
+                                <span class="icon-user-follow mr-1"></span>تسجيل حساب
+                            </a>
+                        </li>
                     <?php endif; ?>
-                    <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('terms-conditions') ?>">
-                            <span class="icon-document mr-1"></span>الشروط والأحكام
-                        </a>
-                    </li>
                 </ul>
 
                 <!-- Mobile Toggle -->

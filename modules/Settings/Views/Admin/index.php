@@ -25,11 +25,16 @@
                                     <i class="fas fa-phone"></i> اعدادات الأرقام <!-- Replaced with a phone icon -->
                                     <span class="badge bg-primary float-right">11</span>
                                 </a>
-                            </li>
-                            <li class="nav-item">
+                               <li class="nav-item">
                                 <a href="#social_links_panel" class="nav-link" data-toggle="list">
                                     <i class="fas fa-address-book"></i> بيانات التواصل <!-- Replaced with an address book icon -->
                                     <span class="badge bg-primary float-right">4</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#change_password_panel" class="nav-link" data-toggle="list">
+                                    <i class="fas fa-lock"></i> تغيير كلمة المرور
+                                    <span class="badge bg-danger float-right"><i class="fas fa-key"></i></span>
                                 </a>
                             </li>
                         </ul>
@@ -83,8 +88,6 @@
                                        value="<?= setting('App.accept_waiting_duration') ?>">
                             </div>
 
-
-
                             <a type="button" class="btn btn-secondary"
                                href="<?= ADMIN_URL . 'dashboard' ?>"><?= lang("Admin.cancel") ?></a>
                             <button type="submit" id="" class="btn btn-primary"><?= lang("Admin.save") ?></button>
@@ -125,6 +128,38 @@
                               <button type="submit" id="" class="btn btn-primary"><?= lang("Admin.save") ?></button>
                             <?= form_close(); ?>
                         </div>
+                    </div>
+
+                    <!-- Change Admin Password Panel -->
+                    <div class="tab-pane fade" id="change_password_panel">
+                        <div class="card-body pb-2">
+                            <h5 class="font-weight-bold mb-3"><i class="fas fa-lock text-primary mr-1"></i> تغيير كلمة مرور حساب الأدمن</h5>
+                            <?= $this->include('admin_layout/admin_msg'); ?>
+                            <?= form_open(ADMIN_URL . 'settings/change_admin_password'); ?>
+
+                            <div class="form-group">
+                                <label for="current_password" class="form-label">كلمة المرور الحالية <span class="text-danger">*</span></label>
+                                <input type="password" class="form-control" name="current_password" id="current_password" required placeholder="أدخل كلمة المرور الحالية">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="new_password" class="form-label">كلمة المرور الجديدة <span class="text-danger">*</span></label>
+                                <input type="password" class="form-control" name="new_password" id="new_password" required minlength="6" placeholder="أدخل كلمة المرور الجديدة (6 أحرف على الأقل)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirm_password" class="form-label">تأكيد كلمة المرور الجديدة <span class="text-danger">*</span></label>
+                                <input type="password" class="form-control" name="confirm_password" id="confirm_password" required minlength="6" placeholder="أعد إدخال كلمة المرور الجديدة">
+                            </div>
+
+                            <a type="button" class="btn btn-secondary" href="<?= ADMIN_URL . 'dashboard' ?>"><?= lang("Admin.cancel") ?></a>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i> حفظ كلمة المرور الجديدة</button>
+                            <?= form_close(); ?>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
                     </div>
                 </div>
                 </div>

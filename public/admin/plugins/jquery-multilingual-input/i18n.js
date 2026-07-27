@@ -88,13 +88,119 @@
                     ClassicEditor
                         .create($ckeditorTextarea.get(0), {
                             language: {
-                                // The UI will be English.
                                 ui: language,
-
-                                // But the content will be edited in Arabic.
                                 content: language
                             },
-                            direction: language === 'ar' ? 'rtl' : 'ltr', // Set the direction based on the selected language
+                            direction: language === 'ar' ? 'rtl' : 'ltr',
+                            toolbar: {
+                                items: [
+                                    'heading', '|',
+                                    'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                                    'bulletedList', 'numberedList', 'todoList', '|',
+                                    'outdent', 'indent', '|',
+                                    'undo', 'redo', '|',
+                                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
+                                    'alignment', '|',
+                                    'link', 'uploadImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                                    'specialCharacters', 'horizontalLine', 'pageBreak', '|',
+                                    'sourceEditing'
+                                ],
+                                shouldNotGroupWhenFull: true
+                            },
+                            // Enhanced Image Configuration
+                            image: {
+                                toolbar: [
+                                    'imageTextAlternative',
+                                    'toggleImageCaption',
+                                    'imageStyle:inline',
+                                    'imageStyle:block',
+                                    'imageStyle:side',
+                                    'linkImage',
+                                    'resizeImage'
+                                ],
+                                styles: [
+                                    'full',
+                                    'side',
+                                    'alignLeft',
+                                    'alignCenter',
+                                    'alignRight'
+                                ],
+                                resizeOptions: [
+                                    {
+                                        name: 'resizeImage:original',
+                                        value: null,
+                                        icon: 'original'
+                                    },
+                                    {
+                                        name: 'resizeImage:50',
+                                        value: '50',
+                                        icon: 'medium'
+                                    },
+                                    {
+                                        name: 'resizeImage:75',
+                                        value: '75',
+                                        icon: 'large'
+                                    }
+                                ]
+                            },
+                            // Code Block Configuration
+                            codeBlock: {
+                                languages: [
+                                    { language: 'plaintext', label: 'Plain text' },
+                                    { language: 'php', label: 'PHP' },
+                                    { language: 'javascript', label: 'JavaScript' },
+                                    { language: 'python', label: 'Python' },
+                                    { language: 'html', label: 'HTML' },
+                                    { language: 'css', label: 'CSS' },
+                                    { language: 'sql', label: 'SQL' },
+                                    { language: 'json', label: 'JSON' },
+                                    { language: 'bash', label: 'Bash' }
+                                ]
+                            },
+                            heading: {
+                                options: [
+                                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                                    { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                                    { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+                                    { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+                                    { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+                                ]
+                            },
+                            removePlugins: [
+                                // Disable plugins that are not needed or might conflict
+                                // Collaboration features
+                                'RealTimeCollaborativeComments',
+                                'RealTimeCollaborativeTrackChanges',
+                                'RealTimeCollaborativeRevisionHistory',
+                                'PresenceList',
+                                'Comments',
+                                'TrackChanges',
+                                'TrackChangesData',
+                                'RevisionHistory',
+                                'Pagination',
+                                'WProofreader',
+                                'MathType',
+                                // The following plugins are part of the "Premium Features" and require a license key
+                                'SlashCommand',
+                                'Template',
+                                'DocumentOutline',
+                                'FormatPainter',
+                                'TableOfContents',
+                                'PasteFromOfficeEnhanced',
+                                // AI Features
+                                'AIAdapter',
+                                'AIAssistant',
+                                // Export features requiring license/config
+                                'ExportPdf',
+                                'ExportWord',
+                                'ImportWord',
+                                'MultiLevelList',
+                                // Premium Plugins
+                                'CaseChange',
+                                'SimpleUploadAdapter' // Often redundant if not configured
+                            ]
                         })
                         .then(editor => {
                             console.log(`Editor ${index + 1} initialized`);

@@ -29,6 +29,11 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Users\Controllers',
 
     $routes->post('users/delete', [AdminUsers::class, 'delete']);
 
+    // Device Monitoring & Control Routes
+    $routes->get('users/devices', [AdminUsers::class, 'devices']);
+    $routes->get('users/devices/reset/(:num)', [AdminUsers::class, 'resetDevices/$1']);
+    $routes->get('users/devices/toggle_block/(:num)', [AdminUsers::class, 'toggleDeviceBlock/$1']);
+
 });
 
 /*** Route for Users Site ***/

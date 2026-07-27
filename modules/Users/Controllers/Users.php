@@ -19,11 +19,23 @@ class Users extends BaseController
 
     private $rules = [
         'full_name' => ['rules' => 'required|min_length[2]|max_length[100]'],
-        'mobile' => ['rules' => 'required|exact_length[11]|regex_match[/^(010|011|012|015)[0-9]{8}$/]']
+        'mobile' => [
+            'label' => 'الجوال',
+            'rules' => 'required|regex_match[/^(05|5|96605|9665|\+9665|\+96605)[0-9]{8}$/]',
+            'errors' => [
+                'regex_match' => 'يرجى إدخال رقم جوال سعودي صحيح يبدأ بـ 05 (مثال: 0512345678)'
+            ]
+        ]
     ];
 
     private $loginRules = [
-        'mobile' => ['rules' => 'required|exact_length[11]|regex_match[/^(010|011|012|015)[0-9]{8}$/]'],
+        'mobile' => [
+            'label' => 'الجوال',
+            'rules' => 'required|regex_match[/^(05|5|96605|9665|\+9665|\+96605)[0-9]{8}$/]',
+            'errors' => [
+                'regex_match' => 'يرجى إدخال رقم جوال سعودي صحيح يبدأ بـ 05 (مثال: 0512345678)'
+            ]
+        ],
         'password' => ['rules' => 'required']
     ];
 
@@ -43,7 +55,7 @@ class Users extends BaseController
     }
     /**
      * Attempts to register the user.
-     * Now requires both email and mobile with country code selection.
+     * Now requires both email and mobile with Saudi country code (+966).
      * User must verify email before they can login.
      */
     public function register(): string|RedirectResponse
@@ -60,14 +72,31 @@ class Users extends BaseController
         if ($this->request->is('post')) {
             log_message('debug', 'Registration POST request received');
 
-            // Get validation rules from config
-            $rules = config('Validation')->registrationRules ?? [
-                'full_name' => 'required|min_length[3]|max_length[50]',
-                'email' => 'required|valid_email|is_unique[auth_identities.secret]',
-                // 'country_code' => 'required|valid_country_code', // Removed
-                'mobile' => 'required', // Simplified validation
-                'password' => 'required|min_length[6]',
-                'password_confirm' => 'required|matches[password]',
+            // Get validation rules
+            $rules = [
+                'full_name' => [
+                    'label' => 'الاسم الكامل',
+                    'rules' => 'required|min_length[3]|max_length[50]'
+                ],
+                'email' => [
+                    'label' => 'البريد الإلكتروني',
+                    'rules' => 'required|valid_email|is_unique[auth_identities.secret]'
+                ],
+                'mobile' => [
+                    'label' => 'الجوال',
+                    'rules' => 'required|regex_match[/^(05|5|96605|9665|\+9665|\+96605)[0-9]{8}$/]',
+                    'errors' => [
+                        'regex_match' => 'يرجى إدخال رقم جوال سعودي صحيح يبدأ بـ 05 (مثال: 0512345678)'
+                    ]
+                ],
+                'password' => [
+                    'label' => 'كلمة المرور',
+                    'rules' => 'required|min_length[6]'
+                ],
+                'password_confirm' => [
+                    'label' => 'تأكيد كلمة المرور',
+                    'rules' => 'required|matches[password]'
+                ],
             ];
 
             log_message('debug', 'Validation rules: ' . json_encode($rules));
@@ -82,11 +111,18 @@ class Users extends BaseController
             // Get Shield's user provider
             $users = auth()->getProvider();
             
-            // Normalize mobile number with country code - REMOVED
-            // $countryCode = $this->request->getPost('country_code');
-            $mobileNumber = $this->request->getPost('mobile');
-            // $fullMobile = normalize_mobile($mobileNumber, $countryCode);
-            $fullMobile = $mobileNumber; // Use mobile as is
+            // Normalize mobile number to standard 05xxxxxxxx format
+            $rawMobile = trim((string)$this->request->getPost('mobile'));
+            $digitsOnly = preg_replace('/[^\d]/', '', $rawMobile);
+            
+            if (str_starts_with($digitsOnly, '966')) {
+                $digitsOnly = substr($digitsOnly, 3);
+            }
+            if (str_starts_with($digitsOnly, '5') && strlen($digitsOnly) === 9) {
+                $digitsOnly = '0' . $digitsOnly;
+            }
+            
+            $fullMobile = $digitsOnly;
             
             $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');
@@ -99,7 +135,7 @@ class Users extends BaseController
                 ->get()->getRow();
             if ($existingMobile) {
                 log_message('debug', 'Registration failed: Mobile number ' . $fullMobile . ' already exists.');
-                $this->show_msg('danger', 'خطأ في التسجيل', 'رقم الهاتف مسجل بالفعل');
+                $this->show_msg('danger', 'خطأ في التسجيل', 'رقم الجوال مسجل بالفعل');
                 return redirect()->back()->withInput();
             }
             
@@ -149,15 +185,20 @@ class Users extends BaseController
                     // This is required for the ActionController to access the user
                     $authenticator->startLogin($user);
                     
-                    // Set up the activation action in session
-                    // This creates the initial identity and sets 'auth_action' session key
-                    if ($authenticator->startUpAction('register', $user)) {
-                        // Redirect to the action controller which will send the email and show the view
-                        return redirect()->route('auth-action-show');
+                    try {
+                        // Set up the activation action in session
+                        // This creates the initial identity and sets 'auth_action' session key
+                        if ($authenticator->startUpAction('register', $user)) {
+                            // Redirect to the action controller which will send the email and show the view
+                            return redirect()->to('auth/a/show');
+                        }
+                    } catch (\Throwable $e) {
+                        log_message('error', 'Registration - Action startup warning: ' . $e->getMessage());
+                        // If user is created and logged in as pending, redirect to activation page
+                        return redirect()->to('auth/a/show');
                     }
                     
-                    // Fallback if no action is defined (though it should be)
-                    // Redirect based on Auth config or default
+                    // Fallback if no action is defined
                     return redirect()->to(config('Auth')->redirects['register'] ?? '/');
                     
                 } catch (\Exception $e) {
@@ -199,8 +240,8 @@ class Users extends BaseController
 
         // If user is already logged in, redirect to dashboard
         if (auth()->loggedIn()) {
-            log_message('debug', 'Users::login - User already logged in, redirecting to enrollments/my-courses');
-            return redirect()->to('/enrollments/my-courses');
+            log_message('debug', 'Users::login - User already logged in, redirecting to home page');
+            return redirect()->to('/');
         }
 
         // If it's a POST request, process the login
@@ -303,6 +344,32 @@ class Users extends BaseController
 
         log_message('debug', 'POST_LOGIN_REDIRECT: User authenticated, proceeding with redirect');
 
+        $user = auth()->user();
+        if ($user) {
+            // REGISTER DEVICE & ENFORCE SINGLE ACTIVE SESSION:
+            $deviceKey = $_COOKIE['fk_device_key'] ?? $this->request->getPost('device_key') ?? ('dev_' . md5($this->request->getUserAgent()->getAgentString() . $this->request->getIPAddress()));
+            $userAgent = $this->request->getUserAgent()->getAgentString();
+            $ipAddress = $this->request->getIPAddress();
+            $sessionId = session_id();
+
+            $agent = $this->request->getUserAgent();
+            $deviceName = ($agent->getPlatform() ?: 'Unknown OS') . ' / ' . ($agent->getBrowser() ?: 'Browser') . ' ' . ($agent->getVersion() ?: '');
+
+            /** @var \Modules\Users\Models\UserDeviceModel $deviceModel */
+            $deviceModel = model(\Modules\Users\Models\UserDeviceModel::class);
+            $deviceResult = $deviceModel->registerOrUpdateDevice($user->id, $deviceKey, $deviceName, $userAgent, $ipAddress, $sessionId);
+
+            if (!$deviceResult['status']) {
+                auth()->logout();
+                $this->show_msg('danger', 'تنبيه الأجهزة المصرح بها', $deviceResult['message']);
+                return redirect()->to('/login');
+            }
+
+            if (!empty($deviceResult['is_suspicious'])) {
+                log_message('warning', 'Suspicious device activity for user ID: ' . $user->id . ' Total unique devices: ' . $deviceResult['total_devices']);
+            }
+        }
+
         // Check for intended course first
         $intendedCourse = session()->get('intended_course');
         if ($intendedCourse) {
@@ -311,9 +378,9 @@ class Users extends BaseController
             return redirect()->to('courses/course_view/' . $intendedCourse);
         }
 
-        // Default redirect to my_courses
-        log_message('debug', 'POST_LOGIN_REDIRECT: Redirecting to enrollments/my-courses');
-        return redirect()->to('enrollments/my-courses');
+        // Default redirect to home page
+        log_message('debug', 'POST_LOGIN_REDIRECT: Redirecting to home page /');
+        return redirect()->to('/');
     }
 
     /**

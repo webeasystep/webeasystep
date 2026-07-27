@@ -30,6 +30,7 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Settings\Controllers',
     $routes->match(['GET', 'POST'], 'settings/general_panel',  [AdminSettings::class, 'general_panel']);
     $routes->match(['GET', 'POST'], 'settings/social_links_panel',  [AdminSettings::class, 'social_links_panel']);
     $routes->match(['GET', 'POST'], 'settings/change_password_panel',  [AdminSettings::class, 'change_password_panel']);
+    $routes->post('settings/change_admin_password',  [AdminSettings::class, 'change_admin_password']);
     $routes->match(['GET', 'POST'], 'settings/notifications_panel',  [AdminSettings::class, 'notifications_panel']);
 
 });

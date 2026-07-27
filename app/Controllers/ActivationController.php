@@ -62,11 +62,17 @@ class ActivationController extends BaseController
             return redirect()->back();
         }
 
-        // Get the authenticated user after successful verification
-        $user = $authenticator->getUser();
-
         // Activate the user
-        $authenticator->activateUser($user);
+        $users = auth()->getProvider();
+        $user->activate();
+        $users->save($user);
+
+        // Clean up activation identity
+        $identityModel = model(\CodeIgniter\Shield\Models\UserIdentityModel::class);
+        $identityModel->deleteIdentitiesByType($user, Session::ID_TYPE_EMAIL_ACTIVATE);
+
+        // Log the user in
+        $authenticator->login($user);
 
         // Success - redirect to login or dashboard
         return redirect()->to(config('Auth')->registerRedirect())

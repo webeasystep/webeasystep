@@ -97,7 +97,15 @@ class SMSActivator implements ActionInterface
         $user = $authenticator->getUser();
 
         // Set the user active now
-        $authenticator->activateUser($user);
+        $users = auth()->getProvider();
+        $user->activate();
+        $users->save($user);
+
+        // Clean up activation identity
+        $identityModel = model(UserIdentityModel::class);
+        $identityModel->deleteIdentitiesByType($user, $this->type);
+
+        $authenticator->login($user);
 
         // Success!
         return redirect()->to(config('Auth')->registerRedirect())

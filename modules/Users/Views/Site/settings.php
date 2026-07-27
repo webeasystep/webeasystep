@@ -79,10 +79,10 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="mobile" class="form-label">رقم الهاتف المحمول *</label>
+                                            <label for="mobile" class="form-label">الجوال *</label>
                                             <input type="tel" class="form-control" id="mobile" name="mobile"
                                                    value="<?= esc(format_mobile_display($user->mobile ?? '')) ?>" disabled readonly>
-                                            <div class="form-text text-muted">لا يمكن تغيير رقم الهاتف المحمول المستخدم في تسجيل الدخول</div>
+                                            <div class="form-text text-muted">لا يمكن تغيير رقم الجوال المستخدم في تسجيل الدخول</div>
                                         </div>
                                     </div>
                                 </div>

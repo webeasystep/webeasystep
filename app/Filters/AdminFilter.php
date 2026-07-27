@@ -31,8 +31,7 @@ class AdminFilter implements FilterInterface
         }
 
         // Check if the user has admin rights
-        // (Assuming 'admin' is a group name, modify as needed)
-        if (!$auth->user()->inGroup('superadmin')) {
+        if (!$auth->user()->inGroup('superadmin') && !$auth->user()->inGroup('admin')) {
             // For AJAX requests, return JSON error
             if ($request->isAJAX() || $request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest') {
                 return service('response')
@@ -41,9 +40,11 @@ class AdminFilter implements FilterInterface
             }
             
             // Set flash data
-            $session->setFlashdata('error', 'You do not have permission to view this page.');
+            $session->setFlashdata('error', 'ليس لديك صلاحية للوصول إلى لوحة التحكم.');
 
-            // Redirect to a suitable page or show an error
+            // Logout non-admin user and redirect to admin login
+            $auth->logout();
+
             return redirect()->to('/dt_admin/login');
         }
     }

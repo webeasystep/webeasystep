@@ -6,7 +6,7 @@ return [
     'category_name'=>"القسم",
     'full_name'=>'الاسم الكامل',
     'gender'=>'النوع',
-    'mobile'=>'رقم الهاتف',
+    'mobile'=>'الجوال',
     'address'=>'العنوان',
     'add_user'=>'اضافة مستخدم',
     'users_List'=> 'قائمة المستخدمين',

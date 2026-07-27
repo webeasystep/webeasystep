@@ -88,16 +88,19 @@ class Admin extends BaseController
             $_SESSION['user_id'] = auth()->user()->id;
             $_SESSION['user_name'] = auth()->user()->username;
 
-            $redirectURL = session('redirect_url') ?? site_url('/dt_admin');
-            unset($_SESSION['redirect_url']);
+            session()->removeTempdata('beforeLoginUrl');
+            unset($_SESSION['beforeLoginUrl'], $_SESSION['redirect_url']);
 
-            return redirect()->to($redirectURL)->withCookies()->with('message', lang('Auth.loginSuccess'));
+            return redirect()->to(site_url('/dt_admin/dashboard'))->withCookies()->with('message', lang('Auth.loginSuccess'));
         }
 
-        // If it's a GET request, we'll display the login form or redirect if already logged in
+        // If it's a GET request, display login form or redirect if logged in as admin
         if (auth()->loggedIn()) {
-            $redirectURL =  site_url('/dt_admin/dashboard');
-            return redirect()->to($redirectURL);
+            if (auth()->user()->inGroup('superadmin') || auth()->user()->inGroup('admin')) {
+                return redirect()->to(site_url('/dt_admin/dashboard'));
+            }
+            // If logged in as normal user on frontend, log out to allow admin login
+            auth()->logout();
         }
         // Set a return URL if none is specified
         $data['title'] = lang('Auth.login');

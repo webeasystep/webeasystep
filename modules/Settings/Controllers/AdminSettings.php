@@ -92,4 +92,64 @@ class AdminSettings extends BaseController
         return View("Modules\Settings\Controllers\AdminSettings::change_password_panel", $data);
     }
 
+    /**
+     * Change Superadmin / Admin Password
+     */
+    public function change_admin_password()
+    {
+        if (!auth()->loggedIn()) {
+            return redirect()->to('/dt_admin/login');
+        }
+
+        $user = auth()->user();
+        if (!$user) {
+            $this->show_msg('danger', 'خطأ', 'غير مصرح للوصول.');
+            return redirect()->to(ADMIN_URL . 'settings');
+        }
+
+        $currentPassword = $this->request->getPost('current_password');
+        $newPassword     = $this->request->getPost('new_password');
+        $confirmPassword = $this->request->getPost('confirm_password');
+
+        if (empty($currentPassword) || empty($newPassword) || empty($confirmPassword)) {
+            $this->show_msg('danger', 'خطأ في المدخلات', 'يرجى إدخال جميع حقول كلمة المرور.');
+            return redirect()->to(ADMIN_URL . 'settings');
+        }
+
+        if ($newPassword !== $confirmPassword) {
+            $this->show_msg('danger', 'خطأ في الحفظ', 'كلمة المرور الجديدة غير متطابقة مع التأكيد.');
+            return redirect()->to(ADMIN_URL . 'settings');
+        }
+
+        if (strlen($newPassword) < 6) {
+            $this->show_msg('danger', 'خطأ في الحفظ', 'يجب أن تتكون كلمة المرور الجديدة من 6 أحرف على الأقل.');
+            return redirect()->to(ADMIN_URL . 'settings');
+        }
+
+        // Verify current password against Shield identities
+        $authenticator = auth('session')->getAuthenticator();
+        $credentials = [
+            'email'    => $user->email,
+            'password' => $currentPassword
+        ];
+
+        $check = $authenticator->check($credentials);
+        if (!$check->isOK()) {
+            $this->show_msg('danger', 'خطأ في الحفظ', 'كلمة المرور الحالية غير صحيحة.');
+            return redirect()->to(ADMIN_URL . 'settings');
+        }
+
+        // Update password using Shield's UserIdentityModel
+        /** @var \CodeIgniter\Shield\Models\UserIdentityModel $identityModel */
+        $identityModel = model(\CodeIgniter\Shield\Models\UserIdentityModel::class);
+        
+        $identityModel->where('user_id', $user->id)
+                      ->where('type', 'email_password')
+                      ->set(['secret2' => password_hash($newPassword, PASSWORD_DEFAULT)])
+                      ->update();
+
+        $this->show_msg('success', 'تم التحديث بنجاح', 'تم تغيير كلمة المرور الحالية بنجاح.');
+        return redirect()->to(ADMIN_URL . 'settings');
+    }
+
 }

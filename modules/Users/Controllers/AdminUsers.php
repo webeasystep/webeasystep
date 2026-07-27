@@ -55,7 +55,7 @@ class AdminUsers extends BaseController
         if ($this->request->is('post')) {
             $this->rules['password'] = ['label' => lang("Users.password"), 'rules' => "required"];
             $this->rules['email'] = ['label' => 'البريد الإلكتروني', 'rules' => "required|valid_email|is_unique[auth_identities.secret]"];
-            $this->rules['mobile'] = ['label' => 'رقم الهاتف', 'rules' => "required|is_unique[auth_identities.secret]"];
+            $this->rules['mobile'] = ['label' => 'الجوال', 'rules' => "required|is_unique[auth_identities.secret]"];
             $this->rules['username'] = ['label' => lang("Users.username"), 'rules' => "required|alpha_numeric_punct|min_length[3]|max_length[30]|is_unique[users.username]"];
 
             if ($this->validate($this->rules)) {
@@ -77,7 +77,7 @@ class AdminUsers extends BaseController
 
         if ($this->request->is('post')) {
             $this->rules['email'] = ['label' => 'البريد الإلكتروني', 'rules' => "required|valid_email"];
-            $this->rules['mobile'] = ['label' => 'رقم الهاتف', 'rules' => "required"];
+            $this->rules['mobile'] = ['label' => 'الجوال', 'rules' => "required"];
 
             if ($this->validate($this->rules)) {
                 $id = $this->data_arr($id);
@@ -231,6 +231,60 @@ class AdminUsers extends BaseController
         $data = $this->request->getPost('data');
 
         dd($data);
+    }
+
+    /**
+     * Display device tracking & account sharing audit dashboard
+     */
+    public function devices()
+    {
+        $data['title'] = 'مراقبة الأجهزة والحسابات';
+        
+        /** @var \Modules\Users\Models\UserDeviceModel $deviceModel */
+        $deviceModel = model(\Modules\Users\Models\UserDeviceModel::class);
+        
+        $data['suspiciousList'] = $deviceModel->getSuspiciousUsersList();
+        
+        $db = \Config\Database::connect();
+        $data['allDevices'] = $db->table('tb_user_devices d')
+            ->select('d.*, u.full_name, u.email, u.mobile')
+            ->join('users u', 'u.id = d.user_id', 'left')
+            ->orderBy('d.updated_at', 'DESC')
+            ->get()->getResultArray();
+
+        return view('devices', $data);
+    }
+
+    /**
+     * Reset all registered devices for a specific user (allows re-binding new device)
+     */
+    public function resetDevices($userId)
+    {
+        /** @var \Modules\Users\Models\UserDeviceModel $deviceModel */
+        $deviceModel = model(\Modules\Users\Models\UserDeviceModel::class);
+        $deviceModel->resetUserDevices((int)$userId);
+
+        session()->setFlashdata('success', 'تم تصفير وإعادة تعيين أجهزة الطالب بنجاح.');
+        return redirect()->to(site_url('dt_admin/users/devices'));
+    }
+
+    /**
+     * Toggle block status for a specific device
+     */
+    public function toggleDeviceBlock($deviceId)
+    {
+        $db = \Config\Database::connect();
+        $device = $db->table('tb_user_devices')->where('id', $deviceId)->get()->getRowArray();
+        
+        if ($device) {
+            $newStatus = empty($device['is_blocked']) ? 1 : 0;
+            $db->table('tb_user_devices')->where('id', $deviceId)->update(['is_blocked' => $newStatus]);
+            
+            $msg = $newStatus ? 'تم حظر الجهاز بنجاح' : 'تم إلغاء حظر الجهاز بنجاح';
+            session()->setFlashdata('success', $msg);
+        }
+
+        return redirect()->to(site_url('dt_admin/users/devices'));
     }
 
 }

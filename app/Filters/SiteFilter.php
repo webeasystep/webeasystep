@@ -39,6 +39,18 @@ class SiteFilter implements FilterInterface
             // Redirect to login page
             return redirect()->to('/login');
         }
+
+        // Single Active Session Check (For Students only)
+        $user = $auth->user();
+        if ($user && !$user->inGroup('superadmin') && !$user->inGroup('admin')) {
+            /** @var \Modules\Users\Models\UserDeviceModel $deviceModel */
+            $deviceModel = model(\Modules\Users\Models\UserDeviceModel::class);
+            if (!$deviceModel->isSessionActive($user->id, session_id())) {
+                $auth->logout();
+                $session->setFlashdata('danger', 'تم تسجيل الدخول إلى حسابك من جهاز آخر. تمت عملية تسجيل الخروج للحفاظ على أمان حسابك.');
+                return redirect()->to('/login');
+            }
+        }
         
         log_message('debug', 'SITE_FILTER: User authenticated, allowing request');
     }

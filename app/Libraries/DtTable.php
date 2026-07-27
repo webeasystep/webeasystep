@@ -202,33 +202,53 @@ class DtTable
     public static function setColumnImage($columnName)
     {
         self::$columnCallbacks[$columnName] = function ($data, $row) use ($columnName) {
+            if (empty($data)) {
+                return '<i class="fas fa-image text-muted"></i>';
+            }
+
+            // If $data is already a direct image path string
+            if (!str_contains($data, '{') && !str_contains($data, '[')) {
+                return "<img src='" . \base_url($data) . "' alt='Image' width='60' height='60' class='img-thumbnail'>";
+            }
+
             $images = json_decode($data);
             $image = null;
 
-            if (is_array($images->files) && count($images->files) > 0) {
-                // Find the image with the lowest order and is_image = 1
-                $filteredImages = array_filter($images->files, function ($image) {
-                    return isset($image->is_image) && $image->is_image == 1 && isset($image->order);
-                });
-
-                if (count($filteredImages) > 0) {
-                    usort($filteredImages, function ($a, $b) {
-                        return $a->order <=> $b->order;
+            if (is_object($images) && isset($images->files) && (is_array($images->files) || is_object($images->files))) {
+                $files = (array)$images->files;
+                if (!empty($files)) {
+                    $filteredImages = array_filter($files, function ($img) {
+                        if (is_object($img)) {
+                            return isset($img->is_image) && $img->is_image == 1 && isset($img->order);
+                        } elseif (is_array($img)) {
+                            return isset($img['is_image']) && $img['is_image'] == 1 && isset($img['order']);
+                        }
+                        return false;
                     });
-                    $image = reset($filteredImages);
-                } else {
-                    // If no image with is_image = 1, fallback to any image
-                    $image = reset($images->files);
+
+                    if (!empty($filteredImages)) {
+                        usort($filteredImages, function ($a, $b) {
+                            $orderA = is_object($a) ? $a->order : ($a['order'] ?? 0);
+                            $orderB = is_object($b) ? $b->order : ($b['order'] ?? 0);
+                            return $orderA <=> $orderB;
+                        });
+                        $image = reset($filteredImages);
+                    } else {
+                        $image = reset($files);
+                    }
                 }
+            } elseif (is_array($images) && !empty($images)) {
+                $image = reset($images);
             }
 
             if ($image) {
-                // Adjust this line based on the image path property name
-                return "<img src='" . base_url($image->full_path) . "' alt='Image' width='70' height='70'>";
-            } else {
-                // return the icon of no image using font awesome
-                return '<i class="fas fa-image"></i>';
+                $fullPath = is_object($image) ? ($image->full_path ?? $image->path ?? '') : (is_array($image) ? ($image['full_path'] ?? $image['path'] ?? '') : (string)$image);
+                if (!empty($fullPath)) {
+                    return "<img src='" . \base_url($fullPath) . "' alt='Image' width='60' height='60' class='img-thumbnail'>";
+                }
             }
+
+            return '<i class="fas fa-image text-muted"></i>';
         };
     }
 

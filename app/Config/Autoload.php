@@ -46,6 +46,7 @@ class Autoload extends AutoloadConfig
         'Modules\Articles'   => ROOTPATH . 'modules/Articles',
 
         'Modules\ContactUs'  => ROOTPATH . 'modules/ContactUs',
+        'Modules\Coupons'    => ROOTPATH . 'modules/Coupons',
         'Modules\Courses'    => ROOTPATH . 'modules/Courses',
         'Modules\Enrollments' => ROOTPATH . 'modules/Enrollments',
         'Modules\Groups'     => ROOTPATH . 'modules/Groups',

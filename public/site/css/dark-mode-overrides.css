@@ -331,3 +331,134 @@ body.dark-mode .floating-selected-unit {
 body.dark-mode .floating-unit-name {
     color: #e2e8f0 !important;
 }
+
+/* ============================================
+   DARK MODE - AUTH & REGISTRATION FORM
+   ============================================ */
+
+.auth-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s ease;
+}
+
+.auth-card-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(43, 57, 144, 0.08);
+    color: #2b3990;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin: 0 auto;
+}
+
+.auth-card .form-label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #334155;
+    margin-bottom: 0.35rem;
+}
+
+.auth-card .input-group-text {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+    color: #64748b;
+}
+
+.auth-card .form-control {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+    color: #1e293b;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-card .form-control:focus {
+    border-color: #2b3990;
+    box-shadow: 0 0 0 3px rgba(43, 57, 144, 0.15);
+}
+
+.auth-card .toggle-password {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+    color: #64748b;
+}
+
+.auth-card .toggle-password:hover {
+    background-color: #e2e8f0;
+    color: #1e293b;
+}
+
+/* --- DARK MODE OVERRIDES FOR AUTH --- */
+body.dark-mode .auth-card {
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .auth-card-icon {
+    background: rgba(96, 165, 250, 0.15) !important;
+    color: #60a5fa !important;
+}
+
+body.dark-mode .auth-card .card-title {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .auth-card .form-label {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .auth-card .input-group-text {
+    background-color: #0f172a !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    color: #94a3b8 !important;
+}
+
+body.dark-mode .auth-card .form-control {
+    background-color: #0f172a !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode .auth-card .form-control::placeholder {
+    color: #64748b !important;
+}
+
+body.dark-mode .auth-card .form-control:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .auth-card .toggle-password {
+    background-color: #0f172a !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    color: #94a3b8 !important;
+}
+
+body.dark-mode .auth-card .toggle-password:hover {
+    background-color: #1e293b !important;
+    color: #60a5fa !important;
+}
+
+body.dark-mode .auth-card .form-check-input {
+    background-color: #0f172a !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+body.dark-mode .auth-card .form-check-input:checked {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+}
+
+body.dark-mode .auth-card .form-check-label {
+    color: #cbd5e1 !important;
+}
