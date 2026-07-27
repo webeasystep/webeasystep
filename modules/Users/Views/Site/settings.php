@@ -316,17 +316,17 @@
     <!-- Navigation Tabs -->
     <ul class="nav nav-pills custom-settings-tabs" id="settingsTabs" role="tablist">
         <li class="nav-item flex-fill text-center" role="presentation">
-            <button class="nav-link w-100 justify-content-center active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">
+            <button class="nav-link w-100 justify-content-center active" id="profile-tab" data-bs-toggle="tab" data-toggle="tab" data-bs-target="#profile" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">
                 <i class="fas fa-user-circle"></i> البيانات الشخصية
             </button>
         </li>
         <li class="nav-item flex-fill text-center" role="presentation">
-            <button class="nav-link w-100 justify-content-center" id="password-tab" data-bs-toggle="tab" data-bs-target="#password" type="button" role="tab" aria-controls="password" aria-selected="false">
+            <button class="nav-link w-100 justify-content-center" id="password-tab" data-bs-toggle="tab" data-toggle="tab" data-bs-target="#password" data-target="#password" type="button" role="tab" aria-controls="password" aria-selected="false">
                 <i class="fas fa-key"></i> تغيير كلمة المرور
             </button>
         </li>
         <li class="nav-item flex-fill text-center" role="presentation">
-            <button class="nav-link w-100 justify-content-center" id="devices-tab" data-bs-toggle="tab" data-bs-target="#devices" type="button" role="tab" aria-controls="devices" aria-selected="false">
+            <button class="nav-link w-100 justify-content-center" id="devices-tab" data-bs-toggle="tab" data-toggle="tab" data-bs-target="#devices" data-target="#devices" type="button" role="tab" aria-controls="devices" aria-selected="false">
                 <i class="fas fa-laptop-house"></i> الأجهزة المعتمدة
             </button>
         </li>
@@ -564,6 +564,44 @@
 <?= $this->section('js'); ?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+
+    // 0. Robust Tab Switcher for Bootstrap 4/5 & Custom Click
+    const tabButtons = document.querySelectorAll('.custom-settings-tabs .nav-link');
+    const tabPanes = document.querySelectorAll('#settingsTabContent .tab-pane');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Deactivate all tab buttons
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            });
+
+            // Hide all tab content panes
+            tabPanes.forEach(pane => {
+                pane.classList.remove('show', 'active');
+                pane.style.display = 'none';
+            });
+
+            // Activate clicked button
+            this.classList.add('active');
+            this.setAttribute('aria-selected', 'true');
+
+            // Find target element by data-bs-target, data-target, or href
+            const targetSelector = this.getAttribute('data-bs-target') || this.getAttribute('data-target') || this.getAttribute('href');
+            if (targetSelector) {
+                const targetPane = document.querySelector(targetSelector);
+                if (targetPane) {
+                    targetPane.style.display = 'block';
+                    setTimeout(() => {
+                        targetPane.classList.add('show', 'active');
+                    }, 20);
+                }
+            }
+        });
+    });
 
     // 1. Password Eye Toggle
     document.querySelectorAll('.toggle-password-btn').forEach(button => {
