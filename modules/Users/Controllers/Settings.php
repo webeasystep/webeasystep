@@ -46,9 +46,23 @@ class Settings extends BaseController
             $userData->email = $emailIdentity->secret;
         }
 
-        // Fetch user devices for security tab
+        // Fetch user devices for security tab & ensure current device is registered
         /** @var \Modules\Users\Models\UserDeviceModel $deviceModel */
         $deviceModel = model(\Modules\Users\Models\UserDeviceModel::class);
+        
+        $agent = $this->request->getUserAgent();
+        $deviceKey = md5((string)$agent);
+        $deviceName = ($agent->getBrowser() ?: 'Browser') . ' on ' . ($agent->getPlatform() ?: 'Device');
+        
+        $deviceModel->registerOrUpdateDevice(
+            $user->id,
+            $deviceKey,
+            $deviceName,
+            (string)$agent,
+            $this->request->getIPAddress(),
+            session_id()
+        );
+
         $userDevices = $deviceModel->where('user_id', $user->id)->orderBy('updated_at', 'DESC')->findAll();
 
         $data = [
