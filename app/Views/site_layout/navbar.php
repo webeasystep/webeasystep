@@ -51,24 +51,48 @@
     <div class="sticky-nav js-sticky-header">
         <div class="container position-relative">
             <div class="site-navigation text-center">
+                <?php
+                $currentUser = auth()->user();
+                $isLoggedIn = auth()->loggedIn();
+                $isInstructor = $isLoggedIn && \App\Libraries\UserType::isInstructor($currentUser);
+                $isStudent = ! $isInstructor;
+                ?>
                 <!-- Main Menu -->
                 <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
                     <li <?= current_url() == site_url() ? 'class="active"' : '' ?>>
                         <a href="<?= site_url() ?>">الرئيسية</a>
                     </li>
-                    <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
-                        <a href="<?= site_url('terms-conditions') ?>">
-                            <span class="icon-document mr-1"></span>الشروط والأحكام
-                        </a>
-                    </li>
+                    <?php if ($isInstructor): ?>
+                        <li <?= str_contains(current_url(), 'instructor/dashboard') ? 'class="active"' : '' ?>>
+                            <a href="<?= site_url('instructor/dashboard') ?>">
+                                <span class="icon-grid mr-1"></span>لوحة المحاضر
+                            </a>
+                        </li>
+                        <li <?= str_contains(current_url(), 'instructor-terms') ? 'class="active"' : '' ?>>
+                            <a href="<?= site_url('instructor-terms') ?>">
+                                <span class="icon-document mr-1"></span>دليل الشراكة
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li <?= str_contains(current_url(), 'student-benefits') ? 'class="active"' : '' ?>>
+                            <a href="<?= site_url('student-benefits') ?>">
+                                <span class="icon-book mr-1"></span>مميزات الاشتراك
+                            </a>
+                        </li>
+                        <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
+                            <a href="<?= site_url('terms-conditions') ?>">
+                                <span class="icon-document mr-1"></span>الشروط والأحكام
+                            </a>
+                        </li>
+                    <?php endif; ?>
 
-                    <?php if (auth()->loggedIn()): ?>
+                    <?php if ($isLoggedIn): ?>
                         <!-- User Navigation Links -->
                         <li class="has-children">
                             <a href="#">
-                                <span>مرحباً، <?= esc(auth()->user()->full_name ?? auth()->user()->username) ?></span>
-                                <?php if (!empty(auth()->user()->avatar)): ?>
-                                    <img src="<?= base_url('writable/uploads/profile/' . esc(auth()->user()->avatar)) ?>"
+                                <span>مرحباً، <?= esc($currentUser->full_name ?? $currentUser->username) ?></span>
+                                <?php if (!empty($currentUser->avatar)): ?>
+                                    <img src="<?= base_url('writable/uploads/profile/' . esc($currentUser->avatar)) ?>"
                                          alt="Avatar" class="rounded-circle ml-1"
                                          style="width: 25px; height: 25px; object-fit: cover; border: 1px solid #fff; display: inline-block; vertical-align: middle;">
                                 <?php else: ?>
@@ -76,11 +100,34 @@
                                 <?php endif; ?>
                             </a>
                             <ul class="dropdown">
-                                <li>
-                                    <a href="<?= site_url('enrollments/my-courses') ?>">
-                                        <span class="icon-book mr-2"></span>كورساتي
-                                    </a>
-                                </li>
+                                <?php if ($isInstructor): ?>
+                                    <li>
+                                        <a href="<?= site_url('instructor/dashboard') ?>">
+                                            <span class="icon-grid mr-2"></span>لوحة المحاضر
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= site_url('instructor/courses') ?>">
+                                            <span class="icon-book mr-2"></span>المقررات
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= site_url('instructor/orders') ?>">
+                                            <span class="icon-receipt mr-2"></span>الطلبات
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= site_url('instructor/faq') ?>">
+                                            <span class="icon-question mr-2"></span>الأسئلة الشائعة
+                                        </a>
+                                    </li>
+                                <?php else: ?>
+                                    <li>
+                                        <a href="<?= site_url('enrollments/my-courses') ?>">
+                                            <span class="icon-book mr-2"></span>دوراتي
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
                                 <li>
                                     <a href="<?= site_url('settings') ?>">
                                         <span class="icon-cog mr-2"></span>الإعدادات

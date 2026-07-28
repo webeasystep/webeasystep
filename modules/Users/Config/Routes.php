@@ -2,6 +2,7 @@
 
 
 use Modules\Users\Controllers\AdminUsers;
+use Modules\Users\Controllers\InstructorPortal;
 use Modules\Users\Controllers\Users;
 
 if (!isset($routes)) {
@@ -41,6 +42,8 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Users\Controllers',
 // Main register route (short URL) - outside group for proper routing
 $routes->get('register', '\Modules\Users\Controllers\Users::register');
 $routes->post('register', '\Modules\Users\Controllers\Users::register');
+$routes->get('instructor_register', '\Modules\Users\Controllers\Users::instructorRegister');
+$routes->post('instructor_register', '\Modules\Users\Controllers\Users::instructorRegister');
 
 $routes->group('/', ['namespace' => 'Modules\Users\Controllers'], static function ($routes) {
     $routes->get('users', [Users::class, 'index']);
@@ -61,6 +64,8 @@ $routes->group('/', ['namespace' => 'Modules\Users\Controllers'], static functio
     $routes->post('users/register', [Users::class, 'register']);
     $routes->get('users/register', [Users::class, 'register']);
     $routes->post('users/register', [Users::class, 'register']);
+    $routes->get('users/instructor-register', [Users::class, 'instructorRegister']);
+    $routes->post('users/instructor-register', [Users::class, 'instructorRegister']);
     
     // Custom activation routes removed - handled by Shield
     
@@ -75,6 +80,16 @@ $routes->group('/', ['namespace' => 'Modules\Users\Controllers'], static functio
         $routes->post('settings/upload-avatar', [\Modules\Users\Controllers\Settings::class, 'uploadAvatar']);
         $routes->post('settings/delete-avatar', [\Modules\Users\Controllers\Settings::class, 'deleteAvatar']);
     });
+});
+
+$routes->group('instructor', [
+    'namespace' => 'Modules\Users\Controllers',
+    'filter' => 'instructor_filter',
+], static function ($routes) {
+    $routes->get('dashboard', [InstructorPortal::class, 'dashboard']);
+    $routes->get('courses', [InstructorPortal::class, 'courses']);
+    $routes->get('orders', [InstructorPortal::class, 'orders']);
+    $routes->get('faq', [InstructorPortal::class, 'faq']);
 });
 
 /*** Route for Users api ***/

@@ -81,5 +81,41 @@ class Pages extends BaseController
         return view('site/terms_conditions', $data);
     }
 
+    /**
+     * Display the instructor partnership guide and terms page.
+     */
+    public function instructorTerms(): string
+    {
+        $data = [
+            'title' => 'دليل وحقوق الشراكة للمحاضر',
+        ];
+
+        return view('site/instructor_terms', $data);
+    }
+
+    /**
+     * Display the instructor acquisition marketing page.
+     */
+    public function becomeInstructor(): string
+    {
+        $data = [
+            'title' => 'انضم إلى FakhrCS كمحاضر',
+        ];
+
+        return view('site/become_instructor', $data);
+    }
+
+    /**
+     * Display the student subscription benefits page.
+     */
+    public function studentBenefits(): string
+    {
+        $data = [
+            'title' => 'مميزات الاشتراك للطالب',
+        ];
+
+        return view('site/student_benefits', $data);
+    }
+
 
 }

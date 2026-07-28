@@ -35,6 +35,9 @@ $routes->group('dt_admin', ['namespace' => 'Modules\Pages\Controllers',
 
 $routes->group('', ['namespace' => 'Modules\Pages\Controllers'], static function ($routes) {
     $routes->get('terms-conditions', [Pages::class, 'termsConditions']);
+    $routes->get('instructor-terms', [Pages::class, 'instructorTerms']);
+    $routes->get('become-instructor', [Pages::class, 'becomeInstructor']);
+    $routes->get('student-benefits', [Pages::class, 'studentBenefits']);
     $routes->get('pages/(:any)', [Pages::class, 'view/$1']);
     $routes->get('pages', [Pages::class, 'index']);
     $routes->post('pages/view/(:num)', [Pages::class, 'view/$1']);

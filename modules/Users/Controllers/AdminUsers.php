@@ -1,7 +1,9 @@
 <?php
 
 namespace Modules\Users\Controllers;
+
 use App\Controllers\BaseController;
+use App\Libraries\UserType;
 use App\Libraries\DtTable;
 use App\Libraries\FireUploader;
 use Modules\Users\Models\UsersModel;
@@ -18,6 +20,7 @@ class AdminUsers extends BaseController
         $this->users = new UsersModel();
         $this->rules = [
             "full_name" => ['label' => lang("Users.full_name"), 'rules' => "required"],
+            "user_type" => ['label' => lang("Users.user_type"), 'rules' => "required|in_list[1,2]"],
         ];
     }
 
@@ -27,15 +30,15 @@ class AdminUsers extends BaseController
 
         if ($this->request->isAJAX()) {
             $usersModel = $this->users
-                ->select('users.id, users.full_name, ident_email.secret as email, ident_mobile.secret as mobile, users.status, users.active, users.created_at')
+                ->select("users.id, users.full_name, users.user_type, CASE WHEN users.user_type = 2 THEN 'محاضر' ELSE 'طالب' END as user_type_label, ident_email.secret as email, ident_mobile.secret as mobile, users.status, users.active, users.created_at")
                 ->join('auth_identities as ident_email', 'ident_email.user_id = users.id AND ident_email.type = "email_password"', 'left')
                 ->join('auth_identities as ident_mobile', 'ident_mobile.user_id = users.id AND ident_mobile.type = "mobile_password"', 'left')
                 ->builder();
 
             DtTable::hideColumns(['id']);
-            DtTable::searchableColumns(['full_name', 'ident_email.secret', 'ident_mobile.secret']);
-            DtTable::orderableColumns(['full_name', 'email', 'mobile', 'status', 'active', 'created_at']);
-            DtTable::setShowColumns('full_name,email,mobile,status,active,created_at');
+            DtTable::searchableColumns(['full_name', 'ident_email.secret', 'ident_mobile.secret', 'users.user_type']);
+            DtTable::orderableColumns(['full_name', 'users.user_type', 'email', 'mobile', 'status', 'active', 'created_at']);
+            DtTable::setShowColumns('full_name,user_type_label,email,mobile,status,active,created_at');
             DtTable::setColumnSwitch('active');
             DtTable::setColumnSwitch('status');
             DtTable::hideActions(['delete'], ['id' => 1]);
@@ -115,6 +118,9 @@ class AdminUsers extends BaseController
         // add new page data
         $data = [
             'full_name' => $this->request->getPost('full_name'),
+            'email' => $this->request->getPost('email'),
+            'mobile' => $this->request->getPost('mobile'),
+            'user_type' => UserType::normalize($this->request->getPost('user_type')),
             'active' => $this->request->getPost('active') ? 1 : 0,
             'status' => $this->request->getPost('status') ? 1 : 0,
         ];
@@ -122,11 +128,6 @@ class AdminUsers extends BaseController
         $username = $this->request->getPost('username');
         if (!empty($username)) {
             $data['username'] = $username;
-        }
-
-        $password = $this->request->getPost('password');
-        if (!empty($password)) {
-            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
         }
 
         // Save the data using the save method
@@ -142,6 +143,8 @@ class AdminUsers extends BaseController
         // Save email and mobile in auth_identities
         $email = $this->request->getPost('email');
         $mobile = $this->request->getPost('mobile');
+        $password = (string) $this->request->getPost('password');
+        $passwordHash = $password !== '' ? password_hash($password, PASSWORD_DEFAULT) : null;
 
         $db = \Config\Database::connect();
         
@@ -152,15 +155,20 @@ class AdminUsers extends BaseController
                 ->get()->getRow();
                 
             if ($existingEmail) {
+                $emailUpdateData = ['secret' => $email, 'updated_at' => date('Y-m-d H:i:s')];
+                if ($passwordHash !== null) {
+                    $emailUpdateData['secret2'] = $passwordHash;
+                }
+
                 $db->table('auth_identities')
                     ->where('id', $existingEmail->id)
-                    ->update(['secret' => $email]);
+                    ->update($emailUpdateData);
             } else {
                 $db->table('auth_identities')->insert([
                     'user_id' => $id,
                     'type' => 'email_password',
                     'secret' => $email,
-                    'secret2' => password_hash('123456', PASSWORD_DEFAULT),
+                    'secret2' => $passwordHash ?? password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
@@ -174,15 +182,20 @@ class AdminUsers extends BaseController
                 ->get()->getRow();
                 
             if ($existingMobile) {
+                $mobileUpdateData = ['secret' => $mobile, 'updated_at' => date('Y-m-d H:i:s')];
+                if ($passwordHash !== null) {
+                    $mobileUpdateData['secret2'] = $passwordHash;
+                }
+
                 $db->table('auth_identities')
                     ->where('id', $existingMobile->id)
-                    ->update(['secret' => $mobile]);
+                    ->update($mobileUpdateData);
             } else {
                 $db->table('auth_identities')->insert([
                     'user_id' => $id,
                     'type' => 'mobile_password',
                     'secret' => $mobile,
-                    'secret2' => password_hash('123456', PASSWORD_DEFAULT),
+                    'secret2' => $passwordHash ?? password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
@@ -216,6 +229,7 @@ class AdminUsers extends BaseController
         $module = 'Users';
         $new_array = [
             lang("{$module}.full_name") => $user->full_name,
+            lang("{$module}.user_type") => UserType::getLabel((int) ($user->user_type ?? UserType::STUDENT)),
             lang("{$module}.email") => $email,
             lang("{$module}.mobile") => $mobile,
             lang("{$module}.status") => $user->status,

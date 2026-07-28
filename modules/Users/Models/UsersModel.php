@@ -16,7 +16,7 @@ class UsersModel extends Model
     protected $returnType     = User::class;
     protected $useSoftDeletes = false;
     protected $allowedFields  = [
-        'full_name', 'username', 'credits',
+        'full_name', 'username', 'credits', 'mobile', 'email', 'avatar', 'user_type', 'group_id',
         'email_verified_at', 'verification_token', 'phone_verified_at', 'phone_verification_code',
         'password_confirm', 'reset_hash', 'reset_at', 'reset_expires', 'activate_hash',
         'status', 'status_message', 'active', 'force_pass_reset', 'permissions', 'is_deleted',

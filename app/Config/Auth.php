@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Config;
 
+use App\Libraries\UserType;
 use CodeIgniter\Shield\Config\Auth as ShieldAuth;
 use CodeIgniter\Shield\Authentication\Actions\ActionInterface;
 use CodeIgniter\Shield\Authentication\AuthenticatorInterface;
@@ -461,7 +462,17 @@ class Auth extends ShieldAuth
     public function loginRedirect(): string
     {
         $session = session();
-        $url     = $session->getTempdata('beforeLoginUrl') ?? setting('Auth.redirects')['login'];
+        $user    = auth()->user();
+
+        if ($user !== null && UserType::isInstructor($user)) {
+            return $this->getUrl(UserType::getDefaultPath(UserType::INSTRUCTOR));
+        }
+
+        if ($user !== null) {
+            return $this->getUrl(UserType::getDefaultPath(UserType::normalize($user->user_type ?? null)));
+        }
+
+        $url = $session->getTempdata('beforeLoginUrl') ?? setting('Auth.redirects')['login'];
 
         return $this->getUrl($url);
     }
@@ -483,7 +494,13 @@ class Auth extends ShieldAuth
      */
     public function registerRedirect(): string
     {
-        $url = setting('Auth.redirects')['register'];
+        $user = auth()->user();
+
+        if ($user !== null) {
+            return $this->getUrl(UserType::getDefaultPath(UserType::normalize($user->user_type ?? null)));
+        }
+
+        $url = UserType::getDefaultPath(UserType::normalize(session('register_user_type')));
 
         return $this->getUrl($url);
     }

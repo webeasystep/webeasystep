@@ -1,4 +1,9 @@
 <div class="site-footer" id="main-footer">
+    <?php
+    $currentUser = auth()->user();
+    $isLoggedIn = auth()->loggedIn();
+    $isInstructor = $isLoggedIn && \App\Libraries\UserType::isInstructor($currentUser);
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-lg-3 mr-auto">
@@ -18,8 +23,16 @@
                     <h3>المسارات</h3>
                     <ul class="list-unstyled float-right links">
                         <li><a href="<?= base_url() ?>/courses">الكورسات </a></li>
-                        <li><a href="<?= base_url() ?>enrollments/my-courses">دوراتي</a></li>
-                        <li><a href="<?= site_url('terms-conditions') ?>">الشروط والأحكام</a></li>
+                        <?php if ($isInstructor): ?>
+                            <li><a href="<?= site_url('instructor/dashboard') ?>">لوحة المحاضر</a></li>
+                            <li><a href="<?= site_url('instructor/courses') ?>">المقررات</a></li>
+                            <li><a href="<?= site_url('instructor/orders') ?>">الطلبات</a></li>
+                            <li><a href="<?= site_url('instructor-terms') ?>">دليل الشراكة</a></li>
+                        <?php else: ?>
+                            <li><a href="<?= base_url() ?>enrollments/my-courses">دوراتي</a></li>
+                            <li><a href="<?= site_url('student-benefits') ?>">مميزات الاشتراك</a></li>
+                            <li><a href="<?= site_url('terms-conditions') ?>">الشروط والأحكام</a></li>
+                        <?php endif; ?>
                     </ul>
                 </div> </div> <div class="col-lg-3">
                 <div class="widget">

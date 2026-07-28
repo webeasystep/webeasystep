@@ -78,6 +78,7 @@
     padding: 6px;
     border: 1px solid #e2e8f0;
     gap: 6px;
+    margin-bottom: 0;
 }
 
 .custom-settings-tabs .nav-link {
@@ -110,6 +111,20 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     padding: 2rem;
     margin-top: 1.5rem;
+}
+
+.settings-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.settings-section-header h4 {
+    color: #1e293b;
 }
 
 .form-label-custom {
@@ -150,6 +165,13 @@
 
 .custom-input-group .form-control:focus ~ .input-icon {
     color: #136ad5;
+}
+
+.custom-input-group .form-control[readonly],
+.custom-input-group .form-control:disabled {
+    background: #f8fafc;
+    color: #334155;
+    opacity: 1;
 }
 
 .toggle-password-btn {
@@ -236,9 +258,48 @@
     width: 0%;
     transition: width 0.3s ease, background-color 0.3s ease;
 }
+
+.settings-form-row {
+    --bs-gutter-y: 1.25rem;
+    align-items: flex-start;
+}
+
+.settings-helper {
+    color: #64748b;
+    font-size: 0.84rem;
+    line-height: 1.8;
+}
+
+@media (max-width: 991.98px) {
+    .profile-hero-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .settings-content-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .custom-settings-tabs .nav-link {
+        font-size: 0.92rem;
+        padding: 0.75rem 0.9rem;
+    }
+
+    .settings-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
 </style>
 
 <div class="container settings-wrapper">
+    <?php
+        $isInstructor = \App\Libraries\UserType::isInstructor($user ?? null);
+        $accountLabel = $isInstructor ? 'حساب محاضر مفعل' : 'حساب طالب مفعل';
+        $accountIcon = $isInstructor ? 'fas fa-chalkboard-teacher' : 'fas fa-graduation-cap';
+        $defaultName = $isInstructor ? 'اسم المحاضر' : 'اسم الطالب';
+    ?>
     <!-- Hero User Banner -->
     <div class="profile-hero-card d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
         <div class="d-flex align-items-center gap-3 text-center text-md-start flex-column flex-md-row">
@@ -251,10 +312,10 @@
                 <span class="status-dot" title="متصل الآن"></span>
             </div>
             <div>
-                <h2 class="h3 fw-bold mb-1 text-white"><?= esc($user->full_name ?? 'اسم الطالب') ?></h2>
+                <h2 class="h3 fw-bold mb-1 text-white"><?= esc($user->full_name ?? $defaultName) ?></h2>
                 <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start mt-2">
                     <span class="user-badge-tag">
-                        <i class="fas fa-graduation-cap"></i> حساب طالب مفعل
+                        <i class="<?= esc($accountIcon) ?>"></i> <?= esc($accountLabel) ?>
                     </span>
                     <span class="user-badge-tag">
                         <i class="fas fa-phone-alt"></i> <?= esc(format_mobile_display($user->mobile ?? '')) ?>
@@ -338,21 +399,21 @@
             
             <!-- TAB 1: PROFILE INFO -->
             <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="mb-4 pb-3 border-bottom d-flex align-items-center justify-content-between">
+                <div class="settings-section-header">
                     <div>
-                        <h4 class="h5 fw-bold mb-1 text-dark">معلومات الملف الشخصي</h4>
+                        <h4 class="h5 fw-bold mb-1">معلومات الملف الشخصي</h4>
                         <p class="text-muted small mb-0">تحديث الاسم والبريد الإلكتروني المسجل بالحساب</p>
                     </div>
                     <span class="badge bg-light text-secondary border px-3 py-2 rounded-pill">
-                        <i class="fas fa-user-edit"></i> تعديل المفهوم
+                        <i class="fas fa-user-edit"></i> تحديث البيانات
                     </span>
                 </div>
 
                 <form action="<?= base_url('settings/update-profile') ?>" method="post">
                     <?= csrf_field() ?>
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <div class="mb-3">
+                    <div class="row settings-form-row">
+                        <div class="col-12 col-lg-6">
+                            <div>
                                 <label for="full_name" class="form-label-custom">الاسم الكامل <span class="text-danger">*</span></label>
                                 <div class="custom-input-group">
                                     <i class="fas fa-user input-icon"></i>
@@ -361,28 +422,28 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
+                        <div class="col-12 col-lg-6">
+                            <div>
                                 <label for="email" class="form-label-custom">البريد الإلكتروني</label>
                                 <div class="custom-input-group">
                                     <i class="fas fa-envelope input-icon"></i>
                                     <input type="email" class="form-control" id="email" name="email"
                                            value="<?= esc($user->email ?? '') ?>" placeholder="name@example.com">
                                 </div>
-                                <div class="form-text text-muted mt-1 small">
+                                <div class="settings-helper mt-1">
                                     <i class="fas fa-info-circle text-primary"></i> يساعدك البريد الإلكتروني في استقبال الإشعارات الهامة وتحديثات المواد.
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
+                        <div class="col-12">
+                            <div>
                                 <label for="mobile" class="form-label-custom">رقم الجوال المسجل <span class="badge bg-secondary ms-1">مؤكد</span></label>
                                 <div class="custom-input-group">
                                     <i class="fas fa-phone-alt input-icon text-muted"></i>
-                                    <input type="tel" class="form-control bg-light" id="mobile" name="mobile"
+                                    <input type="tel" class="form-control" id="mobile" name="mobile"
                                            value="<?= esc(format_mobile_display($user->mobile ?? '')) ?>" disabled readonly>
                                 </div>
-                                <div class="form-text text-muted mt-1 small">
+                                <div class="settings-helper mt-1">
                                     <i class="fas fa-lock text-warning"></i> رقم الجوال هو الهوية الأساسية للحساب ولا يمكن تغييره لضمان الحماية.
                                 </div>
                             </div>
@@ -399,9 +460,9 @@
 
             <!-- TAB 2: CHANGE PASSWORD -->
             <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
-                <div class="mb-4 pb-3 border-bottom d-flex align-items-center justify-content-between">
+                <div class="settings-section-header">
                     <div>
-                        <h4 class="h5 fw-bold mb-1 text-dark">تغيير كلمة المرور</h4>
+                        <h4 class="h5 fw-bold mb-1">تغيير كلمة المرور</h4>
                         <p class="text-muted small mb-0">قم بتحديث كلمة المرور لحماية حسابك من أي وصول غير مصرح به</p>
                     </div>
                     <span class="badge bg-light text-warning border px-3 py-2 rounded-pill">
@@ -412,9 +473,9 @@
                 <form action="<?= base_url('settings/change-password') ?>" method="post" id="passwordChangeForm">
                     <?= csrf_field() ?>
                     
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <div class="mb-3">
+                    <div class="row settings-form-row">
+                        <div class="col-12">
+                            <div>
                                 <label for="current_password" class="form-label-custom">كلمة المرور الحالية <span class="text-danger">*</span></label>
                                 <div class="custom-input-group">
                                     <i class="fas fa-lock input-icon"></i>
@@ -425,11 +486,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <div class="mb-3">
+                        <div class="col-12 col-lg-6">
+                            <div>
                                 <label for="new_password" class="form-label-custom">كلمة المرور الجديدة <span class="text-danger">*</span></label>
                                 <div class="custom-input-group">
                                     <i class="fas fa-key input-icon"></i>
@@ -448,8 +506,8 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="mb-3">
+                        <div class="col-12 col-lg-6">
+                            <div>
                                 <label for="confirm_password" class="form-label-custom">تأكيد كلمة المرور الجديدة <span class="text-danger">*</span></label>
                                 <div class="custom-input-group">
                                     <i class="fas fa-check-double input-icon"></i>
@@ -484,9 +542,9 @@
 
             <!-- TAB 3: AUTHORIZED DEVICES -->
             <div class="tab-pane fade" id="devices" role="tabpanel" aria-labelledby="devices-tab">
-                <div class="mb-4 pb-3 border-bottom d-flex align-items-center justify-content-between">
+                <div class="settings-section-header">
                     <div>
-                        <h4 class="h5 fw-bold mb-1 text-dark">الأجهزة والجلسات الفعالة</h4>
+                        <h4 class="h5 fw-bold mb-1">الأجهزة والجلسات الفعالة</h4>
                         <p class="text-muted small mb-0">عرض الأجهزة المعتمدة التي قمت بتسجيل الدخول منها</p>
                     </div>
                     <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2 rounded-pill">

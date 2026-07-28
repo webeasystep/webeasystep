@@ -4,6 +4,7 @@ namespace Config;
 
 use App\Filters\AdminFilter;
 use App\Filters\CorsFilter;
+use App\Filters\InstructorFilter;
 use App\Filters\SiteFilter;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\CSRF;
@@ -31,6 +32,7 @@ class Filters extends BaseFilters
         'CorsFilter' => CorsFilter::class,
         'admin_filter'   => AdminFilter::class,
         'site_filter'   => SiteFilter::class,
+        'instructor_filter' => InstructorFilter::class,
         'api_filter' => ApiAuthFilter::class,
         'csrf'          => CSRF::class,
         'toolbar'       => DebugToolbar::class,

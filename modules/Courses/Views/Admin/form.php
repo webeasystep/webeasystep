@@ -81,6 +81,14 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label for="instructor_id" class="col-sm-3 col-form-label">المحاضر</label>
+                <div class="col-sm-9">
+                    <?= form_dropdown('instructor_id', $instructors ?? ['' => 'بدون تعيين'], set_value('instructor_id', $course->instructor_id ?? ''), ['class' => 'form-control', 'id' => 'instructor_id']) ?>
+                    <small class="form-text text-muted">اربط الدورة بمحاضر حتى تظهر له داخل لوحة التحكم الخاصة به.</small>
+                </div>
+            </div>
+
 
             <div class="form-group row">
                 <label for="intro_video_id" class="col-sm-3 col-form-label"><?= lang("Courses.intro_video_id") ?></label>

@@ -14,6 +14,7 @@ return [
     'avatar'=> 'avatar',
     'full_name' => 'Full Name',
     'email' => 'Email',
+    'user_type' => 'User Type',
     'status' => 'Status',
     'active' => 'Active',
     'created_at' => 'Created At',

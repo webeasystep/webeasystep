@@ -3,103 +3,89 @@
 
 <div class="untree_co-section py-5">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
+        <div class="consumer-page-hero mb-5" style="background: url('<?= base_url('site/images/hero_bg.jpg') ?>') center center/cover;">
+            <span class="consumer-page-badge"><i class="fas fa-shield-alt"></i> الشروط والأحكام العامة</span>
+            <h1 class="consumer-page-title">أهلاً بك في أكاديمية فخر (FakhrCS)</h1>
+            <p class="consumer-page-subtitle">المنصة التعليمية المتخصصة في الشروحات الأكاديمية والمقررات البرمجية لطلاب وطالبات الجامعة السعودية الإلكترونية (SEU). يُرجى قراءة الشروط والأحكام التالية بعناية؛ حيث إن استخدامك للموقع أو تسجيلك في المقررات والدورات يمثل موافقة صريحة وكاملة على كافة البنود الواردة أدناه.</p>
+        </div>
 
-                <div class="alert alert-info mb-4 shadow-sm" data-aos="fade-up">
-                    <p class="mb-0"><strong>أهلاً بك في منصة فخر أكاديمي (FakhrCS)</strong> - المنصة المتخصصة في
-                        الشروحات الأكاديمية والمقررات البرمجية لطلاب وطالبات <strong>الجامعة السعودية الإلكترونية
-                            (SEU)</strong>. نرجو قراءة الشروط والأحكام التالية بعناية، حيث أن استخدامك للموقع واشتراكك
-                        في المقررات والدورات يعني موافقتك الضمنية والكاملة على هذه البنود.</p>
+        <div class="consumer-section-card">
+            <h3 class="consumer-section-title">أولاً: طبيعة الخدمة والشخصية المستقلة</h3>
+            <ol class="consumer-list-number">
+                <li>توفر أكاديمية فخر (FakhrCS) محتوى تعليمياً رقمياً مساعِداً يهدف لتسهيل فهم المناهج الأكاديمية والاستعداد للاختبارات.</li>
+                <li><strong>إخلاء مسؤولية رسمية:</strong> الأكاديمية جهة تعليمية خاصة ومستقلة تماماً، ولا تتبع للجامعة السعودية الإلكترونية (SEU) ولا تمثلها رسمياً بأي شكل من الأشكال، وتُستخدم المسميات الأكاديمية للمقررات بغرض الوصف والمطابقة المنهجية فقط.</li>
+            </ol>
+        </div>
+
+        <div class="row consumer-grid-row">
+            <div class="col-lg-6">
+                <div class="consumer-section-card">
+                    <h3 class="consumer-section-title">ثانياً: الحساب الشخصي وضوابط الاستخدام</h3>
+                    <ol class="consumer-list-number">
+                        <li>يلتزم الطالب بتقديم بيانات صحيحة ودقيقة عند التسجيل (الاسم الثلاثي، البريد الإلكتروني، ورقم الجوال المربوط بالواتساب).</li>
+                        <li>الحساب شخصي ومخصص لطالب واحد فقط، ويُحظر مشاركة بيانات الدخول مع أي شخص آخر.</li>
+                        <li><strong>تقييد الأجهزة:</strong> يُسمح باستخدام الحساب على جهاز حاسوب واحد فقط. يعتمد النظام برمجيات حماية لتقييد الجلسات. في حال تغيير الجهاز أو إعادة تهيئة النظام (Format)، تتاح آلية للتحقق والتعرف على الجهاز أو التواصل مع الدعم الفني لإعادة التفعيل وفق الضوابط.</li>
+                    </ol>
                 </div>
-
-                <!-- 1. التفعيل والتواصل عبر الواتساب -->
-                <div class="card mb-4 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-body">
-                        <h5 class="text-primary mb-3"><i class="fab fa-whatsapp me-2 text-success"></i>1. التفعيل
-                            والتواصل عبر الواتساب</h5>
-                        <p class="mb-0">
-                            بعد إتمام عملية التسجيل، يُرجى
-                            <a href="https://wa.me/201032863861" target="_blank" rel="noopener noreferrer"
-                                class="btn btn-sm btn-success mx-1 text-white fw-bold">
-                                <i class="fab fa-whatsapp me-1"></i>التواصل عبر الواتساب (اضغط هنا)
-                            </a>
-                            لتأكيد وتفعيل الاشتراك وتلقي الدعم الفني اللازم.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 2. الملكية الفكرية وحقوق النشر -->
-                <div class="card mb-4 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="150">
-                    <div class="card-body">
-                        <h5 class="text-primary mb-3"><i class="fas fa-copyright me-2"></i>2. الملكية الفكرية وحقوق
-                            النشر</h5>
-                        <p>جميع حقوق الطبع والنشر والتوزيع محفوظة حصرياً لموقع <strong>فخر أكاديمي (FakhrCS)</strong>،
-                            وشكراً مقدماً لاحترامك حقوق الملكية الفكرية.</p>
-                        <ul class="list-unstyled mb-0">
-                            <li class="mb-2"><i class="fas fa-times-circle text-danger me-2"></i><strong>يُمنع منعاً
-                                    باتاً:</strong> تحميل الفيديوهات، أو تسجيل الشاشة، أو إعادة نشر المحتوى وتوزيعه على
-                                قنوات التليجرام أو مجموعات الواتساب أو أي منصة أخرى بأي شكل من الأشكال.</li>
-                            <li><i class="fas fa-exclamation-triangle text-warning me-2"></i>أي انتهاك لحقوق الملكية
-                                الفكرية يعرض الحساب للحظر النهائي المباشر مع اتخاذ كافة الإجراءات القانونية الصارمة.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- 3. مدة سريان المنتج (الاشتراك) -->
-                <div class="card mb-4 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-body">
-                        <h5 class="text-primary mb-3"><i class="fas fa-calendar-alt me-2"></i>3. مدة سريان الاشتراك</h5>
-                        <p class="mb-0">مدة سريان المنتج (المقرر الدراسي) هي <strong>ترم دراسي واحد فقط</strong> تبدأ من
-                            تاريخ التفعيل وتستمر حتى انتهاء موعد الاختبارات النهائية للفصل الدراسي المحدد.</p>
-                    </div>
-                </div>
-
-                <!-- 4. تقييد الجهاز والتعرف الآلي -->
-                <div class="card mb-4 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="250">
-                    <div class="card-body">
-                        <h5 class="text-primary mb-3"><i class="fas fa-laptop me-2"></i>4. استخدام جهاز واحد والتعرف
-                            الآلي</h5>
-                        <p class="mb-0">يعمل المنتج على <strong>جهاز حاسوب واحد فقط</strong> لكل طالب. وفي حالة عمل
-                            إعادة تهيئة (<strong>Format</strong>) للجهاز، فإن النظام قادر على التعرف التلقائي على الجهاز
-                            الذي تم التفعيل عليه سابقاً والسماح بمتابعة الدراسة بحسابك.</p>
-                    </div>
-                </div>
-
-                <!-- 5. المواصفات الفنية وأنظمة التشغيل -->
-                <div class="card mb-4 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card-body">
-                        <h5 class="text-primary mb-3"><i class="fas fa-desktop me-2"></i>5. المتطلبات التقنية وأنظمة
-                            التشغيل</h5>
-                        <ul class="list-unstyled mb-0">
-                            <li class="mb-2"><i
-                                    class="fas fa-check-circle text-success me-2"></i><strong>المواصفات:</strong>
-                                احضار/استخدام جهاز حاسوب ذو مواصفات معقولة وخالٍ من العيوب والأعطال الفنية لضمان تشغيل
-                                المقررات والبرامج بكفاءة.</li>
-                            <li><i class="fas fa-cogs text-info me-2"></i><strong>أنظمة التشغيل المدعومة:</strong> يعمل
-                                المقرر فقط على نظام <strong>Windows 7, Windows 8, Windows 8.1, Windows 10, Windows
-                                    11</strong> ويعمل أيضاً على نظام <strong>الماك (macOS)</strong>.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- 6. سرية البيانات والدعم الفني -->
-                <div class="card mb-4 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="350">
-                    <div class="card-body">
-                        <h5 class="text-primary mb-3"><i class="fas fa-user-shield me-2"></i>6. سرية بيانات التسجيل
-                            والدعم الفني</h5>
-                        <p class="mb-0">عند التسجيل يتم طلب بيانات الطالب (الاسم، البريد الإلكتروني، ورقم الجوال) نظراً
-                            لأهميتها في عمليات التفعيل والدعم الفني، وتلتزم المنصة بالحفاظ عليها في <strong>سرية
-                                تامة</strong> وعدم مشاركتها مع أي طرف ثالث.</p>
-                    </div>
-                </div>
-
-                <div class="text-center mt-4">
-                    <p class="text-muted small">آخر تحديث: 27 يوليو 2026</p>
-                </div>
-
             </div>
+            <div class="col-lg-6">
+                <div class="consumer-section-card">
+                    <h3 class="consumer-section-title">ثالثاً: قنوات التواصل والدعم الفني والأكاديمي</h3>
+                    <ol class="consumer-list-number">
+                        <li><strong>الواتساب:</strong> هو القناة الرسمية المعتمِدة للتفعيل، التأكيد المالي، والدعم الفني والإداري.</li>
+                        <li><strong>التليجرام (Telegram):</strong> يتم ضم الطالب للمجموعة الرسمية الخاصة بالمقرر لمتابعة الاستفسارات الأكاديمية والتحديثات مع المحاضر.</li>
+                        <li><strong>لائحة السلوك:</strong> يُحظر داخل مجموعات التليجرام: الإساءة للغير، الترويج لأي منصات أو خدمات خارجية، أو التواصل الجانبي المزعج مع المحاضرين أو الطلاب. يحق للأكاديمية استبعاد أي طالب مخالف من المجموعات دون إشعار مسبق.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="consumer-section-card">
+            <h3 class="consumer-section-title">رابعاً: الملكية الفكرية وحقوق النشر</h3>
+            <ol class="consumer-list-number">
+                <li>جميع المواد التعليمية (الفيديوهات، الشروحات، الملخصات، التجميعات، الاختبارات والتطبيقات) ملكية فكرية حصريّة لأكاديمية FakhrCS ومحمية بموجب أنظمة الملكية الفكرية.</li>
+                <li><strong>المحظورات الصارمة:</strong> يُمنع منعاً باتاً تنزيل الفيديوهات، تسجيل الشاشة، تصوير المحتوى، أو إعادة نشر وتوزيع الملفات على قنوات التليجرام، مجموعات الواتساب، أو أي منصة إلكترونية أخرى.</li>
+                <li><strong>العقوبات:</strong> أي انتهاك لحقوق الملكية الفكرية يتسبب في إلغاء الحساب وحظره نهائياً دون أدنى تعويض مالي، مع احتفاظ الأكاديمية بكامل حقها في اتخاذ الإجراءات القانونية والمطالبة بالتعويضات الضارة أمام الجهات المختصة في المملكة العربية السعودية.</li>
+            </ol>
+        </div>
+
+        <div class="row consumer-grid-row">
+            <div class="col-lg-6">
+                <div class="consumer-section-card">
+                    <h3 class="consumer-section-title">خامساً: مدة الاشتراك ونطاقه</h3>
+                    <ol class="consumer-list-number">
+                        <li>يستمر الاشتراك في المقرر الدراسي لترم أكاديمي واحد فقط، يبدأ من تاريخ التفعيل وينتهي رسمياً بانتهاء الاختبارات النهائية للفصل الدراسي المحدد.</li>
+                        <li>لا ينتقل الاشتراك تلقائياً للفصول التالية ولا يحق للطالب المطالبة بترحيل الاشتراك تحت أي ظرف.</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="consumer-section-card">
+                    <h3 class="consumer-section-title">سادساً: سياسة الاسترداد المالي (Refund Policy)</h3>
+                    <ol class="consumer-list-number">
+                        <li>يُتاح للطالب تقديم طلب استرداد مالي خلال <strong>72 ساعة</strong> فقط من لحظة إتمام الشراء والتفعيل.</li>
+                        <li><strong>شرط الاسترداد:</strong> ألا يكون الطالب قد شاهد أكثر من <strong>20%</strong> من محتوى المقرر.</li>
+                        <li>يُخصم من المبلغ المسترد الرسوم الإدارية ورسوم بوابة الدفع البنكية.</li>
+                        <li>لا يُقبل طلب الاسترداد نهائياً بعد مرور 72 ساعة، أو في حال تجاوز نسبة المشاهدة المحددة، أو في حال مخالفة الشروط وحظر الحساب.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="consumer-section-card">
+            <h3 class="consumer-section-title">سابعاً: المتطلبات التقنية وأنظمة التشغيل</h3>
+            <ol class="consumer-list-number">
+                <li>يتحمل الطالب مسؤولية توفير حاسوب بمواصفات تقنية مناسبة واتصال إنترنت مستقر.</li>
+                <li>تعمل المنصة على أنظمة Windows (7, 8, 8.1, 10, 11) وأنظمة macOS عبر المتصفحات المعتمدة والمدعومة بنظام حماية المحتوى.</li>
+            </ol>
+        </div>
+
+        <div class="consumer-section-card">
+            <h3 class="consumer-section-title">ثامناً: حدود المسؤولية والقوة القاهرة</h3>
+            <ol class="consumer-list-number">
+                <li>تبذل الأكاديمية أقصى جهودها لتقديم محتوى عالي الجودة. ومع ذلك، فإن النجاح والدرجات الأكاديمية تعتمد بالكامل على جهد الطالب واجتهاده الفردي، ولا تضمن المنصة الحصول على درجات محددة.</li>
+                <li>لا تتحمل الأكاديمية المسؤولية عن أي انقطاع مؤقت للخدمة ناتج عن ظروف صيانة طارئة أو أحداث القوة القاهرة خارجة عن الإرادة، وتتعهد المنصة بمعالجة أي أعطال تقنية في أسرع وقت ممكن.</li>
+            </ol>
         </div>
     </div>
 </div>

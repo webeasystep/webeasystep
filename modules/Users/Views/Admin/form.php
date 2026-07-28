@@ -40,6 +40,17 @@
             </div>
 
             <div class="form-group row">
+                <label for="user_type" class="col-sm-3 col-form-label"><?= lang("Users.user_type") ?></label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="user_type" name="user_type" required>
+                        <option value="1" <?= (string) set_value('user_type', $user->user_type ?? 1) === '1' ? 'selected' : '' ?>>طالب</option>
+                        <option value="2" <?= (string) set_value('user_type', $user->user_type ?? 1) === '2' ? 'selected' : '' ?>>محاضر</option>
+                    </select>
+                    <small class="invalid-feedback"></small>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label for="password" class="col-sm-3 col-form-label"><?= lang("Merchants.password") ?></label>
                 <div class="col-sm-9">
                     <input type="password" class="form-control" id="password" name="password" value="<?= set_value('password') ?>">

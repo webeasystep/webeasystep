@@ -2,6 +2,7 @@
 namespace Modules\Courses\Controllers;
 
 use App\Controllers\BaseController;
+use App\Libraries\UserType;
 use App\Libraries\DtTable;
 use CodeIgniter\HTTP\ResponseInterface;
 use Modules\Courses\Models\CoursesModel;
@@ -23,6 +24,7 @@ class AdminCourses extends BaseController
             "course_desc" => ['label' => lang("Courses.course_desc"), 'rules' => "required"],
             "short_desc" => ['label' => lang("Courses.short_desc"), 'rules' => "required|max_length[500]"],
             "course_price" => ['label' => lang("Courses.course_price"), 'rules' => "permit_empty|decimal"],
+            "instructor_id" => ['label' => 'المحاضر', 'rules' => "permit_empty|integer"],
             "slug" => ['label' => lang("Courses.slug"), 'rules' => "required|alpha_dash|is_unique[tb_courses.slug]"],
             "active" => ['label' => lang("Courses.active"), 'rules' => "permit_empty|in_list[0,1,on]"],
         ];
@@ -74,6 +76,8 @@ class AdminCourses extends BaseController
                 $this->show_msg('danger', lang("Admin.validation_errors"), validation_errors());
             }
         }
+
+        $data['instructors'] = $this->getInstructorOptions();
         return view("form", $data);
     }
 
@@ -99,6 +103,7 @@ class AdminCourses extends BaseController
 
         // Existing images
         $data['files'] = json_decode($data['course']->image ?? '[]', true);
+        $data['instructors'] = $this->getInstructorOptions();
 
         return view('form', $data);
     }
@@ -120,6 +125,9 @@ class AdminCourses extends BaseController
             'course_price'      => $this->request->getPost('course_price') !== null && $this->request->getPost('course_price') !== ''
                 ? number_format((float) $this->request->getPost('course_price'), 2, '.', '')
                 : '0.00',
+            'instructor_id'     => $this->request->getPost('instructor_id') !== null && $this->request->getPost('instructor_id') !== ''
+                ? (int) $this->request->getPost('instructor_id')
+                : null,
             'is_free'           => $this->request->getPost('is_free') ? '1' : '0',
             'waiting_list'      => $this->request->getPost('waiting_list') ? '1' : '0',
             'active'            => $this->request->getPost('active') ? '1' : '0',
@@ -277,6 +285,30 @@ class AdminCourses extends BaseController
 
         // If no URL pattern matched, assume it's already an ID or plain text
         return $url;
+    }
+
+    /**
+     * Returns the available instructor options for course assignment.
+     *
+     * @return array<int|string, string>
+     */
+    private function getInstructorOptions(): array
+    {
+        $instructors = $this->db->table('users')
+            ->select('id, full_name')
+            ->where('user_type', UserType::INSTRUCTOR)
+            ->where('active', 1)
+            ->orderBy('full_name', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        $options = ['' => 'بدون تعيين'];
+
+        foreach ($instructors as $instructor) {
+            $options[(int) $instructor['id']] = $instructor['full_name'];
+        }
+
+        return $options;
     }
 
 }

@@ -3440,3 +3440,322 @@ html {
 #main-footer .social li a:hover span {
     color: #ffffff !important;
 }
+
+/* ============================================
+   CONSUMER INFO PAGES
+   ============================================ */
+
+.consumer-page-hero {
+    color: #ffffff;
+    border-radius: 28px;
+    padding: 48px 42px;
+    box-shadow: 0 18px 40px rgba(19, 106, 213, 0.16);
+    overflow: hidden;
+    position: relative;
+}
+
+.consumer-page-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(19, 106, 213, 0.92), rgba(29, 78, 216, 0.88));
+}
+
+.consumer-page-hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+.consumer-page-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    border-radius: 999px;
+    padding: 7px 15px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.consumer-page-title {
+    color: #ffffff;
+    font-size: 2rem;
+    line-height: 1.45;
+    margin-bottom: 16px;
+    font-weight: 700;
+    max-width: 760px;
+}
+
+.consumer-page-subtitle {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1rem;
+    line-height: 2;
+    max-width: 760px;
+    margin-bottom: 0;
+}
+
+.consumer-stat-card,
+.consumer-section-card,
+.consumer-cta-card,
+.consumer-step-card,
+.consumer-soft-card {
+    background: #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    border: 1px solid rgba(19, 106, 213, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.consumer-stat-card:hover,
+.consumer-section-card:hover,
+.consumer-cta-card:hover,
+.consumer-step-card:hover,
+.consumer-soft-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.09);
+    border-color: rgba(19, 106, 213, 0.14);
+}
+
+.consumer-stat-card {
+    padding: 28px 22px;
+    text-align: center;
+    height: 100%;
+}
+
+.consumer-stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(19, 106, 213, 0.10);
+    color: #136ad5;
+    font-size: 1.1rem;
+}
+
+.consumer-stat-title {
+    color: #136ad5;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.consumer-stat-text {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    margin-bottom: 0;
+}
+
+.consumer-section-card,
+.consumer-cta-card,
+.consumer-soft-card {
+    padding: 28px 26px;
+    margin-bottom: 24px;
+}
+
+.consumer-section-title {
+    color: #136ad5;
+    margin-bottom: 14px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.consumer-section-desc {
+    color: #64748b;
+    line-height: 1.95;
+    margin-bottom: 20px;
+    font-size: 0.98rem;
+}
+
+.consumer-list,
+.consumer-list-number {
+    margin-bottom: 0;
+    padding-right: 20px;
+}
+
+.consumer-list li,
+.consumer-list-number li {
+    color: #475569;
+    line-height: 1.95;
+    margin-bottom: 12px;
+    font-size: 0.98rem;
+}
+
+.consumer-list li strong,
+.consumer-list-number li strong {
+    color: #1e293b;
+}
+
+.consumer-check-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.consumer-check-list li {
+    position: relative;
+    padding-right: 34px;
+    margin-bottom: 12px;
+    color: #475569;
+    line-height: 1.95;
+    font-size: 0.98rem;
+}
+
+.consumer-check-list li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 0;
+    top: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(19, 106, 213, 0.10);
+    color: #136ad5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+}
+
+.consumer-grid-row {
+    margin-bottom: 2px;
+}
+
+.consumer-grid-row > [class*="col-"] {
+    margin-bottom: 24px;
+}
+
+.consumer-step-card {
+    padding: 26px 22px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.consumer-step-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(19, 106, 213, 0.03), rgba(255, 255, 255, 0));
+    pointer-events: none;
+}
+
+.consumer-step-number {
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #136ad5, #2b6de0);
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+}
+
+.consumer-step-card h4 {
+    color: #136ad5;
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.consumer-step-card p {
+    color: #64748b;
+    line-height: 1.95;
+    font-size: 0.98rem;
+    margin-bottom: 0;
+}
+
+.consumer-soft-card {
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+}
+
+.consumer-pill {
+    display: inline-block;
+    background: #eef5ff;
+    color: #136ad5;
+    border-radius: 999px;
+    padding: 9px 16px;
+    margin: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(19, 106, 213, 0.08);
+}
+
+.consumer-cta-card {
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+    text-align: center;
+}
+
+.consumer-cta-card p {
+    color: #64748b;
+    line-height: 1.9;
+    font-size: 0.98rem;
+}
+
+.consumer-helper-note {
+    background: #f8fbff;
+    border-right: 4px solid #136ad5;
+    border-radius: 18px;
+    padding: 22px 20px;
+    color: #475569;
+    line-height: 1.95;
+    font-size: 0.98rem;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+.consumer-helper-note p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 991.98px) {
+    .consumer-page-title {
+        font-size: 1.75rem;
+    }
+
+    .consumer-section-title {
+        font-size: 1.55rem;
+    }
+
+    .consumer-step-card h4 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .consumer-page-hero {
+        padding: 34px 22px;
+        border-radius: 20px;
+    }
+
+    .consumer-page-title {
+        font-size: 1.45rem;
+    }
+
+    .consumer-page-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .consumer-section-card,
+    .consumer-cta-card,
+    .consumer-soft-card {
+        padding: 24px 20px;
+    }
+
+    .consumer-section-title {
+        font-size: 1.35rem;
+    }
+
+    .consumer-step-card h4 {
+        font-size: 1.12rem;
+    }
+}

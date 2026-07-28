@@ -2,6 +2,7 @@
 
 namespace App\Filters;
 
+use App\Libraries\UserType;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
@@ -42,7 +43,7 @@ class SiteFilter implements FilterInterface
 
         // Single Active Session Check (For Students only)
         $user = $auth->user();
-        if ($user && !$user->inGroup('superadmin') && !$user->inGroup('admin')) {
+        if ($user && UserType::isStudent($user) && !$user->inGroup('superadmin') && !$user->inGroup('admin')) {
             /** @var \Modules\Users\Models\UserDeviceModel $deviceModel */
             $deviceModel = model(\Modules\Users\Models\UserDeviceModel::class);
             if (!$deviceModel->isSessionActive($user->id, session_id())) {
