@@ -261,12 +261,11 @@ class Auth extends ShieldAuth
      * @var array<string, array<int, string>|string>
      */
     public array $emailValidationRules = [
-        'email' => [
-            'label' => 'Auth.email',
-            'rules' => [
-                'permit_empty',
-                'valid_email',
-            ],
+        'label' => 'Auth.email',
+        'rules' => [
+            'required',
+            'max_length[254]',
+            'valid_email',
         ],
     ];
 
