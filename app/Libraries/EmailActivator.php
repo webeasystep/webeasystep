@@ -175,10 +175,18 @@ class EmailActivator implements ActionInterface
         $identityModel = model(UserIdentityModel::class);
         $identityModel->deleteIdentitiesByType($user, $this->type);
 
+        // Clean up pending action session state to prevent Shield LogicException
+        $sessionUserInfo = session(setting('Auth.sessionConfig')['field']) ?? [];
+        if (is_array($sessionUserInfo)) {
+            unset($sessionUserInfo['auth_action'], $sessionUserInfo['auth_action_message']);
+            session()->set(setting('Auth.sessionConfig')['field'], $sessionUserInfo);
+        }
+
         $authenticator->login($user);
 
         // Success!
-        return redirect()->to(config('Auth')->registerRedirect())
+        return redirect()->to(site_url(UserType::getDefaultPath(UserType::normalize($user->user_type ?? null))))
+            ->withCookies()
             ->with('message', lang('Auth.registerSuccess'));
     }
 

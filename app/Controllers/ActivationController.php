@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\UserType;
 use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\Shield\Authentication\Authenticators\Session;
 use CodeIgniter\Shield\Exceptions\RuntimeException;
@@ -90,12 +91,21 @@ class ActivationController extends BaseController
         $identityModel = model(\CodeIgniter\Shield\Models\UserIdentityModel::class);
         $identityModel->deleteIdentitiesByType($user, Session::ID_TYPE_EMAIL_ACTIVATE);
 
+        // Clean up pending action session state to prevent Shield LogicException
+        $sessionUserInfo = session(setting('Auth.sessionConfig')['field']) ?? [];
+        if (is_array($sessionUserInfo)) {
+            unset($sessionUserInfo['auth_action'], $sessionUserInfo['auth_action_message']);
+            session()->set(setting('Auth.sessionConfig')['field'], $sessionUserInfo);
+        }
+
         // Log the user in
         $authenticator->login($user);
 
-        // Success - redirect to login or dashboard
-        return redirect()->to(config('Auth')->registerRedirect())
-            ->with('message', lang('Auth.registerSuccess'));
+        $this->show_msg('success', 'يا هلا فيك', 'تفعل حسابك بنجاح، ودخلت مباشرة. حياك الله في اكاديمية فخر، ومكانك بيننا.');
+
+        // Success - redirect to user type dashboard
+        return redirect()->to(site_url(UserType::getDefaultPath(UserType::normalize($user->user_type ?? null))))
+            ->withCookies();
     }
 
     /**
