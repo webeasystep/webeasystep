@@ -103,7 +103,7 @@ class Auth extends ShieldAuth
         'action_email_activate_email' => 'App\Views\admin_layout\shield\Email\email_activate_email',
         'forget_password'            => 'App\Views\admin_layout\shield\forget_password',
         'magic-link-message'          => 'App\Views\admin_layout\shield\magic_link_message',
-        'magic-link-email'            => 'App\Views\admin_layout\shield\Email\magic_link_email',
+        'password_reset_email'        => 'App\Views\admin_layout\shield\Email\password_reset_email',
         'reset_password'              => 'App\Views\admin_layout\shield\reset_password'];
     /**
      * --------------------------------------------------------------------
@@ -200,7 +200,15 @@ class Auth extends ShieldAuth
      * could be modified as the only method of login once an account
      * has been set up.
      */
-    public bool $allowMagicLinkLogins = true;
+    public bool $allowMagicLinkLogins = false;
+
+    /**
+     * --------------------------------------------------------------------
+     * Password Reset Code Lifetime
+     * --------------------------------------------------------------------
+     * Specifies the amount of time, in seconds, that a password reset code is valid.
+     */
+    public int $passwordResetCodeLifetime = HOUR;
 
     /**
      * --------------------------------------------------------------------

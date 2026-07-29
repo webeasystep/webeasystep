@@ -59,15 +59,19 @@ $routes->get('activation-sent', function() {
 $routes->get('auth/a/show', [\App\Controllers\ActivationController::class, 'show'], ['as' => 'auth-action-show', 'priority' => 1]);
 $routes->post('auth/a/verify', [\App\Controllers\ActivationController::class, 'verify'], ['as' => 'auth-action-verify', 'priority' => 1]);
 
-// Shield routes - exclude login, register, show and verify to avoid conflicts
-service('auth')->routes($routes, ['except' => ['login', 'register', 'auth/a/show', 'auth/a/verify']]);
+// Shield routes - exclude login, register, show, verify, and magic-link to avoid conflicts
+service('auth')->routes($routes, ['except' => ['login', 'register', 'auth/a/show', 'auth/a/verify', 'magic-link']]);
+
+// Password Reset Routes (Site)
+$routes->get('forgot-password', [\App\Controllers\PasswordResetController::class, 'forgotForm']);
+$routes->post('forgot-password', [\App\Controllers\PasswordResetController::class, 'sendCode']);
+$routes->get('reset-password', [\App\Controllers\PasswordResetController::class, 'resetForm']);
+$routes->post('reset-password', [\App\Controllers\PasswordResetController::class, 'resetPassword']);
 
 
 // Site main routes
 $routes->group('site', ['namespace' => 'App\Controllers'], function ($routes) {
     $routes->match(['GET', 'POST'], 'logout', [Site::class, 'logout']);
-    $routes->match(['GET', 'POST'], 'forget_password', [Site::class, 'forget_password']);
-    $routes->match(['GET', 'POST'], 'reset_password', [Site::class, 'reset_password']);
 
     $routes->match(['GET', 'POST'], 'search', 'Site::search', ['filter' => 'site_filter']);
     // Add dynamic segments for order_id and driver_id in the take_order route
@@ -91,7 +95,7 @@ $routes->group('dt_admin', ['namespace' => 'App\Controllers'], static function (
     $routes->match(['GET', 'POST'], 'register', [Admin::class, 'register']);
     $routes->match(['GET', 'POST'], 'reset_password', [Admin::class, 'reset_password']);
     $routes->match(['GET', 'POST'], 'forget_password', [Admin::class, 'forget_password']);
-    $routes->match(['GET', 'POST'], 'verify_magic_link', [Admin::class, 'verify_magic_link']);
+
 
 });
 

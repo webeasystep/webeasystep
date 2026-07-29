@@ -61,6 +61,8 @@
 
                         <?php if (setting('Auth.allowMagicLinkLogins')) : ?>
                             <p class="text-center text-muted small mt-3"><?= lang('Auth.forgotPassword') ?> <a href="<?= url_to('magic-link') ?>"><?= lang('Auth.useMagicLink') ?></a></p>
+                        <?php else: ?>
+                            <p class="text-center text-muted small mt-3"><a href="<?= site_url('forgot-password') ?>"><?= lang('Auth.forgotPassword') ?></a></p>
                         <?php endif ?>
 
                     </form>

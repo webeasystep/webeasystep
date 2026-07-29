@@ -58,12 +58,7 @@
                     <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.login') ?></button>
                 </div>
 
-                <?php if (setting('Auth.allowMagicLinkLogins')) : ?>
-                   <!-- <p class="text-center"><?/*= lang('Auth.forget_password') */?> <a href="<?/*= url_to('dt_admin/magic-link') */?>"><?/*= lang('Auth.useMagicLink') */?></a></p>
-                -->
-                    <p class="text-center"><?= lang('Auth.forgotPassword') ?> <a href="<?= url_to('dt_admin/forget_password') ?>"><?= lang('Auth.useMagicLink') ?></a></p>
-                <?php endif ?>
-
+                    <p class="text-center"><a href="<?= url_to('dt_admin/forget_password') ?>"><?= lang('Auth.forgotPassword') ?></a></p>
                 <?php if (setting('Auth.allowRegistration')) : ?>
                     <p class="text-center"><?= lang('Auth.needAccount') ?> <a href="<?= url_to('dt_admin/register') ?>"><?= lang('Auth.register') ?></a></p>
                 <?php endif ?>

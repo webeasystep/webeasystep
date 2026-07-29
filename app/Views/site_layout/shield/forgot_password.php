@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<?= $this->include('admin_layout/header'); ?>
-<!-- render Head here -->
-<?= $this->renderSection('header') ?>
-<!-- Head -->
-<body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-        <?= setting('App.siteName'); ?>
-    </div>
-    <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <h5 class="card-title mb-5 text-center"><?= lang('Auth.forgotPassword') ?></h5>
+<?= $this->extend('site_layout/template') ?>
+<?= $this->section('content') ?>
+
+<div class="container d-flex justify-content-center p-5">
+    <div class="card col-12 col-md-5 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title mb-5"><?= lang('Auth.forgotPassword') ?></h5>
 
             <?php if (session('error') !== null) : ?>
                 <div class="alert alert-danger" role="alert"><?= session('error') ?></div>
@@ -35,27 +27,22 @@
 
             <p class="text-muted mb-4 text-center">أدخل بريدك الإلكتروني المسجل لدينا وسنرسل لك رمزاً لإعادة تعيين كلمة المرور.</p>
 
-            <form action="<?= url_to('dt_admin/forget_password') ?>" method="post">
+            <form action="<?= site_url('forgot-password') ?>" method="post">
                 <?= csrf_field() ?>
 
-                <!-- Email -->
-                <div class="mb-2">
-                    <input type="email" class="form-control" name="email" autocomplete="email" placeholder="<?= lang('Auth.email') ?>"
-                           value="<?= old('email', auth()->user()->email ?? null) ?>" required />
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingEmailInput" name="email" inputmode="email" autocomplete="email" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email') ?>" required>
+                    <label for="floatingEmailInput"><?= lang('Auth.email') ?></label>
                 </div>
 
                 <div class="d-grid gap-2 mt-4">
                     <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.send') ?></button>
-                    <a href="<?= url_to('dt_admin/login') ?>" class="btn btn-light btn-block border">العودة لتسجيل الدخول</a>
+                    <a href="<?= site_url('login') ?>" class="btn btn-light btn-block border">العودة لتسجيل الدخول</a>
                 </div>
 
             </form>
         </div>
-        <!-- /.login-card-body -->
     </div>
 </div>
-<!-- /.login-box -->
-</body>
-</html>
 
-
+<?= $this->endSection() ?>
