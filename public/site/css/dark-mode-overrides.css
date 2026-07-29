@@ -541,6 +541,23 @@ body.dark-mode .consumer-page-hero {
     box-shadow: 0 22px 45px rgba(0, 0, 0, 0.35) !important;
 }
 
+body.dark-mode .consumer-page-hero::before {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(29, 78, 216, 0.72)) !important;
+}
+
+body.dark-mode .consumer-page-hero::after {
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.18) 0%, rgba(96, 165, 250, 0.06) 40%, rgba(15, 23, 42, 0) 72%) !important;
+}
+
+body.dark-mode .consumer-page-shell {
+    background: linear-gradient(180deg, #08111f 0%, #0f172a 100%) !important;
+}
+
+body.dark-mode .consumer-page-hero-content {
+    background: rgba(15, 23, 42, 0.34) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
 body.dark-mode .consumer-page-badge {
     background: rgba(15, 23, 42, 0.38) !important;
     border-color: rgba(255, 255, 255, 0.16) !important;
@@ -623,6 +640,58 @@ body.dark-mode .consumer-pill {
 body.dark-mode .consumer-helper-note {
     border-right-color: #3b82f6 !important;
     color: #cbd5e1 !important;
+}
+
+body.dark-mode .student-benefits-page {
+    background: linear-gradient(180deg, #08111f 0%, #0f172a 100%) !important;
+}
+
+body.dark-mode .student-benefits-page .consumer-page-hero {
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.38) !important;
+}
+
+body.dark-mode .student-benefits-page .consumer-page-hero::before {
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.92) 0%, rgba(29, 78, 216, 0.84) 55%, rgba(37, 99, 235, 0.70) 100%) !important;
+}
+
+body.dark-mode .student-benefits-hero-content {
+    background: rgba(15, 23, 42, 0.34) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+body.dark-mode .student-benefits-hero-highlights span {
+    background: rgba(15, 23, 42, 0.46) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .student-benefits-hero-highlights i {
+    color: #93c5fd !important;
+}
+
+body.dark-mode .student-benefits-page .consumer-section-card {
+    background: linear-gradient(180deg, #162032 0%, #1a2740 100%) !important;
+}
+
+body.dark-mode .student-benefits-summary-card {
+    background: linear-gradient(180deg, #142033 0%, #1a2740 100%) !important;
+}
+
+body.dark-mode .student-benefits-side-note {
+    background: #101a2a !important;
+    border-right-color: #3b82f6 !important;
+}
+
+body.dark-mode .student-benefits-cards-row .consumer-stat-card {
+    background: linear-gradient(180deg, #162032 0%, #1b2a45 100%) !important;
+}
+
+body.dark-mode .student-benefits-cards-row .consumer-stat-title {
+    color: #93c5fd !important;
+}
+
+body.dark-mode .student-benefits-page .consumer-cta-card {
+    background: linear-gradient(135deg, #162032 0%, #1a2740 100%) !important;
 }
 
 /* ============================================

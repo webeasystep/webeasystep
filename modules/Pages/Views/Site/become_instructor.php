@@ -1,12 +1,14 @@
 <?= $this->extend('site_layout/template'); ?>
 <?= $this->section('content'); ?>
 
-<div class="untree_co-section py-5">
+<div class="untree_co-section py-5 consumer-page-shell">
     <div class="container">
-        <div class="consumer-page-hero mb-5" style="background: url('<?= base_url('site/images/teacher-min.jpg') ?>') center center/cover;">
-            <span class="consumer-page-badge"><i class="fas fa-chalkboard-teacher"></i> لماذا تنضم إلى FakhrCS كمحاضر؟</span>
-            <h1 class="consumer-page-title">ركّز على التدريس والتميز الأكاديمي… واترك لنا التفاصيل الإدارية والتقنية!</h1>
-            <p class="consumer-page-subtitle">إذا كنت تمتلك الشغف والخبرة العميقة في شرح مقررات <strong>الجامعة السعودية الإلكترونية (SEU)</strong>، فإن <strong>FakhrCS</strong> هي شريكك المثالي لتحويل معرفتك إلى مصدر دخل متنامٍ ومستدام، دون الحاجة للتعامل مع تعقيدات البرمجة، المواقع، وبوابات الدفع.</p>
+        <div class="consumer-page-hero consumer-page-hero-partnership mb-5">
+            <div class="consumer-page-hero-content">
+                <span class="consumer-page-badge"><i class="fas fa-chalkboard-teacher"></i> لماذا تنضم إلى FakhrCS كمحاضر؟</span>
+                <h1 class="consumer-page-title">ركّز على التدريس والتميز الأكاديمي… واترك لنا التفاصيل الإدارية والتقنية!</h1>
+                <p class="consumer-page-subtitle">إذا كنت تمتلك الشغف والخبرة العميقة في شرح مقررات <strong>الجامعة السعودية الإلكترونية (SEU)</strong>، فإن <strong>FakhrCS</strong> هي شريكك المثالي لتحويل معرفتك إلى مصدر دخل متنامٍ ومستدام، دون الحاجة للتعامل مع تعقيدات البرمجة، المواقع، وبوابات الدفع.</p>
+            </div>
         </div>
 
         <div class="consumer-section-card">

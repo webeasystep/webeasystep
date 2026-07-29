@@ -9,7 +9,7 @@
             <div class="col-lg-3 mr-auto">
                 <div class="widget">
                     <h3>معلومات عنا<span class="text-primary">.</span></h3>
-                    <p>بوابتك لاحتراف هندسة البرمجيات والـ Vibe Coding بخطوات عملية ومشاريع حقيقية تواكب سوق العمل.</p>
+                    <p>المنصة الأولى المخصصة لطلبة الجامعة السعودية الإلكترونية.</p>
                 </div> <div class="widget">
                     <h3>تواصل معنا</h3>
                     <ul class="list-unstyled social">

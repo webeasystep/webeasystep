@@ -1,12 +1,14 @@
 <?= $this->extend('site_layout/template'); ?>
 <?= $this->section('content'); ?>
 
-<div class="untree_co-section py-5">
+<div class="untree_co-section py-5 consumer-page-shell">
     <div class="container">
-        <div class="consumer-page-hero mb-5" style="background: url('<?= base_url('site/images/hero_bg.jpg') ?>') center center/cover;">
-            <span class="consumer-page-badge"><i class="fas fa-shield-alt"></i> الشروط والأحكام العامة</span>
-            <h1 class="consumer-page-title">أهلاً بك في أكاديمية فخر (FakhrCS)</h1>
-            <p class="consumer-page-subtitle">المنصة التعليمية المتخصصة في الشروحات الأكاديمية والمقررات البرمجية لطلاب وطالبات الجامعة السعودية الإلكترونية (SEU). يُرجى قراءة الشروط والأحكام التالية بعناية؛ حيث إن استخدامك للموقع أو تسجيلك في المقررات التعليمية يمثل موافقة صريحة وكاملة على كافة البنود الواردة أدناه.</p>
+        <div class="consumer-page-hero consumer-page-hero-terms mb-5">
+            <div class="consumer-page-hero-content">
+                <span class="consumer-page-badge"><i class="fas fa-shield-alt"></i> الشروط والأحكام العامة</span>
+                <h1 class="consumer-page-title">أهلاً بك في أكاديمية فخر (FakhrCS)</h1>
+                <p class="consumer-page-subtitle">المنصة التعليمية المتخصصة في الشروحات الأكاديمية والمقررات البرمجية لطلاب وطالبات الجامعة السعودية الإلكترونية (SEU). يُرجى قراءة الشروط والأحكام التالية بعناية؛ حيث إن استخدامك للموقع أو تسجيلك في المقررات التعليمية يمثل موافقة صريحة وكاملة على كافة البنود الواردة أدناه.</p>
+            </div>
         </div>
 
         <div class="consumer-section-card">

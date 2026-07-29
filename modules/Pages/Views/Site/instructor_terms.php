@@ -1,12 +1,14 @@
 <?= $this->extend('site_layout/template'); ?>
 <?= $this->section('content'); ?>
 
-<div class="untree_co-section py-5">
+<div class="untree_co-section py-5 consumer-page-shell">
     <div class="container">
-        <div class="consumer-page-hero mb-5" style="background: url('<?= base_url('site/images/hero_bg_2.jpg') ?>') center center/cover;">
-            <span class="consumer-page-badge"><i class="fas fa-file-signature"></i> دليل وحقوق الشراكة للمحاضر</span>
-            <h1 class="consumer-page-title">مرحبًا بك في فريق محاضري FakhrCS</h1>
-            <p class="consumer-page-subtitle">يسعدنا انضمامك إلى أكاديمية <strong>FakhrCS</strong>. نحن منصة متخصصة في شرح مقررات الجامعة السعودية الإلكترونية (SEU)، ونهدف إلى بناء شراكة أكاديمية ناجحة ومستدامة توفر للطالب أعلى جودة تعليمية وللمحاضر بيئة عمل احترافية ودخلاً مميزاً.</p>
+        <div class="consumer-page-hero consumer-page-hero-instructor mb-5">
+            <div class="consumer-page-hero-content">
+                <span class="consumer-page-badge"><i class="fas fa-file-signature"></i> دليل وحقوق الشراكة للمحاضر</span>
+                <h1 class="consumer-page-title">مرحبًا بك في فريق محاضري FakhrCS</h1>
+                <p class="consumer-page-subtitle">يسعدنا انضمامك إلى أكاديمية <strong>FakhrCS</strong>. نحن منصة متخصصة في شرح مقررات الجامعة السعودية الإلكترونية (SEU)، ونهدف إلى بناء شراكة أكاديمية ناجحة ومستدامة توفر للطالب أعلى جودة تعليمية وللمحاضر بيئة عمل احترافية ودخلاً مميزاً.</p>
+            </div>
         </div>
 
         <div class="consumer-section-card">
