@@ -140,10 +140,9 @@ class Site extends BaseController
         log_message('debug', 'ACTIVATION_DIRECT_LOGIN before session_state=' . json_encode(session(setting('Auth.sessionConfig')['field'])));
         // #endregion debug-point activation-direct-login-session-state
 
-        $sessionUserInfo = session(setting('Auth.sessionConfig')['field']) ?? [];
-        if (is_array($sessionUserInfo)) {
-            unset($sessionUserInfo['auth_action'], $sessionUserInfo['auth_action_message']);
-            session()->set(setting('Auth.sessionConfig')['field'], $sessionUserInfo);
+        // Clean up any pending session state to prevent Shield LogicException
+        if ($authenticator->loggedIn() || session()->has(setting('Auth.sessionConfig')['field'])) {
+            $authenticator->logout();
         }
 
         // #region debug-point activation-direct-login-session-cleaned
