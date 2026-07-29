@@ -312,7 +312,7 @@
                 <span class="status-dot" title="متصل الآن"></span>
             </div>
             <div>
-                <h2 class="h3 fw-bold mb-1 text-white"><?= esc($user->full_name ?? $defaultName) ?></h2>
+                <h2 class="h3 fw-bold mb-1 text-white" style="color: #fff !important;"><?= esc($user->full_name ?? $defaultName) ?></h2>
                 <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start mt-2">
                     <span class="user-badge-tag">
                         <i class="<?= esc($accountIcon) ?>"></i> <?= esc($accountLabel) ?>
