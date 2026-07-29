@@ -207,7 +207,7 @@ class Admin extends BaseController
 
             if (!$user) {
                 // Return success to prevent email enumeration
-                return redirect()->route('dt_admin/reset_password')->with('message', lang('Auth.forgotEmailSent'));
+                return redirect()->route('dt_admin/reset_password')->with('message', 'إذا كان البريد الإلكتروني مسجلاً لدينا، فستصلك رسالة تحتوي على رمز إعادة التعيين.');
             }
 
             $identityModel = model(UserIdentityModel::class);
@@ -240,7 +240,7 @@ class Admin extends BaseController
             }
             $email->clear();
 
-            return redirect()->route('dt_admin/reset_password')->with('message', lang('Auth.forgotEmailSent'));
+            return redirect()->route('dt_admin/reset_password')->with('message', 'إذا كان البريد الإلكتروني مسجلاً لدينا، فستصلك رسالة تحتوي على رمز إعادة التعيين.');
         }
 
         // If it's a GET request, we'll display the forgot password form

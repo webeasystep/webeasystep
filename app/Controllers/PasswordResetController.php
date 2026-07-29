@@ -51,7 +51,7 @@ class PasswordResetController extends BaseController
 
         if ($user === null) {
             // To prevent email enumeration, we show success even if email not found
-            return redirect()->to(site_url('reset-password'))->with('message', lang('Auth.forgotEmailSent'));
+            return redirect()->to(site_url('reset-password'))->with('message', 'إذا كان البريد الإلكتروني مسجلاً لدينا، فستصلك رسالة تحتوي على رمز إعادة التعيين.');
         }
 
         /** @var UserIdentityModel $identityModel */
@@ -89,7 +89,7 @@ class PasswordResetController extends BaseController
         $emailer->clear();
 
         // Redirect to reset form with email pre-filled
-        return redirect()->to(site_url('reset-password'))->withInput()->with('message', lang('Auth.forgotEmailSent'));
+        return redirect()->to(site_url('reset-password'))->withInput()->with('message', 'إذا كان البريد الإلكتروني مسجلاً لدينا، فستصلك رسالة تحتوي على رمز إعادة التعيين.');
     }
 
     /**
