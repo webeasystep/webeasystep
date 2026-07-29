@@ -4,7 +4,10 @@
 <div class="container d-flex justify-content-center p-5">
     <div class="card col-12 col-md-5 shadow-sm">
         <div class="card-body">
-            <h5 class="card-title mb-5"><?= lang('Auth.forgotPassword') ?></h5>
+            <div class="d-flex justify-content-center mb-4">
+                <img src="<?= base_url('assets/images/logo.png') ?>" alt="Logo" class="img-fluid" style="max-height: 80px;">
+            </div>
+            <h4 class="card-title text-center mb-4 w-100" style="font-weight: 700;"><?= lang('Auth.forgotPassword') ?></h4>
 
             <?php if (session('error') !== null) : ?>
                 <div class="alert alert-danger" role="alert"><?= session('error') ?></div>
@@ -22,7 +25,7 @@
             <?php endif ?>
 
             <?php if (session('message') !== null) : ?>
-                <div class="alert alert-success" role="alert"><?= session('message') ?></div>
+                <div class="alert alert-success text-center" role="alert"><?= session('message') ?></div>
             <?php endif ?>
 
             <p class="text-muted mb-4 text-center">أدخل بريدك الإلكتروني المسجل لدينا وسنرسل لك رمزاً لإعادة تعيين كلمة المرور.</p>
