@@ -345,7 +345,7 @@ class Courses extends BaseController
 
         // Redirect to home if course is in waiting list mode
         if ($course->waiting_list == 1) {
-            return redirect()->to('/')->with('info', 'هذه الدورة قيد الإعداد وستتوفر قريباً. ترقب!');
+            return redirect()->to('/')->with('info', 'هذا المقرر قيد الإعداد وسيكون متاحًا قريبًا.');
         }
 
         // 2) Get course units with their items

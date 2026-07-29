@@ -114,6 +114,12 @@ class InstructorPortal extends BaseController
                     'url' => site_url('instructor/faq'),
                     'icon' => 'fas fa-circle-question',
                 ],
+                [
+                    'key' => 'instructor_terms',
+                    'label' => 'دليل الشراكة',
+                    'url' => site_url('instructor-terms'),
+                    'icon' => 'fas fa-file-signature',
+                ],
             ],
         ];
     }
@@ -229,8 +235,8 @@ class InstructorPortal extends BaseController
                 'answer' => 'اجمع مراجعك الأساسية، ورتّب الوحدات حسب التسلسل التعليمي، وحدد ما يحتاج إليه الطالب قبل الانتقال إلى كل وحدة.',
             ],
             [
-                'question' => 'كيف تسعّر مقررك؟',
-                'answer' => 'راجع قيمة المحتوى، مستوى الطلب، وعدد الوحدات، ثم حدّد سعرًا يناسب السوق السعودي ويعكس القيمة التعليمية.',
+                'question' => 'ما هي آلية تسعير المقرر',
+                'answer' => 'يتم تسعير المقرر من إدارة الموقع وفقًا لأبحاث السوق ودراسة المنافسين، وتتم مراجعته دوريًا لمواكبة السوق.',
             ],
             [
                 'question' => 'كيف تصنع محتواك؟',

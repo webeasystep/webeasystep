@@ -10,7 +10,7 @@
         <!-- Section Heading & Intro -->
         <div class="row justify-content-center mb-5">
             <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-                <h2 class="line-bottom text-center mb-4">الكورسات المتاحة</h2>
+                <h2 class="line-bottom text-center mb-4">المقررات المتاحة</h2>
                 <p>ابدأ الان في تعلم البرمجة  وتحسين مهاراتك فيها .</p>
             </div>
         </div>

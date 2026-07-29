@@ -124,7 +124,7 @@
                                 <?php else: ?>
                                     <li>
                                         <a href="<?= site_url('enrollments/my-courses') ?>">
-                                            <span class="icon-book mr-2"></span>دوراتي
+                                            <span class="icon-book mr-2"></span>مقرراتي
                                         </a>
                                     </li>
                                 <?php endif; ?>

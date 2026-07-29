@@ -277,10 +277,10 @@
                         </div>
                         <h3 class="empty-courses-title">لم تسجل في أي دورة بعد</h3>
                         <p class="empty-courses-message">
-                            استكشف دوراتنا المتاحة وابدأ رحلة التعلم الخاصة بك
+                            استكشف مقرراتنا المتاحة وابدأ رحلة التعلم الخاصة بك
                         </p>
                         <a href="<?= site_url('courses') ?>" class="btn browse-courses-btn">
-                            استعرض الدورات المتاحة
+                            استعرض المقررات المتاحة
                         </a>
                     </div>
                 </div>

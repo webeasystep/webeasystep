@@ -895,7 +895,7 @@
                                 <div class="free-icon">
                                     <i class="fas fa-gift"></i>
                                 </div>
-                                <h5>هذه الدورة متاحة مجاناً</h5>
+                                <h5>هذا المقرر متاح مجاناً</h5>
                                 <p>يمكنك الوصول الفوري لجميع محتويات الدورة دون أي رسوم</p>
                             </div>
 
@@ -904,7 +904,7 @@
                                 <input type="hidden" name="payment_method" value="free">
                                 <button type="submit" class="btn-enroll-free">
                                     <i class="fas fa-check-circle"></i>
-                                    تفعيل الدورة المجانية الآن
+                                    تفعيل المقرر المجاني الآن
                                 </button>
                             </form>
 
@@ -1246,7 +1246,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (submitBtn) {
                 submitBtn.classList.add('visible');
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تفعيل الدورة الآن';
+                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> تفعيل المقرر الآن';
             }
         } else if (submitBtn) {
             if (fullyDiscountedNote) fullyDiscountedNote.classList.remove('visible');

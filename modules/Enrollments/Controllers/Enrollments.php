@@ -64,7 +64,7 @@ class Enrollments extends BaseController
         }
 
         $data = [
-            'title' => 'دوراتي',
+            'title' => 'مقرراتي',
             'enrollments' => $enrollments
         ];
 
@@ -86,7 +86,7 @@ class Enrollments extends BaseController
         }
 
         if (!$courseId) {
-            return redirect()->to('/')->with('error', 'يرجى اختيار دورة');
+            return redirect()->to('/')->with('error', 'يرجى اختيار مقرر');
         }
 
         // Store in session and redirect to checkout
@@ -107,13 +107,13 @@ class Enrollments extends BaseController
         $courseId = session()->get('selected_course');
 
         if (!$courseId) {
-            return redirect()->to('/')->with('error', 'يرجى اختيار دورة');
+            return redirect()->to('/')->with('error', 'يرجى اختيار مقرر');
         }
 
         // Check if already enrolled
         if ($this->courseEnrollmentsModel->isUserEnrolled($userId, $courseId, false)) {
             session()->remove('selected_course');
-            return redirect()->to('/enrollments/my-courses')->with('error', 'أنت مشترك بالفعل في هذه الدورة');
+            return redirect()->to('/enrollments/my-courses')->with('error', 'أنت مشترك بالفعل في هذا المقرر');
         }
 
         $course = $this->coursesModel->find($courseId);

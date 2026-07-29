@@ -71,8 +71,8 @@
 
 <div class="page-header text-center">
     <div class="container">
-        <h1>الدورات المتاحة</h1>
-        <p class="mb-0">اختر الدورة التي تناسبك وابدأ رحلة التعلم</p>
+        <h1>المقررات المتاحة</h1>
+        <p class="mb-0">اختر المقرر الذي يناسبك وابدأ رحلة التعلم</p>
     </div>
 </div>
 
@@ -83,7 +83,7 @@
         <?php if (empty($courses)): ?>
             <div class="alert alert-info text-center">
                 <i class="fas fa-info-circle me-2"></i>
-                لا توجد دورات متاحة حالياً
+                لا توجد مقررات متاحة حالياً
             </div>
         <?php else: ?>
             <div class="row">

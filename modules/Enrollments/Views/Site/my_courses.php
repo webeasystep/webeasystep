@@ -238,8 +238,8 @@
     <div class="container">
         <!-- Page Header -->
         <div class="my-courses-header" data-aos="fade-up">
-            <h1 class="section-title">دوراتي المسجلة</h1>
-            <p class="course-description">تابع تقدمك التعليمي واستأنف دوراتك من حيث توقفت</p>
+            <h1 class="section-title">مقرراتي المسجلة</h1>
+            <p class="course-description">تابع تقدمك التعليمي واستأنف مقرراتك من حيث توقفت</p>
         </div>
 
         <?= $this->include('site_layout/site_msg'); ?>
@@ -324,11 +324,11 @@
                                     </div>
                                 <?php elseif ($enrollment->status === 'refunded'): ?>
                                     <div class="alert alert-dark p-2 mb-0" style="font-size: 0.85rem;">
-                                        تم استرجاع قيمة هذه الدورة وتم إيقاف الوصول إليها.
+                                        تم استرجاع قيمة هذا المقرر وتم إيقاف الوصول إليه.
                                     </div>
                                 <?php elseif ($enrollment->status === 'pending'): ?>
                                     <div class="alert alert-warning p-2 mb-0" style="font-size: 0.85rem;">
-                                        جاري مراجعة طلب الاشتراك وتفعيل الدورة قريباً.
+                                        جاري مراجعة طلب الاشتراك وتفعيل المقرر قريباً.
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -338,7 +338,7 @@
                                 <?php if ($enrollment->status === 'approved'): ?>
                                     <a href="<?= base_url('courses/course_view/' . ($enrollment->slug ?? $enrollment->course_id)) ?>" 
                                        class="btn btn-action btn-primary-custom">
-                                        <i class="fas fa-play me-2"></i> متابعة الدورة
+                                        <i class="fas fa-play me-2"></i> متابعة المقرر
                                     </a>
                                 <?php else: ?>
                                     <button class="btn btn-action btn-secondary" disabled>
@@ -353,10 +353,10 @@
                 <div class="col-12">
                     <div class="empty-state">
                         <i class="fas fa-folder-open"></i>
-                        <h3>لا توجد دورات مسجلة حالياً</h3>
-                        <p class="text-muted">استكشف مكتبة الدورات وابدأ رحلة التعلم اليوم</p>
+                        <h3>لا توجد مقررات مسجلة حالياً</h3>
+                        <p class="text-muted">استكشف مكتبة المقررات وابدأ رحلة التعلم اليوم</p>
                         <a href="<?= site_url('/') ?>" class="btn btn-primary mt-3">
-                            تصفح جميع الدورات
+                            تصفح جميع المقررات
                         </a>
                     </div>
                 </div>
