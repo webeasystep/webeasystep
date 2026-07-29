@@ -1,8 +1,5 @@
-<?= $this->extend(config('Auth')->views['layout']) ?>
-
-<?= $this->section('title') ?><?= lang('Auth.email2FATitle') ?> <?= $this->endSection() ?>
-
-<?= $this->section('main') ?>
+<?=$this->extend('site_layout/template');?>
+<?= $this->section('content') ?>
 
 <div class="container d-flex justify-content-center p-5">
     <div class="card col-12 col-md-5 shadow-sm">

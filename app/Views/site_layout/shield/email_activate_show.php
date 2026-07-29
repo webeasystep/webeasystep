@@ -1,8 +1,5 @@
-<?= $this->extend(config('Auth')->views['layout']) ?>
-
-<?= $this->section('title') ?><?= lang('Auth.emailActivateTitle') ?> <?= $this->endSection() ?>
-
-<?= $this->section('main') ?>
+<?=$this->extend('site_layout/template');?>
+<?= $this->section('content') ?>
 
 <?php $showActivationDetails = ! empty($showActivationDetails); ?>
 
