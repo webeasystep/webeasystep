@@ -11,16 +11,24 @@ use Modules\Users\Models\UsersModel;
 class Enrollments extends BaseController
 {
     protected CourseEnrollmentsModel $courseEnrollmentsModel;
-    protected CouponsModel $couponsModel;
+    protected ?CouponsModel $couponsModel = null;
     protected CoursesModel $coursesModel;
     protected UsersModel $usersModel;
 
     public function __construct()
     {
         $this->courseEnrollmentsModel = new CourseEnrollmentsModel();
-        $this->couponsModel = new CouponsModel();
         $this->coursesModel = new CoursesModel();
         $this->usersModel = new UsersModel();
+    }
+
+    private function getCouponsModel(): CouponsModel
+    {
+        if ($this->couponsModel === null) {
+            $this->couponsModel = new CouponsModel();
+        }
+
+        return $this->couponsModel;
     }
 
 
@@ -176,7 +184,7 @@ class Enrollments extends BaseController
             ]);
         }
 
-        $coupon = $this->couponsModel->getValidCouponByCode($couponCode, $courseId);
+        $coupon = $this->getCouponsModel()->getValidCouponByCode($couponCode, $courseId);
         if (!$coupon) {
             return $this->response->setJSON([
                 'success' => false,
@@ -185,7 +193,7 @@ class Enrollments extends BaseController
             ]);
         }
 
-        if (!$this->couponsModel->isAvailableForUser($coupon, (int) $userId)) {
+        if (!$this->getCouponsModel()->isAvailableForUser($coupon, (int) $userId)) {
             return $this->response->setJSON([
                 'success' => false,
                 'message' => lang('Coupons.coupon_usage_limit_per_account_exceeded'),
@@ -194,7 +202,7 @@ class Enrollments extends BaseController
         }
 
         $originalAmount = (float) ($course->course_price ?? 0);
-        $discountAmount = $this->couponsModel->calculateDiscountAmount($originalAmount, $coupon);
+        $discountAmount = $this->getCouponsModel()->calculateDiscountAmount($originalAmount, $coupon);
         $finalAmount = max(0, $originalAmount - $discountAmount);
 
         return $this->response->setJSON([
@@ -224,17 +232,17 @@ class Enrollments extends BaseController
         $finalAmount = (float) ($course->course_price ?? 0);
 
         if ($couponCode !== '') {
-            $coupon = $this->couponsModel->getValidCouponByCode($couponCode, (int) $course->id);
+            $coupon = $this->getCouponsModel()->getValidCouponByCode($couponCode, (int) $course->id);
 
             if (!$coupon) {
                 return redirect()->back()->withInput()->with('error', lang('Coupons.invalid_coupon'));
             }
 
-            if (!$this->couponsModel->isAvailableForUser($coupon, (int) $userId)) {
+            if (!$this->getCouponsModel()->isAvailableForUser($coupon, (int) $userId)) {
                 return redirect()->back()->withInput()->with('error', lang('Coupons.coupon_usage_limit_per_account_exceeded'));
             }
 
-            $couponDiscountAmount = $this->couponsModel->calculateDiscountAmount((float) $course->course_price, $coupon);
+            $couponDiscountAmount = $this->getCouponsModel()->calculateDiscountAmount((float) $course->course_price, $coupon);
             $finalAmount = max(0, (float) $course->course_price - $couponDiscountAmount);
         }
 
@@ -251,7 +259,7 @@ class Enrollments extends BaseController
 
             if ($enrollmentId) {
                 if ($coupon) {
-                    $this->couponsModel->incrementUsage((int) $coupon->id);
+                    $this->getCouponsModel()->incrementUsage((int) $coupon->id);
                 }
                 $this->sendApprovalEmail($enrollmentId);
                 session()->remove('selected_course');

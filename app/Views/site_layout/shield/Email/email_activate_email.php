@@ -269,9 +269,9 @@
             </p>
             
             <div class="social-links">
-                <a href="#" class="social-link">📧</a>
-                <a href="#" class="social-link">📱</a>
-                <a href="#" class="social-link">🌐</a>
+                <a href="<?= site_url('/') ?>" class="social-link" title="موقع المنصة" target="_blank">🌐</a>
+                <a href="https://wa.me/201032863861" class="social-link" title="الدعم عبر واتساب" target="_blank">💬</a>
+                <a href="mailto:fakhrcshub@gmail.com" class="social-link" title="البريد الإلكتروني">📧</a>
             </div>
             
             <p class="copyright">
