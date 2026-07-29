@@ -14,7 +14,7 @@ class ActivationController extends BaseController
     /**
      * Shows the activation form where users enter their token.
      */
-    public function show(): string
+    public function show()
     {
         /** @var Session $authenticator */
         $authenticator = auth('session')->getAuthenticator();
@@ -24,7 +24,26 @@ class ActivationController extends BaseController
             return redirect()->to('/login')->with('error', lang('Auth.activateLinkExpired'));
         }
 
-        return MainView('site_layout/shield/email_activate_show', ['user' => $user]);
+        $action = $authenticator->getAction();
+
+        if ($action === null) {
+            log_message('error', 'ActivationController: No pending activation action found for user ID ' . $user->id);
+
+            return MainView('site_layout/shield/email_activate_show', [
+                'user'  => $user,
+                'error' => lang('Auth.errorSendingActivation', [$user->email ?? '']),
+            ]);
+        }
+
+        try {
+            return $action->show();
+        } catch (\Throwable $e) {
+            log_message('error', 'ActivationController: Failed to send activation email for user ID ' . $user->id . '. ' . $e->getMessage());
+
+            session()->setFlashdata('error', lang('Auth.errorSendingActivation', [$user->email ?? '']));
+
+            return MainView('site_layout/shield/email_activate_show', ['user' => $user]);
+        }
     }
 
     /**

@@ -151,10 +151,8 @@ class Users extends BaseController
             $password = $this->request->getPost('password');
             
             // Check if mobile is already used
-            // Query auth_identities instead of users table
-            $existingMobile = $this->db->table('auth_identities')
-                ->where('type', 'mobile_password')
-                ->where('secret', $fullMobile)
+            $existingMobile = $this->db->table('users')
+                ->where('mobile', $fullMobile)
                 ->get()->getRow();
             if ($existingMobile) {
                 log_message('debug', 'Registration failed: Mobile number ' . $fullMobile . ' already exists.');
@@ -169,6 +167,7 @@ class Users extends BaseController
                 'email' => $email,
                 'mobile' => $fullMobile,
                 'user_type' => UserType::normalize($userType),
+                'password' => $password,
             ];
 
             $user = new User($credentials);
@@ -180,26 +179,7 @@ class Users extends BaseController
                 
                 log_message('debug', 'Registration - User saved with ID: ' . $userId);
                 
-                /** @var \Modules\Users\Models\UserIdentityModel $identityModel */
-                $identityModel = model(\Modules\Users\Models\UserIdentityModel::class);
-                
                 try {
-                    // Create email identity with password
-                    $identityModel->createEmailIdentity($user, [
-                        'email' => $email,
-                        'password' => $password
-                    ]);
-                    
-                    log_message('debug', 'Registration - Email identity created successfully for user: ' . $userId);
-                    
-                    // Also create mobile identity for mobile login option
-                    $identityModel->createMobileIdentity($user, [
-                        'mobile' => $fullMobile,
-                        'password' => $password
-                    ]);
-                    
-                    log_message('debug', 'Registration - Mobile identity created successfully for user: ' . $userId);
-
                     session()->set('register_user_type', UserType::normalize($userType));
 
                     // Trigger Shield's register action (Email Activator)

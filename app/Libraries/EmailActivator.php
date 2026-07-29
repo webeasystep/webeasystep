@@ -117,23 +117,14 @@ class EmailActivator implements ActionInterface
             );
         }
 
-        $code = $this->createIdentity($user);
-
-        // Send the email
-        $email = emailer()->setFrom(setting('Email.fromEmail'), setting('Email.fromName') ?? '');
-        $email->setTo($userEmail);
-        $email->setSubject(lang('Auth.emailActivateSubject'));
-        $email->setMessage(view(setting('Auth.views')['action_email_activate_email'], ['code' => $code]));
-
-        if ($email->send(false) === false) {
-            throw new RuntimeException('Cannot send email for user: ' . $user->email . "\n" . $email->printDebugger(['headers']));
+        if (! $this->send($user)) {
+            throw new RuntimeException(
+                $this->error() ?? ('Cannot send email for user: ' . $user->email)
+            );
         }
 
-        // Clear the email
-        $email->clear();
-
         // Display the info page
-        return view(setting('Auth.views')['action_email_activate_show'], ['user' => $user]);
+        return MainView('site_layout/shield/email_activate_show', ['user' => $user]);
     }
 
     /**
@@ -170,7 +161,7 @@ class EmailActivator implements ActionInterface
         if (! $authenticator->checkAction($identity, $postedToken)) {
             session()->setFlashdata('error', lang('Auth.invalidActivateToken'));
 
-            return view(setting('Auth.views')['action_email_activate_show']);
+            return MainView('site_layout/shield/email_activate_show');
         }
 
         $user = $authenticator->getUser();
