@@ -21,10 +21,27 @@ if (!function_exists('view')) {
     function view(string $name, array $data = [], array $options = []): string
     {
         $renderer = \Config\Services::renderer();
-        $saveData = config('View')->saveData;
+        $saveData = config('View')->saveData ?? true;
 
-        // Update saveData option if provided
-        $saveData = $options['saveData'] ?? $saveData;
+        if (array_key_exists('saveData', $options)) {
+            $saveData = (bool) $options['saveData'];
+            unset($options['saveData']);
+        }
+
+        // Handle namespaced view paths or direct app layout paths directly
+        if (
+            str_starts_with($name, '\\') ||
+            str_starts_with($name, 'CodeIgniter\\') ||
+            str_starts_with($name, 'App\\') ||
+            str_starts_with($name, 'Modules\\') ||
+            str_starts_with($name, 'site_layout/') ||
+            str_starts_with($name, 'admin_layout/') ||
+            str_starts_with($name, 'site_layout\\') ||
+            str_starts_with($name, 'admin_layout\\')
+        ) {
+            return $renderer->setData($data, 'raw')
+                ->render($name, $options, $saveData);
+        }
 
         $module = currentModule(); // Ensure currentModule() returns the current module name
 
@@ -37,11 +54,18 @@ if (!function_exists('view')) {
             $name = str_replace('site/', '', $name);
         }
 
-        // Construct the full path
-        $fullPath = "\\Modules\\{$module}\\Views\\{$viewType}\\{$name}";
+        if (!empty($module) && $module !== 'DefaultModule') {
+            $fullPath = "\\Modules\\{$module}\\Views\\{$viewType}\\{$name}";
+            try {
+                return $renderer->setData($data, 'raw')
+                    ->render($fullPath, $options, $saveData);
+            } catch (\Throwable $e) {
+                log_message('debug', 'Modular view rendering failed for ' . $fullPath . ', falling back to direct name: ' . $e->getMessage());
+            }
+        }
 
         return $renderer->setData($data, 'raw')
-            ->render($fullPath, $options, $saveData);
+            ->render($name, $options, $saveData);
     }
 }
 

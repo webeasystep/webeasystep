@@ -56,7 +56,7 @@ class Auth extends ShieldAuth
      * View files
      * --------------------------------------------------------------------
      */
-    public array $siteViews = [
+    public array $views = [
         'login'                       => 'App\Views\site_layout\shield\login',
         'register'                    => 'App\Views\site_layout\shield\register',
         'layout'                      => 'App\Views\site_layout\shield\layout',
