@@ -189,8 +189,8 @@
             <div class="row align-items-center g-3">
                 <div class="col-lg-6">
                     <span class="badge text-bg-light instructor-hero-badge mb-3"><?= esc($user_type_label ?? 'محاضر') ?></span>
-                    <h1 class="h3 fw-bold mb-2 text-white"><?= esc($title ?? 'لوحة تحكم المحاضر') ?></h1>
-                    <p class="mb-0 text-white opacity-75">مرحبًا <?= esc($instructor_name ?? '') ?>، تابع مقرراتك وطلبات الشراء وإجمالي أرباحك من مكان واحد.</p>
+                    <h1 class="h3 fw-bold mb-2 text-white" style="color: #fff !important;"><?= esc($title ?? 'لوحة تحكم المحاضر') ?></h1>
+                    <p class="mb-0 text-white opacity-75" style="color: rgba(255,255,255,0.85) !important;">مرحبًا <?= esc($instructor_name ?? '') ?>، تابع مقرراتك وطلبات الشراء وإجمالي أرباحك من مكان واحد.</p>
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative">
