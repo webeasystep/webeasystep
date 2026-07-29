@@ -91,14 +91,12 @@ class ActivationController extends BaseController
         $identityModel = model(\CodeIgniter\Shield\Models\UserIdentityModel::class);
         $identityModel->deleteIdentitiesByType($user, Session::ID_TYPE_EMAIL_ACTIVATE);
 
-        // Clean up pending action session state to prevent Shield LogicException
-        $sessionUserInfo = session(setting('Auth.sessionConfig')['field']) ?? [];
-        if (is_array($sessionUserInfo)) {
-            unset($sessionUserInfo['auth_action'], $sessionUserInfo['auth_action_message']);
-            session()->set(setting('Auth.sessionConfig')['field'], $sessionUserInfo);
+        // Clean up any pending session state to prevent Shield LogicException
+        if ($authenticator->loggedIn() || session()->has(setting('Auth.sessionConfig')['field'])) {
+            $authenticator->logout();
         }
 
-        // Log the user in
+        // Log the user in cleanly
         $authenticator->login($user);
 
         $this->show_msg('success', 'يا هلا فيك', 'تفعل حسابك بنجاح، ودخلت مباشرة. حياك الله في اكاديمية فخر، ومكانك بيننا.');
