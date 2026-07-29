@@ -37,7 +37,7 @@ class Quizzes extends BaseController
         }
 
         // For non-AJAX requests, redirect back with error
-        return redirect()->back()->with('error', 'Invalid quiz access method');
+        return redirect()->back()->with('error', 'طريقة الدخول للاختبار غير صحيحة. ارجع من المسار الصحيح ونكمل معك.');
     }
 
     /**
@@ -89,7 +89,7 @@ class Quizzes extends BaseController
         $userId = $sessionUser['id'] ?? null;
         
         if (!$userId) {
-            return redirect()->to('/users/login')->with('error', 'Please login to view your attempts.');
+            return redirect()->to('/users/login')->with('error', 'سجّل دخولك أول، وبعدها تشوف محاولاتك بكل وضوح.');
         }
 
         $attempt = $this->attemptsModel->find($attemptId);
@@ -123,7 +123,7 @@ class Quizzes extends BaseController
         $userId = $sessionUser['id'] ?? null;
         
         if (!$userId) {
-            return redirect()->to('/users/login')->with('error', 'Please login to take quizzes.');
+            return redirect()->to('/users/login')->with('error', 'سجّل دخولك أول، وبعدها تقدر تبدأ الاختبار.');
         }
 
         // Check if user has an active attempt for this quiz
@@ -149,7 +149,7 @@ class Quizzes extends BaseController
         $user = session()->get('user');
         $userId = $user['id'] ?? null;
         if (!$userId) {
-            return redirect()->to('/users/login')->with('error', 'Please login to take quizzes.');
+            return redirect()->to('/users/login')->with('error', 'سجّل دخولك أول، وبعدها تقدر تبدأ الاختبار.');
         }
 
         $quiz = $this->quizzesModel->find($quizId);
@@ -164,7 +164,7 @@ class Quizzes extends BaseController
         log_message('debug', "QUIZ_TAKE_DEBUG: User ID: {$userId}, Quiz ID: {$quizId}, Attempt Count: {$attemptCount}, Max Attempts: {$quiz->max_attempts}");
 
         if ($attemptCount >= $quiz->max_attempts) {
-            return redirect()->back()->with('error', 'You have exceeded the maximum number of attempts for this quiz.');
+            return redirect()->back()->with('error', 'استهلكت الحد الأقصى من المحاولات لهذا الاختبار.');
         }
 
         // Check if user has an active attempt
@@ -192,7 +192,7 @@ class Quizzes extends BaseController
         $userId = $sessionUser['id'] ?? null;
         
         if (!$userId) {
-            return redirect()->to('/users/login')->with('error', 'Please login to start quiz attempts.');
+            return redirect()->to('/users/login')->with('error', 'سجّل دخولك أول، وبعدها نبدأ محاولات الاختبار معك.');
         }
 
         $quiz = $this->quizzesModel->find($quizId);
@@ -203,7 +203,7 @@ class Quizzes extends BaseController
         // Check attempt limits
         $attemptCount = $this->attemptsModel->getUserAttemptCount($userId, $quizId);
         if ($attemptCount >= $quiz->max_attempts) {
-            return redirect()->back()->with('error', 'Maximum attempts exceeded.');
+            return redirect()->back()->with('error', 'وصلت للحد الأقصى من المحاولات المتاحة.');
         }
 
         // Create new attempt with pre-shuffled questions
@@ -296,7 +296,7 @@ class Quizzes extends BaseController
         $userId = $sessionUser['id'] ?? null;
         
         if (!$userId) {
-            return redirect()->to('/users/login')->with('error', 'Please login to submit quiz answers.');
+            return redirect()->to('/users/login')->with('error', 'سجّل دخولك أول، وبعدها تقدر ترسل إجاباتك.');
         }
 
         $attempt = $this->attemptsModel->find($attemptId);
@@ -345,7 +345,7 @@ class Quizzes extends BaseController
         $userId = $sessionUser['id'] ?? null;
         
         if (!$userId) {
-            return redirect()->to('/users/login')->with('error', 'Please login to view quiz results.');
+            return redirect()->to('/users/login')->with('error', 'سجّل دخولك أول، وبعدها تشوف نتائجك مباشرة.');
         }
 
         $attempt = $this->attemptsModel->find($attemptId);
@@ -419,7 +419,7 @@ class Quizzes extends BaseController
         $userId = $sessionUser['id'] ?? null;
         
         if (!$userId) {
-            return redirect()->to('/users/login')->with('error', 'Please login to view your quiz attempts.');
+            return redirect()->to('/users/login')->with('error', 'سجّل دخولك أول، وبعدها تراجع محاولاتك بهدوء.');
         }
 
         // Get user's quiz history

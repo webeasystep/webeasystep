@@ -2,12 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Libraries\UserType;
 use App\Models\BaseModel;
 use CodeIgniter\Events\Events;
 use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\Session\Session;
+use CodeIgniter\Shield\Authentication\Authenticators\Session as SessionAuthenticator;
 use CodeIgniter\Shield\Entities\User;
 use CodeIgniter\Shield\Exceptions\ValidationException;
+use CodeIgniter\Shield\Models\UserIdentityModel;
 use CodeIgniter\Shield\Models\UserModel;
 use Modules\Pages\Controllers\Pages;
 use Modules\Pages\Models\PagesModel;
@@ -78,7 +81,7 @@ class Site extends BaseController
         // Verify user is still logged in
         if (!auth()->loggedIn()) {
             log_message('error', 'POST_LOGIN_REDIRECT: User not logged in during redirect handling');
-            return redirect()->to('/login')->with('error', 'Session expired. Please log in again.');
+            return redirect()->to('/login')->with('error', 'انتهت جلستك، سجّل دخولك من جديد ونكمل من حيث وقفت.');
         }
 
         log_message('debug', 'POST_LOGIN_REDIRECT: User authenticated, proceeding with redirect');
@@ -108,11 +111,50 @@ class Site extends BaseController
             return redirect()->to('/login')->with('error', lang('Auth.invalidActivateToken'));
         }
         
-        // Set the token in session for the verification form
-        session()->setFlashdata('activation_token', $token);
+        /** @var UserIdentityModel $identityModel */
+        $identityModel = model(UserIdentityModel::class);
+        $identity = $identityModel->getIdentityBySecret(SessionAuthenticator::ID_TYPE_EMAIL_ACTIVATE, $token);
         
-        // Display the activation verification page
-        return MainView('site_layout/shield/email_activate_show', ['token' => $token]);
+        if ($identity === null || empty($identity->user_id)) {
+            return redirect()->to('/login')->with('error', lang('Auth.invalidActivateToken'));
+        }
+
+        /** @var UserModel $users */
+        $users = auth()->getProvider();
+        $user = $users->findById($identity->user_id);
+
+        if (! $user instanceof User) {
+            return redirect()->to('/login')->with('error', lang('Auth.activationNoUser'));
+        }
+
+        if (! $user->isActivated()) {
+            $user->activate();
+            $users->save($user);
+        }
+
+        $identityModel->deleteIdentitiesByType($user, SessionAuthenticator::ID_TYPE_EMAIL_ACTIVATE);
+
+        /** @var SessionAuthenticator $authenticator */
+        $authenticator = auth('session')->getAuthenticator();
+        // #region debug-point activation-direct-login-session-state
+        log_message('debug', 'ACTIVATION_DIRECT_LOGIN before session_state=' . json_encode(session(setting('Auth.sessionConfig')['field'])));
+        // #endregion debug-point activation-direct-login-session-state
+
+        $sessionUserInfo = session(setting('Auth.sessionConfig')['field']) ?? [];
+        if (is_array($sessionUserInfo)) {
+            unset($sessionUserInfo['auth_action'], $sessionUserInfo['auth_action_message']);
+            session()->set(setting('Auth.sessionConfig')['field'], $sessionUserInfo);
+        }
+
+        // #region debug-point activation-direct-login-session-cleaned
+        log_message('debug', 'ACTIVATION_DIRECT_LOGIN after session_state=' . json_encode(session(setting('Auth.sessionConfig')['field'])));
+        // #endregion debug-point activation-direct-login-session-cleaned
+
+        $authenticator->login($user);
+
+        $this->show_msg('success', 'يا هلا فيك', 'تفعل حسابك بنجاح، ودخلت مباشرة. حياك الله في اكاديمية فخر، ومكانك بيننا.');
+
+        return redirect()->to(site_url(UserType::getDefaultPath(UserType::normalize($user->user_type ?? null))))->withCookies();
     }
 
     //--------------------------------------------------------------------
@@ -179,7 +221,7 @@ class Site extends BaseController
             $redirectURL = session('redirect_url') ?? site_url('/courses/my_courses');
             unset($_SESSION['redirect_url']);
             log_message('debug', 'Site::login - Redirecting to: ' . $redirectURL);
-            $this->show_msg('success', lang('Auth.loginSuccess'), "مرحبًا بك مرة أخرى");
+            $this->show_msg('success', 'يا هلا فيك', 'رجعت لمكانك، وإن شاء الله تلقى كل شيء أوضح وأسهل عليك.');
             return redirect()->to($redirectURL)->withCookies();
         }
 
@@ -208,6 +250,7 @@ class Site extends BaseController
     public function logout(): RedirectResponse
     {
         auth()->logout();
+        $this->show_msg('success', 'نراك على خير', lang('Auth.successLogout'));
         return redirect()->to(site_url('/'));
     }
     public function ForgotPassword()
@@ -313,14 +356,17 @@ class Site extends BaseController
             $email = service('email');
 
             // Configure email
-            $email->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            $email->setFrom(
+                env('MAIL_FROM_EMAIL', env('MAIL_FROM_ADDRESS', 'support@fakhrcs.com')),
+                env('MAIL_FROM_NAME', 'FakhrCS')
+            );
             $email->setTo($user->email);
-            $email->setSubject('مرحباً بك في MSARLink - تم تفعيل حسابك بنجاح');
+            $email->setSubject('مرحباً بك في FakhrCS - تم تفعيل حسابك بنجاح');
 
             // Load welcome email template
             $welcomeTemplate = view('site_layout/shield/Email/welcome_email', [
                 'user' => $user,
-                'siteName' => 'MSARLink'
+                'siteName' => 'FakhrCS'
             ]);
 
             $email->setMessage($welcomeTemplate);

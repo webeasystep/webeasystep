@@ -55,7 +55,7 @@ class Courses extends BaseController
         // Check user authentication
         $userId = auth()->user()->id ?? null;
         if (!$userId) {
-            return redirect()->to('login')->with('error', 'Please log in to access course content.');
+            return redirect()->to('login')->with('error', 'سجّل دخولك أول، وبعدها تقدر تدخل على محتوى المقرر.');
         }
 
         // Check if user has access to this unit
@@ -66,7 +66,7 @@ class Courses extends BaseController
                 // Redirect back to current course view with Arabic flash message
                 $currentUrl = $this->request->getServer('HTTP_REFERER') ?? site_url('courses/course_view/' . $course->slug);
                 return redirect()->to($currentUrl)
-                    ->with('error', 'يجب عليك شراء الكورس أولاً حتى تتمكن من مشاهدة المحتوى');
+                    ->with('error', 'لازم تشترك في هذا المقرر أول، وبعدها ينفتح لك المحتوى كامل.');
             }
         }
 
@@ -233,7 +233,7 @@ class Courses extends BaseController
     public function courseAction($courseId = null)
     {
         if (!$courseId) {
-            return redirect()->to('/')->with('error', 'معرف الكورس مطلوب');
+            return redirect()->to('/')->with('error', 'نحتاج نعرف المقرر المطلوب أول، وبعدها نكمل معك.');
         }
 
         // Check if user is logged in
@@ -253,7 +253,7 @@ class Courses extends BaseController
             ->getRowArray();
 
         if (!$course) {
-            return redirect()->to('/')->with('error', 'الكورس غير موجود');
+            return redirect()->to('/')->with('error', 'المقرر هذا غير موجود أو غير متاح الآن.');
         }
 
         // Check if user is enrolled in the course via tb_course_enrollments
@@ -486,13 +486,13 @@ class Courses extends BaseController
         // 2) Check if user is logged in & enrolled
         $userId = auth()->user()->id ?? null;
         if (!$userId) {
-            return redirect()->to('login')->with('error', 'Please log in first.');
+            return redirect()->to('login')->with('error', 'سجّل دخولك أول، وبعدها نكمل معك.');
         }
 
         // Check enrollment using the new Units system
         $hasAccess = $this->checkCourseAccess($userId, $course->id);
         if (!$hasAccess) {
-            return redirect()->to('/courses/course_details/' . $slug)->with('error', 'You need to enroll in this course to access its content.');
+            return redirect()->to('/courses/course_details/' . $slug)->with('error', 'لازم يكون عندك اشتراك في هذا المقرر حتى تقدر تدخل محتواه.');
         }
 
         // 3) Get course units with their items
@@ -886,7 +886,7 @@ class Courses extends BaseController
     {
         $userId = auth()->user()->id;
         if (!$userId) {
-            return redirect()->to('login')->with('error', 'Please log in first.');
+            return redirect()->to('login')->with('error', 'سجّل دخولك أول، وبعدها نكمل معك.');
         }
 
         $course = $this->coursesModel->find($courseId);
@@ -907,7 +907,7 @@ class Courses extends BaseController
     {
         $userId = auth()->user()->id;
         if (!$userId) {
-            return redirect()->to('login')->with('error', 'Please log in first.');
+            return redirect()->to('login')->with('error', 'سجّل دخولك أول، وبعدها نكمل معك.');
         }
 
         $itemId = (int) $this->request->getPost('id');
@@ -922,7 +922,7 @@ class Courses extends BaseController
         // 2) Check enrollment
         $enrollment = $this->coursesModel->getEnrollment($userId, $course->id);
         if (!$enrollment) {
-            return redirect()->to('/courses/'.$slug)->with('error', 'You are not enrolled in this course.');
+            return redirect()->to('/courses/'.$slug)->with('error', 'أنت غير مشترك في هذا المقرر حاليًا.');
         }
 
         // 3) Mark the item as complete
@@ -983,7 +983,7 @@ class Courses extends BaseController
         $userId = auth()->user()->id;
 
         if (!$userId) {
-            return redirect()->to('login')->with('error', 'Please log in first.');
+            return redirect()->to('login')->with('error', 'سجّل دخولك أول، وبعدها نكمل معك.');
         }
 
         $myCourses = $this->coursesModel->getAllUserCourses($userId);
@@ -1051,7 +1051,7 @@ class Courses extends BaseController
     {
         $userId = auth()->user()->id ?? null;
         if (!$userId) {
-            return redirect()->to('login')->with('error', 'Please log in first.');
+            return redirect()->to('login')->with('error', 'سجّل دخولك أول، وبعدها نكمل معك.');
         }
 
         $course = $this->coursesModel->find($courseId);
@@ -1061,7 +1061,7 @@ class Courses extends BaseController
 
         // Check if already enrolled
         if ($this->coursesModel->isUserEnrolled($userId, $courseId)) {
-            return redirect()->back()->with('error', 'You are already enrolled in this course.');
+            return redirect()->back()->with('error', 'أنت مشترك بالفعل في هذا المقرر.');
         }
 
         // Check if course is free
@@ -1080,12 +1080,12 @@ class Courses extends BaseController
     public function mark_complete()
     {
         if (!$this->request->is('post')) {
-            return redirect()->back()->with('error', 'Invalid request method.');
+            return redirect()->back()->with('error', 'الطلب المرسل غير صحيح. جرّب من الصفحة نفسها مرة ثانية.');
         }
 
         $userId = auth()->user()->id ?? null;
         if (!$userId) {
-            return redirect()->to('login')->with('error', 'Please log in first.');
+            return redirect()->to('login')->with('error', 'سجّل دخولك أول، وبعدها نكمل معك.');
         }
 
         $itemId = $this->request->getPost('id');
@@ -1093,18 +1093,18 @@ class Courses extends BaseController
         $itemType = $this->request->getPost('item_type') ?? 'video';
 
         if (!$itemId || !$courseSlug) {
-            return redirect()->back()->with('error', 'Missing required parameters.');
+            return redirect()->back()->with('error', 'بعض البيانات المطلوبة ناقصة. جرّب مرة ثانية من نفس الصفحة.');
         }
 
         // Get the unit item
         $unitItem = $this->unitItemsModel->find($itemId);
         if (!$unitItem) {
-            return redirect()->back()->with('error', 'Item not found.');
+            return redirect()->back()->with('error', 'العنصر المطلوب غير موجود.');
         }
 
         // Check if user has access to this unit
         if (!$this->checkUnitAccess($userId, $unitItem->unit_id)) {
-            return redirect()->back()->with('error', 'You do not have access to this content.');
+            return redirect()->back()->with('error', 'هذا المحتوى غير متاح لك حاليًا.');
         }
 
         // Handle completion based on item type
@@ -1125,7 +1125,7 @@ class Courses extends BaseController
         if ($success) {
             return redirect()->back()->with('success', 'Item marked as complete!');
         } else {
-            return redirect()->back()->with('error', 'Failed to mark item as complete.');
+            return redirect()->back()->with('error', 'ما قدرنا نحفظ تقدمك الآن. جرّب مرة ثانية، وإذا تكرر بنضبطها معك.');
         }
     }
 
@@ -1427,12 +1427,12 @@ class Courses extends BaseController
         // Check enrollment
         $userId = auth()->user()->id ?? null;
         if (!$userId) {
-            return redirect()->to('login')->with('error', 'Please log in to access course content.');
+            return redirect()->to('login')->with('error', 'سجّل دخولك أول، وبعدها تقدر تدخل على محتوى المقرر.');
         }
 
         $enrollment = $this->coursesModel->getEnrollment($userId, $course->id);
         if (!$enrollment && !$unit->is_preview) {
-            return redirect()->to('/courses/' . $course->slug)->with('error', 'You must be enrolled to access this content.');
+            return redirect()->to('/courses/' . $course->slug)->with('error', 'لازم يكون عندك اشتراك في هذا المقرر حتى تقدر تدخل على هذا المحتوى.');
         }
 
         // Get navigation

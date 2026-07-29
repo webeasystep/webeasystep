@@ -28,7 +28,7 @@ class Settings extends BaseController
         // Use Shield's auth helper to get current user
         $user = auth()->user();
         if (!$user) {
-            return redirect()->to('/login')->with('error', 'يجب تسجيل الدخول أولاً');
+            return redirect()->to('/login')->with('error', 'سجّل دخولك أول، وبعدها كل إعداداتك بتكون جاهزة لك.');
         }
 
         // Get user data from the users model
@@ -82,7 +82,7 @@ class Settings extends BaseController
         // Use Shield's auth helper to get current user
         $user = auth()->user();
         if (!$user) {
-            return redirect()->to('/login')->with('error', 'يجب تسجيل الدخول أولاً');
+            return redirect()->to('/login')->with('error', 'سجّل دخولك أول، وبعدها نكمل تحديث بياناتك بكل سهولة.');
         }
 
         if (!$this->request->is('post')) {
@@ -110,7 +110,7 @@ class Settings extends BaseController
                                           ->where('user_id !=', $user->id)
                                           ->first();
                 if ($existingIdentity) {
-                    return redirect()->back()->withInput()->with('errors', ['email' => 'هذا البريد الإلكتروني مستخدم بالفعل']);
+                    return redirect()->back()->withInput()->with('errors', ['email' => 'هذا البريد مستخدم من قبل. جرّب بريدًا آخر أو سجّل دخولك مباشرة.']);
                 }
             }
 
@@ -142,10 +142,10 @@ class Settings extends BaseController
                 }
             }
 
-            return redirect()->back()->with('success', 'تم تحديث الملف الشخصي بنجاح!');
+            return redirect()->back()->with('success', 'تم تحديث ملفك الشخصي بنجاح، وكل شيء صار محدث وجاهز.');
         } catch (\Exception $e) {
             log_message('error', 'Profile update error: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'حدث خطأ أثناء تحديث الملف الشخصي.');
+            return redirect()->back()->with('error', 'صار خلل أثناء تحديث الملف الشخصي. جرّب مرة ثانية، وإذا تكرر إحنا معك.');
         }
     }
 
@@ -157,7 +157,7 @@ class Settings extends BaseController
         // Use Shield's auth helper to get current user
         $user = auth()->user();
         if (!$user) {
-            return redirect()->to('/login')->with('error', 'يجب تسجيل الدخول أولاً');
+            return redirect()->to('/login')->with('error', 'سجّل دخولك أول، وبعدها نضبط كلمة المرور معك.');
         }
 
         if (!$this->request->is('post')) {
@@ -181,7 +181,7 @@ class Settings extends BaseController
         try {
             // Verify current password using Shield's password verification
             if (!password_verify($currentPassword, $user->password_hash)) {
-                return redirect()->back()->with('error', 'كلمة المرور الحالية غير صحيحة.');
+                return redirect()->back()->with('error', 'كلمة المرور الحالية ما طابقت. تأكد منها وجرّب مرة ثانية.');
             }
 
             // Update password using Shield's user provider
@@ -192,13 +192,13 @@ class Settings extends BaseController
             $userEntity->password = $newPassword;
 
             if ($userProvider->save($userEntity)) {
-                return redirect()->back()->with('success', 'تم تغيير كلمة المرور بنجاح!');
+                return redirect()->back()->with('success', 'تم تغيير كلمة المرور بنجاح، وحسابك الآن أكثر أمانًا.');
             } else {
-                return redirect()->back()->with('error', 'فشل في تغيير كلمة المرور.');
+                return redirect()->back()->with('error', 'ما قدرنا نغيّر كلمة المرور الآن. جرّب بعد شوي ونكمل معك.');
             }
         } catch (\Exception $e) {
             log_message('error', 'Password change error: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'حدث خطأ أثناء تغيير كلمة المرور.');
+            return redirect()->back()->with('error', 'صار خلل أثناء تغيير كلمة المرور. جرّب مرة ثانية، وإذا احتجت إحنا معك.');
         }
     }
 
@@ -210,7 +210,7 @@ class Settings extends BaseController
         // Use Shield's auth helper to get current user
         $user = auth()->user();
         if (!$user) {
-            return redirect()->to('/login')->with('error', 'يجب تسجيل الدخول أولاً');
+            return redirect()->to('/login')->with('error', 'سجّل دخولك أول، وبعدها نحدّث صورتك الشخصية.');
         }
 
         // Initialize FireUploader
@@ -221,13 +221,13 @@ class Settings extends BaseController
             $uploadResult = $fireUploader->upload_photos($this->usersModel, 'avatar', $user->id);
 
             if ($uploadResult) {
-                return redirect()->to('/settings')->with('success', 'تم تحديث صورة الملف الشخصي بنجاح!');
+                return redirect()->to('/settings')->with('success', 'تم تحديث صورتك الشخصية بنجاح، وصار حسابك أرتب وأوضح.');
             } else {
-                return redirect()->back()->with('error', 'فشل في رفع صورة الملف الشخصي.');
+                return redirect()->back()->with('error', 'ما قدرنا نرفع الصورة الآن. جرّب صورة ثانية أو أعد المحاولة بعد شوي.');
             }
         } catch (\Exception $e) {
             log_message('error', 'Avatar upload error: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'حدث خطأ أثناء رفع الصورة: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'صار خلل أثناء رفع الصورة. جرّب مرة ثانية، وإذا استمرت المشكلة بنضبطها معك.');
         }
     }
 
@@ -239,7 +239,7 @@ class Settings extends BaseController
         // Use Shield's auth helper to get current user
         $user = auth()->user();
         if (!$user) {
-            return redirect()->to('/login')->with('error', 'يجب تسجيل الدخول أولاً');
+            return redirect()->to('/login')->with('error', 'سجّل دخولك أول، وبعدها تقدر تدير صورتك الشخصية بكل سهولة.');
         }
 
         try {
@@ -255,16 +255,16 @@ class Settings extends BaseController
 
                 // Update database to remove avatar reference
                 if ($this->usersModel->update($user->id, ['avatar' => null])) {
-                    return redirect()->back()->with('success', 'تم حذف صورة الملف الشخصي بنجاح!');
+                    return redirect()->back()->with('success', 'تم حذف الصورة الشخصية بنجاح.');
                 } else {
-                    return redirect()->back()->with('error', 'فشل في حذف صورة الملف الشخصي من قاعدة البيانات.');
+                    return redirect()->back()->with('error', 'ما قدرنا نحذف الصورة من النظام الآن. جرّب مرة ثانية، وإذا لزم الأمر نساعدك.');
                 }
             } else {
-                return redirect()->back()->with('error', 'لا توجد صورة ملف شخصي لحذفها.');
+                return redirect()->back()->with('error', 'ما فيه صورة شخصية محفوظة حتى نحذفها.');
             }
         } catch (\Exception $e) {
             log_message('error', 'Avatar deletion error: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'حدث خطأ أثناء حذف صورة الملف الشخصي.');
+            return redirect()->back()->with('error', 'صار خلل أثناء حذف الصورة الشخصية. جرّب مرة ثانية، وإذا احتجت إحنا معك.');
         }
     }
 }

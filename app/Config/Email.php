@@ -62,7 +62,7 @@ class Email extends BaseConfig
      *             to the server. 'ssl' means implicit SSL. Connection on port
      *             465 should set this to ''.
      */
-    public string $SMTPCrypto = 'tls';
+    public string $SMTPCrypto = '';
 
     /**
      * Enable word-wrap
@@ -127,12 +127,19 @@ class Email extends BaseConfig
         parent::__construct();
         
         // Load email settings from environment variables
-        $this->fromEmail = env('MAIL_FROM_EMAIL', 'no-reply@msarlink.test');
-        $this->fromName = env('MAIL_FROM_NAME', 'MSARLink System');
+        $this->fromEmail = env('MAIL_FROM_EMAIL', 'support@fakhrcs.com');
+        $this->fromName = env('MAIL_FROM_NAME', 'FakhrCS');
         $this->SMTPHost = env('MAIL_HOST', 'localhost');
         $this->SMTPPort = (int) env('MAIL_PORT', 587);
         $this->SMTPUser = env('MAIL_USERNAME', env('MAIL_USER', ''));
         $this->SMTPPass = env('MAIL_PASSWORD', env('MAIL_PASS', ''));
+
+        $smtpCrypto = strtolower(trim((string) env('MAIL_CRYPTO', '')));
+        if (! in_array($smtpCrypto, ['', 'ssl', 'tls'], true)) {
+            $smtpCrypto = '';
+        }
+
+        $this->SMTPCrypto = $smtpCrypto;
         
         // Set protocol based on environment
         if (env('MAIL_DRIVER') === 'mailtrap' || env('MAIL_DRIVER') === 'smtp') {
@@ -157,6 +164,12 @@ class Email extends BaseConfig
                 // Enable debugging for development
                 if (ENVIRONMENT === 'development') {
                     $this->validate = true;
+                }
+            } elseif ($this->SMTPCrypto === '') {
+                if ($this->SMTPPort === 465) {
+                    $this->SMTPCrypto = 'ssl';
+                } elseif ($this->SMTPPort === 587 || $this->SMTPPort === 2525) {
+                    $this->SMTPCrypto = 'tls';
                 }
             }
         }

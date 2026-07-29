@@ -156,7 +156,7 @@ class Users extends BaseController
                 ->get()->getRow();
             if ($existingMobile) {
                 log_message('debug', 'Registration failed: Mobile number ' . $fullMobile . ' already exists.');
-                $this->show_msg('danger', 'خطأ في التسجيل', 'رقم الجوال مسجل بالفعل');
+                $this->show_msg('danger', 'ما ضبط معنا التسجيل', 'رقم الجوال هذا مسجل من قبل. جرّب برقم آخر أو سجّل دخولك مباشرة.');
                 return redirect()->back()->withInput();
             }
             
@@ -210,13 +210,13 @@ class Users extends BaseController
                     
                 } catch (\Exception $e) {
                     log_message('error', 'Registration - Failed to create identity: ' . $e->getMessage());
-                    $this->show_msg('danger', 'خطأ في التسجيل', 'حدث خطأ أثناء إنشاء الحساب');
+                    $this->show_msg('danger', 'ما ضبط معنا التسجيل', 'صار خلل أثناء إنشاء الحساب. جرّب مرة ثانية، وإذا تكرر إحنا معك.');
                     return redirect()->back()->withInput();
                 }
                 
             } else {
                 log_message('error', 'Registration - Failed to save user: ' . json_encode($users->errors()));
-                $this->show_msg('danger', 'خطأ في التسجيل', 'فشل في حفظ بيانات المستخدم');
+                $this->show_msg('danger', 'ما ضبط معنا التسجيل', 'ما قدرنا نحفظ بياناتك الآن. جرّب بعد شوي ونكمل معك.');
                 return redirect()->back()->withInput();
             }
 
@@ -451,7 +451,7 @@ class Users extends BaseController
         // Verify user is still logged in
         if (!auth()->loggedIn()) {
             log_message('error', 'POST_LOGIN_REDIRECT: User not logged in during redirect handling');
-            return redirect()->to('/login')->with('error', 'Session expired. Please log in again.');
+            return redirect()->to('/login')->with('error', 'انتهت جلستك، سجّل دخولك من جديد ونكمل معك.');
         }
 
         log_message('debug', 'POST_LOGIN_REDIRECT: User authenticated, proceeding with redirect');

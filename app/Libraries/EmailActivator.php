@@ -45,8 +45,8 @@ class EmailActivator implements ActionInterface
             $emailer = \Config\Services::email();
             
             // Get email configuration from environment
-            $fromEmail = env('MAIL_FROM_EMAIL', 'no-reply@msarlink.test');
-            $fromName = env('MAIL_FROM_NAME', 'MSARLink System');
+            $fromEmail = env('MAIL_FROM_EMAIL', 'support@fakhrcs.com');
+            $fromName = env('MAIL_FROM_NAME', 'FakhrCS');
             
             $emailer->setFrom($fromEmail, $fromName);
             $emailer->setTo($email);

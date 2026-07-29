@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تفعيل حسابك - MSARLink</title>
+    <title>تفعيل حسابك - FakhrCS</title>
     <style>
         /* Reset styles for email clients */
         body, table, td, p, a, li, blockquote {
@@ -219,16 +219,16 @@
     <div class="email-container">
         <!-- Header -->
         <div class="header">
-            <div class="logo">MSARLink</div>
-            <p class="header-subtitle">منصة التعلم الإلكتروني المتقدمة</p>
+            <div class="logo">FakhrCS</div>
+            <p class="header-subtitle">المنصة الأولى المخصصة لطلبة الجامعة السعودية الإلكترونية</p>
         </div>
         
         <!-- Main Content -->
         <div class="content">
-            <h1 class="welcome-title">مرحباً بك في MSARLink!</h1>
+            <h1 class="welcome-title">مرحباً بك في FakhrCS!</h1>
             
             <p class="welcome-text">
-                شكراً لك على التسجيل في منصتنا التعليمية. لإكمال عملية التسجيل وتفعيل حسابك، 
+                شكراً لك على التسجيل في منصتنا التعليمية. لإكمال عملية التسجيل وتفعيل حسابك،
                 يرجى النقر على الزر أدناه أو استخدام رمز التفعيل المرفق.
             </p>
             
@@ -256,7 +256,7 @@
             </div>
             
             <p class="welcome-text">
-                بعد تفعيل حسابك، ستتمكن من الوصول إلى جميع الدورات والمحتوى التعليمي المتاح على المنصة.
+                بعد تفعيل حسابك، ستتمكن من الوصول إلى جميع المقررات والمحتوى التعليمي المتاح على المنصة.
                 نتطلع إلى رحلتك التعليمية معنا!
             </p>
         </div>
@@ -264,7 +264,7 @@
         <!-- Footer -->
         <div class="footer">
             <p class="footer-text">
-                هذه رسالة تلقائية من منصة MSARLink<br>
+                هذه رسالة تلقائية من منصة FakhrCS<br>
                 إذا كان لديك أي استفسار، لا تتردد في التواصل معنا
             </p>
             
@@ -275,7 +275,7 @@
             </div>
             
             <p class="copyright">
-                © <?= date('Y') ?> MSARLink. جميع الحقوق محفوظة.
+                © <?= date('Y') ?> FakhrCS. جميع الحقوق محفوظة.
             </p>
         </div>
     </div>

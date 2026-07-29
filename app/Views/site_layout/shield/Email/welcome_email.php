@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مرحباً بك في MSARLink</title>
+    <title>مرحباً بك في FakhrCS</title>
     <style>
         /* Reset styles for email clients */
         body, table, td, p, a, li, blockquote {
@@ -305,7 +305,7 @@
     <div class="email-container">
         <!-- Header -->
         <div class="header">
-            <div class="logo">MSARLink</div>
+            <div class="logo">FakhrCS</div>
             <p class="header-subtitle">منصة التعلم الإلكتروني المتقدمة</p>
             <div class="welcome-badge">🎉 مرحباً بك معنا</div>
         </div>
@@ -315,7 +315,7 @@
             <h1 class="welcome-title">أهلاً وسهلاً <span class="user-name"><?= esc($user->username ?? $user->email) ?></span>!</h1>
             
             <p class="welcome-text">
-                تهانينا! تم تفعيل حسابك بنجاح في منصة MSARLink. 
+                تهانينا! تم تفعيل حسابك بنجاح في منصة FakhrCS.
                 نحن متحمسون لانضمامك إلى مجتمعنا التعليمي المتنامي.
             </p>
             
@@ -388,7 +388,7 @@
         <!-- Footer -->
         <div class="footer">
             <p class="footer-text">
-                شكراً لاختيارك منصة MSARLink<br>
+                شكراً لاختيارك منصة FakhrCS<br>
                 نحن هنا لدعمك في رحلتك التعليمية
             </p>
             
@@ -400,7 +400,7 @@
             </div>
             
             <p class="copyright">
-                © <?= date('Y') ?> MSARLink. جميع الحقوق محفوظة.
+                © <?= date('Y') ?> FakhrCS. جميع الحقوق محفوظة.
             </p>
         </div>
     </div>

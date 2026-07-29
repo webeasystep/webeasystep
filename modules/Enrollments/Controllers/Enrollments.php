@@ -77,7 +77,7 @@ class Enrollments extends BaseController
     public function purchaseCourse($courseId = null)
     {
         if (!auth()->loggedIn()) {
-            $this->show_msg('danger', 'error', "يرجى تسجيل الدخول أولاً");
+            $this->show_msg('danger', 'يا هلا فيك', 'سجّل دخولك أول، وبعدها نكمل اختيار المقرر معك.');
             return redirect()->to('/login');
         }
 
@@ -86,7 +86,7 @@ class Enrollments extends BaseController
         }
 
         if (!$courseId) {
-            return redirect()->to('/')->with('error', 'يرجى اختيار مقرر');
+            return redirect()->to('/')->with('error', 'اختر المقرر أول، وبعدها نكمل الخطوة التالية.');
         }
 
         // Store in session and redirect to checkout
@@ -107,20 +107,20 @@ class Enrollments extends BaseController
         $courseId = session()->get('selected_course');
 
         if (!$courseId) {
-            return redirect()->to('/')->with('error', 'يرجى اختيار مقرر');
+            return redirect()->to('/')->with('error', 'اختر المقرر أول، وبعدها نكمل الخطوة التالية.');
         }
 
         // Check if already enrolled
         if ($this->courseEnrollmentsModel->isUserEnrolled($userId, $courseId, false)) {
             session()->remove('selected_course');
-            return redirect()->to('/enrollments/my-courses')->with('error', 'أنت مشترك بالفعل في هذا المقرر');
+            return redirect()->to('/enrollments/my-courses')->with('error', 'أنت مشترك بالفعل في هذا المقرر، وتقدر تدخل عليه مباشرة.');
         }
 
         $course = $this->coursesModel->find($courseId);
 
         if (!$course) {
             session()->remove('selected_course');
-            return redirect()->to('/')->with('error', 'الدورة غير موجودة');
+            return redirect()->to('/')->with('error', 'المقرر هذا غير متاح الآن. جرّب مقررًا آخر أو ارجع للرئيسية.');
         }
 
         // Handle POST - process purchase
@@ -285,7 +285,7 @@ class Enrollments extends BaseController
         ]);
 
         if (!$enrollmentId) {
-            return redirect()->back()->with('error', 'فشل في حفظ طلب الشراء');
+            return redirect()->back()->with('error', 'ما قدرنا نحفظ طلب الشراء الآن. جرّب مرة ثانية، وإذا احتجت إحنا معك.');
         }
 
         $this->sendPendingEnrollmentEmails($enrollmentId);

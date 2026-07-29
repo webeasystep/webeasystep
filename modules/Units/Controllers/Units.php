@@ -41,7 +41,7 @@ class Units extends BaseController
     {
         $userId = auth()->user()->id ?? null;
         if (!$userId) {
-            return redirect()->to('login')->with('error', 'Please log in to purchase units.');
+            return redirect()->to('login')->with('error', 'سجّل دخولك أول، وبعدها تقدر تشتري الوحدات بكل سهولة.');
         }
 
         if ($this->request->is('post')) {
@@ -49,7 +49,7 @@ class Units extends BaseController
             $paymentMethod = $this->request->getPost('payment_method');
             
             if (empty($unitIds)) {
-                return redirect()->back()->with('error', 'Please select at least one unit to purchase.');
+                return redirect()->back()->with('error', 'اختر وحدة واحدة على الأقل، وبعدها نكمل الطلب معك.');
             }
 
             // Calculate total price
@@ -62,7 +62,7 @@ class Units extends BaseController
             // Handle file upload
             $uploadedFile = $this->request->getFile('payment_attachment');
             if (!$uploadedFile->isValid()) {
-                return redirect()->back()->with('error', 'Please upload a valid payment proof.');
+                return redirect()->back()->with('error', 'ارفع إثبات دفع واضح وصحيح حتى نقدر نراجع طلبك بسرعة.');
             }
 
             $fileName = $uploadedFile->getRandomName();
@@ -82,7 +82,7 @@ class Units extends BaseController
             if ($paymentsModel->insertPayment($paymentData)) {
                 return redirect()->to('units/my-purchases')->with('success', 'Payment submitted successfully. Please wait for admin approval.');
             } else {
-                return redirect()->back()->with('error', 'Failed to submit payment. Please try again.');
+                return redirect()->back()->with('error', 'ما قدرنا نرسل طلب الدفع الآن. جرّب مرة ثانية، وإذا احتجت إحنا معك.');
             }
         }
 
@@ -105,7 +105,7 @@ class Units extends BaseController
     {
         $userId = auth()->user()->id ?? null;
         if (!$userId) {
-            return redirect()->to('login')->with('error', 'Please log in to view your purchases.');
+            return redirect()->to('login')->with('error', 'سجّل دخولك أول، وبعدها تشوف مشترياتك بكل وضوح.');
         }
 
         $data['title'] = lang('Units.my_purchases');
@@ -138,12 +138,12 @@ class Units extends BaseController
         // Check enrollment
         $userId = auth()->user()->id ?? null;
         if (!$userId) {
-            return redirect()->to('login')->with('error', 'Please log in to access course content.');
+            return redirect()->to('login')->with('error', 'سجّل دخولك أول، وبعدها تقدر تدخل على محتوى المقرر.');
         }
 
         $enrollment = $this->coursesModel->getEnrollment($userId, $course->id);
         if (!$enrollment && !$unit->is_free) {
-            return redirect()->to('courses')->with('error', 'You need to enroll in this course to access this content.');
+            return redirect()->to('courses')->with('error', 'لازم يكون عندك اشتراك في هذا المقرر أول، وبعدها يفتح لك المحتوى كامل.');
         }
 
         // Get navigation units
