@@ -149,7 +149,7 @@
                                     
                                     <div class="course-instructor mb-3 mt-3 text-muted" style="font-size: 0.95rem; font-weight: 500;">
                                         <div class="d-flex align-items-center mb-1">
-                                            <span class="icon-user mr-2" style="font-size: 1.1rem; color: #136ad5;"></span> 
+                                            <span class="icon-user ml-2" style="font-size: 1.1rem; color: #136ad5; margin-left: 8px;"></span> 
                                             <span><?= esc($course['instructor_name'] ?? 'أحمد فخر الدين') ?></span>
                                         </div>
                                         <div class="d-flex align-items-center" style="font-size: 0.85rem;">
