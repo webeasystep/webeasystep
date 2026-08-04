@@ -21,8 +21,14 @@
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-4">
                     <div class="custom-media">
                         <!-- Image -->
+                        <?php 
+                            $courseAlt = esc($course->course_title ?? $course['course_title'] ?? '') . (!empty($course->course_name_en ?? $course['course_name_en']) ? ' - ' . esc($course->course_name_en ?? $course['course_name_en']) : '');
+                            $courseAlt .= !empty($course->course_code ?? $course['course_code']) ? ' | رمز المقرر: ' . esc($course->course_code ?? $course['course_code']) : '';
+                            $courseAlt .= !empty($course->college_name ?? $course['college_name']) ? ' | ' . esc($course->college_name ?? $course['college_name']) : '';
+                            $courseAlt .= ' | الجامعة السعودية الإلكترونية SEU';
+                        ?>
                         <img
-                                alt="<?= esc($course['course_title']) ?>"
+                                alt="<?= $courseAlt ?>"
                                 style="height: 200px; object-fit: cover;"
                                 src="<?= thumb($course['image'], 170, 249) ?>"
                                 class="card-img-top"

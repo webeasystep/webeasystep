@@ -214,8 +214,14 @@
                         <div class="course-card">
                             <!-- Course Image & Badge -->
                             <div class="course-image-container">
+                                <?php 
+                                    $courseAlt = esc($course->course_title ?? '') . (!empty($course->course_name_en) ? ' - ' . esc($course->course_name_en) : '');
+                                    $courseAlt .= !empty($course->course_code) ? ' | رمز المقرر: ' . esc($course->course_code) : '';
+                                    $courseAlt .= !empty($course->college_name_ar) ? ' | ' . esc($course->college_name_ar) : '';
+                                    $courseAlt .= ' | الجامعة السعودية الإلكترونية SEU';
+                                ?>
                                 <img
-                                        alt="<?= esc($course->course_title) ?>"
+                                        alt="<?= $courseAlt ?>"
                                         class="course-thumbnail"
                                         src="<?= thumb($course->image, 170, 249) ?>"
                                 >

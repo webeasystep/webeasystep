@@ -120,7 +120,13 @@
                             <div class="course-card h-100">
                                 <?php if ($hasImage): ?>
                                     <div class="course-card-image">
-                                        <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= esc($course['course_title']) ?>" class="course-img" loading="lazy" decoding="async">
+                                        <?php 
+                                            $courseAlt = esc($course['course_title']) . (!empty($course['course_name_en']) ? ' - ' . esc($course['course_name_en']) : '');
+                                            $courseAlt .= !empty($course['course_code']) ? ' | رمز المقرر: ' . esc($course['course_code']) : '';
+                                            $courseAlt .= !empty($course['college_name']) ? ' | ' . esc($course['college_name']) : '';
+                                            $courseAlt .= ' | الجامعة السعودية الإلكترونية SEU';
+                                        ?>
+                                        <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= $courseAlt ?>" class="course-img" loading="lazy" decoding="async">
                                         <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
                                             <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
                                         <?php else: ?>
