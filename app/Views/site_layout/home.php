@@ -263,11 +263,10 @@
                     <div style="border: 2px dashed #d4af37; padding: 40px; border-radius: 20px; background: white;">
                         <i class="fas fa-shield-alt fa-4x mb-4" style="color: #d4af37;"></i>
                         <h2 style="color: #8a6d1c; font-weight: 800; margin-bottom: 20px;">الضمان الذهبي من FakhrCS 🛡️</h2>
-                        <p class="lead mb-4" style="color: #555;">
-                            أنا أضمن لك أن تنهي المادة وأنت فاهم لأدق تفاصيلها، ومستعد تماماً للاكتساح. <br>
-                            <strong>إذا شعرت في أي وقت خلال أول 30 يوماً أن الشرح لا يعالج "فجوة التعليم الذاتي" لديك، استرد اشتراكك بالكامل فوراً وبدون أي أسئلة.</strong>
+                        <p class="lead mb-0" style="color: #555;">
+                            لو محسّتش إن الشرح غيّر طريقة فهمك للمادة خلال أول 30 يوم، استرد فلوسك بالكامل. من غير أسئلة، من غير تعقيد.<br>
+                            <strong>إحنا واثقين في الطريقة، وده مش شعار — ده ضمان حقيقي بنلتزم بيه.</strong>
                         </p>
-                        <span class="badge badge-warning px-4 py-2" style="font-size: 1rem;">التزامنا تجاه احترافك مطلق</span>
                     </div>
                 </div>
             </div>
