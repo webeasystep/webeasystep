@@ -214,6 +214,48 @@
         </div>
     </div>
 
+    <div class="untree_co-section bg-light py-5">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <h2 class="line-bottom text-center mb-4">كسر الاعتراضات — الثلاثة اللي فعلاً بيفكر فيهم</h2>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Box 1 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature text-center h-100 p-4" style="background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                        <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-undo fa-lg" style="color: #ffffff;"></i>
+                        </div>
+                        <h4 style="font-size: 1.2rem; font-weight: 700; color: #1a202c;" class="mb-3">"هل ممكن أضيّع فلوسي زي المرة اللي فاتت؟"</h4>
+                        <p style="color: #555; line-height: 1.7;">مفهوم قلقك، خصوصاً لو جربت كورس قبل كده وما أفادكش. عشان كده حاطين ضمان استرداد كامل خلال أول 30 يوم، من غير أي أسئلة. لو حسيت إن الشرح ما سدّش الفجوة اللي كنت حاسس بيها، فلوسك ترجعلك بالكامل.</p>
+                    </div>
+                </div>
+                <!-- Box 2 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature text-center h-100 p-4" style="background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                        <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-check-circle fa-lg" style="color: #ffffff;"></i>
+                        </div>
+                        <h4 style="font-size: 1.2rem; font-weight: 700; color: #1a202c;" class="mb-3">"هل فعلاً الشرح ده يطابق منهج جامعتي بالظبط، ولا شرح عام؟"</h4>
+                        <p style="color: #555; line-height: 1.7;">كل مادة عندنا مكتوب عليها الكود الرسمي (زي ريض 001 / عال 001)، ومبنية حرفياً على مفردات ومعايير SEU. جرب بنفسك المحاضرة الأولى وشوف الفرق قبل ما تقرر.</p>
+                    </div>
+                </div>
+                <!-- Box 3 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature text-center h-100 p-4" style="background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                        <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-brain fa-lg" style="color: #ffffff;"></i>
+                        </div>
+                        <h4 style="font-size: 1.2rem; font-weight: 700; color: #1a202c;" class="mb-3">"أساسي ضعيف... هل فعلاً هفهم؟"</h4>
+                        <p style="color: #555; line-height: 1.7;">مفيش عندنا "افتراض إنك عارف". كل شرح بيبدأ من الصفر، خطوة بخطوة، من غير ما نفترض إنك "المفروض تعرف ده". الهدف إنك تحس بالفهم أول مرة — مش إنك تحفظ وتنسى بعد أسبوع.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="untree_co-section py-5" style="background-color: #fffdf2;">
         <div class="container">
             <div class="row justify-content-center">
