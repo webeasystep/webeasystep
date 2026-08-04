@@ -11,7 +11,7 @@ class CoursesModel extends BaseModel
     protected $primaryKey    = 'id';
     protected $allowedFields = [
         'course_title', 'course_desc', 'short_desc', 'image', 'sort',
-        'is_free', 'active', 'slug', 'course_price',
+        'is_free', 'active', 'is_open', 'slug', 'course_price', 'college_id', 'department_id',
         'instructor_id', 'category_id', 'difficulty_level', 'language',
         'requirements', 'what_you_learn', 'enrollment_limit', 'intro_video_id', 'waiting_list',
     ];
@@ -35,8 +35,11 @@ class CoursesModel extends BaseModel
      */
     public function getCourseBySlug(string $slug)
     {
-        return $this->where('slug', $slug)
-            ->where('active', 1)
+        return $this->select('tb_courses.*, tb_colleges.college_name_ar, users.full_name as instructor_name')
+            ->join('tb_colleges', 'tb_colleges.id = tb_courses.college_id', 'left')
+            ->join('users', 'users.id = tb_courses.instructor_id', 'left')
+            ->where('tb_courses.slug', $slug)
+            ->where('tb_courses.active', 1)
             ->first();
     }
 

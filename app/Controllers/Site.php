@@ -70,6 +70,25 @@ class Site extends BaseController
         echo MainView('site_layout/home', $data);
     }
 
+    public function preparatory()
+    {
+        $data['page_name'] = 'preparatory';
+        $data['title']     = 'السنة الأولى المشتركة (التحضيرية)';
+
+        // Get courses data from Courses controller
+        $coursesController = new \Modules\Courses\Controllers\Courses();
+        $allCourses = $coursesController->getCoursesForHome();
+        
+        // Filter out courses to only include those for Common First Year (college_id = 5)
+        $filteredCourses = array_filter($allCourses, function($course) {
+            return isset($course['college_id']) && $course['college_id'] == 5;
+        });
+        
+        $data['courses'] = array_values($filteredCourses);
+
+        echo MainView('site_layout/preparatory', $data);
+    }
+
     /**
      * Handle post-login redirect to intended course or my_courses
      */

@@ -2723,6 +2723,48 @@
 
             <!-- Course Stats Bar -->
             <div class="course-stats">
+                <div class="stat-item">
+                    <i class="icon-info-circle"></i>
+                    <div>
+                        <div class="stat-value"><?= esc($course->difficulty_level ?? '1') ?></div>
+                        <div class="stat-label">المستوى</div>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <i class="icon-university"></i>
+                    <div>
+                        <div class="stat-value" style="font-size: 0.95rem;"><?= esc($course->college_name_ar ?? 'الجامعة السعودية الإلكترونية') ?></div>
+                        <div class="stat-label">الكلية</div>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <i class="icon-user"></i>
+                    <div>
+                        <div class="stat-value" style="font-size: 0.95rem;"><?= esc($course->instructor_name ?? 'أحمد فخر الدين') ?></div>
+                        <div class="stat-label">المحاضر</div>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <i class="icon-calendar"></i>
+                    <div>
+                        <div class="stat-value" style="font-size: 0.95rem;">فصل دراسي</div>
+                        <div class="stat-label">مدة الاشتراك</div>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <i class="icon-check-circle"></i>
+                    <div>
+                        <div class="stat-value" style="font-size: 0.95rem; color: <?= (isset($course->is_open) && $course->is_open == 1) ? '#28a745' : '#dc3545' ?>;">
+                            <?= (isset($course->is_open) && $course->is_open == 1) ? 'مفتوح' : 'مغلق' ?>
+                        </div>
+                        <div class="stat-label">حالة الحجز</div>
+                    </div>
+                </div>
+
                 <?php $unitCount = $course->unit_count ?? count($units); ?>
                 <?php if ($unitCount > 0): ?>
                 <div class="stat-item">
@@ -3001,33 +3043,38 @@
                     <ul class="course-features-list">
                         <li>
                             <div class="feature-icon">
+                                <i class="fas fa-chalkboard"></i> </div>
+                            <div class="feature-text">شرح السلايدات</div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-question-circle"></i> </div>
+                            <div class="feature-text">شرح ال quizes</div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-clipboard-check"></i> </div>
+                            <div class="feature-text">اختبر نفسك كل أسبوع</div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check-double"></i> </div>
+                            <div class="feature-text">حل تجميعات الاختبارات</div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i> </div>
+                            <div class="feature-text">مراجعات الميدتيرم والفاينال</div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
                                 <i class="fas fa-users"></i> </div>
-                            <div class="feature-text">مجتمع تفاعلي لتبادل الخبرات</div>
-                        </li>
-                        <li>
-                            <div class="feature-icon">
-                                <i class="fas fa-briefcase"></i> </div>
-                            <div class="feature-text">تطبيق عملي وبناء مشاريع حقيقية </div>
-                        </li>
-                        <li>
-                            <div class="feature-icon">
-                                <i class="fas fa-robot"></i> </div>
-                            <div class="feature-text">توظيف الذكاء الاصطناعي لمضاعفة إنتاجيتك</div>
-                        </li>
-                        <li>
-                            <div class="feature-icon">
-                                <i class="fas fa-infinity"></i> </div>
-                            <div class="feature-text">وصول مدى الحياة للمحتوى مع تحديثات مستمرة</div>
+                            <div class="feature-text">قروب خاص للدعم والإجابة على الأسئلة</div>
                         </li>
                         <li>
                             <div class="feature-icon">
                                 <i class="fas fa-laptop-code"></i> </div>
-                            <div class="feature-text">متاح على كافة الأجهزة</div>
-                        </li>
-                        <li>
-                            <div class="feature-icon">
-                                <i class="fas fa-certificate"></i> </div>
-                            <div class="feature-text">نماذج لأوامر وأكواد برمجية</div>
+                            <div class="feature-text">متوافق مع كافة الأجهزة</div>
                         </li>
                     </ul>
 

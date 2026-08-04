@@ -28,9 +28,9 @@
                         <span class="d-none d-lg-inline-block">+201032863861</span>
                     </a>
                     <!-- Email -->
-                    <a href="mailto:info@webeasystep.com" class="small mr-3 p-2" dir="ltr" aria-label="راسلنا على info@webeasystep.com">
+                    <a href="mailto:support@fakhrcs.com" class="small mr-3 p-2" dir="ltr" aria-label="راسلنا على support@fakhrcs.com">
                         <span class="icon-envelope mr-2"></span>
-                        <span class="d-none d-lg-inline-block">info@webeasystep.com</span>
+                        <span class="d-none d-lg-inline-block">support@fakhrcs.com</span>
                     </a>
                 </div>
 
@@ -62,29 +62,12 @@
                     <li <?= current_url() == site_url() ? 'class="active"' : '' ?>>
                         <a href="<?= site_url() ?>">الرئيسية</a>
                     </li>
-                    <?php if ($isInstructor): ?>
-                        <li <?= str_contains(current_url(), 'instructor/dashboard') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('instructor/dashboard') ?>">
-                                <span class="icon-grid mr-1"></span>لوحة المحاضر
-                            </a>
-                        </li>
-                        <li <?= str_contains(current_url(), 'instructor-terms') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('instructor-terms') ?>">
-                                <span class="icon-document mr-1"></span>دليل الشراكة
-                            </a>
-                        </li>
-                    <?php else: ?>
-                        <li <?= str_contains(current_url(), 'student-benefits') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('student-benefits') ?>">
-                                <span class="icon-book mr-1"></span>مميزات الاشتراك
-                            </a>
-                        </li>
-                        <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('terms-conditions') ?>">
-                                <span class="icon-document mr-1"></span>الشروط والأحكام
-                            </a>
-                        </li>
-                    <?php endif; ?>
+                    <li <?= str_contains(urldecode(current_url()), 'السنة-الاولى-المشتركة') || str_contains(current_url(), 'preparatory') ? 'class="active"' : '' ?>>
+                        <a href="<?= site_url('الجامعة-السعودية-الالكترونية-السنة-الاولى-المشتركة-التحضيرية') ?>">السنة الأولى المشتركة (التحضيرية)</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#courseRequestModal" style="color: #5c7cfa; font-weight: bold;">اطلب مقرر</a>
+                    </li>
 
                     <?php if ($isLoggedIn): ?>
                         <!-- User Navigation Links -->
@@ -147,12 +130,23 @@
                                 <span class="icon-lock mr-1"></span>تسجيل الدخول
                             </a>
                         </li>
-                        <li <?= str_contains(current_url(), 'register') ? 'class="active"' : '' ?>>
-                            <a href="<?= site_url('register') ?>">
-                                <span class="icon-user-follow mr-1"></span>تسجيل حساب
-                            </a>
-                        </li>
                     <?php endif; ?>
+
+                    <li class="has-children <?= (str_contains(current_url(), 'student-benefits') || str_contains(current_url(), 'terms-conditions')) ? 'active' : '' ?>">
+                        <a href="#">صفحات أخرى</a>
+                        <ul class="dropdown">
+                            <li <?= str_contains(current_url(), 'student-benefits') ? 'class="active"' : '' ?>>
+                                <a href="<?= site_url('student-benefits') ?>">
+                                    <span class="icon-book mr-1"></span>مميزات الاشتراك
+                                </a>
+                            </li>
+                            <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
+                                <a href="<?= site_url('terms-conditions') ?>">
+                                    <span class="icon-document mr-1"></span>الشروط والأحكام
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
 
                 <!-- Mobile Toggle -->

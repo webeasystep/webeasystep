@@ -48,6 +48,7 @@ class Autoload extends AutoloadConfig
         'Modules\ContactUs'  => ROOTPATH . 'modules/ContactUs',
         'Modules\Coupons'    => ROOTPATH . 'modules/Coupons',
         'Modules\Courses'    => ROOTPATH . 'modules/Courses',
+        'Modules\CourseRequests' => ROOTPATH . 'modules/CourseRequests',
         'Modules\Enrollments' => ROOTPATH . 'modules/Enrollments',
         'Modules\Groups'     => ROOTPATH . 'modules/Groups',
         'Modules\Pages'      => ROOTPATH . 'modules/Pages',

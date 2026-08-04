@@ -1,4 +1,4 @@
-<?php $this->extend('site_layout/template'); ?>
+﻿<?php $this->extend('site_layout/template'); ?>
 <?php $this->section('content'); ?>
 
     <!-- Hero Section -->
@@ -340,7 +340,7 @@
                             <ul class="list-unstyled">
                                 <li class="py-2">8 حصص تعليمية</li>
                                 <li class="py-2">~12 ساعة تدريبية</li>
-                                <li class="py-2">سعر الساعة: ~$23</li>
+                                <li class="py-2">سعر الساعة: ~<img src="/site/images/saudi_riyal_symbol.svg" alt="ر.س" style="height: 1em; vertical-align: middle; margin-right: 0.1em; display: inline-block;">23</li>
                                 <li class="py-2">مشروع نهائي للمستوى</li>
                                 <li class="py-2">شهادة إتمام المستوى</li>
                             </ul>
@@ -367,7 +367,7 @@
                             <ul class="list-unstyled">
                                 <li class="py-2">10 حصص تعليمية</li>
                                 <li class="py-2">~15 ساعة تدريبية</li>
-                                <li class="py-2">سعر الساعة: ~$23</li>
+                                <li class="py-2">سعر الساعة: ~<img src="/site/images/saudi_riyal_symbol.svg" alt="ر.س" style="height: 1em; vertical-align: middle; margin-right: 0.1em; display: inline-block;">23</li>
                                 <li class="py-2">مشروع نهائي متقدم</li>
                                 <li class="py-2">شهادة إتمام المستوى</li>
                             </ul>
@@ -388,7 +388,7 @@
                             <div class="price">
                                 <span class="currency">$</span>
                                 <span class="amount">550</span>
-                                <del class="text-muted">$621</del>
+                                <del class="text-muted"><img src="/site/images/saudi_riyal_symbol.svg" alt="ر.س" style="height: 1em; vertical-align: middle; margin-right: 0.1em; display: inline-block;">621</del>
                             </div>
                             <p class="pricing-text">المستويين معًا مع خصم ~11%</p>
                         </div>
@@ -489,3 +489,4 @@
         // Optional: JS for pricing toggle or effects if added later
     </script>
 <?php $this->endSection(); ?>
+

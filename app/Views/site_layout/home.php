@@ -18,7 +18,7 @@
                             </h1>
 
                             <p class="mb-4 text-white" style="font-size: 1.1rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="200">
-                                شرح تطبيقي مخصص لطلاب <strong>CCI (IT, CS, DS)</strong> في الجامعة السعودية الإلكترونية. بنفكك لك أعقد المفاهيم بمنطق المهندس، عشان نوفر عليك ساعات "التوهان" في السلايدات ونضمن لك الفهم اللي بيعيش معاك لسوق العمل.
+                                شرح تطبيقي مخصص لطلاب <strong>الجامعة السعودية الإلكترونية</strong> بمختلف تخصصاتهم. نسهل لك أعقد المفاهيم ونوفر عليك ساعات "التوهان" في السلايدات لنضمن لك الفهم والنجاح الأكاديمي والمهني.
                             </p>
 
                             <p class="mb-0" data-aos="fade-up" data-aos-delay="300">
@@ -38,66 +38,9 @@
                     <span class="badge badge-primary text-uppercase mb-3 px-4 py-2" style="letter-spacing: 1px; font-size: 0.8rem;">التخصص هو سر قوتنا</span>
                     <h2 class="mb-3" style="font-size: 2rem; font-weight: 800; color: #1a202c;">ليه FakhrCS هي اختيار طلاب SEU الأول؟</h2>
                     <p class="text-muted mb-0" style="font-size: 1.1rem; line-height: 1.7;">
-                        بينما يشرح الآخرون "بشكل عام"، نحن نركز 100% على ملعبك الأكاديمي والمهني.<br>
-                        <strong class="text-dark">نحن متخصصون حصرياً في:</strong>
+                        بينما يشرح الآخرون "بشكل عام"، شروحاتنا مصممة بدقة لتتوافق مع معايير ومناهج الجامعة السعودية الإلكترونية.<br>
+                        <strong class="text-dark">نحن شركاء تفوقك الأكاديمي، من السنة الأولى المشتركة وحتى التخرج.</strong>
                     </p>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-lg-10 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="specialization-card p-4 rounded-lg shadow" style="background: linear-gradient(135deg, #136ad5 0%, #0d5bba 100%) !important; border-radius: 16px !important;">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <div class="d-flex align-items-center justify-content-center" style="width: 80px; height: 80px; background-color: #ffffff; border-radius: 50%;">
-                                    <i class="fas fa-university fa-2x" style="color: #136ad5;"></i>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <h3 class="font-weight-bold mb-2" style="color: #ffffff !important; font-size: 1.25rem;">كلية الحوسبة والمعلوماتية (CCI) - SEU</h3>
-                                <p class="mb-0" style="color: rgba(255,255,255,0.9) !important; font-size: 1rem;">
-                                    كل حرف في شروحاتنا مصمم ليتوافق مع معايير ومتطلبات كليتك في الجامعة السعودية الإلكترونية. لسنا منصة عامة، نحن "شركاء تفوقك" داخل SEU.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
-                <div class="col-lg-10">
-                    <div class="bg-white p-4 rounded-lg shadow-sm" style="border-radius: 16px !important; border: 1px solid #e2e8f0;">
-                        <p class="font-weight-bold text-center mb-4" style="color: #4a5568; font-size: 1rem;">نخدم برامج البكالوريوس الثلاثة حصرياً:</p>
-                        <div class="row text-center">
-                            <div class="col-md-4 mb-3 mb-md-0">
-                                <div class="program-card p-3 rounded" style="background: #f0f9ff; border-radius: 12px !important;">
-                                    <div class="icon-circle bg-info mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; border-radius: 50%;">
-                                        <i class="fas fa-network-wired text-white fa-lg"></i>
-                                    </div>
-                                    <h5 class="font-weight-bold mb-1" style="color: #17a2b8;">IT</h5>
-                                    <span class="text-muted" style="font-size: 0.9rem;">تقنية المعلومات</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-3 mb-md-0">
-                                <div class="program-card p-3 rounded" style="background: #fffbeb; border-radius: 12px !important;">
-                                    <div class="icon-circle bg-warning mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; border-radius: 50%;">
-                                        <i class="fas fa-code text-white fa-lg"></i>
-                                    </div>
-                                    <h5 class="font-weight-bold mb-1" style="color: #d69e2e;">CS</h5>
-                                    <span class="text-muted" style="font-size: 0.9rem;">علوم الحاسب</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="program-card p-3 rounded" style="background: #f0fff4; border-radius: 12px !important;">
-                                    <div class="icon-circle bg-success mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; border-radius: 50%;">
-                                        <i class="fas fa-database text-white fa-lg"></i>
-                                    </div>
-                                    <h5 class="font-weight-bold mb-1" style="color: #38a169;">DS</h5>
-                                    <span class="text-muted" style="font-size: 0.9rem;">علوم البيانات</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -178,19 +121,37 @@
                                 <?php if ($hasImage): ?>
                                     <div class="course-card-image">
                                         <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= esc($course['course_title']) ?>" class="course-img" loading="lazy" decoding="async">
-                                        <span class="course-badge">🔥 تحديث 2026 </span>
+                                        <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
+                                            <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
+                                        <?php else: ?>
+                                            <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #ef4444;">مغلق الحجز</span>
+                                        <?php endif; ?>
                                     </div>
                                 <?php else: ?>
                                     <div class="course-card-image" style="background: <?= $gradient ?>;">
                                         <div class="course-icon"><i class="fas <?= $icon ?>"></i></div>
-                                        <span class="course-badge">🔥 تحديث 2026 </span>
+                                        <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
+                                            <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
+                                        <?php else: ?>
+                                            <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #ef4444;">مغلق الحجز</span>
+                                        <?php endif; ?>
                                     </div>
                                 <?php endif; ?>
-                                <div class="course-card-body">
+                                <div class="course-card-body d-flex flex-column">
                                     <h5 class="course-title"><?= esc($course['course_title']) ?></h5>
-                                    <div class="course-codes"><?= esc($course['short_desc'] ?? '') ?></div>
-                                    <p class="course-value"><?= esc($course['course_desc'] ?? '') ?></p>
-                                    <div class="course-footer">
+                                    <div class="course-codes mb-auto"><?= esc($course['short_desc'] ?? '') ?></div>
+                                    
+                                    <div class="course-instructor mb-3 mt-3 text-muted" style="font-size: 0.95rem; font-weight: 500;">
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="icon-user mr-2" style="font-size: 1.1rem; color: #136ad5;"></span> 
+                                            <span><?= esc($course['instructor_name'] ?? 'أحمد فخر الدين') ?></span>
+                                        </div>
+                                        <div class="d-flex align-items-center" style="font-size: 0.85rem;">
+                                            <span>الجامعة السعودية الإلكترونية</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="course-footer mt-auto">
                                         <div class="course-price">
                                             <?php if (!empty($course['is_free']) && $course['is_free']): ?>
                                                 <span class="price-amount text-success">مجاني</span>
@@ -201,10 +162,17 @@
                                                 ?>
                                                 <span class="price-original"><?= number_format($originalPrice) ?></span>
                                                 <span class="price-amount"><?= number_format($discountedPrice) ?></span>
-                                                <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" class="riyal-icon" loading="lazy" width="16" height="16">
+                                                <svg class="riyal-icon" width="16" height="16" viewBox="0 0 1124.14 1256.39" xmlns="http://www.w3.org/2000/svg" style="fill: currentColor; margin-right: 4px; vertical-align: middle;">
+                                                    <path d="M699.62,1113.02h0c-20.06,44.48-33.32,92.75-38.4,143.37l424.51-90.24c20.06-44.47,33.31-92.75,38.4-143.37l-424.51,90.24Z"/>
+                                                    <path d="M1085.73,895.8c20.06-44.47,33.32-92.75,38.4-143.37l-330.68,70.33v-135.2l292.27-62.11c20.06-44.47,33.32-92.75,38.4-143.37l-330.68,70.27V66.13c-50.67,28.45-95.67,66.32-132.25,110.99v403.35l-132.25,28.11V0c-50.67,28.44-95.67,66.32-132.25,110.99v525.69l-295.91,62.88c-20.06,44.47-33.33,92.75-38.42,143.37l334.33-71.05v170.26l-358.3,76.14c-20.06,44.47-33.32,92.75-38.4,143.37l375.04-79.7c30.53-6.35,56.77-24.4,73.83-49.24l68.78-101.97v-.02c7.14-10.55,11.3-23.27,11.3-36.97v-149.98l132.25-28.11v270.4l424.53-90.28Z"/>
+                                                </svg>
                                             <?php endif; ?>
                                         </div>
-                                        <button type="button" class="btn btn-subscribe" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">اشترك الآن</button>
+                                        <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
+                                            <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>" class="btn btn-subscribe" style="padding: 10px 15px;">اشترك الآن</a>
+                                        <?php else: ?>
+                                            <button type="button" class="btn btn-subscribe" style="padding: 10px 15px; background: #6c757d; border-color: #6c757d;" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">أعلمني عند التوفر</button>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +229,7 @@
     <div class="untree_co-section bg-primary text-white text-center">
         <div class="container">
             <h2 class="text-white mb-3">ابدأ رحلة الـ A+ والاحتراف الحقيقي الآن</h2>
-            <p class="mb-4 text-white-50">انضم لنخبة طلاب كلية الحوسبة والمعلوماتية في SEU.</p>
+            <p class="mb-4 text-white-50">انضم لنخبة طلاب الجامعة السعودية الإلكترونية وابدأ رحلة التفوق الآن.</p>
             <a href="#courses" class="btn btn-light btn-lg font-weight-bold">تصفح المواد واضمن مقعدك</a>
         </div>
     </div>
@@ -278,10 +246,10 @@
                     <div class="modal-icon mb-4">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h4 class="modal-title mb-3" id="subscribeModalLabel">هندسة محتوى 2026 قيد التنفيذ! 🚀</h4>
+                    <h4 class="modal-title mb-3" id="subscribeModalLabel">سنقوم بتنبيهك عند فتح باب الحجز 🔔</h4>
                     <p class="modal-message mb-4">
-                        لأننا نؤمن أن طالب <strong>SEU</strong> يستحق خبيراً يسانده في "التعليم الذاتي"؛ نحن نقوم الآن بإنتاج محتوى يعالج فجوة المناهج ويضمن لك التوظيف.<br>
-                        <strong class="text-success">سجل بريدك الآن لتكون في قائمة النخبة وتحصل على خصم 25% فور الانطلاق! 🎁</strong>
+                        سجل بريدك الإلكتروني الآن وسنقوم بإرسال إشعار لك فور إتاحة هذه المادة للتسجيل.<br>
+                        <strong class="text-success">انضم لقائمة الانتظار لتكون أول من يعلم!</strong>
                     </p>
                     <div class="selected-course-name mb-3" id="selectedCourseName"></div>
                     <form id="interestForm" class="interest-form">
@@ -289,7 +257,7 @@
                             <input type="email" class="form-control form-control-lg" id="userEmail" placeholder="أدخل بريدك الإلكتروني" required dir="ltr">
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block" id="submitBtn">
-                            <i class="fas fa-crown ml-2"></i> احجز مكانك في النخبة الآن
+                            <i class="fas fa-bell ml-2"></i> أعلمني عند التوفر
                         </button>
                     </form>
                     <div class="success-message d-none mt-4" id="successMessage">

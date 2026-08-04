@@ -144,6 +144,20 @@
                 </div>
             </div>
 
+            <!-- Switch for 'is_open' -->
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">مفتوح للحجز</label>
+                <div class="col-sm-9">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input"
+                               id="is_open" name="is_open"
+                            <?= set_value('is_open', $course->is_open ?? 0) ? 'checked' : '' ?>>
+                        <label class="custom-control-label" for="is_open"></label>
+                    </div>
+                    <small class="form-text text-muted">تفعيل هذا الخيار سيظهر علامة "مفتوح للحجز" في الموقع، بينما إيقافه سيظهر "مغلق الحجز".</small>
+                </div>
+            </div>
+
 
 
             <a class="btn btn-secondary" href="<?= ADMIN_URL . 'courses' ?>"><?= lang("Admin.cancel") ?></a>

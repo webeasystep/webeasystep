@@ -1,4 +1,4 @@
-<?php $this->extend('site_layout/template'); ?>
+﻿<?php $this->extend('site_layout/template'); ?>
 <?php $this->section('content'); ?>
 
     <!-- Hero Section -->
@@ -290,7 +290,7 @@
                             <ul class="list-unstyled small">
                                 <li class="py-2">10 حصص تعليمية</li>
                                 <li class="py-2">~15 ساعة تدريبية</li>
-                                <li class="py-2">سعر الساعة: ~$25</li>
+                                <li class="py-2">سعر الساعة: ~<img src="/site/images/saudi_riyal_symbol.svg" alt="ر.س" style="height: 1em; vertical-align: middle; margin-right: 0.1em; display: inline-block;">25</li>
                                 <li class="py-2">مشاريع تطبيقات بسيطة</li>
                                 <li class="py-2">شهادة إتمام المستوى</li>
                             </ul>
@@ -318,7 +318,7 @@
                             <ul class="list-unstyled small">
                                 <li class="py-2">12 حصص تعليمية</li>
                                 <li class="py-2">~18 ساعة تدريبية</li>
-                                <li class="py-2">سعر الساعة: ~$25</li>
+                                <li class="py-2">سعر الساعة: ~<img src="/site/images/saudi_riyal_symbol.svg" alt="ر.س" style="height: 1em; vertical-align: middle; margin-right: 0.1em; display: inline-block;">25</li>
                                 <li class="py-2">مشروع تطبيق متكامل</li>
                                 <li class="py-2">شهادة إتمام المستوى</li>
                             </ul>
@@ -340,7 +340,7 @@
                             <div class="price">
                                 <span class="currency">$</span>
                                 <span class="amount">735</span>
-                                <del class="text-muted small">$825</del>
+                                <del class="text-muted small"><img src="/site/images/saudi_riyal_symbol.svg" alt="ر.س" style="height: 1em; vertical-align: middle; margin-right: 0.1em; display: inline-block;">825</del>
                             </div>
                             <p class="pricing-text small">المستويين معًا بخصم ~11%</p>
                         </div>
@@ -441,3 +441,4 @@
 <?= $this->section('js'); ?>
     <!-- Additional JS if needed for this specific page -->
 <?php $this->endSection(); ?>
+

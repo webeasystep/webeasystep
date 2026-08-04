@@ -32,6 +32,9 @@ $routes->setAutoRoute(false);
  * @var RouteCollection $routes
  */
 $routes->get('/', [Site::class, 'index']);
+$routes->addRedirect('preparatory', 'الجامعة-السعودية-الالكترونية-السنة-الاولى-المشتركة-التحضيرية');
+$routes->get('الجامعة-السعودية-الالكترونية-السنة-الاولى-المشتركة-التحضيرية', [Site::class, 'preparatory']);
+
 
 $routes->get('lang/{locale}', [BaseController::class, 'langSwitch']);
 

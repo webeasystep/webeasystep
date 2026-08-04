@@ -1,4 +1,4 @@
-<?php $this->extend('site_layout/template'); ?>
+﻿<?php $this->extend('site_layout/template'); ?>
 <?php $this->section('content'); ?>
 
     <!-- Hero Section -->
@@ -298,7 +298,7 @@
                             <ul class="list-unstyled small">
                                 <li class="py-2">8 حصص تعليمية</li>
                                 <li class="py-2">~12 ساعة تدريبية</li>
-                                <li class="py-2">سعر الساعة: ~$25</li>
+                                <li class="py-2">سعر الساعة: ~<img src="/site/images/saudi_riyal_symbol.svg" alt="ر.س" style="height: 1em; vertical-align: middle; margin-right: 0.1em; display: inline-block;">25</li>
                                 <li class="py-2">مشروع HTML متكامل</li>
                                 <li class="py-2">شهادة إتمام المستوى</li>
                             </ul>
@@ -326,7 +326,7 @@
                             <ul class="list-unstyled small">
                                 <li class="py-2">10 حصص تعليمية</li>
                                 <li class="py-2">~15 ساعة تدريبية</li>
-                                <li class="py-2">سعر الساعة: ~$25</li>
+                                <li class="py-2">سعر الساعة: ~<img src="/site/images/saudi_riyal_symbol.svg" alt="ر.س" style="height: 1em; vertical-align: middle; margin-right: 0.1em; display: inline-block;">25</li>
                                 <li class="py-2">مشروع CSS متجاوب</li>
                                 <li class="py-2">شهادة إتمام المستوى</li>
                             </ul>
@@ -354,7 +354,7 @@
                             <ul class="list-unstyled small">
                                 <li class="py-2">12 حصص تعليمية</li>
                                 <li class="py-2">~18 ساعة تدريبية</li>
-                                <li class="py-2">سعر الساعة: ~$25</li>
+                                <li class="py-2">سعر الساعة: ~<img src="/site/images/saudi_riyal_symbol.svg" alt="ر.س" style="height: 1em; vertical-align: middle; margin-right: 0.1em; display: inline-block;">25</li>
                                 <li class="py-2">مشروع JS تفاعلي</li>
                                 <li class="py-2">شهادة إتمام المستوى</li>
                             </ul>
@@ -376,7 +376,7 @@
                             <div class="price">
                                 <span class="currency">$</span>
                                 <span class="amount">1000</span>
-                                <del class="text-muted small">$1125</del>
+                                <del class="text-muted small"><img src="/site/images/saudi_riyal_symbol.svg" alt="ر.س" style="height: 1em; vertical-align: middle; margin-right: 0.1em; display: inline-block;">1125</del>
                             </div>
                             <p class="pricing-text small">HTML + CSS + JS بخصم ~11%</p>
                         </div>
@@ -491,3 +491,4 @@
         // });
     </script>
 <?php $this->endSection(); ?>
+

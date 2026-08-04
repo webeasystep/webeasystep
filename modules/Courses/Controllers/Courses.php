@@ -83,9 +83,11 @@ class Courses extends BaseController
         // Get active courses with enhanced data
         $courses = $this->db
             ->table('tb_courses')
-            ->where('active', 1)
-            ->orderBy('sort', 'ASC')
-            ->orderBy('created_at', 'DESC')
+            ->select('tb_courses.*, users.full_name as instructor_name')
+            ->join('users', 'users.id = tb_courses.instructor_id', 'left')
+            ->where('tb_courses.active', 1)
+            ->orderBy('tb_courses.sort', 'ASC')
+            ->orderBy('tb_courses.created_at', 'DESC')
             ->get()
             ->getResultArray();
 
