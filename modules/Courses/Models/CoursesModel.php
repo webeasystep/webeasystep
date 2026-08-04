@@ -19,8 +19,8 @@ class CoursesModel extends BaseModel
     protected $returnType    = 'object';
 
     // Additional table references
+    // Additional table references
     protected $enrollmentsTable        = 'tb_course_enrollments';
-    protected $videoCompletionsTable  = 'tb_video_completions';
 
     /**
      * Fetch course by ID
@@ -233,54 +233,7 @@ class CoursesModel extends BaseModel
 
     /* ================== LESSON COMPLETION METHODS ================== */
 
-    /**
-     * Mark a video as completed for a given enrollment
-     */
-    public function markLessonComplete(int $enrollmentId, int $videoId)
-    {
-        $builder = $this->db->table($this->videoCompletionsTable);
 
-        // Check if already completed
-        $existing = $builder->where('enrollment_id', $enrollmentId)
-            ->where('video_id', $videoId)
-            ->get()
-            ->getRow();
-        if ($existing) {
-            return $existing->id; // Already completed
-        }
-
-        // Otherwise, insert a new record
-        $data = [
-            'enrollment_id' => $enrollmentId,
-            'video_id'     => $videoId,
-            'completed_at'  => date('Y-m-d H:i:s'),
-        ];
-        $builder->insert($data);
-
-        return $this->db->insertID();
-    }
-
-    /**
-     * Count how many videos are completed for a given enrollment
-     */
-    public function countCompletedLessons(int $enrollmentId): int
-    {
-        $builder = $this->db->table($this->videoCompletionsTable);
-        return $builder->where('enrollment_id', $enrollmentId)->countAllResults();
-    }
-    public function getCompletedLessonIDs(int $enrollmentId): array
-    {
-        $builder = $this->db->table($this->videoCompletionsTable);
-        $builder->select('video_id');
-        $builder->where('enrollment_id', $enrollmentId);
-        $query = $builder->get();
-
-        $videoIDs = [];
-        foreach ($query->getResultArray() as $row) {
-            $videoIDs[] = (int) $row['video_id'];
-        }
-        return $videoIDs;
-    }
 
     /**
      * Flatten the entire video list from the structure to find next/prev easily.

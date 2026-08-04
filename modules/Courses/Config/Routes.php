@@ -49,7 +49,7 @@ $routes->group('', [
     // $routes->get('courses/my_courses', 'Courses::my_courses'); // Deprecated - use enrollments/my-courses
     $routes->post('courses/enroll/(:num)', 'Courses::enroll/$1');
     $routes->post('courses/enroll/(:num)', 'Courses::enroll/$1');
-    $routes->post('courses/markLessonComplete', 'Courses::markLessonComplete');
+
 });
 
 /*** Example API Routes (commented out) ***/
