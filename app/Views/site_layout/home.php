@@ -14,7 +14,7 @@
                             </a>
 
                             <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">
-                                لا تذاكر المنهج.. هندِسه! طريقك للـ A+ في مقررات الجامعة السعودية الإلكترونية (SEU) واختصار 70% من مجهود "التعليم الذاتي".
+                                لا تذاكر المنهج... هندِسه! طريقك للـ A+ في الجامعة السعودية الإلكترونية
                             </h1>
 
                             <p class="mb-4 text-white" style="font-size: 1.1rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="200">

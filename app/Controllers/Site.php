@@ -42,7 +42,9 @@ class Site extends BaseController
     public function home()
     {
         $data['page_name'] = 'home';
-        $data['title']     = lang('Site.home');
+        $data['title']     = 'النجاح في SEU ليس أصعب... بل يحتاج للطريقة الصحيحة.';
+        $data['meta_title'] = 'النجاح في SEU ليس أصعب... بل يحتاج للطريقة الصحيحة.';
+        $data['meta_description'] = 'منصة تعليمية متخصصة لطلاب الجامعة السعودية الإلكترونية، تجمع كل ما تحتاجه للتفوق الأكاديمي في مكان واحد.';
 
         // 1) Articles
         $data['articles'] = $this->db
