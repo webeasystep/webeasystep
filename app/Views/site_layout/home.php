@@ -218,7 +218,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-10 text-center" data-aos="fade-up" data-aos-delay="0">
-                    <h2 class="line-bottom text-center mb-4">كسر الاعتراضات — الثلاثة اللي فعلاً بيفكر فيهم</h2>
+                    <h2 class="line-bottom text-center mb-4">أسئلة قد تدور في ذهنك الآن.. نجيبك عليها بكل شفافية</h2>
                 </div>
             </div>
             <div class="row">
