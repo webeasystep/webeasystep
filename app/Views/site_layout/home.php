@@ -14,7 +14,7 @@
                             </a>
 
                             <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">
-                                لا تذاكر المنهج.. هندِسه! طريقك للـ A+ واختصار 70% من مجهود "التعليم الذاتي".
+                                لا تذاكر المنهج.. هندِسه! طريقك للـ A+ في مقررات الجامعة السعودية الإلكترونية (SEU) واختصار 70% من مجهود "التعليم الذاتي".
                             </h1>
 
                             <p class="mb-4 text-white" style="font-size: 1.1rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="200">
@@ -50,7 +50,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="0">
-                    <h2 class="line-bottom text-center mb-4">وداعاً لدوامة "التعليم الذاتي" بمفردك</h2>
+                    <h2 class="line-bottom text-center mb-4">شروحات مبسطة تنهي معاناة التعليم الذاتي لطلاب الجامعة</h2>
                     <p class="lead">بنقدم لك تجربة تعليمية VIP تسد فجوة غياب الدعم وتضمن لك التميز الأكاديمي والمهني.</p>
                 </div>
             </div>
@@ -90,7 +90,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-7 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
-                    <h2 class="line-bottom text-center mb-4">المواد المتاحة </h2>
+                    <h2 class="line-bottom text-center mb-4">كورسات ومقررات الجامعة السعودية الإلكترونية المتاحة</h2>
                     <p>اختر المادة اللي شايل همها، واترك "هندستها" علينا.</p>
                 </div>
             </div>
@@ -202,7 +202,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5 col-6 text-center" data-aos="fade-left" data-aos-delay="300">
-                    <img src="<?= base_url() ?>site/images/fakhrcs.webp" alt="م/ أحمد فخر الدين" class="img-fluid shadow-lg" loading="lazy" decoding="async" width="320" height="320" style="border-radius: 20px; border: 5px solid #f8fafc;">
+                    <img src="<?= base_url() ?>site/images/fakhrcs.webp" alt="المهندس أحمد فخر الدين - خبير شروحات الجامعة السعودية الإلكترونية (SEU)" class="img-fluid shadow-lg" loading="lazy" decoding="async" width="320" height="320" style="border-radius: 20px; border: 5px solid #f8fafc;">
                 </div>
             </div>
         </div>
