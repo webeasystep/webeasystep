@@ -43,6 +43,7 @@
                                     <li><a href="<?= site_url('enrollments/my-courses') ?>">مقرراتي</a></li>
                                 <?php endif; ?>
                                 <li><a href="<?= site_url('student-benefits') ?>">مميزات الاشتراك</a></li>
+                                <li><a href="<?= site_url('faqs') ?>">الأسئلة الشائعة</a></li>
                                 <li><a href="<?= site_url('terms-conditions') ?>">الشروط والأحكام</a></li>
                             <?php endif; ?>
                         </ul>

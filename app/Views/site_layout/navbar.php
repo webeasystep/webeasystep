@@ -140,6 +140,11 @@
                                     <span class="icon-book mr-1"></span>مميزات الاشتراك
                                 </a>
                             </li>
+                            <li <?= str_contains(current_url(), 'faqs') ? 'class="active"' : '' ?>>
+                                <a href="<?= site_url('faqs') ?>">
+                                    <span class="icon-question mr-1"></span>الأسئلة الشائعة
+                                </a>
+                            </li>
                             <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
                                 <a href="<?= site_url('terms-conditions') ?>">
                                     <span class="icon-document mr-1"></span>الشروط والأحكام
