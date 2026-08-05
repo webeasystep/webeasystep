@@ -915,7 +915,7 @@
                             <!-- Price Display -->
                             <div class="amount-display" id="amountDisplay">
                                 <i class="fas fa-coins"></i>
-                                <span id="finalAmountDisplay">$<?= esc(number_format((float) $course->course_price, 2)) ?></span>
+                                <span id="finalAmountDisplay">$<?= esc(number_format((float) $course->course_price / 3.75, 2)) ?></span>
                                 <span class="currency">USD</span>
                             </div>
 
@@ -950,7 +950,7 @@
                                 <div class="price-breakdown" id="priceBreakdown">
                                     <div class="price-breakdown-row">
                                         <span>سعر الكورس</span>
-                                        <strong id="originalAmountText">$<?= esc(number_format((float) $course->course_price, 2)) ?></strong>
+                                        <strong id="originalAmountText">$<?= esc(number_format((float) $course->course_price / 3.75, 2)) ?></strong>
                                     </div>
                                     <div class="price-breakdown-row discount" id="discountRow">
                                         <span>قيمة الخصم</span>
@@ -958,7 +958,7 @@
                                     </div>
                                     <div class="price-breakdown-row total">
                                         <span>المبلغ المطلوب دفعه</span>
-                                        <strong id="finalAmountText">$<?= esc(number_format((float) $course->course_price, 2)) ?></strong>
+                                        <strong id="finalAmountText">$<?= esc(number_format((float) $course->course_price / 3.75, 2)) ?></strong>
                                     </div>
                                 </div>
 
@@ -968,58 +968,9 @@
 
                                 <div class="payment-methods-grid">
 
-                                    <!-- ═══════════ INSTAPAY (Egypt) ═══════════ -->
-                                    <label class="payment-method-card" id="card-instapay" for="pm_instapay">
-                                        <input type="radio" name="payment_method" value="instapay" id="pm_instapay">
-                                        <div class="pm-header">
-                                            <div class="pm-radio-circle"></div>
-                                            <img src="https://instapay.eg/images/instapay-logo.svg" 
-                                                 onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMwIiBoZWlnaHQ9IjQyIiB2aWV3Qm94PSIwIDAgMTMwIDQyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMzAiIGhlaWdodD0iNDIiIHJ4PSI4IiBmaWxsPSIjZWYxNjFmIi8+PHRleHQgeD0iNjUiIHk9IjI3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIj5JbnN0YVBheTwvdGV4dD48L3N2Zz4='" 
-                                                 alt="InstaPay" class="pm-logo">
-                                            <div class="pm-title-area">
-                                                <p class="pm-title">انستا باي - InstaPay</p>
-                                                <p class="pm-subtitle">للدفع من داخل مصر</p>
-                                            </div>
-                                            <span class="pm-region-badge egypt">
-                                                <i class="fas fa-map-marker-alt"></i> مصر
-                                            </span>
-                                        </div>
-
-                                        <div class="pm-details">
-                                            <!-- InstaPay Address -->
-                                            <div class="pm-info-row">
-                                                <div class="info-icon instapay-icon">
-                                                    <i class="fas fa-at"></i>
-                                                </div>
-                                                <div class="info-content">
-                                                    <div class="info-label">حساب انستا باي</div>
-                                                    <div class="info-value" id="instapay-address">fakhr@instapay</div>
-                                                </div>
-                                                <button type="button" class="btn-copy" onclick="copyToClipboard('fakhr@instapay', this)">
-                                                    <i class="fas fa-copy"></i> نسخ
-                                                </button>
-                                            </div>
-
-                                            <div class="pm-steps">
-                                                <div class="pm-step">
-                                                    <span class="step-num">1</span>
-                                                    افتح تطبيق انستا باي
-                                                </div>
-                                                <div class="pm-step">
-                                                    <span class="step-num">2</span>
-                                                    حوّل المبلغ
-                                                </div>
-                                                <div class="pm-step">
-                                                    <span class="step-num">3</span>
-                                                    ارفع صورة التحويل
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </label>
-
                                     <!-- ═══════════ PAYPAL (International) ═══════════ -->
                                     <label class="payment-method-card" id="card-paypal" for="pm_paypal">
-                                        <input type="radio" name="payment_method" value="paypal" id="pm_paypal">
+                                        <input type="radio" name="payment_method" value="paypal" id="pm_paypal" checked>
                                         <div class="pm-header">
                                             <div class="pm-radio-circle"></div>
                                             <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png" 
@@ -1027,10 +978,10 @@
                                                  alt="PayPal" class="pm-logo">
                                             <div class="pm-title-area">
                                                 <p class="pm-title">باي بال - PayPal</p>
-                                                <p class="pm-subtitle">للدفع من خارج مصر</p>
+                                                <p class="pm-subtitle">وسيلة الدفع الآمنة</p>
                                             </div>
                                             <span class="pm-region-badge international">
-                                                <i class="fas fa-globe"></i> دولي
+                                                <i class="fab fa-paypal"></i> حصري
                                             </span>
                                         </div>
 
@@ -1042,18 +993,18 @@
                                                 </div>
                                                 <div class="info-content">
                                                     <div class="info-label">رابط الدفع عبر PayPal</div>
-                                                    <div class="info-value" id="paypalLinkDisplay">paypal.me/webeasystep/<?= esc(number_format((float) $course->course_price, 2, '.', '')) ?></div>
+                                                    <div class="info-value" id="paypalLinkDisplay">paypal.me/webeasystep/<?= esc(number_format((float) $course->course_price / 3.75, 2, '.', '')) ?></div>
                                                 </div>
-                                                <button type="button" class="btn-copy" id="paypalCopyBtn" data-copy-text="https://paypal.me/webeasystep/<?= esc(number_format((float) $course->course_price, 2, '.', '')) ?>" onclick="copyToClipboard(this.dataset.copyText, this)">
+                                                <button type="button" class="btn-copy" id="paypalCopyBtn" data-copy-text="https://paypal.me/webeasystep/<?= esc(number_format((float) $course->course_price / 3.75, 2, '.', '')) ?>" onclick="copyToClipboard(this.dataset.copyText, this)">
                                                     <i class="fas fa-copy"></i> نسخ
                                                 </button>
                                             </div>
 
                                             <!-- Pay Now Button -->
                                             <div class="text-center mb-3">
-                                                <a href="https://paypal.me/webeasystep/<?= esc(number_format((float) $course->course_price, 2, '.', '')) ?>" target="_blank" class="btn-pay-link btn-paypal-pay" id="paypalPayBtn">
+                                                <a href="https://paypal.me/webeasystep/<?= esc(number_format((float) $course->course_price / 3.75, 2, '.', '')) ?>" target="_blank" class="btn-pay-link btn-paypal-pay" id="paypalPayBtn">
                                                     <i class="fab fa-paypal"></i>
-                                                    <span id="paypalPayBtnText">ادفع $<?= esc(number_format((float) $course->course_price, 2)) ?> عبر PayPal</span>
+                                                    <span id="paypalPayBtnText">ادفع $<?= esc(number_format((float) $course->course_price / 3.75, 2)) ?> عبر PayPal</span>
                                                     <i class="fas fa-external-link-alt" style="font-size: 0.75em;"></i>
                                                 </a>
                                             </div>
@@ -1180,11 +1131,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const csrfInput = form.querySelector('input[name="<?= csrf_token() ?>"]');
 
     function formatMoney(value) {
-        return '$' + Number(value).toFixed(2);
+        return '$' + (Number(value) / 3.75).toFixed(2);
     }
 
     function updatePaypalAmount(amount) {
-        const normalizedAmount = Number(amount).toFixed(2);
+        const normalizedAmount = (Number(amount) / 3.75).toFixed(2);
         const paypalUrl = 'https://paypal.me/webeasystep/' + normalizedAmount;
 
         if (paypalLinkDisplay) {
