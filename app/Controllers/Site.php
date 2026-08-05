@@ -72,6 +72,22 @@ class Site extends BaseController
         echo MainView('site_layout/home', $data);
     }
 
+    public function faqs()
+    {
+        $data['page_name'] = 'faqs';
+        $data['title']     = 'الأسئلة الشائعة';
+        $data['meta_title'] = 'الأسئلة الشائعة | فخر CS';
+        $data['meta_description'] = 'إجابات على الأسئلة الشائعة حول فخر CS ومقررات الجامعة السعودية الإلكترونية.';
+        
+        $data['faqs'] = $this->db->table('tb_faqs')
+            ->where('active', 1)
+            ->orderBy('sort', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        echo MainView('site_layout/faqs', $data);
+    }
+
     public function preparatory()
     {
         $data['page_name'] = 'preparatory';

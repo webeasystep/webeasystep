@@ -32,6 +32,7 @@ $routes->setAutoRoute(false);
  * @var RouteCollection $routes
  */
 $routes->get('/', [Site::class, 'index']);
+$routes->get('faqs', [Site::class, 'faqs']);
 $routes->addRedirect('preparatory', 'الجامعة-السعودية-الالكترونية-السنة-الاولى-المشتركة-التحضيرية');
 $routes->get('الجامعة-السعودية-الالكترونية-السنة-الاولى-المشتركة-التحضيرية', [Site::class, 'preparatory']);
 
