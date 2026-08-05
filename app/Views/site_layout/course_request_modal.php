@@ -10,30 +10,30 @@ $colleges = $db->table('tb_colleges')->where('active', 1)->get()->getResultArray
     <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
       
       <div class="modal-header border-0 text-center d-flex justify-content-between align-items-center pb-0">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #103741; background:none; border:none; font-size:1.5rem; opacity: 1;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background:none; border:none; font-size:1.5rem; opacity: 1;">
               <span aria-hidden="true">&times;</span>
           </button>
       </div>
 
       <div class="modal-body pt-0 pb-4 px-4 text-center">
           
-          <div class="mb-4" style="color: #d4af37;">
+          <div class="mb-4 text-primary">
               <!-- Animated question icon or simple image matching the design -->
               <i class="fa fa-question-circle" style="font-size: 60px; opacity: 0.5;"></i>
           </div>
 
-          <h5 class="modal-title mb-4" id="courseRequestModalLabel" style="font-weight: bold; color: #103741;">شاركنا اسم المادة التي تبحث عنها</h5>
+          <h5 class="modal-title mb-4 font-weight-bold" id="courseRequestModalLabel">شاركنا اسم المادة التي تبحث عنها</h5>
           
           <form id="courseRequestForm" action="<?= site_url('api/course-requests') ?>" method="POST">
               <?= csrf_field() ?>
 
               <div class="form-group text-right mb-3">
-                  <label class="mb-1" style="font-size: 0.9rem; color: #103741; font-weight: bold;">اسم المادة:</label>
+                  <label class="mb-1 font-weight-bold" style="font-size: 0.9rem;">اسم المادة:</label>
                   <input type="text" class="form-control" name="course_name_code" required style="border-radius: 20px;" placeholder="اسم المقرر أو كوده">
               </div>
 
               <div class="form-group text-right mb-3">
-                  <label class="mb-1" style="font-size: 0.9rem; color: #103741; font-weight: bold;">الكلية:</label>
+                  <label class="mb-1 font-weight-bold" style="font-size: 0.9rem;">الكلية:</label>
                   <select class="form-control" name="college_id" id="requestCollegeSelect" required style="border-radius: 20px;">
                       <option value="" disabled selected>اختر الكلية</option>
                       <?php foreach($colleges as $col): ?>
@@ -43,25 +43,25 @@ $colleges = $db->table('tb_colleges')->where('active', 1)->get()->getResultArray
               </div>
 
               <div class="form-group text-right mb-4">
-                  <label class="mb-1" style="font-size: 0.9rem; color: #103741; font-weight: bold;">القسم:</label>
+                  <label class="mb-1 font-weight-bold" style="font-size: 0.9rem;">القسم:</label>
                   <select class="form-control" name="department_id" id="requestDepartmentSelect" required style="border-radius: 20px;">
                       <option value="" disabled selected>اختر القسم</option>
                   </select>
               </div>
 
               <div class="form-group text-right mb-3 d-flex align-items-center justify-content-end">
-                  <label class="mb-0 mr-2" style="font-size: 0.9rem; margin-left:10px; color: #103741; font-weight: bold;">أبلغني عند توفر المادة</label>
-                  <input type="checkbox" name="notify_me" id="notifyMeCheckbox" value="1" style="width: 18px; height: 18px; accent-color: #d4af37;">
+                  <label class="mb-0 mr-2 font-weight-bold" style="font-size: 0.9rem; margin-left:10px;">أبلغني عند توفر المادة</label>
+                  <input type="checkbox" name="notify_me" id="notifyMeCheckbox" value="1" style="width: 18px; height: 18px;">
               </div>
 
               <div class="form-group text-right mb-4" id="emailFieldContainer" style="display: none;">
-                  <label class="mb-1" style="font-size: 0.9rem; color: #103741; font-weight: bold;">البريد الإلكتروني:</label>
+                  <label class="mb-1 font-weight-bold" style="font-size: 0.9rem;">البريد الإلكتروني:</label>
                   <input type="email" class="form-control" name="contact_info" id="contactEmail" style="border-radius: 20px;" placeholder="أدخل بريدك الإلكتروني">
               </div>
 
               <div id="courseRequestMsg" class="mb-3" style="display:none; font-size: 0.9rem;"></div>
 
-              <button type="submit" class="btn w-50 font-weight-bold" style="border-radius: 25px; background-color: #d4af37; border-color: #d4af37; color: white; padding: 10px;">طلب مادة</button>
+              <button type="submit" class="btn btn-primary w-50 font-weight-bold" style="border-radius: 25px; padding: 10px;">طلب مادة</button>
           </form>
       </div>
     </div>
