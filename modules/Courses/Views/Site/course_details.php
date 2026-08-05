@@ -789,7 +789,7 @@
         }
 
         .course-header-wrapper {
-            padding: 3rem 1.5rem;
+            padding: 1.5rem 1.5rem 3rem 1.5rem;
         }
     }
 
@@ -817,7 +817,7 @@
         }
 
         .course-header-wrapper {
-            padding: 2.5rem 1rem;
+            padding: 1.25rem 1rem 2.5rem 1rem;
             text-align: center;
         }
 
@@ -846,7 +846,7 @@
         }
 
         .course-header-wrapper {
-            padding: 2rem 1rem;
+            padding: 1rem 1rem 2rem 1rem;
         }
 
         .course-stats {
@@ -917,7 +917,7 @@
         }
 
         .course-header-wrapper {
-            padding: 1.5rem 0.75rem;
+            padding: 1rem 0.75rem 1.5rem 0.75rem;
         }
 
         .course-stats .stat-item .stat-number {
@@ -1405,7 +1405,7 @@
 
     /* Main Section with Modern Background */
     .untree_co-section {
-        padding-top: 2rem;
+        padding-top: 0.5rem;
         padding-bottom: 4rem;
         background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-accent) 100%);
         min-height: 100vh;
@@ -1415,7 +1415,7 @@
     .course-header-wrapper {
         background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-accent) 100%);
         border-radius: var(--radius-xl);
-        padding: 4rem 2rem;
+        padding: 1.5rem 2rem 4rem 2rem;
         margin-bottom: 3rem;
         box-shadow: var(--shadow-xl);
         border: 1px solid var(--border-light);
@@ -2645,7 +2645,7 @@
     /* Responsive Design Enhancements */
     @media (max-width: 768px) {
         .course-header-wrapper {
-            padding: 2rem 1rem;
+            padding: 1rem 1rem 2rem 1rem;
         }
 
         .course-stats {
@@ -2687,7 +2687,7 @@
 
     @media (max-width: 576px) {
         .course-header-wrapper {
-            padding: 1.5rem 0.75rem;
+            padding: 1rem 0.75rem 1.5rem 0.75rem;
         }
 
         .course-header-wrapper .section-title {
