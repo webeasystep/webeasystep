@@ -210,7 +210,7 @@
                     $progress = $item['progress'];
                     $enrolledCourse = $item; // Use the full item array for unit data
                     ?>
-                    <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="course-card">
                             <!-- Course Image & Badge -->
                             <div class="course-image-container">

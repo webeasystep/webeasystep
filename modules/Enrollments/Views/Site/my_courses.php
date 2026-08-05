@@ -247,7 +247,7 @@
         <div class="row">
             <?php if (!empty($enrollments)): ?>
                 <?php foreach ($enrollments as $enrollment): ?>
-                    <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="course-card">
                             <!-- Image & Badges -->
                             <div class="course-image-container">

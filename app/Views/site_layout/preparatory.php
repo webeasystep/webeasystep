@@ -50,7 +50,7 @@
                     $icon = $icons[$courseIndex % count($icons)];
                     $courseIndex++;
                     ?>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="course-card h-100">
                             <?php if ($hasImage): ?>
                                 <div class="course-card-image">

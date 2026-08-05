@@ -3191,7 +3191,9 @@ html {
 
 /* Course Card Image Area */
 .course-card-image {
-    height: 200px;
+    aspect-ratio: 2 / 1;
+    width: 100%;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
