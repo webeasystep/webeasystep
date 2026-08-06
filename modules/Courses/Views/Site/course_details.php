@@ -3014,7 +3014,7 @@
                             <i class="icon-shopping-cart"></i>
                             أضف للسلة
                         </a>
-                        <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">دفع آمن عبر بايبال ومحلياً</small>
+                        <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">دفع آمن عبر بايبال (PayPal)</small>
                     </div>
                 </div>
 

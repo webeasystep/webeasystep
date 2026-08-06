@@ -212,7 +212,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5 col-6 text-center" data-aos="fade-left" data-aos-delay="300">
-                    <img src="<?= base_url() ?>site/images/fakhrcs.webp" alt="المهندس أحمد فخر الدين - خبير شروحات الجامعة السعودية الإلكترونية (SEU)" class="img-fluid shadow-lg" loading="lazy" decoding="async" width="320" height="320" style="border-radius: 20px; border: 5px solid #f8fafc;">
+                    <img src="<?= base_url() ?>site/images/teacher-min.jpg" alt="المهندس أحمد فخر الدين - خبير شروحات الجامعة السعودية الإلكترونية (SEU)" class="img-fluid shadow-lg" loading="lazy" decoding="async" width="320" height="320" style="border-radius: 20px; border: 5px solid #f8fafc; object-fit: cover;">
                 </div>
             </div>
         </div>

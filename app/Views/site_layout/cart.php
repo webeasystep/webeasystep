@@ -1,15 +1,12 @@
 <?= $this->extend('site_layout/template') ?>
 
 <?= $this->section('content') ?>
-<div class="untree_co-hero inner-page overlay" style="background-image: url('<?= base_url('site/images/hero_bg_1.jpg') ?>');">
+<div class="untree_co-hero overlay compact-hero" style="background-image: url('<?= base_url('site/images/main_banner.webp') ?>');">
     <div class="container">
         <div class="row align-items-center justify-content-center">
-            <div class="col-12">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center text-white">
-                        <h1 class="mb-4 heading" data-aos="fade-up" data-aos-delay="100"><?= esc($title) ?></h1>
-                    </div>
-                </div>
+            <div class="col-12 text-center">
+                <h1 class="mb-2 heading text-white" data-aos="fade-up" data-aos-delay="100"><?= esc($title) ?></h1>
+                <p class="text-white-50 m-0" data-aos="fade-up" data-aos-delay="200" style="font-size: 1.05rem;">راجع محتويات سلتك وتابع لإتمام الدفع بأمان.</p>
             </div>
         </div>
     </div>

@@ -995,3 +995,65 @@ body.dark-mode .swal2-icon.swal2-info {
 body.dark-mode .swal2-timer-progress-bar {
     background: rgba(255, 255, 255, 0.2) !important;
 }
+
+/* ============================================
+   WHATSAPP TOP-BAR CTA PILL
+   ============================================ */
+.nav-topbar-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(37, 211, 102, 0.12);
+    color: #1aad5c !important;
+    border: 1px solid rgba(37, 211, 102, 0.35);
+    border-radius: 20px;
+    padding: 4px 12px 4px 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.nav-topbar-wa:hover {
+    background: #25D366;
+    color: #fff !important;
+    border-color: #25D366;
+    text-decoration: none !important;
+}
+.nav-topbar-wa svg {
+    flex-shrink: 0;
+    fill: #25D366;
+    animation: wa-icon-glow 1.8s ease-in-out infinite;
+    transition: transform 0.2s ease;
+}
+.nav-topbar-wa:hover svg {
+    transform: scale(1.15);
+    animation: none;
+    filter: drop-shadow(0 0 6px #25D366);
+}
+@keyframes wa-icon-glow {
+    0%,  100% { filter: drop-shadow(0 0 0px rgba(37,211,102,0));   opacity: 0.7; }
+    50%        { filter: drop-shadow(0 0 6px rgba(37,211,102,0.95)); opacity: 1;   }
+}
+.nav-topbar-wa-label {
+    opacity: 0.75;
+    font-size: 0.78rem;
+}
+.nav-topbar-wa-cta {
+    font-weight: 700;
+    font-size: 0.83rem;
+}
+/* dark mode */
+body.dark-mode .nav-topbar-wa {
+    background: rgba(37, 211, 102, 0.1);
+    color: #4ade80 !important;
+    border-color: rgba(37, 211, 102, 0.25);
+}
+body.dark-mode .nav-topbar-wa:hover {
+    background: #25D366;
+    color: #fff !important;
+}
+@media (max-width: 767.98px) {
+    .nav-topbar-wa-label { display: none; }
+}

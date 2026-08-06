@@ -3761,3 +3761,33 @@ html {
         font-size: 1.12rem;
     }
 }
+
+/* -- Unified Internal Page Header -- */
+.inner-page-header {
+    background-color: #f8fafc;
+    padding-top: 130px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e2e8f0;
+}
+body.dark-mode .inner-page-header {
+    background-color: #0f172a;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+.inner-page-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+}
+body.dark-mode .inner-page-title {
+    color: #f1f5f9;
+}
+.inner-page-subtitle {
+    color: #64748b;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-top: 10px;
+}
+body.dark-mode .inner-page-subtitle {
+    color: #94a3b8;
+}

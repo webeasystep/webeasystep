@@ -52,6 +52,8 @@
         .btn-lg{padding:.5rem 1rem;font-size:1.25rem}
         /* Hero section */
         .untree_co-hero{background-size:cover;background-position:center;position:relative;min-height:550px;display:flex;align-items:center}
+        .untree_co-hero.compact-hero, .untree_co-hero.compact-hero > .container > .row{min-height:auto!important;height:auto!important}
+        .untree_co-hero.compact-hero{padding-top:130px!important;padding-bottom:40px!important}
         .untree_co-hero.overlay::before{content:"";position:absolute;inset:0;background:rgba(19,106,213,.85)}
         .untree_co-hero>.container{position:relative;z-index:2}
         .heading{font-size:2.5rem;font-weight:700;line-height:1.4;color:#fff}

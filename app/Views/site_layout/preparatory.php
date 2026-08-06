@@ -2,7 +2,7 @@
 <?= $this->section('content'); ?>
 
 <!-- Hero Section -->
-<div class="untree_co-hero overlay" style="background-image: url('<?= base_url() ?>site/images/main_banner.webp'); padding: 120px 0 80px 0;">
+<div class="untree_co-hero overlay compact-hero" style="background-image: url('<?= base_url() ?>site/images/main_banner.webp');">
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-12 text-center">
