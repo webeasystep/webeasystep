@@ -1427,8 +1427,8 @@
             <div class="alert alert-info mt-4">
                 <h5><i class="fas fa-info-circle mr-2"></i>هذا العنصر مجاني كمعاينة</h5>
                 <p>قم بالاشتراك في الكورس لمشاهدة باقي العناصر والمحتوى بالكامل.</p>
-                <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>" class="btn btn-primary">
-                    <i class="fas fa-shopping-cart mr-2"></i>اشترك الآن
+                <a href="javascript:void(0);" onclick="addToCart('course', <?= $course->id ?>);" class="btn btn-primary">
+                    <i class="fas fa-shopping-cart mr-2"></i>أضف للسلة
                 </a>
             </div>
         <?php else: ?>

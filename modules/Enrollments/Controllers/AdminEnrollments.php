@@ -237,17 +237,30 @@ class AdminEnrollments extends BaseController
         if ($enrollmentBefore->status === 'refunded') {
             return redirect()->back()->with('error', 'لا يمكن إعادة تفعيل اشتراك تم استرجاعه.');
         }
+        
+        $enrollmentsToApprove = [$enrollmentBefore];
+        if (!empty($enrollmentBefore->batch_id)) {
+            $enrollmentsToApprove = $this->courseEnrollments->where('batch_id', $enrollmentBefore->batch_id)->findAll();
+        }
 
-        $isNewlyApproved = $enrollmentBefore && $enrollmentBefore->status !== 'approved';
-
-        if ($this->courseEnrollments->approveEnrollment($id, $adminId, $expiresAt)) {
-            if ($isNewlyApproved) {
-                $this->incrementCouponUsageIfNeeded($id);
+        $allSuccess = true;
+        foreach ($enrollmentsToApprove as $enrollment) {
+            $isNewlyApproved = $enrollment->status !== 'approved';
+            
+            if ($this->courseEnrollments->approveEnrollment($enrollment->id, $adminId, $expiresAt)) {
+                if ($isNewlyApproved) {
+                    $this->incrementCouponUsageIfNeeded($enrollment->id);
+                }
+                $this->sendApprovalEmail($enrollment->id);
+            } else {
+                $allSuccess = false;
             }
-            $this->sendApprovalEmail($id);
-            return redirect()->back()->with('success', 'تم الموافقة على الطلب وتفعيل الدورة بنجاح');
+        }
+        
+        if ($allSuccess) {
+            return redirect()->back()->with('success', 'تم الموافقة على الطلب وتفعيل הדورة بنجاح');
         } else {
-            return redirect()->back()->with('error', 'فشل في الموافقة على الطلب');
+            return redirect()->back()->with('error', 'تم تفعيل بعض الطلبات، ولكن حدث فشل في تفعيل البعض الآخر.');
         }
     }
 

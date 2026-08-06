@@ -46,7 +46,7 @@ class Admin extends BaseController
         $this->db->query("SET time_zone='+3:00'");
 
         // Fetch counts for each table
-        $tables = ['articles','tb_unit_enrollments', 'tb_courses', 'users'];
+        $tables = ['articles','tb_course_enrollments', 'tb_courses', 'users'];
         foreach ($tables as $table) {
             $query = $this->db->query("SELECT COUNT(*) as count FROM $table");
             $result = $query->getRow();

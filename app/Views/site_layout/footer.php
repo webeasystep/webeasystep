@@ -17,6 +17,7 @@
                         <li><a href="https://wa.me/201032863861" target="_blank" title="+201032863861" aria-label="تواصل عبر واتساب"><span class="icon-whatsapp"></span></a></li>
                         <li><a href="https://t.me/fakhrcs" target="_blank" title="@fakhrcs" aria-label="تابعنا على تيليجرام"><span class="icon-telegram"></span></a></li>
                         <li><a href="https://www.facebook.com/khtwasahla" target="_blank" title="تابعنا عبر فيسبوك" aria-label="تابعنا عبر فيسبوك"><span class="icon-facebook"></span></a></li>
+                        <li><a href="https://x.com/fakhrcs" target="_blank" title="تابعنا عبر منصة إكس" aria-label="تابعنا عبر منصة إكس"><span><svg viewBox="0 0 24 24" style="width: 1em; height: 1em; fill: currentColor;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></span></a></li>
                     </ul>
                 </div> </div> 
                 <div class="col-lg-4 ml-auto">

@@ -118,8 +118,12 @@
                         ?>
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4">
                             <div class="course-card h-100">
+                                <?php 
+                                    $isOpen = isset($course['is_open']) && $course['is_open'] == 1;
+                                    $courseUrl = $course['course_url'] ?? base_url('courses/course_details/' . $course['slug']);
+                                ?>
                                 <?php if ($hasImage): ?>
-                                    <div class="course-card-image">
+                                    <?php if ($isOpen): ?><a href="<?= $courseUrl ?>" class="course-card-image d-block" style="text-decoration: none;"><?php else: ?><div class="course-card-image"><?php endif; ?>
                                         <?php 
                                             $courseAlt = esc($course['course_title']) . (!empty($course['course_name_en']) ? ' - ' . esc($course['course_name_en']) : '');
                                             $courseAlt .= !empty($course['course_code']) ? ' | رمز المقرر: ' . esc($course['course_code']) : '';
@@ -127,21 +131,21 @@
                                             $courseAlt .= ' | الجامعة السعودية الإلكترونية SEU';
                                         ?>
                                         <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= $courseAlt ?>" class="course-img" loading="lazy" decoding="async">
-                                        <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
+                                        <?php if($isOpen): ?>
                                             <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
                                         <?php else: ?>
                                             <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #ef4444;">مغلق الحجز</span>
                                         <?php endif; ?>
-                                    </div>
+                                    <?= $isOpen ? '</a>' : '</div>' ?>
                                 <?php else: ?>
-                                    <div class="course-card-image" style="background: <?= $gradient ?>;">
+                                    <?php if ($isOpen): ?><a href="<?= $courseUrl ?>" class="course-card-image d-block" style="background: <?= $gradient ?>; text-decoration: none;"><?php else: ?><div class="course-card-image" style="background: <?= $gradient ?>;"><?php endif; ?>
                                         <div class="course-icon"><i class="fas <?= $icon ?>"></i></div>
-                                        <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
+                                        <?php if($isOpen): ?>
                                             <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
                                         <?php else: ?>
                                             <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #ef4444;">مغلق الحجز</span>
                                         <?php endif; ?>
-                                    </div>
+                                    <?= $isOpen ? '</a>' : '</div>' ?>
                                 <?php endif; ?>
                                 <div class="course-card-body d-flex flex-column">
                                     <h5 class="course-title"><?= esc($course['course_title']) ?></h5>
@@ -175,7 +179,7 @@
                                             <?php endif; ?>
                                         </div>
                                         <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
-                                            <a href="<?= base_url('courses/course_details/' . $course['slug']) ?>" class="btn btn-subscribe" style="padding: 10px 15px;">اشترك الآن</a>
+                                            <a href="javascript:void(0);" onclick="addToCart('course', <?= $course['id'] ?>);" class="btn btn-subscribe" style="padding: 10px 15px;">أضف للسلة</a>
                                         <?php else: ?>
                                             <button type="button" class="btn btn-subscribe" style="padding: 10px 15px; background: #6c757d; border-color: #6c757d;" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">أعلمني عند التوفر</button>
                                         <?php endif; ?>

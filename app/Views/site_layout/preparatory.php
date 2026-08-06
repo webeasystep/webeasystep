@@ -16,6 +16,56 @@
         </div>
     </div>
 </div>
+<!-- Bundles Section -->
+<?php if (!empty($bundles)): ?>
+<div class="untree_co-section" id="bundles" style="background: #f8f9fa;">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                <h2 class="line-bottom text-center mb-4">باقات التوفير للسنة التحضيرية</h2>
+                <p class="text-muted">احصل على جميع مواد السنة التحضيرية في باقة واحدة بسعر مخفض</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <?php foreach ($bundles as $bundle): ?>
+                <div class="col-md-8 col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card shadow-sm border-0 h-100" style="border-radius: 15px; overflow: hidden; border: 2px solid #136ad5 !important;">
+                        <div class="row no-gutters h-100">
+                            <div class="col-md-5" style="background: linear-gradient(135deg, #136ad5, #1e88e5); display: flex; align-items: center; justify-content: center; padding: 20px;">
+                                <?php if ($bundle->image): ?>
+                                    <img src="<?= base_url('uploads/courses/' . $bundle->image) ?>" alt="<?= esc($bundle->bundle_title) ?>" class="img-fluid" style="border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                                <?php else: ?>
+                                    <i class="fas fa-layer-group" style="font-size: 5rem; color: rgba(255,255,255,0.8);"></i>
+                                <?php endif; ?>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body d-flex flex-column h-100">
+                                    <h4 class="card-title font-weight-bold mb-3"><?= esc($bundle->bundle_title) ?></h4>
+                                    <p class="card-text text-muted mb-4"><?= esc($bundle->description) ?></p>
+                                    
+                                    <div class="mt-auto">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="text-danger font-weight-bold" style="text-decoration: line-through; font-size: 1.1rem; margin-right: 15px;">
+                                                <?= number_format($bundle->original_price) ?> ر.س
+                                            </div>
+                                            <div class="text-primary font-weight-bold" style="font-size: 1.8rem;">
+                                                <?= number_format($bundle->bundle_price) ?> ر.س
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary btn-block btn-lg mt-2" onclick="addToCart('bundle', <?= $bundle->id ?>)" style="border-radius: 30px; font-weight: bold; box-shadow: 0 4px 10px rgba(19, 106, 213, 0.3);">
+                                            <i class="fas fa-cart-plus mr-2"></i> أضف للسلة
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
 
 <!-- Courses Section -->
 <div class="untree_co-section bg-light" id="courses">
@@ -52,24 +102,28 @@
                     ?>
                     <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="course-card h-100">
+                            <?php 
+                                $isOpen = isset($course['is_open']) && $course['is_open'] == 1;
+                                $courseUrl = $course['course_url'] ?? base_url('courses/course_details/' . $course['slug']);
+                            ?>
                             <?php if ($hasImage): ?>
-                                <div class="course-card-image">
+                                <?php if ($isOpen): ?><a href="<?= $courseUrl ?>" class="course-card-image d-block" style="text-decoration: none;"><?php else: ?><div class="course-card-image"><?php endif; ?>
                                     <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= esc($course['course_title']) ?>" class="course-img" loading="lazy" decoding="async">
-                                    <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
+                                    <?php if($isOpen): ?>
                                         <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
                                     <?php else: ?>
                                         <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #ef4444;">مغلق الحجز</span>
                                     <?php endif; ?>
-                                </div>
+                                <?= $isOpen ? '</a>' : '</div>' ?>
                             <?php else: ?>
-                                <div class="course-card-image" style="background: <?= $gradient ?>;">
+                                <?php if ($isOpen): ?><a href="<?= $courseUrl ?>" class="course-card-image d-block" style="background: <?= $gradient ?>; text-decoration: none;"><?php else: ?><div class="course-card-image" style="background: <?= $gradient ?>;"><?php endif; ?>
                                     <div class="course-icon"><i class="fas <?= $icon ?>"></i></div>
-                                    <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
+                                    <?php if($isOpen): ?>
                                         <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
                                     <?php else: ?>
                                         <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #ef4444;">مغلق الحجز</span>
                                     <?php endif; ?>
-                                </div>
+                                <?= $isOpen ? '</a>' : '</div>' ?>
                             <?php endif; ?>
                             <div class="course-card-body d-flex flex-column">
                                 <h5 class="course-title"><?= esc($course['course_title']) ?></h5>
@@ -101,7 +155,7 @@
                                         <?php endif; ?>
                                     </div>
                                     <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
-                                        <a href="<?= $course['course_url'] ?? base_url('courses/course_details/' . $course['slug']) ?>" class="btn btn-subscribe" style="padding: 10px 15px;">عرض الكورس</a>
+                                        <button class="btn btn-primary btn-subscribe" onclick="addToCart('course', <?= $course['id'] ?>)" style="padding: 10px 15px; border-radius: 8px;">أضف للسلة</button>
                                     <?php else: ?>
                                         <button type="button" class="btn btn-subscribe" style="padding: 10px 15px; background: #6c757d; border-color: #6c757d;" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">أعلمني عند التوفر</button>
                                     <?php endif; ?>

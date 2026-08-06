@@ -44,7 +44,8 @@ class Autoload extends AutoloadConfig
         'Config'                  => APPPATH . 'Config',
         'Modules\Admin'      => ROOTPATH . 'modules/Admin',
         'Modules\Articles'   => ROOTPATH . 'modules/Articles',
-
+        'Modules\Bundles'    => ROOTPATH . 'modules/Bundles',
+        'Modules\Cart'       => ROOTPATH . 'modules/Cart',
         'Modules\ContactUs'  => ROOTPATH . 'modules/ContactUs',
         'Modules\Coupons'    => ROOTPATH . 'modules/Coupons',
         'Modules\Courses'    => ROOTPATH . 'modules/Courses',

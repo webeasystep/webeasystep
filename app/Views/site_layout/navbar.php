@@ -65,9 +65,6 @@
                     <li <?= str_contains(urldecode(current_url()), 'السنة-الاولى-المشتركة') || str_contains(current_url(), 'preparatory') ? 'class="active"' : '' ?>>
                         <a href="<?= site_url('الجامعة-السعودية-الالكترونية-السنة-الاولى-المشتركة-التحضيرية') ?>">السنة الأولى المشتركة (التحضيرية)</a>
                     </li>
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#courseRequestModal" style="color: #5c7cfa; font-weight: bold;">اطلب مقرر</a>
-                    </li>
 
                     <?php if ($isLoggedIn): ?>
                         <!-- User Navigation Links -->
@@ -145,6 +142,11 @@
                                     <span class="icon-question mr-1"></span>الأسئلة الشائعة
                                 </a>
                             </li>
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#courseRequestModal" style="font-weight: bold;">
+                                    <span class="icon-pencil mr-1"></span>اطلب مقرر
+                                </a>
+                            </li>
                             <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
                                 <a href="<?= site_url('terms-conditions') ?>">
                                     <span class="icon-document mr-1"></span>الشروط والأحكام
@@ -152,6 +154,48 @@
                             </li>
                         </ul>
                     </li>
+
+                    <?php if ($isLoggedIn): ?>
+                        <li style="margin-right: auto; padding-right: 20px;">
+                            <style>
+                                .cart-link {
+                                    position: relative !important;
+                                    display: inline-block !important;
+                                    overflow: visible !important;
+                                }
+                                .cart-badge {
+                                    position: absolute !important;
+                                    top: -8px !important;
+                                    right: -12px !important;
+                                    font-size: 0.75rem !important;
+                                    border-radius: 50% !important;
+                                    padding: 4px 6px !important;
+                                    min-width: 20px !important;
+                                    text-align: center !important;
+                                    z-index: 1050 !important;
+                                    background-color: #dc3545 !important;
+                                    color: #ffffff !important;
+                                    visibility: visible !important;
+                                    opacity: 1 !important;
+                                }
+                                .cart-badge.d-none-important {
+                                    display: none !important;
+                                }
+                                .cart-badge.d-inline-important {
+                                    display: inline-block !important;
+                                }
+                            </style>
+                            <a href="<?= site_url('cart') ?>" class="cart-link" style="font-size: 1.5rem; color: #5c7cfa;">
+                                <i class="icon-shopping-cart"></i>
+                                <?php 
+                                    $cartModel = new \Modules\Cart\Models\CartModel();
+                                    $cartCount = $cartModel->getCartCount($currentUser->id);
+                                    $displayClass = $cartCount > 0 ? 'd-inline-important' : 'd-none-important';
+                                ?>
+                                <span class="cart-badge badge badge-danger <?= $displayClass ?>"><?= $cartCount > 0 ? $cartCount : '' ?></span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
 
                 <!-- Mobile Toggle -->

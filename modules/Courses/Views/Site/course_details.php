@@ -3007,13 +3007,14 @@
                                 </svg>
                             <?php endif; ?>
                         </div>
-                        <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>"
+                        <a href="javascript:void(0);"
+                           onclick="addToCart('course', <?= $course->id ?>);"
                            class="btn btn-light btn-lg"
                            style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); width: 100%; margin-top: 0.5rem;">
                             <i class="icon-shopping-cart"></i>
-                            اشترك الآن
+                            أضف للسلة
                         </a>
-                        <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">احصل على جميع الوحدات والاختبارات</small>
+                        <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">دفع آمن عبر بايبال ومحلياً</small>
                     </div>
                 </div>
 
@@ -3095,13 +3096,14 @@
                                     </svg>
                                 <?php endif; ?>
                             </div>
-                            <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>"
+                            <a href="javascript:void(0);"
+                               onclick="addToCart('course', <?= $course->id ?>);"
                                class="btn btn-light btn-lg"
                                style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); width: 100%; margin-top: 0.5rem;">
                                 <i class="icon-shopping-cart"></i>
-                                اشترك الآن
+                                أضف للسلة
                             </a>
-                            <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">وصول فوري لجميع الدروس والمشاريع</small>
+                            <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">شراء آمن بضمان استرجاع الأموال</small>
                         </div>
                     </div>
 
@@ -3138,7 +3140,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
-                <button type="button" class="btn btn-primary" onclick="window.location.href='<?= site_url('enrollments/purchase-course/' . $course->id) ?>'">شراء الكورس كاملاً</button>
+                <button type="button" class="btn btn-primary" onclick="addToCart('course', <?= $course->id ?>); $('#previewModal').modal('hide');">اشترك وأضف للسلة</button>
             </div>
         </div>
     </div>

@@ -103,6 +103,9 @@ class Site extends BaseController
         });
         
         $data['courses'] = array_values($filteredCourses);
+        
+        $bundlesModel = new \Modules\Bundles\Models\BundlesModel();
+        $data['bundles'] = $bundlesModel->getActiveBundles();
 
         echo MainView('site_layout/preparatory', $data);
     }

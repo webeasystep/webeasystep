@@ -19,6 +19,8 @@ class CourseEnrollmentsModel extends BaseModel
     protected $allowedFields = [
         'user_id',
         'course_id',
+        'bundle_id',
+        'batch_id',
         'paid_amount',
         'coupon_id',
         'coupon_code',
@@ -171,6 +173,8 @@ class CourseEnrollmentsModel extends BaseModel
         $data = [
             'user_id' => $userId,
             'course_id' => $courseId,
+            'bundle_id' => $paymentData['bundle_id'] ?? null,
+            'batch_id' => $paymentData['batch_id'] ?? null,
             'paid_amount' => $paymentData['paid_amount'] ?? 0,
             'coupon_id' => $paymentData['coupon_id'] ?? null,
             'coupon_code' => $paymentData['coupon_code'] ?? null,
