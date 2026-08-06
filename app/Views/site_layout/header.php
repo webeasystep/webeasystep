@@ -95,10 +95,10 @@
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU" crossorigin="anonymous">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css"></noscript>
 
-    <link rel="preload" href="<?= base_url() ?>site/css/style_rtl.css?v=2.10" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="<?= base_url() ?>site/css/style_rtl.css?v=2.10"></noscript>
+    <link rel="preload" href="<?= base_url() ?>site/css/style_rtl.css?v=2.11" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="<?= base_url() ?>site/css/style_rtl.css?v=2.11"></noscript>
 
-    <link rel="stylesheet" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=1.8">
+    <link rel="stylesheet" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=1.9">
 
     <!-- Fonts - with display swap for better performance -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">

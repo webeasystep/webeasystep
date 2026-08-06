@@ -133,22 +133,23 @@
         z-index: 1;
     }
 
-    .course-topbar-title {
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: #ffffff;
+    .course-topbar .course-topbar-title {
+        font-family: 'Alexandria-Medium', system-ui, sans-serif;
+        font-size: 1.8rem;
+        font-weight: normal;
+        color: #ffffff !important;
         margin: 0;
-        line-height: 1.25;
-        letter-spacing: -0.3px;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        line-height: 1.4;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    .course-topbar-desc {
-        font-size: 0.88rem;
-        color: rgba(255, 255, 255, 0.75);
-        margin: 0.35rem 0 0;
-        line-height: 1.5;
-        max-width: 600px;
+    .course-topbar .course-topbar-desc {
+        font-family: 'Alexandria-Regular', system-ui, sans-serif;
+        font-size: 1.05rem;
+        color: #ffffff !important;
+        margin: 0.5rem 0 0;
+        line-height: 1.7;
+        max-width: 700px;
     }
 
     .course-topbar-progress {
@@ -703,7 +704,7 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
         transition: left 0.5s;
     }
 
@@ -747,7 +748,7 @@
         border-radius: 8px;
         overflow: hidden;
         margin-bottom: 1rem;
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
     }
 
     body.dark-mode .progress {
@@ -765,20 +766,26 @@
     .progress-bar::after {
         content: '';
         position: absolute;
-        top: 0; left: 0; bottom: 0; right: 0;
-        background-image: linear-gradient(
-            -45deg,
-            rgba(255,255,255,.2) 25%, transparent 25%,
-            transparent 50%, rgba(255,255,255,.2) 50%,
-            rgba(255,255,255,.2) 75%, transparent 75%, transparent
-        );
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-image: linear-gradient(-45deg,
+                rgba(255, 255, 255, .2) 25%, transparent 25%,
+                transparent 50%, rgba(255, 255, 255, .2) 50%,
+                rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
         background-size: 20px 20px;
         animation: progress-move 2s linear infinite;
     }
 
     @keyframes progress-move {
-        0% { background-position: 0 0; }
-        100% { background-position: 20px 20px; }
+        0% {
+            background-position: 0 0;
+        }
+
+        100% {
+            background-position: 20px 20px;
+        }
     }
 
     .progress-stats {
@@ -983,8 +990,17 @@
        ANIMATIONS
        ============================================= */
     @keyframes pulse-dot {
-        0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
-        50% { opacity: 0.7; transform: translateY(-50%) scale(1.2); }
+
+        0%,
+        100% {
+            opacity: 1;
+            transform: translateY(-50%) scale(1);
+        }
+
+        50% {
+            opacity: 0.7;
+            transform: translateY(-50%) scale(1.2);
+        }
     }
 
     .active-item .status-indicator.current {
@@ -992,8 +1008,15 @@
     }
 
     @keyframes pulse-glow {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(19, 106, 213, 0.4); }
-        50% { box-shadow: 0 0 0 6px rgba(19, 106, 213, 0); }
+
+        0%,
+        100% {
+            box-shadow: 0 0 0 0 rgba(19, 106, 213, 0.4);
+        }
+
+        50% {
+            box-shadow: 0 0 0 6px rgba(19, 106, 213, 0);
+        }
     }
 
     body.dark-mode .active-item .status-indicator.current {
@@ -1001,8 +1024,15 @@
     }
 
     @keyframes pulse-glow-dark {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4); }
-        50% { box-shadow: 0 0 0 6px rgba(96, 165, 250, 0); }
+
+        0%,
+        100% {
+            box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4);
+        }
+
+        50% {
+            box-shadow: 0 0 0 6px rgba(96, 165, 250, 0);
+        }
     }
 
     /* =============================================
@@ -1085,23 +1115,22 @@
                     ?>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading<?= esc($unit->id) ?>">
-                            <button class="accordion-button <?= isset($unit->is_open) && $unit->is_open ? '' : 'collapsed' ?> <?= $isUnitLocked ? 'unit-locked' : '' ?>"
-                                    type="button"
-                                    data-toggle="collapse"
-                                    data-target="#collapse<?= esc($unit->id) ?>"
-                                    aria-expanded="<?= isset($unit->is_open) && $unit->is_open ? 'true' : 'false' ?>"
-                                    aria-controls="collapse<?= esc($unit->id) ?>">
+                            <button
+                                class="accordion-button <?= isset($unit->is_open) && $unit->is_open ? '' : 'collapsed' ?> <?= $isUnitLocked ? 'unit-locked' : '' ?>"
+                                type="button" data-toggle="collapse" data-target="#collapse<?= esc($unit->id) ?>"
+                                aria-expanded="<?= isset($unit->is_open) && $unit->is_open ? 'true' : 'false' ?>"
+                                aria-controls="collapse<?= esc($unit->id) ?>">
                                 <?= esc($unit->unit_name) ?>
                                 <?php if ($isUnitLocked): ?>
-                                    <i class="fas fa-lock" style="font-size:11px; margin-right:4px; color:var(--cv-danger);"></i>
+                                    <i class="fas fa-lock"
+                                        style="font-size:11px; margin-right:4px; color:var(--cv-danger);"></i>
                                 <?php endif; ?>
                                 <span class="badge-unit-count"><?= count($unit->items ?? []) ?></span>
                             </button>
                         </h2>
                         <div id="collapse<?= esc($unit->id) ?>"
-                             class="collapse <?= isset($unit->is_open) && $unit->is_open ? 'show' : '' ?>"
-                             aria-labelledby="heading<?= esc($unit->id) ?>"
-                             data-parent="#videoAccordion">
+                            class="collapse <?= isset($unit->is_open) && $unit->is_open ? 'show' : '' ?>"
+                            aria-labelledby="heading<?= esc($unit->id) ?>" data-parent="#videoAccordion">
                             <div class="accordion-body">
                                 <div class="unit-items-container">
                                     <?php if (isset($unit->items)): ?>
@@ -1117,69 +1146,74 @@
 
                                             <div class="course-item <?= $itemClass ?>">
                                                 <?php if ($isItemLocked): ?>
-                                                <div class="item-content locked-content">
-                                                <?php else: ?>
-                                                    <?php $urlParam = 'item=' . $item->id; ?>
-                                                    <a href="<?= site_url('courses/course_view/' . $course->slug . '?' . $urlParam) ?>" class="item-content unit-item-link" data-item-id="<?= $item->id ?>" data-item-type="<?= $item->item_type ?>">
-                                                <?php endif; ?>
-
-                                                    <?php $isCompleted = isset($completedItemIds) && in_array($item->id, $completedItemIds); ?>
-                                                    <!-- Item Icon -->
-                                                    <div class="item-icon">
-                                                        <?php if ($isCompleted): ?>
-                                                            <i class="fas fa-check-circle" style="color:var(--cv-success);"></i>
-                                                        <?php elseif ($item->item_type === 'video'): ?>
-                                                            <i class="icon-play-circle-o" style="color:<?= $isItemLocked ? 'var(--cv-text-light)' : 'var(--cv-primary)' ?>;"></i>
-                                                        <?php elseif ($item->item_type === 'quiz'): ?>
-                                                            <i class="icon-question-circle" style="color:<?= $isItemLocked ? 'var(--cv-text-light)' : 'var(--cv-success)' ?>;"></i>
-                                                        <?php elseif ($item->item_type === 'page'): ?>
-                                                            <i class="icon-file-text-o" style="color:<?= $isItemLocked ? 'var(--cv-text-light)' : '#17a2b8' ?>;"></i>
-                                                        <?php else: ?>
-                                                            <i class="icon-circle" style="color:var(--cv-text-muted);"></i>
+                                                    <div class="item-content locked-content">
+                                                    <?php else: ?>
+                                                        <?php $urlParam = 'item=' . $item->id; ?>
+                                                        <a href="<?= site_url('courses/course_view/' . $course->slug . '?' . $urlParam) ?>"
+                                                            class="item-content unit-item-link" data-item-id="<?= $item->id ?>"
+                                                            data-item-type="<?= $item->item_type ?>">
                                                         <?php endif; ?>
-                                                    </div>
 
-                                                    <!-- Item Details -->
-                                                    <div class="item-details">
-                                                        <div class="item-title"><?= esc($item->title) ?></div>
-                                                        <div class="item-meta">
-                                                            <?php
-                                                            $metadata = json_decode($item->metadata ?? '{}', true);
-                                                            if ($item->item_type === 'video') {
-                                                                $duration = isset($metadata['video_duration']) ? round((int)$metadata['video_duration'] / 60) : null;
-                                                                if ($duration) {
-                                                                    echo '<span class="item-duration"><i class="fas fa-clock"></i> ' . esc($duration) . ' د</span>';
-                                                                } else {
-                                                                    echo '<span class="item-type"><i class="fas fa-video"></i> فيديو</span>';
-                                                                }
-                                                            } elseif ($item->item_type === 'quiz') {
-                                                                echo '<span class="item-type"><i class="fas fa-question-circle"></i> اختبار</span>';
-                                                            } elseif ($item->item_type === 'page') {
-                                                                echo '<span class="item-type"><i class="fas fa-file-alt"></i> صفحة</span>';
-                                                            }
-                                                            ?>
+                                                        <?php $isCompleted = isset($completedItemIds) && in_array($item->id, $completedItemIds); ?>
+                                                        <!-- Item Icon -->
+                                                        <div class="item-icon">
+                                                            <?php if ($isCompleted): ?>
+                                                                <i class="fas fa-check-circle" style="color:var(--cv-success);"></i>
+                                                            <?php elseif ($item->item_type === 'video'): ?>
+                                                                <i class="icon-play-circle-o"
+                                                                    style="color:<?= $isItemLocked ? 'var(--cv-text-light)' : 'var(--cv-primary)' ?>;"></i>
+                                                            <?php elseif ($item->item_type === 'quiz'): ?>
+                                                                <i class="icon-question-circle"
+                                                                    style="color:<?= $isItemLocked ? 'var(--cv-text-light)' : 'var(--cv-success)' ?>;"></i>
+                                                            <?php elseif ($item->item_type === 'page'): ?>
+                                                                <i class="icon-file-text-o"
+                                                                    style="color:<?= $isItemLocked ? 'var(--cv-text-light)' : '#17a2b8' ?>;"></i>
+                                                            <?php else: ?>
+                                                                <i class="icon-circle" style="color:var(--cv-text-muted);"></i>
+                                                            <?php endif; ?>
                                                         </div>
-                                                    </div>
 
-                                                    <!-- Item Status -->
-                                                    <div class="item-status">
-                                                        <?php if ($item->id == $current_id && !$isItemLocked): ?>
-                                                            <div class="status-indicator current">
-                                                                <i class="fas fa-play"></i>
+                                                        <!-- Item Details -->
+                                                        <div class="item-details">
+                                                            <div class="item-title"><?= esc($item->title) ?></div>
+                                                            <div class="item-meta">
+                                                                <?php
+                                                                $metadata = json_decode($item->metadata ?? '{}', true);
+                                                                if ($item->item_type === 'video') {
+                                                                    $duration = isset($metadata['video_duration']) ? round((int) $metadata['video_duration'] / 60) : null;
+                                                                    if ($duration) {
+                                                                        echo '<span class="item-duration"><i class="fas fa-clock"></i> ' . esc($duration) . ' د</span>';
+                                                                    } else {
+                                                                        echo '<span class="item-type"><i class="fas fa-video"></i> فيديو</span>';
+                                                                    }
+                                                                } elseif ($item->item_type === 'quiz') {
+                                                                    echo '<span class="item-type"><i class="fas fa-question-circle"></i> اختبار</span>';
+                                                                } elseif ($item->item_type === 'page') {
+                                                                    echo '<span class="item-type"><i class="fas fa-file-alt"></i> صفحة</span>';
+                                                                }
+                                                                ?>
                                                             </div>
-                                                        <?php elseif ($isItemLocked): ?>
-                                                            <div class="status-indicator locked">
-                                                                <i class="fas fa-lock"></i>
-                                                            </div>
-                                                        <?php else: ?>
-                                                            <div class="status-indicator available">
-                                                                <i class="fas fa-chevron-left"></i>
-                                                            </div>
-                                                        <?php endif; ?>
-                                                    </div>
+                                                        </div>
 
-                                                <?php if ($isItemLocked): ?>
-                                                </div>
+                                                        <!-- Item Status -->
+                                                        <div class="item-status">
+                                                            <?php if ($item->id == $current_id && !$isItemLocked): ?>
+                                                                <div class="status-indicator current">
+                                                                    <i class="fas fa-play"></i>
+                                                                </div>
+                                                            <?php elseif ($isItemLocked): ?>
+                                                                <div class="status-indicator locked">
+                                                                    <i class="fas fa-lock"></i>
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <div class="status-indicator available">
+                                                                    <i class="fas fa-chevron-left"></i>
+                                                                </div>
+                                                            <?php endif; ?>
+                                                        </div>
+
+                                                        <?php if ($isItemLocked): ?>
+                                                    </div>
                                                 <?php else: ?>
                                                     </a>
                                                 <?php endif; ?>
@@ -1201,10 +1235,8 @@
                 <span class="progress-percentage"><?= esc($course_progress) ?>%</span>
             </div>
             <div class="progress">
-                <div class="progress-bar" role="progressbar"
-                     style="width: <?= esc($course_progress) ?>%;"
-                     aria-valuenow="<?= esc($course_progress) ?>"
-                     aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" role="progressbar" style="width: <?= esc($course_progress) ?>%;"
+                    aria-valuenow="<?= esc($course_progress) ?>" aria-valuemin="0" aria-valuemax="100">
                 </div>
             </div>
             <div class="progress-stats">
@@ -1265,11 +1297,10 @@
                     <div class="video-container">
                         <?php if ($video_id): ?>
                             <iframe
-                                    src="https://player.mediadelivery.net/embed/<?= $video_library_id ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
-                                    loading="lazy"
-                                    style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
-                                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                                    allowfullscreen="true">
+                                src="https://player.mediadelivery.net/embed/<?= $video_library_id ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
+                                loading="lazy" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+                                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                                allowfullscreen="true">
                             </iframe>
                         <?php else: ?>
                             <div class="no-content-placeholder">
@@ -1310,13 +1341,15 @@
                                         <div class="col-md-4">
                                             <div class="quiz-stat">
                                                 <i class="fas fa-percentage"></i>
-                                                <span>درجة النجاح: <span dir="ltr"><?= esc($quiz_data->passing_score ?? '70') ?>%</span></span>
+                                                <span>درجة النجاح: <span
+                                                        dir="ltr"><?= esc($quiz_data->passing_score ?? '70') ?>%</span></span>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="quiz-stat">
                                                 <i class="fas fa-redo"></i>
-                                                <span dir="rtl">المحاولات: <?= esc($quiz_data->user_attempt_count ?? 0) ?>/<?= esc($quiz_data->max_attempts ?? 3) ?></span>
+                                                <span dir="rtl">المحاولات:
+                                                    <?= esc($quiz_data->user_attempt_count ?? 0) ?>/<?= esc($quiz_data->max_attempts ?? 3) ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -1327,11 +1360,13 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <small class="text-muted">أفضل نتيجة:</small>
-                                                    <strong class="text-success" dir="ltr"><?= esc($quiz_data->user_best_score ?? 0) ?>%</strong>
+                                                    <strong class="text-success"
+                                                        dir="ltr"><?= esc($quiz_data->user_best_score ?? 0) ?>%</strong>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <small class="text-muted">المحاولات المتبقية:</small>
-                                                    <strong class="<?= ($quiz_data->remaining_attempts ?? 0) > 0 ? 'text-info' : 'text-danger' ?>">
+                                                    <strong
+                                                        class="<?= ($quiz_data->remaining_attempts ?? 0) > 0 ? 'text-info' : 'text-danger' ?>">
                                                         <?= esc($quiz_data->remaining_attempts ?? 0) ?>
                                                     </strong>
                                                 </div>
@@ -1348,8 +1383,7 @@
                                         </button>
                                     <?php else: ?>
                                         <button class="btn btn-success btn-lg take-embedded-quiz-btn"
-                                                data-quiz-id="<?= $quiz_data->id ?>"
-                                                data-quiz-title="<?= esc($quiz_data->quiz_title) ?>">
+                                            data-quiz-id="<?= $quiz_data->id ?>" data-quiz-title="<?= esc($quiz_data->quiz_title) ?>">
                                             <i class="fas fa-play mr-2"></i>
                                             <?= (isset($quiz_data->user_attempt_count) && $quiz_data->user_attempt_count > 0) ? 'إعادة الاختبار' : 'بدء الاختبار' ?>
                                         </button>
@@ -1410,11 +1444,10 @@
             <div class="course-preview-video">
                 <div class="video-container">
                     <iframe
-                                    src="https://player.mediadelivery.net/embed/<?= $metadata['video_library_id'] ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
-                            loading="lazy"
-                            style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
-                            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                            allowfullscreen="true">
+                        src="https://player.mediadelivery.net/embed/<?= $metadata['video_library_id'] ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
+                        loading="lazy" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+                        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                        allowfullscreen="true">
                     </iframe>
                 </div>
             </div>
@@ -1432,165 +1465,165 @@
                 </a>
             </div>
         <?php else: ?>
-        <!-- Mark as Complete Button -->
-        <div class="completion-section mt-4">
+            <!-- Mark as Complete Button -->
+            <div class="completion-section mt-4">
 
-            <?php if (isset($current_item) && !empty($current_item['id'])): ?>
-                <button class="btn btn-success btn-block mark-complete-button"
+                <?php if (isset($current_item) && !empty($current_item['id'])): ?>
+                    <button class="btn btn-success btn-block mark-complete-button"
                         onclick="markItemComplete(<?= $course->id ?>, <?= $current_item['id'] ?>)">
-                    <i class="fas fa-check mr-2"></i>
-                    تم الإكمال
-                </button>
+                        <i class="fas fa-check mr-2"></i>
+                        تم الإكمال
+                    </button>
 
-            <?php else: ?>
-                <button class="btn btn-secondary btn-block" disabled>
-                    <i class="fas fa-exclamation-triangle mr-2"></i>
-                    لا يمكن تحديد العنصر
-                </button>
+                <?php else: ?>
+                    <button class="btn btn-secondary btn-block" disabled>
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        لا يمكن تحديد العنصر
+                    </button>
 
-            <?php endif; ?>
-        </div>
+                <?php endif; ?>
+            </div>
         <?php endif; ?>
 
 
-                <script>
-                    function markItemComplete(courseId, itemId) {
-                        console.log('MARK_COMPLETE DEBUG - Function called with:', {courseId, itemId});
+        <script>
+            function markItemComplete(courseId, itemId) {
+                console.log('MARK_COMPLETE DEBUG - Function called with:', { courseId, itemId });
 
-                        if (!courseId || !itemId) {
-                            console.error('MARK_COMPLETE ERROR - Missing parameters:', {courseId, itemId});
-                            alert('خطأ: Course ID and Item ID required');
-                            return;
-                        }
+                if (!courseId || !itemId) {
+                    console.error('MARK_COMPLETE ERROR - Missing parameters:', { courseId, itemId });
+                    alert('خطأ: Course ID and Item ID required');
+                    return;
+                }
 
-                        // Disable button to prevent double clicks
-                        const button = event.target;
-                        button.disabled = true;
-                        button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>جاري الحفظ...';
+                // Disable button to prevent double clicks
+                const button = event.target;
+                button.disabled = true;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>جاري الحفظ...';
 
-                        console.log('MARK_COMPLETE DEBUG - Sending request to:', '<?= base_url('progress/mark-completed') ?>');
-                        console.log('MARK_COMPLETE DEBUG - Request body:', {course_id: courseId, item_id: itemId});
+                console.log('MARK_COMPLETE DEBUG - Sending request to:', '<?= base_url('progress/mark-completed') ?>');
+                console.log('MARK_COMPLETE DEBUG - Request body:', { course_id: courseId, item_id: itemId });
 
-                        fetch('<?= base_url('progress/mark-completed') ?>', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-Requested-With': 'XMLHttpRequest'
-                            },
-                            body: JSON.stringify({
-                                course_id: courseId,
-                                item_id: itemId
-                            })
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.success) {
-                                    // Update progress bar immediately
-                                    const progressBar = document.querySelector('.progress-bar');
-                                    if (progressBar && data.course_completion !== undefined) {
-                                        progressBar.style.width = data.course_completion + '%';
-                                        progressBar.setAttribute('aria-valuenow', data.course_completion);
-                                        progressBar.textContent = data.course_completion + '%';
-                                    }
+                fetch('<?= base_url('progress/mark-completed') ?>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        course_id: courseId,
+                        item_id: itemId
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Update progress bar immediately
+                            const progressBar = document.querySelector('.progress-bar');
+                            if (progressBar && data.course_completion !== undefined) {
+                                progressBar.style.width = data.course_completion + '%';
+                                progressBar.setAttribute('aria-valuenow', data.course_completion);
+                                progressBar.textContent = data.course_completion + '%';
+                            }
 
-                                    // Show success message briefly
-                                    button.innerHTML = '<i class="fas fa-check mr-2"></i>مكتمل';
-                                    button.classList.remove('btn-success');
-                                    button.classList.add('btn-secondary');
-                                    button.disabled = true;
+                            // Show success message briefly
+                            button.innerHTML = '<i class="fas fa-check mr-2"></i>مكتمل';
+                            button.classList.remove('btn-success');
+                            button.classList.add('btn-secondary');
+                            button.disabled = true;
 
-                                    // Auto-navigate to next item or unit without confirmation
-                                    if (data.next_item) {
+                            // Auto-navigate to next item or unit without confirmation
+                            if (data.next_item) {
 
-                                        // Store the next item as the last selected item
-                                        const courseSlug = '<?= $course->slug ?>';
-                                        const nextItemId = data.next_item.url.match(/item=(\d+)/);
-                                        if (nextItemId && nextItemId[1]) {
-                                            localStorage.setItem(`course_${courseSlug}_last_item`, nextItemId[1]);
-                                        }
-                                        setTimeout(() => {
-                                            window.location.href = data.next_item.url;
-                                        }, 500);
-                                    } else if (data.next_unit) {
-
-                                        // Store the next unit's first item as the last selected item
-                                        const courseSlug = '<?= $course->slug ?>';
-                                        const nextItemId = data.next_unit.url.match(/item=(\d+)/);
-                                        if (nextItemId && nextItemId[1]) {
-                                            localStorage.setItem(`course_${courseSlug}_last_item`, nextItemId[1]);
-                                        }
-                                        setTimeout(() => {
-                                            window.location.href = data.next_unit.url;
-                                        }, 500);
-                                    } else if (data.course_completed && data.redirect_url) {
-
-                                        // Course is completed, redirect to my_courses
-                                        setTimeout(() => {
-                                            window.location.href = data.redirect_url;
-                                        }, 1000);
-                                    }
-                                    // No alert for course completion - just stay on current page
-                                } else {
-                                    alert('خطأ: ' + (data.message || 'فشل في حفظ التقدم'));
-                                    button.disabled = false;
-                                    button.innerHTML = '<i class="fas fa-check mr-2"></i>تم الإكمال';
+                                // Store the next item as the last selected item
+                                const courseSlug = '<?= $course->slug ?>';
+                                const nextItemId = data.next_item.url.match(/item=(\d+)/);
+                                if (nextItemId && nextItemId[1]) {
+                                    localStorage.setItem(`course_${courseSlug}_last_item`, nextItemId[1]);
                                 }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                alert('خطأ في الاتصال');
-                                button.disabled = false;
-                                button.innerHTML = '<i class="fas fa-check mr-2"></i>تم الإكمال';
-                            });
-                    }
-                </script>
-            </div>
-        </div>
+                                setTimeout(() => {
+                                    window.location.href = data.next_item.url;
+                                }, 500);
+                            } else if (data.next_unit) {
+
+                                // Store the next unit's first item as the last selected item
+                                const courseSlug = '<?= $course->slug ?>';
+                                const nextItemId = data.next_unit.url.match(/item=(\d+)/);
+                                if (nextItemId && nextItemId[1]) {
+                                    localStorage.setItem(`course_${courseSlug}_last_item`, nextItemId[1]);
+                                }
+                                setTimeout(() => {
+                                    window.location.href = data.next_unit.url;
+                                }, 500);
+                            } else if (data.course_completed && data.redirect_url) {
+
+                                // Course is completed, redirect to my_courses
+                                setTimeout(() => {
+                                    window.location.href = data.redirect_url;
+                                }, 1000);
+                            }
+                            // No alert for course completion - just stay on current page
+                        } else {
+                            alert('خطأ: ' + (data.message || 'فشل في حفظ التقدم'));
+                            button.disabled = false;
+                            button.innerHTML = '<i class="fas fa-check mr-2"></i>تم الإكمال';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('خطأ في الاتصال');
+                        button.disabled = false;
+                        button.innerHTML = '<i class="fas fa-check mr-2"></i>تم الإكمال';
+                    });
+            }
+        </script>
     </div>
+</div>
+</div>
 </div>
 
 <!-- Include Video Progress Tracking Script -->
 <script src="<?= base_url('assets/js/video-progress.js') ?>"></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Initialize video progress tracking if video exists
         <?php if ($current_item_type === 'video' && isset($current_item)): ?>
-        const videoElement = document.querySelector('iframe[src*="mediadelivery.net"]');
-        if (videoElement && <?= $current_item['id'] ?? 0 ?>) {
-            // Initialize progress tracker for the current video using item_id
-            const progressTracker = new VideoProgressTracker(videoElement, <?= $current_item['id'] ?? 0 ?>, {
-                updateInterval: 10000, // Update every 10 seconds
-                completionThreshold: 0.85, // Mark complete at 85%
-                autoMarkComplete: true,
-                apiEndpoint: '<?= base_url('progress/update') ?>',
-                onUnitCompleted: function(result) {
-                    // Update progress bar
-                    const progressBar = document.querySelector('.progress-bar');
-                    if (progressBar && result.course_completion) {
-                        progressBar.style.width = result.course_completion + '%';
-                        progressBar.setAttribute('aria-valuenow', result.course_completion);
-                        progressBar.textContent = result.course_completion + '%';
-                    }
+            const videoElement = document.querySelector('iframe[src*="mediadelivery.net"]');
+            if (videoElement && <?= $current_item['id'] ?? 0 ?>) {
+                // Initialize progress tracker for the current video using item_id
+                const progressTracker = new VideoProgressTracker(videoElement, <?= $current_item['id'] ?? 0 ?>, {
+                    updateInterval: 10000, // Update every 10 seconds
+                    completionThreshold: 0.85, // Mark complete at 85%
+                    autoMarkComplete: true,
+                    apiEndpoint: '<?= base_url('progress/update') ?>',
+                    onUnitCompleted: function (result) {
+                        // Update progress bar
+                        const progressBar = document.querySelector('.progress-bar');
+                        if (progressBar && result.course_completion) {
+                            progressBar.style.width = result.course_completion + '%';
+                            progressBar.setAttribute('aria-valuenow', result.course_completion);
+                            progressBar.textContent = result.course_completion + '%';
+                        }
 
-                    // Show next unit button if available
-                    if (result.next_unit) {
-                        const nextBtn = document.querySelector('.btn-next');
-                        if (nextBtn) {
-                            nextBtn.href = result.next_unit.url;
-                            nextBtn.classList.remove('disabled');
+                        // Show next unit button if available
+                        if (result.next_unit) {
+                            const nextBtn = document.querySelector('.btn-next');
+                            if (nextBtn) {
+                                nextBtn.href = result.next_unit.url;
+                                nextBtn.classList.remove('disabled');
+                            }
                         }
                     }
-                }
-            });
-        }
+                });
+            }
         <?php endif; ?>
 
         // Handle navigation item clicks
         const navItems = document.querySelectorAll('.unit-item-link');
 
         navItems.forEach(item => {
-            item.addEventListener('click', function(e) {
+            item.addEventListener('click', function (e) {
                 e.preventDefault();
 
                 // Store the selected item in localStorage for persistence
@@ -1618,12 +1651,12 @@
         const currentItemId = '<?= $current_id ?? '' ?>';
 
         // Add global function to get last item for external navigation
-        window.getCourseLastItem = function(courseSlug) {
+        window.getCourseLastItem = function (courseSlug) {
             return localStorage.getItem(`course_${courseSlug}_last_item`);
         };
 
         // Add global function to construct course URL with last item
-        window.getCourseUrlWithLastItem = function(courseSlug, baseUrl) {
+        window.getCourseUrlWithLastItem = function (courseSlug, baseUrl) {
             const lastItem = localStorage.getItem(`course_${courseSlug}_last_item`);
             if (lastItem) {
                 return `${baseUrl}?last_item=${lastItem}`;
@@ -1635,7 +1668,7 @@
         const accordionButtons = document.querySelectorAll('.accordion-button');
 
         accordionButtons.forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const target = this.getAttribute('data-bs-target');
                 const collapse = document.querySelector(target);
 
@@ -1682,7 +1715,8 @@
         <div class="embedded-quiz-header">
             <div class="quiz-title-section">
                 <h4 id="quizTitle" class="quiz-title-responsive">اختبار</h4>
-                <button class="close-quiz-btn mobile-friendly-btn" onclick="EmbeddedQuiz.close()" aria-label="إغلاق الاختبار">
+                <button class="close-quiz-btn mobile-friendly-btn" onclick="EmbeddedQuiz.close()"
+                    aria-label="إغلاق الاختبار">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -1716,7 +1750,8 @@
         <!-- Mobile-optimized navigation -->
         <div class="embedded-quiz-navigation mobile-navigation">
             <div class="nav-buttons-container">
-                <button id="prevQuestionBtn" class="nav-btn prev-btn mobile-nav-btn" onclick="EmbeddedQuiz.previousQuestion()" aria-label="السؤال السابق">
+                <button id="prevQuestionBtn" class="nav-btn prev-btn mobile-nav-btn"
+                    onclick="EmbeddedQuiz.previousQuestion()" aria-label="السؤال السابق">
                     <i class="fas fa-chevron-right"></i>
                     <span class="btn-text">السابق</span>
                 </button>
@@ -1726,13 +1761,15 @@
                     <!-- Dots will be generated dynamically -->
                 </div>
 
-                <button id="nextQuestionBtn" class="nav-btn next-btn mobile-nav-btn" onclick="EmbeddedQuiz.nextQuestion()" aria-label="السؤال التالي">
+                <button id="nextQuestionBtn" class="nav-btn next-btn mobile-nav-btn"
+                    onclick="EmbeddedQuiz.nextQuestion()" aria-label="السؤال التالي">
                     <span class="btn-text">التالي</span>
                     <i class="fas fa-chevron-left"></i>
                 </button>
             </div>
 
-            <button id="submitQuizBtn" class="nav-btn submit-btn mobile-submit-btn" onclick="EmbeddedQuiz.submitQuiz()" style="display: none;" aria-label="إرسال الإجابات">
+            <button id="submitQuizBtn" class="nav-btn submit-btn mobile-submit-btn" onclick="EmbeddedQuiz.submitQuiz()"
+                style="display: none;" aria-label="إرسال الإجابات">
                 <i class="fas fa-check"></i>
                 <span class="btn-text">إرسال الإجابات</span>
             </button>
@@ -1768,7 +1805,8 @@
                         <i class="fas fa-arrow-left"></i>
                         <span>متابعة للعنصر التالي</span>
                     </button>
-                    <button class="btn btn-secondary mobile-retry-btn" onclick="EmbeddedQuiz.retryQuiz()" style="display: none;">
+                    <button class="btn btn-secondary mobile-retry-btn" onclick="EmbeddedQuiz.retryQuiz()"
+                        style="display: none;">
                         <i class="fas fa-redo"></i>
                         <span>إعادة المحاولة</span>
                     </button>
@@ -1790,211 +1828,219 @@
 
 <!-- Mobile-specific quiz styles -->
 <style>
-/* Mobile-first responsive enhancements */
-@media (max-width: 768px) {
-    .embedded-quiz-modal {
-        padding: 0;
+    /* Mobile-first responsive enhancements */
+    @media (max-width: 768px) {
+        .embedded-quiz-modal {
+            padding: 0;
+        }
+
+        .embedded-quiz-container {
+            margin: 0;
+            border-radius: 0;
+            height: 100vh;
+            max-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quiz-title-responsive {
+            font-size: 1.1rem !important;
+            margin: 0;
+        }
+
+        .mobile-friendly-btn {
+            padding: 12px;
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        .mobile-timer {
+            font-size: 0.9rem;
+        }
+
+        .question-counter-mobile {
+            font-size: 0.85rem;
+        }
+
+        .mobile-progress-container {
+            margin-top: 8px;
+        }
+
+        .mobile-swipe-indicator {
+            display: block !important;
+            text-align: center;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #eee;
+        }
+
+        .swipe-hint {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .swipe-hint i {
+            margin-right: 5px;
+            animation: swipeAnimation 2s infinite;
+        }
+
+        @keyframes swipeAnimation {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(-10px);
+            }
+        }
+
+        .mobile-quiz-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .nav-buttons-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+        }
+
+        .mobile-nav-btn {
+            min-width: 80px;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+        }
+
+        .mobile-question-dots {
+            display: flex !important;
+            gap: 6px;
+        }
+
+        .question-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: background 0.3s;
+        }
+
+        .question-dot.active {
+            background: #007bff;
+        }
+
+        .question-dot.answered {
+            background: #28a745;
+        }
+
+        .mobile-submit-btn {
+            width: calc(100% - 30px);
+            margin: 10px 15px;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .mobile-results-content {
+            padding: 20px 15px;
+        }
+
+        .mobile-results-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .results-title {
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+
+        .mobile-stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .score-value {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .pass-status {
+            font-weight: 600;
+        }
+
+        .mobile-results-actions {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mobile-continue-btn,
+        .mobile-retry-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .mobile-loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-text {
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
     }
 
-    .embedded-quiz-container {
-        margin: 0;
-        border-radius: 0;
-        height: 100vh;
-        max-height: 100vh;
-        display: flex;
-        flex-direction: column;
+    /* Tablet optimizations */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .embedded-quiz-container {
+            max-width: 90%;
+            margin: 2vh auto;
+        }
+
+        .mobile-swipe-indicator {
+            display: none !important;
+        }
     }
 
-    .quiz-title-responsive {
-        font-size: 1.1rem !important;
-        margin: 0;
-    }
+    /* Touch-friendly improvements for all devices */
+    @media (hover: none) and (pointer: coarse) {
 
-    .mobile-friendly-btn {
-        padding: 12px;
-        min-width: 44px;
-        min-height: 44px;
-    }
+        .nav-btn,
+        .close-quiz-btn,
+        .mobile-friendly-btn {
+            min-width: 44px;
+            min-height: 44px;
+            padding: 12px;
+        }
 
-    .mobile-timer {
-        font-size: 0.9rem;
+        .quiz-option {
+            padding: 15px;
+            margin: 8px 0;
+        }
     }
-
-    .question-counter-mobile {
-        font-size: 0.85rem;
-    }
-
-    .mobile-progress-container {
-        margin-top: 8px;
-    }
-
-    .mobile-swipe-indicator {
-        display: block !important;
-        text-align: center;
-        padding: 8px;
-        background: rgba(0,0,0,0.05);
-        border-bottom: 1px solid #eee;
-    }
-
-    .swipe-hint {
-        font-size: 0.8rem;
-        color: #666;
-    }
-
-    .swipe-hint i {
-        margin-right: 5px;
-        animation: swipeAnimation 2s infinite;
-    }
-
-    @keyframes swipeAnimation {
-        0%, 100% { transform: translateX(0); }
-        50% { transform: translateX(-10px); }
-    }
-
-    .mobile-quiz-content {
-        flex: 1;
-        overflow-y: auto;
-        padding: 15px;
-    }
-
-    .nav-buttons-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 15px;
-    }
-
-    .mobile-nav-btn {
-        min-width: 80px;
-        padding: 12px 16px;
-        font-size: 0.9rem;
-    }
-
-    .mobile-question-dots {
-        display: flex !important;
-        gap: 6px;
-    }
-
-    .question-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #ddd;
-        transition: background 0.3s;
-    }
-
-    .question-dot.active {
-        background: #007bff;
-    }
-
-    .question-dot.answered {
-        background: #28a745;
-    }
-
-    .mobile-submit-btn {
-        width: calc(100% - 30px);
-        margin: 10px 15px;
-        padding: 15px;
-        font-size: 1rem;
-        font-weight: 600;
-    }
-
-    .mobile-results-content {
-        padding: 20px 15px;
-    }
-
-    .mobile-results-header {
-        text-align: center;
-        margin-bottom: 25px;
-    }
-
-    .results-title {
-        font-size: 1.3rem;
-        margin-top: 10px;
-    }
-
-    .mobile-stat-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 12px 0;
-        border-bottom: 1px solid #eee;
-    }
-
-    .score-value {
-        font-weight: bold;
-        font-size: 1.1rem;
-    }
-
-    .pass-status {
-        font-weight: 600;
-    }
-
-    .mobile-results-actions {
-        margin-top: 25px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .mobile-continue-btn,
-    .mobile-retry-btn {
-        width: 100%;
-        padding: 15px;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-    }
-
-    .mobile-loading-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(255,255,255,0.95);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-    }
-
-    .loading-text {
-        margin-top: 15px;
-        color: #666;
-        font-size: 0.9rem;
-    }
-}
-
-/* Tablet optimizations */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .embedded-quiz-container {
-        max-width: 90%;
-        margin: 2vh auto;
-    }
-
-    .mobile-swipe-indicator {
-        display: none !important;
-    }
-}
-
-/* Touch-friendly improvements for all devices */
-@media (hover: none) and (pointer: coarse) {
-    .nav-btn,
-    .close-quiz-btn,
-    .mobile-friendly-btn {
-        min-width: 44px;
-        min-height: 44px;
-        padding: 12px;
-    }
-
-    .quiz-option {
-        padding: 15px;
-        margin: 8px 0;
-    }
-}
 </style>
 
 

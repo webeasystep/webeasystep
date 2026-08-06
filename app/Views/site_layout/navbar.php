@@ -23,6 +23,12 @@
                         <span class="nav-topbar-wa-label">هل لديك استفسار؟</span>
                         <span class="nav-topbar-wa-cta">راسلنا الآن ↗</span>
                     </a>
+                    <!-- Telegram -->
+                    <a href="https://t.me/fakhrcs" class="nav-topbar-tg mr-2" aria-label="تابعنا على تيليجرام" target="_blank" rel="noopener noreferrer">
+                        <i class="icon-telegram mr-1" style="vertical-align:middle;"></i>
+                        <span class="nav-topbar-tg-label">قناتنا</span>
+                        <span class="nav-topbar-tg-cta">انضم الآن ↗</span>
+                    </a>
                     <!-- Phone -->
                     <a href="tel:+201032863861" class="small mr-3 p-2" dir="ltr" aria-label="اتصل بنا على 201032863861">
                         <span class="icon-phone mr-2"></span>

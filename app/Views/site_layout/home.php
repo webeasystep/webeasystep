@@ -31,9 +31,9 @@
         </div>
     </div>
 
-    <div class="untree_co-section py-5" style="background-color: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+    <div class="untree_co-section py-3" style="background-color: #f8fafc; border-bottom: 1px solid #e2e8f0;">
         <div class="container">
-            <div class="row justify-content-center text-center mb-5">
+            <div class="row justify-content-center text-center mb-4">
                 <div class="col-lg-8">
                     <span class="badge badge-primary text-uppercase mb-3 px-4 py-2" style="letter-spacing: 1px; font-size: 0.8rem;">التخصص هو سر قوتنا</span>
                     <h2 class="mb-3" style="font-size: 2rem; font-weight: 800; color: #1a202c;">ليه FakhrCS هي اختيار طلاب SEU الأول؟</h2>
@@ -46,12 +46,12 @@
         </div>
     </div>
 
-    <div class="untree_co-section py-4">
+    <div class="untree_co-section py-3">
         <div class="container">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="0">
-                    <h2 class="line-bottom text-center mb-4">شروحات مبسطة تنهي معاناة التعليم الذاتي لطلاب الجامعة</h2>
-                    <p class="lead">بنقدم لك تجربة تعليمية VIP تسد فجوة غياب الدعم وتضمن لك التميز الأكاديمي والمهني.</p>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-12 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <h2 class="line-bottom text-center mb-4" style="font-size: 2rem;">شروحات مبسطة تنهي معاناة التعليم الذاتي لطلاب الجامعة</h2>
+                    <p class="lead mx-auto" style="max-width: 800px;">بنقدم لك تجربة تعليمية VIP تسد فجوة غياب الدعم وتضمن لك التميز الأكاديمي والمهني.</p>
                 </div>
             </div>
             <div class="row">
@@ -86,9 +86,9 @@
         </div>
     </div>
 
-    <div class="untree_co-section bg-light" id="courses">
+    <div class="untree_co-section py-4 bg-light" id="courses">
         <div class="container">
-            <div class="row justify-content-center mb-5">
+            <div class="row justify-content-center mb-4">
                 <div class="col-lg-7 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
                     <h2 class="line-bottom text-center mb-4">كورسات ومقررات الجامعة السعودية الإلكترونية المتاحة</h2>
                     <p>اختر المادة اللي شايل همها، واترك "هندستها" علينا.</p>
@@ -193,7 +193,7 @@
         </div>
     </div>
 
-    <div class="untree_co-section" style="padding: 50px 0; background-color: #ffffff;">
+    <div class="untree_co-section" style="padding: 40px 0; background-color: #ffffff;">
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-7 mb-4 mb-lg-0">
@@ -218,9 +218,9 @@
         </div>
     </div>
 
-    <div class="untree_co-section bg-light py-5">
+    <div class="untree_co-section bg-light py-4">
         <div class="container">
-            <div class="row justify-content-center mb-5">
+            <div class="row justify-content-center mb-4">
                 <div class="col-lg-10 text-center" data-aos="fade-up" data-aos-delay="0">
                     <h2 class="line-bottom text-center mb-4">أسئلة قد تدور في ذهنك الآن.. نجيبك عليها بكل شفافية</h2>
                 </div>
@@ -260,12 +260,12 @@
         </div>
     </div>
 
-    <div class="untree_co-section py-5" style="background-color: #fffdf2;">
+    <div class="untree_co-section py-4" style="background-color: #fffdf2;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <div style="border: 2px dashed #d4af37; padding: 40px; border-radius: 20px; background: white;">
-                        <i class="fas fa-shield-alt fa-4x mb-4" style="color: #d4af37;"></i>
+                    <div style="border: 2px dashed #d4af37; padding: 30px; border-radius: 20px; background: white;">
+                        <i class="fas fa-shield-alt fa-3x mb-3" style="color: #d4af37;"></i>
                         <h2 style="color: #8a6d1c; font-weight: 800; margin-bottom: 20px;">الضمان الذهبي من FakhrCS 🛡️</h2>
                         <p class="lead mb-0" style="color: #555;">
                             لو محسّتش إن الشرح غيّر طريقة فهمك للمادة خلال أول 30 يوم، استرد فلوسك بالكامل. من غير أسئلة، من غير تعقيد.<br>
@@ -277,7 +277,7 @@
         </div>
     </div>
 
-    <div class="untree_co-section bg-primary text-white text-center">
+    <div class="untree_co-section py-4 bg-primary text-white text-center">
         <div class="container">
             <h2 class="text-white mb-3">ابدأ رحلة الـ A+ والاحتراف الحقيقي الآن</h2>
             <p class="mb-4 text-white-50">انضم لنخبة طلاب الجامعة السعودية الإلكترونية وابدأ رحلة التفوق الآن.</p>

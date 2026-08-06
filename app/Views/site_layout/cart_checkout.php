@@ -587,7 +587,7 @@
                             <?php endforeach; ?>
                             
                             <!-- Payment Methods (Only PayPal available based on previous work) -->
-                            <div class="payment-methods-section mt-5">
+                            <div class="payment-methods-section mt-5" <?= $cart_total <= 0 ? 'style="display:none;"' : '' ?>>
                                 <h5 class="section-title"><i class="fas fa-wallet"></i> طريقة الدفع</h5>
                                 <div class="row">
                                     <div class="col-12">
@@ -602,7 +602,7 @@
                             </div>
                             
                             <!-- PayPal Instructions Box -->
-                            <div class="instructions-box paypal-instructions-box active" id="paypal-instructions">
+                            <div class="instructions-box paypal-instructions-box <?= $cart_total > 0 ? 'active' : '' ?>" id="paypal-instructions" <?= $cart_total <= 0 ? 'style="display:none;"' : '' ?>>
                                 <div class="paypal-logo-header">
                                     <i class="fab fa-paypal" style="color: #003087; font-size: 24px;"></i>
                                     <h5>الدفع عبر PayPal</h5>
@@ -647,7 +647,7 @@
                                         <p class="text-muted mb-2" style="font-size: 0.9rem;">بعد الدفع، التقط صورة للإيصال وارفعها هنا لتأكيد اشتراكك.</p>
                                         
                                         <div class="upload-area mt-2" id="uploadArea">
-                                            <input type="file" name="payment_proof" id="paymentProof" accept="image/*,.pdf" required>
+                                            <input type="file" name="payment_proof" id="paymentProof" accept="image/*,.pdf" <?= $cart_total > 0 ? 'required' : '' ?>>
                                             <i class="fas fa-cloud-upload-alt upload-icon"></i>
                                             <h6 class="mb-1 text-dark">اسحب وأفلت صورة الإيصال هنا</h6>
                                             <p class="text-muted small mb-0">أو اضغط لاختيار ملف (صورة أو PDF)</p>
@@ -860,9 +860,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if(paypalPayBtn) paypalPayBtn.href = pUrl;
         if(paypalCopyBtn) paypalCopyBtn.dataset.copyText = pUrl;
         
-        document.getElementById('paypal-instructions').style.display = 'block';
-        document.querySelector('.payment-methods-section').style.display = 'block';
-        if(uploadInput) uploadInput.setAttribute('required', 'required');
+        if (baseAmountSAR > 0) {
+            document.getElementById('paypal-instructions').style.display = 'block';
+            document.querySelector('.payment-methods-section').style.display = 'block';
+            if(uploadInput) uploadInput.setAttribute('required', 'required');
+        } else {
+            document.getElementById('paypal-instructions').style.display = 'none';
+            document.querySelector('.payment-methods-section').style.display = 'none';
+            if(uploadInput) uploadInput.removeAttribute('required');
+        }
     }
 });
 
