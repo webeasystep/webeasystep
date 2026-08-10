@@ -203,7 +203,8 @@ class Admin extends BaseController
             if (!$this->validate($rules)) {
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
-            $user = model(UserModel::class)->findByCredentials(['email' => $this->request->getPost('email')]);
+            $email = trim($this->request->getPost('email'));
+            $user = model(UserModel::class)->findByCredentials(['email' => $email]);
 
             if (!$user) {
                 // Return success to prevent email enumeration
@@ -288,15 +289,18 @@ class Admin extends BaseController
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
 
+            $email = trim($this->request->getPost('email'));
+            $token = trim($this->request->getPost('token'));
+
             $users = model(UserModel::class);
-            $user = $users->where('email', $this->request->getPost('email'))->first();
+            $user = $users->findByCredentials(['email' => $email]);
 
             if (null === $user) {
                 return redirect()->back()->withInput()->with('error', lang('Auth.invalidActivateToken'));
             }
 
             $identityModel = model(UserIdentityModel::class);
-            $identity = $identityModel->getIdentityBySecret('password_reset', $this->request->getPost('token'));
+            $identity = $identityModel->getIdentityBySecret('password_reset', $token);
 
             // Verify token exists and belongs to the user
             if ($identity === null || (int)$identity->user_id !== (int)$user->id) {

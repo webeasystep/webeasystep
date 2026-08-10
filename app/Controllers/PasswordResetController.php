@@ -43,7 +43,7 @@ class PasswordResetController extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $email = $this->request->getPost('email');
+        $email = trim($this->request->getPost('email'));
         
         /** @var UserModel $userModel */
         $userModel = auth()->getProvider();
@@ -122,8 +122,8 @@ class PasswordResetController extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $email = $this->request->getPost('email');
-        $code  = $this->request->getPost('token');
+        $email = trim($this->request->getPost('email'));
+        $code  = trim($this->request->getPost('token'));
 
         /** @var UserModel $userModel */
         $userModel = auth()->getProvider();
