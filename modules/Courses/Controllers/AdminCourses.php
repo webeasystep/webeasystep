@@ -27,6 +27,7 @@ class AdminCourses extends BaseController
             "instructor_id" => ['label' => 'المحاضر', 'rules' => "permit_empty|integer"],
             "slug" => ['label' => lang("Courses.slug"), 'rules' => "required|alpha_dash|is_unique[tb_courses.slug]"],
             "active" => ['label' => lang("Courses.active"), 'rules' => "permit_empty|in_list[0,1,on]"],
+            "telegram_link" => ['label' => 'رابط تيليجرام', 'rules' => "permit_empty|valid_url"],
         ];
     }
 
@@ -131,6 +132,7 @@ class AdminCourses extends BaseController
             'is_free'           => $this->request->getPost('is_free') ? '1' : '0',
             'waiting_list'      => $this->request->getPost('waiting_list') ? '1' : '0',
             'active'            => $this->request->getPost('active') ? '1' : '0',
+            'telegram_link'     => $this->request->getPost('telegram_link') ? filter_var($this->request->getPost('telegram_link'), FILTER_SANITIZE_URL) : null,
         ];
 
         if ($id) {

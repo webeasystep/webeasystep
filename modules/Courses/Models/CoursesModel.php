@@ -14,6 +14,7 @@ class CoursesModel extends BaseModel
         'is_free', 'active', 'is_open', 'slug', 'course_price', 'college_id', 'department_id',
         'instructor_id', 'category_id', 'difficulty_level', 'language',
         'requirements', 'what_you_learn', 'enrollment_limit', 'intro_video_id', 'waiting_list',
+        'telegram_link'
     ];
     protected $useTimestamps = true;
     protected $returnType    = 'object';

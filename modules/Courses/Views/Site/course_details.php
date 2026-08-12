@@ -2992,6 +2992,16 @@
                             أضف للسلة
                         </a>
                         <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">دفع آمن عبر بايبال (PayPal)</small>
+                        <?php if (!empty($course->telegram_link)): ?>
+                            <a href="<?= esc($course->telegram_link) ?>" target="_blank"
+                               class="btn mt-3 shadow-sm"
+                               style="background-color: #0088cc; color: white; width: 100%; font-weight: 600; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; transition: all 0.3s ease;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+                                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.292.26.004.545-.106.855-.332 2.073-1.419 3.127-2.146 3.16-2.185.034-.041.079-.092.12-.055.04.037.009.1-.012.126-.145.145-2.09 1.83-2.274 2.017-.184.187-.348.358-.513.525-.336.335-.631.623-.174.925l2.424 1.769c.441.32.784.55.784.55.442.324.962.247 1.11-.271.144-.508.77-4.133.97-5.748.016-.134.015-.26-.008-.344-.023-.084-.075-.157-.175-.184-.108-.03-.255.006-.412.062"/>
+                                </svg>
+                                قناة دعم الطلبة (تيليجرام)
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -3081,6 +3091,16 @@
                                 أضف للسلة
                             </a>
                             <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">شراء آمن بضمان استرجاع الأموال</small>
+                            <?php if (!empty($course->telegram_link)): ?>
+                                <a href="<?= esc($course->telegram_link) ?>" target="_blank"
+                                   class="btn mt-3 shadow-sm"
+                                   style="background-color: #0088cc; color: white; width: 100%; font-weight: 600; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; transition: all 0.3s ease;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+                                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.292.26.004.545-.106.855-.332 2.073-1.419 3.127-2.146 3.16-2.185.034-.041.079-.092.12-.055.04.037.009.1-.012.126-.145.145-2.09 1.83-2.274 2.017-.184.187-.348.358-.513.525-.336.335-.631.623-.174.925l2.424 1.769c.441.32.784.55.784.55.442.324.962.247 1.11-.271.144-.508.77-4.133.97-5.748.016-.134.015-.26-.008-.344-.023-.084-.075-.157-.175-.184-.108-.03-.255.006-.412.062"/>
+                                    </svg>
+                                    قناة دعم الطلبة (تيليجرام)
+                                </a>
+                            <?php endif; ?>
                         </div>
                     </div>
 

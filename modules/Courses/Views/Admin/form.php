@@ -102,6 +102,18 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label for="telegram_link" class="col-sm-3 col-form-label">رابط تيليجرام (دعم الطلبة)</label>
+                <div class="col-sm-9">
+                    <input type="url" name="telegram_link"
+                           value="<?= set_value('telegram_link', $course->telegram_link ?? "") ?>"
+                           id="telegram_link" class="form-control"
+                           placeholder="https://t.me/...">
+                    <small class="form-text text-muted">رابط مجموعة أو قناة تيليجرام الخاصة بدعم طلبة هذه المادة، سيظهر في تفاصيل الكورس.</small>
+                    <small class="invalid-feedback"></small>
+                </div>
+            </div>
+
 
             <!-- Switch for 'is_free' -->
             <div class="form-group row">
