@@ -118,13 +118,13 @@
                         ?>
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4">
                             <div class="course-card h-100">
-                                <?php 
+                                <?php
                                     $isOpen = isset($course['is_open']) && $course['is_open'] == 1;
                                     $courseUrl = $course['course_url'] ?? base_url('courses/course_details/' . $course['slug']);
                                 ?>
                                 <?php if ($hasImage): ?>
                                     <?php if ($isOpen): ?><a href="<?= $courseUrl ?>" class="course-card-image d-block" style="text-decoration: none;"><?php else: ?><div class="course-card-image"><?php endif; ?>
-                                        <?php 
+                                        <?php
                                             $courseAlt = esc($course['course_title']) . (!empty($course['course_name_en']) ? ' - ' . esc($course['course_name_en']) : '');
                                             $courseAlt .= !empty($course['course_code']) ? ' | رمز المقرر: ' . esc($course['course_code']) : '';
                                             $courseAlt .= !empty($course['college_name']) ? ' | ' . esc($course['college_name']) : '';
@@ -150,10 +150,10 @@
                                 <div class="course-card-body d-flex flex-column">
                                     <h5 class="course-title"><?= esc($course['course_title']) ?></h5>
                                     <div class="course-codes mb-auto"><?= esc($course['short_desc'] ?? '') ?></div>
-                                    
+
                                     <div class="course-instructor mb-3 mt-3 text-muted" style="font-size: 0.95rem; font-weight: 500;">
                                         <div class="d-flex align-items-center mb-1">
-                                            <span class="icon-user ml-2" style="font-size: 1.1rem; color: #136ad5; margin-left: 8px;"></span> 
+                                            <span class="icon-user ml-2" style="font-size: 1.1rem; color: #136ad5; margin-left: 8px;"></span>
                                             <span><?= esc($course['instructor_name'] ?? 'أحمد فخر الدين') ?></span>
                                         </div>
                                         <div class="d-flex align-items-center" style="font-size: 0.85rem;">
@@ -212,7 +212,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5 col-6 text-center" data-aos="fade-left" data-aos-delay="300">
-                    <img src="<?= base_url() ?>site/images/teacher-min.jpg" alt="المهندس أحمد فخر الدين - خبير شروحات الجامعة السعودية الإلكترونية (SEU)" class="img-fluid shadow-lg" loading="lazy" decoding="async" width="320" height="320" style="border-radius: 20px; border: 5px solid #f8fafc; object-fit: cover;">
+                    <img src="<?= base_url() ?>site/images/webeasystep.webp" alt="المهندس أحمد فخر الدين - خبير شروحات الجامعة السعودية الإلكترونية (SEU)" class="img-fluid shadow-lg" loading="lazy" decoding="async" width="320" height="320" style="border-radius: 20px; border: 5px solid #f8fafc; object-fit: cover;">
                 </div>
             </div>
         </div>
