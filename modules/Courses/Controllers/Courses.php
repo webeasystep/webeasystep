@@ -339,11 +339,26 @@ class Courses extends BaseController
      */
     public function course_details(string $slug)
     {
-        // 1) Fetch the course by slug
-        $course = $this->coursesModel->getCourseBySlug($slug);
+        // 1) Fetch the course by slug (allow inactive to check permissions later)
+        $course = $this->coursesModel->getCourseBySlug($slug, true);
         
         if (!$course) {
             throw PageNotFoundException::forPageNotFound();
+        }
+
+        // 1.1) If course is inactive, only allow admin/superadmin or the instructor to view it
+        if ($course->active != 1) {
+            if (!auth()->loggedIn()) {
+                throw PageNotFoundException::forPageNotFound();
+            }
+            
+            $user = auth()->user();
+            $isAdmin = $user->inGroup('superadmin', 'admin');
+            $isInstructor = ($user->id == $course->instructor_id);
+            
+            if (!$isAdmin && !$isInstructor) {
+                throw PageNotFoundException::forPageNotFound();
+            }
         }
 
         // Redirect to home if course is in waiting list mode
@@ -472,18 +487,29 @@ class Courses extends BaseController
         return view('site/course_details', $data);
     }
 
-    /**
-     * Display the "course player" page with units, items, next/prev logic, etc.
-     */
     public function course_view(string $slug): string|RedirectResponse
     {
         // Debug: Log method entry
 
-
-        // 1) Fetch the course by slug
-        $course = $this->coursesModel->getCourseBySlug($slug);
+        // 1) Fetch the course by slug (allow inactive to check permissions)
+        $course = $this->coursesModel->getCourseBySlug($slug, true);
         if (!$course) {
-            throw PageNotFoundException::forPageNotFound();
+            return redirect()->to('/courses')->with('error', 'المقرر غير موجود');
+        }
+
+        // 1.1) If course is inactive, only allow admin/superadmin or the instructor to view it
+        if ($course->active != 1) {
+            if (!auth()->loggedIn()) {
+                return redirect()->to('/courses')->with('error', 'المقرر غير موجود');
+            }
+            
+            $user = auth()->user();
+            $isAdmin = $user->inGroup('superadmin', 'admin');
+            $isInstructor = ($user->id == $course->instructor_id);
+            
+            if (!$isAdmin && !$isInstructor) {
+                return redirect()->to('/courses')->with('error', 'المقرر غير موجود');
+            }
         }
 
         // 2) Check if user is logged in & enrolled
@@ -1168,9 +1194,24 @@ class Courses extends BaseController
      */
     public function courseStructure(string $slug): string
     {
-        $course = $this->coursesModel->getCourseBySlug($slug);
+        $course = $this->coursesModel->getCourseBySlug($slug, true);
         if (!$course) {
             throw PageNotFoundException::forPageNotFound();
+        }
+
+        // If course is inactive, only allow admin/superadmin or the instructor
+        if ($course->active != 1) {
+            if (!auth()->loggedIn()) {
+                throw PageNotFoundException::forPageNotFound();
+            }
+            
+            $user = auth()->user();
+            $isAdmin = $user->inGroup('superadmin', 'admin');
+            $isInstructor = ($user->id == $course->instructor_id);
+            
+            if (!$isAdmin && !$isInstructor) {
+                throw PageNotFoundException::forPageNotFound();
+            }
         }
 
         $courseWithStructure = $this->coursesModel->getCourseWithStructure($course->id);

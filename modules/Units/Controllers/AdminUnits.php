@@ -329,6 +329,21 @@ class AdminUnits extends BaseController
                              ->orderBy('sort_order', 'ASC')
                              ->get()
                              ->getResultArray();
+                             
+        // Parse metadata so JS form has access to video_id, duration, etc.
+        foreach ($unitItems as &$item) {
+            if (!empty($item['metadata'])) {
+                $metadata = json_decode($item['metadata'], true);
+                if (is_array($metadata)) {
+                    if (isset($metadata['video_duration'])) {
+                        // The backend save logic expects raw seconds in either 'duration' or 'video_duration'
+                        $item['duration'] = $metadata['video_duration'];
+                    }
+                    $item = array_merge($item, $metadata);
+                }
+            }
+        }
+        
         $data['existing_unit_items'] = json_encode($unitItems);
 
         return view('form', $data);

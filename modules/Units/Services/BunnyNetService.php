@@ -14,7 +14,7 @@ class BunnyNetService
     {
         // Get configuration from environment or config
         $this->apiKey = env('BUNNY_NET_API_KEY', '');
-        $this->libraryId = env('BUNNY_NET_LIBRARY_ID', '495222'); // Default to hardcoded library ID
+        $this->libraryId = env('BUNNY_NET_LIBRARY_ID', '715116'); // Default to hardcoded library ID
         $this->baseUrl = 'https://video.bunnycdn.com/library/' . $this->libraryId . '/videos';
     }
 
@@ -37,8 +37,8 @@ class BunnyNetService
                 throw new Exception('Video ID is required');
             }
 
-            // Prepare API request - Use /play endpoint to get complete video metadata
-            $url = $this->baseUrl . '/' . $videoId . '/play';
+            // Prepare API request - Get video metadata
+            $url = $this->baseUrl . '/' . $videoId;
 
             $headers = [
                 'AccessKey: ' . $this->apiKey,
@@ -86,51 +86,53 @@ class BunnyNetService
             // Log error for debugging
             log_message('error', 'BunnyNet API Error: ' . $e->getMessage());
 
-            // Return mock data for development/testing
-            return $this->getMockVideoData($videoId);
+            // Re-throw so the controller can return an error to the user
+            throw $e;
         }
     }
 
     /**
-     * Format video data from Bunny.net /play endpoint response
+     * Format video data from Bunny.net GET video endpoint response
+     *
+     * The response fields are directly on the root object.
      *
      * @param array $data
      * @return array
      */
     private function formatVideoData($data)
     {
-        // Extract video data from the nested structure
-        $video = $data['video'] ?? [];
-        
         // Format duration from seconds to MM:SS format
-        $duration = $video['length'] ?? 0;
+        $duration = $data['length'] ?? 0;
         $formattedDuration = $this->formatDurationToMinutes($duration);
         
         // Clean video title by removing .mp4 extension
-        $videoTitle = $video['title'] ?? 'Untitled Video';
+        $videoTitle = $data['title'] ?? 'Untitled Video';
         $cleanVideoTitle = preg_replace('/\.mp4$/i', '', $videoTitle);
         
+        $videoId = $data['guid'] ?? '';
+        $thumbnailFileName = $data['thumbnailFileName'] ?? null;
+        
         return [
-            'video_id' => $video['guid'] ?? '',
+            'video_id' => $videoId,
             'video_title' => $cleanVideoTitle,
             'video_duration' => $formattedDuration,
-            'video_thumbnail' => $this->getThumbnailUrl($video['guid'] ?? '', $video['thumbnailFileName'] ?? null),
+            'video_thumbnail' => $this->getThumbnailUrl($videoId, $thumbnailFileName),
             'title' => $cleanVideoTitle,
             'duration' => $duration,
-            'thumbnail' => $this->getThumbnailUrl($video['guid'] ?? '', $video['thumbnailFileName'] ?? null),
-            'status' => $video['status'] ?? 0,
-            'views' => $video['views'] ?? 0,
-            'created_at' => $video['dateUploaded'] ?? null,
-            'file_size' => $video['storageSize'] ?? 0,
-            'width' => $video['width'] ?? 0,
-            'height' => $video['height'] ?? 0,
-            'framerate' => $video['framerate'] ?? 0,
-            'description' => $video['description'] ?? '',
-            'collection_id' => $video['collectionId'] ?? '',
-            'video_library_id' => $video['videoLibraryId'] ?? $this->libraryId,
-            'stream_url' => $data['videoPlaylistUrl'] ?? '',
-            'fallback_url' => $data['fallbackUrl'] ?? '',
-            'preview_url' => $data['previewUrl'] ?? ''
+            'thumbnail' => $this->getThumbnailUrl($videoId, $thumbnailFileName),
+            'status' => $data['status'] ?? 0,
+            'views' => $data['views'] ?? 0,
+            'created_at' => $data['dateUploaded'] ?? null,
+            'file_size' => $data['storageSize'] ?? 0,
+            'width' => $data['width'] ?? 0,
+            'height' => $data['height'] ?? 0,
+            'framerate' => $data['framerate'] ?? 0,
+            'description' => $data['description'] ?? '',
+            'collection_id' => $data['collectionId'] ?? '',
+            'video_library_id' => $data['videoLibraryId'] ?? $this->libraryId,
+            'stream_url' => '',
+            'fallback_url' => '',
+            'preview_url' => ''
         ];
     }
 

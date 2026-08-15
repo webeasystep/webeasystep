@@ -34,14 +34,18 @@ class CoursesModel extends BaseModel
     /**
      * Fetch course by slug (if you store 'slug' in DB)
      */
-    public function getCourseBySlug(string $slug)
+    public function getCourseBySlug(string $slug, bool $allowInactive = false)
     {
-        return $this->select('tb_courses.*, tb_colleges.college_name_ar, users.full_name as instructor_name')
+        $builder = $this->select('tb_courses.*, tb_colleges.college_name_ar, users.full_name as instructor_name')
             ->join('tb_colleges', 'tb_colleges.id = tb_courses.college_id', 'left')
             ->join('users', 'users.id = tb_courses.instructor_id', 'left')
-            ->where('tb_courses.slug', $slug)
-            ->where('tb_courses.active', 1)
-            ->first();
+            ->where('tb_courses.slug', $slug);
+            
+        if (!$allowInactive) {
+            $builder->where('tb_courses.active', 1);
+        }
+        
+        return $builder->first();
     }
 
     /**
