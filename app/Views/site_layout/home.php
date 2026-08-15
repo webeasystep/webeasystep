@@ -7,12 +7,6 @@
                 <div class="col-12">
                     <div class="row justify-content-center ">
                         <div class="col-lg-8 text-center ">
-                            <a href="https://www.youtube.com/@web_easy_step" target="_blank" class="d-inline-block mb-3">
-                                <span class="badge badge-warning text-dark py-2 px-3" style="font-size: 0.9rem; border-radius: 20px;">
-                                    <i class="fab fa-youtube text-danger mr-1"></i> انضم لـ 20,000+ طالب وثقوا في خبرتنا الهندسية
-                                </span>
-                            </a>
-
                             <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">
                                 كل ما يحتاجه طالب الجامعة السعودية الإلكترونية... في مكان واحد.
                             </h1>
@@ -201,13 +195,14 @@
                         <h2 class="line-bottom mb-3" style="font-size: 1.8rem;">من هو المهندس أحمد فخر الدين؟</h2>
                     </div>
                     <p class="mb-4" data-aos="fade-up" data-aos-delay="100" style="font-size: 1.1rem; line-height: 1.7; color: #444;">
-                        خبير ممارس لأكثر من <strong>12 سنة</strong> في صناعة البرمجيات. هدفي ليس مجرد نجاحك في الاختبار، بل تحويلك من "طالب تائه" إلى "مهندس محترف" يفرض نفسه على سوق العمل السعودي.
+                        بخبرة تتجاوز <strong>15 عاماً</strong> في صناعة البرمجيات، أقف معك خطوة بخطوة. هدفي يتخطى حاجز تفوقك الأكاديمي، ليصنع منك مهندساً محترفاً جاهزاً لتلبية متطلبات سوق العمل السعودي بكفاءة وثقة.
                     </p>
                     <div class="mb-0" data-aos="fade-up" data-aos-delay="200">
                         <ul class="list-unstyled ul-check primary mb-0" style="font-size: 1rem;">
                             <li class="mb-3"><strong>مستشارك المهني:</strong> أشرف على بناء بورتفوليو الطلاب وتهيئتهم لمقابلات العمل التقنية.</li>
                             <li class="mb-3"><strong>خبير معتمد:</strong> حاصل على شهادات <strong>MCSE</strong> و <strong>CISCO</strong> وخبرة في كبرى المنصات.</li>
                             <li class="mb-3"><strong>مؤسس معسكرات FakhrCS:</strong> نطلق سنوياً تدريبات صيفية عملية لربط المنهج بالواقع المهني.</li>
+                            <li class="mb-3"><strong>مؤسس مبادرة (الويب خطوة سهلة):</strong> لتأهيل المبرمجين لسوق العمل وأكثر من 21 ألف مشترك. <a href="https://www.youtube.com/@web_easy_step" target="_blank" style="color: #ff0000; font-weight: bold; text-decoration: none;"><i class="fab fa-youtube mx-1"></i>رابط القناة</a></li>
                         </ul>
                     </div>
                 </div>
