@@ -1102,8 +1102,9 @@
             <div class="videos-accordion accordion" id="videoAccordion">
                 <?php foreach ($units as $unit): ?>
                     <?php
-                    $hasFreeItems = false;
-                    if (isset($unit->items)) {
+                    $isUnitFree = isset($unit->is_free) && $unit->is_free == 1;
+                    $hasFreeItems = $isUnitFree;
+                    if (!$hasFreeItems && isset($unit->items)) {
                         foreach ($unit->items as $itm) {
                             if (isset($itm->is_free) && $itm->is_free == 1) {
                                 $hasFreeItems = true;
@@ -1136,7 +1137,7 @@
                                     <?php if (isset($unit->items)): ?>
                                         <?php foreach ($unit->items as $item): ?>
                                             <?php
-                                            $isItemFree = isset($item->is_free) && $item->is_free == 1;
+                                            $isItemFree = $isUnitFree || (isset($item->is_free) && $item->is_free == 1);
                                             $isItemLocked = !($unit->is_enrolled ?? false) && !$isItemFree;
                                             $itemClass = $item->id == $current_id ? 'active-item' : '';
                                             if ($isItemLocked) {
@@ -1297,7 +1298,7 @@
                     <div class="video-container">
                         <?php if ($video_id): ?>
                             <iframe
-                                src="https://player.mediadelivery.net/embed/<?= $video_library_id ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
+                                src="https://iframe.mediadelivery.net/embed/<?= empty($video_library_id) ? env('BUNNY_NET_LIBRARY_ID') : $video_library_id ?>/<?= $video_id ?>?autoplay=false"
                                 loading="lazy" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
                                 allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                                 allowfullscreen="true">
@@ -1444,7 +1445,7 @@
             <div class="course-preview-video">
                 <div class="video-container">
                     <iframe
-                        src="https://player.mediadelivery.net/embed/<?= $metadata['video_library_id'] ?? '495222' ?>/<?= $video_id ?>?autoplay=false"
+                        src="https://iframe.mediadelivery.net/embed/<?= empty($metadata['video_library_id']) ? env('BUNNY_NET_LIBRARY_ID') : $metadata['video_library_id'] ?>/<?= $video_id ?>?autoplay=false"
                         loading="lazy" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
                         allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                         allowfullscreen="true">

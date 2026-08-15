@@ -132,6 +132,7 @@ class AdminCourses extends BaseController
             'is_free'           => $this->request->getPost('is_free') ? '1' : '0',
             'waiting_list'      => $this->request->getPost('waiting_list') ? '1' : '0',
             'active'            => $this->request->getPost('active') ? '1' : '0',
+            'is_open'           => $this->request->getPost('is_open') ? '1' : '0',
             'telegram_link'     => $this->request->getPost('telegram_link') ? filter_var($this->request->getPost('telegram_link'), FILTER_SANITIZE_URL) : null,
         ];
 

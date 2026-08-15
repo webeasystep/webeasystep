@@ -351,7 +351,7 @@
 
     /* Material 3 Cart Summary - REMOVED */
 
-    /* Floating Cart Summary - ┘é╪º╪ª┘à╪⌐ ╪╣╪º╪ª┘à╪⌐ ┘ä┘ä┘ê╪¡╪»╪º╪¬ ╪º┘ä┘à╪╢╪º┘ü╪⌐ */
+    /* Floating Cart Summary - قائمة عائمة للوحدات المضافة */
     .floating-cart-summary {
         position: fixed;
         bottom: 20px;
@@ -1462,7 +1462,6 @@
         line-height: 1.1;
         position: relative;
         z-index: 2;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -1625,7 +1624,7 @@
     }
 
     .course-outline .section-title::before {
-        content: "≡ƒôÜ";
+        content: "📚";
         font-size: 1.2em;
     }
 
@@ -2318,7 +2317,7 @@
     }
 
     .pricing-features li::before {
-        content: 'Γ£ô';
+        content: '✓';
         position: absolute;
         right: 0;
         color: #10b981;
@@ -2418,9 +2417,9 @@
     }
 
     .modal-dialog.modal-lg {
-        max-width: 90vw;
+        max-width: 800px;
         width: 100%;
-        margin: 2rem auto;
+        margin: 1.75rem auto;
         transition: all 0.3s ease;
     }
 
@@ -2474,7 +2473,7 @@
     }
 
     .modal-title::before {
-        content: 'Γû╢';
+        content: '▶';
         font-size: 1.2rem;
         opacity: 0.8;
     }
@@ -2702,3 +2701,9 @@
             width: 100%;
             text-align: center;
         }
+
+        .modal-body {
+            padding: 1rem;
+        }
+    }
+</style>

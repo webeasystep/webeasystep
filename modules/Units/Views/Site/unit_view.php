@@ -40,7 +40,7 @@
                     <div class="card-body p-0">
                         <div style="position: relative; padding-top: 56.25%;">
                             <iframe
-                                src="https://iframe.mediadelivery.net/embed/495222/<?= $unit->video_id ?>?autoplay=false"
+                                src="https://iframe.mediadelivery.net/embed/<?= env('BUNNY_NET_LIBRARY_ID') ?>/<?= $unit->video_id ?>?autoplay=false"
                                 loading="lazy"
                                 style="border: none; position: absolute; top: 0; height: 100%; width: 100%;"
                                 allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
