@@ -91,13 +91,13 @@
 
 
             <div class="form-group row">
-                <label for="intro_video_id" class="col-sm-3 col-form-label"><?= lang("Courses.intro_video_id") ?></label>
+                <label for="intro_video_id" class="col-sm-3 col-form-label">فيديو مقدمة الكورس (YouTube / Bunny)</label>
                 <div class="col-sm-9">
                     <input type="text" name="intro_video_id"
                            value="<?= set_value('intro_video_id', $course->intro_video_id ?? "") ?>"
                            id="intro_video_id" class="form-control"
-                           placeholder="<?= lang("Courses.intro_video_id_placeholder") ?>">
-                    <small class="form-text text-muted"><?= lang("Courses.intro_video_id_help") ?></small>
+                           placeholder="ضع رابط يوتيوب (https://youtu.be/...) أو معرف Bunny.net أو كود التضمين">
+                    <small class="form-text text-muted">يمكنك وضع رابط يوتيوب كامل، أو معرف الفيديو (11 حرف)، أو معرف Bunny.net GUID، أو كود التضمين iframe وسيتم استخراجه وتشغيله تلقائياً.</small>
                     <small class="invalid-feedback"></small>
                 </div>
             </div>

@@ -295,7 +295,6 @@
                         <?php endif; ?>
                     </div>
                 </div>
-
                 <!-- Instructor Authority & Bio Card -->
                 <?php
                     $instructorName = !empty($course->instructor_name) ? $course->instructor_name : 'المهندس / أحمد فخر الدين';
@@ -359,26 +358,32 @@
                 </div>
 
                 <!-- Course Introduction Video -->
+                <?php
+                    $videoEmbed = resolve_video_embed_url($course->intro_video_id ?? null, $course->collection_id ?? null);
+                ?>
                 <div class="course-sidebar" data-aos="fade-up" data-aos-delay="300">
                     <h4>مقدمة الكورس</h4>
                     <div class="video-block">
-                        <div class="video-container">
-                            <?php
-                                $introVideoId = $course->intro_video_id ?? '';
-                                $isYouTube = (strlen($introVideoId) === 11);
-                                $embedUrl = $isYouTube
-                                    ? "https://www.youtube.com/embed/{$introVideoId}"
-                                    : "https://iframe.mediadelivery.net/embed/" . ($course->collection_id ?? env('BUNNY_NET_LIBRARY_ID')) . "/{$introVideoId}?autoplay=false&preload=false";
-                            ?>
-                            <iframe
-                                    src="<?= $embedUrl ?>"
-                                    loading="lazy"
-                                    style="border: none; position: absolute; top: 0; height: 100%; width: 100%;"
-                                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                                    allowfullscreen="true"
-                                    title="مقدمة الكورس"
-                            ></iframe>
-                        </div>
+                        <?php if ($videoEmbed && !empty($videoEmbed['url'])): ?>
+                            <div class="video-container">
+                                <iframe
+                                        src="<?= esc($videoEmbed['url']) ?>"
+                                        loading="lazy"
+                                        style="border: none; position: absolute; top: 0; height: 100%; width: 100%;"
+                                        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                                        allowfullscreen="true"
+                                        title="مقدمة الكورس"
+                                ></iframe>
+                            </div>
+                        <?php else: ?>
+                            <div class="video-placeholder-container">
+                                <div class="video-placeholder-inner">
+                                    <i class="fas fa-play-circle video-placeholder-icon"></i>
+                                    <div class="video-placeholder-text">فيديو تعريفي للمقرر</div>
+                                    <div class="video-placeholder-sub">سيتم توفير الفيديو قريباً</div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 

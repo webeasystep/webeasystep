@@ -356,3 +356,101 @@ if (!function_exists('add_order_log')) {
         $db->table('fd_orders_status_log')->insert($data);
     }
 }
+
+if (!function_exists('resolve_video_embed_url')) {
+    /**
+     * Resolves various video inputs (YouTube URL/ID, Bunny.net GUID/URL, Vimeo, iframe) into a clean embed structure.
+     *
+     * @param string|null $rawInput
+     * @param string|null $fallbackLibraryId
+     * @return array|null ['type' => string, 'id' => string, 'url' => string, 'library_id' => string|null]
+     */
+    function resolve_video_embed_url(?string $rawInput, ?string $fallbackLibraryId = null): ?array
+    {
+        if ($rawInput === null || trim($rawInput) === '') {
+            return null;
+        }
+
+        $input = trim(html_entity_decode((string) $rawInput, ENT_QUOTES, 'UTF-8'));
+        if ($input === '') {
+            return null;
+        }
+
+        // 1. If it's an iframe tag, extract the src attribute
+        if (preg_match('/<iframe[^>]+src=["\']([^"\']+)["\']/i', $input, $matches)) {
+            $input = trim($matches[1]);
+        }
+
+        // 2. YouTube Patterns:
+        // Matches:
+        // - https://www.youtube.com/watch?v=VIDEO_ID
+        // - https://youtu.be/VIDEO_ID
+        // - https://www.youtube.com/embed/VIDEO_ID
+        // - https://www.youtube.com/shorts/VIDEO_ID
+        // - https://m.youtube.com/watch?v=VIDEO_ID
+        $ytPattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i';
+        if (preg_match($ytPattern, $input, $ytMatches)) {
+            return [
+                'type' => 'youtube',
+                'id' => $ytMatches[1],
+                'url' => 'https://www.youtube.com/embed/' . $ytMatches[1] . '?rel=0&modestbranding=1',
+                'library_id' => null,
+            ];
+        }
+
+        // 11-char plain YouTube ID (letters, numbers, dashes, underscores)
+        if (preg_match('/^[a-zA-Z0-9_-]{11}$/', $input)) {
+            return [
+                'type' => 'youtube',
+                'id' => $input,
+                'url' => 'https://www.youtube.com/embed/' . $input . '?rel=0&modestbranding=1',
+                'library_id' => null,
+            ];
+        }
+
+        // 3. Bunny.net Patterns:
+        // Matches full Bunny embed/play URL: https://iframe.mediadelivery.net/embed/LIBRARY_ID/VIDEO_GUID
+        $bunnyUrlPattern = '/iframe\.mediadelivery\.net\/(?:embed|play)\/([0-9]+)\/([a-f0-9-]+)/i';
+        if (preg_match($bunnyUrlPattern, $input, $bunnyMatches)) {
+            return [
+                'type' => 'bunny',
+                'id' => $bunnyMatches[2],
+                'library_id' => $bunnyMatches[1],
+                'url' => "https://iframe.mediadelivery.net/embed/{$bunnyMatches[1]}/{$bunnyMatches[2]}?autoplay=false&preload=false",
+            ];
+        }
+
+        // Plain UUID (Bunny.net GUID without full URL)
+        if (preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i', $input)) {
+            $libId = !empty($fallbackLibraryId) ? $fallbackLibraryId : (env('BUNNY_NET_LIBRARY_ID') ?: '715116');
+            return [
+                'type' => 'bunny',
+                'id' => $input,
+                'library_id' => $libId,
+                'url' => "https://iframe.mediadelivery.net/embed/{$libId}/{$input}?autoplay=false&preload=false",
+            ];
+        }
+
+        // 4. Vimeo Pattern:
+        if (preg_match('/vimeo\.com\/(?:video\/)?([0-9]+)/i', $input, $vimeoMatches)) {
+            return [
+                'type' => 'vimeo',
+                'id' => $vimeoMatches[1],
+                'url' => 'https://player.vimeo.com/video/' . $vimeoMatches[1],
+                'library_id' => null,
+            ];
+        }
+
+        // 5. Generic HTTPS valid URL (direct embed/mp4)
+        if (filter_var($input, FILTER_VALIDATE_URL) && preg_match('/^https?:\/\//i', $input)) {
+            return [
+                'type' => 'embed',
+                'id' => $input,
+                'url' => $input,
+                'library_id' => null,
+            ];
+        }
+
+        return null;
+    }
+}

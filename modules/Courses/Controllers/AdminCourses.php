@@ -271,23 +271,35 @@ class AdminCourses extends BaseController
     }
 
     /**
-     * Extract YouTube Video ID from URL or return the input if it's already an ID
+     * Extract Video ID from URL, iframe code, or return clean string/ID
      */
     private function extractYouTubeId($url)
     {
         if (empty($url)) {
-            return '';
+            return null;
         }
 
-        // Pattern to match various YouTube URL formats
-        $pattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i';
+        $url = trim(html_entity_decode((string) $url, ENT_QUOTES, 'UTF-8'));
 
+        // If an iframe snippet was pasted, extract src
+        if (preg_match('/<iframe[^>]+src=["\']([^"\']+)["\']/i', $url, $m)) {
+            $url = trim($m[1]);
+        }
+
+        // Match YouTube patterns (watch, youtu.be, embed, shorts, etc.)
+        $pattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i';
         if (preg_match($pattern, $url, $matches)) {
             return $matches[1];
         }
 
-        // If no URL pattern matched, assume it's already an ID or plain text
-        return $url;
+        // Match Bunny embed URL: extract video GUID
+        $bunnyPattern = '/iframe\.mediadelivery\.net\/(?:embed|play)\/[0-9]+\/([a-f0-9-]+)/i';
+        if (preg_match($bunnyPattern, $url, $matches)) {
+            return $matches[1];
+        }
+
+        // If plain text / UUID / ID
+        return $url !== '' ? $url : null;
     }
 
     /**
