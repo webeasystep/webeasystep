@@ -388,42 +388,32 @@
                     <ul class="course-features-list">
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-chalkboard"></i> </div>
-                            <div class="feature-text">شرح السلايدات</div>
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="feature-text">شرح السلايدات والتطبيق العملي</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-question-circle"></i> </div>
-                            <div class="feature-text">شرح ال quizes</div>
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="feature-text">حل التجميعات ونماذج الكويزات</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-clipboard-check"></i> </div>
-                            <div class="feature-text">اختبر نفسك كل أسبوع</div>
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="feature-text">مراجعات مكثفة للميد والفاينل</div>
                         </li>
                         <li>
                             <div class="feature-icon">
-                                <i class="fas fa-check-double"></i> </div>
-                            <div class="feature-text">حل تجميعات الاختبارات</div>
-                        </li>
-                        <li>
-                            <div class="feature-icon">
-                                <i class="fas fa-graduation-cap"></i> </div>
-                            <div class="feature-text">مراجعات الميدتيرم والفاينال</div>
-                        </li>
-                        <li>
-                            <div class="feature-icon">
-                                <i class="fas fa-users"></i> </div>
-                            <div class="feature-text">قروب خاص للدعم والإجابة على الأسئلة</div>
-                        </li>
-                        <li>
-                            <div class="feature-icon">
-                                <i class="fas fa-laptop-code"></i> </div>
-                            <div class="feature-text">متوافق مع كافة الأجهزة</div>
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="feature-text">قروب دعم ومتابعة دورية مع المحاضر</div>
                         </li>
                     </ul>
+                </div>
 
-                    <div class="course-purchase-section mt-4">
+                <div class="course-purchase-section mt-4">
                         <div style="background: var(--bg-gradient-primary); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
                             <div style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;" dir="ltr">
                                 <?php if ($course->is_free): ?>
