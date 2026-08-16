@@ -108,8 +108,8 @@ class AdminUsers extends BaseController
             ->where('type', 'mobile_password')
             ->get()->getRow();
 
-        $user->email = $emailIdentity ? $emailIdentity->secret : '';
-        $user->mobile = $mobileIdentity ? $mobileIdentity->secret : '';
+        $user->email = !empty($emailIdentity->secret) ? $emailIdentity->secret : ($user->email ?? '');
+        $user->mobile = !empty($mobileIdentity->secret) ? $mobileIdentity->secret : ($user->mobile ?? '');
 
         $data['user'] = $user;
         $data['files'] = !empty($user->avatar) ? (is_array($user->avatar) ? $user->avatar : json_decode($user->avatar, true)) : [];
