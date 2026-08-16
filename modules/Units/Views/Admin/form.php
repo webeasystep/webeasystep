@@ -42,7 +42,7 @@
                                 <select name="course_id" id="course_id" class="form-control" required>
                                     <option value="">اختر الكورس</option>
                                     <?php foreach ($courses as $course): ?>
-                                        <option value="<?= $course->id ?>" <?= ($isEdit && $unit->course_id == $course->id) ? 'selected' : '' ?>>
+                                        <option value="<?= $course->id ?>" <?= (($isEdit && $unit->course_id == $course->id) || (!$isEdit && isset($selected_course_id) && $selected_course_id == $course->id)) ? 'selected' : '' ?>>
                                             <?= esc($course->course_title) ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -605,10 +605,8 @@ console.log('New unit form - unitItems initialized as empty array');
 <?php endif; ?>
 
 $(document).ready(function() {
-    // Initialize currentCourseId with selected course in edit mode
-    <?php if ($isEdit && $unit): ?>
-    currentCourseId = '<?= $unit->course_id ?>';
-    <?php endif; ?>
+    // Initialize currentCourseId with selected course
+    currentCourseId = $('#course_id').val() || null;
 
     // Display existing unit items if editing
     <?php if ($isEdit && isset($existing_unit_items)): ?>

@@ -36,7 +36,7 @@ class CoursesModel extends BaseModel
      */
     public function getCourseBySlug(string $slug, bool $allowInactive = false)
     {
-        $builder = $this->select('tb_courses.*, tb_colleges.college_name_ar, users.full_name as instructor_name')
+        $builder = $this->select('tb_courses.*, tb_colleges.college_name_ar, users.full_name as instructor_name, users.username as instructor_username, users.instructor_bio, users.avatar as instructor_avatar')
             ->join('tb_colleges', 'tb_colleges.id = tb_courses.college_id', 'left')
             ->join('users', 'users.id = tb_courses.instructor_id', 'left')
             ->where('tb_courses.slug', $slug);

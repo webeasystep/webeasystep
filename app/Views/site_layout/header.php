@@ -1,28 +1,125 @@
+<?php
+    $defaultSiteTitle = 'منصة فخر CS | كورسات وشروحات الجامعة السعودية الإلكترونية SEU';
+    $rawSiteTitle = setting('App.title') ?: $defaultSiteTitle;
+    $rawPageTitle = $meta_title ?? ($title ?? null);
+
+    if (empty($rawPageTitle) || $rawPageTitle === $rawSiteTitle) {
+        $finalTitle = $rawSiteTitle;
+    } elseif (
+        mb_strpos($rawPageTitle, 'فخر CS') !== false ||
+        mb_strpos($rawPageTitle, 'SEU') !== false ||
+        mb_strpos($rawPageTitle, 'الجامعة السعودية الإلكترونية') !== false
+    ) {
+        $finalTitle = $rawPageTitle;
+    } else {
+        $finalTitle = $rawPageTitle . ' | ' . $rawSiteTitle;
+    }
+
+    $defaultDesc = 'المنصة الأولى المتخصصة لطلاب الجامعة السعودية الإلكترونية SEU. شروحات مقررات كلية الحوسبة والمعلوماتية والسنة الأولى المشتركة، تجميعات اختبارات، ملخصات وحلول واجبات للتفوق بـ A+.';
+    $finalDescription = $meta_description ?? (setting('App.site_description_ar') ?: $defaultDesc);
+
+    $defaultKeywords = 'الجامعة السعودية الإلكترونية, SEU, كورسات الجامعة السعودية الإلكترونية, شرح مواد SEU, فخر CS, كلية الحوسبة والمعلوماتية SEU, السنة الأولى المشتركة SEU, تجميعات SEU, حل واجبات SEU, ملخصات SEU, IT232, CS240, IT244, CS350, MATH 001, CS 001, ENG 001, FakhrCS';
+    $finalKeywords = $meta_keywords ?? (setting('App.keywords_ar') ?: $defaultKeywords);
+
+    $finalImage = $meta_image ?? (base_url('site/images/feature_logo.png'));
+    $pageUrl = current_url();
+?>
 <head>
     <meta charset="UTF-8">
-    <title><?= $meta_title ?? ($title ?? "WebEasyStep"); ?> | <?= setting('App.title'); ?></title>
+    <title><?= esc($finalTitle); ?></title>
+    <meta name="title" content="<?= esc($finalTitle); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?= $meta_description ?? setting('App.site_description_ar'); ?>">
-    <meta name="keywords" content="<?= $meta_keywords ?? setting('App.keywords_ar'); ?>">
-    <meta name="author" content="webeasystep.com" />
+    <meta name="description" content="<?= esc($finalDescription); ?>">
+    <meta name="keywords" content="<?= esc($finalKeywords); ?>">
+    <meta name="author" content="فخر CS - FakhrCS" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="Arabic">
+    <meta name="geo.region" content="SA">
+    <meta name="geo.placename" content="Saudi Arabia">
     <meta name="csrf-token" content="<?= csrf_hash() ?>">
-    <meta property="og:url" content="<?= current_url(); ?>" />
-    <meta property="og:type" content="<?= $og_type ?? 'website'; ?>" />
-    <meta property="og:title" content="<?= $meta_title ?? ($title ?? setting('App.title')); ?>" />
-    <meta property="og:description" content="<?= $meta_description ?? setting('App.site_description_ar'); ?>" />
-    <meta property="og:image" content="<?= $meta_image ?? base_url() . 'site/images/feature_logo.png'; ?>" />
-    <meta property="og:image:width" content="500" />
-    <meta property="og:image:height" content="500" />
-    <meta property="og:site_name" content="webeasystep.com" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="<?= esc($pageUrl); ?>">
+
+    <!-- Open Graph / Facebook / WhatsApp / Telegram -->
+    <meta property="og:type" content="<?= esc($og_type ?? 'website'); ?>" />
+    <meta property="og:url" content="<?= esc($pageUrl); ?>" />
+    <meta property="og:title" content="<?= esc($finalTitle); ?>" />
+    <meta property="og:description" content="<?= esc($finalDescription); ?>" />
+    <meta property="og:image" content="<?= esc($finalImage); ?>" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="<?= esc($finalTitle); ?>" />
+    <meta property="og:site_name" content="منصة فخر CS التعليمية" />
+    <meta property="og:locale" content="ar_SA" />
 
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?= $meta_title ?? ($title ?? setting('App.title')); ?>">
-    <meta name="twitter:description" content="<?= $meta_description ?? setting('App.site_description_ar'); ?>">
-    <meta name="twitter:image" content="<?= $meta_image ?? base_url() . 'site/images/feature_logo.png'; ?>">
+    <meta name="twitter:url" content="<?= esc($pageUrl); ?>">
+    <meta name="twitter:title" content="<?= esc($finalTitle); ?>">
+    <meta name="twitter:description" content="<?= esc($finalDescription); ?>">
+    <meta name="twitter:image" content="<?= esc($finalImage); ?>">
+    <meta name="twitter:image:alt" content="<?= esc($finalTitle); ?>">
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="<?= current_url(); ?>">
+    <!-- Structured Data (JSON-LD Schema) for Google Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "EducationalOrganization",
+          "@id": "<?= base_url('#organization') ?>",
+          "name": "فخر CS | FakhrCS",
+          "alternateName": ["منصة فخر التعليمية", "Fakhr CS", "فخر لطلاب الجامعة السعودية الإلكترونية"],
+          "url": "<?= base_url() ?>",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "<?= base_url('site/images/feature_logo.png') ?>"
+          },
+          "description": "منصة تعليمية متخصصة في تقديم شروحات ومقررات كلية الحوسبة والمعلوماتية والسنة الأولى المشتركة لطلاب الجامعة السعودية الإلكترونية SEU."
+        },
+        {
+          "@type": "WebSite",
+          "@id": "<?= base_url('#website') ?>",
+          "url": "<?= base_url() ?>",
+          "name": "منصة فخر CS",
+          "publisher": {
+            "@id": "<?= base_url('#organization') ?>"
+          },
+          "inLanguage": "ar-SA",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "<?= base_url('courses/search?q={search_term_string}') ?>"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }
+        <?php if (isset($course) && is_object($course) && !empty($course->course_title)): ?>
+        ,{
+          "@type": "Course",
+          "@id": "<?= current_url() ?>#course",
+          "name": <?= json_encode($course->course_title, JSON_UNESCAPED_UNICODE) ?>,
+          "description": <?= json_encode(strip_tags($course->short_desc ?? $course->course_desc ?? ''), JSON_UNESCAPED_UNICODE) ?>,
+          "provider": {
+            "@type": "Organization",
+            "name": "منصة فخر CS",
+            "sameAs": "<?= base_url() ?>"
+          },
+          "inLanguage": "ar",
+          "offers": {
+            "@type": "Offer",
+            "price": "<?= isset($course->course_price) ? (float)$course->course_price : 0 ?>",
+            "priceCurrency": "SAR",
+            "availability": "https://schema.org/InStock",
+            "category": "Educational"
+          }
+        }
+        <?php endif; ?>
+      ]
+    }
+    </script>
 
     <!-- Preconnect to external resources for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -11,9 +11,10 @@
 
 
             <div class="form-group row">
-                <label for="username" class="col-sm-3 col-form-label"><?= lang("Users.username") ?></label>
+                <label for="username" class="col-sm-3 col-form-label"><?= lang("Users.username") ?> / المسمى التعريفي</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="username" name="username" value="<?= esc($user->username ?? '') ?>" <?= !empty($user->id) ? 'readonly' : '' ?> required>
+                    <input type="text" class="form-control" id="username" name="username" value="<?= esc($user->username ?? '') ?>" placeholder="مثال: م. أحمد فخر الدين أو اسم المستخدم">
+                    <small class="form-text text-muted">يمكن استخدامه كاسم مستخدم أو مسمى مختصر للمحاضر.</small>
                     <small class="invalid-feedback"></small>
                 </div>
             </div>
@@ -51,6 +52,24 @@
             </div>
 
             <div class="form-group row">
+                <label for="instructor_bio" class="col-sm-3 col-form-label">النبذة التعريفية (Instructor Bio)</label>
+                <div class="col-sm-9">
+                    <textarea class="form-control" id="instructor_bio" name="instructor_bio" rows="4" placeholder="اكتب نبذة عن المحاضر، خبراته الأكاديمية، تخصصه في مقررات الجامعة السعودية الإلكترونية SEU، وإنجازاته..."><?= esc($user->instructor_bio ?? '') ?></textarea>
+                    <small class="form-text text-muted">تظهر هذه النبذة في شاشة تفاصيل المقرر للطلاب لتعزيز ثقة الطالب وإبراز خبرة المحاضر.</small>
+                    <small class="invalid-feedback"></small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="avatar" class="col-sm-3 col-form-label">صورة الملف الشخصي / الأفاتار</label>
+                <div class="col-sm-9">
+                    <div class="fireupload" id="dropzone1"></div>
+                    <small class="form-text text-muted">صورة شخصية احترافية للمحاضر (يتم رفعها بنظام FireUploader).</small>
+                    <small class="invalid-feedback"></small>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label for="password" class="col-sm-3 col-form-label"><?= lang("Merchants.password") ?></label>
                 <div class="col-sm-9">
                     <input type="password" class="form-control" id="password" name="password" value="<?= set_value('password') ?>">
@@ -80,8 +99,6 @@
                 </div>
             </div>
 
-
-
             <!-- Datepicker for 'updated_at' -->
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label"><?= lang("Users.updated_at") ?></label>
@@ -95,7 +112,6 @@
                 </div>
             </div>
 
-
             <!-- Additional fields for edit form -->
             <button type="button" class="btn btn-secondary"
                     href="<?= ADMIN_URL . 'users' ?>"><?= lang("Admin.cancel") ?></button>
@@ -108,7 +124,18 @@
 
 <?= $this->endSection(); ?>
 
- <!-- .javascript section -->
+<!-- .javascript section -->
 <?= $this->section('js'); ?>
 <?= $this->include('admin_layout/curd_js'); ?>
+<script>
+    $(document).ready(function () {
+        var uploader1 = new FireUploader({
+            dropzoneId: 'dropzone1',
+            inputName: "avatar[]",
+            multipleFiles: false,
+            allowedExtensions: ["jpg", "jpeg", "png", "webp", "gif"],
+            files: <?= json_encode($files ?? '[]') ?>
+        });
+    });
+</script>
 <?php $this->endSection(); ?>

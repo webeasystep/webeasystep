@@ -15,6 +15,7 @@ class UserModel extends ShieldUserModel
         'active',
         'last_active',
         'full_name',
+        'instructor_bio',
         'mobile',
         'email', // For compatibi
         'avatar',
@@ -28,6 +29,7 @@ class UserModel extends ShieldUserModel
         // Ensure our custom allowedFields are properly set
         $this->allowedFields = array_merge($this->allowedFields, [
             'full_name',
+            'instructor_bio',
             'mobile',
             'avatar',
             'user_type',

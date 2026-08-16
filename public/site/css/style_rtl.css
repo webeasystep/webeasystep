@@ -2704,6 +2704,8 @@ body.dark-mode .untree_co-hero .heading {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    padding-top: 38px;
 }
 
 .course-card:hover {
@@ -2719,7 +2721,6 @@ body.dark-mode .untree_co-hero .heading {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     overflow: hidden;
 }
 
@@ -2750,16 +2751,17 @@ body.dark-mode .untree_co-hero .heading {
 /* Course Badge */
 .course-badge {
     position: absolute;
-    top: 12px;
+    top: 8px;
     right: 12px;
     /* RTL: badge on right side */
     background: rgba(255, 255, 255, 0.95);
     color: #333;
-    padding: 6px 12px;
-    border-radius: 20px;
+    padding: 2px 10px;
+    border-radius: 999px;
     font-size: 0.75rem;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+    line-height: 1.4;
+    z-index: 2;
 }
 
 /* Course Card Body */
@@ -7130,7 +7132,7 @@ pointer-events: none;
 }
 
 .modal-header {
-    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+    background: var(--bg-gradient-primary);
     color: white;
     border-bottom: none;
     padding: 1.5rem 2rem;
@@ -7283,7 +7285,7 @@ pointer-events: none;
 }
 
 .modal-footer .btn-primary {
-    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    background: var(--bg-gradient-primary);
     color: white;
     position: relative;
 }

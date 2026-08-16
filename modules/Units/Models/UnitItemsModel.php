@@ -18,7 +18,6 @@ class UnitItemsModel extends Model
         'item_id',
         'title',
         'description',
-        'duration',
         'sort_order',
         'is_active',
         'metadata'
@@ -143,19 +142,21 @@ class UnitItemsModel extends Model
         $videoSource = $videoData['video_source'] ?? 'bunny';
         
         if ($videoSource === 'youtube') {
+            $videoId = $videoData['video_id'] ?? '';
             // YouTube video metadata
             $metadata = [
-                'video_id' => $videoData['video_id'] ?? '',
+                'video_id' => $videoId,
                 'video_source' => 'youtube',
                 'video_title' => $videoData['video_title'] ?? $videoData['title'] ?? '',
                 'video_thumbnail' => $videoData['video_thumbnail'] ?? $videoData['thumbnail'] ?? '',
                 'youtube_url' => $videoData['youtube_url'] ?? '',
-                'embed_url' => $videoData['embed_url'] ?? 'https://www.youtube.com/embed/' . ($videoData['video_id'] ?? '')
+                'embed_url' => $videoData['embed_url'] ?? 'https://www.youtube.com/embed/' . $videoId
             ];
             
             $data = [
                 'unit_id' => $unitId,
                 'item_type' => 'video',
+                'item_id' => $videoId,
                 'title' => $videoData['video_title'] ?? $videoData['title'] ?? 'فيديو YouTube',
                 'description' => $videoData['description'] ?? '',
                 'metadata' => json_encode($metadata),
@@ -167,21 +168,20 @@ class UnitItemsModel extends Model
         }
         
         // Bunny.net video (original logic)
-        $contentData = [
-            'collection_id' => $videoData['collection_id'] ?? '',
-            'stream_url' => $videoData['stream_url'] ?? '',
-            'preview_url' => $videoData['preview_url'] ?? '',
-            'captions_path' => $videoData['captions_path'] ?? '',
-            'seek_path' => $videoData['seek_path'] ?? '',
-            'fallback_url' => $videoData['fallback_url'] ?? ''
-        ];
+        $videoId = $videoData['video_id'] ?? '';
+        $duration = 0;
+        if (isset($videoData['duration']) && is_numeric($videoData['duration'])) {
+            $duration = (int)$videoData['duration'];
+        } elseif (isset($videoData['video_duration']) && is_numeric($videoData['video_duration'])) {
+            $duration = (int)$videoData['video_duration'];
+        }
 
         // Prepare metadata JSON with video information
         $metadata = [
-            'video_id' => $videoData['video_id'] ?? '',
+            'video_id' => $videoId,
             'video_source' => 'bunny',
             'video_title' => $videoData['video_title'] ?? $videoData['title'] ?? '',
-            'video_duration' => $videoData['video_duration'] ?? '',
+            'video_duration' => $videoData['video_duration'] ?? $duration,
             'video_thumbnail' => $videoData['video_thumbnail'] ?? $videoData['thumbnail'] ?? '',
             'collection_id' => $videoData['collection_id'] ?? '',
             'video_library_id' => $videoData['video_library_id'] ?? ''
@@ -190,12 +190,9 @@ class UnitItemsModel extends Model
         $data = [
             'unit_id' => $unitId,
             'item_type' => 'video',
-            'video_id' => $videoData['video_id'] ?? '',
-            'video_title' => $videoData['video_title'] ?? $videoData['title'] ?? '',
-            'video_duration' => $videoData['video_duration'] ?? '',
+            'item_id' => $videoId,
             'title' => $videoData['video_title'] ?? $videoData['title'] ?? 'فيديو جديد',
             'description' => $videoData['description'] ?? '',
-            'content_data' => json_encode($contentData),
             'metadata' => json_encode($metadata),
             'sort_order' => $sortOrder ?? $this->getNextSortOrder($unitId),
             'is_active' => 1

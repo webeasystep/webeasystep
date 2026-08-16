@@ -24,8 +24,13 @@ $routes->group('dt_admin', [
     $routes->get('units/get-units-by-course/(:num)', 'AdminUnits::getUnitsByCourse/$1');
     $routes->get('units/get-quizzes-by-course/(:num)', 'AdminUnits::getQuizzesByCourse/$1');
     $routes->get('units/get-available-pages', 'AdminUnits::getAvailablePages');
-$routes->post('units/fetch-video-data', 'AdminUnits::fetchVideoData');
-$routes->get('units/get-available-quizzes/(:num)', 'AdminUnits::getAvailableQuizzes/$1');
+    $routes->post('units/fetch-video-data', 'AdminUnits::fetchVideoData');
+    $routes->get('units/get-available-quizzes/(:num)', 'AdminUnits::getAvailableQuizzes/$1');
+    $routes->get('units/get-items/(:num)', 'AdminUnits::getUnitItems/$1');
+    $routes->post('units/add-item', 'AdminUnits::addUnitItem');
+    $routes->post('units/update-item-order', 'AdminUnits::updateItemOrder');
+    $routes->post('units/toggle-item-status', 'AdminUnits::toggleItemStatus');
+    $routes->post('units/delete-item', 'AdminUnits::deleteUnitItem');
     $routes->get('units/statistics', 'AdminUnits::statistics');
     $routes->get('units/statistics/(:num)', 'AdminUnits::unitStatistics/$1');
     $routes->post('units/duplicate/(:num)', 'AdminUnits::duplicate/$1');

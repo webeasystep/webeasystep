@@ -42,9 +42,10 @@ class Site extends BaseController
     public function home()
     {
         $data['page_name'] = 'home';
-        $data['title']     = 'النجاح في SEU ليس أصعب... بل يحتاج للطريقة الصحيحة.';
-        $data['meta_title'] = 'النجاح في SEU ليس أصعب... بل يحتاج للطريقة الصحيحة.';
-        $data['meta_description'] = 'منصة تعليمية متخصصة لطلاب الجامعة السعودية الإلكترونية، تجمع كل ما تحتاجه للتفوق الأكاديمي في مكان واحد.';
+        $data['title']     = 'منصة فخر CS | كورسات وشروحات الجامعة السعودية الإلكترونية SEU';
+        $data['meta_title'] = 'منصة فخر CS | كورسات وشروحات الجامعة السعودية الإلكترونية SEU';
+        $data['meta_description'] = 'المنصة الأولى المتخصصة لطلاب الجامعة السعودية الإلكترونية SEU. شروحات مقررات كلية الحوسبة والمعلوماتية والسنة الأولى المشتركة، تجميعات اختبارات، ملخصات وحلول واجبات للتفوق بـ A+.';
+        $data['meta_keywords'] = 'الجامعة السعودية الإلكترونية, SEU, كورسات الجامعة السعودية الإلكترونية, شرح مواد SEU, فخر CS, كلية الحوسبة والمعلوماتية SEU, السنة الأولى المشتركة SEU, تجميعات SEU, حل واجبات SEU, ملخصات SEU, IT232, CS240, IT244, CS350, MATH 001, CS 001, ENG 001, FakhrCS';
 
         // 1) Articles
         $data['articles'] = $this->db
@@ -75,9 +76,10 @@ class Site extends BaseController
     public function faqs()
     {
         $data['page_name'] = 'faqs';
-        $data['title']     = 'الأسئلة الشائعة';
-        $data['meta_title'] = 'الأسئلة الشائعة | فخر CS';
-        $data['meta_description'] = 'إجابات على الأسئلة الشائعة حول فخر CS ومقررات الجامعة السعودية الإلكترونية.';
+        $data['title']     = 'الأسئلة الشائعة | منصة فخر CS';
+        $data['meta_title'] = 'الأسئلة الشائعة | منصة فخر CS - الجامعة السعودية الإلكترونية SEU';
+        $data['meta_description'] = 'إجابات على كافة الأسئلة الشائعة لطلاب الجامعة السعودية الإلكترونية SEU حول شروحات المقررات، التجميعات، التسجيل وطرق الدفع في منصة فخر CS.';
+        $data['meta_keywords'] = 'الأسئلة الشائعة SEU, استفسارات الجامعة السعودية الإلكترونية, كورسات SEU فخر CS';
         
         $data['faqs'] = $this->db->table('tb_faqs')
             ->where('active', 1)
@@ -91,7 +93,10 @@ class Site extends BaseController
     public function preparatory()
     {
         $data['page_name'] = 'preparatory';
-        $data['title']     = 'السنة الأولى المشتركة (التحضيرية)';
+        $data['title']     = 'السنة الأولى المشتركة (التحضيرية) | الجامعة السعودية الإلكترونية SEU - فخر CS';
+        $data['meta_title'] = 'السنة الأولى المشتركة (التحضيرية) | الجامعة السعودية الإلكترونية SEU - فخر CS';
+        $data['meta_description'] = 'شروحات وتجميعات مواد السنة الأولى المشتركة (التحضيري) بالجامعة السعودية الإلكترونية SEU: MATH001, CS001, ENG001, COMM001, CI001 لضمان أعلى المعدلات والتفوق الدراسي.';
+        $data['meta_keywords'] = 'السنة الأولى المشتركة SEU, تحضيري الجامعة السعودية الإلكترونية, MATH 001, CS 001, ENG 001, COMM 001, CI 001, ريض 001, عال 001, نجل 001, نهج 001, علم 001, فخر CS';
 
         // Get courses data from Courses controller
         $coursesController = new \Modules\Courses\Controllers\Courses();

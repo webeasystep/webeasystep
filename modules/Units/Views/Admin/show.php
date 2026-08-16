@@ -55,10 +55,6 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>القسم:</th>
-                                            <td><?= esc($section->section_name) ?></td>
-                                        </tr>
-                                        <tr>
                                             <th>ترتيب الوحدة:</th>
                                             <td><span class="badge badge-info"><?= $unit->sort_order ?></span></td>
                                         </tr>
@@ -296,10 +292,7 @@
                                 <a href="<?= ADMIN_URL . 'courses/show/' . $course->id ?>" class="list-group-item list-group-item-action">
                                     <i class="fas fa-book"></i> عرض الكورس
                                 </a>
-                                <a href="<?= ADMIN_URL . 'sections/show/' . $section->id ?>" class="list-group-item list-group-item-action">
-                                    <i class="fas fa-folder"></i> عرض القسم
-                                </a>
-                                <a href="<?= ADMIN_URL . 'units?course=' . $course->id ?>" class="list-group-item list-group-item-action">
+                                <a href="<?= ADMIN_URL . 'units?course_id=' . $course->id ?>" class="list-group-item list-group-item-action">
                                     <i class="fas fa-list"></i> وحدات الكورس
                                 </a>
                                 <a href="<?= ADMIN_URL . 'progress/unit-analytics/' . $unit->id ?>" class="list-group-item list-group-item-action">

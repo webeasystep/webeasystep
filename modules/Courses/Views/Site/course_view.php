@@ -1181,9 +1181,16 @@
                                                                 <?php
                                                                 $metadata = json_decode($item->metadata ?? '{}', true);
                                                                 if ($item->item_type === 'video') {
-                                                                    $duration = isset($metadata['video_duration']) ? round((int) $metadata['video_duration'] / 60) : null;
-                                                                    if ($duration) {
-                                                                        echo '<span class="item-duration"><i class="fas fa-clock"></i> ' . esc($duration) . ' د</span>';
+                                                                    $rawDuration = $metadata['video_duration'] ?? null;
+                                                                    if (!empty($rawDuration)) {
+                                                                        if (is_numeric($rawDuration)) {
+                                                                            $mins = floor((int)$rawDuration / 60);
+                                                                            $secs = (int)$rawDuration % 60;
+                                                                            $formattedDur = sprintf('%d:%02d', $mins, $secs);
+                                                                        } else {
+                                                                            $formattedDur = (string)$rawDuration;
+                                                                        }
+                                                                        echo '<span class="item-duration"><i class="fas fa-clock"></i> ' . esc($formattedDur) . '</span>';
                                                                     } else {
                                                                         echo '<span class="item-type"><i class="fas fa-video"></i> فيديو</span>';
                                                                     }

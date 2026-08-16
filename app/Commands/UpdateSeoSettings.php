@@ -13,9 +13,9 @@ class UpdateSeoSettings extends BaseCommand
 
     public function run(array $params)
     {
-        $title = 'الجامعة السعودية الإلكترونية SEU | كلية الحوسبة والمعلوماتية | FakhrCS';
-        $description = 'المنصة الأولى المتخصصة في هندسة محتوى كلية الحوسبة والمعلوماتية بالجامعة السعودية الإلكترونية SEU. نضمن لك الـ A+ في مواد البرمجة وقواعد البيانات والخوارزميات (IT232, CS240, IT244, CS350) بأسلوب المهندس أحمد فخر الدين.';
-        $keywords = 'الجامعة السعودية الإلكترونية, SEU, كلية الحوسبة والمعلوماتية, CCI, مواد SEU, IT232, CS230, DS230, IT245, CS240, DS240, IT244, CS350, DS350, IT351, CS360, DS360, Object Oriented Programming SEU, Data Structure SEU, Introduction to Database SEU, Computer Networks SEU, حل واجبات SEU, ملخصات كلية الحوسبة, تجميعات ميدتيرم SEU, شرح م/ أحمد فخر الدين';
+        $title = 'منصة فخر CS | كورسات وشروحات الجامعة السعودية الإلكترونية SEU';
+        $description = 'المنصة الأولى المتخصصة لطلاب الجامعة السعودية الإلكترونية SEU. شروحات مقررات كلية الحوسبة والمعلوماتية والسنة الأولى المشتركة، تجميعات اختبارات، ملخصات وحلول واجبات للتفوق بـ A+.';
+        $keywords = 'الجامعة السعودية الإلكترونية, SEU, كورسات الجامعة السعودية الإلكترونية, شرح مواد SEU, فخر CS, كلية الحوسبة والمعلوماتية SEU, السنة الأولى المشتركة SEU, تجميعات SEU, حل واجبات SEU, ملخصات SEU, IT232, CS240, IT244, CS350, MATH 001, CS 001, ENG 001, FakhrCS';
 
         // Update using the setting() helper
         setting('App.title', $title);

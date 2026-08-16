@@ -71,11 +71,12 @@
             </div>
 
             <!-- Main Content Card -->
+            <?php $selectedCourseId = request()->getGet('course_id') ?? ''; ?>
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">قائمة الوحدات</h3>
                     <div class="card-tools">
-                        <a href="<?= ADMIN_URL . 'units/add' ?>" class="btn btn-primary btn-sm">
+                        <a href="<?= ADMIN_URL . 'units/add' . ($selectedCourseId ? '?course_id=' . $selectedCourseId : '') ?>" id="add-unit-btn" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> إضافة وحدة جديدة
                         </a>
                     </div>
@@ -86,11 +87,11 @@
                         <div class="col-md-4">
                             <select name="course_id" id="course-filter" class="form-control custom-filter">
                                 <option value="">جميع الكورسات</option>
-                                <?php
-
-                                if (isset($courses) && is_array($courses)): ?>
+                                <?php if (isset($courses) && is_array($courses)): ?>
                                     <?php foreach ($courses as $course): ?>
-                                        <option value="<?= $course->id ?>"><?= esc($course->course_title) ?></option>
+                                        <option value="<?= $course->id ?>" <?= ($selectedCourseId == $course->id) ? 'selected' : '' ?>>
+                                            <?= esc($course->course_title) ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                             </select>
@@ -123,17 +124,15 @@
 
 <?= $this->section('js') ?>
 <script>
-    // Call loadStatistics on document ready and set up filter classes/names
     $(document).ready(function() {
-        console.log("DEBUG VIEW: Main view script is ready. Firing loadStatistics() and setting up filters.");
         loadStatistics();
-        // We NO LONGER attach event handlers here. They are all in index_js.php now.
-        $('#course-filter').attr('name', 'course_filter');
 
-        $('#status-filter').attr('name', 'status_filter');
+        $('#course-filter').on('change', function() {
+            const courseId = $(this).val();
+            const addUrl = '<?= ADMIN_URL ?>units/add' + (courseId ? '?course_id=' + courseId : '');
+            $('#add-unit-btn').attr('href', addUrl);
+        });
     });
-
-
 
     // The statistics function is standalone and can remain
     function loadStatistics() {

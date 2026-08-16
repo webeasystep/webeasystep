@@ -83,7 +83,7 @@ class Courses extends BaseController
         // Get active courses with enhanced data
         $courses = $this->db
             ->table('tb_courses')
-            ->select('tb_courses.*, users.full_name as instructor_name, tb_colleges.college_name_ar as college_name')
+            ->select('tb_courses.*, users.full_name as instructor_name, users.username as instructor_username, users.instructor_bio, users.avatar as instructor_avatar, tb_colleges.college_name_ar as college_name')
             ->join('users', 'users.id = tb_courses.instructor_id', 'left')
             ->join('tb_colleges', 'tb_colleges.id = tb_courses.college_id', 'left')
             ->where('tb_courses.active', 1)
@@ -158,17 +158,17 @@ class Courses extends BaseController
                 if ($item['item_type'] === 'video') {
                     $videoCount++;
 
-                    // Calculate duration from metadata (video_duration in seconds)
+                    // Calculate duration from metadata (video_duration formatted string or seconds)
                     if (!empty($item['metadata'])) {
                         $metadata = json_decode($item['metadata'], true);
                         if (isset($metadata['video_duration'])) {
-                            // Convert seconds to minutes and round
-                            $totalDuration += round((int)$metadata['video_duration'] / 60);
+                            $seconds = $this->parseDurationToSeconds($metadata['video_duration']);
+                            $totalDuration += (int)round($seconds / 60);
                         }
                     }
                     // Fallback to duration field if metadata is not available
                     elseif (!empty($item['duration'])) {
-                        $totalDuration += round((int)$item['duration'] / 60);
+                        $totalDuration += (int)round((int)$item['duration'] / 60);
                     }
                 } elseif ($item['item_type'] === 'page') {
                     $pageCount++;
@@ -219,6 +219,28 @@ class Courses extends BaseController
         }
 
         return (int)$minutes;
+    }
+
+    /**
+     * Parse duration (either integer seconds or "MM:SS" / "HH:MM:SS" formatted string) to seconds
+     */
+    private function parseDurationToSeconds($duration): int
+    {
+        if (is_numeric($duration)) {
+            return (int)$duration;
+        }
+
+        if (is_string($duration) && strpos($duration, ':') !== false) {
+            $parts = array_map('intval', explode(':', trim($duration)));
+            if (count($parts) === 2) {
+                return ($parts[0] * 60) + $parts[1];
+            }
+            if (count($parts) === 3) {
+                return ($parts[0] * 3600) + ($parts[1] * 60) + $parts[2];
+            }
+        }
+
+        return 0;
     }
 
     /**
@@ -326,8 +348,11 @@ class Courses extends BaseController
         }
         unset($course); // Good practice after reference loops
 
-        $data['title']  = 'All Courses' ;
-        $data['desc']  = 'Browse our comprehensive course catalog' ;
+        $data['title']  = 'كورسات ومقررات الجامعة السعودية الإلكترونية SEU | فخر CS';
+        $data['meta_title']  = 'كورسات ومقررات الجامعة السعودية الإلكترونية SEU | فخر CS';
+        $data['meta_description'] = 'تصفح جميع مقررات وكورسات الجامعة السعودية الإلكترونية SEU بكلية الحوسبة والمعلوماتية والسنة الأولى المشتركة. شروحات وتجميعات لضمان الـ A+.';
+        $data['meta_keywords'] = 'مقررات SEU, كورسات الجامعة السعودية الإلكترونية, مواد كلية الحوسبة SEU, شروحات SEU, فخر CS';
+        $data['desc']  = 'تصفح باقة المقررات والكورسات المتاحة لطلاب الجامعة السعودية الإلكترونية';
         $data['featured_courses'] = $this->coursesModel->getFeaturedCourses(3);
         $data['popular_courses'] = $this->coursesModel->getPopularCourses(3);
         return view('site/index', $data);
@@ -404,13 +429,17 @@ class Courses extends BaseController
                         $item->metadata = json_decode($item->metadata, true);
                     }
 
-                    // Add video duration in readable format for display (in minutes)
+                    // Add video duration in readable format for display
                     if ($item->item_type === 'video' && isset($item->metadata['video_duration'])) {
-                        $durationSeconds = (int)$item->metadata['video_duration'];
-                        // Convert to minutes format instead of hours
-                        $minutes = floor($durationSeconds / 60);
-                        $seconds = $durationSeconds % 60;
-                        $item->duration_formatted = sprintf('%d:%02d', $minutes, $seconds);
+                        $videoDuration = $item->metadata['video_duration'];
+                        if (is_numeric($videoDuration)) {
+                            $durationSeconds = (int)$videoDuration;
+                            $minutes = floor($durationSeconds / 60);
+                            $seconds = $durationSeconds % 60;
+                            $item->duration_formatted = sprintf('%d:%02d', $minutes, $seconds);
+                        } elseif (is_string($videoDuration) && !empty($videoDuration)) {
+                            $item->duration_formatted = $videoDuration;
+                        }
                     }
                 }
                 unset($item);
@@ -439,14 +468,14 @@ class Courses extends BaseController
                     if ($item->item_type === 'video') {
                         $videoCount++;
                         // Extract duration from metadata if available
-                        $itemDuration = 0;
+                        $itemDurationSeconds = 0;
                         if (!empty($item->metadata)) {
                             $metadata = is_array($item->metadata) ? $item->metadata : json_decode($item->metadata, true);
-                            if (is_array($metadata)) {
-                                $itemDuration = $metadata['video_duration'] ?? 0;
+                            if (is_array($metadata) && isset($metadata['video_duration'])) {
+                                $itemDurationSeconds = $this->parseDurationToSeconds($metadata['video_duration']);
                             }
                         }
-                        $totalDuration += (int)$itemDuration;
+                        $totalDuration += $itemDurationSeconds;
                     } elseif ($item->item_type === 'quiz') {
                         $quizCount++;
                     } elseif ($item->item_type === 'page') {
@@ -471,9 +500,30 @@ class Courses extends BaseController
         $course->unit_count = $this->coursesModel->getUnitCount($course->id);
         $course->quiz_count = $this->coursesModel->getQuizCount($course->id);
 
+        // Prepare dynamic SEO metadata for this course
+        $cleanCourseTitle = $course->course_title ?? '';
+        $courseCode = $course->course_code ?? '';
+        $collegeName = !empty($course->college_name) ? $course->college_name : 'الجامعة السعودية الإلكترونية SEU';
+        
+        $metaTitle = "شرح مقرر {$cleanCourseTitle}" . (!empty($courseCode) ? " ({$courseCode})" : "") . " | {$collegeName} - فخر CS";
+        
+        $descRaw = !empty($course->short_desc) ? $course->short_desc : ($course->course_desc ?? '');
+        $cleanDesc = trim(preg_replace('/\s+/', ' ', strip_tags($descRaw)));
+        $metaDescription = !empty($cleanDesc)
+            ? (mb_strlen($cleanDesc) > 155 ? mb_substr($cleanDesc, 0, 152) . '...' : $cleanDesc)
+            : "شرح شامل وتجميعات لمقرر {$cleanCourseTitle} لطلاب الجامعة السعودية الإلكترونية SEU مع ملخصات واختبارات وتدريبات عملية للتفوق.";
+
+        $metaKeywords = "شرح {$cleanCourseTitle}, مقرر {$cleanCourseTitle} SEU, كورس {$cleanCourseTitle}, الجامعة السعودية الإلكترونية, فخر CS, تجميعات {$cleanCourseTitle}, ملخصات {$cleanCourseTitle}";
+        if (!empty($courseCode)) {
+            $metaKeywords = "{$courseCode}, شرح {$courseCode}, كورس {$courseCode}, تجميعات {$courseCode}, " . $metaKeywords;
+        }
+
         // 5) Prepare data for the view
         $data = [
-            'title' => $course->course_title,
+            'title' => $cleanCourseTitle,
+            'meta_title' => $metaTitle,
+            'meta_description' => $metaDescription,
+            'meta_keywords' => $metaKeywords,
             'course' => $course,
             'units' => $units,
             'isEnrolled' => $isEnrolled,

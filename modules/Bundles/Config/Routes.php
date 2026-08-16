@@ -8,7 +8,7 @@ if (!isset($routes)) {
 
 $routes->group('admin', [
     'namespace' => 'Modules\Bundles\Controllers',
-    'filter'    => 'auth:admin',
+    'filter'    => 'admin_filter',
 ], static function ($routes) {
     $routes->get('bundles', [AdminBundles::class, 'index']);
     $routes->match(['GET', 'POST'], 'bundles/add', [AdminBundles::class, 'add']);

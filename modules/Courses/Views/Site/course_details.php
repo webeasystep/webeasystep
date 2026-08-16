@@ -296,6 +296,68 @@
                     </div>
                 </div>
 
+                <!-- Instructor Authority & Bio Card -->
+                <?php
+                    $instructorName = !empty($course->instructor_name) ? $course->instructor_name : 'المهندس / أحمد فخر الدين';
+                    $instructorTitle = !empty($course->instructor_username) ? $course->instructor_username : 'محاضر ومطور مناهج SEU';
+                    $instructorBio = !empty($course->instructor_bio) 
+                        ? $course->instructor_bio 
+                        : 'محاضر متخصص في تبسيط وشرح مقررات الجامعة السعودية الإلكترونية SEU، بخبرة واسعة في إعداد الملخصات وتجميعات الاختبارات والتدريبات العملية لضمان التفوق الأكاديمي والحصول على A+.';
+                    
+                    $instructorAvatarUrl = '';
+                    if (!empty($course->instructor_avatar)) {
+                        $instructorAvatarUrl = thumb($course->instructor_avatar, 140, 140);
+                    }
+                    
+                    // Generate initial letter for placeholder
+                    $nameWords = preg_split('/\s+/u', trim($instructorName));
+                    $initial = mb_substr($nameWords[0] ?? 'ف', 0, 1);
+                ?>
+                <div class="instructor-authority-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="instructor-authority-header">
+                        <h4 class="instructor-section-title">
+                            <i class="icon-user" style="color: var(--primary-color);"></i>
+                            <span>محاضر المقرر</span>
+                        </h4>
+                        <span class="instructor-badge">
+                            <i class="fas fa-check-circle"></i>
+                            معتمد SEU
+                        </span>
+                    </div>
+
+                    <div class="instructor-profile-row">
+                        <div class="instructor-avatar-wrap">
+                            <?php if (!empty($instructorAvatarUrl)): ?>
+                                <img src="<?= esc($instructorAvatarUrl) ?>" alt="<?= esc($instructorName) ?>" class="instructor-avatar-img" loading="lazy">
+                            <?php else: ?>
+                                <div class="instructor-avatar-placeholder">
+                                    <?= esc($initial) ?>
+                                </div>
+                            <?php endif; ?>
+                            <span class="instructor-verify-check" title="محاضر معتمد"><i class="fas fa-check"></i></span>
+                        </div>
+                        <div class="instructor-info">
+                            <h5 class="instructor-name"><?= esc($instructorName) ?></h5>
+                            <p class="instructor-title-sub"><?= esc($instructorTitle) ?></p>
+                        </div>
+                    </div>
+
+                    <div class="instructor-bio-text">
+                        <?= nl2br(esc($instructorBio)) ?>
+                    </div>
+
+                    <div class="instructor-highlights">
+                        <div class="instructor-highlight-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>منهج SEU المعتمد</span>
+                        </div>
+                        <div class="instructor-highlight-item">
+                            <i class="fas fa-comments"></i>
+                            <span>متابعة ودعم مستمر</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Course Introduction Video -->
                 <div class="course-sidebar" data-aos="fade-up" data-aos-delay="300">
                     <h4>مقدمة الكورس</h4>

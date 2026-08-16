@@ -105,18 +105,31 @@ class AdminUnits extends BaseController
     {
         $builder = $this->db->table('tb_units');
 
+        $unitName = trim($this->request->getPost('unit_name') ?? '');
+        $slug = mb_url_title($unitName, '-', true);
+        if (empty($slug)) {
+            $slug = 'unit-' . time();
+        }
+
+        // Check if slug already exists for another unit
+        $slugBuilder = $this->db->table('tb_units')->where('slug', $slug);
+        if ($id) {
+            $slugBuilder->where('id !=', $id);
+        }
+        if ($slugBuilder->countAllResults(false) > 0) {
+            $slug .= '-' . time();
+        }
+
         // Sanitize and prepare data
         $data = [
             'course_id' => $this->request->getPost('course_id', FILTER_SANITIZE_NUMBER_INT),
-            'unit_name' => $this->request->getPost('unit_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            'unit_name' => $unitName,
+            'slug' => $slug,
             'unit_desc' => $this->request->getPost('unit_desc'),
-            'sort_order' => $this->request->getPost('sort_order', FILTER_SANITIZE_NUMBER_INT),
+            'sort_order' => $this->request->getPost('sort_order', FILTER_SANITIZE_NUMBER_INT) ?: 1,
             'price' => $this->request->getPost('unit_price') ? floatval($this->request->getPost('unit_price')) : 0.00,
             'is_free' => $this->request->getPost('is_free') ? '1' : '0',
-            // 'is_purchasable' => $this->request->getPost('is_purchasable') ? '1' : '0', // Column doesn't exist
             'active' => $this->request->getPost('active') ? '1' : '0',
-            // 'unit_type' => 'video', // Column doesn't exist
-            // 'content_data' => json_encode([]) // Column doesn't exist
         ];
 
         if ($id) {
@@ -278,13 +291,15 @@ class AdminUnits extends BaseController
             if ($this->validate($this->rules)) {
                 $this->data_arr();
                 $this->show_msg('success', lang('Admin.add_operation'), lang('Admin.add_success'));
-                return redirect()->to(ADMIN_URL . 'units');
+                $redirectCourseId = $this->request->getPost('course_id');
+                return redirect()->to(ADMIN_URL . 'units' . ($redirectCourseId ? '?course_id=' . $redirectCourseId : ''));
             } else {
                 $this->show_msg('danger', lang('Admin.validation_errors'), validation_errors());
             }
         }
 
         $data['courses'] = $this->coursesModel->where('active', 1)->findAll();
+        $data['selected_course_id'] = $this->request->getGet('course_id') ?? '';
         $data['sections'] = [];
         $data['quizzes'] = [];
 
@@ -302,7 +317,8 @@ class AdminUnits extends BaseController
             if ($this->validate($this->rules)) {
                 $this->data_arr($id);
                 $this->show_msg('success', lang('Admin.edit'), lang('Admin.edit_success'));
-                return redirect()->to(ADMIN_URL . 'units');
+                $redirectCourseId = $this->request->getPost('course_id');
+                return redirect()->to(ADMIN_URL . 'units' . ($redirectCourseId ? '?course_id=' . $redirectCourseId : ''));
             } else {
                 $this->show_msg('danger', lang('Admin.validation_errors'), validation_errors());
             }
@@ -318,7 +334,7 @@ class AdminUnits extends BaseController
 
         $data['courses'] = $this->coursesModel->where('active', 1)->findAll();
         // Sections are no longer used - units are directly associated with courses
-        $data['selected_course_id'] = $course->id;
+        $data['selected_course_id'] = $course ? $course->id : $data['unit']->course_id;
         $data['sections'] = []; // Empty array for backward compatibility
         $data['quizzes'] = $this->quizzesModel->where('course_id', $data['unit']->course_id)->findAll();
         $data['assigned_quizzes'] = $this->getUnitQuizzes($id);
@@ -341,6 +357,14 @@ class AdminUnits extends BaseController
                     }
                     $item = array_merge($item, $metadata);
                 }
+            }
+            // Ensure proper IDs exist for frontend
+            if ($item['item_type'] === 'video') {
+                $item['video_id'] = $item['video_id'] ?? $item['item_id'] ?? '';
+            } elseif ($item['item_type'] === 'quiz') {
+                $item['quiz_id'] = $item['quiz_id'] ?? $item['item_id'] ?? '';
+            } elseif ($item['item_type'] === 'page') {
+                $item['page_id'] = $item['page_id'] ?? $item['item_id'] ?? '';
             }
         }
         
@@ -789,56 +813,61 @@ class AdminUnits extends BaseController
         }
 
         foreach ($items as $item) {
-            $itemData = [
-                'unit_id' => $unitId,
-                'item_type' => $item['item_type'],
-                'item_id' => $item['item_id'] ?? '',
-                'title' => $item['title'] ?? '',
-                'description' => $item['description'] ?? null,
-                'sort_order' => $item['sort_order'] ?? 1,
-                'is_active' => $item['is_active'] ?? 1,
-                'created_at' => date('Y-m-d H:i:s')
+            $itemType = $item['item_type'] ?? 'video';
+            $itemId = $item['item_id'] ?? '';
+            if (empty($itemId)) {
+                if ($itemType === 'video') {
+                    $itemId = $item['video_id'] ?? '';
+                } elseif ($itemType === 'quiz') {
+                    $itemId = $item['quiz_id'] ?? '';
+                } elseif ($itemType === 'page') {
+                    $itemId = $item['page_id'] ?? '';
+                }
+            }
+
+            $duration = 0;
+            if (isset($item['duration']) && is_numeric($item['duration'])) {
+                $duration = (int)$item['duration'];
+            } elseif (isset($item['video_duration']) && is_numeric($item['video_duration'])) {
+                $duration = (int)$item['video_duration'];
+            }
+
+            $metadataArray = [
+                'video_source' => $item['video_source'] ?? ($itemType === 'video' ? 'bunny' : null),
+                'video_id' => $item['video_id'] ?? ($itemType === 'video' ? $itemId : null),
+                'video_title' => $item['video_title'] ?? $item['title'] ?? '',
+                'video_duration' => $item['video_duration'] ?? $duration,
+                'video_thumbnail' => $item['video_thumbnail'] ?? $item['thumbnail'] ?? '',
+                'collection_id' => $item['collection_id'] ?? '',
+                'video_library_id' => $item['video_library_id'] ?? '',
+                'file_size' => $item['file_size'] ?? null,
+                'video_quality' => $item['video_quality'] ?? null,
+                'youtube_url' => $item['youtube_url'] ?? null,
+                'embed_url' => $item['embed_url'] ?? null,
+                'quiz_id' => $item['quiz_id'] ?? ($itemType === 'quiz' ? $itemId : null),
+                'page_id' => $item['page_id'] ?? ($itemType === 'page' ? $itemId : null),
             ];
 
-            switch ($item['item_type']) {
-                case 'video':
-                    // Store video-specific data in existing columns for compatibility
-                    $itemData['video_id'] = $item['video_id'] ?? '';
-                    $itemData['video_title'] = $item['video_title'] ?? $item['title'] ?? '';
-                    $itemData['video_duration'] = $item['duration'] ?? $item['video_duration'] ?? '';
-                    $itemData['video_thumbnail'] = $item['video_thumbnail'] ?? $item['thumbnail'] ?? '';
-                    $itemData['collection_id'] = $item['collection_id'] ?? '';
+            // Remove null entries from metadata
+            $metadata = json_encode(array_filter($metadataArray, function ($v) { return $v !== null; }));
 
-                    // Also store in metadata for enhanced functionality
-                    $itemData['metadata'] = json_encode([
-                        'video_id' => $item['video_id'] ?? '',
-                        'video_title' => $item['video_title'] ?? $item['title'] ?? '',
-                        'video_duration' => $item['duration'] ?? $item['video_duration'] ?? '',
-                        'video_thumbnail' => $item['video_thumbnail'] ?? $item['thumbnail'] ?? '',
-                        'collection_id' => $item['collection_id'] ?? '',
-                        'video_library_id' => $item['video_library_id'] ?? '',
-                        'file_size' => $item['file_size'] ?? null,
-                        'video_quality' => $item['video_quality'] ?? null
-                    ]);
-                    break;
-
-                case 'quiz':
-                    $itemData['metadata'] = json_encode([
-                        'quiz_id' => $item['quiz_id'] ?? null
-                    ]);
-                    break;
-
-                case 'page':
-                    $itemData['metadata'] = json_encode([
-                        'page_id' => $item['page_id'] ?? null
-                    ]);
-                    break;
-            }
+            $itemData = [
+                'unit_id' => $unitId,
+                'item_type' => $itemType,
+                'item_id' => (string)$itemId,
+                'title' => $item['title'] ?? $item['video_title'] ?? '',
+                'description' => $item['description'] ?? null,
+                'sort_order' => isset($item['sort_order']) ? (int)$item['sort_order'] : 1,
+                'is_active' => isset($item['is_active']) ? (int)$item['is_active'] : 1,
+                'metadata' => $metadata,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
 
             $result = $this->unitItems->insert($itemData);
 
             if (!$result) {
-                log_message('error', 'Failed to insert unit item');
+                log_message('error', 'Failed to insert unit item: ' . json_encode($this->unitItems->errors()));
             }
         }
     }

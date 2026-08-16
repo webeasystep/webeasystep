@@ -16,17 +16,12 @@ class UsersModel extends Model
     protected $returnType     = User::class;
     protected $useSoftDeletes = false;
     protected $allowedFields  = [
-        'full_name', 'username', 'credits', 'mobile', 'email', 'avatar', 'user_type', 'group_id',
+        'full_name', 'username', 'instructor_bio', 'credits', 'mobile', 'email', 'avatar', 'user_type', 'group_id',
         'email_verified_at', 'verification_token', 'phone_verified_at', 'phone_verification_code',
         'password_confirm', 'reset_hash', 'reset_at', 'reset_expires', 'activate_hash',
         'status', 'status_message', 'active', 'force_pass_reset', 'permissions', 'is_deleted',
     ];
     protected $useTimestamps   = true;
-/*    protected $validationRules = [
-        'email'         => 'required|valid_email|is_unique[users.email,id,{id}]',
-        'username'      => 'required|alpha_numeric_punct|min_length[3]|max_length[30]|is_unique[users.username,id,{id}]',
-        'password_confirm' => 'required',
-    ];*/
     protected $validationMessages = [];
     protected $skipValidation     = false;
     protected $afterInsert        = ['addToGroup'];

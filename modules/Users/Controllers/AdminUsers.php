@@ -63,6 +63,7 @@ class AdminUsers extends BaseController
 
             if ($this->validate($this->rules)) {
                 $id = $this->data_arr();
+                $this->fireUploader->upload_photos($this->users, 'avatar', $id);
                 $this->show_msg('success', lang("Admin.add"), lang("Admin.add_success"));
                 return redirect()->to(ADMIN_URL . "users");
             } else {
@@ -84,6 +85,7 @@ class AdminUsers extends BaseController
 
             if ($this->validate($this->rules)) {
                 $id = $this->data_arr($id);
+                $this->fireUploader->upload_photos($this->users, 'avatar', $id);
                 $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
                 return redirect()->to(ADMIN_URL . "users");
             } else {
@@ -110,6 +112,7 @@ class AdminUsers extends BaseController
         $user->mobile = $mobileIdentity ? $mobileIdentity->secret : '';
 
         $data['user'] = $user;
+        $data['files'] = !empty($user->avatar) ? (is_array($user->avatar) ? $user->avatar : json_decode($user->avatar, true)) : [];
 
         return view('form', $data);
     }
@@ -118,6 +121,7 @@ class AdminUsers extends BaseController
         // add new page data
         $data = [
             'full_name' => $this->request->getPost('full_name'),
+            'instructor_bio' => $this->request->getPost('instructor_bio'),
             'email' => $this->request->getPost('email'),
             'mobile' => $this->request->getPost('mobile'),
             'user_type' => UserType::normalize($this->request->getPost('user_type')),

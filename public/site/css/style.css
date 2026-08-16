@@ -3182,6 +3182,8 @@ html {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    padding-top: 38px;
 }
 
 .course-card:hover {
@@ -3197,7 +3199,6 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     overflow: hidden;
 }
 
@@ -3228,15 +3229,16 @@ html {
 /* Course Badge */
 .course-badge {
     position: absolute;
-    top: 12px;
+    top: 8px;
     right: 12px;
     background: rgba(255, 255, 255, 0.95);
     color: #333;
-    padding: 6px 12px;
-    border-radius: 20px;
+    padding: 2px 10px;
+    border-radius: 999px;
     font-size: 0.75rem;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+    line-height: 1.4;
+    z-index: 2;
 }
 
 /* Course Card Body */
@@ -3463,7 +3465,7 @@ html {
     background: linear-gradient(135deg, rgba(19, 106, 213, 0.92), rgba(29, 78, 216, 0.88));
 }
 
-.consumer-page-hero > * {
+.consumer-page-hero>* {
     position: relative;
     z-index: 1;
 }
@@ -3630,7 +3632,7 @@ html {
     margin-bottom: 2px;
 }
 
-.consumer-grid-row > [class*="col-"] {
+.consumer-grid-row>[class*="col-"] {
     margin-bottom: 24px;
 }
 
@@ -3769,27 +3771,30 @@ html {
     padding-bottom: 40px;
     border-bottom: 1px solid #e2e8f0;
 }
+
 body.dark-mode .inner-page-header {
     background-color: #0f172a;
     border-bottom-color: rgba(255, 255, 255, 0.08);
 }
+
 .inner-page-title {
     font-size: 2.2rem;
     font-weight: 800;
     color: #0f172a;
     letter-spacing: -0.5px;
 }
+
 body.dark-mode .inner-page-title {
     color: #f1f5f9;
 }
+
 .inner-page-subtitle {
     color: #64748b;
     font-size: 1.05rem;
     font-weight: 500;
     margin-top: 10px;
 }
+
 body.dark-mode .inner-page-subtitle {
     color: #94a3b8;
 }
-
-
