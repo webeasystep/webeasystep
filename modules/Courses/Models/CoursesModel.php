@@ -88,8 +88,9 @@ class CoursesModel extends BaseModel
      */
     public function getAllCoursesWithStats(): array
     {
-        $courses = $this->select('tb_courses.*, tb_colleges.college_name_ar as college_name')
+        $courses = $this->select('tb_courses.*, tb_colleges.college_name_ar as college_name, users.full_name as instructor_name, users.avatar as instructor_avatar')
                        ->join('tb_colleges', 'tb_colleges.id = tb_courses.college_id', 'left')
+                       ->join('users', 'users.id = tb_courses.instructor_id', 'left')
                        ->where('tb_courses.active', 1)
                        ->orderBy('tb_courses.sort', 'ASC')
                        ->findAll();

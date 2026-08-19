@@ -25,6 +25,7 @@
     $pageUrl = current_url();
 ?>
 <head>
+
     <meta charset="UTF-8">
     <title><?= esc($finalTitle); ?></title>
     <meta name="title" content="<?= esc($finalTitle); ?>">
@@ -386,36 +387,13 @@
     <link rel="stylesheet" href="<?= base_url() ?>site/css/jquery.fancybox.min.css" media="print"
         onload="this.media='all'">
     <link rel="stylesheet" href="<?= base_url() ?>site/css/aos.css" media="print" onload="this.media='all'">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6CXJYVPP4B"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-6CXJYVPP4B');
-    </script>
-
-    <!-- Device Key Generator -->
-    <script>
-        (function () {
-            function getOrGenerateDeviceKey() {
-                let key = localStorage.getItem('fk_device_key');
-                if (!key) {
-                    var rawStr = (navigator.userAgent || '') + (screen.width || '') + 'x' + (screen.height || '') + (navigator.language || '') + Math.random();
-                    var hash = 0;
-                    for (var i = 0; i < rawStr.length; i++) {
-                        hash = ((hash << 5) - hash) + rawStr.charCodeAt(i);
-                        hash |= 0;
-                    }
-                    key = 'dev_' + Math.abs(hash).toString(36) + '_' + Math.random().toString(36).substring(2, 9);
-                    localStorage.setItem('fk_device_key', key);
-                }
-                document.cookie = "fk_device_key=" + key + "; path=/; max-age=31536000; SameSite=Lax";
-                return key;
-            }
-            getOrGenerateDeviceKey();
-        })();
-    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PDV5ZX7Z');</script>
+    <!-- End Google Tag Manager -->
 </head>
 <?php
 /*echo password_hash('01123303370', PASSWORD_DEFAULT)

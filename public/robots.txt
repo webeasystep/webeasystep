@@ -1,2 +1,15 @@
 User-agent: *
-Disallow: 
+Allow: /
+Disallow: /dt_admin/
+Disallow: /admin/
+Disallow: /instructor/
+Disallow: /api/
+Disallow: /auth/
+Disallow: /debug_session
+Disallow: /post-login-redirect
+
+# Search engine crawler crawl-delay
+Crawl-delay: 1
+
+# XML Sitemap
+Sitemap: https://fakhrcs.com/sitemap.xml

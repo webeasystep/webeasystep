@@ -39,11 +39,13 @@
                                 <li><a href="<?= site_url('instructor/courses') ?>">المقررات</a></li>
                                 <li><a href="<?= site_url('instructor/orders') ?>">الطلبات</a></li>
                                 <li><a href="<?= site_url('instructor-terms') ?>">دليل الشراكة</a></li>
+                                <li><a href="<?= site_url('blog') ?>">المدونة</a></li>
                             <?php else: ?>
                                 <?php if ($isLoggedIn): ?>
                                     <li><a href="<?= site_url('enrollments/my-courses') ?>">مقرراتي</a></li>
                                 <?php endif; ?>
                                 <li><a href="<?= site_url('student-benefits') ?>">مميزات الاشتراك</a></li>
+                                <li><a href="<?= site_url('blog') ?>">المدونة</a></li>
                                 <li><a href="<?= site_url('faqs') ?>">الأسئلة الشائعة</a></li>
                                 <li><a href="<?= site_url('terms-conditions') ?>">الشروط والأحكام</a></li>
                             <?php endif; ?>

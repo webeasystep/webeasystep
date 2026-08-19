@@ -35,6 +35,8 @@ $routes->get('/', [Site::class, 'index']);
 $routes->get('faqs', [Site::class, 'faqs']);
 $routes->addRedirect('preparatory', 'الجامعة-السعودية-الالكترونية-السنة-الاولى-المشتركة-التحضيرية');
 $routes->get('الجامعة-السعودية-الالكترونية-السنة-الاولى-المشتركة-التحضيرية', [Site::class, 'preparatory']);
+$routes->get('sitemap.xml', [\App\Controllers\Sitemap::class, 'index']);
+$routes->get('sitemap', [\App\Controllers\Sitemap::class, 'index']);
 
 
 $routes->get('lang/{locale}', [BaseController::class, 'langSwitch']);

@@ -1,62 +1,58 @@
 <?php
+
 namespace Modules\Articles\Controllers;
+
 use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use Modules\Articles\Models\ArticlesModel;
-
 
 class Articles extends BaseController
 {
     public ArticlesModel $articlesModel;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->articlesModel = new ArticlesModel();
     }
 
-
-    function index(): string
+    public function index(): string
     {
-        echo "<pre>";
-        var_dump(  Password_hash('123456', PASSWORD_DEFAULT));
-        echo "</pre>";
-        exit;
-        $data = [
-            'title' =>lang('Exams.Exams'),
-            'articles' => $this->articlesModel->where('active', 1)->paginate(10),
-            'pager' => $this->articlesModel->pager,
-        ];
+        $search = trim((string)($this->request->getGet('q') ?? ''));
 
-        return view('site/index', $data);
-    }
-
-
-    public function article_show($slug)
-    {
-        // decode if necessary
-        $slug = urldecode($slug);
-
-        // find article by slug
-        $article = $this->articlesModel
-            ->where('slug', $slug)
-            ->first();
-
-        if (!$article) {
-            throw PageNotFoundException::forPageNotFound();
+        if (!empty($search)) {
+            $articles = $this->articlesModel->searchArticles($search, 9);
+        } else {
+            $articles = $this->articlesModel->getActiveArticles(9);
         }
 
         $data = [
-            'title'   => $article->title,
-            'article' => $article,
+            'title'          => 'المدونة | مقالات وشروحات الجامعة السعودية الإلكترونية',
+            'articles'       => $articles,
+            'pager'          => $this->articlesModel->pager,
+            'searchQuery'    => $search,
+            'recentArticles' => $this->articlesModel->getRecentArticles(null, 5),
+            'totalCount'     => $this->articlesModel->where('active', 1)->countAllResults(false),
         ];
 
-        return view('site/article_show', $data);
+        return view('Modules\Articles\Views\Site\index', $data);
     }
 
+    public function article_show($slug)
+    {
+        $slug = urldecode((string)$slug);
 
+        $article = $this->articlesModel->getArticleBySlug($slug);
 
+        if (!$article) {
+            throw PageNotFoundException::forPageNotFound('المقال المطلوب غير موجود.');
+        }
 
+        $data = [
+            'title'          => $article->title . ' | مدونة فخر CS',
+            'article'        => $article,
+            'recentArticles' => $this->articlesModel->getRecentArticles((int)$article->id, 3),
+        ];
+
+        return view('Modules\Articles\Views\Site\article_show', $data);
+    }
 }
