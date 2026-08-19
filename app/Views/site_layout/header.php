@@ -128,9 +128,20 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-16x16.png" sizes="16x16" />
+    <!-- Favicon & Mobile Device Compatibility (iOS / iPhone / iPad / Android) -->
+    <link rel="icon" type="image/x-icon" href="<?= base_url('favicon.ico'); ?>" />
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('favicon-16x16.png'); ?>" />
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url('favicon-32x32.png'); ?>" />
+    <link rel="icon" type="image/png" sizes="48x48" href="<?= base_url('favicon-48x48.png'); ?>" />
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url('apple-touch-icon.png'); ?>" />
+    <link rel="apple-touch-icon-precomposed" href="<?= base_url('apple-touch-icon-precomposed.png'); ?>" />
+    <meta name="apple-mobile-web-app-title" content="فخر CS" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="manifest" href="<?= base_url('site.webmanifest'); ?>" />
+    <meta name="theme-color" content="#136ad5" />
+    <meta name="msapplication-TileColor" content="#136ad5" />
+    <meta name="application-name" content="فخر CS" />
 
     <!-- Critical CSS - Inline for fastest FCP/LCP -->
     <style>

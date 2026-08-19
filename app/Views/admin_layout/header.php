@@ -2,8 +2,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> <?= setting('App.title'); ?> | <?= esc($title) ?? "-------"; ?></title>
-    <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="<?= base_url(); ?>site/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/x-icon" href="<?= base_url('favicon.ico'); ?>" />
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url('favicon-32x32.png'); ?>" />
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('favicon-16x16.png'); ?>" />
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url('apple-touch-icon.png'); ?>" />
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
