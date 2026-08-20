@@ -87,6 +87,7 @@ class Courses extends BaseController
             ->join('users', 'users.id = tb_courses.instructor_id', 'left')
             ->join('tb_colleges', 'tb_colleges.id = tb_courses.college_id', 'left')
             ->where('tb_courses.active', 1)
+            ->orderBy('tb_courses.is_open', 'DESC')
             ->orderBy('tb_courses.sort', 'ASC')
             ->orderBy('tb_courses.created_at', 'DESC')
             ->get()
