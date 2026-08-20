@@ -30,31 +30,180 @@ class AdminEnrollments extends BaseController
      */
     public function index()
     {
-
         $data['title'] = 'طلبات شراء الدورات';
 
         if ($this->request->isAJAX()) {
             $builder = $this->courseEnrollments->getDataTable()->builder();
 
-            DtTable::hideColumns(['id', 'user_id', 'course_id', 'coupon_id', 'coupon_code', 'coupon_discount_amount', 'approved_at', 'approved_by', 'expires_at', 'notes', 'updated_at', 'refund_proof', 'refunded_at']);
-            DtTable::searchableColumns(['full_name', 'auth_identities.secret', 'course_title', 'payment_proof', 'status']);
-            DtTable::orderableColumns(['full_name', 'course_title', 'paid_amount', 'status', 'created_at']);
-            DtTable::setShowColumns('full_name,mobile,course_title,paid_amount,payment_method,payment_proof,status,created_at');
-            // Add formatter for payment_proof column to make it clickable
+            DtTable::hideColumns([
+                'id',
+                'mobile',
+                'user_id',
+                'course_id',
+                'bundle_id',
+                'batch_id',
+                'bundle_price',
+                'course_price',
+                'course_count',
+                'coupon_id',
+                'coupon_code',
+                'coupon_discount_amount',
+                'approved_at',
+                'approved_by',
+                'expires_at',
+                'notes',
+                'updated_at',
+            ]);
+
+            DtTable::searchableColumns(['users.full_name', 'users.mobile', 'auth_identities.secret', 'tb_courses.course_title', 'tb_bundles.bundle_title', 'tb_course_enrollments.payment_method', 'tb_course_enrollments.status']);
+            DtTable::orderableColumns(['full_name', 'course_title', 'bundle_title', 'paid_amount', 'status', 'created_at']);
+            DtTable::setShowColumns('full_name,course_title,bundle_title,paid_amount,payment_method,payment_proof,status,created_at');
+
+            // Format full_name with WhatsApp chat link
+            DtTable::changeColumn('full_name', function ($value, $row) {
+                $name = esc($value ?: 'غير محدد');
+                $phone = $row['mobile'] ?? '';
+
+                $waUrl = null;
+                if (!empty($phone)) {
+                    $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
+                    if (str_starts_with($cleanPhone, '00')) {
+                        $cleanPhone = substr($cleanPhone, 2);
+                    }
+                    if (str_starts_with($cleanPhone, '05') && strlen($cleanPhone) === 10) {
+                        $cleanPhone = '966' . substr($cleanPhone, 1);
+                    } elseif (str_starts_with($cleanPhone, '01') && strlen($cleanPhone) === 11) {
+                        $cleanPhone = '20' . substr($cleanPhone, 1);
+                    }
+                    $waUrl = 'https://wa.me/' . $cleanPhone;
+                }
+
+                $html = '<div class="d-flex align-items-center justify-content-between flex-wrap" style="gap: 6px;">';
+                $html .= '<span class="font-weight-bold text-dark"><i class="fas fa-user-circle text-primary ml-1"></i> ' . $name . '</span>';
+
+                if ($waUrl) {
+                    $html .= '<a href="' . esc($waUrl) . '" target="_blank" class="btn btn-sm shadow-sm" style="background-color: #25D366; color: #fff; border-radius: 15px; padding: 2px 8px; font-size: 11px; text-decoration: none;" title="محادثة واتساب: ' . esc($phone) . '">';
+                    $html .= '<i class="fab fa-whatsapp ml-1"></i> واتساب';
+                    $html .= '</a>';
+                }
+
+                $html .= '</div>';
+                return $html;
+            });
+
+            // Format course_title (displays course badges or bundle courses)
+            DtTable::changeColumn('course_title', function ($value, $row) {
+                if (empty($value)) {
+                    return '<span class="text-muted">-</span>';
+                }
+
+                $titles = array_filter(explode(' || ', $value));
+                if (count($titles) > 1 || !empty($row['bundle_id'])) {
+                    $html = '<div class="d-flex flex-column" style="gap: 4px; max-width: 320px;">';
+                    $html .= '<div><span class="badge badge-info px-2 py-1" style="font-size: 11px;"><i class="fas fa-layer-group ml-1"></i> ' . count($titles) . ' مقررات مشمولة:</span></div>';
+                    $html .= '<div class="d-flex flex-wrap" style="gap: 3px;">';
+                    foreach ($titles as $t) {
+                        $html .= '<span class="badge badge-light border text-dark px-2 py-1" style="font-size: 11px; white-space: normal; text-align: right;">' . esc($t) . '</span>';
+                    }
+                    $html .= '</div></div>';
+                    return $html;
+                }
+
+                return '<span class="badge badge-light border px-2 py-1 font-weight-bold text-dark" style="font-size: 13px;">' . esc($value) . '</span>';
+            });
+
+            // Format bundle_title with price
+            DtTable::changeColumn('bundle_title', function ($value, $row) {
+                if (!empty($value)) {
+                    $priceHtml = '';
+                    if (!empty($row['bundle_price']) && (float) $row['bundle_price'] > 0) {
+                        $priceHtml = '<span class="badge badge-warning text-dark font-weight-bold ml-1" style="font-size: 11px;"><i class="fas fa-tag ml-1"></i>' . number_format((float) $row['bundle_price'], 2) . ' ر.س</span>';
+                    }
+                    return '<div class="d-inline-flex align-items-center flex-wrap" style="gap: 4px;">'
+                        . '<span class="badge badge-primary px-2 py-1"><i class="fas fa-layer-group ml-1"></i> ' . esc($value) . '</span>'
+                        . $priceHtml
+                        . '</div>';
+                }
+                return '<span class="text-muted">-</span>';
+            });
+
+            // Format paid_amount
+            DtTable::changeColumn('paid_amount', function ($value, $row) {
+                $amount = (float) $value;
+                $paymentMethod = $row['payment_method'] ?? '';
+
+                if ($paymentMethod === 'free') {
+                    return '<span class="badge badge-success px-2 py-1">مجاني</span>';
+                }
+
+                if ($amount > 0) {
+                    return '<span class="font-weight-bold text-primary">' . number_format($amount, 2) . ' ر.س</span>';
+                }
+
+                // If bundle price exists
+                if (!empty($row['bundle_id']) && !empty($row['bundle_price']) && (float)$row['bundle_price'] > 0) {
+                    return '<span class="font-weight-bold text-primary">' . number_format((float) $row['bundle_price'], 2) . ' ر.س</span> <small class="text-muted d-block" style="font-size:10px;">(إجمالي الباقة)</small>';
+                }
+
+                // If course price exists
+                if (!empty($row['course_price']) && (float) $row['course_price'] > 0) {
+                    return '<span class="font-weight-bold text-primary">' . number_format((float) $row['course_price'], 2) . ' ر.س</span>';
+                }
+
+                return '<span class="badge badge-success px-2 py-1">مجاني</span>';
+            });
+
+            // Format payment_method with friendly badges
+            DtTable::changeColumn('payment_method', function ($value) {
+                return match ($value) {
+                    'anb'           => '<span class="badge px-2 py-1" style="background:#005baa; color:#fff;"><i class="fas fa-university ml-1"></i> البنك العربي (ANB)</span>',
+                    'stc_bank'      => '<span class="badge px-2 py-1" style="background:#4f008c; color:#fff;"><i class="fas fa-university ml-1"></i> بنك STC</span>',
+                    'paypal'        => '<span class="badge px-2 py-1" style="background:#0070ba; color:#fff;"><i class="fab fa-paypal ml-1"></i> PayPal</span>',
+                    'bank_transfer' => '<span class="badge badge-info px-2 py-1"><i class="fas fa-university ml-1"></i> تحويل بنكي</span>',
+                    'instapay'      => '<span class="badge px-2 py-1" style="background:#6e00ff; color:#fff;"><i class="fas fa-bolt ml-1"></i> انستاباي</span>',
+                    'vodafone_cash' => '<span class="badge badge-danger px-2 py-1"><i class="fas fa-mobile-alt ml-1"></i> فودافون كاش</span>',
+                    'fawry'         => '<span class="badge badge-warning px-2 py-1"><i class="fas fa-receipt ml-1"></i> فوري</span>',
+                    'usdt'          => '<span class="badge badge-success px-2 py-1"><i class="fas fa-coins ml-1"></i> USDT</span>',
+                    'free'          => '<span class="badge badge-success px-2 py-1"><i class="fas fa-gift ml-1"></i> مجاني</span>',
+                    default         => '<span class="badge badge-secondary px-2 py-1">' . esc($value ?: '-') . '</span>',
+                };
+            });
+
+            // Format payment_proof
             DtTable::changeColumn('payment_proof', function ($value) {
                 if ($value) {
-                    // $value is already saved as 'uploads/enrollments/filename.ext'
                     $url = base_url($value);
-                    return '<a href="' . esc($url) . '" target="_blank" class="btn btn-sm btn-info"><i class="fas fa-image"></i> عرض الإثبات</a>';
+                    return '<a href="' . esc($url) . '" target="_blank" class="btn btn-sm btn-info shadow-sm"><i class="fas fa-image ml-1"></i> عرض الإثبات</a>';
                 }
-                return '<span class="badge badge-secondary">لا يوجد إثبات</span>';
+                return '<span class="badge badge-secondary px-2 py-1">لا يوجد إثبات</span>';
             });
+
+            // Format status with colored badges
+            DtTable::changeColumn('status', function ($value) {
+                return match ($value) {
+                    'pending'  => '<span class="badge badge-warning px-2 py-1 text-dark" style="font-size:12px;"><i class="fas fa-clock ml-1"></i> قيد المراجعة</span>',
+                    'approved' => '<span class="badge badge-success px-2 py-1" style="font-size:12px;"><i class="fas fa-check-circle ml-1"></i> مفعل</span>',
+                    'rejected' => '<span class="badge badge-danger px-2 py-1" style="font-size:12px;"><i class="fas fa-times-circle ml-1"></i> مرفوض</span>',
+                    'refunded' => '<span class="badge badge-dark px-2 py-1" style="font-size:12px;"><i class="fas fa-undo ml-1"></i> مسترجع</span>',
+                    default    => '<span class="badge badge-secondary px-2 py-1">' . esc($value ?: '-') . '</span>',
+                };
+            });
+
+            // Format created_at
+            DtTable::changeColumn('created_at', function ($value) {
+                if (empty($value)) return '-';
+                return '<span class="small text-muted" dir="ltr">' . esc(date('Y-m-d H:i', strtotime($value))) . '</span>';
+            });
+
+            // Set Action URLs
+            DtTable::setAction('show', 'eye', ADMIN_URL . 'enrollments/courses/show/');
+            DtTable::setAction('edit', 'edit', ADMIN_URL . 'enrollments/edit/');
 
             $output = DtTable::tableRender($builder, false);
             return $this->response->setJSON($output);
         }
 
-        return view('index', $data);
+        return view('Modules\Enrollments\Views\Admin\index', $data);
     }
 
     public function add()
@@ -78,7 +227,7 @@ class AdminEnrollments extends BaseController
                 return redirect()->back()->with('error', validation_errors());
             }
         }
-        return view("form", $data);
+        return view("Modules\Enrollments\Views\Admin\form", $data);
     }
 
     public function edit($id)
@@ -89,112 +238,211 @@ class AdminEnrollments extends BaseController
         $data['courses'] = $this->coursesModel->select('id, course_title')->findAll();
         $data['courses'] = array_column($data['courses'], 'course_title', 'id');
 
+        $enrollment = $this->courseEnrollments->find($id);
+        if (!$enrollment) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        // Check if this enrollment is part of a bundle or multi-course batch
+        $batchEnrollments = [];
+        $bundle = null;
+        $totalPaidAmount = (float) $enrollment->paid_amount;
+
+        if (!empty($enrollment->batch_id)) {
+            $batchEnrollments = $this->courseEnrollments
+                ->select('tb_course_enrollments.*, tb_courses.course_title')
+                ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id', 'left')
+                ->where('tb_course_enrollments.batch_id', $enrollment->batch_id)
+                ->findAll();
+        } elseif (!empty($enrollment->bundle_id)) {
+            $batchEnrollments = $this->courseEnrollments
+                ->select('tb_course_enrollments.*, tb_courses.course_title')
+                ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id', 'left')
+                ->where('tb_course_enrollments.user_id', $enrollment->user_id)
+                ->where('tb_course_enrollments.bundle_id', $enrollment->bundle_id)
+                ->where('tb_course_enrollments.created_at', $enrollment->created_at)
+                ->findAll();
+        }
+
+        if (!empty($enrollment->bundle_id)) {
+            $bundle = (new \Modules\Bundles\Models\BundlesModel())->find($enrollment->bundle_id);
+        }
+
+        if (count($batchEnrollments) > 1) {
+            $sumPaid = array_sum(array_map(fn($e) => (float)$e->paid_amount, $batchEnrollments));
+            if ($sumPaid > 0) {
+                $totalPaidAmount = $sumPaid;
+            } elseif ($bundle && (float)$bundle->bundle_price > 0) {
+                $totalPaidAmount = (float)$bundle->bundle_price;
+            }
+        } elseif ($totalPaidAmount <= 0 && $bundle && (float)$bundle->bundle_price > 0) {
+            $totalPaidAmount = (float)$bundle->bundle_price;
+        }
+
         if ($this->request->is('post')) {
             $rules = [
                 'user_id' => 'required',
-                'course_id' => 'required',
-                'status' => 'required',
+                'status'  => 'required',
             ];
+            if (empty($enrollment->bundle_id)) {
+                $rules['course_id'] = 'required';
+            }
             if ($this->validate($rules)) {
-                $this->data_arr($id);
+                $this->data_arr($id, $enrollment, $batchEnrollments);
                 return redirect()->to(ADMIN_URL . "enrollments")->with('success', lang("Admin.edit_success"));
             } else {
                 return redirect()->back()->with('error', validation_errors());
             }
         }
 
-        $data['enrollment'] = $this->courseEnrollments->find($id);
-        if (!$data['enrollment']) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-        }
+        $data['enrollment'] = $enrollment;
+        $data['bundle'] = $bundle;
+        $data['batchEnrollments'] = $batchEnrollments;
+        $data['totalPaidAmount'] = $totalPaidAmount;
 
         // Setup files for fireuploader if payment proof exists
         $files = [];
-        if (!empty($data['enrollment']->payment_proof)) {
+        if (!empty($enrollment->payment_proof)) {
             $files[] = [
-                'full_path' => $data['enrollment']->payment_proof,
-                'name' => basename($data['enrollment']->payment_proof)
+                'full_path' => $enrollment->payment_proof,
+                'name' => basename($enrollment->payment_proof)
             ];
         }
         $data['files'] = $files;
         $data['refund_files'] = [];
-        if (!empty($data['enrollment']->refund_proof)) {
+        if (!empty($enrollment->refund_proof)) {
             $data['refund_files'][] = [
-                'full_path' => $data['enrollment']->refund_proof,
-                'name' => basename($data['enrollment']->refund_proof)
+                'full_path' => $enrollment->refund_proof,
+                'name' => basename($enrollment->refund_proof)
             ];
         }
 
-        return view('form', $data);
+        return view('Modules\Enrollments\Views\Admin\form', $data);
     }
 
-    private function data_arr($id = null)
+    private function data_arr($id = null, $currentEnrollment = null, array $batchEnrollments = [])
     {
-        $builder = $this->db->table('tb_course_enrollments');
-
-        $data = [
-            'user_id'                => $this->request->getPost('user_id'),
-            'course_id'              => $this->request->getPost('course_id'),
-            'paid_amount'            => $this->request->getPost('paid_amount') ?? 0,
-            'coupon_id'              => $this->request->getPost('coupon_id') ?: null,
-            'coupon_code'            => $this->request->getPost('coupon_code') ?: null,
-            'coupon_discount_amount' => $this->request->getPost('coupon_discount_amount') ?: 0,
-            'payment_method'         => $this->request->getPost('payment_method'),
-            'status'                 => $this->request->getPost('status'),
-            'notes'                  => $this->request->getPost('notes', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-            'updated_at'             => date('Y-m-d H:i:s')
-        ];
-
-        $currentEnrollment = $id ? $this->courseEnrollments->find($id) : null;
-
-        $isNewlyApproved = false;
-        if ($data['status'] === 'approved' && (!$currentEnrollment || $currentEnrollment->status !== 'approved')) {
-            $data['approved_at'] = date('Y-m-d H:i:s');
-            $data['approved_by'] = auth()->user()->id;
-            $isNewlyApproved = true;
-        }
+        $status = $this->request->getPost('status');
+        $paymentMethod = $this->request->getPost('payment_method');
+        $inputPaidAmount = (float) ($this->request->getPost('paid_amount') ?? 0);
+        $notes = $this->request->getPost('notes', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $couponId = $this->request->getPost('coupon_id') ?: null;
+        $couponCode = $this->request->getPost('coupon_code') ?: null;
+        $couponDiscount = (float) ($this->request->getPost('coupon_discount_amount') ?: 0);
+        $userId = $this->request->getPost('user_id');
+        $courseId = $this->request->getPost('course_id');
 
         $paymentProofPath = $this->handleEnrollmentProofUpload('payment_proof');
-        if ($paymentProofPath !== null) {
-            $data['payment_proof'] = $paymentProofPath;
-        }
-
         $refundProofPath = $this->handleEnrollmentProofUpload('refund_proof');
-        if ($refundProofPath !== null) {
-            $data['refund_proof'] = $refundProofPath;
-        }
-
-        if ($data['status'] === 'refunded') {
-            if ($refundProofPath !== null) {
-                $data['refund_proof'] = $refundProofPath;
-            } elseif (!empty($currentEnrollment?->refund_proof)) {
-                $data['refund_proof'] = $currentEnrollment->refund_proof;
-            }
-
-            if (empty($currentEnrollment?->refunded_at)) {
-                $data['refunded_at'] = date('Y-m-d H:i:s');
-            }
-        }
 
         if ($id) {
-            $builder->where('id', $id)->update($data);
-            if ($isNewlyApproved) {
-                $this->incrementCouponUsageIfNeeded($id);
-                $this->sendApprovalEmail($id);
-            }
-        } else {
-            $data['created_at'] = date('Y-m-d H:i:s');
-            $builder->insert($data);
-            $id = $this->db->insertID();
-            if ($isNewlyApproved) {
-                $this->incrementCouponUsageIfNeeded($id);
-                $this->sendApprovalEmail($id);
-            }
-        }
+            $current = $currentEnrollment ?: $this->courseEnrollments->find($id);
+            $isNewlyApproved = ($status === 'approved' && $current?->status !== 'approved');
 
-        return $id;
+            $enrollmentsToUpdate = !empty($batchEnrollments) ? $batchEnrollments : [$current];
+            $count = count($enrollmentsToUpdate);
+            $perCourseAmount = $count > 0 ? round($inputPaidAmount / $count, 2) : $inputPaidAmount;
+
+            foreach ($enrollmentsToUpdate as $rec) {
+                $updateData = [
+                    'status'         => $status,
+                    'payment_method' => $paymentMethod,
+                    'paid_amount'    => $perCourseAmount,
+                    'notes'          => $notes,
+                    'updated_at'     => date('Y-m-d H:i:s'),
+                ];
+
+                if ($userId) {
+                    $updateData['user_id'] = $userId;
+                }
+                if ($courseId && empty($rec->bundle_id)) {
+                    $updateData['course_id'] = $courseId;
+                }
+                if ($couponId) {
+                    $updateData['coupon_id'] = $couponId;
+                    $updateData['coupon_code'] = $couponCode;
+                    $updateData['coupon_discount_amount'] = $couponDiscount;
+                }
+                if ($paymentProofPath !== null) {
+                    $updateData['payment_proof'] = $paymentProofPath;
+                }
+                if ($refundProofPath !== null) {
+                    $updateData['refund_proof'] = $refundProofPath;
+                }
+
+                if ($status === 'approved') {
+                    if (empty($rec->approved_at)) {
+                        $updateData['approved_at'] = date('Y-m-d H:i:s');
+                    }
+                    if (empty($rec->approved_by)) {
+                        $updateData['approved_by'] = auth()->user()->id;
+                    }
+                } elseif ($status === 'refunded') {
+                    if (empty($rec->refunded_at)) {
+                        $updateData['refunded_at'] = date('Y-m-d H:i:s');
+                    }
+                    if ($refundProofPath !== null) {
+                        $updateData['refund_proof'] = $refundProofPath;
+                    }
+                }
+
+                $this->courseEnrollments->update($rec->id, $updateData);
+
+                if ($isNewlyApproved) {
+                    $this->sendApprovalEmail($rec->id);
+                }
+            }
+
+            if ($isNewlyApproved && $couponId) {
+                $this->incrementCouponUsageIfNeeded((int) $id);
+            }
+
+            return $id;
+        } else {
+            // New Enrollment creation
+            $insertData = [
+                'user_id'                => $userId,
+                'course_id'              => $courseId,
+                'paid_amount'            => $inputPaidAmount,
+                'coupon_id'              => $couponId,
+                'coupon_code'            => $couponCode,
+                'coupon_discount_amount' => $couponDiscount,
+                'payment_method'         => $paymentMethod,
+                'status'                 => $status,
+                'notes'                  => $notes,
+                'created_at'             => date('Y-m-d H:i:s'),
+                'updated_at'             => date('Y-m-d H:i:s'),
+            ];
+
+            if ($paymentProofPath !== null) {
+                $insertData['payment_proof'] = $paymentProofPath;
+            }
+            if ($refundProofPath !== null) {
+                $insertData['refund_proof'] = $refundProofPath;
+            }
+
+            if ($status === 'approved') {
+                $insertData['approved_at'] = date('Y-m-d H:i:s');
+                $insertData['approved_by'] = auth()->user()->id;
+            }
+
+            $newId = $this->courseEnrollments->insert($insertData);
+
+            if ($status === 'approved' && $newId) {
+                if ($couponId) {
+                    $this->incrementCouponUsageIfNeeded((int) $newId);
+                }
+                $this->sendApprovalEmail($newId);
+            }
+
+            return $newId;
+        }
     }
 
+    public function show($id)
+    {
+        return $this->showCourseEnrollment($id);
+    }
 
     /**
      * View course enrollment details
@@ -202,26 +450,46 @@ class AdminEnrollments extends BaseController
     public function showCourseEnrollment($id)
     {
         $enrollment = $this->courseEnrollments
-            ->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.course_price, users.full_name, users.email, auth_identities.secret as mobile')
-            ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
-            ->join('users', 'users.id = tb_course_enrollments.user_id')
-            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "mobile_password"', 'left')
+            ->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.course_price, tb_bundles.bundle_title, tb_bundles.bundle_price, users.full_name, users.email, COALESCE(users.mobile, auth_identities.secret) as mobile')
+            ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id', 'left')
+            ->join('tb_bundles', 'tb_bundles.id = tb_course_enrollments.bundle_id', 'left')
+            ->join('users', 'users.id = tb_course_enrollments.user_id', 'left')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type IN ("mobile_password", "mobile_number")', 'left')
             ->find($id);
 
         if (!$enrollment) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('طلب الشراء غير موجود');
         }
 
+        // If part of a batch or bundle, fetch all courses in this batch
+        $batchEnrollments = [];
+        if (!empty($enrollment->batch_id)) {
+            $batchEnrollments = $this->courseEnrollments
+                ->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.course_price')
+                ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id', 'left')
+                ->where('tb_course_enrollments.batch_id', $enrollment->batch_id)
+                ->findAll();
+        } elseif (!empty($enrollment->bundle_id)) {
+            $batchEnrollments = $this->courseEnrollments
+                ->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.course_price')
+                ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id', 'left')
+                ->where('tb_course_enrollments.user_id', $enrollment->user_id)
+                ->where('tb_course_enrollments.bundle_id', $enrollment->bundle_id)
+                ->where('tb_course_enrollments.created_at', $enrollment->created_at)
+                ->findAll();
+        }
+
         $data = [
-            'title' => 'تفاصيل طلب شراء الدورة',
-            'enrollment' => $enrollment
+            'title'            => 'تفاصيل طلب شراء ' . (!empty($enrollment->bundle_id) ? 'الباقة' : 'الدورة'),
+            'enrollment'       => $enrollment,
+            'batchEnrollments' => $batchEnrollments,
         ];
 
-        return view('Admin\course_enrollment_details', $data);
+        return view('Modules\Enrollments\Views\Admin\course_enrollment_details', $data);
     }
 
     /**
-     * Approve course enrollment request
+     * Approve course enrollment request (operates on entire bundle/batch)
      */
     public function approveCourseEnrollment($id)
     {
@@ -237,28 +505,40 @@ class AdminEnrollments extends BaseController
         if ($enrollmentBefore->status === 'refunded') {
             return redirect()->back()->with('error', 'لا يمكن إعادة تفعيل اشتراك تم استرجاعه.');
         }
-        
+
         $enrollmentsToApprove = [$enrollmentBefore];
         if (!empty($enrollmentBefore->batch_id)) {
             $enrollmentsToApprove = $this->courseEnrollments->where('batch_id', $enrollmentBefore->batch_id)->findAll();
+        } elseif (!empty($enrollmentBefore->bundle_id)) {
+            $enrollmentsToApprove = $this->courseEnrollments
+                ->where('user_id', $enrollmentBefore->user_id)
+                ->where('bundle_id', $enrollmentBefore->bundle_id)
+                ->where('created_at', $enrollmentBefore->created_at)
+                ->findAll();
         }
 
         $allSuccess = true;
+        $couponIncremented = false;
+
         foreach ($enrollmentsToApprove as $enrollment) {
             $isNewlyApproved = $enrollment->status !== 'approved';
-            
+
             if ($this->courseEnrollments->approveEnrollment($enrollment->id, $adminId, $expiresAt)) {
-                if ($isNewlyApproved) {
+                if ($isNewlyApproved && !$couponIncremented) {
                     $this->incrementCouponUsageIfNeeded($enrollment->id);
+                    $couponIncremented = true;
                 }
                 $this->sendApprovalEmail($enrollment->id);
             } else {
                 $allSuccess = false;
             }
         }
-        
+
         if ($allSuccess) {
-            return redirect()->back()->with('success', 'تم الموافقة على الطلب وتفعيل הדورة بنجاح');
+            $msg = count($enrollmentsToApprove) > 1
+                ? 'تم الموافقة على طلب الباقة وتفعيل جميع المقررات المشمولة بنجاح (' . count($enrollmentsToApprove) . ' مقررات)'
+                : 'تم الموافقة على الطلب وتفعيل الدورة بنجاح';
+            return redirect()->back()->with('success', $msg);
         } else {
             return redirect()->back()->with('error', 'تم تفعيل بعض الطلبات، ولكن حدث فشل في تفعيل البعض الآخر.');
         }
@@ -319,7 +599,7 @@ class AdminEnrollments extends BaseController
     }
 
     /**
-     * Reject course enrollment request
+     * Reject course enrollment request (operates on entire bundle/batch)
      */
     public function rejectCourseEnrollment($id)
     {
@@ -334,15 +614,36 @@ class AdminEnrollments extends BaseController
             return redirect()->back()->with('error', 'لا يمكن رفض اشتراك تم استرجاعه.');
         }
 
-        if ($this->courseEnrollments->rejectEnrollment($id, $reason)) {
-            return redirect()->back()->with('success', 'تم رفض الطلب');
+        $enrollmentsToReject = [$enrollment];
+        if (!empty($enrollment->batch_id)) {
+            $enrollmentsToReject = $this->courseEnrollments->where('batch_id', $enrollment->batch_id)->findAll();
+        } elseif (!empty($enrollment->bundle_id)) {
+            $enrollmentsToReject = $this->courseEnrollments
+                ->where('user_id', $enrollment->user_id)
+                ->where('bundle_id', $enrollment->bundle_id)
+                ->where('created_at', $enrollment->created_at)
+                ->findAll();
+        }
+
+        $allSuccess = true;
+        foreach ($enrollmentsToReject as $item) {
+            if (!$this->courseEnrollments->rejectEnrollment($item->id, $reason)) {
+                $allSuccess = false;
+            }
+        }
+
+        if ($allSuccess) {
+            $msg = count($enrollmentsToReject) > 1
+                ? 'تم رفض طلب الباقة وإيقاف جميع مقرراتها بنجاح (' . count($enrollmentsToReject) . ' مقررات)'
+                : 'تم رفض الطلب بنجاح';
+            return redirect()->back()->with('success', $msg);
         } else {
-            return redirect()->back()->with('error', 'فشل في رفض الطلب');
+            return redirect()->back()->with('error', 'فشل في رفض بعض أو كل المقررات في الطلب');
         }
     }
 
     /**
-     * Refund an approved enrollment and revoke course access.
+     * Refund an approved enrollment and revoke course access (operates on entire bundle/batch).
      */
     public function refundCourseEnrollment($id)
     {
@@ -366,16 +667,70 @@ class AdminEnrollments extends BaseController
         }
 
         $notes = $this->request->getPost('refund_notes', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: $enrollment->notes;
+        $proofToSave = $refundProofPath ?? $enrollment->refund_proof;
 
-        if ($this->courseEnrollments->refundEnrollment(
-            (int) $id,
-            $refundProofPath ?? $enrollment->refund_proof,
-            $notes
-        )) {
-            return redirect()->back()->with('success', 'تم تنفيذ الاسترجاع وإيقاف وصول العميل إلى الدورة.');
+        $enrollmentsToRefund = [$enrollment];
+        if (!empty($enrollment->batch_id)) {
+            $enrollmentsToRefund = $this->courseEnrollments->where('batch_id', $enrollment->batch_id)->findAll();
+        } elseif (!empty($enrollment->bundle_id)) {
+            $enrollmentsToRefund = $this->courseEnrollments
+                ->where('user_id', $enrollment->user_id)
+                ->where('bundle_id', $enrollment->bundle_id)
+                ->where('created_at', $enrollment->created_at)
+                ->findAll();
+        }
+
+        $allSuccess = true;
+        foreach ($enrollmentsToRefund as $item) {
+            if (!$this->courseEnrollments->refundEnrollment((int) $item->id, $proofToSave, $notes)) {
+                $allSuccess = false;
+            }
+        }
+
+        if ($allSuccess) {
+            $msg = count($enrollmentsToRefund) > 1
+                ? 'تم تنفيذ الاسترجاع للباقة بالكامل وإيقاف وصول العميل إلى جميع مقرراتها (' . count($enrollmentsToRefund) . ' مقررات)'
+                : 'تم تنفيذ الاسترجاع وإيقاف وصول العميل إلى الدورة.';
+            return redirect()->back()->with('success', $msg);
         }
 
         return redirect()->back()->with('error', 'فشل في تنفيذ الاسترجاع.');
+    }
+
+    /**
+     * Bulk / single delete supporting bundle/batch deletion
+     */
+    public function delete(): \CodeIgniter\HTTP\ResponseInterface
+    {
+        if ($this->request->isAJAX()) {
+            $ids = $this->request->getPost('rows');
+            $idsArray = array_filter(explode(',', (string)$ids));
+
+            if (empty($idsArray)) {
+                return $this->response->setJSON([
+                    'validation' => true,
+                    'success'    => false,
+                    'message'    => 'لم يتم توفير أي معرف للحذف'
+                ]);
+            }
+
+            $records = $this->courseEnrollments->whereIn('id', $idsArray)->findAll();
+            $allIdsToDelete = $idsArray;
+            foreach ($records as $rec) {
+                if (!empty($rec->batch_id)) {
+                    $batchRecords = $this->courseEnrollments->where('batch_id', $rec->batch_id)->findAll();
+                    foreach ($batchRecords as $bRec) {
+                        $allIdsToDelete[] = $bRec->id;
+                    }
+                }
+            }
+            $allIdsToDelete = array_values(array_unique($allIdsToDelete));
+
+            $this->courseEnrollments->whereIn('id', $allIdsToDelete)->delete();
+
+            return $this->response->setJSON(['validation' => true, 'success' => true, 'message' => 'تم الحذف بنجاح']);
+        }
+        return $this->response->setJSON(['validation' => true, 'success' => false, 'message' => 'لقد حدث خطأ أثناء الحذف']);
     }
 
     /**

@@ -178,7 +178,7 @@ class Cart extends BaseController
      */
     private function processCheckout(int $userId, array $items): \CodeIgniter\HTTP\RedirectResponse
     {
-        $paymentMethod = $this->request->getPost('payment_method') ?? 'paypal';
+        $paymentMethod = $this->request->getPost('payment_method') ?? 'anb';
         $couponCode    = trim((string) ($this->request->getPost('coupon_code') ?? ''));
 
         // Calculate total
@@ -220,21 +220,30 @@ class Cart extends BaseController
         $isFree = $finalAmount <= 0;
         $batchId = bin2hex(random_bytes(16)); // Unique batch ID
 
-        // Collect all course IDs to enroll
+        // Collect all course IDs to enroll with calculated amounts
         $coursesToEnroll = [];
+        $discountRatio = $total > 0 ? ($finalAmount / $total) : 1.0;
+
         foreach ($items as $item) {
+            $itemEffectivePrice = (float) $item->price * $discountRatio;
+
             if ($item->item_type === 'course') {
                 $coursesToEnroll[] = [
-                    'course_id' => (int) $item->item_id,
-                    'bundle_id' => null,
+                    'course_id'   => (int) $item->item_id,
+                    'bundle_id'   => null,
+                    'paid_amount' => round($itemEffectivePrice, 2),
                 ];
             } else {
                 // Bundle: expand to individual courses
                 $bundleCourseIds = (new BundlesModel())->getBundleCourseIds((int) $item->item_id);
+                $courseCount = count($bundleCourseIds);
+                $pricePerCourse = $courseCount > 0 ? round($itemEffectivePrice / $courseCount, 2) : round($itemEffectivePrice, 2);
+
                 foreach ($bundleCourseIds as $courseId) {
                     $coursesToEnroll[] = [
-                        'course_id' => (int) $courseId,
-                        'bundle_id' => (int) $item->item_id,
+                        'course_id'   => (int) $courseId,
+                        'bundle_id'   => (int) $item->item_id,
+                        'paid_amount' => $pricePerCourse,
                     ];
                 }
             }
@@ -259,7 +268,7 @@ class Cart extends BaseController
             }
 
             $enrollmentData = [
-                'paid_amount'            => 0, // Individual amounts are 0; total tracked via batch
+                'paid_amount'            => $isFree ? 0 : ($entry['paid_amount'] ?? 0),
                 'bundle_id'              => $entry['bundle_id'],
                 'batch_id'               => $batchId,
                 'coupon_id'              => $coupon->id ?? null,

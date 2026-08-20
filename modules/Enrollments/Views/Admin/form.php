@@ -23,19 +23,48 @@
                 </div>
             </div>
 
-            <!-- Course Selection -->
-            <div class="form-group row">
-                <label for="course_id" class="col-sm-3 col-form-label"><?= lang("Enrollments.course_title") ?></label>
-                <div class="col-sm-9">
-                    <?= form_dropdown('course_id', $courses, set_value('course_id', $enrollment->course_id ?? ""), ['class' => 'form-control select2', 'style' => 'width: 100%;', 'id' => 'course_id']) ?>
-                    <small class="invalid-feedback"></small>
+            <!-- Course or Bundle Display -->
+            <?php if (!empty($bundle)): ?>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">نوع الاشتراك / الباقة</label>
+                    <div class="col-sm-9">
+                        <div class="p-3 bg-light rounded border">
+                            <div class="mb-2">
+                                <span class="badge badge-primary px-2 py-1 font-weight-bold" style="font-size: 13px;">
+                                    <i class="fas fa-layer-group ml-1"></i> <?= esc($bundle->bundle_title) ?>
+                                </span>
+                                <?php if (!empty($bundle->bundle_price)): ?>
+                                    <span class="badge badge-warning text-dark font-weight-bold ml-1" style="font-size: 12px;">
+                                        <i class="fas fa-tag ml-1"></i> سعر الباقة: <?= number_format((float)$bundle->bundle_price, 2) ?> ر.س
+                                    </span>
+                                <?php endif; ?>
+                            </div>
+                            <?php if (!empty($batchEnrollments) && count($batchEnrollments) > 1): ?>
+                                <label class="small text-muted font-weight-bold d-block mb-1">المقررات المشمولة في الباقة (<?= count($batchEnrollments) ?>):</label>
+                                <div class="d-flex flex-wrap" style="gap: 4px;">
+                                    <?php foreach ($batchEnrollments as $bRec): ?>
+                                        <span class="badge badge-light border text-dark px-2 py-1"><i class="fas fa-book text-primary ml-1"></i> <?= esc($bRec->course_title) ?></span>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <input type="hidden" name="course_id" value="<?= esc($enrollment->course_id ?? '') ?>">
+                    </div>
                 </div>
-            </div>
+            <?php else: ?>
+                <div class="form-group row">
+                    <label for="course_id" class="col-sm-3 col-form-label"><?= lang("Enrollments.course_title") ?></label>
+                    <div class="col-sm-9">
+                        <?= form_dropdown('course_id', $courses, set_value('course_id', $enrollment->course_id ?? ""), ['class' => 'form-control select2', 'style' => 'width: 100%;', 'id' => 'course_id']) ?>
+                        <small class="invalid-feedback"></small>
+                    </div>
+                </div>
+            <?php endif; ?>
 
             <div class="form-group row">
-                <label for="paid_amount" class="col-sm-3 col-form-label"><?= lang("Enrollments.paid_amount") ?></label>
+                <label for="paid_amount" class="col-sm-3 col-form-label"><?= lang("Enrollments.paid_amount") ?> (ر.س)</label>
                 <div class="col-sm-9">
-                    <input type="number" step="0.01" name="paid_amount" value="<?= set_value('paid_amount', $enrollment->paid_amount ?? "") ?>" id="paid_amount" class="form-control">
+                    <input type="number" step="0.01" name="paid_amount" value="<?= set_value('paid_amount', $totalPaidAmount ?? $enrollment->paid_amount ?? "") ?>" id="paid_amount" class="form-control">
                     <small class="invalid-feedback"></small>
                 </div>
             </div>
@@ -72,10 +101,14 @@
                 <label for="payment_method" class="col-sm-3 col-form-label"><?= lang("Enrollments.payment_method") ?></label>
                 <div class="col-sm-9">
                     <select name="payment_method" id="payment_method" class="form-control">
+                        <option value="anb" <?= set_select('payment_method', 'anb', ($enrollment->payment_method ?? '') == 'anb') ?>>البنك العربي الوطني (ANB)</option>
+                        <option value="stc_bank" <?= set_select('payment_method', 'stc_bank', ($enrollment->payment_method ?? '') == 'stc_bank') ?>>بنك إس تي سي (STC Bank)</option>
+                        <option value="paypal" <?= set_select('payment_method', 'paypal', ($enrollment->payment_method ?? '') == 'paypal') ?>>باي بال (PayPal)</option>
                         <option value="instapay" <?= set_select('payment_method', 'instapay', ($enrollment->payment_method ?? 'instapay') == 'instapay') ?>>انستاباي</option>
-                        <option value="vodafone_cash" <?= set_select('payment_method', 'vodafone_cash', ($enrollment->payment_method ?? "") == 'vodafone_cash') ?>>فودافون كاش</option>
-                        <option value="usdt" <?= set_select('payment_method', 'usdt', ($enrollment->payment_method ?? "") == 'usdt') ?>>USDT</option>
-                        <option value="paypal" <?= set_select('payment_method', 'paypal', ($enrollment->payment_method ?? "") == 'paypal') ?>>باي بال (PayPal)</option>
+                        <option value="vodafone_cash" <?= set_select('payment_method', 'vodafone_cash', ($enrollment->payment_method ?? '') == 'vodafone_cash') ?>>فودافون كاش</option>
+                        <option value="usdt" <?= set_select('payment_method', 'usdt', ($enrollment->payment_method ?? '') == 'usdt') ?>>USDT</option>
+                        <option value="bank_transfer" <?= set_select('payment_method', 'bank_transfer', ($enrollment->payment_method ?? '') == 'bank_transfer') ?>>تحويل بنكي</option>
+                        <option value="free" <?= set_select('payment_method', 'free', ($enrollment->payment_method ?? '') == 'free') ?>>مجاني</option>
                     </select>
                     <small class="invalid-feedback"></small>
                 </div>

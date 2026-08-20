@@ -334,28 +334,17 @@ class DtTable
     public static function setAction($action, $icon, $url)
     {
         if (!in_array($action, self::$hiddenActions)) {
-            self::$actions[] = $action;
+            if (!in_array($action, self::$actions)) {
+                self::$actions[] = $action;
+            }
             self::$actionUrls[$action] = ['url' => $url, 'icon' => $icon];
-
-            self::$columnCallbacks['actions'] = function ($data, $row) {
-                return self::generateActionLinks($row);
-            };
         }
     }
 
 
     private static function generateActionLinks($row): string
     {
-        $linksHtml = '';
-
-        foreach (self::$actions as $action) {
-            if (isset(self::$actionUrls[$action]) && !in_array($action, self::$hiddenActions)) {
-                $url = self::$actionUrls[$action];
-                $linksHtml .= self::generateActionButton($action, $url, $row);
-            }
-        }
-
-        return $linksHtml;
+        return self::getActions($row, self::$actions);
     }
 
     private static function generateActionButton($action, $actionData, $row): string
@@ -375,41 +364,42 @@ class DtTable
         }
 
         $url = $actionData['url'] ?? '';
-        $icon = $actionData['icon'] ?? '';
-        $colorClass = ''; // Add logic for color class if needed
         $tableName = self::$tableName;
         $columnsToShow = self::$showColumns; // Use the show columns here
         $moduleName = currentModule();
 
         switch ($action) {
             case 'edit':
-                $icon = 'edit';
+                $icon = 'fa-edit';
                 $colorClass = 'btn-primary';
                 break;
             case 'delete':
-                $icon = 'trash';
+                $icon = 'fa-trash';
                 $colorClass = 'btn-danger';
                 break;
             case 'show':
-                $icon = 'eye';
+                $icon = 'fa-eye';
                 $colorClass = 'btn-info';
                 break;
             default:
+                $rawIcon = $actionData['icon'] ?? 'cog';
+                $icon = str_starts_with($rawIcon, 'fa-') ? $rawIcon : 'fa-' . $rawIcon;
+                $colorClass = 'btn-secondary';
                 break;
         }
 
         // Generate the HTML for the action button
         if(!empty($url)){
          return "<a href='{$url}{$row['id']}' onclick='location.href=this.href;'
-                class='btn btn-sm  btn-info btn-sm dt_action $colorClass $action'
-                    data-id='{$row['id']}' data-action='$action'  data-module='$moduleName'>
+                class='btn btn-sm dt_action $colorClass $action'
+                data-id='{$row['id']}' data-action='$action' data-module='$moduleName' title='" . (lang('Admin.' . $action) ?: $action) . "'>
                  <i class='fas $icon'></i> 
              </a>";
         }
         return "<a href='javascript:void(0)' class='btn btn-sm dt_action $colorClass $action'
                 data-id='{$row['id']}' data-action='$action'
-                data-table='{$tableName}' data-columns='{$columnsToShow}' data-module='$moduleName'>
-                <i class='fas fa-$icon'></i> 
+                data-table='{$tableName}' data-columns='{$columnsToShow}' data-module='$moduleName' title='" . (lang('Admin.' . $action) ?: $action) . "'>
+                <i class='fas $icon'></i> 
         </a>";
     }
 
@@ -445,8 +435,12 @@ class DtTable
     public static function getActions($row, $actions): string
     {
         $actionsHtml = '';
+        $actions = array_unique($actions);
 
         foreach ($actions as $action) {
+            if (in_array($action, self::$hiddenActions)) {
+                continue;
+            }
             if (isset(self::$actionUrls[$action])) {
                 $url = self::$actionUrls[$action];
                 $actionsHtml .= self::generateActionButton($action, $url, $row);
@@ -455,7 +449,7 @@ class DtTable
             }
         }
 
-        return $actionsHtml;
+        return "<div class='d-inline-flex align-items-center' style='gap: 4px; white-space: nowrap;'>" . $actionsHtml . "</div>";
     }
 
     private static function getColumnsConfig(): array

@@ -26,7 +26,19 @@
                     <table class="table table-borderless">
                         <tr>
                             <th style="width: 200px;">اسم الطالب:</th>
-                            <td><?= esc($enrollment->full_name) ?></td>
+                            <td>
+                                <strong><?= esc($enrollment->full_name) ?></strong>
+                                <?php if (!empty($enrollment->mobile)): 
+                                    $cleanPhone = preg_replace('/[^0-9]/', '', $enrollment->mobile);
+                                    if (str_starts_with($cleanPhone, '00')) $cleanPhone = substr($cleanPhone, 2);
+                                    if (str_starts_with($cleanPhone, '05') && strlen($cleanPhone) === 10) $cleanPhone = '966' . substr($cleanPhone, 1);
+                                    elseif (str_starts_with($cleanPhone, '01') && strlen($cleanPhone) === 11) $cleanPhone = '20' . substr($cleanPhone, 1);
+                                ?>
+                                    <a href="https://wa.me/<?= esc($cleanPhone) ?>" target="_blank" class="btn btn-sm text-white ms-2" style="background-color:#25D366; border-radius:15px; padding:2px 8px; font-size:11px;">
+                                        <i class="fab fa-whatsapp me-1"></i> واتساب
+                                    </a>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <th>البريد الإلكتروني:</th>
@@ -34,23 +46,65 @@
                         </tr>
                         <tr>
                             <th>رقم الهاتف:</th>
-                            <td><a href="tel:<?= esc($enrollment->mobile) ?>"><?= esc($enrollment->mobile) ?></a></td>
+                            <td><a href="tel:<?= esc($enrollment->mobile) ?>"><?= esc($enrollment->mobile ?? '-') ?></a></td>
                         </tr>
+                        <?php if (!empty($enrollment->bundle_title)): ?>
+                        <tr>
+                            <th>الباقة:</th>
+                            <td>
+                                <span class="badge bg-primary fs-6"><i class="fas fa-layer-group me-1"></i> <?= esc($enrollment->bundle_title) ?></span>
+                                <?php if (!empty($enrollment->bundle_price)): ?>
+                                    <span class="badge bg-warning text-dark font-weight-bold fs-6 ms-1"><?= number_format((float)$enrollment->bundle_price, 2) ?> ر.س</span>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php endif; ?>
+
+                        <?php if (!empty($batchEnrollments) && count($batchEnrollments) > 1): ?>
+                        <tr>
+                            <th>المقررات المشمولة (<?= count($batchEnrollments) ?>):</th>
+                            <td>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <?php foreach ($batchEnrollments as $bCourse): ?>
+                                        <span class="badge bg-light text-dark border p-2"><i class="fas fa-book me-1 text-primary"></i> <?= esc($bCourse->course_title) ?></span>
+                                    <?php endforeach; ?>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php else: ?>
                         <tr>
                             <th>اسم الدورة:</th>
                             <td><strong><?= esc($enrollment->course_title) ?></strong></td>
                         </tr>
+                        <?php if (!empty($enrollment->course_price)): ?>
                         <tr>
                             <th>سعر الدورة:</th>
-                            <td>$<?= number_format($enrollment->course_price, 2) ?></td>
+                            <td><?= number_format((float)$enrollment->course_price, 2) ?> ر.س</td>
                         </tr>
+                        <?php endif; ?>
+                        <?php endif; ?>
+
                         <tr>
                             <th>المبلغ المدفوع:</th>
-                            <td><strong class="text-success">$<?= number_format($enrollment->paid_amount, 2) ?></strong></td>
+                            <td><strong class="text-primary fs-5"><?= $enrollment->payment_method === 'free' ? 'مجاني' : number_format((float)($enrollment->paid_amount > 0 ? $enrollment->paid_amount : ($enrollment->bundle_price ?? 0)), 2) . ' ر.س' ?></strong></td>
                         </tr>
                         <tr>
                             <th>طريقة الدفع:</th>
-                            <td><?= esc($enrollment->payment_method) ?></td>
+                            <td>
+                                <?php
+                                $pmNames = [
+                                    'anb'           => 'البنك العربي الوطني (ANB)',
+                                    'stc_bank'       => 'بنك إس تي سي (STC Bank)',
+                                    'paypal'         => 'باي بال (PayPal)',
+                                    'instapay'       => 'انستاباي',
+                                    'vodafone_cash'  => 'فودافون كاش',
+                                    'usdt'           => 'USDT',
+                                    'bank_transfer'  => 'تحويل بنكي',
+                                    'free'           => 'مجاني',
+                                ];
+                                echo esc($pmNames[$enrollment->payment_method] ?? $enrollment->payment_method);
+                                ?>
+                            </td>
                         </tr>
                         <tr>
                             <th>تاريخ الطلب:</th>

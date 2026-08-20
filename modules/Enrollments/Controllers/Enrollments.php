@@ -94,60 +94,22 @@ class Enrollments extends BaseController
         }
 
         if (!$courseId) {
-            return redirect()->to('/')->with('error', 'اختر المقرر أول، وبعدها نكمل الخطوة التالية.');
-        }
-
-        // Store in session and redirect to checkout
-        session()->set('selected_course', $courseId);
-        return redirect()->to('/enrollments/course-checkout');
-    }
-
-    /**
-     * Course checkout page
-     */
-    public function courseCheckout()
-    {
-        if (!auth()->loggedIn()) {
-            return redirect()->to('/login');
+            return redirect()->to('/cart');
         }
 
         $userId = auth()->user()->id;
-        $courseId = session()->get('selected_course');
+        $cartModel = new \Modules\Cart\Models\CartModel();
+        $cartModel->addItem($userId, 'course', (int) $courseId);
 
-        if (!$courseId) {
-            return redirect()->to('/')->with('error', 'اختر المقرر أول، وبعدها نكمل الخطوة التالية.');
-        }
+        return redirect()->to('/cart/checkout');
+    }
 
-        // Check if already enrolled
-        if ($this->courseEnrollmentsModel->isUserEnrolled($userId, $courseId, false)) {
-            session()->remove('selected_course');
-            return redirect()->to('/enrollments/my-courses')->with('error', 'أنت مشترك بالفعل في هذا المقرر، وتقدر تدخل عليه مباشرة.');
-        }
-
-        $course = $this->coursesModel->find($courseId);
-
-        if (!$course) {
-            session()->remove('selected_course');
-            return redirect()->to('/')->with('error', 'المقرر هذا غير متاح الآن. جرّب مقررًا آخر أو ارجع للرئيسية.');
-        }
-
-        // Handle POST - process purchase
-        if ($this->request->is('post')) {
-            return $this->processCourseCheckout($userId, $course);
-        }
-
-        // A course is only free if the admin explicitly marked it as free with the is_free flag.
-        // Ignore price to avoid false positives with unpopulated prices.
-        $isFree = ($course->is_free == 1);
-
-        $data = [
-            'title' => 'إتمام شراء الدورة',
-            'course' => $course,
-            'is_free' => $isFree,
-            'files' => []
-        ];
-
-        return view('site/course_checkout', $data);
+    /**
+     * Course checkout page - redirected to cart checkout
+     */
+    public function courseCheckout()
+    {
+        return redirect()->to('/cart/checkout');
     }
 
     /**
@@ -325,11 +287,22 @@ class Enrollments extends BaseController
         $email = \Config\Services::email();
         $email->setMailType('html');
 
+        $pmLabels = [
+            'anb'           => 'البنك العربي الوطني (ANB)',
+            'stc_bank'       => 'بنك إس تي سي (STC Bank)',
+            'paypal'         => 'باي بال (PayPal)',
+            'instapay'       => 'انستاباي',
+            'vodafone_cash'  => 'فودافون كاش',
+            'usdt'           => 'USDT',
+            'bank_transfer'  => 'تحويل بنكي',
+            'free'           => 'مجاني',
+        ];
+
         $commonData = [
             'full_name'      => $enrollment->full_name,
             'course_title'   => $enrollment->course_title,
             'paid_amount'    => $enrollment->paid_amount,
-            'payment_method' => $enrollment->payment_method,
+            'payment_method' => $pmLabels[$enrollment->payment_method] ?? $enrollment->payment_method,
             'submitted_at'   => $enrollment->created_at ?? date('Y-m-d H:i:s'),
         ];
 

@@ -43,7 +43,7 @@ class CourseEnrollmentsModel extends BaseModel
     protected $validationRules = [
         'user_id' => 'required|integer',
         'course_id' => 'required|integer',
-        'payment_method' => 'required|in_list[fawry,vodafone_cash,instapay,bank_transfer,credits,free,paypal,usdt]',
+        'payment_method' => 'required|in_list[fawry,vodafone_cash,instapay,bank_transfer,credits,free,paypal,usdt,anb,stc_bank]',
     ];
 
     /**
@@ -209,14 +209,47 @@ class CourseEnrollmentsModel extends BaseModel
     }
 
     /**
-     * Get enrollments for DataTables
+     * Get enrollments for DataTables (groups bundle courses into a single row)
      */
     public function getDataTable()
     {
-        return $this->select('tb_course_enrollments.*, tb_courses.course_title, users.full_name, auth_identities.secret as mobile')
-            ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
-            ->join('users', 'users.id = tb_course_enrollments.user_id')
-            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "mobile_password"', 'left')
-            ->orderBy('tb_course_enrollments.created_at', 'DESC');
+        return $this->select('
+            MIN(tb_course_enrollments.id) as id,
+            users.full_name,
+            COALESCE(users.mobile, auth_identities.secret) as mobile,
+            COUNT(tb_course_enrollments.id) as course_count,
+            GROUP_CONCAT(tb_courses.course_title SEPARATOR " || ") as course_title,
+            tb_bundles.bundle_title,
+            tb_bundles.bundle_price,
+            SUM(tb_course_enrollments.paid_amount) as paid_amount,
+            MAX(tb_course_enrollments.payment_method) as payment_method,
+            MAX(tb_course_enrollments.payment_proof) as payment_proof,
+            MIN(tb_course_enrollments.status) as status,
+            MAX(tb_course_enrollments.created_at) as created_at,
+            tb_course_enrollments.bundle_id,
+            tb_course_enrollments.batch_id,
+            MIN(tb_course_enrollments.coupon_id) as coupon_id,
+            MAX(tb_course_enrollments.coupon_code) as coupon_code,
+            SUM(tb_course_enrollments.coupon_discount_amount) as coupon_discount_amount,
+            MAX(tb_course_enrollments.approved_at) as approved_at,
+            MAX(tb_course_enrollments.approved_by) as approved_by,
+            MAX(tb_course_enrollments.expires_at) as expires_at,
+            MAX(tb_course_enrollments.notes) as notes,
+            MAX(tb_course_enrollments.updated_at) as updated_at,
+            MIN(tb_course_enrollments.user_id) as user_id,
+            MIN(tb_course_enrollments.course_id) as course_id
+        ')
+            ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id', 'left')
+            ->join('tb_bundles', 'tb_bundles.id = tb_course_enrollments.bundle_id', 'left')
+            ->join('users', 'users.id = tb_course_enrollments.user_id', 'left')
+            ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type IN ("mobile_password", "mobile_number")', 'left')
+            ->groupBy('
+                CASE 
+                    WHEN tb_course_enrollments.bundle_id IS NOT NULL AND tb_course_enrollments.batch_id IS NOT NULL 
+                    THEN CONCAT("bundle_", tb_course_enrollments.batch_id, "_", tb_course_enrollments.bundle_id)
+                    ELSE CONCAT("single_", tb_course_enrollments.id)
+                END
+            ', false)
+            ->orderBy('MAX(tb_course_enrollments.created_at)', 'DESC');
     }
 }
