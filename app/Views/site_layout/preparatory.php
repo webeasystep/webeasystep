@@ -1,92 +1,348 @@
 <?= $this->extend('site_layout/template'); ?>
 <?= $this->section('content'); ?>
 
-<!-- Hero Section -->
-<div class="untree_co-hero overlay compact-hero" style="background-image: url('<?= base_url() ?>site/images/main_banner.webp');">
+<style>
+    .prep-page-wrapper {
+        background-color: #f8fafc;
+        padding-top: 25px;
+        padding-bottom: 50px;
+    }
+    
+    /* Compact Breadcrumb & Title Bar */
+    .prep-header-bar {
+        margin-bottom: 25px;
+    }
+    .prep-breadcrumb {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-bottom: 8px;
+    }
+    .prep-breadcrumb a {
+        color: #136ad5;
+        text-decoration: none;
+    }
+    .prep-title {
+        font-size: 1.85rem;
+        font-weight: 800;
+        color: #0f172a;
+        margin-bottom: 6px;
+    }
+    .prep-subtitle {
+        font-size: 0.95rem;
+        color: #64748b;
+        margin-bottom: 0;
+    }
+
+    /* Full-Width High-Conversion Bundle Hero Card */
+    .bundle-promo-card {
+        background: #ffffff;
+        border-radius: 18px;
+        border: 2px solid #136ad5;
+        box-shadow: 0 10px 30px rgba(19, 106, 213, 0.08);
+        overflow: hidden;
+        margin-bottom: 35px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .bundle-promo-card:hover {
+        box-shadow: 0 15px 40px rgba(19, 106, 213, 0.14);
+        transform: translateY(-2px);
+    }
+    .bundle-badge-top {
+        display: inline-flex;
+        align-items: center;
+        background: linear-gradient(135deg, #ec661f, #ff8c42);
+        color: #ffffff;
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+    .bundle-promo-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #0f172a;
+        margin-bottom: 8px;
+    }
+    .bundle-promo-desc {
+        color: #475569;
+        font-size: 0.92rem;
+        line-height: 1.6;
+        margin-bottom: 16px;
+    }
+    .bundle-chips-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    .bundle-chip {
+        background: #eff6ff;
+        color: #1d4ed8;
+        border: 1px solid #bfdbfe;
+        border-radius: 20px;
+        padding: 4px 12px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+    }
+    .bundle-price-box {
+        background: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 100%);
+        border-radius: 14px;
+        padding: 24px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        border: 1px solid #bae6fd;
+    }
+    .bundle-price-original {
+        color: #94a3b8;
+        text-decoration: line-through;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+    .bundle-price-current {
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #136ad5;
+        line-height: 1.1;
+        margin-bottom: 6px;
+    }
+    .bundle-save-tag {
+        display: inline-block;
+        background: #dcfce7;
+        color: #15803d;
+        border-radius: 12px;
+        padding: 3px 10px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+    .btn-bundle-cta {
+        background: linear-gradient(135deg, #136ad5 0%, #0b5cbf 100%);
+        color: #ffffff;
+        border: none;
+        border-radius: 12px;
+        padding: 12px 20px;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 18px rgba(19, 106, 213, 0.25);
+    }
+    .btn-bundle-cta:hover {
+        background: linear-gradient(135deg, #0b5cbf 0%, #094794 100%);
+        color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 22px rgba(19, 106, 213, 0.35);
+    }
+
+    /* Compact Courses Section */
+    .section-header-compact {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 12px;
+    }
+    .section-header-compact h2 {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #1e293b;
+        margin: 0;
+    }
+    .section-header-compact .count-badge {
+        background: #e2e8f0;
+        color: #475569;
+        border-radius: 20px;
+        padding: 3px 12px;
+        font-size: 0.82rem;
+        font-weight: 600;
+    }
+
+    /* Course Card Aesthetics */
+    .prep-course-card {
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border: 1px solid #e2e8f0;
+    }
+    .prep-course-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        border-color: #cbd5e1;
+    }
+    .prep-course-image {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 2 / 1;
+        overflow: hidden;
+        background-color: #0f172a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .prep-course-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+    .prep-course-card:hover .prep-course-image img {
+        transform: scale(1.04);
+    }
+    .prep-course-body {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+    .prep-course-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 6px;
+        line-height: 1.4;
+    }
+    .prep-course-code {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-bottom: 12px;
+    }
+    .prep-course-instructor {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-bottom: 14px;
+        margin-top: auto;
+    }
+    .prep-course-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 12px;
+        margin-top: auto;
+    }
+    .prep-course-price {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: #0f172a;
+    }
+    .btn-course-enroll {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        border-radius: 8px;
+    }
+</style>
+
+<div class="prep-page-wrapper">
     <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-12 text-center">
-                <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">
-                    مقررات السنة الأولى المشتركة
-                </h1>
-                <p class="mb-4 text-white" style="font-size: 1.1rem; line-height: 1.6; max-width: 800px; margin: 0 auto;" data-aos="fade-up" data-aos-delay="200">
-                    كل ما تحتاجه لدراسة مقررات السنة الأولى المشتركة في الجامعة السعودية الإلكترونية، من شروحات مبسطة وملخصات وتدريبات ومراجعات للميد والفاينل.
-                </p>
+        
+        <!-- Compact Header & Breadcrumbs -->
+        <div class="prep-header-bar" data-aos="fade-up">
+            <div class="prep-breadcrumb">
+                <a href="<?= base_url() ?>"><i class="fas fa-home ml-1"></i> الرئيسية</a>
+                <span class="mx-2">/</span>
+                <span>السنة الأولى المشتركة (التحضيرية)</span>
+            </div>
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+                <div>
+                    <h1 class="prep-title">مقررات السنة الأولى المشتركة</h1>
+                    <p class="prep-subtitle">شروحات شاملة، حل واجبات، وتجميعات اختبارات لكل مواد السنة التحضيرية في الجامعة السعودية الإلكترونية SEU</p>
+                </div>
+                <div class="mt-2 mt-md-0">
+                    <span class="badge badge-light border text-muted px-3 py-2" style="font-size: 13px;">
+                        <i class="fas fa-university text-primary ml-1"></i> الجامعة السعودية الإلكترونية
+                    </span>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- Bundles Section -->
-<?php if (!empty($bundles)): ?>
-<div class="untree_co-section" id="bundles" style="background: #f8f9fa;">
-    <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-                <h2 class="line-bottom text-center mb-4">باقات التوفير للسنة التحضيرية</h2>
-                <p class="text-muted">احصل على جميع مواد السنة التحضيرية في باقة واحدة بسعر مخفض</p>
-            </div>
-        </div>
-        <div class="row justify-content-center">
+
+        <?= $this->include('site_layout/site_msg'); ?>
+
+        <!-- 1. Featured Bundle Promo Card (Full-Width, Zero Wasted Space) -->
+        <?php if (!empty($bundles)): ?>
             <?php foreach ($bundles as $bundle): ?>
-                <div class="col-md-8 col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card shadow-sm border-0 h-100" style="border-radius: 15px; overflow: hidden; border: 2px solid #136ad5 !important;">
-                        <div class="row no-gutters h-100">
-                            <div class="col-md-5" style="background: linear-gradient(135deg, #136ad5, #1e88e5); display: flex; align-items: center; justify-content: center; padding: 20px;">
-                                <?php if ($bundle->image): ?>
-                                    <img src="<?= base_url('uploads/courses/' . $bundle->image) ?>" alt="<?= esc($bundle->bundle_title) ?>" class="img-fluid" style="border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-                                <?php else: ?>
-                                    <i class="fas fa-layer-group" style="font-size: 5rem; color: rgba(255,255,255,0.8);"></i>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="card-body d-flex flex-column h-100">
-                                    <h4 class="card-title font-weight-bold mb-3"><?= esc($bundle->bundle_title) ?></h4>
-                                    <p class="card-text text-muted mb-4"><?= esc($bundle->description) ?></p>
-                                    
-                                    <div class="mt-auto">
-                                        <div class="d-flex align-items-center mb-3">
-                                            <div class="text-danger font-weight-bold" style="text-decoration: line-through; font-size: 1.1rem; margin-right: 15px;">
-                                                <?= number_format($bundle->original_price) ?> ر.س
-                                            </div>
-                                            <div class="text-primary font-weight-bold" style="font-size: 1.8rem;">
-                                                <?= number_format($bundle->bundle_price) ?> ر.س
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-primary btn-block btn-lg mt-2" onclick="addToCart('bundle', <?= $bundle->id ?>)" style="border-radius: 30px; font-weight: bold; box-shadow: 0 4px 10px rgba(19, 106, 213, 0.3);">
-                                            <i class="fas fa-cart-plus mr-2"></i> أضف للسلة
-                                        </button>
-                                    </div>
+                <div class="bundle-promo-card" data-aos="fade-up">
+                    <div class="row no-gutters">
+                        <div class="col-lg-8 col-md-7 p-4 p-lg-4 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="bundle-badge-top">
+                                    <i class="fas fa-fire ml-1"></i> العرض الأوفر والأكثر طلباً لطلاب التحضيري
                                 </div>
+                                <h2 class="bundle-promo-title"><?= esc($bundle->bundle_title) ?></h2>
+                                <p class="bundle-promo-desc mb-3">
+                                    <?= esc($bundle->description) ?>
+                                </p>
+                                
+                                <div class="bundle-chips-list">
+                                    <span class="bundle-chip"><i class="fas fa-square-root-alt ml-1"></i> مقدمة في الرياضيات (ريض 001)</span>
+                                    <span class="bundle-chip"><i class="fas fa-laptop-code ml-1"></i> أساسيات الحاسب (عال 001)</span>
+                                    <span class="bundle-chip"><i class="fas fa-comments ml-1"></i> مهارات الاتصال (علم 001)</span>
+                                    <span class="bundle-chip"><i class="fas fa-book-reader ml-1"></i> المهارات الأكاديمية (نهج 001)</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-2 d-flex align-items-center text-muted" style="font-size: 0.85rem;">
+                                <span><i class="fas fa-check-circle text-success ml-1"></i> شروحات كاملة</span>
+                                <span class="mx-2">•</span>
+                                <span><i class="fas fa-check-circle text-success ml-1"></i> تجميعات الميد والفاينل</span>
+                                <span class="mx-2">•</span>
+                                <span><i class="fas fa-check-circle text-success ml-1"></i> بنوك أسئلة ومتابعة</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-5 p-3 p-lg-4">
+                            <div class="bundle-price-box">
+                                <?php if ($bundle->original_price > $bundle->bundle_price): ?>
+                                    <div class="bundle-price-original"><?= number_format($bundle->original_price) ?> ر.س</div>
+                                <?php endif; ?>
+                                <div class="bundle-price-current">
+                                    <?= number_format($bundle->bundle_price) ?> <small style="font-size: 1.1rem;">ر.س</small>
+                                </div>
+                                <?php if ($bundle->original_price > $bundle->bundle_price): ?>
+                                    <?php $saving = $bundle->original_price - $bundle->bundle_price; ?>
+                                    <div>
+                                        <span class="bundle-save-tag"><i class="fas fa-tags ml-1"></i> توفير <?= number_format($saving) ?> ر.س فوراً</span>
+                                    </div>
+                                <?php endif; ?>
+                                <button class="btn btn-bundle-cta" onclick="addToCart('bundle', <?= $bundle->id ?>)">
+                                    <i class="fas fa-cart-plus ml-2"></i> اشترك في الباقة الآن
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
-        </div>
-    </div>
-</div>
-<?php endif; ?>
+        <?php endif; ?>
 
-<!-- Courses Section -->
-<div class="untree_co-section bg-light" id="courses">
-    <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-                <h2 class="line-bottom text-center mb-4">اختر المادة التي تريد دراستها</h2>
-            </div>
+        <!-- 2. Individual Courses Grid (Immediately Below with Compact Section Header) -->
+        <div class="section-header-compact" data-aos="fade-up">
+            <h2><i class="fas fa-book-open text-primary ml-2"></i> المقررات الفردية للسنة الأولى المشتركة</h2>
+            <span class="count-badge"><?= !empty($courses) ? count($courses) : 0 ?> مقررات</span>
         </div>
+
         <div class="row">
             <?php
             $gradients = [
+                'linear-gradient(135deg, #136ad5 0%, #00aeff 100%)',
                 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
                 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
                 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-                'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-                'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
-                'linear-gradient(135deg, #ff0844 0%, #ffb199 100%)',
             ];
-            $icons = ['fa-cubes', 'fa-project-diagram', 'fa-database', 'fa-network-wired', 'fa-cogs', 'fa-globe', 'fa-brain'];
+            $icons = ['fa-cubes', 'fa-project-diagram', 'fa-database', 'fa-network-wired'];
             $courseIndex = 0;
             ?>
             <?php if (!empty($courses)): ?>
@@ -99,65 +355,65 @@
                     $gradient = $gradients[$courseIndex % count($gradients)];
                     $icon = $icons[$courseIndex % count($icons)];
                     $courseIndex++;
+
+                    $isOpen = isset($course['is_open']) && $course['is_open'] == 1;
+                    $courseUrl = $course['course_url'] ?? base_url('courses/course_details/' . $course['slug']);
+                    $discountedPrice = $course['course_price'] ?? 149;
                     ?>
                     <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="course-card h-100">
-                            <?php 
-                                $isOpen = isset($course['is_open']) && $course['is_open'] == 1;
-                                $courseUrl = $course['course_url'] ?? base_url('courses/course_details/' . $course['slug']);
-                            ?>
+                        <div class="prep-course-card">
+                            
+                            <!-- Course Image -->
                             <?php if ($hasImage): ?>
-                                <?php if ($isOpen): ?><a href="<?= $courseUrl ?>" class="course-card-image d-block" style="text-decoration: none;"><?php else: ?><div class="course-card-image"><?php endif; ?>
-                                    <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= esc($course['course_title']) ?>" class="course-img" loading="lazy" decoding="async">
+                                <?php if ($isOpen): ?><a href="<?= $courseUrl ?>" class="prep-course-image d-block" style="text-decoration: none;"><?php else: ?><div class="prep-course-image"><?php endif; ?>
+                                    <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= esc($course['course_title']) ?>" loading="lazy" decoding="async">
                                     <?php if($isOpen): ?>
-                                        <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
+                                        <span class="badge badge-success position-absolute" style="top: 10px; right: 10px; font-size: 11px; padding: 4px 10px; border-radius: 12px;">مفتوح للحجز</span>
                                     <?php else: ?>
-                                        <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #ef4444;">مغلق الحجز</span>
+                                        <span class="badge badge-danger position-absolute" style="top: 10px; right: 10px; font-size: 11px; padding: 4px 10px; border-radius: 12px;">مغلق الحجز</span>
                                     <?php endif; ?>
                                 <?= $isOpen ? '</a>' : '</div>' ?>
                             <?php else: ?>
-                                <?php if ($isOpen): ?><a href="<?= $courseUrl ?>" class="course-card-image d-block" style="background: <?= $gradient ?>; text-decoration: none;"><?php else: ?><div class="course-card-image" style="background: <?= $gradient ?>;"><?php endif; ?>
-                                    <div class="course-icon"><i class="fas <?= $icon ?>"></i></div>
+                                <?php if ($isOpen): ?><a href="<?= $courseUrl ?>" class="prep-course-image d-block" style="background: <?= $gradient ?>; text-decoration: none;"><?php else: ?><div class="prep-course-image" style="background: <?= $gradient ?>;"><?php endif; ?>
+                                    <i class="fas <?= $icon ?>" style="font-size: 2.5rem; color: #ffffff;"></i>
                                     <?php if($isOpen): ?>
-                                        <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
+                                        <span class="badge badge-success position-absolute" style="top: 10px; right: 10px; font-size: 11px; padding: 4px 10px; border-radius: 12px;">مفتوح للحجز</span>
                                     <?php else: ?>
-                                        <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #ef4444;">مغلق الحجز</span>
+                                        <span class="badge badge-danger position-absolute" style="top: 10px; right: 10px; font-size: 11px; padding: 4px 10px; border-radius: 12px;">مغلق الحجز</span>
                                     <?php endif; ?>
                                 <?= $isOpen ? '</a>' : '</div>' ?>
                             <?php endif; ?>
-                            <div class="course-card-body d-flex flex-column">
-                                <h5 class="course-title"><?= esc($course['course_title']) ?></h5>
-                                <div class="course-codes mb-auto"><?= esc($course['short_desc'] ?? '') ?></div>
+
+                            <!-- Course Body -->
+                            <div class="prep-course-body">
+                                <h3 class="prep-course-title">
+                                    <a href="<?= $courseUrl ?>" class="text-dark" style="text-decoration: none;"><?= esc($course['course_title']) ?></a>
+                                </h3>
+                                <div class="prep-course-code">
+                                    <?= esc($course['short_desc'] ?? '') ?>
+                                </div>
                                 
-                                <div class="course-instructor mb-3 mt-3 text-muted" style="font-size: 0.95rem; font-weight: 500;">
-                                    <div class="d-flex align-items-center mb-1">
-                                        <span class="icon-user mr-2" style="font-size: 1.1rem; color: #136ad5;"></span> 
-                                        <span><?= esc($course['instructor_name'] ?? 'أحمد فخر الدين') ?></span>
-                                    </div>
-                                    <div class="d-flex align-items-center" style="font-size: 0.85rem;">
-                                        <span>الجامعة السعودية الإلكترونية</span>
-                                    </div>
+                                <div class="prep-course-instructor">
+                                    <i class="fas fa-user-tie text-primary ml-1"></i> <?= esc($course['instructor_name'] ?? 'م. أحمد فخر الدين') ?>
                                 </div>
 
-                                <div class="course-footer mt-auto">
-                                    <div class="course-price">
+                                <div class="prep-course-footer">
+                                    <div class="prep-course-price">
                                         <?php if (!empty($course['is_free']) && $course['is_free']): ?>
-                                            <span class="price-amount text-success">مجاني</span>
+                                            <span class="text-success" style="font-size: 1rem;">مجاني</span>
                                         <?php else: ?>
-                                            <?php
-                                            $discountedPrice = $course['course_price'] ?? 149;
-                                            ?>
-                                            <span class="price-amount"><?= number_format($discountedPrice) ?></span>
-                                            <svg class="riyal-icon" width="16" height="16" viewBox="0 0 1124.14 1256.39" xmlns="http://www.w3.org/2000/svg" style="fill: currentColor; margin-right: 4px; vertical-align: middle;">
-                                                <path d="M699.62,1113.02h0c-20.06,44.48-33.32,92.75-38.4,143.37l424.51-90.24c20.06-44.47,33.31-92.75,38.4-143.37l-424.51,90.24Z"/>
-                                                <path d="M1085.73,895.8c20.06-44.47,33.32-92.75,38.4-143.37l-330.68,70.33v-135.2l292.27-62.11c20.06-44.47,33.32-92.75,38.4-143.37l-330.68,70.27V66.13c-50.67,28.45-95.67,66.32-132.25,110.99v403.35l-132.25,28.11V0c-50.67,28.44-95.67,66.32-132.25,110.99v525.69l-295.91,62.88c-20.06,44.47-33.33,92.75-38.42,143.37l334.33-71.05v170.26l-358.3,76.14c-20.06,44.47-33.32,92.75-38.4,143.37l375.04-79.7c30.53-6.35,56.77-24.4,73.83-49.24l68.78-101.97v-.02c7.14-10.55,11.3-23.27,11.3-36.97v-149.98l132.25-28.11v270.4l424.53-90.28Z"/>
-                                            </svg>
+                                            <span><?= number_format($discountedPrice) ?> <small style="font-size: 11px;">ر.س</small></span>
                                         <?php endif; ?>
                                     </div>
-                                    <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
-                                        <button class="btn btn-primary btn-subscribe" onclick="addToCart('course', <?= $course['id'] ?>)" style="padding: 10px 15px; border-radius: 8px;">أضف للسلة</button>
+                                    
+                                    <?php if($isOpen): ?>
+                                        <button class="btn btn-primary btn-course-enroll" onclick="addToCart('course', <?= $course['id'] ?>)">
+                                            <i class="fas fa-cart-plus ml-1"></i> أضف للسلة
+                                        </button>
                                     <?php else: ?>
-                                        <button type="button" class="btn btn-subscribe" style="padding: 10px 15px; background: #6c757d; border-color: #6c757d;" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">أعلمني عند التوفر</button>
+                                        <button type="button" class="btn btn-secondary btn-course-enroll" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">
+                                            أعلمني
+                                        </button>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -166,6 +422,7 @@
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
+
     </div>
 </div>
 
