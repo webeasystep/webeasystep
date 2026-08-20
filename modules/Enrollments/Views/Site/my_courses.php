@@ -305,7 +305,7 @@
                                     <span><i class="fas fa-calendar-alt me-1"></i> <?= date('Y/m/d', strtotime($enrollment->created_at)) ?></span>
                                     <?php if ($enrollment->paid_amount > 0): ?>
                                         <span class="mr-auto font-weight-bold text-dark">
-                                            <?= number_format($enrollment->paid_amount, 2) ?> ر.س
+                                            <?= number_format($enrollment->paid_amount, 2) ?> <?= riyal_icon('13px') ?>
                                         </span>
                                     <?php endif; ?>
                                 </div>

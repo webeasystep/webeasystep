@@ -106,7 +106,7 @@
                                             <i class="fas fa-gift me-1"></i> اشترك مجاناً
                                         </a>
                                     <?php else: ?>
-                                        <span class="course-price"><?= number_format($course->course_price, 2) ?> <img src="<?= base_url('site/images/Saudi_Riyal_Symbol-2.svg') ?>" alt="ر.س" style="height: 1em; vertical-align: middle;"></span>
+                                        <span class="course-price"><?= number_format($course->course_price, 2) ?> <?= riyal_icon('14px') ?></span>
                                         <a href="<?= site_url('enrollments/purchase-course/' . $course->id) ?>" class="btn btn-enroll">
                                             <i class="fas fa-shopping-cart me-1"></i> اشتري الآن
                                         </a>

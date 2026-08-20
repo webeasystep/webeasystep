@@ -661,7 +661,7 @@
                                         <?php endif; ?>
                                     </div>
                                     <div class="course-price-badge">
-                                        <i class="fas fa-tag"></i> <?= esc(number_format((float) $item->price, 2)) ?> ر.س
+                                        <i class="fas fa-tag"></i> <?= esc(number_format((float) $item->price, 2)) ?> <?= riyal_icon('13px') ?>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -889,17 +889,17 @@
                             <div class="summary-card">
                                 <div class="summary-row">
                                     <span>المجموع الأصلي</span>
-                                    <strong id="originalAmountText"><?= esc(number_format((float) $cart_total, 2)) ?> ر.س <small class="text-muted font-weight-normal">($<?= esc(number_format((float) $cart_total / 3.75, 2)) ?>)</small></strong>
+                                    <strong id="originalAmountText"><?= esc(number_format((float) $cart_total, 2)) ?> <?= riyal_icon('14px') ?> <small class="text-muted font-weight-normal">($<?= esc(number_format((float) $cart_total / 3.75, 2)) ?>)</small></strong>
                                 </div>
                                 
                                 <div class="summary-row text-success" id="discountRow" style="display: none;">
                                     <span>الخصم (كوبون)</span>
-                                    <strong id="discountAmountText">-0.00 ر.س</strong>
+                                    <strong id="discountAmountText">-0.00 <?= riyal_icon('14px') ?></strong>
                                 </div>
                                 
                                 <div class="summary-row total">
                                     <span>الإجمالي المطلوب للدفع</span>
-                                    <strong id="finalAmountText" class="text-primary"><?= esc(number_format((float) $cart_total, 2)) ?> ر.س <small class="text-muted font-weight-normal">($<?= esc(number_format((float) $cart_total / 3.75, 2)) ?>)</small></strong>
+                                    <strong id="finalAmountText" class="text-primary"><?= esc(number_format((float) $cart_total, 2)) ?> <?= riyal_icon('16px', '#136ad5') ?> <small class="text-muted font-weight-normal">($<?= esc(number_format((float) $cart_total / 3.75, 2)) ?>)</small></strong>
                                 </div>
                                 
                                 <hr class="my-4" style="border-color: rgba(0,0,0,0.06);">
@@ -1025,14 +1025,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (parentRow) parentRow.setAttribute('data-copy', sarFormatted);
         });
 
+        const RIYAL_ICON_HTML = '<?= addslashes(riyal_icon("14px")) ?>';
         // Update Summary
         if (discountSAR > 0) {
             discountRow.style.display = 'flex';
-            discountAmountText.textContent = `-${discountSarFormatted} ر.س ($${discountUsdFormatted})`;
+            discountAmountText.innerHTML = `-${discountSarFormatted} ${RIYAL_ICON_HTML} ($${discountUsdFormatted})`;
         } else {
             discountRow.style.display = 'none';
         }
-        finalAmountText.innerHTML = `${sarFormatted} ر.س <small class="text-muted font-weight-normal">($${usdFormatted})</small>`;
+        finalAmountText.innerHTML = `${sarFormatted} ${RIYAL_ICON_HTML} <small class="text-muted font-weight-normal">($${usdFormatted})</small>`;
 
         // Update PayPal displays
         if(paypalAmountDisplay) paypalAmountDisplay.textContent = usdFormatted;

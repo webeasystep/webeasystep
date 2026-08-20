@@ -307,15 +307,15 @@
                         <div class="col-lg-4 col-md-5 p-3 p-lg-4">
                             <div class="bundle-price-box">
                                 <?php if ($bundle->original_price > $bundle->bundle_price): ?>
-                                    <div class="bundle-price-original"><?= number_format($bundle->original_price) ?> ر.س</div>
+                                    <div class="bundle-price-original"><?= number_format($bundle->original_price) ?> <?= riyal_icon('14px', '#94a3b8') ?></div>
                                 <?php endif; ?>
                                 <div class="bundle-price-current">
-                                    <?= number_format($bundle->bundle_price) ?> <small style="font-size: 1.1rem;">ر.س</small>
+                                    <?= number_format($bundle->bundle_price) ?> <?= riyal_icon('24px', '#136ad5') ?>
                                 </div>
                                 <?php if ($bundle->original_price > $bundle->bundle_price): ?>
                                     <?php $saving = $bundle->original_price - $bundle->bundle_price; ?>
                                     <div>
-                                        <span class="bundle-save-tag"><i class="fas fa-tags ml-1"></i> توفير <?= number_format($saving) ?> ر.س فوراً</span>
+                                        <span class="bundle-save-tag"><i class="fas fa-tags ml-1"></i> توفير <?= number_format($saving) ?> <?= riyal_icon('12px', '#15803d') ?> فوراً</span>
                                     </div>
                                 <?php endif; ?>
                                 <button class="btn btn-bundle-cta" onclick="addToCart('bundle', <?= $bundle->id ?>)">
@@ -402,7 +402,7 @@
                                         <?php if (!empty($course['is_free']) && $course['is_free']): ?>
                                             <span class="text-success" style="font-size: 1rem;">مجاني</span>
                                         <?php else: ?>
-                                            <span><?= number_format($discountedPrice) ?> <small style="font-size: 11px;">ر.س</small></span>
+                                            <span><?= number_format($discountedPrice) ?> <?= riyal_icon('14px', '#0f172a') ?></span>
                                         <?php endif; ?>
                                     </div>
                                     

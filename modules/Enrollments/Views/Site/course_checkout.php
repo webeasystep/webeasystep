@@ -975,7 +975,7 @@
                                     </span>
                                 <?php else: ?>
                                     <span class="price-badge-paid">
-                                        <i class="fas fa-tag"></i> <?= esc(number_format((float) $course->course_price, 2)) ?> ر.س
+                                        <i class="fas fa-tag"></i> <?= esc(number_format((float) $course->course_price, 2)) ?> <?= riyal_icon('13px') ?>
                                     </span>
                                 <?php endif; ?>
                             </div>
@@ -1010,7 +1010,7 @@
                             <div class="amount-display" id="amountDisplay">
                                 <i class="fas fa-coins"></i>
                                 <span>المبلغ المطلوب:</span>
-                                <span id="finalAmountDisplay"><?= esc(number_format((float) $course->course_price, 2)) ?> ر.س</span>
+                                <span id="finalAmountDisplay"><?= esc(number_format((float) $course->course_price, 2)) ?> <?= riyal_icon('18px', '#136ad5') ?></span>
                                 <span class="currency" id="usdEquivalent">($<?= esc(number_format((float) $course->course_price / 3.75, 2)) ?> USD)</span>
                             </div>
 
@@ -1045,15 +1045,15 @@
                                 <div class="price-breakdown" id="priceBreakdown">
                                     <div class="price-breakdown-row">
                                         <span>سعر الكورس</span>
-                                        <strong id="originalAmountText"><?= esc(number_format((float) $course->course_price, 2)) ?> ر.س</strong>
+                                        <strong id="originalAmountText"><?= esc(number_format((float) $course->course_price, 2)) ?> <?= riyal_icon('14px') ?></strong>
                                     </div>
                                     <div class="price-breakdown-row discount" id="discountRow">
                                         <span>قيمة الخصم</span>
-                                        <strong id="discountAmountText">-0.00 ر.س</strong>
+                                        <strong id="discountAmountText">-0.00 <?= riyal_icon('14px') ?></strong>
                                     </div>
                                     <div class="price-breakdown-row total">
                                         <span>المبلغ الإجمالي للدفع</span>
-                                        <strong id="finalAmountText"><?= esc(number_format((float) $course->course_price, 2)) ?> ر.س</strong>
+                                        <strong id="finalAmountText"><?= esc(number_format((float) $course->course_price, 2)) ?> <?= riyal_icon('16px', '#136ad5') ?></strong>
                                     </div>
                                 </div>
 
@@ -1153,7 +1153,7 @@
                                                 </div>
                                                 <div class="info-content">
                                                     <div class="info-label">المبلغ المطلوب تحويله</div>
-                                                    <div class="info-value"><span class="sar-amount-display"><?= esc(number_format((float) $course->course_price, 2)) ?></span> ر.س</div>
+                                                    <div class="info-value"><span class="sar-amount-display"><?= esc(number_format((float) $course->course_price, 2)) ?></span> <?= riyal_icon('14px') ?></div>
                                                 </div>
                                                 <button type="button" class="btn-copy sar-copy-btn" data-copy-text="<?= esc(number_format((float) $course->course_price, 2, '.', '')) ?>" onclick="event.stopPropagation(); copyToClipboard(this.dataset.copyText, this)">
                                                     <i class="fas fa-copy"></i> نسخ المبلغ
@@ -1267,7 +1267,7 @@
                                                 </div>
                                                 <div class="info-content">
                                                     <div class="info-label">المبلغ المطلوب تحويله</div>
-                                                    <div class="info-value"><span class="sar-amount-display"><?= esc(number_format((float) $course->course_price, 2)) ?></span> ر.س</div>
+                                                    <div class="info-value"><span class="sar-amount-display"><?= esc(number_format((float) $course->course_price, 2)) ?></span> <?= riyal_icon('14px') ?></div>
                                                 </div>
                                                 <button type="button" class="btn-copy sar-copy-btn" data-copy-text="<?= esc(number_format((float) $course->course_price, 2, '.', '')) ?>" onclick="event.stopPropagation(); copyToClipboard(this.dataset.copyText, this)">
                                                     <i class="fas fa-copy"></i> نسخ المبلغ
@@ -1456,8 +1456,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const paypalPayBtnText = document.getElementById('paypalPayBtnText');
     const csrfInput = form.querySelector('input[name="<?= csrf_token() ?>"]');
 
+    const RIYAL_ICON_HTML = '<?= addslashes(riyal_icon("14px")) ?>';
+
     function formatSar(value) {
-        return Number(value).toFixed(2) + ' ر.س';
+        return Number(value).toFixed(2) + ' ' + RIYAL_ICON_HTML;
     }
 
     function formatUsd(value) {
@@ -1517,10 +1519,10 @@ document.addEventListener('DOMContentLoaded', function() {
         isFullyDiscounted = false;
 
         if (discountRow) discountRow.classList.remove('visible');
-        if (discountAmountText) discountAmountText.textContent = '-0.00 ر.س';
-        if (originalAmountText) originalAmountText.textContent = formatSar(baseAmount);
-        if (finalAmountDisplay) finalAmountDisplay.textContent = formatSar(baseAmount);
-        if (finalAmountText) finalAmountText.textContent = formatSar(baseAmount);
+        if (discountAmountText) discountAmountText.innerHTML = '-0.00 ' + RIYAL_ICON_HTML;
+        if (originalAmountText) originalAmountText.innerHTML = formatSar(baseAmount);
+        if (finalAmountDisplay) finalAmountDisplay.innerHTML = formatSar(baseAmount);
+        if (finalAmountText) finalAmountText.innerHTML = formatSar(baseAmount);
         if (fullyDiscountedNote) fullyDiscountedNote.classList.remove('visible');
         updateDynamicAmounts(baseAmount);
     }
@@ -1532,14 +1534,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (discountRow) {
             if (Number(discountAmount) > 0) {
                 discountRow.classList.add('visible');
-                discountAmountText.textContent = '-' + Number(discountAmount).toFixed(2) + ' ر.س';
+                discountAmountText.innerHTML = '-' + Number(discountAmount).toFixed(2) + ' ' + RIYAL_ICON_HTML;
             } else {
                 discountRow.classList.remove('visible');
             }
         }
 
-        if (finalAmountDisplay) finalAmountDisplay.textContent = formatSar(currentAmount);
-        if (finalAmountText) finalAmountText.textContent = formatSar(currentAmount);
+        if (finalAmountDisplay) finalAmountDisplay.innerHTML = formatSar(currentAmount);
+        if (finalAmountText) finalAmountText.innerHTML = formatSar(currentAmount);
         updateDynamicAmounts(currentAmount);
 
         if (isFullyDiscounted) {
