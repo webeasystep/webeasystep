@@ -62,17 +62,23 @@
     .course-image-container {
         position: relative;
         overflow: hidden;
-        height: 200px;
+        width: 100%;
+        aspect-ratio: 2 / 1;
+        background-color: #0f172a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .course-thumbnail {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: top center;
         display: block;
         transition: transform 0.5s ease;
     }
     .course-card:hover .course-thumbnail {
-        transform: scale(1.05);
+        transform: scale(1.04);
     }
     
     /* Status Badge */
@@ -247,12 +253,12 @@
         <div class="row">
             <?php if (!empty($enrollments)): ?>
                 <?php foreach ($enrollments as $enrollment): ?>
-                    <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="course-card">
                             <!-- Image & Badges -->
                             <div class="course-image-container">
                                 <img
-                                    src="<?= thumb($enrollment->image, 400, 250) ?>"
+                                    src="<?= thumb($enrollment->image, 400, 200) ?>"
                                     alt="<?= esc($enrollment->course_title) ?>"
                                     class="course-thumbnail"
                                     onerror="this.src='<?= base_url('assets/images/course-placeholder.jpg') ?>'"
@@ -298,8 +304,8 @@
                                 <div class="course-meta">
                                     <span><i class="fas fa-calendar-alt me-1"></i> <?= date('Y/m/d', strtotime($enrollment->created_at)) ?></span>
                                     <?php if ($enrollment->paid_amount > 0): ?>
-                                        <span class="ms-auto" style="direction: ltr;">
-                                            $<?= number_format($enrollment->paid_amount) ?>
+                                        <span class="mr-auto font-weight-bold text-dark">
+                                            <?= number_format($enrollment->paid_amount, 2) ?> ر.س
                                         </span>
                                     <?php endif; ?>
                                 </div>

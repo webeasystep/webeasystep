@@ -60,12 +60,20 @@
     .course-image-container {
         position: relative;
         overflow: hidden;
+        width: 100%;
+        aspect-ratio: 2 / 1;
+        background-color: #0f172a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .course-thumbnail {
         width: 100%;
-        height: 220px; /* or any suitable height */
+        height: 100%;
         object-fit: cover;
+        object-position: top center;
         display: block;
+        transition: transform 0.5s ease;
     }
     /* Course Badge (Free or Price) */
     .course-badge {
@@ -223,7 +231,7 @@
                                 <img
                                         alt="<?= $courseAlt ?>"
                                         class="course-thumbnail"
-                                        src="<?= thumb($course->image, 170, 249) ?>"
+                                        src="<?= thumb($course->image, 400, 200) ?>"
                                 >
                                 <div class="course-badge info-badge">
                                     <i class="fas fa-book"></i> 
