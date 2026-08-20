@@ -27,57 +27,232 @@ class AdminUsers extends BaseController
     public function index()
     {
         $data['title'] = lang('Users.users_List');
+        $data['add_url'] = ADMIN_URL . 'users/add';
 
         if ($this->request->isAJAX()) {
             $usersModel = $this->users
                 ->select("users.id, users.full_name, users.user_type, CASE WHEN users.user_type = 2 THEN 'محاضر' ELSE 'طالب' END as user_type_label, ident_email.secret as email, ident_mobile.secret as mobile, users.status, users.active, users.created_at")
                 ->join('auth_identities as ident_email', 'ident_email.user_id = users.id AND ident_email.type = "email_password"', 'left')
-                ->join('auth_identities as ident_mobile', 'ident_mobile.user_id = users.id AND ident_mobile.type = "mobile_password"', 'left')
+                ->join('auth_identities as ident_mobile', 'ident_mobile.user_id = users.id AND ident_mobile.type IN ("mobile_password", "mobile_number")', 'left')
                 ->builder();
 
-            DtTable::hideColumns(['id']);
-            DtTable::searchableColumns(['full_name', 'ident_email.secret', 'ident_mobile.secret', 'users.user_type']);
+            DtTable::hideColumns(['id', 'user_type']);
+            DtTable::searchableColumns(['users.full_name', 'ident_email.secret', 'ident_mobile.secret', 'users.user_type']);
             DtTable::orderableColumns(['full_name', 'users.user_type', 'email', 'mobile', 'status', 'active', 'created_at']);
             DtTable::setShowColumns('full_name,user_type_label,email,mobile,status,active,created_at');
             DtTable::setColumnSwitch('active');
             DtTable::setColumnSwitch('status');
             DtTable::hideActions(['delete'], ['id' => 1]);
+
+            DtTable::changeColumn('full_name', function ($value, $row) {
+                $name = esc($value ?: 'غير محدد');
+                $phone = $row['mobile'] ?? '';
+
+                $waUrl = null;
+                if (!empty($phone)) {
+                    $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
+                    if (str_starts_with($cleanPhone, '00')) $cleanPhone = substr($cleanPhone, 2);
+                    if (str_starts_with($cleanPhone, '05') && strlen($cleanPhone) === 10) $cleanPhone = '966' . substr($cleanPhone, 1);
+                    elseif (str_starts_with($cleanPhone, '01') && strlen($cleanPhone) === 11) $cleanPhone = '20' . substr($cleanPhone, 1);
+                    $waUrl = 'https://wa.me/' . $cleanPhone;
+                }
+
+                $html = '<div class="d-flex align-items-center justify-content-between flex-wrap" style="gap: 6px;">';
+                $html .= '<span class="font-weight-bold text-dark"><i class="fas fa-user-circle text-primary ml-1"></i> ' . $name . '</span>';
+                if ($waUrl) {
+                    $html .= '<a href="' . esc($waUrl) . '" target="_blank" class="btn btn-sm shadow-sm" style="background-color: #25D366; color: #fff; border-radius: 15px; padding: 2px 8px; font-size: 11px; text-decoration: none;" title="محادثة واتساب: ' . esc($phone) . '">';
+                    $html .= '<i class="fab fa-whatsapp ml-1"></i> واتساب';
+                    $html .= '</a>';
+                }
+                $html .= '</div>';
+                return $html;
+            });
+
+            DtTable::changeColumn('created_at', function ($value) {
+                if (empty($value)) return '-';
+                return '<span class="small text-muted" dir="ltr">' . esc(date('Y-m-d H:i', strtotime($value))) . '</span>';
+            });
             
             $output = DtTable::tableRender($usersModel, false);
 
             return $this->response->setJSON($output);
         } else {
-            return view('index', $data);
+            return view('Modules\Users\Views\Admin\index', $data);
         }
     }
 
-    public function add()
+    /**
+     * Students List View & DataTable (user_type = 1)
+     */
+    public function students()
     {
-        $data['title'] = lang("Admin.add_data");
+        $data['title'] = 'إدارة الطلاب';
+        $data['add_url'] = ADMIN_URL . 'students/add';
+
+        if ($this->request->isAJAX()) {
+            $usersModel = $this->users
+                ->select("users.id, users.full_name, COALESCE(users.email, ident_email.secret) as email, COALESCE(users.mobile, ident_mobile.secret) as mobile, users.status, users.active, users.created_at")
+                ->join('auth_identities as ident_email', 'ident_email.user_id = users.id AND ident_email.type = "email_password"', 'left')
+                ->join('auth_identities as ident_mobile', 'ident_mobile.user_id = users.id AND ident_mobile.type IN ("mobile_password", "mobile_number")', 'left')
+                ->where('users.user_type', 1)
+                ->builder();
+
+            DtTable::hideColumns(['id']);
+            DtTable::searchableColumns(['users.full_name', 'ident_email.secret', 'ident_mobile.secret', 'users.email', 'users.mobile']);
+            DtTable::orderableColumns(['full_name', 'email', 'mobile', 'status', 'active', 'created_at']);
+            DtTable::setShowColumns('full_name,email,mobile,status,active,created_at');
+            DtTable::setColumnSwitch('active');
+            DtTable::setColumnSwitch('status');
+            DtTable::hideActions(['delete'], ['id' => 1]);
+
+            DtTable::changeColumn('full_name', function ($value, $row) {
+                $name = esc($value ?: 'غير محدد');
+                $phone = $row['mobile'] ?? '';
+
+                $waUrl = null;
+                if (!empty($phone)) {
+                    $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
+                    if (str_starts_with($cleanPhone, '00')) $cleanPhone = substr($cleanPhone, 2);
+                    if (str_starts_with($cleanPhone, '05') && strlen($cleanPhone) === 10) $cleanPhone = '966' . substr($cleanPhone, 1);
+                    elseif (str_starts_with($cleanPhone, '01') && strlen($cleanPhone) === 11) $cleanPhone = '20' . substr($cleanPhone, 1);
+                    $waUrl = 'https://wa.me/' . $cleanPhone;
+                }
+
+                $html = '<div class="d-flex align-items-center justify-content-between flex-wrap" style="gap: 6px;">';
+                $html .= '<span class="font-weight-bold text-dark"><i class="fas fa-user-graduate text-info ml-1"></i> ' . $name . '</span>';
+                if ($waUrl) {
+                    $html .= '<a href="' . esc($waUrl) . '" target="_blank" class="btn btn-sm shadow-sm" style="background-color: #25D366; color: #fff; border-radius: 15px; padding: 2px 8px; font-size: 11px; text-decoration: none;" title="محادثة واتساب: ' . esc($phone) . '">';
+                    $html .= '<i class="fab fa-whatsapp ml-1"></i> واتساب';
+                    $html .= '</a>';
+                }
+                $html .= '</div>';
+                return $html;
+            });
+
+            DtTable::changeColumn('created_at', function ($value) {
+                if (empty($value)) return '-';
+                return '<span class="small text-muted" dir="ltr">' . esc(date('Y-m-d H:i', strtotime($value))) . '</span>';
+            });
+
+            DtTable::setAction('edit', 'edit', ADMIN_URL . 'students/edit/');
+
+            $output = DtTable::tableRender($usersModel, false);
+            return $this->response->setJSON($output);
+        } else {
+            return view('Modules\Users\Views\Admin\index', $data);
+        }
+    }
+
+    /**
+     * Instructors List View & DataTable (user_type = 2)
+     */
+    public function instructors()
+    {
+        $data['title'] = 'إدارة المحاضرين';
+        $data['add_url'] = ADMIN_URL . 'instructors/add';
+
+        if ($this->request->isAJAX()) {
+            $usersModel = $this->users
+                ->select("users.id, users.full_name, COALESCE(users.email, ident_email.secret) as email, COALESCE(users.mobile, ident_mobile.secret) as mobile, users.status, users.active, users.created_at")
+                ->join('auth_identities as ident_email', 'ident_email.user_id = users.id AND ident_email.type = "email_password"', 'left')
+                ->join('auth_identities as ident_mobile', 'ident_mobile.user_id = users.id AND ident_mobile.type IN ("mobile_password", "mobile_number")', 'left')
+                ->where('users.user_type', 2)
+                ->builder();
+
+            DtTable::hideColumns(['id']);
+            DtTable::searchableColumns(['users.full_name', 'ident_email.secret', 'ident_mobile.secret', 'users.email', 'users.mobile']);
+            DtTable::orderableColumns(['full_name', 'email', 'mobile', 'status', 'active', 'created_at']);
+            DtTable::setShowColumns('full_name,email,mobile,status,active,created_at');
+            DtTable::setColumnSwitch('active');
+            DtTable::setColumnSwitch('status');
+            DtTable::hideActions(['delete'], ['id' => 1]);
+
+            DtTable::changeColumn('full_name', function ($value, $row) {
+                $name = esc($value ?: 'غير محدد');
+                $phone = $row['mobile'] ?? '';
+
+                $waUrl = null;
+                if (!empty($phone)) {
+                    $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
+                    if (str_starts_with($cleanPhone, '00')) $cleanPhone = substr($cleanPhone, 2);
+                    if (str_starts_with($cleanPhone, '05') && strlen($cleanPhone) === 10) $cleanPhone = '966' . substr($cleanPhone, 1);
+                    elseif (str_starts_with($cleanPhone, '01') && strlen($cleanPhone) === 11) $cleanPhone = '20' . substr($cleanPhone, 1);
+                    $waUrl = 'https://wa.me/' . $cleanPhone;
+                }
+
+                $html = '<div class="d-flex align-items-center justify-content-between flex-wrap" style="gap: 6px;">';
+                $html .= '<span class="font-weight-bold text-dark"><i class="fas fa-chalkboard-teacher text-primary ml-1"></i> ' . $name . '</span>';
+                if ($waUrl) {
+                    $html .= '<a href="' . esc($waUrl) . '" target="_blank" class="btn btn-sm shadow-sm" style="background-color: #25D366; color: #fff; border-radius: 15px; padding: 2px 8px; font-size: 11px; text-decoration: none;" title="محادثة واتساب: ' . esc($phone) . '">';
+                    $html .= '<i class="fab fa-whatsapp ml-1"></i> واتساب';
+                    $html .= '</a>';
+                }
+                $html .= '</div>';
+                return $html;
+            });
+
+            DtTable::changeColumn('created_at', function ($value) {
+                if (empty($value)) return '-';
+                return '<span class="small text-muted" dir="ltr">' . esc(date('Y-m-d H:i', strtotime($value))) . '</span>';
+            });
+
+            DtTable::setAction('edit', 'edit', ADMIN_URL . 'instructors/edit/');
+
+            $output = DtTable::tableRender($usersModel, false);
+            return $this->response->setJSON($output);
+        } else {
+            return view('Modules\Users\Views\Admin\index', $data);
+        }
+    }
+
+    public function add($defaultUserType = null)
+    {
+        $defaultType = $defaultUserType ? (int) $defaultUserType : (int) ($this->request->getGet('type') ?? 1);
+        $data['title'] = $defaultType === 2 ? 'إضافة محاضر جديد' : ($defaultType === 1 ? 'إضافة طالب جديد' : lang("Admin.add_data"));
 
         if ($this->request->is('post')) {
             $this->rules['password'] = ['label' => lang("Users.password"), 'rules' => "required"];
             $this->rules['email'] = ['label' => 'البريد الإلكتروني', 'rules' => "required|valid_email|is_unique[auth_identities.secret]"];
             $this->rules['mobile'] = ['label' => 'الجوال', 'rules' => "required|is_unique[auth_identities.secret]"];
-            $this->rules['username'] = ['label' => lang("Users.username"), 'rules' => "required|alpha_numeric_punct|min_length[3]|max_length[30]|is_unique[users.username]"];
+            $this->rules['username'] = ['label' => lang("Users.username"), 'rules' => "permit_empty|alpha_numeric_punct|min_length[3]|max_length[30]|is_unique[users.username]"];
 
             if ($this->validate($this->rules)) {
                 $id = $this->data_arr();
                 $this->fireUploader->upload_photos($this->users, 'avatar', $id);
                 $this->show_msg('success', lang("Admin.add"), lang("Admin.add_success"));
-                return redirect()->to(ADMIN_URL . "users");
+
+                $submittedType = (int) ($this->request->getPost('user_type') ?? $defaultType);
+                $redirectUrl = $submittedType === 2 ? (ADMIN_URL . "instructors") : (ADMIN_URL . "students");
+                return redirect()->to($redirectUrl);
             } else {
                 $this->show_msg('danger', lang("Admin.validation_errors"), validation_errors());
             }
         }
 
-        $data['user'] = new \CodeIgniter\Shield\Entities\User();
-        return view('form', $data);
+        $user = new \stdClass();
+        $user->id = null;
+        $user->username = '';
+        $user->full_name = '';
+        $user->email = '';
+        $user->mobile = '';
+        $user->user_type = $defaultType;
+        $user->instructor_bio = '';
+        $user->active = 1;
+        $user->status = 1;
+
+        $data['user'] = $user;
+        return view('Modules\Users\Views\Admin\form', $data);
     }
 
-    public function edit($id)
+    public function edit($id, $overrideType = null)
     {
-        $data['title'] = lang("Admin.add_data");
+        $user = $this->users->find($id);
+        if (!$user) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $isInstructor = ((int) ($overrideType ?? $user->user_type) === 2);
+        $data['title'] = $isInstructor ? 'تعديل بيانات المحاضر' : 'تعديل بيانات الطالب';
 
         if ($this->request->is('post')) {
             $this->rules['email'] = ['label' => 'البريد الإلكتروني', 'rules' => "required|valid_email"];
@@ -87,15 +262,13 @@ class AdminUsers extends BaseController
                 $id = $this->data_arr($id);
                 $this->fireUploader->upload_photos($this->users, 'avatar', $id);
                 $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
-                return redirect()->to(ADMIN_URL . "users");
+
+                $submittedType = (int) ($this->request->getPost('user_type') ?? $user->user_type);
+                $redirectUrl = $submittedType === 2 ? (ADMIN_URL . "instructors") : (ADMIN_URL . "students");
+                return redirect()->to($redirectUrl);
             } else {
                 $this->show_msg('danger', lang("Admin.validation_errors"), validation_errors());
             }
-        }
-
-        $user = $this->users->find($id);
-        if (!$user) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
         $db = \Config\Database::connect();
@@ -111,10 +284,14 @@ class AdminUsers extends BaseController
         $user->email = !empty($emailIdentity->secret) ? $emailIdentity->secret : ($user->email ?? '');
         $user->mobile = !empty($mobileIdentity->secret) ? $mobileIdentity->secret : ($user->mobile ?? '');
 
+        if ($overrideType) {
+            $user->user_type = (int) $overrideType;
+        }
+
         $data['user'] = $user;
         $data['files'] = !empty($user->avatar) ? (is_array($user->avatar) ? $user->avatar : json_decode($user->avatar, true)) : [];
 
-        return view('form', $data);
+        return view('Modules\Users\Views\Admin\form', $data);
     }
 
     function data_arr($id = NULL){

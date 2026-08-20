@@ -1,6 +1,5 @@
 <?php
 
-
 use Modules\Users\Controllers\AdminUsers;
 use Modules\Users\Controllers\InstructorPortal;
 use Modules\Users\Controllers\Users;
@@ -14,21 +13,33 @@ if (!isset($routes)) {
 $routes->group('dt_admin', ['namespace' => 'Modules\Users\Controllers',
     'filter' => 'admin_filter'], static function ($routes) {
 
-  //  example of permissions $routes->get('users', [AdminUsers::class, 'index'], ['filter' => 'admin_filter']);
+    // All Users
     $routes->match(['GET', 'POST'], 'users',  [AdminUsers::class, 'index']);
     $routes->post('users/index', [AdminUsers::class, 'index']);
-
     $routes->match(['GET', 'POST'], 'users/add',  [AdminUsers::class, 'add']);
-
     $routes->match(['GET', 'POST'], 'users/edit/(:num)',  [AdminUsers::class, 'edit/$1']);
-
     $routes->post('users/show/(:num)', [AdminUsers::class, 'show/$1']);
-
     $routes->post('users/edit', [AdminUsers::class, 'edit']);
-
     $routes->post('users/switchToggle', [AdminUsers::class, 'switchToggle']);
-
     $routes->post('users/delete', [AdminUsers::class, 'delete']);
+
+    // Students Routes
+    $routes->match(['GET', 'POST'], 'students', [AdminUsers::class, 'students']);
+    $routes->post('students/index', [AdminUsers::class, 'students']);
+    $routes->match(['GET', 'POST'], 'students/add', [AdminUsers::class, 'add/1']);
+    $routes->match(['GET', 'POST'], 'students/edit/(:num)', [AdminUsers::class, 'edit/$1/1']);
+    $routes->post('students/show/(:num)', [AdminUsers::class, 'show/$1']);
+    $routes->post('students/switchToggle', [AdminUsers::class, 'switchToggle']);
+    $routes->post('students/delete', [AdminUsers::class, 'delete']);
+
+    // Instructors Routes
+    $routes->match(['GET', 'POST'], 'instructors', [AdminUsers::class, 'instructors']);
+    $routes->post('instructors/index', [AdminUsers::class, 'instructors']);
+    $routes->match(['GET', 'POST'], 'instructors/add', [AdminUsers::class, 'add/2']);
+    $routes->match(['GET', 'POST'], 'instructors/edit/(:num)', [AdminUsers::class, 'edit/$1/2']);
+    $routes->post('instructors/show/(:num)', [AdminUsers::class, 'show/$1']);
+    $routes->post('instructors/switchToggle', [AdminUsers::class, 'switchToggle']);
+    $routes->post('instructors/delete', [AdminUsers::class, 'delete']);
 
     // Device Monitoring & Control Routes
     $routes->get('users/devices', [AdminUsers::class, 'devices']);
@@ -62,15 +73,8 @@ $routes->group('/', ['namespace' => 'Modules\Users\Controllers'], static functio
     $routes->get('users/logout', [Users::class, 'logout']);
     $routes->get('users/register', [Users::class, 'register']);
     $routes->post('users/register', [Users::class, 'register']);
-    $routes->get('users/register', [Users::class, 'register']);
-    $routes->post('users/register', [Users::class, 'register']);
     $routes->get('users/instructor-register', [Users::class, 'instructorRegister']);
     $routes->post('users/instructor-register', [Users::class, 'instructorRegister']);
-    
-    // Custom activation routes removed - handled by Shield
-    
-    // Test email route (keeping for now to test template view if needed, or remove if user wants strict cleanup)
-    // $routes->get('test-email', [Users::class, 'testEmail']);
 
     // Settings routes (require authentication)
     $routes->group('', ['filter' => 'site_filter'], static function ($routes) {
@@ -91,9 +95,3 @@ $routes->group('instructor', [
     $routes->get('orders', [InstructorPortal::class, 'orders']);
     $routes->get('faq', [InstructorPortal::class, 'faq']);
 });
-
-/*** Route for Users api ***/
-/*
-$routes->group('api', ['namespace' => 'App\API\v1'], static function ($routes) {
-    $routes->resource('users');
-});*/

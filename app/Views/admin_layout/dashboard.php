@@ -5,98 +5,82 @@
     <div id="message" data-message="<?= session()->getFlashdata('message') ?>"></div>
     <div class="row mb-2">
 
-        <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-gradient-orange">
+        <!-- 1. المدفوعات المكتملة -->
+        <div class="col-lg-4 col-md-6 col-12 mb-3">
+            <div class="small-box bg-gradient-success shadow-sm">
                 <div class="inner">
-                    <h3><?= esc($articles) ?></h3>
-                    <p><?= lang("Admin.articles") ?></p>
+                    <h3><?= esc($paid_count) ?></h3>
+                    <p class="font-weight-bold" style="font-size: 16px;">المدفوعات (المكتملة)</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-solid fa-file"></i>
-                </div>
-                <a href="<?= ADMIN_URL . 'articles' ?>" class="small-box-footer">
-                    المزيد <i class="fas fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-gradient-green">
-                <div class="inner">
-                    <h3><?= esc($tb_courses) ?></h3>
-                    <p><?= lang("Admin.courses") ?></p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-solid fa-book"></i>
-                </div>
-                <a href="<?= ADMIN_URL . 'courses' ?>" class="small-box-footer">
-                    المزيد <i class="fas fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-gradient-cyan">
-                <div class="inner">
-                    <h3><?= esc($tb_course_enrollments) ?></h3>
-                    <p><?= lang("Admin.enrollments") ?></p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-solid fa-list"></i>
+                    <i class="fas fa-check-circle"></i>
                 </div>
                 <a href="<?= ADMIN_URL . 'enrollments' ?>" class="small-box-footer">
-                    المزيد <i class="fas fa-arrow-circle-right"></i>
+                    عرض الاشتراكات <i class="fas fa-arrow-circle-left mr-1"></i>
                 </a>
             </div>
         </div>
 
-        <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-gradient-blue">
+        <!-- 2. مدفوعات معلقة -->
+        <div class="col-lg-4 col-md-6 col-12 mb-3">
+            <div class="small-box bg-gradient-warning shadow-sm">
                 <div class="inner">
-                    <h3><?= lang("Admin.payments") ?></h3>
-                    <p><?= lang("Admin.payments") ?></p>
+                    <h3><?= esc($pending_count) ?></h3>
+                    <p class="font-weight-bold text-dark" style="font-size: 16px;">مدفوعات معلقة</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-solid fa-money-bill"></i>
+                    <i class="fas fa-clock"></i>
                 </div>
-                <a href="<?= ADMIN_URL . 'payments' ?>" class="small-box-footer">
-                    المزيد <i class="fas fa-arrow-circle-right"></i>
+                <a href="<?= ADMIN_URL . 'enrollments' ?>" class="small-box-footer" style="color: #1f2d3d !important;">
+                    مراجعة الطلبات <i class="fas fa-arrow-circle-left mr-1"></i>
                 </a>
             </div>
         </div>
 
-        <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-gradient-gray">
+        <!-- 3. الطلبة -->
+        <div class="col-lg-4 col-md-6 col-12 mb-3">
+            <div class="small-box bg-gradient-info shadow-sm">
                 <div class="inner">
-                    <h3><?= esc($users) ?></h3>
-                    <p><?= lang("Admin.users") ?></p>
+                    <h3><?= esc($students_count) ?></h3>
+                    <p class="font-weight-bold" style="font-size: 16px;">الطلبة</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-solid fa-user-plus"></i>
+                    <i class="fas fa-user-graduate"></i>
                 </div>
-                <a href="<?= ADMIN_URL . 'categories' ?>" class="small-box-footer">
-                    المزيد <i class="fas fa-arrow-circle-right"></i>
+                <a href="<?= ADMIN_URL . 'students' ?>" class="small-box-footer">
+                    إدارة الطلاب <i class="fas fa-arrow-circle-left mr-1"></i>
                 </a>
             </div>
         </div>
 
-        <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-gradient-yellow">
+        <!-- 4. المحاضرين -->
+        <div class="col-lg-6 col-md-6 col-12 mb-3">
+            <div class="small-box bg-gradient-primary shadow-sm">
                 <div class="inner">
-                    <h3><?= esc($users) ?></h3>
-                    <p><?= lang("Admin.users") ?></p>
+                    <h3><?= esc($instructors_count) ?></h3>
+                    <p class="font-weight-bold" style="font-size: 16px;">المحاضرين</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-solid fa-users"></i>
+                    <i class="fas fa-chalkboard-teacher"></i>
                 </div>
-                <a href="<?= ADMIN_URL . 'users' ?>" class="small-box-footer">
-                    المزيد <i class="fas fa-arrow-circle-right"></i>
+                <a href="<?= ADMIN_URL . 'instructors' ?>" class="small-box-footer">
+                    إدارة المحاضرين <i class="fas fa-arrow-circle-left mr-1"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 5. طلبات المقررات -->
+        <div class="col-lg-6 col-md-6 col-12 mb-3">
+            <div class="small-box bg-gradient-secondary shadow-sm">
+                <div class="inner">
+                    <h3><?= esc($course_requests_count) ?></h3>
+                    <p class="font-weight-bold" style="font-size: 16px;">طلبات المقررات</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <a href="<?= ADMIN_URL . 'course_requests' ?>" class="small-box-footer">
+                    عرض الطلبات <i class="fas fa-arrow-circle-left mr-1"></i>
                 </a>
             </div>
         </div>

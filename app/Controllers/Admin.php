@@ -45,13 +45,40 @@ class Admin extends BaseController
         // Setting the time zone
         $this->db->query("SET time_zone='+3:00'");
 
-        // Fetch counts for each table
-        $tables = ['articles','tb_course_enrollments', 'tb_courses', 'users'];
-        foreach ($tables as $table) {
-            $query = $this->db->query("SELECT COUNT(*) as count FROM $table");
-            $result = $query->getRow();
-            $data[$table] = $result->count ?? 0;
-        }
+        // 1. المدفوعات (الاشتراكات المكتملة/المفعلة - كعدد فقط)
+        $data['paid_count'] = (int) ($this->db->query("
+            SELECT COUNT(DISTINCT CASE 
+                WHEN bundle_id IS NOT NULL AND batch_id IS NOT NULL THEN CONCAT('b_', batch_id, '_', bundle_id)
+                ELSE CONCAT('s_', id)
+            END) as count 
+            FROM tb_course_enrollments 
+            WHERE status = 'approved'
+        ")->getRow()?->count ?? 0);
+
+        // 2. مدفوعات معلقة (عدد فقط)
+        $data['pending_count'] = (int) ($this->db->query("
+            SELECT COUNT(DISTINCT CASE 
+                WHEN bundle_id IS NOT NULL AND batch_id IS NOT NULL THEN CONCAT('b_', batch_id, '_', bundle_id)
+                ELSE CONCAT('s_', id)
+            END) as count 
+            FROM tb_course_enrollments 
+            WHERE status = 'pending'
+        ")->getRow()?->count ?? 0);
+
+        // 3. الطلبة (user_type = 1)
+        $data['students_count'] = (int) ($this->db->query("
+            SELECT COUNT(*) as count FROM users WHERE user_type = 1
+        ")->getRow()?->count ?? 0);
+
+        // 4. المحاضرين (user_type = 2)
+        $data['instructors_count'] = (int) ($this->db->query("
+            SELECT COUNT(*) as count FROM users WHERE user_type = 2
+        ")->getRow()?->count ?? 0);
+
+        // 5. طلبات المقررات
+        $data['course_requests_count'] = (int) ($this->db->query("
+            SELECT COUNT(*) as count FROM tb_course_requests
+        ")->getRow()?->count ?? 0);
 
         return MainView('admin_layout/dashboard', $data);
     }

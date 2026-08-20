@@ -5,8 +5,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6">
-            <a href="<?= ADMIN_URL . 'users/add' ?>" class="btn btn-primary mb-1 add">
-                <i class="fas fa-plus"></i><?= lang("Admin.add_data") ?>
+            <a href="<?= $add_url ?? (ADMIN_URL . 'users/add') ?>" class="btn btn-primary mb-1 add">
+                <i class="fas fa-plus"></i> <?= lang("Admin.add_data") ?>
             </a>
         </div>
 
