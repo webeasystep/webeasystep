@@ -338,8 +338,14 @@
                         </div>
                     </div>
 
-                    <div class="instructor-bio-text">
-                        <?= nl2br(esc($instructorBio)) ?>
+                    <div class="instructor-bio-wrapper">
+                        <div class="instructor-bio-text collapsed" id="instructorBioText">
+                            <?= nl2br(esc($instructorBio)) ?>
+                        </div>
+                        <button type="button" class="instructor-bio-toggle-btn" id="instructorBioToggle" onclick="toggleInstructorBio()" aria-expanded="false" aria-controls="instructorBioText">
+                            <span class="toggle-text">المزيد</span>
+                            <i class="fas fa-chevron-down toggle-icon" aria-hidden="true"></i>
+                        </button>
                     </div>
 
                     <div class="instructor-highlights">
@@ -494,6 +500,15 @@
     let cart = [];
 
     document.addEventListener("DOMContentLoaded", function () {
+        // Check if instructor bio text is short enough to not need a toggle
+        const bioText = document.getElementById("instructorBioText");
+        const bioToggle = document.getElementById("instructorBioToggle");
+        if (bioText && bioToggle) {
+            if (bioText.textContent.trim().length <= 90) {
+                bioToggle.style.display = "none";
+            }
+        }
+
         const previewLinks = document.querySelectorAll(".preview-video-link");
         const videoFrame   = document.getElementById("videoFrame");
         const modal        = $("#videoModal");
@@ -688,6 +703,37 @@
             }
         }
     });
+
+    // Instructor Bio Expand/Collapse Function
+    function toggleInstructorBio() {
+        const bioText = document.getElementById("instructorBioText");
+        const bioToggle = document.getElementById("instructorBioToggle");
+        if (!bioText || !bioToggle) return;
+
+        const isCollapsed = bioText.classList.contains("collapsed");
+        const toggleText = bioToggle.querySelector(".toggle-text");
+        const toggleIcon = bioToggle.querySelector(".toggle-icon");
+
+        if (isCollapsed) {
+            bioText.classList.remove("collapsed");
+            bioText.classList.add("expanded");
+            bioToggle.setAttribute("aria-expanded", "true");
+            if (toggleText) toggleText.textContent = "عرض أقل";
+            if (toggleIcon) {
+                toggleIcon.classList.remove("fa-chevron-down");
+                toggleIcon.classList.add("fa-chevron-up");
+            }
+        } else {
+            bioText.classList.remove("expanded");
+            bioText.classList.add("collapsed");
+            bioToggle.setAttribute("aria-expanded", "false");
+            if (toggleText) toggleText.textContent = "المزيد";
+            if (toggleIcon) {
+                toggleIcon.classList.remove("fa-chevron-up");
+                toggleIcon.classList.add("fa-chevron-down");
+            }
+        }
+    }
 </script>
 
 <?php $this->endSection(); ?>
