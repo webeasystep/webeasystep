@@ -6,88 +6,85 @@
 <!-- Main Section with Modern Design -->
 <div class="untree_co-section">
     <div class="container">
-        <!-- Enhanced Course Header -->
-        <div class="course-header-wrapper" data-aos="fade-up" data-aos-delay="100" style="text-align: right; padding-top: 3rem; padding-bottom: 3rem;">
+        <!-- Compact & Elegant Course Header -->
+        <?php 
+            $rawDuration = trim((string)($course->duration ?? '0:00'));
+            $cleanDuration = str_replace('دقيقة', '', $rawDuration);
+            $cleanDuration = trim($cleanDuration);
+            $durationDisplay = (!empty($cleanDuration) && $cleanDuration !== '0:00' && $cleanDuration !== '0') ? $cleanDuration . ' دقيقة' : null;
+            $unitCount = $course->unit_count ?? count($units);
+            $isOpen = isset($course->is_open) && $course->is_open == 1;
+        ?>
+        <div class="course-header-wrapper" data-aos="fade-up" data-aos-delay="100">
             
             <!-- Status Badge -->
-            <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
-                <span style="background-color: <?= (isset($course->is_open) && $course->is_open == 1) ? 'rgba(40, 167, 69, 0.1)' : 'rgba(220, 53, 69, 0.1)' ?>; color: <?= (isset($course->is_open) && $course->is_open == 1) ? '#28a745' : '#dc3545' ?>; padding: 6px 14px; border-radius: 9999px; font-size: 0.85rem; font-weight: 700; border: 1px solid <?= (isset($course->is_open) && $course->is_open == 1) ? 'rgba(40, 167, 69, 0.2)' : 'rgba(220, 53, 69, 0.2)' ?>; display: inline-flex; align-items: center; gap: 8px;">
-                    <span style="width: 6px; height: 6px; border-radius: 50%; background-color: <?= (isset($course->is_open) && $course->is_open == 1) ? '#28a745' : '#dc3545' ?>; box-shadow: 0 0 6px <?= (isset($course->is_open) && $course->is_open == 1) ? 'rgba(40, 167, 69, 0.5)' : 'rgba(220, 53, 69, 0.5)' ?>;"></span>
-                    <?= (isset($course->is_open) && $course->is_open == 1) ? 'التسجيل مفتوح' : 'مغلق' ?>
+            <div class="course-status-badge-wrap">
+                <span class="course-status-badge <?= $isOpen ? 'status-open' : 'status-closed' ?>">
+                    <span class="status-dot"></span>
+                    <?= $isOpen ? 'التسجيل مفتوح' : 'التسجيل مغلق' ?>
                 </span>
             </div>
 
-            <h2 class="section-title text-center" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-primary);"><?= esc($title) ?></h2>
-            <p class="course-description text-center" style="max-width: 750px; margin: 0 auto 2.5rem auto; font-size: 1.15rem; line-height: 1.8; color: var(--text-secondary);"><?= esc($course->course_desc) ?></p>
+            <h1 class="section-title text-center"><?= esc($title) ?></h1>
+            
+            <?php if (!empty($course->course_desc)): ?>
+                <p class="course-description text-center"><?= esc($course->course_desc) ?></p>
+            <?php endif; ?>
 
-            <!-- Core Metadata -->
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color); margin-bottom: 1.5rem;">
-                
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="display: flex; justify-content: center; align-items: center; width: 44px; height: 44px; background: var(--bg-accent); border: 1px solid var(--border-light); border-radius: 12px; color: var(--primary-color); box-shadow: 0 2px 4px rgba(19, 106, 213, 0.05);">
-                        <i class="icon-user" style="font-size: 1.2rem;"></i>
+            <!-- Compact Unified Meta & Stats Strip -->
+            <div class="course-header-meta-strip">
+                <?php if (!empty($course->instructor_name)): ?>
+                    <div class="meta-item">
+                        <i class="icon-user meta-icon"></i>
+                        <span class="meta-label">المحاضر:</span>
+                        <strong class="meta-val"><?= esc($course->instructor_name) ?></strong>
                     </div>
-                    <div style="display: flex; flex-direction: column; text-align: right;">
-                        <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 2px;">المحاضر</span>
-                        <span style="color: var(--text-primary); font-size: 1.05rem; font-weight: 700;"><?= esc($course->instructor_name ?? 'غير محدد') ?></span>
-                    </div>
-                </div>
-                
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="display: flex; justify-content: center; align-items: center; width: 44px; height: 44px; background: var(--bg-accent); border: 1px solid var(--border-light); border-radius: 12px; color: var(--primary-color); box-shadow: 0 2px 4px rgba(19, 106, 213, 0.05);">
-                        <i class="icon-info-circle" style="font-size: 1.2rem;"></i>
-                    </div>
-                    <div style="display: flex; flex-direction: column; text-align: right;">
-                        <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 2px;">المستوى</span>
-                        <span style="color: var(--text-primary); font-size: 1.05rem; font-weight: 700;"><?= esc($course->difficulty_level ?? '1') ?></span>
-                    </div>
-                </div>
-                
-                <?php 
-                $duration = $course->duration ?? '0:00';
-                if ($duration !== '0:00' && $duration !== '0 دقيقة' && $duration !== '0'): 
-                ?>
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="display: flex; justify-content: center; align-items: center; width: 44px; height: 44px; background: var(--bg-accent); border: 1px solid var(--border-light); border-radius: 12px; color: var(--primary-color); box-shadow: 0 2px 4px rgba(19, 106, 213, 0.05);">
-                        <i class="icon-clock-o" style="font-size: 1.2rem;"></i>
-                    </div>
-                    <div style="display: flex; flex-direction: column; text-align: right;">
-                        <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 2px;">المدة الزمنية</span>
-                        <span style="color: var(--text-primary); font-size: 1.05rem; font-weight: 700;"><?= esc($duration) ?> دقيقة</span>
-                    </div>
-                </div>
                 <?php endif; ?>
-                
-            </div>
 
-            <!-- Stats -->
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.5rem; color: var(--text-secondary); font-size: 0.95rem; font-weight: 600;">
-                <?php $unitCount = $course->unit_count ?? count($units); ?>
-                <?php if ($unitCount > 0): ?>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <i class="icon-book" style="color: var(--text-muted); font-size: 1.1rem;"></i> <?= $unitCount ?> وحدة
+                <div class="meta-item">
+                    <i class="icon-info-circle meta-icon"></i>
+                    <span class="meta-label">المستوى:</span>
+                    <strong class="meta-val"><?= esc($course->difficulty_level ?? '1') ?></strong>
                 </div>
+
+                <?php if ($durationDisplay): ?>
+                    <div class="meta-item">
+                        <i class="icon-clock-o meta-icon"></i>
+                        <span class="meta-label">المدة:</span>
+                        <strong class="meta-val"><?= esc($durationDisplay) ?></strong>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($unitCount > 0): ?>
+                    <span class="meta-separator"></span>
+                    <div class="meta-item">
+                        <i class="icon-book meta-icon"></i>
+                        <strong class="meta-val"><?= $unitCount ?></strong> وحدات
+                    </div>
                 <?php endif; ?>
 
                 <?php if (!empty($course->video_count)): ?>
-                <div style="width: 4px; height: 4px; background-color: var(--border-color); border-radius: 50%;"></div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <i class="icon-video" style="color: var(--text-muted); font-size: 1.1rem;"></i> <?= $course->video_count ?> فيديو
-                </div>
+                    <span class="meta-separator"></span>
+                    <div class="meta-item">
+                        <i class="icon-video meta-icon"></i>
+                        <strong class="meta-val"><?= $course->video_count ?></strong> فيديو
+                    </div>
                 <?php endif; ?>
 
                 <?php if (!empty($course->quiz_count)): ?>
-                <div style="width: 4px; height: 4px; background-color: var(--border-color); border-radius: 50%;"></div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <i class="icon-question-circle" style="color: var(--text-muted); font-size: 1.1rem;"></i> <?= $course->quiz_count ?> اختبار
-                </div>
+                    <span class="meta-separator"></span>
+                    <div class="meta-item">
+                        <i class="icon-question-circle meta-icon"></i>
+                        <strong class="meta-val"><?= $course->quiz_count ?></strong> اختبار
+                    </div>
                 <?php endif; ?>
 
                 <?php if (!empty($course->page_count)): ?>
-                <div style="width: 4px; height: 4px; background-color: var(--border-color); border-radius: 50%;"></div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <i class="icon-file-text" style="color: var(--text-muted); font-size: 1.1rem;"></i> <?= $course->page_count ?> صفحة
-                </div>
+                    <span class="meta-separator"></span>
+                    <div class="meta-item">
+                        <i class="icon-file-text meta-icon"></i>
+                        <strong class="meta-val"><?= $course->page_count ?></strong> صفحة
+                    </div>
                 <?php endif; ?>
             </div>
 

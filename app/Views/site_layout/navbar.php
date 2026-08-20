@@ -226,7 +226,7 @@
             background: #136ad5 !important; /* brand color */
             border-radius: 0 0 12px 12px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding-bottom: 60px; /* more bottom padding for a balanced header */
+            padding-bottom: 12px; /* compact header spacing */
         }
         .site-nav a {
             color: #fff !important;
