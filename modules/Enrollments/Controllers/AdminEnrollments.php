@@ -550,7 +550,7 @@ class AdminEnrollments extends BaseController
     private function sendApprovalEmail($enrollmentId)
     {
         $enrollment = $this->courseEnrollments
-            ->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.slug, users.full_name, auth_identities.secret as email')
+            ->select('tb_course_enrollments.*, tb_courses.course_title, tb_courses.slug, tb_courses.telegram_link, users.full_name, COALESCE(users.email, auth_identities.secret) as email')
             ->join('tb_courses', 'tb_courses.id = tb_course_enrollments.course_id')
             ->join('users', 'users.id = tb_course_enrollments.user_id')
             ->join('auth_identities', 'auth_identities.user_id = users.id AND auth_identities.type = "email_password"', 'left')
@@ -568,9 +568,10 @@ class AdminEnrollments extends BaseController
         $courseUrl = base_url('courses/course_view/' . $enrollment->slug);
 
         $message = MainView('Modules\Enrollments\Views\Site\emails\course_approved', [
-            'full_name' => $enrollment->full_name,
-            'course_title' => $enrollment->course_title,
-            'course_url' => $courseUrl
+            'full_name'     => $enrollment->full_name,
+            'course_title'  => $enrollment->course_title,
+            'course_url'    => $courseUrl,
+            'telegram_link' => $enrollment->telegram_link ?? null,
         ]);
 
         $email->setMessage($message);

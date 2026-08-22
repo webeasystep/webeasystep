@@ -127,17 +127,23 @@
             </p>
 
             <!-- Telegram Support Group Section -->
-            <div style="background-color: #f0f7ff; border: 1px solid #d0e7ff; border-right: 4px solid #136ad5; border-radius: 8px; padding: 18px; margin: 25px 0; direction: rtl; text-align: right;">
+            <?php 
+                $telegramGroupUrl = !empty($telegram_link) ? trim($telegram_link) : 'https://t.me/fakhrcs';
+            ?>
+            <div style="background-color: #f0f7ff; border: 1px solid #d0e7ff; border-right: 4px solid #136ad5; border-radius: 8px; padding: 20px; margin: 25px 0; direction: rtl; text-align: right;">
                 <h3 style="margin: 0 0 10px 0; font-size: 16px; font-weight: 700; color: #136ad5;">
-                    💬 جروب الدعم الفني والمتابعة على تيليجرام
+                    💬 جروب الدعم والمتابعة على تيليجرام
                 </h3>
-                <p style="margin: 0 0 15px 0; font-size: 14px; color: #555555; line-height: 1.5;">
-                    للحصول على الدعم الفني المباشر، الإجابة على استفساراتك، والتواصل مع المدرب وزملائك في الدورة، يرجى الانضمام إلى جروب تيليجرام المخصص لتقديم الدعم للمشتركين.
+                <p style="margin: 0 0 15px 0; font-size: 14px; color: #555555; line-height: 1.6;">
+                    للحصول على الدعم المباشر، الإجابة على استفساراتك، والتواصل مع المحاضر وزملائك المشتركين، يرجى الانضمام إلى جروب التيليجرام المخصص لمقرر <strong>"<?= esc($course_title) ?>"</strong>:
                 </p>
-                <div style="text-align: center;">
-                    <a href="https://t.me/+5ZmUqh_I981hYWY0" target="_blank" style="display: inline-block; background-color: #24A1DE; color: #ffffff !important; text-decoration: none; padding: 10px 24px; border-radius: 8px; font-weight: bold; font-size: 14px; box-shadow: 0 3px 10px rgba(36, 161, 222, 0.2);">
-                        انضم للجروب عبر تيليجرام
+                <div style="text-align: center; margin: 15px 0 10px 0;">
+                    <a href="<?= esc($telegramGroupUrl) ?>" target="_blank" style="display: inline-block; background-color: #24A1DE; color: #ffffff !important; text-decoration: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; font-size: 14px; box-shadow: 0 3px 10px rgba(36, 161, 222, 0.25);">
+                        انضم لجروب تيليجرام الخاص بالمقرر
                     </a>
+                </div>
+                <div style="font-size: 12px; color: #777777; margin-top: 12px; text-align: center; direction: ltr;">
+                    <a href="<?= esc($telegramGroupUrl) ?>" target="_blank" style="color: #24A1DE; text-decoration: none; word-break: break-all;"><?= esc($telegramGroupUrl) ?></a>
                 </div>
             </div>
 

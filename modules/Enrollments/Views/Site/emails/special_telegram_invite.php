@@ -135,6 +135,9 @@
                 يسعدنا دعوتك للانضمام إلى مجتمعنا وجروب المتابعة والدعم الفني المخصص على تيليجرام لتقديم الدعم المباشر ومساعدتك في مسيرتك التعليمية.
             </p>
 
+            <?php 
+                $telegramGroupUrl = !empty($telegram_link) ? trim($telegram_link) : 'https://t.me/fakhrcs';
+            ?>
             <!-- Telegram Section -->
             <div class="telegram-section">
                 <h3 class="telegram-title">💬 جروب الدعم والمتابعة الفنية</h3>
@@ -143,7 +146,7 @@
                 </p>
                 
                 <div class="action-button-container">
-                    <a href="https://t.me/+5ZmUqh_I981hYWY0" target="_blank" class="action-button">
+                    <a href="<?= esc($telegramGroupUrl) ?>" target="_blank" class="action-button">
                         انضم إلى جروب التيليجرام الآن
                     </a>
                 </div>
@@ -152,7 +155,7 @@
             <!-- Backup Link -->
             <div class="link-help">
                 <p style="margin: 0 0 5px 0;">إذا لم يعمل الزر أعلاه، يمكنك نسخ الرابط التالي ولصقه في المتصفح الخاص بك:</p>
-                <a href="https://t.me/+5ZmUqh_I981hYWY0" style="color: #136ad5;">https://t.me/+5ZmUqh_I981hYWY0</a>
+                <a href="<?= esc($telegramGroupUrl) ?>" style="color: #136ad5;"><?= esc($telegramGroupUrl) ?></a>
             </div>
         </div>
 

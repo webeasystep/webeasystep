@@ -833,7 +833,7 @@ class Courses extends BaseController
 
         // 10) Prepare data for the view based on current item type
         $videoId = null;
-        $videoLibraryId = '495222'; // Default fallback
+        $videoLibraryId = env('BUNNY_NET_LIBRARY_ID'); // Default fallback from .env
         $itemTitle = '';
         $itemDesc = 'Default item description';
         $quizData = null;
@@ -854,7 +854,7 @@ class Courses extends BaseController
 
                         // BunnyCDN expects numeric library ID, not UUID
                         // The collection_id is a UUID, but we need the actual library ID
-                        $videoLibraryId = '495222'; // Default BunnyCDN library ID
+                        $videoLibraryId = env('BUNNY_NET_LIBRARY_ID'); // Default BunnyCDN library ID from .env
 
                         // Only use video_library_id if it's numeric (valid BunnyCDN library ID)
                         if (!empty($currentItem['metadata']['video_library_id']) &&
@@ -864,7 +864,7 @@ class Courses extends BaseController
 
                     } else {
                         $videoId = $currentItem['item_id'] ?? 'dQw4w9WgXcQ';
-                        $videoLibraryId = '495222'; // Default fallback
+                        $videoLibraryId = env('BUNNY_NET_LIBRARY_ID'); // Default fallback from .env
                     }
                     break;
                 case 'quiz':
