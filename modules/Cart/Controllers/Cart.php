@@ -3,6 +3,8 @@
 namespace Modules\Cart\Controllers;
 
 use App\Controllers\BaseController;
+use App\Libraries\UserType;
+use CodeIgniter\Shield\Entities\User;
 use Modules\Cart\Models\CartModel;
 use Modules\Enrollments\Models\CourseEnrollmentsModel;
 use Modules\Bundles\Models\BundlesModel;
@@ -61,7 +63,8 @@ class Cart extends BaseController
         if (!auth()->loggedIn()) {
             return $this->response->setJSON([
                 'success' => false,
-                'message' => 'يجب تسجيل الدخول أولاً.',
+                'checkout_url' => site_url('cart/checkout?item_type=' . rawurlencode((string) ($this->request->getPost('item_type') ?? 'course')) . '&item_id=' . (int) $this->request->getPost('item_id')),
+                'message' => 'يمكنك إتمام الاشتراك وإنشاء حسابك في خطوة واحدة.',
                 'csrf_token' => csrf_hash(),
             ]);
         }
@@ -139,88 +142,257 @@ class Cart extends BaseController
     }
 
     /**
-     * Checkout - GET: show checkout page, POST: process payment
+     * Checkout - guests can submit a selected course and create their account
+     * in the same request. Existing users keep the current cart checkout flow.
      */
     public function checkout()
     {
-        if (!auth()->loggedIn()) {
-            return redirect()->to('/login');
+        $isGuestCheckout = !auth()->loggedIn();
+        $directItem = $this->getDirectCheckoutItem();
+
+        if ($isGuestCheckout && $directItem === null) {
+            return redirect()->to('/login')->with('error', 'اختر المقرر أولاً ثم أكمل الاشتراك من صفحة الدفع.');
         }
 
-        $userId = auth()->user()->id;
-        $items = $this->cartModel->getUserCart($userId);
+        $userId = auth()->loggedIn() ? (int) auth()->user()->id : null;
+        $items = $directItem !== null
+            ? [$directItem]
+            : $this->cartModel->getUserCart($userId);
 
         if (empty($items)) {
             return redirect()->to('/cart')->with('error', 'السلة فارغة.');
         }
 
-        // POST - process checkout
         if ($this->request->is('post')) {
-            return $this->processCheckout($userId, $items);
-        }
-
-        $total = 0;
-        foreach ($items as $item) {
-            $total += $item->price;
+            return $this->processCheckout($userId, $items, $isGuestCheckout, $directItem !== null);
         }
 
         $data = [
-            'title'      => 'إتمام الشراء',
-            'cart_items'  => $items,
-            'cart_total'  => $total,
+            'title'              => 'إتمام الشراء',
+            'cart_items'         => $items,
+            'cart_total'         => $this->calculateCartTotal($items),
+            'is_guest_checkout'  => $isGuestCheckout,
+            'checkout_item_type' => $directItem->item_type ?? null,
+            'checkout_item_id'   => $directItem->item_id ?? null,
         ];
 
         return MainView('site_layout/cart_checkout', $data);
     }
 
     /**
-     * Process the checkout: create enrollments for all cart items
+     * Confirmation page shown after a pending payment request is saved.
      */
-    private function processCheckout(int $userId, array $items): \CodeIgniter\HTTP\RedirectResponse
+    public function checkoutSuccess()
     {
-        $paymentMethod = $this->request->getPost('payment_method') ?? 'anb';
-        $couponCode    = trim((string) ($this->request->getPost('coupon_code') ?? ''));
-
-        // Calculate total
-        $total = 0;
-        foreach ($items as $item) {
-            $total += $item->price;
+        if (!auth()->loggedIn()) {
+            return redirect()->to('/login');
         }
 
-        // Handle coupon
+        return MainView('site_layout/checkout_success', ['title' => 'تم استلام طلبك']);
+    }
+
+    /**
+     * Process the checkout: create enrollments for all cart items.
+     */
+    private function processCheckout(?int $userId, array $items, bool $isGuestCheckout, bool $isDirectCheckout): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $total = $this->calculateCartTotal($items);
+
+        if (!$this->validateCheckoutInput($isGuestCheckout)) {
+            return redirect()->back()->withInput()->with('error', $this->getCheckoutValidationMessage());
+        }
+
+        $paymentMethod = $this->request->getPost('payment_method') ?? 'anb';
+        $couponCode = trim((string) ($this->request->getPost('coupon_code') ?? ''));
+        $transferSenderName = mb_substr(trim((string) ($this->request->getPost('transfer_sender_name') ?? '')), 0, 150);
+
         $coupon = null;
         $couponDiscountAmount = 0.0;
         $finalAmount = $total;
 
-        if ($couponCode !== '') {
-            // Validate coupon (pass 0 for course_id since it's a cart-wide coupon)
+        // Guest coupon validation remains deferred until they have an account.
+        if ($couponCode !== '' && $userId !== null) {
             $coupon = $this->getCouponsModel()->getValidCouponByCode($couponCode, 0);
 
-            if ($coupon) {
-                if ($this->getCouponsModel()->isAvailableForUser($coupon, $userId)) {
-                    $couponDiscountAmount = $this->getCouponsModel()->calculateDiscountAmount($total, $coupon);
-                    $finalAmount = max(0, $total - $couponDiscountAmount);
-                }
+            if ($coupon && $this->getCouponsModel()->isAvailableForUser($coupon, $userId)) {
+                $couponDiscountAmount = $this->getCouponsModel()->calculateDiscountAmount($total, $coupon);
+                $finalAmount = max(0, $total - $couponDiscountAmount);
             }
         }
 
-        // Handle payment proof upload
+        if (!$this->validatePaymentProof($finalAmount > 0)) {
+            return redirect()->back()->withInput()->with('error', $this->getCheckoutValidationMessage());
+        }
+
         $paymentProofPath = null;
+        $movedPaymentProof = null;
         $proofFile = $this->request->getFile('payment_proof');
         if ($proofFile && $proofFile->isValid() && !$proofFile->hasMoved()) {
             $uploadPath = FCPATH . 'uploads' . DIRECTORY_SEPARATOR . 'enrollments';
             if (!is_dir($uploadPath)) {
                 mkdir($uploadPath, 0775, true);
             }
+
             $randomName = $proofFile->getRandomName();
             $proofFile->move($uploadPath, $randomName);
             $paymentProofPath = 'uploads/enrollments/' . $randomName;
+            $movedPaymentProof = $uploadPath . DIRECTORY_SEPARATOR . $randomName;
         }
 
         $isFree = $finalAmount <= 0;
-        $batchId = bin2hex(random_bytes(16)); // Unique batch ID
+        $batchId = bin2hex(random_bytes(16));
+        $uniqueCourses = $this->getUniqueCoursesToEnroll($items, $total, $finalAmount);
+        $createdCount = 0;
+        $createdUser = null;
 
-        // Collect all course IDs to enroll with calculated amounts
+        $this->db->transBegin();
+
+        try {
+            if ($isGuestCheckout) {
+                $createdUser = $this->createCheckoutUser();
+                if ($createdUser === null) {
+                    throw new \RuntimeException('تعذر إنشاء الحساب. تحقق من البريد الإلكتروني ورقم الواتساب.');
+                }
+
+                $userId = (int) $createdUser->id;
+            }
+
+            if ($userId === null) {
+                throw new \RuntimeException('تعذر تحديد حساب الطالب.');
+            }
+
+            foreach ($uniqueCourses as $entry) {
+                if ($this->enrollmentsModel->isUserEnrolled($userId, $entry['course_id'], false)) {
+                    continue;
+                }
+
+                $enrollmentData = [
+                    'paid_amount'            => $isFree ? 0 : ($entry['paid_amount'] ?? 0),
+                    'bundle_id'              => $entry['bundle_id'],
+                    'batch_id'               => $batchId,
+                    'coupon_id'              => $coupon->id ?? null,
+                    'coupon_code'            => $coupon->coupon_code ?? null,
+                    'coupon_discount_amount' => $couponDiscountAmount,
+                    'payment_method'         => $isFree ? 'free' : $paymentMethod,
+                    'payment_proof'          => $paymentProofPath,
+                    'transfer_sender_name'   => $transferSenderName ?: null,
+                    'auto_approve'           => $isFree,
+                    'notes'                  => 'Cart checkout | Batch: ' . $batchId . ' | Total: ' . $finalAmount,
+                ];
+
+                if (!$this->enrollmentsModel->createEnrollment($userId, $entry['course_id'], $enrollmentData)) {
+                    throw new \RuntimeException('تعذر حفظ طلب الاشتراك.');
+                }
+
+                $createdCount++;
+            }
+
+            if ($createdCount === 0) {
+                throw new \RuntimeException('لم يتم إنشاء أي اشتراك. ربما أنت مشترك بالفعل في جميع المواد.');
+            }
+
+            if ($coupon) {
+                $this->getCouponsModel()->incrementUsage((int) $coupon->id);
+            }
+
+            if (!$isDirectCheckout) {
+                $this->cartModel->clearCart($userId);
+            }
+
+            if (!$this->db->transStatus()) {
+                throw new \RuntimeException('تعذر حفظ طلب الاشتراك.');
+            }
+
+            $this->db->transCommit();
+        } catch (\Throwable $e) {
+            $this->db->transRollback();
+
+            if ($movedPaymentProof !== null && is_file($movedPaymentProof)) {
+                @unlink($movedPaymentProof);
+            }
+
+            log_message('error', 'Cart checkout failed: ' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', $e->getMessage());
+        }
+
+        if ($createdUser !== null) {
+            $this->logInCheckoutUser($createdUser);
+        }
+
+        if ($isFree) {
+            return redirect()->to('/enrollments/my-courses')
+                ->with('success', 'تم تفعيل اشتراكاتك بنجاح! يمكنك الآن الوصول إلى المحتوى.');
+        }
+
+        return redirect()->to('/cart/checkout/success')
+            ->with('success', 'تم استلام طلبك بنجاح. جاري مراجعة الإيصال وتفعيل الكورس خلال ساعتين.');
+    }
+
+    /**
+     * Builds a single checkout item from a public course or bundle link.
+     */
+    private function getDirectCheckoutItem(): ?object
+    {
+        $isPost = $this->request->is('post');
+        $itemType = $isPost ? $this->request->getPost('checkout_item_type') : $this->request->getGet('item_type');
+        $itemId = (int) ($isPost ? $this->request->getPost('checkout_item_id') : $this->request->getGet('item_id'));
+
+        if (!in_array($itemType, ['course', 'bundle'], true) || $itemId <= 0) {
+            return null;
+        }
+
+        $item = (object) [
+            'cart_id'   => null,
+            'item_type' => $itemType,
+            'item_id'   => $itemId,
+            'title'     => '',
+            'price'     => 0,
+            'image'     => null,
+            'courses'   => [],
+        ];
+
+        if ($itemType === 'course') {
+            $course = $this->db->table('tb_courses')->where('id', $itemId)->get()->getRow();
+            if ($course === null) {
+                return null;
+            }
+
+            $item->title = $course->course_title;
+            $item->price = (float) $course->course_price;
+            $item->image = $course->image;
+
+            return $item;
+        }
+
+        $bundle = $this->db->table('tb_bundles')->where('id', $itemId)->get()->getRow();
+        if ($bundle === null) {
+            return null;
+        }
+
+        $item->title = $bundle->bundle_title;
+        $item->price = (float) $bundle->bundle_price;
+        $item->image = $bundle->image;
+        $item->courses = $this->db->table('tb_bundle_courses')
+            ->select('tb_courses.id, tb_courses.course_title, tb_courses.course_price')
+            ->join('tb_courses', 'tb_courses.id = tb_bundle_courses.course_id')
+            ->where('tb_bundle_courses.bundle_id', $itemId)
+            ->get()
+            ->getResultArray();
+
+        return $item;
+    }
+
+    private function calculateCartTotal(array $items): float
+    {
+        return array_reduce(
+            $items,
+            static fn (float $total, object $item): float => $total + (float) $item->price,
+            0.0
+        );
+    }
+
+    private function getUniqueCoursesToEnroll(array $items, float $total, float $finalAmount): array
+    {
         $coursesToEnroll = [];
         $discountRatio = $total > 0 ? ($finalAmount / $total) : 1.0;
 
@@ -233,75 +405,155 @@ class Cart extends BaseController
                     'bundle_id'   => null,
                     'paid_amount' => round($itemEffectivePrice, 2),
                 ];
-            } else {
-                // Bundle: expand to individual courses
-                $bundleCourseIds = (new BundlesModel())->getBundleCourseIds((int) $item->item_id);
-                $courseCount = count($bundleCourseIds);
-                $pricePerCourse = $courseCount > 0 ? round($itemEffectivePrice / $courseCount, 2) : round($itemEffectivePrice, 2);
+                continue;
+            }
 
-                foreach ($bundleCourseIds as $courseId) {
-                    $coursesToEnroll[] = [
-                        'course_id'   => (int) $courseId,
-                        'bundle_id'   => (int) $item->item_id,
-                        'paid_amount' => $pricePerCourse,
-                    ];
-                }
+            $bundleCourseIds = (new BundlesModel())->getBundleCourseIds((int) $item->item_id);
+            $courseCount = count($bundleCourseIds);
+            $pricePerCourse = $courseCount > 0
+                ? round($itemEffectivePrice / $courseCount, 2)
+                : round($itemEffectivePrice, 2);
+
+            foreach ($bundleCourseIds as $courseId) {
+                $coursesToEnroll[] = [
+                    'course_id'   => (int) $courseId,
+                    'bundle_id'   => (int) $item->item_id,
+                    'paid_amount' => $pricePerCourse,
+                ];
             }
         }
 
-        // Remove duplicates (same course from both direct and bundle)
         $seen = [];
         $uniqueCourses = [];
         foreach ($coursesToEnroll as $entry) {
-            if (!in_array($entry['course_id'], $seen)) {
+            if (!in_array($entry['course_id'], $seen, true)) {
                 $seen[] = $entry['course_id'];
                 $uniqueCourses[] = $entry;
             }
         }
 
-        // Create enrollments
-        $createdCount = 0;
-        foreach ($uniqueCourses as $entry) {
-            // Skip if already enrolled
-            if ($this->enrollmentsModel->isUserEnrolled($userId, $entry['course_id'], false)) {
-                continue;
-            }
+        return $uniqueCourses;
+    }
 
-            $enrollmentData = [
-                'paid_amount'            => $isFree ? 0 : ($entry['paid_amount'] ?? 0),
-                'bundle_id'              => $entry['bundle_id'],
-                'batch_id'               => $batchId,
-                'coupon_id'              => $coupon->id ?? null,
-                'coupon_code'            => $coupon->coupon_code ?? null,
-                'coupon_discount_amount' => 0,
-                'payment_method'         => $isFree ? 'free' : $paymentMethod,
-                'payment_proof'          => $paymentProofPath,
-                'auto_approve'           => $isFree,
-                'notes'                  => 'Cart checkout | Batch: ' . $batchId . ' | Total: ' . $finalAmount,
-            ];
+    /**
+     * Validates the account fields before any checkout records are created.
+     */
+    private function validateCheckoutInput(bool $isGuestCheckout): bool
+    {
+        $rules = $isGuestCheckout
+            ? [
+                'full_name' => 'required|min_length[3]|max_length[100]',
+                'email'     => 'required|valid_email|max_length[254]|is_unique[auth_identities.secret]',
+                'mobile'    => 'required|regex_match[/^(5[0-9]{8}|05[0-9]{8})$/]',
+                'password'  => 'required|min_length[6]',
+            ]
+            : ['payment_method' => 'permit_empty'];
 
-            $this->enrollmentsModel->createEnrollment($userId, $entry['course_id'], $enrollmentData);
-            $createdCount++;
+        return $this->validate($rules);
+    }
+
+    /**
+     * Requires a safe transfer receipt only when the final payable amount is positive.
+     */
+    private function validatePaymentProof(bool $requiresPaymentProof): bool
+    {
+        if (!$requiresPaymentProof) {
+            return true;
         }
 
-        if ($createdCount === 0) {
-            return redirect()->to('/cart')->with('error', 'لم يتم إنشاء أي اشتراك. ربما أنت مشترك بالفعل في جميع المواد.');
+        $proofFile = $this->request->getFile('payment_proof');
+        if ($proofFile === null || !$proofFile->isValid() || $proofFile->hasMoved()) {
+            $this->validator->setError('payment_proof', 'يرجى إرفاق صورة أو ملف إيصال التحويل.');
+            return false;
         }
 
-        // Increment coupon usage
-        if ($coupon) {
-            $this->getCouponsModel()->incrementUsage((int) $coupon->id);
+        $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'];
+        if (!in_array($proofFile->getMimeType(), $allowedMimeTypes, true)) {
+            $this->validator->setError('payment_proof', 'صيغة الإيصال غير مدعومة. استخدم JPG أو PNG أو WEBP أو PDF.');
+            return false;
         }
 
-        // Clear cart
-        $this->cartModel->clearCart($userId);
-
-        if ($isFree) {
-            return redirect()->to('/enrollments/my-courses')
-                ->with('success', 'تم تفعيل اشتراكاتك بنجاح! يمكنك الآن الوصول إلى المحتوى.');
+        if ($proofFile->getSizeByUnit('mb') > 5) {
+            $this->validator->setError('payment_proof', 'يجب ألا يتجاوز حجم الإيصال 5 ميجابايت.');
+            return false;
         }
 
-        return redirect()->to('/enrollments/my-courses')
-            ->with('success', 'تم إرسال طلب الشراء بنجاح! سيتم مراجعته وتفعيل اشتراكاتك بعد التحقق من الدفع.');
+        return true;
+    }
+
+    private function getCheckoutValidationMessage(): string
+    {
+        $errors = $this->validator->getErrors();
+
+        return implode('<br>', array_map(static fn (string $error): string => esc($error), $errors));
+    }
+
+    /**
+     * Creates an immediately active student account for one-step checkout.
+     */
+    private function createCheckoutUser(): ?User
+    {
+        $email = mb_strtolower(trim((string) $this->request->getPost('email')));
+        $mobile = $this->normalizeSaudiMobile((string) $this->request->getPost('mobile'));
+
+        if ($this->db->table('users')->where('mobile', $mobile)->countAllResults() > 0) {
+            throw new \RuntimeException('رقم الواتساب مسجل بالفعل. سجّل دخولك لإتمام الاشتراك.');
+        }
+
+        $users = auth()->getProvider();
+        $user = new User([
+            'full_name' => trim((string) $this->request->getPost('full_name')),
+            'email'     => $email,
+            'mobile'    => $mobile,
+            'user_type' => UserType::STUDENT,
+            'password'  => (string) $this->request->getPost('password'),
+        ]);
+
+        if (!$users->save($user)) {
+            log_message('error', 'One-step checkout user creation failed: ' . json_encode($users->errors()));
+            return null;
+        }
+
+        /** @var User|null $createdUser */
+        $createdUser = $users->find($users->getInsertID());
+        if ($createdUser === null) {
+            return null;
+        }
+
+        // The student logs in directly, without a separate email-activation step.
+        $createdUser->activate();
+
+        return $createdUser;
+    }
+
+    private function normalizeSaudiMobile(string $rawMobile): string
+    {
+        $digitsOnly = preg_replace('/[^0-9]/', '', trim($rawMobile));
+
+        if (str_starts_with($digitsOnly, '966')) {
+            $digitsOnly = substr($digitsOnly, 3);
+        }
+
+        return str_starts_with($digitsOnly, '5') && strlen($digitsOnly) === 9
+            ? '0' . $digitsOnly
+            : $digitsOnly;
+    }
+
+    /**
+     * Uses the existing Shield session authenticator to sign in the new student.
+     */
+    private function logInCheckoutUser(User $user): void
+    {
+        auth()->logout();
+
+        $attempt = auth()->attempt([
+            'email'    => mb_strtolower(trim((string) $this->request->getPost('email'))),
+            'password' => (string) $this->request->getPost('password'),
+        ]);
+
+        if (!$attempt->isOK()) {
+            log_message('error', 'One-step checkout login failed for user ID: ' . $user->id);
+            auth('session')->getAuthenticator()->startLogin($user);
+        }
     }
 }

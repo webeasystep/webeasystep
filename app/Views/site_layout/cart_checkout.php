@@ -202,6 +202,48 @@
         border-color: #136ad5;
         box-shadow: 0 0 0 4px rgba(19, 106, 213, 0.1);
     }
+
+    /* ── One-step guest account ── */
+    .checkout-account-card {
+        margin-bottom: 28px;
+        padding: 22px;
+        border: 1px solid #bfdbfe;
+        border-radius: 16px;
+        background: #eff6ff;
+    }
+    body.dark-mode .checkout-account-card {
+        background: rgba(19, 106, 213, 0.12);
+        border-color: rgba(96, 165, 250, 0.35);
+    }
+    .checkout-account-card .section-title { margin-bottom: 8px; }
+    .checkout-account-card .account-intro {
+        color: #475569;
+        font-size: 0.9rem;
+        margin-bottom: 18px;
+    }
+    body.dark-mode .checkout-account-card .account-intro { color: #cbd5e1; }
+    .checkout-account-card .input-group-text {
+        border: 2px solid #e2e8f0;
+        border-left: 0;
+        background: #fff;
+        color: #136ad5;
+        font-weight: 700;
+    }
+    body.dark-mode .checkout-account-card .input-group-text {
+        background: #0f172a;
+        border-color: rgba(255,255,255,0.1);
+    }
+    .password-toggle {
+        border: 2px solid #e2e8f0;
+        border-right: 0;
+        background: #fff;
+        color: #64748b;
+    }
+    body.dark-mode .password-toggle {
+        background: #0f172a;
+        border-color: rgba(255,255,255,0.1);
+        color: #cbd5e1;
+    }
     
     /* ── Coupon Group ── */
     .coupon-group {
@@ -633,11 +675,56 @@
             <div class="checkout-body">
                 <form action="<?= site_url('cart/checkout') ?>" method="POST" enctype="multipart/form-data" id="checkoutForm">
                     <?= csrf_field() ?>
+                    <?php if (!empty($checkout_item_type) && !empty($checkout_item_id)): ?>
+                        <input type="hidden" name="checkout_item_type" value="<?= esc($checkout_item_type) ?>">
+                        <input type="hidden" name="checkout_item_id" value="<?= (int) $checkout_item_id ?>">
+                    <?php endif; ?>
                     
                     <div class="checkout-grid">
                         
                         <!-- Left Column (Form) -->
                         <div class="checkout-form-col">
+
+                            <?php if (!empty($is_guest_checkout)): ?>
+                                <section class="checkout-account-card" aria-labelledby="account-details-title">
+                                    <h5 class="section-title" id="account-details-title"><i class="fas fa-user-plus"></i> بيانات الطالب وإنشاء الحساب</h5>
+                                    <p class="account-intro">أدخل بياناتك مرة واحدة، وسننشئ حسابك ونسجل دخولك تلقائياً بعد إرسال الطلب.</p>
+
+                                    <div class="form-group">
+                                        <label for="checkoutFullName">الاسم الكامل</label>
+                                        <input type="text" class="form-control" id="checkoutFullName" name="full_name" value="<?= esc(old('full_name')) ?>" autocomplete="name" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="checkoutEmail">البريد الإلكتروني</label>
+                                        <input type="email" class="form-control" id="checkoutEmail" name="email" value="<?= esc(old('email')) ?>" autocomplete="email" required>
+                                        <small class="form-text text-muted">سيُستخدم هذا البريد لتسجيل الدخول إلى حسابك.</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="checkoutMobile">رقم الواتساب</label>
+                                        <div class="input-group" dir="ltr">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">+966</span>
+                                            </div>
+                                            <input type="tel" class="form-control" id="checkoutMobile" name="mobile" value="<?= esc(old('mobile')) ?>" placeholder="5XXXXXXXX" inputmode="numeric" autocomplete="tel-national" pattern="(5[0-9]{8}|05[0-9]{8})" maxlength="10" required>
+                                        </div>
+                                        <small class="form-text text-muted">مثال: 512345678</small>
+                                    </div>
+
+                                    <div class="form-group mb-0">
+                                        <label for="checkoutPassword">كلمة المرور</label>
+                                        <div class="input-group" dir="ltr">
+                                            <input type="password" class="form-control" id="checkoutPassword" name="password" autocomplete="new-password" minlength="6" required>
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn password-toggle" id="toggleCheckoutPassword" aria-label="إظهار كلمة المرور">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            <?php endif; ?>
                             
                             <!-- Items Info -->
                             <h5 class="section-title"><i class="fas fa-shopping-basket"></i> محتويات السلة</h5>
@@ -865,6 +952,11 @@
                             <div class="upload-section-card mt-4" id="uploadSectionBox" <?= $cart_total <= 0 ? 'style="display:none;"' : '' ?>>
                                 <h6 class="font-weight-bold mb-2 text-dark"><i class="fas fa-file-invoice text-success me-1"></i> إرفاق إشعار التحويل / الإيصال</h6>
                                 <p class="text-muted small mb-2">بعد إتمام التحويل أو الدفع، ارفع صورة الإشعار لتأكيد طلبك وتفعيل اشتراكك.</p>
+
+                                <div class="form-group">
+                                    <label for="transferSenderName">اسم صاحب الحساب المحوّل منه <span class="text-muted font-weight-normal">(اختياري)</span></label>
+                                    <input type="text" class="form-control" id="transferSenderName" name="transfer_sender_name" value="<?= esc(old('transfer_sender_name')) ?>" maxlength="150" placeholder="يساعدنا في مطابقة التحويل بسرعة">
+                                </div>
                                 
                                 <div class="upload-area" id="uploadArea">
                                     <input type="file" name="payment_proof" id="paymentProof" accept="image/*,.pdf" <?= $cart_total > 0 ? 'required' : '' ?>>
@@ -879,6 +971,12 @@
                             <button type="submit" class="btn-submit" id="submitBtn">
                                 <i class="fas fa-check-circle"></i> تأكيد وإرسال طلب الاشتراك
                             </button>
+
+                            <p class="text-center mt-3 mb-0 small">
+                                <a href="https://wa.me/201032863861?text=<?= urlencode('السلام عليكم، أواجه مشكلة في التحويل وأحتاج مساعدة لإتمام الاشتراك.') ?>" target="_blank" rel="noopener noreferrer" class="text-success">
+                                    <i class="fab fa-whatsapp"></i> أواجه مشكلة في التحويل؟ تواصل مباشرة عبر واتساب
+                                </a>
+                            </p>
                             
                         </div>
                         
@@ -904,14 +1002,16 @@
                                 
                                 <hr class="my-4" style="border-color: rgba(0,0,0,0.06);">
                                 
-                                <div class="form-group mb-0">
-                                    <label><i class="fas fa-ticket-alt text-primary mr-1"></i> هل لديك كود خصم؟</label>
-                                    <div class="coupon-group">
-                                        <input type="text" id="couponCode" name="coupon_code" class="form-control" placeholder="أدخل الكود هنا">
-                                        <button type="button" class="btn-apply" id="applyCouponBtn">تطبيق</button>
+                                <?php if (empty($is_guest_checkout)): ?>
+                                    <div class="form-group mb-0">
+                                        <label><i class="fas fa-ticket-alt text-primary mr-1"></i> هل لديك كود خصم؟</label>
+                                        <div class="coupon-group">
+                                            <input type="text" id="couponCode" name="coupon_code" class="form-control" placeholder="أدخل الكود هنا">
+                                            <button type="button" class="btn-apply" id="applyCouponBtn">تطبيق</button>
+                                        </div>
+                                        <small id="couponMessage" class="form-text mt-2"></small>
                                     </div>
-                                    <small id="couponMessage" class="form-text mt-2"></small>
-                                </div>
+                                <?php endif; ?>
                             </div>
                             
                             <div class="mt-4 text-center">
@@ -930,6 +1030,17 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+
+    const checkoutPassword = document.getElementById('checkoutPassword');
+    const toggleCheckoutPassword = document.getElementById('toggleCheckoutPassword');
+    if (checkoutPassword && toggleCheckoutPassword) {
+        toggleCheckoutPassword.addEventListener('click', function() {
+            const isPassword = checkoutPassword.type === 'password';
+            checkoutPassword.type = isPassword ? 'text' : 'password';
+            this.setAttribute('aria-label', isPassword ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور');
+            this.querySelector('i').className = isPassword ? 'fas fa-eye-slash' : 'fas fa-eye';
+        });
+    }
     
     // ── Payment Option Accordion Switching ──
     const paymentCards = document.querySelectorAll('.payment-method-card');

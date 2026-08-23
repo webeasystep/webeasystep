@@ -53,7 +53,10 @@
 
         function addToCart(itemType, itemId) {
     <?php if (!auth()->loggedIn()): ?>
-                    window.location.href = '<?= site_url("login") ?>';
+                    const checkoutUrl = new URL('<?= site_url("cart/checkout") ?>', window.location.origin);
+                    checkoutUrl.searchParams.set('item_type', itemType);
+                    checkoutUrl.searchParams.set('item_id', itemId);
+                    window.location.href = checkoutUrl.toString();
                 return;
     <?php endif; ?>
 

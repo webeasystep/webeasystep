@@ -27,6 +27,7 @@ class CourseEnrollmentsModel extends BaseModel
         'coupon_discount_amount',
         'payment_method',
         'payment_proof',
+        'transfer_sender_name',
         'refund_proof',
         'status',
         'approved_at',

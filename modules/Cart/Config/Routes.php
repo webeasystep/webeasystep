@@ -13,5 +13,6 @@ $routes->group('', [
     $routes->post('cart/add', [Cart::class, 'addItem']);
     $routes->post('cart/remove', [Cart::class, 'removeItem']);
     $routes->get('cart/count', [Cart::class, 'getCount']);
+    $routes->get('cart/checkout/success', [Cart::class, 'checkoutSuccess']);
     $routes->match(['GET', 'POST'], 'cart/checkout', [Cart::class, 'checkout']);
 });

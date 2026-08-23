@@ -106,6 +106,22 @@
                                 ?>
                             </td>
                         </tr>
+                        <?php if (!empty($enrollment->transfer_sender_name)): ?>
+                        <tr>
+                            <th>اسم صاحب الحساب المحوّل:</th>
+                            <td><strong><?= esc($enrollment->transfer_sender_name) ?></strong></td>
+                        </tr>
+                        <?php endif; ?>
+                        <?php if (!empty($enrollment->payment_proof)): ?>
+                        <tr>
+                            <th>إيصال التحويل:</th>
+                            <td>
+                                <a href="<?= base_url($enrollment->payment_proof) ?>" target="_blank" rel="noopener noreferrer" class="btn btn-info btn-sm">
+                                    <i class="fas fa-image me-1"></i> عرض الإيصال
+                                </a>
+                            </td>
+                        </tr>
+                        <?php endif; ?>
                         <tr>
                             <th>تاريخ الطلب:</th>
                             <td><?= date('Y/m/d H:i', strtotime($enrollment->created_at)) ?></td>
