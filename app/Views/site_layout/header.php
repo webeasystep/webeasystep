@@ -29,7 +29,18 @@
     <meta charset="UTF-8">
     <title><?= esc($finalTitle); ?></title>
     <meta name="title" content="<?= esc($finalTitle); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <style>
+        html, body {
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            position: relative;
+        }
+        #debug-bar, .ci-debugbar, .environment, .ci-debugbar * {
+            max-width: 100vw !important;
+            box-sizing: border-box !important;
+        }
+    </style>
     <meta name="description" content="<?= esc($finalDescription); ?>">
     <meta name="keywords" content="<?= esc($finalKeywords); ?>">
     <meta name="author" content="فخر CS - FakhrCS" />
@@ -152,6 +163,7 @@
             box-sizing: border-box
         }
 
+        html,
         body {
             margin: 0;
             font-family: 'Alexandria-Regular', system-ui, -apple-system, sans-serif;
@@ -160,7 +172,9 @@
             color: #666;
             background-color: #fff;
             direction: rtl;
-            text-align: right
+            text-align: right;
+            overflow-x: hidden;
+            max-width: 100%;
         }
 
         .container {

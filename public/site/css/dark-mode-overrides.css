@@ -1111,6 +1111,201 @@ body.dark-mode .nav-topbar-tg {
     background: rgba(0, 136, 204, 0.1);
     color: #38bdf8 !important;
     border-color: rgba(0, 136, 204, 0.25);
+body.dark-mode .device-icon-box {
+    background: rgba(59, 130, 246, 0.14) !important;
+    color: #93c5fd !important;
+}
+
+body.dark-mode .alert.alert-info {
+    background: rgba(59, 130, 246, 0.10) !important;
+    color: #dbeafe !important;
+}
+
+body.dark-mode .alert.alert-success {
+    background: rgba(34, 197, 94, 0.12) !important;
+    color: #dcfce7 !important;
+}
+
+body.dark-mode .alert.alert-danger {
+    background: rgba(239, 68, 68, 0.12) !important;
+    color: #fee2e2 !important;
+}
+
+/* ============================================
+   DARK MODE - CART & UTILITIES
+   ============================================ */
+body.dark-mode .card .bg-white,
+body.dark-mode .bg-white {
+    background-color: transparent !important;
+}
+
+body.dark-mode .border-bottom {
+    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ============================================
+   DARK MODE - SWEETALERT2
+   ============================================ */
+body.dark-mode .swal2-popup {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-mode .swal2-title,
+body.dark-mode .swal2-html-container {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .swal2-icon.swal2-success {
+    border-color: #4ade80 !important;
+    color: #4ade80 !important;
+}
+body.dark-mode .swal2-icon.swal2-success [class^="swal2-success-line"] {
+    background-color: #4ade80 !important;
+}
+body.dark-mode .swal2-icon.swal2-success .swal2-success-ring {
+    border-color: rgba(74, 222, 128, 0.3) !important;
+}
+
+body.dark-mode .swal2-icon.swal2-warning {
+    border-color: #fbbf24 !important;
+    color: #fbbf24 !important;
+}
+
+body.dark-mode .swal2-icon.swal2-error {
+    border-color: #f87171 !important;
+    color: #f87171 !important;
+}
+body.dark-mode .swal2-icon.swal2-error [class^="swal2-x-mark-line"] {
+    background-color: #f87171 !important;
+}
+
+body.dark-mode .swal2-icon.swal2-info {
+    border-color: #38bdf8 !important;
+    color: #38bdf8 !important;
+}
+
+body.dark-mode .swal2-timer-progress-bar {
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ============================================
+   WHATSAPP TOP-BAR CTA PILL
+   ============================================ */
+.nav-topbar-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(37, 211, 102, 0.12);
+    color: #1aad5c !important;
+    border: 1px solid rgba(37, 211, 102, 0.35);
+    border-radius: 20px;
+    padding: 4px 12px 4px 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.nav-topbar-wa:hover {
+    background: #25D366;
+    color: #fff !important;
+    border-color: #25D366;
+    text-decoration: none !important;
+}
+.nav-topbar-wa svg {
+    flex-shrink: 0;
+    fill: #25D366;
+    animation: wa-icon-glow 1.8s ease-in-out infinite;
+    transition: transform 0.2s ease;
+}
+.nav-topbar-wa:hover svg {
+    transform: scale(1.15);
+    animation: none;
+    filter: drop-shadow(0 0 6px #25D366);
+}
+@keyframes wa-icon-glow {
+    0%,  100% { filter: drop-shadow(0 0 0px rgba(37,211,102,0));   opacity: 0.7; }
+    50%        { filter: drop-shadow(0 0 6px rgba(37,211,102,0.95)); opacity: 1;   }
+}
+.nav-topbar-wa-label {
+    opacity: 0.75;
+    font-size: 0.78rem;
+}
+.nav-topbar-wa-cta {
+    font-weight: 700;
+    font-size: 0.83rem;
+}
+/* dark mode */
+body.dark-mode .nav-topbar-wa {
+    background: rgba(37, 211, 102, 0.1);
+    color: #4ade80 !important;
+    border-color: rgba(37, 211, 102, 0.25);
+}
+body.dark-mode .nav-topbar-wa:hover {
+    background: #25D366;
+    color: #fff !important;
+}
+@media (max-width: 767.98px) {
+    .nav-topbar-wa-label { display: none; }
+}
+
+/* TELEGRAM TOP-BAR CTA PILL */
+.nav-topbar-tg {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 136, 204, 0.12);
+    color: #0088cc !important;
+    border: 1px solid rgba(0, 136, 204, 0.35);
+    border-radius: 20px;
+    padding: 4px 12px 4px 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.nav-topbar-tg:hover {
+    background: #0088cc;
+    color: #fff !important;
+    border-color: #0088cc;
+    text-decoration: none !important;
+}
+.nav-topbar-tg i {
+    flex-shrink: 0;
+    color: #0088cc;
+    font-size: 1.1rem;
+    animation: tg-icon-glow 1.8s ease-in-out infinite;
+    transition: transform 0.2s ease;
+}
+.nav-topbar-tg:hover i {
+    transform: scale(1.15);
+    animation: none;
+    color: #fff;
+    filter: drop-shadow(0 0 6px #0088cc);
+}
+@keyframes tg-icon-glow {
+    0%,  100% { filter: drop-shadow(0 0 0px rgba(0,136,204,0));   opacity: 0.7; }
+    50%        { filter: drop-shadow(0 0 6px rgba(0,136,204,0.95)); opacity: 1;   }
+}
+.nav-topbar-tg-label {
+    opacity: 0.75;
+    font-size: 0.78rem;
+}
+.nav-topbar-tg-cta {
+    font-weight: 700;
+    font-size: 0.83rem;
+}
+/* dark mode */
+body.dark-mode .nav-topbar-tg {
+    background: rgba(0, 136, 204, 0.1);
+    color: #38bdf8 !important;
+    border-color: rgba(0, 136, 204, 0.25);
 }
 body.dark-mode .nav-topbar-tg:hover {
     background: #0088cc;
@@ -1118,4 +1313,108 @@ body.dark-mode .nav-topbar-tg:hover {
 }
 @media (max-width: 767.98px) {
     .nav-topbar-tg-label { display: none; }
+}
+
+/* ============================================
+   DARK MODE - PREPARATORY YEAR PAGE
+   ============================================ */
+body.dark-mode .prep-page-wrapper {
+    background-color: #0b1329 !important;
+}
+body.dark-mode .prep-breadcrumb {
+    color: #94a3b8 !important;
+}
+body.dark-mode .prep-breadcrumb a {
+    color: #60a5fa !important;
+}
+body.dark-mode .prep-breadcrumb span {
+    color: #cbd5e1 !important;
+}
+body.dark-mode .prep-title {
+    color: #f8fafc !important;
+}
+body.dark-mode .prep-subtitle {
+    color: #94a3b8 !important;
+}
+body.dark-mode .badge-light {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #cbd5e1 !important;
+}
+
+/* Bundle Promo Card Dark Mode */
+body.dark-mode .bundle-promo-card {
+    background: #1e293b !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+body.dark-mode .bundle-promo-title {
+    color: #f8fafc !important;
+}
+body.dark-mode .bundle-promo-desc {
+    color: #cbd5e1 !important;
+}
+body.dark-mode .bundle-chip {
+    background: rgba(59, 130, 246, 0.15) !important;
+    color: #93c5fd !important;
+    border-color: rgba(59, 130, 246, 0.35) !important;
+}
+body.dark-mode .bundle-promo-card .text-muted {
+    color: #94a3b8 !important;
+}
+body.dark-mode .bundle-price-box {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+    border-color: #334155 !important;
+}
+body.dark-mode .bundle-price-original {
+    color: #64748b !important;
+}
+body.dark-mode .bundle-price-current {
+    color: #60a5fa !important;
+}
+body.dark-mode .bundle-save-tag {
+    background: rgba(34, 197, 94, 0.2) !important;
+    color: #4ade80 !important;
+}
+
+/* Section Header Dark Mode */
+body.dark-mode .section-header-compact {
+    border-bottom-color: #334155 !important;
+}
+body.dark-mode .section-header-compact h2 {
+    color: #f8fafc !important;
+}
+body.dark-mode .section-header-compact .count-badge {
+    background: #334155 !important;
+    color: #cbd5e1 !important;
+}
+
+/* Course Cards Dark Mode */
+body.dark-mode .prep-course-card {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+body.dark-mode .prep-course-card:hover {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45) !important;
+}
+body.dark-mode .prep-course-title a,
+body.dark-mode .prep-course-title .text-dark {
+    color: #f8fafc !important;
+}
+body.dark-mode .prep-course-code {
+    color: #94a3b8 !important;
+}
+body.dark-mode .prep-course-instructor {
+    color: #94a3b8 !important;
+}
+body.dark-mode .prep-course-footer {
+    border-top-color: #334155 !important;
+}
+body.dark-mode .prep-course-price {
+    color: #f8fafc !important;
+}
+body.dark-mode .prep-course-price svg {
+    fill: #f8fafc !important;
 }

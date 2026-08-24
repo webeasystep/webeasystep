@@ -20,6 +20,7 @@
     <?= $this->include('site_layout/js'); ?>
     <!-- render Javascript here -->
     <?= $this->renderSection('js'); ?>
+
     <style>
         @keyframes shakeCart {
             0% {
@@ -52,18 +53,10 @@
         let currentCsrfToken = '<?= csrf_hash() ?>';
 
         function addToCart(itemType, itemId) {
-    <?php if (!auth()->loggedIn()): ?>
-                    const checkoutUrl = new URL('<?= site_url("cart/checkout") ?>', window.location.origin);
-                    checkoutUrl.searchParams.set('item_type', itemType);
-                    checkoutUrl.searchParams.set('item_id', itemId);
-                    window.location.href = checkoutUrl.toString();
-                return;
-    <?php endif; ?>
-
-                let data = {
-                    item_type: itemType,
-                    item_id: itemId
-                };
+            let data = {
+                item_type: itemType,
+                item_id: itemId
+            };
             data['<?= csrf_token() ?>'] = currentCsrfToken;
 
             $.ajax({
@@ -136,7 +129,6 @@
                     }
                 },
                 error: function (xhr) {
-                    // CSRF might be refreshed even on error in some cases, so reload on 403
                     if (xhr.status === 403) {
                         Swal.fire({
                             icon: 'warning',

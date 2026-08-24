@@ -35,12 +35,14 @@ class Cart extends BaseController
      */
     public function viewCart()
     {
-        if (!auth()->loggedIn()) {
-            return redirect()->to('/login');
+        if (auth()->loggedIn()) {
+            $userId = (int) auth()->user()->id;
+            $this->syncGuestCartToUser($userId);
+            $items = $this->cartModel->getUserCart($userId);
+        } else {
+            $items = $this->getGuestCartItems();
         }
 
-        $userId = auth()->user()->id;
-        $items = $this->cartModel->getUserCart($userId);
         $total = 0;
         foreach ($items as $item) {
             $total += $item->price;
@@ -48,8 +50,8 @@ class Cart extends BaseController
 
         $data = [
             'title'      => 'سلة المشتريات',
-            'cart_items'  => $items,
-            'cart_total'  => $total,
+            'cart_items' => $items,
+            'cart_total' => $total,
         ];
 
         return MainView('site_layout/cart', $data);
@@ -60,40 +62,62 @@ class Cart extends BaseController
      */
     public function addItem()
     {
-        if (!auth()->loggedIn()) {
-            return $this->response->setJSON([
-                'success' => false,
-                'checkout_url' => site_url('cart/checkout?item_type=' . rawurlencode((string) ($this->request->getPost('item_type') ?? 'course')) . '&item_id=' . (int) $this->request->getPost('item_id')),
-                'message' => 'يمكنك إتمام الاشتراك وإنشاء حسابك في خطوة واحدة.',
-                'csrf_token' => csrf_hash(),
-            ]);
-        }
-
-        $userId   = auth()->user()->id;
         $itemType = $this->request->getPost('item_type') ?? 'course';
         $itemId   = (int) $this->request->getPost('item_id');
 
-        if (!$itemId || !in_array($itemType, ['course', 'bundle'])) {
+        if (!$itemId || !in_array($itemType, ['course', 'bundle'], true)) {
             return $this->response->setJSON([
-                'success' => false,
-                'message' => 'عنصر غير صالح.',
+                'success'    => false,
+                'message'    => 'عنصر غير صالح.',
                 'csrf_token' => csrf_hash(),
             ]);
         }
 
-        $result = $this->cartModel->addItem($userId, $itemType, $itemId);
+        if (auth()->loggedIn()) {
+            $userId = (int) auth()->user()->id;
+            $this->syncGuestCartToUser($userId);
+            $result = $this->cartModel->addItem($userId, $itemType, $itemId);
 
-        $messages = [
-            'added'    => 'تمت الإضافة إلى السلة بنجاح!',
-            'exists'   => 'هذا العنصر موجود بالفعل في السلة.',
-            'enrolled' => 'أنت مشترك بالفعل في هذه المادة أو لديك طلب شراء قيد المراجعة.',
-            'overlap'  => 'إحدى مواد هذه الباقة موجودة بالفعل في سلتك.',
+            $messages = [
+                'added'    => 'تمت الإضافة إلى السلة بنجاح!',
+                'exists'   => 'هذا العنصر موجود بالفعل في السلة.',
+                'enrolled' => 'أنت مشترك بالفعل في هذه المادة أو لديك طلب شراء قيد المراجعة.',
+                'overlap'  => 'إحدى مواد هذه الباقة موجودة بالفعل في سلتك.',
+            ];
+
+            return $this->response->setJSON([
+                'success'    => $result === 'added',
+                'message'    => $messages[$result] ?? 'حدث خطأ.',
+                'cart_count' => $this->cartModel->getCartCount($userId),
+                'csrf_token' => csrf_hash(),
+            ]);
+        }
+
+        // Guest user cart stored in session
+        $guestCart = session()->get('guest_cart') ?? [];
+
+        foreach ($guestCart as $gi) {
+            if ($gi['item_type'] === $itemType && (int) $gi['item_id'] === $itemId) {
+                return $this->response->setJSON([
+                    'success'    => false,
+                    'message'    => 'هذا العنصر موجود بالفعل في السلة.',
+                    'cart_count' => count($guestCart),
+                    'csrf_token' => csrf_hash(),
+                ]);
+            }
+        }
+
+        $guestCart[] = [
+            'cart_id'   => 'guest_' . time() . '_' . rand(100, 999),
+            'item_type' => $itemType,
+            'item_id'   => $itemId,
         ];
+        session()->set('guest_cart', $guestCart);
 
         return $this->response->setJSON([
-            'success'    => $result === 'added',
-            'message'    => $messages[$result] ?? 'حدث خطأ.',
-            'cart_count' => $this->cartModel->getCartCount($userId),
+            'success'    => true,
+            'message'    => 'تمت الإضافة إلى السلة بنجاح!',
+            'cart_count' => count($guestCart),
             'csrf_token' => csrf_hash(),
         ]);
     }
@@ -103,17 +127,27 @@ class Cart extends BaseController
      */
     public function removeItem()
     {
-        if (!auth()->loggedIn()) {
-            return $this->response->setJSON(['success' => false, 'csrf_token' => csrf_hash()]);
+        $cartId = $this->request->getPost('cart_id');
+
+        if (auth()->loggedIn()) {
+            $userId = (int) auth()->user()->id;
+            $this->cartModel->removeItem($userId, (int) $cartId);
+            $items = $this->cartModel->getUserCart($userId);
+            $cartCount = $this->cartModel->getCartCount($userId);
+        } else {
+            $guestCart = session()->get('guest_cart') ?? [];
+            $newCart = [];
+            foreach ($guestCart as $gi) {
+                $id = (string) ($gi['cart_id'] ?? ($gi['item_type'] . '_' . $gi['item_id']));
+                if ($id !== (string) $cartId && (string) ($gi['item_id'] ?? '') !== (string) $cartId) {
+                    $newCart[] = $gi;
+                }
+            }
+            session()->set('guest_cart', $newCart);
+            $items = $this->getGuestCartItems();
+            $cartCount = count($newCart);
         }
 
-        $userId = auth()->user()->id;
-        $cartId = (int) $this->request->getPost('cart_id');
-
-        $this->cartModel->removeItem($userId, $cartId);
-
-        // Recalculate total
-        $items = $this->cartModel->getUserCart($userId);
         $total = 0;
         foreach ($items as $item) {
             $total += $item->price;
@@ -121,7 +155,7 @@ class Cart extends BaseController
 
         return $this->response->setJSON([
             'success'    => true,
-            'cart_count' => $this->cartModel->getCartCount($userId),
+            'cart_count' => $cartCount,
             'cart_total' => $total,
             'csrf_token' => csrf_hash(),
         ]);
@@ -132,13 +166,45 @@ class Cart extends BaseController
      */
     public function getCount()
     {
-        if (!auth()->loggedIn()) {
-            return $this->response->setJSON(['count' => 0]);
+        if (auth()->loggedIn()) {
+            $userId = (int) auth()->user()->id;
+            $this->syncGuestCartToUser($userId);
+            $count = $this->cartModel->getCartCount($userId);
+        } else {
+            $count = count(session()->get('guest_cart') ?? []);
         }
 
-        return $this->response->setJSON([
-            'count' => $this->cartModel->getCartCount(auth()->user()->id),
-        ]);
+        return $this->response->setJSON(['count' => $count]);
+    }
+
+    /**
+     * Sync items from guest session cart into database when user is authenticated
+     */
+    private function syncGuestCartToUser(int $userId): void
+    {
+        $guestCart = session()->get('guest_cart');
+        if (!empty($guestCart) && is_array($guestCart)) {
+            foreach ($guestCart as $item) {
+                $this->cartModel->addItem($userId, (string) $item['item_type'], (int) $item['item_id']);
+            }
+            session()->remove('guest_cart');
+        }
+    }
+
+    /**
+     * Retrieves guest cart items hydrated with full product details
+     */
+    private function getGuestCartItems(): array
+    {
+        $guestCart = session()->get('guest_cart') ?? [];
+        $result = [];
+        foreach ($guestCart as $item) {
+            $hydrated = $this->cartModel->hydrateCartItem($item['item_type'], (int) $item['item_id'], $item['cart_id'] ?? null);
+            if ($hydrated !== null) {
+                $result[] = $hydrated;
+            }
+        }
+        return $result;
     }
 
     /**
@@ -150,14 +216,18 @@ class Cart extends BaseController
         $isGuestCheckout = !auth()->loggedIn();
         $directItem = $this->getDirectCheckoutItem();
 
-        if ($isGuestCheckout && $directItem === null) {
-            return redirect()->to('/login')->with('error', 'اختر المقرر أولاً ثم أكمل الاشتراك من صفحة الدفع.');
+        $userId = auth()->loggedIn() ? (int) auth()->user()->id : null;
+        if ($userId !== null) {
+            $this->syncGuestCartToUser($userId);
         }
 
-        $userId = auth()->loggedIn() ? (int) auth()->user()->id : null;
-        $items = $directItem !== null
-            ? [$directItem]
-            : $this->cartModel->getUserCart($userId);
+        if ($directItem !== null) {
+            $items = [$directItem];
+        } elseif ($userId !== null) {
+            $items = $this->cartModel->getUserCart($userId);
+        } else {
+            $items = $this->getGuestCartItems();
+        }
 
         if (empty($items)) {
             return redirect()->to('/cart')->with('error', 'السلة فارغة.');

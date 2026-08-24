@@ -635,25 +635,24 @@ h4,
 .site-mobile-menu {
     width: 300px;
     position: fixed;
-    left: 0;
+    right: -320px;
+    left: auto;
+    top: 0;
     z-index: 2000;
     padding-top: 20px;
     background: #ffffff;
-    height: calc(100vh);
-    -webkit-transform: translateX(-100%);
-    -ms-transform: translateX(-100%);
-    transform: translateX(-100%);
-    -webkit-transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
-    -o-transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
-    transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
+    height: 100vh;
+    transition: 0.4s all cubic-bezier(0.23, 1, 0.32, 1);
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .offcanvas-menu .site-mobile-menu {
-    -webkit-box-shadow: 10px 0 20px -10px rgba(0, 0, 0, 0.1);
-    box-shadow: 10px 0 20px -10px rgba(0, 0, 0, 0.1);
-    -webkit-transform: translateX(0%);
-    -ms-transform: translateX(0%);
-    transform: translateX(0%);
+    right: 0;
+    left: auto;
+    box-shadow: -10px 0 20px -10px rgba(0, 0, 0, 0.15);
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .site-mobile-menu .site-mobile-menu-header {

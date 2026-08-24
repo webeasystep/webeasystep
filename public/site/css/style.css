@@ -636,9 +636,11 @@ h4,
     -webkit-transform: translateX(100%);
     -ms-transform: translateX(100%);
     transform: translateX(100%);
-    -webkit-transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
-    -o-transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
-    transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
+    -webkit-transition: 0.4s all cubic-bezier(0.23, 1, 0.32, 1);
+    -o-transition: 0.4s all cubic-bezier(0.23, 1, 0.32, 1);
+    transition: 0.4s all cubic-bezier(0.23, 1, 0.32, 1);
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .offcanvas-menu .site-mobile-menu {
@@ -647,6 +649,8 @@ h4,
     -webkit-transform: translateX(0%);
     -ms-transform: translateX(0%);
     transform: translateX(0%);
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .site-mobile-menu .site-mobile-menu-header {

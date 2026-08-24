@@ -22,53 +22,65 @@ class CartModel extends BaseModel
             ->findAll();
 
         $result = [];
-
         foreach ($items as $item) {
-            $entry = (object) [
-                'cart_id'   => $item->id,
-                'item_type' => $item->item_type,
-                'item_id'   => $item->item_id,
-                'title'     => '',
-                'price'     => 0,
-                'image'     => null,
-                'courses'   => [],   // for bundles: list of courses inside
-            ];
+            $hydrated = $this->hydrateCartItem($item->item_type, (int) $item->item_id, $item->id);
+            if ($hydrated !== null) {
+                $result[] = $hydrated;
+            }
+        }
+        return $result;
+    }
 
-            if ($item->item_type === 'course') {
-                $course = $this->db->table('tb_courses')
-                    ->where('id', $item->item_id)
-                    ->get()->getRow();
+    /**
+     * Hydrate item details (title, price, image, courses)
+     */
+    public function hydrateCartItem(string $itemType, int $itemId, $cartId = null): ?object
+    {
+        $entry = (object) [
+            'cart_id'        => $cartId ?? ($itemType . '_' . $itemId),
+            'item_type'      => $itemType,
+            'item_id'        => $itemId,
+            'title'          => '',
+            'price'          => 0.0,
+            'image'          => null,
+            'original_price' => 0.0,
+            'courses'        => [],
+        ];
 
-                if ($course) {
-                    $entry->title = $course->course_title;
-                    $entry->price = (float) $course->course_price;
-                    $entry->image = $course->image;
-                }
-            } else {
-                // bundle
-                $bundle = $this->db->table('tb_bundles')
-                    ->where('id', $item->item_id)
-                    ->get()->getRow();
+        if ($itemType === 'course') {
+            $course = $this->db->table('tb_courses')
+                ->where('id', $itemId)
+                ->get()->getRow();
 
-                if ($bundle) {
-                    $entry->title = $bundle->bundle_title;
-                    $entry->price = (float) $bundle->bundle_price;
-                    $entry->image = $bundle->image;
-                    $entry->original_price = (float) $bundle->original_price;
-
-                    // Get courses in bundle
-                    $entry->courses = $this->db->table('tb_bundle_courses')
-                        ->select('tb_courses.id, tb_courses.course_title, tb_courses.course_price')
-                        ->join('tb_courses', 'tb_courses.id = tb_bundle_courses.course_id')
-                        ->where('tb_bundle_courses.bundle_id', $item->item_id)
-                        ->get()->getResultArray();
-                }
+            if (!$course) {
+                return null;
             }
 
-            $result[] = $entry;
+            $entry->title = $course->course_title;
+            $entry->price = (float) $course->course_price;
+            $entry->image = $course->image;
+        } else {
+            $bundle = $this->db->table('tb_bundles')
+                ->where('id', $itemId)
+                ->get()->getRow();
+
+            if (!$bundle) {
+                return null;
+            }
+
+            $entry->title = $bundle->bundle_title;
+            $entry->price = (float) $bundle->bundle_price;
+            $entry->image = $bundle->image;
+            $entry->original_price = (float) ($bundle->original_price ?? 0);
+
+            $entry->courses = $this->db->table('tb_bundle_courses')
+                ->select('tb_courses.id, tb_courses.course_title, tb_courses.course_price')
+                ->join('tb_courses', 'tb_courses.id = tb_bundle_courses.course_id')
+                ->where('tb_bundle_courses.bundle_id', $itemId)
+                ->get()->getResultArray();
         }
 
-        return $result;
+        return $entry;
     }
 
     /**

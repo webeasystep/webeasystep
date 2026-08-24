@@ -245,6 +245,110 @@
         font-weight: 700;
         border-radius: 8px;
     }
+
+    /* ============================================
+       DARK MODE - PREPARATORY YEAR PAGE
+       ============================================ */
+    body.dark-mode .prep-page-wrapper {
+        background-color: #0b1329 !important;
+    }
+    body.dark-mode .prep-breadcrumb {
+        color: #94a3b8 !important;
+    }
+    body.dark-mode .prep-breadcrumb a {
+        color: #60a5fa !important;
+    }
+    body.dark-mode .prep-breadcrumb span {
+        color: #cbd5e1 !important;
+    }
+    body.dark-mode .prep-title {
+        color: #f8fafc !important;
+    }
+    body.dark-mode .prep-subtitle {
+        color: #94a3b8 !important;
+    }
+    body.dark-mode .badge-light {
+        background-color: #1e293b !important;
+        border-color: #334155 !important;
+        color: #cbd5e1 !important;
+    }
+    
+    /* Bundle Promo Card Dark Mode */
+    body.dark-mode .bundle-promo-card {
+        background: #1e293b !important;
+        border-color: #3b82f6 !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+    }
+    body.dark-mode .bundle-promo-title {
+        color: #f8fafc !important;
+    }
+    body.dark-mode .bundle-promo-desc {
+        color: #cbd5e1 !important;
+    }
+    body.dark-mode .bundle-chip {
+        background: rgba(59, 130, 246, 0.15) !important;
+        color: #93c5fd !important;
+        border-color: rgba(59, 130, 246, 0.35) !important;
+    }
+    body.dark-mode .bundle-promo-card .text-muted {
+        color: #94a3b8 !important;
+    }
+    body.dark-mode .bundle-price-box {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+        border-color: #334155 !important;
+    }
+    body.dark-mode .bundle-price-original {
+        color: #64748b !important;
+    }
+    body.dark-mode .bundle-price-current {
+        color: #60a5fa !important;
+    }
+    body.dark-mode .bundle-save-tag {
+        background: rgba(34, 197, 94, 0.2) !important;
+        color: #4ade80 !important;
+    }
+
+    /* Section Header Dark Mode */
+    body.dark-mode .section-header-compact {
+        border-bottom-color: #334155 !important;
+    }
+    body.dark-mode .section-header-compact h2 {
+        color: #f8fafc !important;
+    }
+    body.dark-mode .section-header-compact .count-badge {
+        background: #334155 !important;
+        color: #cbd5e1 !important;
+    }
+
+    /* Course Cards Dark Mode */
+    body.dark-mode .prep-course-card {
+        background: #1e293b !important;
+        border-color: #334155 !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    }
+    body.dark-mode .prep-course-card:hover {
+        border-color: #3b82f6 !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45) !important;
+    }
+    body.dark-mode .prep-course-title a,
+    body.dark-mode .prep-course-title .text-dark {
+        color: #f8fafc !important;
+    }
+    body.dark-mode .prep-course-code {
+        color: #94a3b8 !important;
+    }
+    body.dark-mode .prep-course-instructor {
+        color: #94a3b8 !important;
+    }
+    body.dark-mode .prep-course-footer {
+        border-top-color: #334155 !important;
+    }
+    body.dark-mode .prep-course-price {
+        color: #f8fafc !important;
+    }
+    body.dark-mode .prep-course-price svg {
+        fill: #f8fafc !important;
+    }
 </style>
 
 <div class="prep-page-wrapper">
@@ -402,7 +506,7 @@
                                         <?php if (!empty($course['is_free']) && $course['is_free']): ?>
                                             <span class="text-success" style="font-size: 1rem;">مجاني</span>
                                         <?php else: ?>
-                                            <span><?= number_format($discountedPrice) ?> <?= riyal_icon('14px', '#0f172a') ?></span>
+                                            <span><?= number_format($discountedPrice) ?> <?= riyal_icon('14px', 'currentColor') ?></span>
                                         <?php endif; ?>
                                     </div>
                                     

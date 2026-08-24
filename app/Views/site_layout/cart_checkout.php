@@ -2,11 +2,13 @@
 <?= $this->section('content') ?>
 
 <style>
-    /* ── Base Section ── */
+    /* ── Base Section & Containers ── */
     .checkout-section {
-        padding: 60px 0 80px;
+        padding: 40px 0 60px;
         background: #f1f5f9;
         min-height: 80vh;
+        width: 100%;
+        overflow-x: hidden;
         transition: background 0.3s;
     }
     body.dark-mode .checkout-section {
@@ -18,8 +20,10 @@
         border: none;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
         background: #ffffff;
+        width: 100%;
+        max-width: 100%;
         transition: all 0.3s;
     }
     body.dark-mode .checkout-card {
@@ -31,74 +35,89 @@
     /* ── Card Header ── */
     .checkout-header {
         background: linear-gradient(135deg, #136ad5 0%, #1e88e5 100%);
-        padding: 28px 30px;
+        padding: 24px 20px;
         color: #fff;
         text-align: center;
         position: relative;
     }
     .checkout-header h4 {
         margin: 0;
-        font-size: 1.35rem;
+        font-size: 1.3rem;
         font-weight: 700;
         letter-spacing: 0.3px;
     }
     .checkout-header .header-icon {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
         background: rgba(255,255,255,0.2);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 12px;
-        font-size: 20px;
+        margin: 0 auto 10px;
+        font-size: 18px;
     }
 
     /* ── Card Body ── */
     .checkout-body {
-        padding: 32px;
+        padding: 30px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
-    @media (max-width: 576px) {
-        .checkout-body { padding: 20px 16px; }
+    @media (max-width: 768px) {
+        .checkout-body { padding: 20px 14px; }
+        .checkout-card { border-radius: 16px; }
+    }
+    @media (max-width: 480px) {
+        .checkout-body { padding: 16px 10px; }
     }
 
     /* ── Course Info Block ── */
     .course-info-block {
         background: #f8fafc;
         border-radius: 14px;
-        padding: 16px 20px;
-        margin-bottom: 16px;
+        padding: 14px 16px;
+        margin-bottom: 14px;
         border: 1px solid #e2e8f0;
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        min-width: 0;
     }
     body.dark-mode .course-info-block {
         background: #0f172a;
         border-color: rgba(255,255,255,0.08);
     }
     .course-info-thumb {
-        width: 54px;
-        height: 54px;
+        width: 50px;
+        height: 50px;
         background: linear-gradient(135deg, #136ad5, #1e88e5);
         border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        font-size: 20px;
+        font-size: 18px;
         color: #fff;
         overflow: hidden;
     }
+    .course-info-text {
+        flex: 1;
+        min-width: 0;
+    }
     .course-info-text h5 {
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 700;
         color: #1a202c;
-        margin-bottom: 4px;
+        margin-bottom: 3px;
+        word-break: break-word;
     }
     body.dark-mode .course-info-text h5 { color: #f1f5f9; }
     .course-info-text p {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         color: #64748b;
         margin: 0;
     }
@@ -107,35 +126,69 @@
         margin-right: auto;
         background: #e0f2fe;
         color: #0284c7;
-        padding: 6px 14px;
+        padding: 6px 12px;
         border-radius: 20px;
         font-weight: 700;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         white-space: nowrap;
+        flex-shrink: 0;
     }
     body.dark-mode .course-price-badge {
         background: rgba(2, 132, 199, 0.2);
         color: #38bdf8;
     }
 
+    @media (max-width: 576px) {
+        .course-info-block {
+            padding: 12px 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .course-info-thumb {
+            width: 42px;
+            height: 42px;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+        .course-info-text {
+            min-width: 140px;
+        }
+        .course-info-text h5 {
+            font-size: 0.88rem;
+        }
+        .course-price-badge {
+            margin-right: 0;
+            padding: 4px 8px;
+            font-size: 0.78rem;
+        }
+    }
+
     /* ── Layout grid ── */
     .checkout-grid {
         display: grid;
         grid-template-columns: 3fr 2fr;
-        gap: 32px;
+        gap: 28px;
+        width: 100%;
+        min-width: 0;
     }
     @media (max-width: 992px) {
         .checkout-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 100%;
+            gap: 24px;
         }
+    }
+    .checkout-form-col,
+    .checkout-summary-col {
+        min-width: 0;
+        max-width: 100%;
     }
 
     /* ── Sections Titles ── */
     .section-title {
-        font-size: 1.15rem;
+        font-size: 1.1rem;
         font-weight: 700;
         color: #1e293b;
-        margin-bottom: 18px;
+        margin-bottom: 16px;
         display: flex;
         align-items: center;
         gap: 8px;
@@ -147,8 +200,10 @@
     .summary-card {
         background: #f8fafc;
         border-radius: 16px;
-        padding: 24px;
+        padding: 22px;
         border: 1px solid #e2e8f0;
+        width: 100%;
+        box-sizing: border-box;
     }
     body.dark-mode .summary-card {
         background: #1e293b;
@@ -159,15 +214,17 @@
         justify-content: space-between;
         margin-bottom: 12px;
         color: #475569;
-        font-size: 0.95rem;
+        font-size: 0.92rem;
+        gap: 10px;
+        flex-wrap: wrap;
     }
     body.dark-mode .summary-row { color: #94a3b8; }
     .summary-row.total {
-        margin-top: 16px;
-        padding-top: 16px;
+        margin-top: 14px;
+        padding-top: 14px;
         border-top: 2px dashed #cbd5e1;
         color: #0f172a;
-        font-size: 1.25rem;
+        font-size: 1.15rem;
         font-weight: 700;
     }
     body.dark-mode .summary-row.total {
@@ -179,19 +236,22 @@
     .form-group label {
         font-weight: 600;
         color: #334155;
-        margin-bottom: 8px;
-        font-size: 0.95rem;
+        margin-bottom: 6px;
+        font-size: 0.9rem;
     }
     body.dark-mode .form-group label { color: #cbd5e1; }
     .form-control, .form-select {
         border: 2px solid #e2e8f0;
         border-radius: 10px;
-        padding: 12px 16px;
-        font-size: 0.95rem;
+        padding: 10px 14px;
+        font-size: 0.92rem;
         background: #fff;
         transition: all 0.2s;
         box-shadow: none;
         height: auto;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     body.dark-mode .form-control, body.dark-mode .form-select {
         background: #0f172a;
@@ -205,11 +265,13 @@
 
     /* ── One-step guest account ── */
     .checkout-account-card {
-        margin-bottom: 28px;
-        padding: 22px;
+        margin-bottom: 24px;
+        padding: 20px;
         border: 1px solid #bfdbfe;
         border-radius: 16px;
         background: #eff6ff;
+        width: 100%;
+        box-sizing: border-box;
     }
     body.dark-mode .checkout-account-card {
         background: rgba(19, 106, 213, 0.12);
@@ -218,16 +280,19 @@
     .checkout-account-card .section-title { margin-bottom: 8px; }
     .checkout-account-card .account-intro {
         color: #475569;
-        font-size: 0.9rem;
-        margin-bottom: 18px;
+        font-size: 0.88rem;
+        margin-bottom: 16px;
     }
     body.dark-mode .checkout-account-card .account-intro { color: #cbd5e1; }
     .checkout-account-card .input-group-text {
         border: 2px solid #e2e8f0;
-        border-left: 0;
+        border-right: 0;
         background: #fff;
         color: #136ad5;
         font-weight: 700;
+        font-size: 0.9rem;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
     }
     body.dark-mode .checkout-account-card .input-group-text {
         background: #0f172a;
@@ -235,9 +300,11 @@
     }
     .password-toggle {
         border: 2px solid #e2e8f0;
-        border-right: 0;
+        border-left: 0;
         background: #fff;
         color: #64748b;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
     body.dark-mode .password-toggle {
         background: #0f172a;
@@ -248,17 +315,19 @@
     /* ── Coupon Group ── */
     .coupon-group {
         display: flex;
-        gap: 10px;
+        gap: 8px;
+        width: 100%;
     }
     .btn-apply {
         background: #1e293b;
         color: #fff;
         border: none;
         border-radius: 10px;
-        padding: 0 20px;
+        padding: 0 18px;
         font-weight: 600;
         transition: all 0.2s;
         white-space: nowrap;
+        flex-shrink: 0;
     }
     .btn-apply:hover {
         background: #0f172a;
@@ -273,6 +342,8 @@
         background: #fff;
         transition: all 0.25s ease;
         overflow: hidden;
+        width: 100%;
+        box-sizing: border-box;
     }
     body.dark-mode .payment-method-card {
         background: #0f172a;
@@ -293,12 +364,14 @@
     .payment-method-header {
         display: flex;
         align-items: center;
-        gap: 14px;
-        padding: 16px 18px;
+        gap: 12px;
+        padding: 14px 16px;
         margin: 0;
         cursor: pointer;
         background: inherit;
         transition: background 0.2s;
+        width: 100%;
+        box-sizing: border-box;
     }
     .payment-method-card.active .payment-method-header {
         background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
@@ -313,8 +386,8 @@
         display: none;
     }
     .payment-radio {
-        width: 22px;
-        height: 22px;
+        width: 20px;
+        height: 20px;
         border: 2px solid #cbd5e1;
         border-radius: 50%;
         position: relative;
@@ -332,7 +405,7 @@
         position: absolute;
         top: 50%; left: 50%;
         transform: translate(-50%, -50%);
-        width: 10px; height: 10px;
+        width: 9px; height: 9px;
         background: #136ad5;
         border-radius: 50%;
     }
@@ -342,14 +415,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 48px;
-        height: 34px;
+        width: 44px;
+        height: 32px;
         border-radius: 8px;
         flex-shrink: 0;
     }
     .payment-icon-wrap svg, .payment-icon-wrap img {
-        max-height: 28px;
-        max-width: 46px;
+        max-height: 26px;
+        max-width: 44px;
         object-fit: contain;
     }
 
@@ -360,12 +433,13 @@
     .payment-text {
         font-weight: 700;
         color: #1e293b;
-        font-size: 1rem;
+        font-size: 0.95rem;
         margin-bottom: 2px;
+        word-break: break-word;
     }
     body.dark-mode .payment-text { color: #e2e8f0; }
     .payment-subtext {
-        font-size: 0.78rem;
+        font-size: 0.76rem;
         color: #64748b;
     }
     body.dark-mode .payment-subtext { color: #94a3b8; }
@@ -373,9 +447,10 @@
     .payment-badge {
         font-size: 0.72rem;
         font-weight: 700;
-        padding: 4px 10px;
+        padding: 3px 8px;
         border-radius: 20px;
         flex-shrink: 0;
+        white-space: nowrap;
     }
     .payment-badge.ksa {
         background: #dcfce7;
@@ -396,12 +471,37 @@
         color: #60a5fa;
     }
 
+    @media (max-width: 576px) {
+        .payment-method-header {
+            padding: 12px 10px;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .payment-icon-wrap {
+            width: 36px;
+            height: 26px;
+        }
+        .payment-text {
+            font-size: 0.88rem;
+        }
+        .payment-subtext {
+            font-size: 0.72rem;
+        }
+        .payment-badge {
+            margin-right: auto;
+            margin-top: 2px;
+            font-size: 0.68rem;
+        }
+    }
+
     /* ── Details Panel Immediately Below Selected Header ── */
     .payment-method-details {
         display: none;
-        padding: 18px 20px;
+        padding: 16px 18px;
         animation: fadeIn 0.3s ease;
         background: #fff;
+        width: 100%;
+        box-sizing: border-box;
     }
     body.dark-mode .payment-method-details {
         background: #0f172a;
@@ -414,14 +514,16 @@
         background: #f0f7ff;
         border: 1px solid #bfdbfe;
         border-radius: 10px;
-        padding: 10px 14px;
-        margin-bottom: 14px;
+        padding: 10px 12px;
+        margin-bottom: 12px;
         color: #1e40af;
-        font-size: 0.83rem;
+        font-size: 0.82rem;
         font-weight: 600;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 8px;
+        word-break: break-word;
+        line-height: 1.4;
     }
     body.dark-mode .pm-alert-box {
         background: rgba(59,130,246,0.1);
@@ -433,7 +535,9 @@
         background: #f8fafc;
         border: 1px solid #e2e8f0;
         border-radius: 12px;
-        padding: 12px 16px;
+        padding: 8px 12px;
+        width: 100%;
+        box-sizing: border-box;
     }
     body.dark-mode .payment-info-box {
         background: #1e293b;
@@ -442,19 +546,20 @@
     
     .info-row {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
         padding: 10px 8px;
         border-bottom: 1px solid #f1f5f9;
         cursor: pointer;
         border-radius: 8px;
         transition: all 0.2s;
+        width: 100%;
+        box-sizing: border-box;
     }
     body.dark-mode .info-row { border-bottom-color: rgba(255,255,255,0.05); }
     .info-row:hover {
         background: #eff6ff;
-        padding-right: 12px;
-        padding-left: 12px;
     }
     body.dark-mode .info-row:hover { background: #24344d; }
     .info-row:last-child {
@@ -463,6 +568,7 @@
     .info-row.highlight-row {
         background: #f0f7ff;
         border: 1.5px solid #bfdbfe;
+        margin: 4px 0;
     }
     body.dark-mode .info-row.highlight-row {
         background: rgba(59,130,246,0.08);
@@ -471,6 +577,7 @@
     .info-row.amount-row {
         background: #fffbeb;
         border: 1.5px solid #fde68a;
+        margin: 4px 0;
     }
     body.dark-mode .info-row.amount-row {
         background: rgba(245,158,11,0.08);
@@ -479,35 +586,71 @@
 
     .info-label {
         color: #64748b;
-        font-size: 0.85rem;
+        font-size: 0.82rem;
         font-weight: 600;
+        text-align: right;
     }
     body.dark-mode .info-label { color: #94a3b8; }
+
+    .info-row > .d-flex {
+        width: 100%;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+
     .info-value {
         font-weight: 700;
         color: #1e293b;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        word-break: break-word;
+        flex: 1;
+        min-width: 0;
     }
     body.dark-mode .info-value { color: #f1f5f9; }
     .info-value.monospace {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         direction: ltr;
         text-align: left;
-        letter-spacing: 0.6px;
+        letter-spacing: 0.4px;
+        word-break: break-all;
+        font-size: 0.82rem;
     }
     
+    @media (max-width: 640px) {
+        .payment-method-details {
+            padding: 12px 8px;
+        }
+        .payment-info-box {
+            padding: 6px 8px;
+        }
+        .info-row {
+            padding: 8px 6px;
+        }
+        .info-row .info-label {
+            font-size: 0.78rem;
+        }
+        .info-value {
+            font-size: 0.84rem;
+        }
+        .info-value.monospace {
+            font-size: 0.8rem;
+        }
+    }
+
     /* ── Copy Button ── */
     .btn-copy {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
+        gap: 4px;
         background: #e2e8f0;
         border: 1px solid #cbd5e1;
         color: #1e293b;
         cursor: pointer;
-        padding: 5px 12px;
+        padding: 4px 10px;
         border-radius: 6px;
-        font-size: 0.78rem;
+        font-size: 0.75rem;
         font-weight: 700;
         transition: all 0.2s;
         flex-shrink: 0;
@@ -543,16 +686,18 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        padding: 12px 24px;
+        padding: 12px 20px;
         border-radius: 12px;
         font-weight: 700;
-        font-size: 0.95rem;
+        font-size: 0.92rem;
         text-decoration: none !important;
         transition: all 0.3s;
         border: none;
         cursor: pointer;
         width: 100%;
         margin-top: 12px;
+        box-sizing: border-box;
+        word-break: break-word;
     }
     .btn-paypal-pay {
         background: linear-gradient(135deg, #003087, #0070ba);
@@ -570,7 +715,9 @@
         background: #f8fafc;
         border: 1px solid #e2e8f0;
         border-radius: 16px;
-        padding: 20px;
+        padding: 18px;
+        width: 100%;
+        box-sizing: border-box;
     }
     body.dark-mode .upload-section-card {
         background: #1e293b;
@@ -579,12 +726,14 @@
     .upload-area {
         border: 2px dashed #cbd5e1;
         border-radius: 14px;
-        padding: 24px 16px;
+        padding: 20px 14px;
         text-align: center;
         background: #fff;
         transition: all 0.2s;
         cursor: pointer;
         position: relative;
+        width: 100%;
+        box-sizing: border-box;
     }
     body.dark-mode .upload-area {
         background: #0f172a;
@@ -606,9 +755,9 @@
         cursor: pointer;
     }
     .upload-icon {
-        font-size: 32px;
+        font-size: 28px;
         color: #94a3b8;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
     .upload-area.has-file .upload-icon { color: #10b981; }
     
@@ -618,11 +767,11 @@
         color: #fff;
         border: none;
         border-radius: 12px;
-        padding: 16px;
-        font-size: 1.15rem;
+        padding: 15px;
+        font-size: 1.1rem;
         font-weight: 700;
         width: 100%;
-        margin-top: 24px;
+        margin-top: 20px;
         box-shadow: 0 4px 15px rgba(19, 106, 213, 0.3);
         transition: all 0.3s;
         display: flex;
@@ -639,6 +788,23 @@
         opacity: 0.7;
         transform: none;
         cursor: not-allowed;
+    }
+
+    @media (max-width: 576px) {
+        .btn-submit {
+            padding: 13px 10px;
+            font-size: 0.98rem;
+            gap: 6px;
+        }
+        .summary-card {
+            padding: 16px 12px;
+        }
+        .upload-section-card {
+            padding: 14px 10px;
+        }
+        .upload-area {
+            padding: 16px 8px;
+        }
     }
 
     @keyframes fadeIn {
@@ -704,9 +870,7 @@
                                     <div class="form-group">
                                         <label for="checkoutMobile">رقم الواتساب</label>
                                         <div class="input-group" dir="ltr">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">+966</span>
-                                            </div>
+                                            <span class="input-group-text">+966</span>
                                             <input type="tel" class="form-control" id="checkoutMobile" name="mobile" value="<?= esc(old('mobile')) ?>" placeholder="5XXXXXXXX" inputmode="numeric" autocomplete="tel-national" pattern="(5[0-9]{8}|05[0-9]{8})" maxlength="10" required>
                                         </div>
                                         <small class="form-text text-muted">مثال: 512345678</small>
@@ -716,11 +880,9 @@
                                         <label for="checkoutPassword">كلمة المرور</label>
                                         <div class="input-group" dir="ltr">
                                             <input type="password" class="form-control" id="checkoutPassword" name="password" autocomplete="new-password" minlength="6" required>
-                                            <div class="input-group-append">
-                                                <button type="button" class="btn password-toggle" id="toggleCheckoutPassword" aria-label="إظهار كلمة المرور">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                            </div>
+                                            <button type="button" class="btn password-toggle" id="toggleCheckoutPassword" aria-label="إظهار كلمة المرور">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </section>
