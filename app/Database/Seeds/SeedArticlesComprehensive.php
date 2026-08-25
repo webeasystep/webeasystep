@@ -34,6 +34,7 @@ class SeedArticlesComprehensive extends Seeder
 
     private function getArticlesData(): array
     {
+        $p0 = require __DIR__ . '/articles_data/pillar0_core_explanations.php';
         $p1 = require __DIR__ . '/articles_data/pillar1.php';
         $p2 = require __DIR__ . '/articles_data/pillar2.php';
         $p3 = require __DIR__ . '/articles_data/pillar3.php';
@@ -43,6 +44,6 @@ class SeedArticlesComprehensive extends Seeder
         $p7 = require __DIR__ . '/articles_data/pillar7.php';
         $p8 = require __DIR__ . '/articles_data/pillar8_high_intent.php';
 
-        return array_merge($p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8);
+        return array_merge($p0, $p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8);
     }
 }
