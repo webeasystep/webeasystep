@@ -198,6 +198,75 @@ $dateFormatted = date('d M Y', strtotime($article->created_at));
             line-height: 1.85;
         }
     }
+
+    /* ============================================
+       DARK MODE OVERRIDES FOR SINGLE ARTICLE
+       ============================================ */
+    body.dark-mode .article-single-section {
+        background-color: #0b1329 !important;
+    }
+    body.dark-mode .article-main-card {
+        background: #1e293b !important;
+        border-color: #334155 !important;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
+        color: #cbd5e1 !important;
+    }
+    body.dark-mode .article-single-title {
+        color: #f8fafc !important;
+    }
+    body.dark-mode .article-single-meta {
+        border-bottom-color: #334155 !important;
+        color: #94a3b8 !important;
+    }
+    body.dark-mode .article-content-body {
+        color: #cbd5e1 !important;
+    }
+    body.dark-mode .article-content-body h2,
+    body.dark-mode .article-content-body h3,
+    body.dark-mode .article-content-body h4 {
+        color: #f8fafc !important;
+    }
+    body.dark-mode .article-content-body p,
+    body.dark-mode .article-content-body li {
+        color: #cbd5e1 !important;
+    }
+    body.dark-mode .article-content-body .table {
+        color: #cbd5e1 !important;
+        border-color: #334155 !important;
+    }
+    body.dark-mode .article-content-body .table-bordered th,
+    body.dark-mode .article-content-body .table-bordered td {
+        border-color: #334155 !important;
+    }
+    body.dark-mode .article-share-box {
+        background: #0f172a !important;
+        border-color: #334155 !important;
+    }
+    body.dark-mode .article-share-box .font-weight-bold {
+        color: #f8fafc !important;
+    }
+    body.dark-mode .share-btn.share-copy {
+        background: #334155 !important;
+        color: #cbd5e1 !important;
+    }
+    body.dark-mode .author-bio-card {
+        background: #0f172a !important;
+        border-color: #334155 !important;
+    }
+    body.dark-mode .author-bio-card h5 {
+        color: #f8fafc !important;
+    }
+    body.dark-mode .author-bio-card p {
+        color: #94a3b8 !important;
+    }
+    body.dark-mode .related-card {
+        background: #1e293b !important;
+        border-color: #334155 !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    }
+    body.dark-mode .related-title {
+        color: #f8fafc !important;
+    }
 </style>
 
 <div class="article-single-section">

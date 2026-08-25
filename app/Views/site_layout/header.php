@@ -444,7 +444,7 @@
         <link rel="stylesheet" href="<?= base_url() ?>site/css/style_rtl.css?v=2.11">
     </noscript>
 
-    <link rel="stylesheet" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=1.9">
+    <link rel="stylesheet" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=2.2">
 
     <!-- Fonts - with display swap for better performance -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" media="print"

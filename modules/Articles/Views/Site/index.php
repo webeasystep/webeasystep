@@ -186,6 +186,64 @@ if (!function_exists('getArticleImageUrl')) {
         border-color: #136ad5;
         color: #fff;
     }
+
+    /* ============================================
+       DARK MODE OVERRIDES FOR BLOG INDEX
+       ============================================ */
+    body.dark-mode .blog-hero {
+        background: linear-gradient(135deg, rgba(11, 19, 41, 0.96), rgba(15, 23, 42, 0.94)), url('<?= base_url('site/images/main_banner.webp') ?>') center/cover no-repeat !important;
+    }
+    body.dark-mode .untree_co-section.bg-light,
+    body.dark-mode .bg-light {
+        background-color: #0b1329 !important;
+    }
+    body.dark-mode .article-grid-card {
+        background: #1e293b !important;
+        border-color: #334155 !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+    }
+    body.dark-mode .article-thumb-wrapper {
+        background: #0f172a !important;
+    }
+    body.dark-mode .article-title-link {
+        color: #f8fafc !important;
+    }
+    body.dark-mode .article-title-link:hover {
+        color: #60a5fa !important;
+    }
+    body.dark-mode .article-desc-text {
+        color: #cbd5e1 !important;
+    }
+    body.dark-mode .article-meta-info {
+        color: #94a3b8 !important;
+    }
+    body.dark-mode .article-footer-cta {
+        border-top-color: #334155 !important;
+    }
+    body.dark-mode .read-more-link {
+        color: #60a5fa !important;
+    }
+    body.dark-mode .read-more-link:hover {
+        color: #93c5fd !important;
+    }
+    body.dark-mode .blog-search-box .form-control {
+        background: #1e293b !important;
+        color: #f8fafc !important;
+        border: 1px solid #334155 !important;
+    }
+    body.dark-mode .blog-search-box .form-control::placeholder {
+        color: #94a3b8 !important;
+    }
+    body.dark-mode .custom-pagination .page-item .page-link {
+        background-color: #1e293b !important;
+        border-color: #334155 !important;
+        color: #93c5fd !important;
+    }
+    body.dark-mode .custom-pagination .page-item.active .page-link {
+        background-color: #136ad5 !important;
+        border-color: #136ad5 !important;
+        color: #fff !important;
+    }
 </style>
 
 <!-- Hero Section -->
