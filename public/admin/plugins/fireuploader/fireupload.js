@@ -29,13 +29,58 @@ class FireUploader {
 
     createFileInputElement(inputName, multipleFiles) {
         const fileInputElementId = `fileInput${this.dropzoneId}`;
-        return $('<input>', {
+        const attributes = {
             type: 'file',
             name: inputName,
             class: 'choose-file-input',
             multiple: multipleFiles,
             id: fileInputElementId
+        };
+
+        const acceptValue = this.buildAcceptAttribute();
+        if (acceptValue) {
+            attributes.accept = acceptValue;
+        }
+
+        return $('<input>', attributes);
+    }
+
+    buildAcceptAttribute() {
+        if (!Array.isArray(this.allowedExtensions) || this.allowedExtensions.length === 0) {
+            return '';
+        }
+
+        const mimeMap = {
+            jpg: 'image/jpeg',
+            jpeg: 'image/jpeg',
+            png: 'image/png',
+            gif: 'image/gif',
+            webp: 'image/webp',
+            pdf: 'application/pdf',
+            doc: 'application/msword',
+            docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            xls: 'application/vnd.ms-excel',
+            xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            txt: 'text/plain',
+            zip: 'application/zip',
+            mp3: 'audio/mpeg',
+            mp4: 'video/mp4',
+            avi: 'video/x-msvideo',
+            mov: 'video/quicktime'
+        };
+
+        const accepts = this.allowedExtensions.flatMap((extension) => {
+            const normalizedExtension = String(extension).toLowerCase();
+            const mimeType = mimeMap[normalizedExtension];
+
+            if (mimeType) {
+                return [`.${normalizedExtension}`, mimeType];
+            }
+
+            return [`.${normalizedExtension}`];
         });
+
+        return [...new Set(accepts)].join(',');
     }
 
     createFileInputLabel() {

@@ -108,7 +108,7 @@
             dropzoneId: 'dropzone1',
             inputName: "images[]",
             multipleFiles: true,
-            allowedExtensions: ["jpg", "png", "gif"],
+            allowedExtensions: ["jpg", "jpeg", "png", "webp", "gif"],
             files: <?= json_encode($files ?? '[]') ?>
         });
     });

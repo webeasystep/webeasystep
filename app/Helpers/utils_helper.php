@@ -13,8 +13,12 @@ function truncate($str, $width): string
 function is_image($path): bool
 {
     $a = @getimagesize($path);
+    if ($a === false || !isset($a[2])) {
+        return false;
+    }
+
     $image_type = $a[2];
-    if (in_array($image_type, array(IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_JPEG))) {
+    if (in_array($image_type, [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_WEBP], true)) {
         return true;
     }
     return false;
