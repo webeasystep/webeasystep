@@ -41,7 +41,8 @@ class SeedArticlesComprehensive extends Seeder
         $p5 = require __DIR__ . '/articles_data/pillar5.php';
         $p6 = require __DIR__ . '/articles_data/pillar6.php';
         $p7 = require __DIR__ . '/articles_data/pillar7.php';
+        $p8 = require __DIR__ . '/articles_data/pillar8_high_intent.php';
 
-        return array_merge($p1, $p2, $p3, $p4, $p5, $p6, $p7);
+        return array_merge($p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8);
     }
 }
