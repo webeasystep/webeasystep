@@ -64,6 +64,13 @@
     <meta property="og:image:alt" content="<?= esc($finalTitle); ?>" />
     <meta property="og:site_name" content="منصة فخر CS التعليمية" />
     <meta property="og:locale" content="ar_SA" />
+    <?php if (isset($og_type) && $og_type === 'article' && isset($article) && is_object($article)): ?>
+    <meta property="article:published_time" content="<?= !empty($article->created_at) ? date('c', strtotime($article->created_at)) : date('c') ?>" />
+    <meta property="article:modified_time" content="<?= !empty($article->updated_at) ? date('c', strtotime($article->updated_at)) : date('c') ?>" />
+    <meta property="article:author" content="م. أحمد فخر الدين - فخر CS" />
+    <meta property="article:section" content="الجامعة السعودية الإلكترونية" />
+    <meta property="article:tag" content="الجامعة السعودية الإلكترونية, SEU, السنة التحضيرية, اختبار STEP, بلاك بورد" />
+    <?php endif; ?>
 
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -127,6 +134,57 @@
             "availability": "https://schema.org/InStock",
             "category": "Educational"
           }
+        }
+        <?php endif; ?>
+        <?php if (isset($article) && is_object($article) && !empty($article->title)): ?>
+        ,{
+          "@type": "BlogPosting",
+          "@id": "<?= current_url() ?>#article",
+          "headline": <?= json_encode($article->title, JSON_UNESCAPED_UNICODE) ?>,
+          "description": <?= json_encode($finalDescription, JSON_UNESCAPED_UNICODE) ?>,
+          "url": "<?= current_url() ?>",
+          "datePublished": "<?= !empty($article->created_at) ? date('c', strtotime($article->created_at)) : date('c') ?>",
+          "dateModified": "<?= !empty($article->updated_at) ? date('c', strtotime($article->updated_at)) : (!empty($article->created_at) ? date('c', strtotime($article->created_at)) : date('c')) ?>",
+          "inLanguage": "ar-SA",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "<?= current_url() ?>"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "م. أحمد فخر الدين",
+            "url": "<?= base_url() ?>"
+          },
+          "publisher": {
+            "@id": "<?= base_url('#organization') ?>"
+          },
+          "image": <?= json_encode($finalImage, JSON_UNESCAPED_UNICODE) ?>,
+          "keywords": <?= json_encode($finalKeywords, JSON_UNESCAPED_UNICODE) ?>,
+          "articleBody": <?= json_encode(mb_substr(strip_tags($article->content ?? ''), 0, 500), JSON_UNESCAPED_UNICODE) ?>
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "<?= current_url() ?>#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "الرئيسية",
+              "item": "<?= base_url() ?>"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "المدونة",
+              "item": "<?= base_url('blog') ?>"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": <?= json_encode($article->title, JSON_UNESCAPED_UNICODE) ?>,
+              "item": "<?= current_url() ?>"
+            }
+          ]
         }
         <?php endif; ?>
       ]
