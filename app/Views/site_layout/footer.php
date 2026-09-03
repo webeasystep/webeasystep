@@ -66,12 +66,7 @@
                 </p>
             </div>
         </div>
-    </div> </div> <div id="overlayer"></div>
-<div class="loader">
-    <div class="spinner-border" role="status">
-        <span class="sr-only">جار التحميل...</span>
-    </div>
-</div>
+    </div> </div>
 
 <!-- Include Course Request Modal -->
 <?= view('site_layout/course_request_modal') ?>

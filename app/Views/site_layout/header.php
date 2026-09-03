@@ -197,6 +197,10 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
+    <!-- Preload Critical Font & Hero Image for faster FCP/LCP -->
+    <link rel="preload" href="<?= base_url('site/fonts/alex/Alexandria-Regular.woff2') ?>" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<?= base_url('site/images/main_banner.webp') ?>" as="image" fetchpriority="high">
+
     <!-- Favicon & Mobile Device Compatibility (iOS / iPhone / iPad / Android) -->
     <link rel="icon" type="image/x-icon" href="<?= base_url('favicon.ico'); ?>" />
     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('favicon-16x16.png'); ?>" />
@@ -356,36 +360,28 @@
             text-decoration: none
         }
 
-        /* Loader */
-        #overlayer {
-            position: fixed;
-            inset: 0;
-            background: #fff;
-            z-index: 9999
+        /* Loader - Disabled to eliminate blank screen delay */
+        #overlayer, .loader {
+            display: none !important;
         }
 
-        .loader {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10000
+        /* Course Card CLS Prevention */
+        .course-card-image {
+            aspect-ratio: 2 / 1;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
-
-        .spinner-border {
-            display: inline-block;
-            width: 2rem;
-            height: 2rem;
-            border: .25em solid currentColor;
-            border-right-color: transparent;
-            border-radius: 50%;
-            animation: spinner .75s linear infinite
-        }
-
-        @keyframes spinner {
-            to {
-                transform: rotate(360deg)
-            }
+        .course-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
         }
 
         /* Theme toggle */
@@ -444,7 +440,11 @@
         <link rel="stylesheet" href="<?= base_url() ?>site/css/style_rtl.css?v=2.11">
     </noscript>
 
-    <link rel="stylesheet" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=2.2">
+    <link rel="preload" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=2.2" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=2.2">
+    </noscript>
 
     <!-- Fonts - with display swap for better performance -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" media="print"

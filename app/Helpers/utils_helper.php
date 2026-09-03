@@ -43,35 +43,53 @@ if (!function_exists('thumb')) {
 
             $encodedFileNameWithoutExtension = pathinfo($rawName, PATHINFO_FILENAME);
 
-            // Generate the thumbnail name
+            // Prioritize high-performance WebP thumbnail
+            $webpName = "{$encodedFileNameWithoutExtension}_{$width}_{$height}.webp";
+            $webpPath = dirname($fullPath) . "/{$webpName}";
+
+            if (file_exists($webpPath)) {
+                return base_url($webpPath);
+            }
+
+            // Fallback thumbnail path using original extension
             $thumbnailName = "{$encodedFileNameWithoutExtension}_{$width}_{$height}.{$extension}";
             $thumbnailPath = dirname($fullPath) . "/{$thumbnailName}";
 
-            // Check if the thumbnail image already exists with the given dimensions
-            if (!file_exists($thumbnailPath)) {
-                // Thumbnail doesn't exist, generate it from the original image
-                if (file_exists($fullPath)) {
+            if (file_exists($fullPath)) {
+                try {
+                    // Try generating WebP thumbnail first
+                    \Config\Services::image()
+                        ->withFile($fullPath)
+                        ->fit($width, $height, 'top')
+                        ->save($webpPath, 85);
+
+                    if (file_exists($webpPath)) {
+                        return base_url($webpPath);
+                    }
+                } catch (\Exception $e) {
+                    // If WebP creation fails, try fallback
+                }
+
+                if (!file_exists($thumbnailPath)) {
                     try {
-                        // Create a new instance of the image library
-                        $image = \Config\Services::image()
+                        \Config\Services::image()
                             ->withFile($fullPath)
-                            ->fit($width, $height, 'top') // crop from top to preserve important content
+                            ->fit($width, $height, 'top')
                             ->save($thumbnailPath);
                     } catch (\Exception $e) {
-                        // In case of any image error, return fallback image
                         return base_url('site/imgs/testim.png');
                     }
-                } else {
-                    // Original image not found, return a not found image
-                    return base_url('site/imgs/testim.png');
                 }
-            }
 
-            // Return the path to the thumbnail
-            return base_url($thumbnailPath);
+                return base_url($thumbnailPath);
+            } else {
+                if (file_exists($thumbnailPath)) {
+                    return base_url($thumbnailPath);
+                }
+                return base_url('site/imgs/testim.png');
+            }
         }
 
-        // If no image data or files are found, return a not found image
         return base_url('site/imgs/testim.png');
     }
 }
@@ -91,10 +109,6 @@ if (!function_exists('localized_field')) {
         return null;
     }
 }
-
-
-// Generate form token
-
 //--------------------------------------------------------------------
 
 

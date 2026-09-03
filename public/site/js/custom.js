@@ -8,9 +8,6 @@ $(function () {
 
 	'use strict';
 
-	$(".loader").delay(200).fadeOut("slow");
-	$("#overlayer").delay(200).fadeOut("slow");
-
 	var siteMenuClone = function () {
 
 		$('.js-clone-nav').each(function () {

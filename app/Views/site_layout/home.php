@@ -124,7 +124,7 @@
                                             $courseAlt .= !empty($course['college_name']) ? ' | ' . esc($course['college_name']) : '';
                                             $courseAlt .= ' | الجامعة السعودية الإلكترونية SEU';
                                         ?>
-                                        <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= $courseAlt ?>" class="course-img" loading="lazy" decoding="async">
+                                        <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= $courseAlt ?>" class="course-img" width="400" height="200" loading="lazy" decoding="async">
                                         <?php if($isOpen): ?>
                                             <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
                                         <?php else: ?>

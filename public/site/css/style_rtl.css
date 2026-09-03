@@ -1,12 +1,16 @@
 /*Start Global*/
 @font-face {
     font-family: 'Alexandria-Medium';
-    src: url('../fonts/alex/Alexandria-Medium.ttf') format('truetype');
+    src: url('../fonts/alex/Alexandria-Medium.woff2') format('woff2'),
+         url('../fonts/alex/Alexandria-Medium.ttf') format('truetype');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Alexandria-Regular';
-    src: url('../fonts/alex/Alexandria-Regular.ttf') format('truetype');
+    src: url('../fonts/alex/Alexandria-Regular.woff2') format('woff2'),
+         url('../fonts/alex/Alexandria-Regular.ttf') format('truetype');
+    font-display: swap;
 }
 
 body {
