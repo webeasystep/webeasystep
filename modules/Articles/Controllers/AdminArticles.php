@@ -63,6 +63,7 @@ class AdminArticles extends BaseController
             if ($this->validate($this->rules)) {
                 $id = $this->data_arr();
                 $this->fireUploader->upload_photos($this->articles, 'image', $id);
+                \App\Controllers\Sitemap::refreshXmlFile();
                 $this->show_msg('success', lang("Admin.add_operation"), lang("Admin.add_success"));
                 return redirect()->to(ADMIN_URL . "articles");
             } else {
@@ -86,6 +87,7 @@ class AdminArticles extends BaseController
             if ($this->validate($this->rules)) {
                 $this->fireUploader->upload_photos($this->articles, 'image', $id);
                 $id = $this->data_arr($id);
+                \App\Controllers\Sitemap::refreshXmlFile();
                 $this->show_msg('success', lang("Admin.edit"), lang("Admin.edit_success"));
                 return redirect()->to(ADMIN_URL . "articles");
             } else {

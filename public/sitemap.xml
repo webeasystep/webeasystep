@@ -2,29 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://fakhrcs.com/</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://fakhrcs.com/%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D8%A9-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9-%D8%A7%D9%84%D8%A7%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D9%86%D8%A9-%D8%A7%D9%84%D8%A7%D9%88%D9%84%D9%89-%D8%A7%D9%84%D9%85%D8%B4%D8%AA%D8%B1%D9%83%D8%A9-%D8%A7%D9%84%D8%AA%D8%AD%D8%B6%D9%8A%D8%B1%D9%8A%D8%A9</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://fakhrcs.com/courses</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://fakhrcs.com/blog</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
@@ -40,13 +41,20 @@
   </url>
   <url>
     <loc>https://fakhrcs.com/courses/course_details/seu-math-001-fundamentals-of-mathematics</loc>
-    <lastmod>2026-08-15</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
       <image:loc>https://fakhrcs.com/uploads/courses/13_08_2026/1786648618_3fbebe7c6d8a7190ba53.jpg</image:loc>
       <image:title>مقدمة في الرياضيات (ريض 001)</image:title>
     </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/oPiTaLJNhYc/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقدمة في الرياضيات (ريض 001) - شرح وفيديو تمهيدي</video:title>
+      <video:description>ريض 001 | MATH 001 - أساسيات الرياضيات الجامعية في السنة الأولى المشتركة SEU</video:description>
+      <video:player_loc>https://www.youtube.com/embed/oPiTaLJNhYc</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://fakhrcs.com/courses/course_details/data-structure</loc>
@@ -70,11 +78,11 @@
   </url>
   <url>
     <loc>https://fakhrcs.com/courses/course_details/seu-cs-001-computer-essentials</loc>
-    <lastmod>2026-08-15</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://fakhrcs.com/uploads/courses/12_08_2026/1786551196_c88e5a791cea4b15c809.jpg</image:loc>
+      <image:loc>https://fakhrcs.com/uploads/courses/25_08_2026/1787673803_0541f48a949aa7cae491.webp</image:loc>
       <image:title>أساسيات الحاسب (عال 001)</image:title>
     </image:image>
   </url>
@@ -90,9 +98,20 @@
   </url>
   <url>
     <loc>https://fakhrcs.com/courses/course_details/seu-comm-001-communication-skills</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://fakhrcs.com/uploads/courses/19_08_2026/1787159032_618a884bf302ce141a44.png</image:loc>
+      <image:title>مهارات الاتصال (علم 001)</image:title>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مهارات الاتصال (علم 001) - شرح وفيديو تمهيدي</video:title>
+      <video:description>علم 001 | COMM 001 - مهارات الاتصال في السنة الأولى المشتركة SEU</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://fakhrcs.com/courses/course_details/operating-systems</loc>
@@ -106,9 +125,13 @@
   </url>
   <url>
     <loc>https://fakhrcs.com/courses/course_details/seu-ci-001-academic-skills</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://fakhrcs.com/uploads/courses/16_08_2026/1786878376_2935b4ebca638bb590cf.png</image:loc>
+      <image:title>المهارات الأكاديمية (نهج 001)</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://fakhrcs.com/courses/course_details/web-technologies</loc>
@@ -131,154 +154,2878 @@
     </image:image>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/seu-majors-after-common-year</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/professional-email-etiquette-with-professors-and-deanship-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل التواصل الاحترافي عبر البريد الإلكتروني مع الدكاترة والعمادة في الجامعة لحل المشكلات العالقة بسرعة</video:title>
+      <video:description>فن المراسلة الأكاديمية الرسمية في SEU: كيف تكتب إيميل رسمي مؤثر للدكتور والعمادة يضمن رداً سريعاً وحلولاً لمشاكلك الأكاديمية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/seu-failing-retaking-courses</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/backing-up-programming-projects-assignments-cloud-storage-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيفية عمل نسخ احتياطي لمشاريعك وأكوادك البرمجية والواجبات السحابية لتجنب ضياعها قبل التسليم</video:title>
+      <video:description>قاعدة النسخ الاحتياطي الثلاثية لطلاب الحوسبة: كيف تحمي مشاريع التخرج وأكواد اللاب من التلف أو ضياع الجهاز قبل موعد الديدلاين.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/how-to-study-seu-common-year</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/troubleshooting-blackboard-collaborate-audio-video-issues-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>حل مشكلات الاتصال والصوت في Blackboard Collaborate أثناء المحاضرات المباشرة</video:title>
+      <video:description>دليل حل المشاكل التقنية في فصول البلاك بورد الافتراضية لطلاب SEU: انقطاع الصوت، تعطل الميكروفون، وبطء البث وطريقة معالجتها.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/seu-midterm-schedule-prep</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/pomodoro-and-time-blocking-for-programming-and-math-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>إدارة الوقت بأسلوب فترات التركيز (Pomodoro &amp; Time-blocking) لدراسة المقررات البرمجية والرياضية</video:title>
+      <video:description>كيف تطبق تقنية بومودورو والكتل الزمنية لدراسة مقررات البرمجة والرياضيات المعقدة في SEU دون تشتت ذهني أو تسويف.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/seu-ef-english-difference</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/writing-professional-computing-reports-latex-word-ieee-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Oi1fWTeCD74/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيفية إعداد التقارير الجامعية الاحترافية لمشاريع كلية الحوسبة باستخدام LaTeX أو Word وفق المعايير الأكاديمية</video:title>
+      <video:description>دليل كتابة وتنسيق التقارير الهندسية لمشاريع حوسبة SEU: التوثيق بنظام IEEE، تنسيق الجداول والأكواد، واستخدام LaTeX للحصول على امتياز.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/Oi1fWTeCD74</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/how-to-solve-seu-assignments</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/activate-seu-student-email-github-pack-jetbrains-discounts</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>طريقة تفعيل بريد الجامعة الرسمي والاستفادة من خصومات الطلاب العالمية (GitHub Student Pack, JetBrains, Notion)</video:title>
+      <video:description>دليل المزايا والاشتراكات المجانية لبريد طالب SEU: تفعيل GitHub Student Developer Pack المجاني، اشتراكات JetBrains، ومايكروسوفت أوفيس 365.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/seu-attendance-absence-rules</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/working-student-guide-balancing-job-family-and-computing-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/DmzPIsJaHmk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل الطالب الموظف في SEU: كيف توزع 15 ساعة أسبوعياً بين الدوام والأسرة ودراسة الحوسبة؟</video:title>
+      <video:description>خطة إدارة الوقت الواقعية للموظفين في SEU: كيف تنجز 15 ساعة دراسية أسبوعياً في تخصصات الحوسبة دون احتراق وظيفي أو تقصير أسري.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/DmzPIsJaHmk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/seu-tuition-fees</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/managing-seu-studies-via-ipad-and-mobile-best-apps</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تدير دراستك في SEU عبر الجوال والآيباد؟ أفضل التطبيقات لتدوين الملاحظات ومتابعة المحاضرات</video:title>
+      <video:description>كيف تحول جهازك اللوحي وجوالك إلى مكتبة دراسية متنقلة في الجامعة السعودية الإلكترونية: تطبيقات تدوين السلايدات وإدارة الواجبات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/respondus-lockdown-browser-seu</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/ide-setup-for-lab-exams-intellij-eclipse-vscode-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/7h7PKQBoGSo/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تهيئة بيئة التطوير والبرمجة (IDE Setup) المناسبة لاختبارات اللاب في كلية الحوسبة (IntelliJ, Eclipse, VS Code)</video:title>
+      <video:description>دليل تثبيت وتهيئة برامج البرمجة (IDEs) المعتمدة في معامل واختبارات SEU: IntelliJ IDEA و Eclipse و NetBeans للاب الجافا وقواعد البيانات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/7h7PKQBoGSo</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/ci-001-comm-001-guide</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/safeassign-plagiarism-percentage-in-coding-assignments-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/ehwYuyINYUs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>نظام كشف الانتحال والتشابه SafeAssign في الواجبات البرمجية والتقارير: كيف تتأكد من سلامة حلك؟</video:title>
+      <video:description>دليل التعامل مع أداة كشف الاقتباس SafeAssign في البلاك بورد لـ SEU: النسبة المسموح بها، التعامل مع الأكواد البرمجية، وتجنب الإحالة للتحقيق.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/ehwYuyINYUs</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/seu-grading-system</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/theory-vs-hands-on-compiler-practice-why-reading-code-fails-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الفارق بين المذاكرة النظرية والتطبيق العملي على الكومبايلر: لماذا لا تكفي القراءة لاجتياز اختبارات البرمجة؟</video:title>
+      <video:description>لماذا يرسب الطلاب الذين يقرؤون كود البرمجة دون كتابته؟ الحقيقة العلمية لأهمية بيئة التطوير (IDE) وتصحيح الأخطاء لاجتياز كورسات الحوسبة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/is-seu-study-hard</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/how-to-recover-after-failing-midterm-in-major-course-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>ماذا تفعل إذا رسبت في الاختبار النصفي (Midterm) لمادة تخصصية؟ خطة التعويض في الفاينل والواجبات</video:title>
+      <video:description>خطة الطوارئ لإنقاذ المقرر بعد درجة صادمة في الميدتيرم لطلاب SEU: حساب النقاط المتبقية والتعويض في أعمال السنة والفاينل للنجاح بامتياز.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/seu-course-equivalency-guide</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/maximizing-virtual-office-hours-with-instructors-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تستفيد من أستاذ المقرر (Instructor) والساعات المكتبية الافتراضية لطرح أسئلتك قبل فوات الأوان؟</video:title>
+      <video:description>دليل طالب SEU للاستفادة القصوى من الساعات المكتبية لدكاترة الحوسبة: كيف تجهز أسئلتك البرمجية وتكسب دعم وتوجيه أستاذ المقرر.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/how-to-use-blackboard-seu</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/how-to-summarize-500-page-english-slides-tech-courses-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>طريقة تنظيم ملخصات المقررات التقنية الإنجليزية: كيف تستخلص أهم الأفكار من سلايدات تتجاوز 500 صفحة؟</video:title>
+      <video:description>فن التلخيص السريع للسلايدات الضخمة لمقررات كلية الحوسبة بـ SEU: تقنيات الخرائط الذهنية، استخراج الكلمات المفتاحية، وتوفير وقت الفاينل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/seu-admission-requirements</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/how-to-practice-past-exam-papers-effectively-without-blind-memorization-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أهمية حل نماذج الاختبارات السابقة (Past Papers): كيف تتدرب عليها بذكاء دون الاعتماد على الحفظ الأعمى؟</video:title>
+      <video:description>الدليل العلمي لطلاب SEU للاستفادة من بنوك الأسئلة والاختبارات السابقة: كيف تحلل أنماط الأسئلة وتتجنب فخ تغيير الأرقام والخيارات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/seu-midterm-exams-prep</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/how-to-study-two-heavy-programming-math-courses-same-term-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/LoNI3pBRcEU/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تذاكر مادتين برمجيتين أو رياضيتين ثقيلتين في نفس الفصل دون احتراق ذهني؟</video:title>
+      <video:description>استراتيجية التبديل المعرفي لطلاب كلية الحوسبة بـ SEU لدراسة مادتين معقدتين (مثل CS140 و MATH150) في نفس الفصل بنجاح وتفوق.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/LoNI3pBRcEU</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/step-test-english-equivalency-seu</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/diagnostic-test-concept-understanding-vs-exam-technique-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>اختبار تشخيصي لطلاب الحوسبة: هل مشكلتك في فهم المادة أم في تقنية حل أسئلة الاختبارات المقالية والموضوعية؟</video:title>
+      <video:description>اختبار تشخيصي ذاتي لطلاب SEU لتحديد سبب ضعف الدرجات: هل الخلل في الاستيعاب المفاهيمي أم في التعامل مع وقت الاختبار وتكتيكات الـ MCQ؟</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/cs-001-seu-projects</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/it241-database-lab-project-assignments-time-management-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/ehwYuyINYUs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقرر IT241 (Introduction to Database - مقدمة في قواعد البيانات): كيف تدير مشروع اللاب والواجبات دون أن تضيع وقتاً طويلاً؟</video:title>
+      <video:description>دليل إنجاز مشروع وواجبات مقرر IT241 (Introduction to Database - قواعد البيانات) في SEU: من رسم مخططات ERD وحتى كتابة استعلامات SQL والـ Normalization.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/ehwYuyINYUs</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/math-001-seu-guide</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/it210-computer-networks-practical-and-osi-calculation-secrets-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقرر IT210 (Computer Networks - شبكات الحاسب): أسرار النجاح في الجانب العملي والمسائل الحسابية لنموذج OSI</video:title>
+      <video:description>أسرار التفوق في مقرر IT210 (Computer Networks - شبكات الحاسب) بـ SEU: فهم طبقات OSI، مسائل الـ Subnetting، والتعامل مع مشاريع اللاب العملي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/common-year-guide-seu</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/balancing-theory-and-math-problems-in-cs330-os-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقرر CS330 (Operating Systems - نظم التشغيل): كيف توفق بين المفاهيم النظرية الكثيفة وحل المسائل في الاختبار؟</video:title>
+      <video:description>دليل التفوق في مقرر CS330 (Operating Systems - نظم التشغيل) لطلاب SEU: كيفية الربط بين إدارة الذاكرة والعمليات وجدولة المعالج وحل مسائل الفاينل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/five-golden-tips-success-common-year</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/cs331-algorithms-study-strategy-overcoming-big-o-hurdle-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقرر CS331 (Design and Analysis of Algorithms - الخوارزميات): استراتيجية إدارة المقرر وتجاوز حاجز تحليل التعقيد الزمني Big O</video:title>
+      <video:description>خطة السيطرة على مقرر CS331 (Design and Analysis of Algorithms - الخوارزميات) بـ SEU: فهم Big O Notation، البرمجة الديناميكية، والتفوق في الامتحانات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/step-exam-preparation-guide</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/how-to-study-cs220-data-structures-visualizing-pointers-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقرر CS220 (Data Structures - هياكل البيانات): كيف تنظم وقت مذاكرته وتتغلب على صعوبة تصور الذاكرة والمؤشرات؟</video:title>
+      <video:description>استراتيجية التفوق في مقرر CS220 (Data Structures - هياكل البيانات) بـ SEU: كيفية رسم الذاكرة وتخيل القوائم المرتبطة والأشجار وإدارة وقت المذاكرة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/gpa-calculation-guide-seu</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/why-students-struggle-with-cs140-java-oop-mindset-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Oi1fWTeCD74/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقرر CS140 (Object-Oriented Programming - البرمجة الكائنية جافا): لماذا يتعثر فيه الطلاب الجدد؟ وخطة الانتقال للتفكير الكائني</video:title>
+      <video:description>تشخيص أسباب تعثر طلاب الحوسبة في مقرر CS140 (Object-Oriented Programming - Java OOP) بـ SEU، وخطة عقلية للانتقال من حفظ الكود لفهم الكائنات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/Oi1fWTeCD74</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/how-to-register-seu-step-by-step</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/does-stat101-require-advanced-math-how-to-study-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/bNUEn8agqeU/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>هل يحتاج مقرر STAT 101 (Principles of Statistics - مبادئ الإحصاء) لخلفية رياضية معقدة؟ الحقيقة وطريقة دراسته</video:title>
+      <video:description>دليل طالب SEU لتجاوز فوبيا الإحصاء في مقرر STAT 101 (Principles of Statistics): لماذا يعتبر المقرر من أسهل مواد رفع المعدل إذا فهمت دلالات القوانين.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/bNUEn8agqeU</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
-    <loc>https://fakhrcs.com/blog/common-year-complete-guide-seu</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://fakhrcs.com/blog/why-math150-discrete-math-is-hard-and-how-to-pass-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/LoNI3pBRcEU/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>لماذا يعتبر الطلاب مقرر MATH 150 (Discrete Mathematics - الرياضيات المتقطعة) عقدة كلية الحوسبة؟ وكيف تتغلب على طبيعته التجريدية؟</video:title>
+      <video:description>تشخيص صعوبة مقرر MATH 150 (Discrete Mathematics) لطلاب كلية الحوسبة في SEU: لماذا تفشل أساليب الحفظ، وكيف تدرس الرياضيات المتقطعة بنجاح.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/LoNI3pBRcEU</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/freelancing-for-computing-students-first-client-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Oi1fWTeCD74/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>العمل الحر (Freelancing) لطلاب كلية الحوسبة أثناء الدراسة: كيف تبدأ أول مشروع بربحي وتطبق دراستك؟</video:title>
+      <video:description>دليل طالب الحوسبة لبدء العمل الحر (Freelancing): منصات العمل، تحديد الأسعار، تحويل مشاريع الكلية إلى خدمات مطلوبة وتحقيق دخل مجزٍ.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/Oi1fWTeCD74</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/it-career-paths-networking-sysadmin-cloud-computing-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>المسارات الاحترافية لطلاب تقنية المعلومات: من إدارة النظم والشبكات إلى الحوسبة السحابية (Cloud)</video:title>
+      <video:description>خارطة طريق التخصص المهني لطلاب بكالوريوس تقنية المعلومات في SEU: مسارات Cloud Architect, DevOps, Network Specialist.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/summer-training-vs-coop-internship-differences-seu</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>التدريب الصيفي الاختياري vs التدريب التعاوني الإجباري: الفروق والفوائد المهنية لطلاب التقنية</video:title>
+      <video:description>مقارنة بين التدريب الصيفي غير الإلزامي وبرنامج التدريب التعاوني الرسمي في SEU: كيف تستغل الإجازات لبناء خبرة وظيفية مبكرة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-choose-senior-project-supervisor-weekly-meetings-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تختار مشرف مشروع التخرج وتدير اجتماعات المتابعة الأسبوعية بكفاءة؟</video:title>
+      <video:description>أسرار اختيار المشرف الأكاديمي المناسب لمشروع التخرج في كلية الحوسبة بـ SEU، وكيفية التنسيق الأسبوعي لضمان دعم متواصل ودرجات امتياز.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/top-coding-competitions-hackathons-saudi-students-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/ehwYuyINYUs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أهم منصات ومسابقات البرمجة والهاكاثونات في السعودية التي ينبغي لطالب الحوسبة المشاركة فيها</video:title>
+      <video:description>دليل الهاكاثونات والمسابقات البرمجية في المملكة: هاكاثون الحج، مسابقات سدايا، والأولمبياد الوطني وفوائدها لسيرتك الذاتية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/ehwYuyINYUs</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/preparing-for-technical-coding-interviews-cs-students-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تستعد للمقابلات التقنية البرمجية أثناء سنوات دراستك في كلية الحوسبة؟</video:title>
+      <video:description>خطة التحضير للمقابلات التقنية واختبارات الكود المباشر لخريجي الحوسبة: منصات التدريب، أسئلة هياكل البيانات، ومقابلة حل المشكلات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/data-engineer-vs-data-analyst-career-path-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/DmzPIsJaHmk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>المسار المهني لمهندس البيانات ومحلل البيانات لخريجي تخصص علوم البيانات في SEU</video:title>
+      <video:description>ما الفرق بين Data Engineer و Data Analyst؟ خارطة طريق لخريجي تخصص علوم البيانات في SEU لاختيار المسار الوظيفي والتقني المناسب.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/DmzPIsJaHmk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/career-opportunities-cs-vs-it-graduates-saudi-arabia</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الفرق في الفرص الوظيفية بين خريج علوم الحاسب وخريج تقنية المعلومات في القطاعين الحكومي والخاص بالمملكة</video:title>
+      <video:description>تحليل مقارن لسوق العمل والرواتب لخريجي علوم الحاسب وتقنية المعلومات في المملكة العربية السعودية والمسارات الأكثر طلباً.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/building-strong-github-portfolio-student-developer-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تبني بورتفوليو برمجياً قوياً على GitHub يجعلك مرشحاً للوظائف قبل تخرجك من SEU؟</video:title>
+      <video:description>دليل طالب الحوسبة لبناء حساب GitHub احترافي: كيفية رفع المشاريع الجامعية، توثيق الكود بملفات README، ولفت انتباه مسؤولي التوظيف.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/top-professional-certifications-cs-it-graduates-saudi-market</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الشهادات المهنية الاحترافية الأكثر طلباً لخريجي علوم الحاسب وتقنية المعلومات في السوق السعودي</video:title>
+      <video:description>دليل الشهادات الاحترافية الداعمة لخريجي حوسبة SEU في سوق العمل السعودي: AWS, Cisco CCNA, CompTIA Security+, Azure.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/reasons-senior-project-proposal-rejected-seminar-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/ehwYuyINYUs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أشهر الأخطاء التي تؤدي إلى رفض فكرة مشروع التخرج في لجنة السيمنار بكلية الحوسبة</video:title>
+      <video:description>لماذا ترفض لجان مشاريع التخرج مقترحات الطلاب في SEU؟ تعرف على أهم 6 أخطاء في كتابة مقترح المشروع (Proposal) لتتجنبها.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/ehwYuyINYUs</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/senior-graduation-project-ideas-team-selection-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/DmzPIsJaHmk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مشروع التخرج (Senior Project) في كلية الحوسبة: كيف تختار الفكرة وتبني فريقاً ناجحاً يضمن امتياز المناقشة؟</video:title>
+      <video:description>دليل مشروع التخرج لطلاب كلية الحوسبة في الجامعة السعودية الإلكترونية: كيفية اختيار فكرة مبتكرة، تشكيل الفريق، واجتياز السيمنار بـ A+.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/DmzPIsJaHmk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/coop-internship-guide-computing-college-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Oi1fWTeCD74/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل التدريب التعاوني (Co-op / Internship) لكلية الحوسبة: الشروط، الساعات المطلوبة، وكيف تجد جهة تدريب متميزة؟</video:title>
+      <video:description>شروط ومواعيد التدريب التعاوني لطلاب كلية الحوسبة بـ SEU، وطريقة التقديم على الشركات والجهات الحكومية لضمان عرض وظيفي قبل التخرج.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/Oi1fWTeCD74</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/data-science-major-skills-jobs-vision-2030-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/bNUEn8agqeU/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص علوم البيانات في الجامعة السعودية الإلكترونية: المهارات المطلوبة ومستقبل الوظائف في رؤية 2030</video:title>
+      <video:description>دليل بكالوريوس علوم البيانات في SEU: أهمية التخصص في التحول الرقمي بالمملكة، المهارات المطلوبة، والشهادات والوظائف.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/bNUEn8agqeU</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/cs-vs-it-vs-data-science-major-comparison-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/DmzPIsJaHmk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>علوم الحاسب (CS) أم تقنية المعلومات (IT) أم علوم البيانات (DS)؟ مقارنة شاملة لاختيار تخصصك في SEU</video:title>
+      <video:description>مقارنة شاملة بين تخصصات كلية الحوسبة والمعلوماتية في SEU: الفروق الجوهرية في المواد البرمجية وفرص العمل والرواتب في السعودية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/DmzPIsJaHmk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/academic-calendar-timeline-common-year-milestones-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الجدول الزمني لأهم المواعيد الأكاديمية لطلاب السنة المشتركة (الاختبارات، التخصيص، تسليم الشهادات)</video:title>
+      <video:description>دليل المواعيد والمحطات المفصلية في مسيرة طالب تحضيري SEU: أسبوع الحذف، اختبارات الميد، إغلاق منصة الإنجليزي، وفتح التخصيص.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/math-and-cs-tips-for-arts-stream-students-prep-year-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>نصائح ذهبية لطلاب التحضيري القادمين من المسار الأدبي للنجاح في مقررات الرياضيات والحوسبة</video:title>
+      <video:description>دليل تشجيعي وعملي لخريجي الثانوية الأدبية لاجتياز مواد ماث 001 وحاسب 001 في الجامعة السعودية الإلكترونية والتفوق بجدارة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/ci001-academic-skills-critical-thinking-research-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>طريقة التعامل مع أسئلة التفكير النقدي في مقرر CI 001 (Academic Skills - المهارات الأكاديمية) بـ SEU</video:title>
+      <video:description>دليل التميز في مقرر CI 001 (Academic Skills - المهارات الأكاديمية والتفكير النقدي): كيفية كتابة البحث المصغر وتوثيق المراجع وتجنب الانتحال في سيف أساين.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-study-comm001-communication-skills-seu-full-mark</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تذاكر لمقرر COMM 001 (Communication Skills - مهارات الاتصال) وتضمن الدرجة الكاملة في المناقشات والواجبات؟</video:title>
+      <video:description>أسرار حصد الدرجة الكاملة A+ في مقرر COMM 001 (Communication Skills - مهارات الاتصال) بـ SEU: التعامل مع منتديات النقاش وأسئلة الاختبارات الموضوعية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-free-apps-tools-for-prep-year-students-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أهم الأدوات والتطبيقات المجانية التي يحتاجها طالب السنة الأولى المشتركة لتنظيم ملفاته ومحاضراته</video:title>
+      <video:description>قائمة بأفضل الأدوات والتطبيقات الرقمية التي تسهل دراسة طالب تحضيري SEU: تدوين الملاحظات، تنظيم المهام، وقراءة وتلخيص السلايدات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/transfer-to-computing-college-after-missed-gpa-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/DmzPIsJaHmk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شروط التحويل من السنة الأولى المشتركة إلى تخصصات الحوسبة لمن لم يحقق شرط المعدل في التخصيص</video:title>
+      <video:description>كيف تنتقل إلى كلية الحوسبة والمعلوماتية بعد التخصيص في كلية أخرى؟ شروط التحويل الداخلي ورفع المعدل المطلوب في SEU.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/DmzPIsJaHmk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/cs001-computer-equivalency-cambridge-mos-certificates-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>طريقة تقديم طلب معادلة مقرر CS 001 (Computer Essentials - أساسيات الحاسب) بشهادة كامبريدج أو MOS في SEU</video:title>
+      <video:description>شروط وإجراءات معادلة مقرر CS 001 (Computer Essentials - أساسيات الحاسب) بالشهادات الاحترافية المعتمدة (MOS, Cambridge) في بوابة الجامعة السعودية الإلكترونية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/what-happens-if-failed-english-step-prep-year-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>ماذا يحدث إذا انتهى العام التحضيري ولم تجتز شرط اللغة الإنجليزية؟ الخيارات والفرص المتاحة</video:title>
+      <video:description>الفرص الاستثنائية والخيارات النظامية المتاحة لطلاب SEU عند عدم تحقيق درجة STEP المطلوبة بنهاية السنة الأولى المشتركة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/balancing-english-platform-with-math001-cs001-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف توازن وقتك بين متطلبات منصة الإنجليزي ومذاكرة مقرري MATH 001 (Fundamentals of Mathematics) و CS 001 (Computer Essentials)؟</video:title>
+      <video:description>جدول أسبوعي عملي لطلاب تحضيري SEU للموازنة بين منصة EF الإنجليزية ومذاكرة MATH 001 (Fundamentals of Mathematics) و CS 001 (Computer Essentials).</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/academic-shock-new-prep-year-students-seu-adaptation</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الصدمة الأكاديمية لطلاب التحضيري الجدد في SEU: الفروق الجوهرية بين المدرسة والجامعة الإلكترونية</video:title>
+      <video:description>كيف تتكيف مع نمط التعليم المدمج في SEU وتتجاوز صدمة التحول من التلقين المدرسي إلى التعلم الرقمي الذاتي واللغة الإنجليزية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/credit-hours-weight-common-year-courses-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>توزيع الساعات المعتمدة في السنة الأولى المشتركة وتأثير مقررات 001 على المعدل والمفاضلة</video:title>
+      <video:description>تحليل أوزان مقررات السنة الأولى في SEU: الرياضيات 001، الحاسب 001، ومهارات الاتصال والمهارات الأكاديمية وحساب نقاط المفاضلة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/ef-english-platform-weekly-hours-balance-math-cs-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>منصة EF English في السنة التحضيرية: كيف تنجز الساعات الأسبوعية دون أن تؤثر على دراستك لمواد الماث والحاسب؟</video:title>
+      <video:description>طريقة تنظيم الساعات المطلوبة في منصة إنجليزي إي إف (EF) في SEU، واستراتيجية إنهاء المستويات والأنشطة الأسبوعية دون استنزاف وقتك.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/english-equivalency-step-ielts-toefl-seu-differences
+</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>معادلة اللغة الإنجليزية في SEU: الفارق بين شهادات STEP و IELTS و TOEFL وشروط قبول كل منها</video:title>
+      <video:description>مقارنة شاملة بين اختبارات معادلة اللغة الإنجليزية في الجامعة السعودية الإلكترونية: STEP، الآيلتس الأكاديمي، والتوفل والدرجات المقابلة لكل منها.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/step-exam-attempts-score-submission-deadlines-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل اختبار كفايات اللغة الإنجليزية (STEP) لطلاب SEU: كم المحاولات المسموحة ومتى ترفع الدرجة؟</video:title>
+      <video:description>كل ما يخص اختبار ستيب (STEP) لطلاب السنة الأولى في SEU: عدد المحاولات، مواعيد التسجيل في قياس، وآخر موعد لرفع الدرجة لتفادي الفصل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/major-allocation-criteria-computing-college-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/DmzPIsJaHmk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>معايير التخصيص بعد السنة الأولى المشتركة في SEU: كيف تضمن قبولك في كلية الحوسبة والمعلوماتية؟</video:title>
+      <video:description>دليل شروط ومفاضلة التخصيص في كلية الحوسبة والمعلوماتية بالجامعة السعودية الإلكترونية: نسب القبول، أوزان المقررات، وكيف تضمن رغبتك الأولى.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/DmzPIsJaHmk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/internet-disconnection-platform-crash-during-exam-action-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>التعامل مع تعطل منصة الاختبار أو انقطاع الإنترنت أثناء الامتحان: الإجراء الفوري لحفظ حقك الأكاديمي</video:title>
+      <video:description>ماذا تفعل إذا تجمد جهازك أو انقطع النت أثناء اختبار إلكتروني في SEU؟ خطوات التوثيق الفني وإعادة فتح محاولة الاختبار فوراً.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/virtual-class-attendance-rules-synchronous-asynchronous-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>آلية احتساب الحضور في المحاضرات الافتراضية المتزامنة وغير المتزامنة في البلاك بورد</video:title>
+      <video:description>كيف يرصد نظام Blackboard Collaborate الحضور والغياب؟ الفارق بين المحاضرات المباشرة وتسجيلات المحاضرات غير المتزامنة في SEU.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/special-accommodations-emergency-exam-committees-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>ضوابط دخول لجان الاختبارات لذوي الظروف الخاصة والحالات الطارئة بفروع الجامعة</video:title>
+      <video:description>التسهيلات واللجان الخاصة بالاختبارات في SEU للطلاب من ذوي الإعاقة، الحوامل، والمرضى: كيفية تقديم طلب لجنة خاصة وخدمات الدعم.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/preparing-for-in-person-exams-working-students-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تستعد نفسياً ولوجستياً لأسبوع الاختبارات الحضورية إذا كنت طالباً موظفاً في SEU؟</video:title>
+      <video:description>خطة إدارة الوقت والتحضير النفسي واللوجستي للاختبارات الحضورية لطلاب SEU الموظفين: إجازات الامتحانات والتنقل والتركيز.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/excused-vs-unexcused-absence-dn-threshold-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الفارق بين الغياب بعذر والغياب بدون عذر في نسبة الحرمان الأكاديمي (اللوائح الرسمية لـ SEU)</video:title>
+      <video:description>هل يحميك العذر الطبي من الحرمان إذا تجاوزت 25%؟ تفنيد الشائعات وشرح الحدود القصوى للغياب المقبول وفق لوائح الجامعة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/blackboard-grade-center-tracking-assignments-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تتابع سجل الدرجات في Blackboard Grade Center وتتأكد من عدم إسقاط أي تكليف؟</video:title>
+      <video:description>شرح نظام رصد الدرجات في مركز التقديرات بالبلاك بورد لطلاب SEU، وتتبع أوزان الواجبات والمشاريع واكتشاف أخطاء الرصد مبكراً.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/missed-quiz-assignment-makeup-communication-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الغياب عن كويز أو تسليم واجب أسبوعي: هل يمكن التعويض وكيف تتواصل مع أستاذ المقرر رسمياً؟</video:title>
+      <video:description>ماذا تفعل إذا فاتك تسليم تكليف أو كويز في البلاك بورد؟ صيغة البريد الإلكتروني الرسمي لطلب فرصة تعويض من الدكتور.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/in-person-exam-center-rules-dress-code-id-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شروط وضوابط حضور الاختبارات في المراكز الحضورية بفروع الجامعة السعودية الإلكترونية (الزي، الهوية، التوقيت)</video:title>
+      <video:description>دليل دخول الاختبارات الحضورية في فروع SEU: شروط الزي الرسمي، إثبات الهوية المعتمد، والأجهزة والممنوعات في قاعات الفاينل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/grade-distribution-coursework-finals-cci-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف توزع درجات أعمال السنة والاختبارات النهائية في مقررات كلية الحوسبة والمعلوماتية 2026؟</video:title>
+      <video:description>دليل تفصيلي لتوزيع درجات الواجبات، الكويزات، مشاريع اللاب، والميدتيرم والفاينل في مقررات كلية الحوسبة والمعلوماتية بـ SEU.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/grade-appeal-rechecking-request-fees-steps-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>التظلم على درجة الاختبار وإعادة تصحيح الورقة في SEU: متى يكون مجدياً وما هي رسوم وخطوات الطلب؟</video:title>
+      <video:description>دليل التظلم على درجات الفاينل وإعادة التصحيح في الجامعة السعودية الإلكترونية: الشروط، الرسوم المستردة، ومتى تكسب درجات إضافية؟</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/respondus-lockdown-browser-exam-rules-penalties-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>نظام مراقبة الاختبارات الإلكترونية عبر Respondus LockDown Browser: المحظورات وأسباب إلغاء الاختبار</video:title>
+      <video:description>دليل متصفح الاختبارات ريسبوندس في SEU: ضوابط الكاميرا والميكروفون والمحيط البيئي، وأسباب الإحالة للجان التحقيق وإلغاء الاختبار.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/emergency-during-final-midterm-exam-protocol-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>ماذا تفعل إذا تعرضت لظرف طارئ أثناء وقت اختبار الفاينل أو الميدتيرم؟ الإجراءات القانونية المعتمدة</video:title>
+      <video:description>بروتوكول الطوارئ لطلاب الجامعة السعودية الإلكترونية: الإجراءات الفورية القانونية لحفظ حقك عند حدوث ظرف قاهر يوم الاختبار.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/makeup-alternative-exams-rules-dates-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الاختبارات البديلة (Make-up Exams) في الجامعة السعودية الإلكترونية: كل ما تحتاج معرفته عن موعدها وضوابطها</video:title>
+      <video:description>دليل الاختبارات البديلة (الميد والفاينل) في SEU: متى تعقد، وكيفية التقديم، والشروط واللوائح الحاكمة لاختبارات التعويض.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/medical-excuse-submission-portal-approved-clinics-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>طريقة تقديم الأعذار الطبية المقبولة في البوابة الإلكترونية لـ SEU: الشروط والجهات الصحية المعتمدة</video:title>
+      <video:description>خطوات رفع العذر الطبي في بوابة SEU، والجهات الصحية المعتمدة ومنصة صحتي، والشروط الصارمة لقبول التقرير الطبي لرفع الغياب.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/attendance-absence-rules-dn-calculation-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>لائحة الغياب والحرمان في SEU: كيف تحسب نسبة الـ 25% بدقة وتتجنب الحصول على درجة DN؟</video:title>
+      <video:description>شرح طريقة حساب نسبة الغياب في المحاضرات الحضورية والافتراضية في SEU، وحد الحرمان بنسبة 25% وكيفية تفادي درجة DN.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/inspiring-student-stories-from-probation-to-3-5-gpa-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Oi1fWTeCD74/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>قصص واقعية وتجارب طلاب: كيف حولوا معدلهم من 1.8 إلى أكثر من 3.5 في كلية الحوسبة؟</video:title>
+      <video:description>تجارب ملهمة وقصص كفاح لطلاب في الجامعة السعودية الإلكترونية استطاعوا كسر الإنذار الأكاديمي والتحول من الرسوب إلى مرتبة الشرف.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/Oi1fWTeCD74</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/critical-mistakes-on-academic-probation-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أخطاء مدمرة يرتكبها الطلاب الواقعون تحت الإنذار الأكاديمي تؤدي لفصلهم بدلاً من نجاتهم</video:title>
+      <video:description>أشهر 7 أخطاء قاتلة يقع فيها طلاب الجامعة الإلكترونية عند حصولهم على إنذار أكاديمي تمنعهم من رفع المعدل وتسرع طي القيد.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/managing-corequisite-courses-strategy-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/LoNI3pBRcEU/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>استراتيجية التعامل مع مادتين متطلبتين متزامنتين (Co-requisites) لتفادي الانتكاسة الأكاديمية</video:title>
+      <video:description>دليل التعامل مع المقررات المتزامنة (Co-requisites) في SEU: كيف توفق بين مادتين تكمل إحداهما الأخرى دون تشتت دراسي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/LoNI3pBRcEU</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/common-first-year-grades-impact-on-graduation-gpa-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تأثير درجات السنة الأولى المشتركة على المعدل التراكمي العام للتخرج: هل تبدأ من الصفر بعد التخصيص؟</video:title>
+      <video:description>هل تتصفر درجات التحضيري بعد القبول في كلية الحوسبة؟ توضيح حاسم لكيفية انتقال معدل السنة الأولى المشتركة لسجل التخرج في SEU.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/incomplete-ic-grade-policy-deadline-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>درجة غير مكتمل (Incomplete - IC) في SEU: متى يحق لك طلبها، وما هي مهلة تقديم الاختبار؟</video:title>
+      <video:description>شروط الحصول على تقدير غير مكتمل (IC) في الجامعة السعودية الإلكترونية، والمهلة الزمنية المحددة لأداء الاختبار البديل وتعديل النتيجة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/semester-deferral-vs-course-withdrawal-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الاعتذار عن الفصل الدراسي (Semester Deferral) vs الانسحاب من مادة: أيهما أفضل لحماية معدلك؟</video:title>
+      <video:description>مقارنة شاملة بين الاعتذار وتأجيل الترم والانسحاب من المقررات في الجامعة السعودية الإلكترونية لاختيار القرار السليم عند حدوث الأزمات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/dn-denied-grade-impact-on-gpa-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تقدير "محروم" (DN) وتأثيره الكارثي على المعدل التراكمي: كيف يعامل في السجل الأكاديمي؟</video:title>
+      <video:description>ماذا تعني درجة DN في سجل درجات SEU؟ تعرف على خطورة الحرمان من دخول الفاينل بسبب الغياب وتأثيره الحسابي الكارثي على المعدل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-get-first-class-honors-cci-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/ehwYuyINYUs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تحافظ على معدل 3.75+ للتأهل لمرتبة الشرف الأولى والثانية في كلية الحوسبة والمعلوماتية؟</video:title>
+      <video:description>شروط استحقاق مرتبة الشرف في الجامعة السعودية الإلكترونية، وخطة دراسية متكاملة لطلاب كلية الحوسبة للبقاء فوق معدل 3.75 من أول سنة وحتى التخرج.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/ehwYuyINYUs</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/academic-dismissal-appeal-reinstatement-letter-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الاستعطاف وإعادة القيد بعد الفصل الأكاديمي في SEU: الشروط، اللائحة، وصياغة الخطاب الرسمي</video:title>
+      <video:description>طريقة تقديم طلب الاستعطاف وإعادة القيد بعد استنفاد الإنذارات في SEU، والشروط النظامية ونموذج الخطاب الرسمي للجنة الأكاديمية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/term-gpa-vs-cumulative-gpa-differences-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الفرق بين المعدل الفصلي (Term GPA) والمعدل التراكمي (Cumulative GPA) وتأثير كل منهما على مسيرتك</video:title>
+      <video:description>شرح الفروق الجوهرية بين المعدل الفصلي والمعدل التراكمي في SEU، وأيهما يحدد صدور الإنذار الأكاديمي ومراتب الشرف والتخصيص.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/gpa-calculator-simulator-predict-grades-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>حاسبة المعدل التراكمي الافتراضية: كيف تتوقع معدلك الفصلي قبل رصد الدرجات النهائية في SEU؟</video:title>
+      <video:description>طريقة حساب وتوقع المعدل الفصلي والتراكمي لطلاب SEU باستخدام سلم النقاط من 4.00 والتخطيط المسبق للدرجات المطلوبة في الفاينل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-choose-courses-for-maximum-gpa-boost-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/bNUEn8agqeU/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تختار المواد التي تحدث أكبر قفزة في معدلك التراكمي؟ (استراتيجية الساعات والوزن النسبي)</video:title>
+      <video:description>استراتيجية حسابية ذكية لترتيب مواد الجدول الدراسي بالجامعة السعودية الإلكترونية لاختيار المقررات الأكثر تأثيراً على رفع الـ GPA.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/bNUEn8agqeU</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/course-retake-policy-gpa-impact-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>هل إعادة المادة (Course Retake) ترفع معدلك التراكمي في SEU؟ كيف يحتسب النظام الدرجة الجديدة؟</video:title>
+      <video:description>شرح لائحة إعادة المقررات في الجامعة السعودية الإلكترونية: كيف تؤثر إعادة المادة الراسب فيها (F) أو المقبول (D) على حساب المعدل التراكمي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/gpa-recovery-plan-after-bad-semester-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>خطة إنقاذ المعدل التراكمي (GPA Recovery) بعد فصل دراسي متعثر: خطوات عملية مدروسة</video:title>
+      <video:description>خطة إنقاذ أكاديمية مكونة من 5 خطوات لرفع المعدل المنخفض في SEU، وتحويل مسار الطالب من شبح الإنذار إلى التفوق والاستقرار.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/seu-academic-warning-probation-rules-removal-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الإنذار الأكاديمي في الجامعة السعودية الإلكترونية: دليلك الشامل لمعنى الإنذار، مهلة إزالته، وتجنب طي القيد</video:title>
+      <video:description>دليل شامل للائحة الإنذار الأكاديمي في SEU: متى يصدر الإنذار الأول والثاني والثالث، والمهل النظامية لرفعه وتفادي الفصل الأكاديمي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/add-drop-week-late-registration-tips-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>التسجيل المتأخر وإضافة المواد في أسبوع الحذف والإضافة: نصائح استراتيجية لاقتناص الشعب المفتوحة</video:title>
+      <video:description>دليل أسبوع الحذف والإضافة في SEU: كيف تستغل التحركات الأخيرة للطلاب لضبط جدولك الدراسي واقتناص أفضل الشعب والأساتذة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/balancing-heavy-and-light-courses-schedule-cci-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/bNUEn8agqeU/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف توزع المواد الصعبة والسهلة في جدولك الفصلي بكلية الحوسبة لتجنب الضغط والتعثر؟</video:title>
+      <video:description>معادلة التوازن الذهبي لطلاب كلية الحوسبة في الجامعة السعودية الإلكترونية: كيف تدمج مقررات البرمجة والرياضيات مع المواد العامة بذكاء.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/bNUEn8agqeU</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/course-drop-withdrawal-deadlines-and-refund-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>إسقاط مقرر (Drop) بعد بداية الفصل الدراسي: المواعيد النهائية، الشروط، وتأثيره على الرسوم والمعدل</video:title>
+      <video:description>شرح لوائح الحذف والإسقاط والانسحاب بعذر (W) في الجامعة السعودية الإلكترونية، والفارق بين إسقاط المادة وتأجيل الفصل واسترداد الرسوم.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/seu-registration-priority-by-batches-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أولوية التسجيل حسب الدفعات في الجامعة السعودية الإلكترونية: كيف تعرف موعدك المحدد وتستعد للثواني الأولى؟</video:title>
+      <video:description>جدول مواعيد وأولويات التسجيل لطلاب SEU حسب الدفعات وعدد الساعات المنجزة، ونصائح تقنية لاقتناص المقاعد والشعب قبل إغلاقها.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/summer-semester-registration-strategy-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>التسجيل في الفصل الصيفي بـ SEU: متى يكون الصيفي فرصة ذهبية ومتى يتحول إلى فخ يخفض معدلك؟</video:title>
+      <video:description>استراتيجية التسجيل في الفصل الصيفي بالجامعة السعودية الإلكترونية: كيفية استغلاله لتسريع التخرج وتفادي الفخاخ التي قد تدمر معدلك التراكمي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/it-major-prerequisite-chain-graduation-plan-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/7h7PKQBoGSo/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>سلسلة متطلبات تخصص تقنية المعلومات (IT) في SEU: مسار IT210 (Computer Networks) و IT241 (Introduction to Database)</video:title>
+      <video:description>دليل طلاب بكالوريوس تقنية المعلومات في SEU لفهم متطلبات مسارات IT210 (Computer Networks) و IT241 (Introduction to Database) لضمان التخرج في 4 سنوات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/7h7PKQBoGSo</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/critical-prerequisite-chains-computer-science-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Oi1fWTeCD74/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>سلسلة المتطلبات الحرجة في تخصص علوم الحاسب: مقررات CS140 (Object-Oriented Programming) و CS220 (Data Structures) و CS331 (Algorithms)</video:title>
+      <video:description>خارطة سلاسل المواد الحساسة في بكالوريوس علوم الحاسب بـ SEU: CS140 (Object-Oriented Programming) و CS220 (Data Structures) و CS331 (Algorithms) لتفادي تأخر التخرج.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/Oi1fWTeCD74</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/course-not-showing-in-banner-registration-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>المادة لا تظهر في قائمة التسجيل بالبانر: 6 أسباب شائعة وحلولها التقنية والأكاديمية</video:title>
+      <video:description>ماذا تفعل عندما تختفي المادة من خيارات البحث والتسجيل في Banner؟ تعرف على الأسباب الشائعة وطريقة إظهار المقررات المغلقة أو المحجوبة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/minimum-maximum-credit-hours-registration-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الحد الأدنى والأعلى للساعات المسموح بتسجيلها في الفصل: كيف تحدد عبئك الدراسي المناسب لمعدلك؟</video:title>
+      <video:description>شرح لوائح العبء الدراسي والساعات المعتمدة المسموح بتسجيلها لطلاب الجامعة السعودية الإلكترونية حسب المعدل التراكمي وحالة الإنذار والتخرج.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/banner-holds-guide-reasons-and-how-to-remove-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>ما معنى "Hold" في بوابة الطالب بـ SEU؟ قائمة الرموز الشائعة وطريقة فك الحظر الأكاديمي والمالي</video:title>
+      <video:description>دليل رموز الحظر الأكاديمي والمالي (Holds) في الجامعة السعودية الإلكترونية، وكيفية فك الإيقاف لتسجيل المواد واستخراج الوثائق والسجلات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/prerequisite-and-test-score-error-banner-seu-fix</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/e5UHCfW9tK4/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>رسالة الخطأ "Prerequisite and Test Score Error" في Banner: أسبابها وكيف تتصرف فوراً؟</video:title>
+      <video:description>شرح حل مشكلة Prerequisite and Test Score Error في بوابة تسجيل الجامعة السعودية الإلكترونية وطريقة حل أخطاء نظام Banner بسرعة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/e5UHCfW9tK4</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/what-to-do-when-banner-course-section-is-closed-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>ماذا تفعل إذا ظهرت الشعبة "ممتلئة" (Closed Section) في نظام Banner؟ خطوات الحصول على مقعد</video:title>
+      <video:description>دليل التعامل مع الشعب المغلقة والممتلئة في نظام تسجيل الجامعة السعودية الإلكترونية، وكيفية فتح مقاعد إضافية ورفع طلبات التسجيل الأكاديمي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/resolving-class-and-exam-conflicts-seu-banner</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تعارض شعب المحاضرات والاختبارات في الجامعة السعودية الإلكترونية: حلول واقعية قبل انتهاء فترة التسجيل</video:title>
+      <video:description>حل مشكلة تعارض الاختبارات والمحاضرات في Banner لطلاب الجامعة السعودية الإلكترونية، والبدائل العملية لإنقاذ الجدول قبل إغلاق الحذف والإضافة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/cci-prerequisites-guide-avoid-blocked-courses-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/bNUEn8agqeU/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل المتطلبات السابقة (Prerequisites) في كلية الحوسبة: كيف تقرأ السلسلة وتتجنب إغلاق المواد؟</video:title>
+      <video:description>شرح شامل لنظام المتطلبات السابقة في كلية الحوسبة والمعلوماتية بالجامعة السعودية الإلكترونية، وكيف تقرأ شجرة المقررات وتمنع تجميد تسجيل الفصول القادمة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/bNUEn8agqeU</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-plan-seu-semester-schedule-avoid-conflicts</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف ترتب مواد الفصل في SEU قبل فتح التسجيل؟ خطة عملية تمنع تعارض الشعب والاختبارات</video:title>
+      <video:description>دليل عملي لطلاب الجامعة السعودية الإلكترونية لترتيب الجدول الدراسي قبل فتح نظام Banner، وتفادي تعارض مواعيد المحاضرات والامتحانات النهائية وتأخر التخرج.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-cpp-programming-course-seu-students</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شرح لغة C++ للمبتدئين في الجامعة السعودية الإلكترونية: الأساسيات، المصفوفات، والمؤشرات (Pointers)</video:title>
+      <video:description>دورة شرح لغة البرمجة C++ لطلاب كلية الحوسبة والمعلوماتية في SEU: بناء المنطق البرمجي، التحكم في الذاكرة والمؤشرات Pointers، وحل المسائل البرمجية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/crash-course-midterm-final-prep-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كورس مراجعة الميدتيرم والفاينل المكثف لمواد السنة الأولى المشتركة في SEU: خطة الـ A+ السريعة</video:title>
+      <video:description>كورس المراجعة المكثفة لاختبارات منتصف ونهاية الفصل في الجامعة السعودية الإلكترونية: تجميعات محلولة، ملخصات القوانين، وتدريب على اختبارات ريسبوندس.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-seu-courses-platform-comparison-fakhr-cs</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقارنة بين منصات وكورسات الجامعة السعودية الإلكترونية: لماذا تختار منصة فخر CS لتفوقك الأكاديمي؟</video:title>
+      <video:description>مقارنة شاملة بين مصادر دراسة مناهج SEU: اليوتيوب العشوائي، المذكرات غير المحدثة، ومنظومة فخر CS الأكاديمية المتخصصة في كورسات وباقات الجامعة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-comm001-ci001-prep-course-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كورس COMM 001 (Communication Skills) و CI 001 (Academic Skills): كيف تضمن الدرجة الكاملة في التكليفات والاختبارات؟</video:title>
+      <video:description>باقة مقرري COMM 001 (Communication Skills) و CI 001 (Academic Skills) لطلاب تحضيري SEU: ملخصات مباشرة وحل المناقشات والتكليفات بـ 99 ريال.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-computer-networks-course-seu-subnetting</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كورس IT210 (Computer Networks - شبكات الحاسب) في SEU: شرح نموذج OSI وبروتوكولات TCP/IP وحسابات Subnetting</video:title>
+      <video:description>كورس IT210 (Computer Networks - شبكات الحاسب) لطلاب SEU مع م. أحمد فخر الدين: شرح نموذج OSI ومسائل Subnetting والتطبيق على Packet Tracer بـ 135 ريال.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-database-sql-course-seu-computing</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/ehwYuyINYUs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شرح كورس IT241 (Introduction to Database - قواعد البيانات) لطلاب SEU: من تصميم ERD حتى استعلامات SQL</video:title>
+      <video:description>كورس IT241 (Introduction to Database) في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين: تصميم ERD، الـ Normalization، واستعلامات SQL بـ 135 ريال.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/ehwYuyINYUs</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-data-structures-course-seu-algorithms</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كورس CS220 (Data Structures - هياكل البيانات) في SEU: كيف تفهم الخوارزميات وتجتاز اختبارات الكود؟</video:title>
+      <video:description>كورس CS220 (Data Structures - هياكل البيانات) لطلاب كلية الحوسبة SEU مع م. أحمد فخر الدين: شرح الـ Linked Lists والأشجار ومسائل الكود بـ 145 ريال.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-oop-java-course-seu-computing-college</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/ehwYuyINYUs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شرح كورس CS140 (Object-Oriented Programming - Java OOP) لكلية الحوسبة SEU: فهم Classes و Inheritance من الصفر</video:title>
+      <video:description>كورس CS140 (Object-Oriented Programming - Java OOP) مع م. أحمد فخر الدين لطلاب SEU: شرح برمجة الكائنات وحل الواجبات والاختبارات بـ 135 ريال.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/ehwYuyINYUs</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-cs-001-course-assignments-projects-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شرح مقرر CS 001 (Computer Essentials - حاسب 001) بالتطبيق العملي: كيف تتفوق في مشاريع وواجبات التحضيري؟</video:title>
+      <video:description>كورس CS 001 (Computer Essentials - أساسيات الحاسب) لطلاب SEU مع م. أحمد فخر الدين: تدريب عملي خطوة بخطوة على تكليفات الأوفيس والمشاريع بـ 99 ريال.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-math-001-course-seu-private-tutor-alternative</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أفضل كورس شرح MATH 001 (Fundamentals of Mathematics - رياضيات 001) في SEU: كيف تضمن A+ بدون مدرس خصوصي؟</video:title>
+      <video:description>كورس MATH 001 (Fundamentals of Mathematics) لطلاب الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين: شرح مبسط للمنهج وحل التمارين والنماذج بـ 99 ريال.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/why-fakhr-cs-is-your-best-choice-for-seu-success</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>لماذا تعتبر منصة فخر CS خيارك الأول والمضمون للتفوق في الجامعة السعودية الإلكترونية؟</video:title>
+      <video:description>تعرف على أكاديمية فخر CS: خبرة أكثر من 15 عاماً للمهندس أحمد فخر الدين، أسلوب الشرح الهندسي الفريد، بنوك الأسئلة، وضمان استرجاع 30 يوماً.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/faq-saudi-electronic-university-seu-ultimate-answers</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أهم الأسئلة الشائعة (FAQ) حول الجامعة السعودية الإلكترونية: إجابات حاسمة لكل ما يدور في ذهنك 2026</video:title>
+      <video:description>إجابات شافية لأشهر 15 سؤالاً عن SEU: هل شهادتها معتمدة حكومياً وخاصاً؟ هل الدراسة عن بعد كلياً؟ الرسوم، والتحويل، ونظام الاختبارات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/resume-linkedin-profile-guide-seu-graduates</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل كتابة السيرة الذاتية وبناء ملف لينكد إن (LinkedIn) احترافي لخريجي SEU</video:title>
+      <video:description>كيف تصنع سيرة ذاتية متوافقة مع أنظمة ATS وتبني حساب لينكد إن احترافي يجذب مسؤولي التوظيف في كبرى الشركات السعودية لخريجي SEU.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/maximizing-summer-break-internships-skills-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تستغل إجازة الصيف بين الفصول لتطوير مهاراتك والتدريب التعاوني؟</video:title>
+      <video:description>خطة طالب SEU لاستغلال الإجازة الصيفية: التقديم على التدريب الصيفي والتعاوني، بناء مشاريع البورتفوليو، والشهادات المهنية المعتمدة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/real-success-stories-from-probation-to-honors-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>قصص نجاح واقعية: كيف حوّل طلاب SEU معدلهم من إنذار أكاديمي إلى مرتبة الشرف؟</video:title>
+      <video:description>تجارب ملهمة وقصص واقعية لطلاب في الجامعة السعودية الإلكترونية تعثروا بإنذارات أكاديمية ثم حققوا الامتياز ومراتب الشرف بمساعدة فخر CS.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/managing-exam-stress-academic-anxiety-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل التعامل مع ضغوط الاختبارات والقلق الأكاديمي لطلاب الجامعة</video:title>
+      <video:description>كيف تتخلص من قلق الامتحانات والتوتر النفسي قبل اختبارات SEU المحوسبة والحضورية، تمارين التنفس، وبناء الثقة بالنفس داخل القاعة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/overcoming-procrastination-blackboard-deadlines-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تتغلب على التسويف والمماطلة في تسليم واجبات ومحاضرات البلاك بورد؟</video:title>
+      <video:description>علاج التسويف الأكاديمي لطلاب SEU: قاعدة الدقائق الخمس، مصفوفة أيزنهاور، وكيف تتجنب ضغط ليلة التسليم وفشل رفع الواجبات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/ethical-ai-tools-for-seu-university-students</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أدوات الذكاء الاصطناعي (AI) المفيدة لطلاب الجامعة: كيف تستخدمها بذكاء دون الوقوع في الغش؟</video:title>
+      <video:description>دليل الاستخدام الأخلاقي للذكاء الاصطناعي (ChatGPT, Claude, Perplexity) في SEU: شرح المفاهيم، مراجعة الأكواد، وتجنب مخالفات الانتحال في SafeAssign.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-summarize-long-english-slides-quarter-time</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تذاكر من السلايدات الطويلة باللغة الإنجليزية في ربع الوقت؟</video:title>
+      <video:description>طريقة التلخيص السريع للسلايدات الأكاديمية الضخمة لطلاب SEU، استخلاص المفاهيم الأساسية، والتركيز على ما يدخل في الاختبارات فقط.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-productivity-study-tools-apps-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أفضل تطبيقات وأدوات الإنتاجية وتنظيم المذاكرة لطلاب التعليم المدمج 2026</video:title>
+      <video:description>ترسانة التطبيقات والأدوات الرقمية لرفع تركيز وإنتاجية طالب SEU: تطبيقات تنظيم الملاحظات، حظر المشتتات، وتقنيات إدارة الوقت الحديثة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/72-hour-final-exam-cramming-success-plan-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>خطة الإنقاذ السريعة قبل اختبارات الفاينل بـ 72 ساعة لطلاب SEU</video:title>
+      <video:description>خطة طوارئ ذكية لإنقاذ معدلك قبل الاختبار النهائي بـ 3 أيام: التركيز على الموضوعات عالية الأهمية، تجميعات قياس، واستراتيجيات الحل السريع.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/weekly-time-management-schedule-working-students-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>جدول تنظيم الوقت الأسبوعي للموظفين وربات البيوت في الجامعة السعودية الإلكترونية</video:title>
+      <video:description>جدول زمني أسبوعي مجرب ومفصل لطلاب SEU العاملين وأولياء الأمور لتنظيم المحاضرات ومنصة EF وتسليم التكليفات دون ضغط.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/balancing-full-time-job-and-seu-studies</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف توفق بين وظيفتك بدوام كامل ودراستك في الجامعة السعودية الإلكترونية بدون احتراق وظيفي؟</video:title>
+      <video:description>دليل الموظف للدراسة في SEU: استراتيجيات التوفيق بين ضغوط العمل والمحاضرات والواجبات الأسبوعية، تجنب الإرهاق وحصد معدل 4.00 بذكاء.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/law-legal-studies-major-curriculum-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص القانون (شريعة / أنظمة) في SEU: الخطة الدراسية وتأهيل المحامين والمستشارين</video:title>
+      <video:description>دليل دراسة تخصص القانون والأنظمة في الجامعة السعودية الإلكترونية: خطة المقررات، النظام التجاري والجنائي، ومسار الحصول على رخصة المحاماة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/digital-media-major-content-creation-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص الإعلام الرقمي في الجامعة السعودية الإلكترونية: صناعة المحتوى والتسويق الرقمي</video:title>
+      <video:description>استعراض تخصص الإعلام الرقمي في SEU: صناعة المحتوى المرئي، الصحافة الرقمية، العلاقات العامة، والفرص الوظيفية في الهيئات الإعلامية والشركات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/english-language-translation-major-seu-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص اللغة الإنجليزية والترجمة في كلية العلوم والدراسات النظرية: المواد ومجالات العمل</video:title>
+      <video:description>دليل تخصص اللغة الإنجليزية والترجمة في الجامعة السعودية الإلكترونية: الخطة الأكاديمية، اللغويات، الترجمة الفورية والتحريرية، وسوق الترجمة السعودي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/public-health-major-healthcare-jobs-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص الصحة العامة (Public Health) في SEU: المهارات والوظائف في القطاع الصحي السعودي</video:title>
+      <video:description>استعراض تخصص الصحة العامة في كلية العلوم الصحية بالجامعة السعودية الإلكترونية: علم الأوبئة، التثقيف الصحي، والمسار المهني في وزارة الصحة وهيئة الغذاء والدواء.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/health-informatics-major-college-health-sciences-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص المعلوماتية الصحية (Health Informatics) في كلية العلوم الصحية: التقنية والطب</video:title>
+      <video:description>دليل تخصص المعلوماتية الصحية في كلية العلوم الصحية بجامعة SEU: السجلات الطبية الرقمية، أنظمة المستشفيات، ومستقبل التوظيف في القطاع الصحي السعودي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/e-commerce-major-career-opportunities-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص التجارة الإلكترونية (E-Commerce) في SEU: التخصص الرقمي الواعد ومجالات عمله</video:title>
+      <video:description>استعراض تخصص التجارة الإلكترونية في الجامعة السعودية الإلكترونية: خطة المقررات، التسويق الرقمي، سلاسل الإمداد، والفرص الذهبية في سوق التجزئة السعودي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/finance-major-investment-analysis-seu-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص المالية (Finance) في الجامعة السعودية الإلكترونية: التحليل المالي والاستثمار</video:title>
+      <video:description>دليل دراسة تخصص المالية في SEU: أسواق المال، إدارة المحافظ الاستثمارية، تقييم الشركات، والتحضير لشهادات هيئة السوق المالية (CME).</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/accounting-major-financial-accounting-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص المحاسبة (Accounting) في SEU: المواد الصعبة والشهادات المهنية (SOCPA)</video:title>
+      <video:description>دليل تخصص المحاسبة في الجامعة السعودية الإلكترونية: المقررات الصعبة، المراجعة والتدقيق، والمسار نحو الحصول على زمالة الهيئة السعودية للمحاسبين SOCPA.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/business-administration-major-curriculum-jobs-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص إدارة الأعمال (Business Administration): الخطة الدراسية وفرص العمل في SEU</video:title>
+      <video:description>شرح تفصيلي لتخصص إدارة الأعمال في الجامعة السعودية الإلكترونية: خطة المواد، المهارات القيادية، ومستقبل التوظيف والرواتب في الشركات السعودية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/administrative-financial-sciences-majors-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل تخصصات كلية العلوم الإدارية والمالية (CAF) في الجامعة السعودية الإلكترونية 2026</video:title>
+      <video:description>دليل شامل لتخصصات كلية العلوم الإدارية والمالية في SEU: إدارة الأعمال، المحاسبة، المالية، والتجارة الإلكترونية وشروط القبول وفرص العمل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-ides-programming-tools-computing-students-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/ehwYuyINYUs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أفضل بيئات التطوير (IDEs) والأدوات البرمجية التي يحتاجها طالب CCI في SEU</video:title>
+      <video:description>دليل تحميل وضبط أفضل برامج وبيئات التطوير لطلاب كلية الحوسبة بالجامعة السعودية الإلكترونية: VS Code, IntelliJ IDEA, NetBeans, و Packet Tracer.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/ehwYuyINYUs</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/learning-programming-from-scratch-seu-students</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/ehwYuyINYUs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تتعلم البرمجة من الصفر كطالب حاسب في الجامعة وتتغلب على عقدة الكود؟</video:title>
+      <video:description>نصائح عملية لطالب كلية الحوسبة الجديد في SEU لتعلم البرمجة من الصفر، التفكير المنطقي، التغلب على الخوف من الأخطاء، وكتابة أول كود بنجاح.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/ehwYuyINYUs</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/cybersecurity-major-roadmap-courses-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص الأمن السيبراني في الجامعة السعودية الإلكترونية: خطة المواد والمستقبل</video:title>
+      <video:description>خارطة طريق تخصص الأمن السيبراني في كلية الحوسبة SEU: المواد الأساسية، اختبار الاختراق، الدفاع السيبراني، ومستقبل التوظيف بالمملكة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/data-science-major-skills-jobs-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/DmzPIsJaHmk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تخصص علوم البيانات (Data Science) في SEU: المهارات وسوق العمل والمسار الوظيفي</video:title>
+      <video:description>استعراض تخصص علوم البيانات الجديد في الجامعة السعودية الإلكترونية: خطة المواد، المهارات المطلوبة (بايثون والإحصاء)، والوظائف المستقبلية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/DmzPIsJaHmk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-professional-certificates-cs-it-graduates-saudi</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أفضل الشهادات الاحترافية التي تدعم خريج علوم الحاسب وتقنية المعلومات في السعودية 2026</video:title>
+      <video:description>دليل الشهادات المهنية الأعلى طلباً لخريجي CCI في سوق العمل السعودي: شهادات السحابة AWS/Azure، الشبكات CCNA، والأمن السيبراني ودعم صندوق هدف.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/senior-graduation-project-guide-computing-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/DmzPIsJaHmk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تبدأ مشروع التخرج (Senior Project) في كلية الحوسبة: اختيار الفكرة والمشرف</video:title>
+      <video:description>دليل طالب البكالوريوس لمشروع التخرج في كلية الحوسبة والمعلوماتية SEU: مراحل المشروع (1 و 2)، معايير اختيار الفكرة، وتوثيق النظام.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/DmzPIsJaHmk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/web-technologies-frontend-backend-projects-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تقنيات الويب (Web Technologies): HTML, CSS, JavaScript وبناء المشاريع في SEU</video:title>
+      <video:description>شرح مقرر تقنيات الويب (IT232 / IT340) لطلاب SEU: بناء واجهات المستخدم Frontend وتطوير الواجهات الخلفية Backend وربط قواعد البيانات بالمشاريع.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/operating-systems-processes-memory-seu-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقرر CS330 (Operating Systems - نظم التشغيل): إدارة العمليات والذاكرة والـ Deadlocks في SEU</video:title>
+      <video:description>دليل مقرر CS330 (Operating Systems - نظم التشغيل) في SEU: جدولة المعالج، إدارة الذاكرة الوهمية، خوارزميات الـ Deadlock، وحل مسائل الامتحانات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/computer-networks-osi-model-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقرر IT210 (Computer Networks - شبكات الحاسب) في SEU: طبقات OSI وبروتوكولات التوجيه 2026</video:title>
+      <video:description>دليل مقرر IT210 (Computer Networks - شبكات الحاسب) في الجامعة السعودية الإلكترونية: نموذج OSI، بروتوكولات TCP/IP، وحسابات Subnetting.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/database-systems-sql-erd-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/7h7PKQBoGSo/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقرر IT241 (Introduction to Database - مقدمة قواعد البيانات): تصميم ERD واستعلامات SQL في SEU</video:title>
+      <video:description>دليل مقرر IT241 (Introduction to Database - مقدمة في قواعد البيانات) في SEU: تصميم مخططات ERD، استعلامات SQL، وقواعد الـ Normalization.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/7h7PKQBoGSo</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/algorithms-big-o-notation-seu-study-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شرح مقرر CS331 (Design and Analysis of Algorithms - الخوارزميات) ومفهوم Big O وتصميم الخوارزميات الذكية</video:title>
+      <video:description>دليل مقرر CS331 (Design and Analysis of Algorithms - الخوارزميات) في SEU: تحليل التعقيد الزمني Big O، خوارزميات الفرز والبحث والبرمجة الديناميكية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/data-structures-course-comprehensive-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل مقرر CS220 (Data Structures - هياكل البيانات): المصفوفات، القوائم، والأشجار في SEU</video:title>
+      <video:description>دليل مقرر CS220 (Data Structures - هياكل البيانات) في SEU: شرح القوائم المرتبطة، المكدسات، الطوابير، والأشجار الثنائية وحل تمارين الكود.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/object-oriented-programming-java-seu-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Oi1fWTeCD74/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شرح مقرر CS140 (Object-Oriented Programming - Java OOP) لطلاب كلية الحوسبة والمعلوماتية في SEU</video:title>
+      <video:description>دليل مقرر CS140 (Object-Oriented Programming - Java OOP) في الجامعة السعودية الإلكترونية: فهم الكائنات، الوراثة، وتعدد الأشكال وتطبيقات اللاب.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/Oi1fWTeCD74</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/computer-science-vs-information-technology-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>علوم الحاسب (CS) أم تقنية المعلومات (IT): أيهما أفضل لمستقبلك في SEU؟</video:title>
+      <video:description>مقارنة شاملة بين تخصصي علوم الحاسب وتقنية المعلومات في الجامعة السعودية الإلكترونية: المواد، الفروق الجوهرية، الرواتب، وسوق العمل السعودي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/college-of-computing-informatics-majors-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/ehwYuyINYUs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل تخصصات كلية الحوسبة والمعلوماتية (CCI) في SEU: الخطط والوظائف 2026</video:title>
+      <video:description>دليل شامل لتخصصات كلية الحوسبة والمعلوماتية في الجامعة السعودية الإلكترونية: علوم الحاسب، تقنية المعلومات، علوم البيانات، وأمن المعلومات ومجالات العمل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/ehwYuyINYUs</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/makeup-exams-medical-excuse-policy-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الدليل الإرشادي لحضور الاختبارات النهائية البديلة (Make-up Exams) وشروط قبول العذر الطبي</video:title>
+      <video:description>شروط وإجراءات التقدم لاختبار بديل في SEU عند التغيب عن الاختبار النهائي لظرف قهري أو صحي، مواعيد الاختبارات البديلة وطريقة قبول العذر.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/credit-hours-minimum-maximum-limits-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>العبء الدراسي والحد الأدنى والأقصى لعدد الساعات في الفصل لطلاب SEU</video:title>
+      <video:description>كم عدد الساعات المسموح بتسجيلها في الفصل الدراسي بالجامعة السعودية الإلكترونية؟ حدود العبء الدراسي حسب المعدل التراكمي وفصل التخرج.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/exam-grade-review-rechecking-request-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>إعادة رصد الدرجة وطلب مراجعة ورقة الاختبار في الجامعة: الخطوات والرسوم والضوابط</video:title>
+      <video:description>طريقة التقديم على تظلم وإعادة تصحيح ورقة الاختبار في الجامعة السعودية الإلكترونية، شروط قبول الطلب، وماذا يحدث في حال تعديل الدرجة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/first-second-class-honors-requirements-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مرتبة الشرف الأولى والثانية في SEU: شروط الحصول عليها ومميزاتها للخريجين</video:title>
+      <video:description>شروط استحقاق مرتبة الشرف الأولى والثانية عند التخرج من الجامعة السعودية الإلكترونية، وأهميتها التنافسية في التوظيف والترقيات وسوق العمل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/changing-major-internal-transfer-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>التحويل من تخصص إلى آخر داخل الجامعة السعودية الإلكترونية: معايير القبول والمفاضلة</video:title>
+      <video:description>دليل التحويل الداخلي بين تخصصات وكليات SEU: شروط تحويل التخصص، الساعات المشروطة، ومعايير المفاضلة وفق المقاعد المتاحة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/transferring-between-seu-campuses-branches</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>التحويل بين فروع الجامعة السعودية الإلكترونية: الشروط والمواعيد وطريقة التقديم</video:title>
+      <video:description>شروط التحويل بين فروع SEU في الرياض وجدة والدمام وغيرها، المواعيد السنوية لفتح بوابة النقل، وطريقة تقديم طلب التحويل الداخلي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/failing-repeating-courses-gpa-impact-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>نظام الرسوب وإعادة المقررات في الجامعة: كيف تؤثر إعادة المادة على المعدل التراكمي؟</video:title>
+      <video:description>شرح سياسة إعادة المقررات في الجامعة السعودية الإلكترونية: شروط الإعادة، كيفية استبدال درجات F و D، وتأثير النقاط على رفع المعدل التراكمي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/tuition-fee-waiver-social-security-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شروط الإعفاء من الرسوم الدراسية لمستفيدي الضمان الاجتماعي في SEU وطريقة التقديم</video:title>
+      <video:description>دليل التقديم على إعفاء الرسوم الدراسية لمستفيدي الضمان الاجتماعي المطور في الجامعة السعودية الإلكترونية: المستندات والشروط وطريقة رفع الطلب.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/tuition-fees-payment-sadad-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>رسوم الدراسة في الجامعة السعودية الإلكترونية: كم تبلغ وطريقة السداد عبر نظام سداد 2026</video:title>
+      <video:description>تفاصيل رسوم الساعات الدراسية في SEU لمرحلة البكالوريوس، رقم مفوتر سداد (054)، خطوات السداد الإلكتروني وتأكيد التسجيل الأكاديمي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/course-withdrawal-semester-deferral-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الاعتذار عن مقرر دراسي أو تأجيل الفصل (الانسحاب) في SEU: الشروط واسترداد الرسوم</video:title>
+      <video:description>شروط وإجراءات الاعتذار عن فصل دراسي كامل أو مقرر دراسي في الجامعة السعودية الإلكترونية، سياسة استرداد الرسوم، والآثار الأكاديمية على السجل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/attendance-absence-rules-dn-grade-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>نسبة الغياب المسموح بها في المحاضرات الافتراضية والحضورية في SEU وتجنب درجة الحرمان (DN)</video:title>
+      <video:description>لائحة الغياب والحرمان في الجامعة السعودية الإلكترونية: الحد الأقصى للغياب (25%)، نظام تسجيل الحضور الآلي، وطريقة تقديم الأعذار الطبية المقبولة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/academic-dismissal-reinstatement-appeal-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>طي القيد والفصل الأكاديمي في الجامعة السعودية الإلكترونية: شروط فرصة إعادة القيد والاستعطاف</video:title>
+      <video:description>دليل التعامل مع الفصل الأكاديمي وطي القيد في SEU: شروط التقديم على فرصة استثنائية (استعطاف)، إجراءات إعادة القيد، وكتابة خطاب التظلم.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/academic-probation-warning-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الإنذار الأكاديمي الأول والثاني في SEU: متى يصدر وكيف تتخلص منه وترفع معدلك؟</video:title>
+      <video:description>كل ما يخص الإنذار الأكاديمي في الجامعة السعودية الإلكترونية: أسباب صدوره عند هبوط المعدل دون 2.00، عواقبه، وخطة عملية سريعة لرفعه وتجنب الفصل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/major-selection-criteria-after-common-year-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شروط ومعايير التخصيص بعد السنة الأولى المشتركة في SEU: كيف تضمن رغبتك الأولى؟</video:title>
+      <video:description>دليل التخصيص في كليات الجامعة السعودية الإلكترونية: كلية الحوسبة والمعلوماتية، كلية إدارة الأعمال، والعلوم الصحية، ومعايير القبول التنافسي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-calculate-gpa-4-00-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>طريقة حساب المعدل التراكمي (GPA) في الجامعة السعودية الإلكترونية: سلم الدرجات والنقاط 2026</video:title>
+      <video:description>شرح تفصيلي لكيفية حساب المعدل الفصلي والتراكمي من 4.00 في الجامعة السعودية الإلكترونية، جدول تحويل الدرجات المئوية إلى نقاط وتقديرات مع أمثلة عملية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/password-reset-account-recovery-seu-systems</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تستعيد حسابك وكلمة المرور في أنظمة الجامعة عند نسيانها في ثوانٍ معدودة</video:title>
+      <video:description>طريقة استعادة كلمة مرور الحساب الجامعي الموحد لـ SEU عند نسيانها أو قفل الحساب، وتحديث رقم الجوال المسجل ورموز التحقق.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/internet-speed-laptop-specs-for-seu-distance-learning</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>متطلبات سرعة الإنترنت والأجهزة المناسبة لحضور المحاضرات والاختبارات في SEU</video:title>
+      <video:description>المواصفات الفنية الموصى بها لأجهزة اللابتوب وسرعة الإنترنت المناسبة لنظام التعليم المدمج ومتصفح ريسبوندس في الجامعة السعودية الإلكترونية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/booking-computerized-exams-seu-testing-centers</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>طريقة حجز مواعيد الاختبارات المحوسبة في مراكز الاختبارات بفروع الجامعة</video:title>
+      <video:description>خطوات حجز الفترات الزمنية للاختبارات النهائية المحوسبة في فروع SEU عبر البوابة الأكاديمية، اختيار القاعات وطباعة إشعار الحضور.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/saudi-digital-library-sdl-research-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>المكتبة الرقمية السعودية (SDL) وكيفية البحث عن المراجع العلمية والأوراق المحكمة</video:title>
+      <video:description>دليل طالب SEU لاستخدام المكتبة الرقمية السعودية SDL: الدخول بحساب الجامعة، البحث في قواعد البيانات العالمية، وتوثيق المصادر بالأبحاث.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/seu-university-email-setup-outlook-mobile</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>البريد الجامعي الرسمي: كيفية تسجيل الدخول وربطه بتطبيق Outlook على الجوال</video:title>
+      <video:description>خطوات ضبط واستخدام البريد الإلكتروني الجامعي الموحد SEU وربطه بتطبيق Microsoft Outlook على الهواتف الذكية لمتابعة رسائل الجامعة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-contact-seu-it-support-ticket-system</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيفية التواصل مع الدعم الفني وتقنية المعلومات في SEU وفتح تذكرة مساعدة سريعة</video:title>
+      <video:description>طريقة فتح تذكرة دعم فني في عمادة تقنية المعلومات لجامعة SEU، قنوات التواصل السريع، وحل مشاكل الدخول للبوابة والبلاك بورد.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-submit-assignments-pdf-blackboard-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>طريقة رفع الواجبات التكليفية والتقارير بصيغة PDF عبر البلاك بورد بدون أخطاء تقنية</video:title>
+      <video:description>شرح تحويل وتنسيق الواجبات إلى PDF ورفعها بأمان عبر البلاك بورد، وتوثيق رمز الإيصال لتفادي مشاكل عدم وصول الملف للأستاذ.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/joining-virtual-classes-collaborate-teams-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيفية الانضمام للمحاضرات الافتراضية عبر Blackboard Collaborate و Microsoft Teams</video:title>
+      <video:description>دليل حضور المحاضرات التفاعلية عن بُعد في SEU عبر منصتي Collaborate و Teams، ضبط المايك والكاميرا، وتسجيل الحضور التلقائي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/free-microsoft-365-office-for-seu-students</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>حساب مايكروسوفت 365 المجاني لطلاب SEU: تفعيل أوفيس وون درايف (OneDrive)</video:title>
+      <video:description>كيفية تفعيل واستخدام حزمة Microsoft 365 المجانية لطلاب الجامعة السعودية الإلكترونية: تحميل Word و Excel ومساحة تخزين سحابي 1 تيرابايت.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/seu-mobile-app-features-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تطبيق الجامعة السعودية الإلكترونية على الجوال: المزايا وطريقة تفعيل التنبيهات المهمة</video:title>
+      <video:description>استعراض لمزايا تطبيق SEU الرسمي وتطبيق Blackboard Learn على الهواتف الذكية: متابعة الإعلانات، استعراض الجدول، وتفعيل الإشعارات الفورية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/banner-sis-student-services-portal-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>بوابة الخدمات الطلابية (Banner / SIS): تسجيل المواد وتأكيد التسجيل وإسقاط المقررات</video:title>
+      <video:description>دليل استخدام نظام Banner SIS في الجامعة السعودية الإلكترونية: تسجيل الجداول، الحذف والإضافة، دفع الرسوم، واستخراج السجل الأكاديمي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/safeassign-plagiarism-percentage-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>نظام كشف الاقتباس سيف أساين (SafeAssign) في البلاك بورد: النسبة المسموحة وتجنب العقوبات</video:title>
+      <video:description>دليل فهم نظام SafeAssign في الجامعة السعودية الإلكترونية، النسبة المسموحة للاقتباس، كيفية قراءة تقرير الأصالة وتفادي لجان التأديب.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/respondus-camera-crash-troubleshooting-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>حل مشكلة إغلاق متصفح ريسبوندس المفاجئ أو تعطل الكاميرا أثناء الاختبار الإلكتروني</video:title>
+      <video:description>خطوات طارئة للتعامل مع انقطاع اتصال متصفح Respondus LockDown أو تعطل الكاميرا خلال أداء الاختبار، وكيفية توثيق المشكلة لحفظ حقك الأكاديمي.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/respondus-lockdown-browser-installation-troubleshooting-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>متصفح الاختبارات ريسبوندس (Respondus LockDown Browser): التثبيت وحل المشاكل الشائعة</video:title>
+      <video:description>دليل تثبيت وضبط متصفح الاختبارات الآمن Respondus LockDown Browser لطلاب الجامعة السعودية الإلكترونية، وحل مشاكل الكاميرا والتعليق قبل الاختبارات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/blackboard-learn-ultra-complete-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل استخدام بلاك بورد الجامعة السعودية الإلكترونية (Blackboard Learn Ultra) 2026</video:title>
+      <video:description>شرح شامل ومفصل لنظام Blackboard Learn Ultra في الجامعة السعودية الإلكترونية: تسجيل الحضور، حضور الفصول الافتراضية، رفع الواجبات، ومتابعة الدرجات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/balancing-ef-platform-and-step-preparation-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تدير وقتك بين منصة EF والمذاكرة لاختبار STEP مع مقررات الرياضيات والحاسب؟</video:title>
+      <video:description>خطة إدارة الوقت الذكية لطلاب SEU للجمع بين ساعات منصة EF English، التحضير لاختبار STEP، ومذاكرة مادتي MATH 001 و CS 001 بتوازن تام.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/transfer-credit-equivalency-from-other-universities-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>هل يمكن معادلة مادة بعد دراستها في جامعة سابقة؟ شروط وإجراءات التحويل الخارجي</video:title>
+      <video:description>شروط معادلة المقررات للطلاب المحولين من جامعات أخرى إلى SEU، معايير مطابقة الساعات وتوصيف المقررات المقبولة باللائحة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/student-experiences-step-85-first-try-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تجارب طلاب اجتازوا اختبار ستيب بدرجة +85 من أول محاولة: نصائح وأخطاء يجب تجنبها</video:title>
+      <video:description>قصص واقعية وتجارب ملهمة لطلاب في الجامعة السعودية الإلكترونية حققوا درجات تفوق 85 في STEP من المحاولة الأولى، وخطة عملهم الدقيقة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-telegram-channels-step-exam-practice</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أفضل قنوات تيليجرام ومصادر مجانية للتدريب على تجميعات اختبار ستيب المحدثة</video:title>
+      <video:description>دليل موثوق لأقوى قنوات ومصادر التيليجرام للتدريب على أسئلة وتجميعات اختبار STEP بدون تشتت، وكيف تميز بين النماذج الصحيحة والمغلوطة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/oxford-english-app-seu-assessments</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تطبيق Oxford English لطلاب الجامعة وطريقة اجتياز الاختبارات التقويمية</video:title>
+      <video:description>شرح استخدام منصة وتطبيق Oxford English لطلاب الجامعة السعودية الإلكترونية، متطلبات الأنشطة الرقمية وطرق أداء الاختبارات التقويمية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/what-to-do-if-failed-step-first-semester-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>ماذا تفعل إذا لم تحقق درجة الستيب المطلوبة في الترم الأول؟ خطة الإنقاذ البديلة</video:title>
+      <video:description>خطة عمل عاجلة لطلاب SEU الذين لم يوفقوا في تحقيق درجة STEP المطلوبة في الفصل الأول، خيارات الفصل الثاني وكيفية تجنب تعثر السنة التحضيرية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/equivalency-submission-dates-portal-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مواعيد فتح طلبات المعادلة في البوابة الإلكترونية للجامعة السعودية الإلكترونية</video:title>
+      <video:description>مواعيد التقديم على معادلة المقررات في SEU للفصلين الأول والثاني، طريقة متابعة حالة الطلب في نظام الخدمات الطلابية وحل مشاكل الرفض.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/step-listening-section-tips-full-mark</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>قسم الاستماع في اختبار ستيب: نصائح عملية للحصول على الدرجة الكاملة</video:title>
+      <video:description>طرق فعالة للتعامل مع قسم الاستماع في اختبار STEP، كيفية قراءة الخيارات مسبقاً والتركيز على مفاتيح الحل وتفادي التشتت الذهني.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/step-reading-comprehension-strategies</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>استراتيجيات قراءة قطع الاستيعاب (Reading Comprehension) في اختبار ستيب بدون إهدار الوقت</video:title>
+      <video:description>تكنيكات وحيل احترافية لقراءة واستخراج إجابات قطع الاستيعاب في اختبار STEP دون قراءة النص كاملاً وتوفير وقت الاختبار الثمين.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/step-grammar-rules-most-repeated-questions</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أهم تجميعات وتراكيب قواعد اختبار ستيب (STEP Grammar) الأكثر تكراراً في قياس</video:title>
+      <video:description>شرح مركز لأهم 15 قاعدة نحوية تتكرر في قسم القواعد باختبار ستيب (STEP) لطلاب SEU، مع أمثلة وتطبيقات من تجميعات قياس المحدثة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/math-cs-course-equivalency-professional-certificates-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>طريقة معادلة CS 001 (Computer Essentials) و MATH 001 (Fundamentals of Mathematics) بالشهادات الاحترافية في SEU</video:title>
+      <video:description>شروط وإجراءات معادلة مقرري CS 001 (Computer Essentials) و MATH 001 (Fundamentals of Mathematics) بالشهادات المهنية المعتمدة في SEU.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/ef-english-weekly-hours-calculation-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كم عدد ساعات الحضور المطلوبة أسبوعياً في منصة EF لطلاب الجامعة السعودية الإلكترونية؟</video:title>
+      <video:description>حساب دقيق لعدد ساعات الحضور المطلوبة أسبوعياً وفصلياً على منصة EF English لطلاب SEU لتفادي الحرمان وتحقيق الدرجة الكاملة في التقييم المستمر.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/ef-english-platform-guide-avoid-dn-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>منصة EF English في الجامعة السعودية الإلكترونية: كيفية احتساب الساعات وتفادي الحرمان (DN)</video:title>
+      <video:description>دليل شامل لمنصة EF English Live لطلاب SEU، كيفية احتساب ساعات الحضور الأسبوعية، اجتياز الوحدات التفاعلية، وتفادي الحرمان بدرجة DN.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/step-vs-ielts-vs-toefl-seu-equivalency</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الفرق بين اختبار STEP والآيلتس (IELTS) والتوفل (TOEFL) لمعادلة لغة SEU: أيهم أسهل؟</video:title>
+      <video:description>مقارنة شاملة بين اختبارات STEP و IELTS و TOEFL من حيث التكلفة، الصعوبة، أسلوب الأسئلة، وأفضل خيار لطلاب الجامعة السعودية الإلكترونية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/english-equivalency-terms-steps-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شروط وإجراءات معادلة اللغة الإنجليزية في الجامعة السعودية الإلكترونية 2026</video:title>
+      <video:description>تعرف على الشروط الرسمية وخطوات تقديم طلب معادلة مقررات اللغة الإنجليزية عبر البوابة الإلكترونية لجامعة SEU بالاختبارات القياسية المعتمدة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/step-exam-comprehensive-guide-score-83-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الدليل الشامل لاختبار ستيب (STEP) وكيفية الحصول على 83+ لمعادلة إنجليزي SEU</video:title>
+      <video:description>دليل تفصيلي لاختبار كفايات اللغة الإنجليزية (STEP) لطلاب الجامعة السعودية الإلكترونية، أسرار تحقيق درجة 83 فما فوق للحصول على إعفاء فوري وتقدير A+.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/organizing-study-notes-resources-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تنظم مذكرتك ومصادرك التعليمية لمواد السنة المشتركة؟</video:title>
+      <video:description>طرق وأدوات تنظيم الملفات، السلايدات، الملخصات، والتجميعات في مجلدات سحابية منظمة لتسهيل الوصول إليها ليلة الاختبار.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/preparing-for-in-person-exams-seu-campuses</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الاستعداد النفسي والأكاديمي للاختبارات الحضورية في فروع الجامعة السعودية الإلكترونية</video:title>
+      <video:description>نصائح وإرشادات لطلاب الجامعة السعودية الإلكترونية لأداء الاختبارات الحضورية في الفروع بكل هدوء وثقة والالتزام بالضوابط الرسمية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/study-groups-vs-self-study-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقارنة بين المذاكرة الفردية والدراسة في مجموعات لطلاب التحضيري في SEU</video:title>
+      <video:description>إيجابيات وسلبيات الدراسة الجماعية مقابل المذاكرة الفردية لطلاب الجامعة السعودية الإلكترونية، وكيف تختار الأسلوب المناسب لشخصيتك.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/fakhr-cs-common-year-bundle-review</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الباقة الشاملة لمواد السنة التحضيرية من فخر CS: ماذا تتضمن وكيف تفيدك؟</video:title>
+      <video:description>تعرف على تفاصيل ومزايا الباقة الشاملة للسنة الأولى المشتركة في فخر CS: الكورسات المشمولة، بنوك الأسئلة، التجميعات، والدعم الأكاديمي المباشر.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/weekly-assignments-submission-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شرح نظام الواجبات والتكليفات الأسبوعية وكيف ترفعها بدون أخطاء</video:title>
+      <video:description>خطوات تسليم الواجبات والتكليفات الأسبوعية عبر البلاك بورد، التأكد من صحة الامتدادات، وتجنب رفض النظام للملفات المرفوعة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-study-english-slides-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تتعامل مع السلايدات الإنجليزية لمواد التحضيري وترجمتها وفهمها بسرعة</video:title>
+      <video:description>طرق ذكية للتعامل مع المناهج باللغة الإنجليزية في الجامعة السعودية الإلكترونية، أدوات الترجمة السياقية، وبناء حصيلتك من المصطلحات الأكاديمية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/quizzes-question-banks-seu-common-year</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كل ما تريد معرفته عن بنوك الأسئلة والكويزات الدورية في السنة الأولى المشتركة</video:title>
+      <video:description>دليل التعامل مع كويزات البلاك بورد الدورية في مواد السنة التحضيرية، طبيعة الأسئلة، نظام المحاولات، وطرق التدريب الفعال.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-use-virtual-office-hours-blackboard-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>طريقة الاستفادة من الساعات المكتبية الإلكترونية للدكاترة في البلاك بورد</video:title>
+      <video:description>كيف تحجز وتحضر الساعات المكتبية الافتراضية مع منسقي ومدرسي المقررات في البلاك بورد للاستفسار عن المسائل الصعبة والواجبات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/is-math-001-hard-for-arts-students-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>هل مادة الرياضيات التحضيرية صعبة للأدبي؟ وكيف تجتازها بدون تعقيد</video:title>
+      <video:description>رسالة طمأنينة ودليل عملي لطلاب المسارات الأدبية في الجامعة السعودية الإلكترونية: كيف تفهم MATH 001 من الصفر وتحقق A+ بسهولة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/final-mcq-exams-secrets-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أسرار حل اختبارات الفاينل الموضوعية في الجامعة السعودية الإلكترونية</video:title>
+      <video:description>استراتيجيات التعامل مع أسئلة الاختيار من متعدد (MCQs) في الاختبارات النهائية الحضورية والإلكترونية لطلاب SEU وتفادي الخدع والخيارات المضللة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/midterm-exams-survival-guide-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل النجاة في اختبارات الميدتيرم لمواد السنة التحضيرية SEU</video:title>
+      <video:description>كيف تستعد لاختبارات الميدتيرم في الجامعة السعودية الإلكترونية، طريقة تقسيم الأيام، المراجعة السريعة، وأهم التكنيكات لتجاوز الاختبار بأعلى الدرجات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-get-4-00-gpa-seu-common-year</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تحصل على معدل 4.00 من أول ترم في السنة التحضيرية؟</video:title>
+      <video:description>استراتيجيات واقعية وخطة عمل محكمة لتحقيق الامتياز والمعدل الكامل 4.00 من 4.00 في الفصل الدراسي الأول بالجامعة السعودية الإلكترونية.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/top-10-mistakes-new-seu-students</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أهم 10 أخطاء يقع فيها طلاب التحضيري الجدد في SEU وكيف تتجنبها</video:title>
+      <video:description>تجنب الوقوع في فخاخ السنة التحضيرية بالجامعة السعودية الإلكترونية: أخطاء الغياب، إهمال منصة EF، تأجيل الواجبات، وعدم التدرب على التجميعات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/grade-distribution-common-year-courses-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>توزيع الدرجات التفصيلي لمواد السنة الأولى المشتركة في الجامعة السعودية الإلكترونية 2026</video:title>
+      <video:description>تعرف على التوزيع الرسمي لدرجات مواد السنة التحضيرية في SEU: درجات الأعمال الفصلية، الكويزات، الواجبات، اختبار الميدتيرم، والفاينل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/daily-study-plan-seu-preparatory-year</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>خطة دراسية مقترحة للمذاكرة اليومية لطلاب السنة التحضيرية في SEU</video:title>
+      <video:description>جدول دراسي يومي منظم لطلاب السنة الأولى المشتركة في الجامعة السعودية الإلكترونية يناسب الموظفين وغير الموظفين للتفوق في كافة المواد بدون ضغط.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/ci-001-academic-skills-seu-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقرر CI 001 (Academic Skills - المهارات الأكاديمية والتفكير النقدي) في الجامعة السعودية الإلكترونية: المهام والتكليفات</video:title>
+      <video:description>كل ما تريد معرفته عن مقرر CI 001 (Academic Skills - المهارات الأكاديمية والتفكير النقدي) في SEU: إعداد الأبحاث المصغرة، مهارات القراءة، والامتحانات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/comm-001-communication-skills-seu-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/nEJOqVfDClE/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شرح مقرر COMM 001 (Communication Skills - مهارات الاتصال) وكيفية التعامل مع واجبات التفكير النقدي</video:title>
+      <video:description>دليل شامل لمقرر COMM 001 (Communication Skills - مهارات الاتصال) في SEU: ملخص المفاهيم وطريقة حصد الدرجة الكاملة في المناقشات والواجبات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/nEJOqVfDClE</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/math001-vs-cs001-time-management-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الفرق بين مادة ماث 001 وحاسب 001 وكيف تقسم وقتك بينهما بنجاح</video:title>
+      <video:description>مقارنة دقيقة بين متطلبات MATH 001 و CS 001 في الجامعة السعودية الإلكترونية، وكيف تصنع جدولاً دراسياً يضمن لك التوازن والـ A+ في المادتين معاً.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/cs-001-seu-projects-assignments-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/o3OJc23xHqg/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>مقرر CS 001 (Computer Essentials - أساسيات الحاسب الآلي) | طريقة حل المشاريع والواجبات وضمان الفل مارك</video:title>
+      <video:description>دليل مقرر CS 001 (Computer Essentials - أساسيات الحاسب الآلي) في الجامعة السعودية الإلكترونية: حل التكليفات ومشاريع الأوفيس والتحضير للاختبارات.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/o3OJc23xHqg</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/math-001-midterm-final-past-papers-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>تجميعات ونماذج اختبارات MATH 001 (Fundamentals of Mathematics) وكيفية التدرب على أسئلة الفاينل والميد</video:title>
+      <video:description>أقوى نماذج وتجميعات اختبارات مقرر MATH 001 (Fundamentals of Mathematics) لطلاب SEU، مع استراتيجيات الحل السريع للمسائل الجبرية والدوال.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/math-001-seu-mastery-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>دليل اجتياز مقرر MATH 001 (Fundamentals of Mathematics - رياضيات 001) في SEU | أسرار الـ A+</video:title>
+      <video:description>دليل تفصيلي لاجتياز مقرر MATH 001 (Fundamentals of Mathematics - أساسيات الرياضيات) في الجامعة السعودية الإلكترونية وحصد تقدير A+ في الميد والفاينل.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/seu-common-first-year-complete-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>الدليل الشامل للسنة الأولى المشتركة في الجامعة السعودية الإلكترونية (SEU) 2026</video:title>
+      <video:description>دليل شامل يغطي كل ما يحتاجه طالب السنة الأولى المشتركة في الجامعة السعودية الإلكترونية: المواد، نظام التعليم المدمج، توزيع الدرجات، ونصائح اجتياز التحضيري بمعدل مرتفع.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/how-to-choose-best-seu-explanations-avoid-old-notes</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/orT8dtZQn34/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>كيف تختار أفضل شروحات الجامعة السعودية الإلكترونية وتتجنب المذكرات القديمة والشروحات العشوائية؟</video:title>
+      <video:description>معايير اختيار أفضل شروحات الجامعة السعودية الإلكترونية لعام 2026: كيف تميز بين الشرح الهندسي المحدث والمذكرات العشوائية المليئة بالأخطاء.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/orT8dtZQn34</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/computing-college-courses-explanations-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/ehwYuyINYUs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شروحات مواد كلية الحوسبة والمعلوماتية (CCI) في الجامعة السعودية الإلكترونية: البرمجة، الشبكات، وقواعد البيانات</video:title>
+      <video:description>أقوى شروحات كلية الحوسبة والمعلوماتية في SEU: شرح البرمجة الكائنية OOP جافا، هياكل البيانات Data Structures، الخوارزميات، وشبكات الحاسب.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/ehwYuyINYUs</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/common-year-courses-explanations-seu</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2pY330V-4Hk/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شروحات مواد السنة الأولى المشتركة في الجامعة السعودية الإلكترونية: الرياضيات، الحاسب، والإنجليزي</video:title>
+      <video:description>دليلك لأفضل شروحات مواد السنة التحضيرية في SEU: شرح MATH 001 و CS 001 و COMM 001 مع ملخصات القوانين وتجميعات الميد والفاينل الشاملة.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/2pY330V-4Hk</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/best-platform-seu-courses-explanations-fakhr-cs</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t6JaKSg-9_I/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>أفضل موقع شروحات الجامعة السعودية الإلكترونية لعام 2026: منصة فخر CS خيارك الأول</video:title>
+      <video:description>لماذا تعد منصة فخر CS أفضل موقع شروحات لمقررات الجامعة السعودية الإلكترونية؟ شروحات تفاعلية، تجميعات محلولة، ودعم أكاديمي مستمر حتى يوم الاختبار.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/t6JaKSg-9_I</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://fakhrcs.com/blog/seu-courses-explanations-complete-guide</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/7h7PKQBoGSo/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>شروحات الجامعة السعودية الإلكترونية (SEU): دليلك الشامل لأفضل شروحات المقررات والتفوق بـ A+</video:title>
+      <video:description>تبحث عن أفضل شروحات الجامعة السعودية الإلكترونية؟ اكتشف دليلك المتكامل لشروحات مواد السنة الأولى المشتركة وكلية الحوسبة والمعلوماتية في منصة فخر CS.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/7h7PKQBoGSo</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://fakhrcs.com/pages/about-us</loc>
@@ -360,31 +3107,31 @@
   </url>
   <url>
     <loc>https://fakhrcs.com/faqs</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://fakhrcs.com/student-benefits</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://fakhrcs.com/terms-conditions</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.50</priority>
   </url>
   <url>
     <loc>https://fakhrcs.com/instructor-terms</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.50</priority>
   </url>
   <url>
     <loc>https://fakhrcs.com/become-instructor</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>

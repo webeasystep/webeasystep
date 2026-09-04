@@ -129,6 +129,17 @@ class Sitemap extends BaseController
                 ];
             }
 
+            // If course has a YouTube intro video ID (11 chars)
+            if (!empty($course['intro_video_id']) && preg_match('/^[a-zA-Z0-9_\-]{11}$/', trim($course['intro_video_id']))) {
+                $ytVid = trim($course['intro_video_id']);
+                $urlEntry['video'] = [
+                    'thumbnail_loc' => "https://img.youtube.com/vi/{$ytVid}/hqdefault.jpg",
+                    'title'         => $courseTitle . ' - شرح وفيديو تمهيدي',
+                    'description'   => !empty($course['short_desc']) ? $course['short_desc'] : (!empty($course['course_desc']) ? strip_tags($course['course_desc']) : $courseTitle),
+                    'player_loc'    => "https://www.youtube.com/embed/{$ytVid}",
+                ];
+            }
+
             $urls[] = $urlEntry;
         }
 
@@ -148,11 +159,27 @@ class Sitemap extends BaseController
             $articleTitle = $article['title'] ?? 'مقال أكاديمي';
             $imageLoc = $this->getAbsoluteImageUrl($article['image'] ?? null, $baseUrl);
 
+            // Calculate smart priority based on search intent
+            $searchTarget = mb_strtolower(($article['title'] ?? '') . ' ' . ($article['slug'] ?? ''));
+            $isHighIntent = (
+                str_contains($searchTarget, 'math') ||
+                str_contains($searchTarget, 'cs') ||
+                str_contains($searchTarget, 'comm') ||
+                str_contains($searchTarget, 'ci') ||
+                str_contains($searchTarget, 'stat') ||
+                str_contains($searchTarget, 'it') ||
+                str_contains($searchTarget, 'step') ||
+                str_contains($searchTarget, 'شروحات') ||
+                str_contains($searchTarget, 'تحضيري') ||
+                str_contains($searchTarget, 'تسجيل')
+            );
+            $priority = $isHighIntent ? '0.85' : '0.80';
+
             $urlEntry = [
                 'loc'        => $articleUrl,
                 'lastmod'    => $lastmod,
                 'changefreq' => 'weekly',
-                'priority'   => '0.80',
+                'priority'   => $priority,
                 'title'      => $articleTitle,
             ];
 
@@ -160,6 +187,21 @@ class Sitemap extends BaseController
                 $urlEntry['image'] = [
                     'loc'   => $imageLoc,
                     'title' => $articleTitle,
+                ];
+            }
+
+            // Google Video Sitemap extraction from article content
+            if (!empty($article['content']) && preg_match('/(?:youtube(?:-nocookie)?\.com\/embed\/|watch\?v=)([a-zA-Z0-9_\-]{11})/i', $article['content'], $vidMatch)) {
+                $ytVid = $vidMatch[1];
+                $videoDesc = !empty($article['description'])
+                    ? $article['description']
+                    : strip_tags(mb_substr($article['content'], 0, 250));
+
+                $urlEntry['video'] = [
+                    'thumbnail_loc' => "https://img.youtube.com/vi/{$ytVid}/hqdefault.jpg",
+                    'title'         => $articleTitle,
+                    'description'   => $videoDesc,
+                    'player_loc'    => "https://www.youtube.com/embed/{$ytVid}",
                 ];
             }
 
@@ -258,6 +300,7 @@ class Sitemap extends BaseController
         $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"' . "\n";
         $xml .= '        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' . "\n";
         $xml .= '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"' . "\n";
+        $xml .= '        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"' . "\n";
         $xml .= '        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9' . "\n";
         $xml .= '        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">' . "\n";
 
@@ -277,12 +320,38 @@ class Sitemap extends BaseController
                 $xml .= "    </image:image>\n";
             }
 
+            if (!empty($item['video'])) {
+                $xml .= "    <video:video>\n";
+                $xml .= "      <video:thumbnail_loc>" . htmlspecialchars($item['video']['thumbnail_loc'], ENT_XML1, 'UTF-8') . "</video:thumbnail_loc>\n";
+                $xml .= "      <video:title>" . htmlspecialchars($item['video']['title'], ENT_XML1, 'UTF-8') . "</video:title>\n";
+                $xml .= "      <video:description>" . htmlspecialchars(strip_tags($item['video']['description']), ENT_XML1, 'UTF-8') . "</video:description>\n";
+                $xml .= "      <video:player_loc>" . htmlspecialchars($item['video']['player_loc'], ENT_XML1, 'UTF-8') . "</video:player_loc>\n";
+                $xml .= "      <video:family_friendly>yes</video:family_friendly>\n";
+                $xml .= "    </video:video>\n";
+            }
+
             $xml .= "  </url>\n";
         }
 
         $xml .= "</urlset>\n";
 
         return $xml;
+    }
+
+    /**
+     * Static helper to re-generate and write public/sitemap.xml from anywhere
+     */
+    public static function refreshXmlFile(): bool
+    {
+        try {
+            $controller = new self();
+            $xml = $controller->buildSitemapXml();
+            $path = FCPATH . 'sitemap.xml';
+            return file_put_contents($path, $xml) !== false;
+        } catch (\Throwable $e) {
+            log_message('error', 'Sitemap refreshXmlFile error: ' . $e->getMessage());
+            return false;
+        }
     }
 
     /**

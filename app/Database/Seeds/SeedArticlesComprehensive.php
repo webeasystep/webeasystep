@@ -30,6 +30,11 @@ class SeedArticlesComprehensive extends Seeder
         }
 
         echo "Successfully seeded {$inserted} high-value articles for SEU students!" . PHP_EOL;
+
+        // Auto-refresh public/sitemap.xml
+        if (\App\Controllers\Sitemap::refreshXmlFile()) {
+            echo "Successfully refreshed public/sitemap.xml with updated video-rich sitemap!" . PHP_EOL;
+        }
     }
 
     private function getArticlesData(): array
