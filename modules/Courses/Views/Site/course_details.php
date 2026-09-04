@@ -98,7 +98,7 @@
                     <div class="custom-accordion" id="courseOutlineAccordion">
                         <?php if (!empty($units)) : ?>
                             <?php foreach ($units as $unitIndex => $unit) : ?>
-                                <div class="accordion-item">
+                                <div class="accordion-item" <?= ($unitIndex === 0) ? 'id="first-unit"' : '' ?>>
                                     <div class="accordion-header" id="heading<?= $unitIndex ?>">
                                         <button class="accordion-button <?= ($unitIndex !== 0) ? 'collapsed' : '' ?>"
                                                 type="button"
@@ -226,7 +226,7 @@
                                 </div>
                             <?php endforeach; ?>
                         <?php else : ?>
-                            <p>لا يوجد محتوى متاح لهذا الكورس.</p>
+                            <p id="first-unit" class="text-muted py-3">لا يوجد محتوى متاح لهذا الكورس حالياً.</p>
                         <?php endif; ?>
                     </div> <!-- End custom-accordion -->
                 </div>
@@ -272,13 +272,23 @@
                                 </svg>
                             <?php endif; ?>
                         </div>
-                        <a href="javascript:void(0);"
-                           onclick="addToCart('course', <?= $course->id ?>);"
-                           class="btn btn-light btn-lg"
-                           style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); width: 100%; margin-top: 0.5rem;">
-                            <i class="icon-shopping-cart"></i>
-                            أضف للسلة
-                        </a>
+                        <div class="d-flex w-100" style="gap: 8px; margin-top: 0.5rem;">
+                            <a href="javascript:void(0);"
+                               onclick="addToCart('course', <?= $course->id ?>);"
+                               class="btn btn-light btn-lg flex-grow-1"
+                               style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); display: inline-flex; align-items: center; justify-content: center; gap: 6px;">
+                                <i class="icon-shopping-cart"></i>
+                                أضف للسلة
+                            </a>
+                            <a href="#first-unit"
+                               onclick="scrollToFirstUnit(event);"
+                               class="btn btn-outline-light btn-lg"
+                               title="معاينة محتوى الكورس والوحدة الأولى"
+                               style="font-weight: 600; border-radius: var(--radius-md); border: 2px solid rgba(255,255,255,0.9); color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; padding-left: 1.2rem; padding-right: 1.2rem;">
+                                <i class="fas fa-eye"></i>
+                                معاينة
+                            </a>
+                        </div>
                         <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">دفع آمن عبر بايبال (PayPal)</small>
                         <?php if (!empty($course->telegram_link)): ?>
                             <a href="<?= esc($course->telegram_link) ?>" target="_blank"
@@ -434,13 +444,23 @@
                                     </svg>
                                 <?php endif; ?>
                             </div>
-                            <a href="javascript:void(0);"
-                               onclick="addToCart('course', <?= $course->id ?>);"
-                               class="btn btn-light btn-lg"
-                               style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); width: 100%; margin-top: 0.5rem;">
-                                <i class="icon-shopping-cart"></i>
-                                أضف للسلة
-                            </a>
+                            <div class="d-flex w-100" style="gap: 8px; margin-top: 0.5rem;">
+                                <a href="javascript:void(0);"
+                                   onclick="addToCart('course', <?= $course->id ?>);"
+                                   class="btn btn-light btn-lg flex-grow-1"
+                                   style="font-weight: 600; border-radius: var(--radius-md); color: var(--primary-color); display: inline-flex; align-items: center; justify-content: center; gap: 6px;">
+                                    <i class="icon-shopping-cart"></i>
+                                    أضف للسلة
+                                </a>
+                                <a href="#first-unit"
+                                   onclick="scrollToFirstUnit(event);"
+                                   class="btn btn-outline-light btn-lg"
+                                   title="معاينة محتوى الكورس والوحدة الأولى"
+                                   style="font-weight: 600; border-radius: var(--radius-md); border: 2px solid rgba(255,255,255,0.9); color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; padding-left: 1.2rem; padding-right: 1.2rem;">
+                                    <i class="fas fa-eye"></i>
+                                    معاينة
+                                </a>
+                            </div>
                             <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">شراء آمن بضمان استرجاع الأموال</small>
                             <?php if (!empty($course->telegram_link)): ?>
                                 <a href="<?= esc($course->telegram_link) ?>" target="_blank"
@@ -734,6 +754,51 @@
             }
         }
     }
+
+    // Smooth scroll and highlight first unit preview
+    function scrollToFirstUnit(e) {
+        if (e && typeof e.preventDefault === 'function') {
+            e.preventDefault();
+        }
+        const target = document.getElementById('first-unit') || document.getElementById('courseOutlineAccordion');
+        if (!target) return;
+
+        // Ensure first unit accordion is expanded
+        const collapse1 = document.getElementById('collapse1');
+        if (collapse1) {
+            if (typeof $ !== 'undefined' && typeof $(collapse1).collapse === 'function') {
+                $(collapse1).collapse('show');
+            } else {
+                collapse1.classList.add('show');
+            }
+        }
+
+        const nav = document.querySelector('.site-nav') || document.querySelector('header') || document.querySelector('.navbar');
+        const navHeight = nav ? nav.offsetHeight : 70;
+        const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 25;
+
+        window.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: 'smooth'
+        });
+
+        // Trigger subtle pulse glow highlight
+        target.classList.remove('highlight-preview-unit');
+        void target.offsetWidth;
+        target.classList.add('highlight-preview-unit');
+        setTimeout(function() {
+            target.classList.remove('highlight-preview-unit');
+        }, 3500);
+    }
+
+    // Automatically scroll to first unit when opened with #first-unit hash or preview flag
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.location.hash === '#first-unit' || window.location.hash === '#preview' || window.location.search.indexOf('preview=1') !== -1) {
+            setTimeout(function() {
+                scrollToFirstUnit();
+            }, 350);
+        }
+    });
 </script>
 
 <?php $this->endSection(); ?>

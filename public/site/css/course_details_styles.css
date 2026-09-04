@@ -528,3 +528,34 @@ body.dark-mode .instructor-verify-check {
     color: #94a3b8;
 }
 
+/* ==========================================================================
+   First Unit Preview Target & Highlight Glow Effect
+   ========================================================================== */
+#first-unit {
+    scroll-margin-top: 100px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+@keyframes firstUnitPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(19, 106, 213, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 14px rgba(19, 106, 213, 0.15);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(19, 106, 213, 0);
+    }
+}
+
+.highlight-preview-unit {
+    border: 2px solid #136ad5 !important;
+    border-radius: var(--radius-md, 12px) !important;
+    animation: firstUnitPulse 1.3s ease-in-out 2 !important;
+}
+
+body.dark-mode .highlight-preview-unit {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.45) !important;
+}
+

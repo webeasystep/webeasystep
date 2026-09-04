@@ -433,12 +433,12 @@ $courseIndex = 0;
                                                 <i class="fas fa-play ml-1"></i> مشاهدة
                                             </a>
                                         <?php else: ?>
-                                            <a href="<?= $courseUrl ?>" class="btn btn-sm btn-outline-primary btn-course-details">
-                                                التفاصيل
+                                            <a href="<?= $courseUrl ?>#first-unit" class="btn btn-sm btn-outline-primary btn-course-details" title="معاينة محتوى الكورس والوحدة الأولى">
+                                                <i class="fas fa-eye ml-1"></i> معاينة
                                             </a>
                                             <?php if ($isOpen): ?>
                                                 <a href="javascript:void(0);" onclick="addToCart('course', <?= $course['id'] ?>);" class="btn btn-sm btn-primary btn-course-details">
-                                                    <i class="fas fa-cart-plus ml-1"></i> اشترك
+                                                    <i class="fas fa-cart-plus ml-1"></i> أضف للسلة
                                                 </a>
                                             <?php else: ?>
                                                 <button type="button" class="btn btn-sm btn-secondary btn-course-details" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">

@@ -2877,8 +2877,16 @@ body.dark-mode .untree_co-hero .heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     padding-top: 16px;
     border-top: 1px solid #e2e8f0;
+}
+
+.course-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .course-price {
@@ -2909,22 +2917,53 @@ body.dark-mode .untree_co-hero .heading {
     vertical-align: middle;
 }
 
+/* Course Preview Button */
+.btn-course-preview {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 9px 13px;
+    color: #136ad5;
+    background-color: transparent;
+    border: 1.5px solid #136ad5;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.btn-course-preview:hover {
+    color: #ffffff;
+    background-color: #136ad5;
+    border-color: #136ad5;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(19, 106, 213, 0.2);
+}
+
 /* Subscribe Button */
 .btn-subscribe {
     background: linear-gradient(135deg, #136ad5 0%, #0d5bba 100%);
     color: #ffffff;
     border: none;
-    padding: 10px 24px;
+    padding: 9px 18px;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    white-space: nowrap;
 }
 
 .btn-subscribe:hover {
     background: linear-gradient(135deg, #0d5bba 0%, #0a4a9e 100%);
     color: #ffffff;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 /* ============================================

@@ -172,11 +172,18 @@
                                                 </svg>
                                             <?php endif; ?>
                                         </div>
-                                        <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
-                                            <button type="button" onclick="addToCart('course', <?= $course['id'] ?>);" class="btn btn-subscribe" style="padding: 10px 15px;">أضف للسلة</button>
-                                        <?php else: ?>
-                                            <button type="button" class="btn btn-subscribe" style="padding: 10px 15px; background: #6c757d; border-color: #6c757d;" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">أعلمني عند التوفر</button>
-                                        <?php endif; ?>
+                                        <div class="course-card-actions">
+                                            <a href="<?= $courseUrl ?>#first-unit" class="btn btn-course-preview" title="معاينة محتوى الكورس والوحدة الأولى">
+                                                <i class="fas fa-eye"></i> معاينة
+                                            </a>
+                                            <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
+                                                <button type="button" onclick="addToCart('course', <?= $course['id'] ?>);" class="btn btn-subscribe">
+                                                    <i class="fas fa-cart-plus"></i> أضف للسلة
+                                                </button>
+                                            <?php else: ?>
+                                                <button type="button" class="btn btn-subscribe" style="background: #6c757d; border-color: #6c757d;" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">أعلمني عند التوفر</button>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

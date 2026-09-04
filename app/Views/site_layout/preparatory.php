@@ -510,15 +510,20 @@
                                         <?php endif; ?>
                                     </div>
                                     
-                                    <?php if($isOpen): ?>
-                                        <button class="btn btn-primary btn-course-enroll" onclick="addToCart('course', <?= $course['id'] ?>)">
-                                            <i class="fas fa-cart-plus ml-1"></i> أضف للسلة
-                                        </button>
-                                    <?php else: ?>
-                                        <button type="button" class="btn btn-secondary btn-course-enroll" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">
-                                            أعلمني
-                                        </button>
-                                    <?php endif; ?>
+                                    <div class="prep-course-actions d-flex align-items-center" style="gap: 6px;">
+                                        <a href="<?= $courseUrl ?>#first-unit" class="btn btn-course-preview btn-course-enroll" title="معاينة محتوى الكورس والوحدة الأولى">
+                                            <i class="fas fa-eye"></i> معاينة
+                                        </a>
+                                        <?php if($isOpen): ?>
+                                            <button class="btn btn-primary btn-course-enroll" onclick="addToCart('course', <?= $course['id'] ?>)">
+                                                <i class="fas fa-cart-plus ml-1"></i> أضف للسلة
+                                            </button>
+                                        <?php else: ?>
+                                            <button type="button" class="btn btn-secondary btn-course-enroll" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">
+                                                أعلمني
+                                            </button>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
