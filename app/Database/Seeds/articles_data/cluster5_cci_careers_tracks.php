@@ -8,6 +8,37 @@ return array (
     'description' => 'مقارنة شاملة بين تخصصات كلية الحوسبة والمعلوماتية في SEU: الفروق الجوهرية في المواد البرمجية وفرص العمل والرواتب في السعودية.',
     'content' => '<p>يقف طالب كلية الحوسبة والمعلوماتية في نهاية السنة المشتركة أمام مفترق طرق حاسم: <strong>هل يتخصص في علوم الحاسب (CS)، أم تقنية المعلومات (IT)، أم علوم البيانات (Data Science)؟</strong> كل مسار يمتلك طابعاً أكاديمياً فريداً ومساراً مهنياً مستقلاً في سوق العمل السعودي.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 251 (Linear Algebra)</span>
+                <h4 class="video-showcase-title">01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/DmzPIsJaHmk?rel=0" title="01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة حل أنظمة المعادلات الخطية في مقرر MATH 251 لفهم المصفوفات وطرق الحذف والتعويض بدقة.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h2>مقارنة الفروق الجوهرية بين التخصصات الثلاثة</h2>
 <table class="table table-bordered text-center my-4">
     <thead class="table-primary">
@@ -57,6 +88,37 @@ return array (
 <h2>لماذا يشهد تخصص علوم البيانات طلباً وظيفياً قياسياً؟</h2>
 <p>تتحول كافة الوزارات والشركات الكبرى في المملكة (أرامكو، سابك، البنوك، وصندوق الاستثمارات العامة) نحو الاقتصاد القائم على البيانات الضخمة. الشركات لا تبحث عن مجرد مبرمج، بل عن متخصص يستطيع تحويل ملايين السجلات إلى قرارات استثمارية واستراتيجية مربحة.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | STAT 101 (Principles of Statistics)</span>
+                <h4 class="video-showcase-title">01 | شرح STAT 101 | مقدمة في علم الإحصاء وأنواع البيانات ومستويات القياس | Chapter 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/bNUEn8agqeU?rel=0" title="01 | شرح STAT 101 | مقدمة في علم الإحصاء وأنواع البيانات ومستويات القياس | Chapter 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التأسيسي لمقرر STAT 101 للتعرف على تصنيفات البيانات ومستويات القياس ومفاتيح حل المسائل الإحصائية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h2>المهارات الأساسية التي تكتسبها في برنامج SEU</h2>
 <ol>
     <li><strong>التأسيس الإحصائي القوي:</strong> فهم الاحتمالات، والاستدلال الإحصائي، واختبار الفرضيات (انطلاقاً من مقررات مثل STAT 101).</li>
@@ -71,6 +133,37 @@ return array (
     'slug' => 'coop-internship-guide-computing-college-seu',
     'description' => 'شروط ومواعيد التدريب التعاوني لطلاب كلية الحوسبة بـ SEU، وطريقة التقديم على الشركات والجهات الحكومية لضمان عرض وظيفي قبل التخرج.',
     'content' => '<p>يمثل <strong>التدريب التعاوني (Co-op Training)</strong> في كلية الحوسبة والمعلوماتية الجسر الحقيقي الذي يعبر به الطالب من مقاعد الدراسة إلى بيئة الأعمال الاحترافية. التدريب ليس مجرد مقرر بساعات معتمدة، بل هو الفرصة الذهبية الكبرى لاقتناص عرض وظيفي دائم (Job Offer) قبل استلام وثيقة التخرج.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 150 (Discrete Mathematics)</span>
+                <h4 class="video-showcase-title">02 | MATH 150: Discrete Mathematics | 1.2 &amp; 1.3 Logic Circuits, Equivalences &amp; Laws - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/Oi1fWTeCD74?rel=0" title="02 | MATH 150: Discrete Mathematics | 1.2 &amp; 1.3 Logic Circuits, Equivalences &amp; Laws - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح الدوائر المنطقية والمنطق الرياضي أساس التفكير الخوارزمي في كلية الحوسبة والمعلوماتية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>شروط التسجيل في التدريب التعاوني في SEU</h2>
 <ul>
@@ -103,6 +196,37 @@ return array (
 
 <h2>القواعد الذهبية لاختيار فريق العمل (Team Dynamics)</h2>
 <p>اختر زملاءك في الفريق بناءً على <strong>تكامل المهارات والالتزام بالعمل</strong> وليس على أساس الصداقة العاطفية فقط. الفريق المثالي يتكون من 3 إلى 4 طلاب يتوزعون الأدوار التالية:</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 251 (Linear Algebra)</span>
+                <h4 class="video-showcase-title">01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/DmzPIsJaHmk?rel=0" title="01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح الجبر الخطي MATH 251 التأسيسي لتخصصات علوم الحاسب وهندسة البرمجيات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 <ol>
     <li>مطور الواجهات الأمامية وتجربة المستخدم (UI/UX & Frontend).</li>
     <li>مطور الباك إند وقواعد البيانات (Backend & Database Architecture).</li>
@@ -115,6 +239,37 @@ return array (
     'slug' => 'reasons-senior-project-proposal-rejected-seminar-seu',
     'description' => 'لماذا ترفض لجان مشاريع التخرج مقترحات الطلاب في SEU؟ تعرف على أهم 6 أخطاء في كتابة مقترح المشروع (Proposal) لتتجنبها.',
     'content' => '<p>في الأسابيع الأولى من مادة مشروع التخرج 1 (Senior Project I)، يعيش الطلاب حالة من الترقب عند تقديم مقترح المشروع (Proposal) أمام لجنة السيمنار الأكاديمية بالكلية. رفض المقترح يعني ضياع أسابيع في البحث والبدء من الصفر. إليك أبرز أسباب الرفض وكيفية تجنبها:</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/ehwYuyINYUs?rel=0" title="01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على الجانب التطبيقي لمقررات كلية الحوسبة والمعلوماتية من خلال محاضرة قواعد البيانات وأنظمة DBMS التأسيسية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>أسباب الرفض الأكثر شيوعاً</h2>
 <ol>
@@ -173,6 +328,37 @@ return array (
 <div class="alert alert-success p-4 my-4">
     <h5 class="fw-bold">💰 ميزة دعم صندوق "هدف":</h5>
     <p class="mb-0">برنامج الشهادات المهنية الاحترافية في المملكة (هدف) يعوض المواطنين بنسبة 100% من تكاليف رسوم الاختبار والتدريب لهذه الشهادات فور اجتيازك لها!</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/o3OJc23xHqg?rel=0" title="04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة نظم التشغيل ومعمارية البرمجيات في مقرر CS 001 لفهم الهيكلية البرمجية بوضوح تام.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 </div>',
   ),
   6 => 
@@ -181,6 +367,37 @@ return array (
     'slug' => 'building-strong-github-portfolio-student-developer-seu',
     'description' => 'دليل طالب الحوسبة لبناء حساب GitHub احترافي: كيفية رفع المشاريع الجامعية، توثيق الكود بملفات README، ولفت انتباه مسؤولي التوظيف.',
     'content' => '<p>حسابك على موقع <strong>GitHub</strong> هو السيرة الذاتية الحقيقية التي ينظر إليها مدراء الفرق الهندسية ومطورو البرمجيات في كبرى الشركات. رفع مشاريعك الأكاديمية والشخصية على GitHub يثبت قدرتك العملية على كتابة كود نظيف وتوثيق حلولك واستخدام أنظمة إدارة الإصدارات (Git).</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>كيف تحول مشاريع موادك في SEU إلى بورتفوليو مبهر؟</h2>
 <ol>
@@ -195,6 +412,37 @@ return array (
     'slug' => 'career-opportunities-cs-vs-it-graduates-saudi-arabia',
     'description' => 'تحليل مقارن لسوق العمل والرواتب لخريجي علوم الحاسب وتقنية المعلومات في المملكة العربية السعودية والمسارات الأكثر طلباً.',
     'content' => '<p>يدور جدل مستمر بين الطلاب حول: <em>"من يمتلك فرصاً وظيفية ورواتب أعلى في السعودية: خريج علوم الحاسب (CS) أم خريج تقنية المعلومات (IT)؟"</em>. الواقع الرقمي لسوق العمل السعودي يوضح أن كلا التخصصين مطلوبان بشدة، ولكن في قطاعات وأدوار مختلفة تماماً.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/o3OJc23xHqg?rel=0" title="04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة نظم التشغيل ومعمارية البرمجيات في مقرر CS 001 لفهم الهيكلية البرمجية بوضوح تام.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>خريج علوم الحاسب (Computer Science)</h2>
 <ul>
@@ -216,6 +464,37 @@ return array (
     'slug' => 'data-engineer-vs-data-analyst-career-path-seu',
     'description' => 'ما الفرق بين Data Engineer و Data Analyst؟ خارطة طريق لخريجي تخصص علوم البيانات في SEU لاختيار المسار الوظيفي والتقني المناسب.',
     'content' => '<p>مع التوسع الهائل في تخصص علوم البيانات بالجامعة السعودية الإلكترونية، يواجه الخريجون حيرة شائعة في تحديد وجهتهم المهنية بين مسارين رئيسيين يشكلان صلب العمل مع البيانات: <strong>مهندس البيانات (Data Engineer)</strong> و<strong>محلل البيانات (Data Analyst)</strong>.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 251 (Linear Algebra)</span>
+                <h4 class="video-showcase-title">01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/DmzPIsJaHmk?rel=0" title="01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة حل أنظمة المعادلات الخطية في مقرر MATH 251 لفهم المصفوفات وطرق الحذف والتعويض بدقة.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>مقارنة بين المسارين</h2>
 <table class="table table-bordered text-center my-4">
@@ -260,7 +539,38 @@ return array (
 </ol>
 
 <h2>كيف تتدرب أثناء دراستك الجامعية؟</h2>
-<p>خصص مسألة برمجية واحدة يومياً على منصة <strong>LeetCode</strong> بالتزامن مع دراستك لمقرري CS220 (هياكل البيانات) و CS331 (الخوارزميات). البدء المبكر يجعلك جاهزاً لاجتياز أي اختبار وظيفي دون خوف.</p>',
+<p>خصص مسألة برمجية واحدة يومياً على منصة <strong>LeetCode</strong> بالتزامن مع دراستك لمقرري CS220 (هياكل البيانات) و CS331 (الخوارزميات). البدء المبكر يجعلك جاهزاً لاجتياز أي اختبار وظيفي دون خوف.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/o3OJc23xHqg?rel=0" title="04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة نظم التشغيل ومعمارية البرمجيات في مقرر CS 001 لفهم الهيكلية البرمجية بوضوح تام.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   10 => 
   array (
@@ -277,7 +587,38 @@ return array (
 </ul>
 
 <h2>ماذا تستفيد حتى لو لم تفز بالجائزة الأولى؟</h2>
-<p>مجرد وضع بند "المشاركة في هاكاثون وطني" في سيرتك الذاتية يثبت لأصحاب العمل قدرتك على العمل تحت الضغط، والتعاون ضمن فريق متعدد التخصصات، وتحويل الفكرة النظرية إلى نموذج أولي (MVP) خلال 48 ساعة فقط.</p>',
+<p>مجرد وضع بند "المشاركة في هاكاثون وطني" في سيرتك الذاتية يثبت لأصحاب العمل قدرتك على العمل تحت الضغط، والتعاون ضمن فريق متعدد التخصصات، وتحويل الفكرة النظرية إلى نموذج أولي (MVP) خلال 48 ساعة فقط.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/ehwYuyINYUs?rel=0" title="01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على الجانب التطبيقي لمقررات كلية الحوسبة والمعلوماتية من خلال محاضرة قواعد البيانات وأنظمة DBMS التأسيسية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   11 => 
   array (
@@ -294,7 +635,38 @@ return array (
 </ol>
 
 <h2>كيف تدير الاجتماع الأسبوعي مع المشرف؟</h2>
-<p>أرسل جدول أعمال مصغر (Agenda) للمشرف قبل الاجتماع بـ 24 ساعة يوضح ما تم إنجازه، والتحديات التي واجهتكم، والخطوات القادمة. هذا الانضباط يترك انطباعاً مبهراً عن احترافية فريقك.</p>',
+<p>أرسل جدول أعمال مصغر (Agenda) للمشرف قبل الاجتماع بـ 24 ساعة يوضح ما تم إنجازه، والتحديات التي واجهتكم، والخطوات القادمة. هذا الانضباط يترك انطباعاً مبهراً عن احترافية فريقك.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   12 => 
   array (
@@ -310,7 +682,38 @@ return array (
 </ul>
 
 <h2>نصيحة للمستقبل الوظيفي</h2>
-<p>الطلاب الذين ينجزون تدريباً صيفياً واحداً على الأقل قبل التدريب التعاوني الرسمي هم دائماً من يحصلون على أعلى العروض الوظيفية في شركات مثل أرامكو وهيئة الاتصالات وشركات التقنية المالية (FinTech).</p>',
+<p>الطلاب الذين ينجزون تدريباً صيفياً واحداً على الأقل قبل التدريب التعاوني الرسمي هم دائماً من يحصلون على أعلى العروض الوظيفية في شركات مثل أرامكو وهيئة الاتصالات وشركات التقنية المالية (FinTech).</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح عملي مبسط لأنظمة الترقيم والترميز في مقرر CS 001 لضمان الدرجة الكاملة في التكليفات والاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   13 => 
   array (
@@ -321,6 +724,37 @@ return array (
 
 <h2>1. مسار هندسة الحوسبة السحابية (Cloud Architecture)</h2>
 <p>أسرع المجالات نمواً مع افتتاح مراكز بيانات كبرى في الرياض (Amazon AWS, Google Cloud, Microsoft Azure). يركز على تصميم ونقل البنى التحتية إلى السحابة.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/o3OJc23xHqg?rel=0" title="04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة نظم التشغيل ومعمارية البرمجيات في مقرر CS 001 لفهم الهيكلية البرمجية بوضوح تام.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>2. مسار هندسة النظم والعمليات (DevOps & SysAdmin)</h2>
 <p>يربط بين فرق التطوير وفرق البنية التحتية لأتمتة عمليات إطلاق التحديثات البرمجية ومراقبة استقرار الخوادم والأنظمة.</p>
@@ -344,6 +778,37 @@ return array (
 </ol>
 
 <h2>منصات الانطلاق الموصى بها</h2>
-<p>ابدأ عبر المنصات العربية المعتمدة مثل <strong>"خمسات"</strong> و<strong>"مستقل"</strong>، أو منصة <strong>"بحر"</strong> التابعة لوزارة الموارد البشرية بالمملكة، واحرص على استخراج <strong>وثيقة العمل الحر الرسمية</strong> لفتح حساب بنكي تجاري واستقبال أرباحك بأمان وموثوقية.</p>',
+<p>ابدأ عبر المنصات العربية المعتمدة مثل <strong>"خمسات"</strong> و<strong>"مستقل"</strong>، أو منصة <strong>"بحر"</strong> التابعة لوزارة الموارد البشرية بالمملكة، واحرص على استخراج <strong>وثيقة العمل الحر الرسمية</strong> لفتح حساب بنكي تجاري واستقبال أرباحك بأمان وموثوقية.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 150 (Discrete Mathematics)</span>
+                <h4 class="video-showcase-title">02 | MATH 150: Discrete Mathematics | 1.2 &amp; 1.3 Logic Circuits, Equivalences &amp; Laws - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/Oi1fWTeCD74?rel=0" title="02 | MATH 150: Discrete Mathematics | 1.2 &amp; 1.3 Logic Circuits, Equivalences &amp; Laws - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح الدوائر المنطقية والمنطق الرياضي أساس التفكير الخوارزمي في كلية الحوسبة والمعلوماتية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
 );

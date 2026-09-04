@@ -9,6 +9,37 @@ return array (
     'content' => '<h2>كلية العلوم الإدارية والمالية (CAF): صناعة قادة الأعمال في SEU</h2>
 <p>تُعد <strong>كلية العلوم الإدارية والمالية (College of Administrative and Financial Sciences - CAF)</strong> في <strong>الجامعة السعودية الإلكترونية</strong> من الكليات الأكثر إقبالاً ونمواً في المملكة؛ حيث تواكب برامجها التطورات الاقتصادية والمالية الضخمة التي تشهدها السعودية في ظل رؤية 2030. تتميز الكلية بتدريس مناهجها باللغة الإنجليزية وبالشراكة مع مراجع عالمية معتمدة، مما يمنح خريجيها فهماً عميقاً لبيئة الأعمال الدولية والتحول الرقمي المالي.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>التخصصات الأربعة المتاحة في الكلية</h3>
 <table class="table table-bordered table-striped my-3">
     <thead class="thead-dark">
@@ -64,6 +95,37 @@ return array (
     'content' => '<h2>تخصص إدارة الأعمال في الجامعة السعودية الإلكترونية</h2>
 <p>يعد تخصص <strong>إدارة الأعمال (Business Administration)</strong> في كلية العلوم الإدارية والمالية بـ SEU التخصص الإداري الأكثر شمولية وتنوعاً؛ حيث صُمم المنهج ليؤهل الطالب لإدارة وتوجيه منظمات الأعمال بمختلف أحجامها، من الشركات الناشئة المبتكرة إلى المؤسسات والشركات متعددة الجنسيات، عبر فهم عميق لآليات اتخاذ القرار، قيادة الفرق، وإدارة سلاسل العمليات.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>أبرز المحاور والمقررات في خطة إدارة الأعمال</h3>
 <ul>
     <li><strong>الإدارة الاستراتيجية والتخطيط (Strategic Management):</strong> صياغة الرؤية المؤسسية، تحليل SWOT، وتحديد الميزة التنافسية للشركات.</li>
@@ -88,6 +150,37 @@ return array (
     'description' => 'دليل تخصص المحاسبة في الجامعة السعودية الإلكترونية: المقررات الصعبة، المراجعة والتدقيق، والمسار نحو الحصول على زمالة الهيئة السعودية للمحاسبين SOCPA.',
     'content' => '<h2>تخصص المحاسبة في SEU: لغة المال والأعمال الصارمة</h2>
 <p>يعد تخصص <strong>المحاسبة (Accounting)</strong> الركيزة المالية الأكثر انضباطاً وحيوية في كلية العلوم الإدارية والمالية؛ فلا يمكن لأي مؤسسة حكومية أو شركة تجارية أن تستمر وتنمو دون نظام محاسبي دقيق يسجل كل ريال ويدير التدفقات النقدية ويصدر القوائم المالية المعتمدة للمستثمرين والجهات الرقابية (مثل هيئة الزكاة والضريبة والجمارك).</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>أبرز المقررات في خطة تخصص المحاسبة</h3>
 <ul>
@@ -114,6 +207,37 @@ return array (
     'content' => '<h2>تخصص المالية: صناعة الثروة والقرارات الاستثمارية في SEU</h2>
 <p>بينما تهتم المحاسبة بتسجيل وتوثيق ما حدث في الماضي المالي للشركة، يركز تخصص <strong>المالية (Finance)</strong> على صناعة المستقبل؛ أين نستثمر أموالنا؟ كيف نقيم سعر الشركات والأسهم والسندات؟ وكيف نحمي أصول الشركة من تقلبات الفائدة ومخاطر العملات؟ يقدم تخصص المالية في SEU برنامجاً مصرفياً واستثمارياً حديثاً يتماشى مع قفزات السوق المالي السعودي (تداول).</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>أهم المقررات في خطة تخصص المالية</h3>
 <ul>
     <li><strong>إدارة الاستثمار والمحافظ المالية (Portfolio Management):</strong> تنويع الأصول، نظرية المحفظة الحديثة (Markowitz)، وتوزيع المخاطر الاستثمارية.</li>
@@ -139,6 +263,37 @@ return array (
     'content' => '<h2>تخصص التجارة الإلكترونية: ريادة الأعمال الرقمية في SEU</h2>
 <p>تشهد المملكة العربية السعودية طفرة تاريخية في قطاع التجارة الرقمية والمدفوعات الإلكترونية بدعم من مجلس التجارة الإلكترونية ومستهدفات رؤية 2030. وتعد <strong>الجامعة السعودية الإلكترونية</strong> الجامعة الرائدة والأولى في المملكة التي أفردت لتخصص <strong>التجارة الإلكترونية (E-Commerce)</strong> قسماً أكاديمياً مستقلاً يجمع بين الفكر الإداري والتسويقي الحديث والمهارات التقنية السحابية.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>أبرز المقررات التي يدرسها طالب التجارة الإلكترونية</h3>
 <ul>
     <li><strong>منصات وتطبيقات التجارة الإلكترونية:</strong> إدارة وتصميم المتاجر السحابية، بوابات الدفع الإلكتروني، وتأمين المعاملات الرقمية.</li>
@@ -160,6 +315,37 @@ return array (
     'description' => 'دليل تخصص المعلوماتية الصحية في كلية العلوم الصحية بجامعة SEU: السجلات الطبية الرقمية، أنظمة المستشفيات، ومستقبل التوظيف في القطاع الصحي السعودي.',
     'content' => '<h2>تخصص المعلوماتية الصحية (Health Informatics): عندما تلتقي التقنية بالرعاية الصحية</h2>
 <p>يعد تخصص <strong>المعلوماتية الصحية (Health Informatics)</strong> في كلية العلوم الصحية بالجامعة السعودية الإلكترونية أحد أكثر التخصصات الهجينة إثارة وطلباً في سوق العمل الطبي الحديث بالمملكة. يدمج التخصص بين علوم الحاسب ونظم المعلومات والبيانات من جهة، والعلوم الطبية وإدارة الرعاية الصحية من جهة أخرى، بهدف رقمنة المستشفيات وتطوير أنظمة السجلات الطبية الإلكترونية وتحسين جودة علاج المرضى.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح عملي مبسط لأنظمة الترقيم والترميز في مقرر CS 001 لضمان الدرجة الكاملة في التكليفات والاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>أبرز المقررات والمجالات المعرفية في التخصص</h3>
 <ul>
@@ -183,6 +369,37 @@ return array (
     'content' => '<h2>تخصص الصحة العامة: خط الدفاع الأول عن صحة المجتمع في SEU</h2>
 <p>بينما يركز الطبيب السريري على علاج الفرد بعد إصابته بالمرض، يركز اختصاصي <strong>الصحة العامة (Public Health)</strong> على حماية المجتمع بأسره ومنع حدوث المرض قبل وقوعه. يقدم برنامج الصحة العامة في الجامعة السعودية الإلكترونية تأهيلاً أكاديمياً وميدانياً شاملاً يتماشى مع برنامج تحول القطاع الصحي ضمن رؤية السعودية 2030 لتعزيز الصحة الوقائية ونمط الحياة الصحي.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>المحاور الرئيسية لخطة الصحة العامة الأكاديمية</h3>
 <ul>
     <li><strong>علم الأوبئة والأمراض المعدية (Epidemiology):</strong> دراسة أنماط انتشار الأمراض في المجتمعات وتحديد عوامل الخطورة واستراتيجيات الاحتواء.</li>
@@ -204,6 +421,37 @@ return array (
     'description' => 'دليل تخصص اللغة الإنجليزية والترجمة في الجامعة السعودية الإلكترونية: الخطة الأكاديمية، اللغويات، الترجمة الفورية والتحريرية، وسوق الترجمة السعودي.',
     'content' => '<h2>تخصص اللغة الإنجليزية والترجمة في كلية العلوم والدراسات النظرية</h2>
 <p>يعد تخصص <strong>اللغة الإنجليزية والترجمة</strong> في الجامعة السعودية الإلكترونية جسر التواصل الثقافي والدبلوماسي والاقتصادي بين المملكة والعالم. يتميز البرنامج بتركيزه التطبيقي على تقنيات الترجمة الحديثة، اللغويات التطبيقية، الترجمة التحريرية والفورية، والترجمة التخصصية في مجالات القانون والطب والإعلام والاقتصاد.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>أبرز المقررات في خطة تخصص الترجمة</h3>
 <ul>
@@ -227,6 +475,37 @@ return array (
     'content' => '<h2>تخصص الإعلام الرقمي: صناعة التأثير والتواصل الحديث في SEU</h2>
 <p>مع تحول المشهد الإعلامي العالمي نحو المنصات التفاعلية وشبكات التواصل وصناعة الفيديو والبودكاست، أطلقت الجامعة السعودية الإلكترونية تخصص <strong>الإعلام الرقمي (Digital Media)</strong> لإعداد كفاءات وطنية مبدعة تمتلك مهارات السرد القصصي الرقمي، التحليل الإعلامي، وإدارة الحملات الاتصالية المؤثرة.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>المقررات والمهارات الأساسية في تخصص الإعلام الرقمي</h3>
 <ul>
     <li><strong>إنتاج الوسائط المتعددة (Multimedia Production):</strong> التصوير، تحرير الفيديو الرقمي (Montage)، والتصميم الجرافيكي الموجه للمنصات.</li>
@@ -248,6 +527,37 @@ return array (
     'description' => 'دليل دراسة تخصص القانون والأنظمة في الجامعة السعودية الإلكترونية: خطة المقررات، النظام التجاري والجنائي، ومسار الحصول على رخصة المحاماة.',
     'content' => '<h2>تخصص القانون في SEU: صياغة العدالة وحماية الحقوق</h2>
 <p>يشهد القطاع القانوني والتنظيمي في المملكة العربية السعودية تطوراً تشريعياً غير مسبوق في ظل تحديث الأنظمة القضائية والتجارية والاستثمارية. ويقدم برنامج <strong>القانون (Law / الأنظمة)</strong> في الجامعة السعودية الإلكترونية منهجاً قانونياً مقارناً يجمع بين القواعد الفقهية الإسلامية وأحدث الأنظمة واللوائح والاتفاقيات الدولية المعاصرة.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>أبرز المحاور والمقررات في خطة تخصص القانون</h3>
 <ul>

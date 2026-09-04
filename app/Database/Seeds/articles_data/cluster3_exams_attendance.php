@@ -11,6 +11,37 @@ return array (
 <h2>ما هي النسبة النظامية المحددة للحرمان؟</h2>
 <p>تنص اللائحة الرسمية لـ SEU على أن الطالب يُحرم من دخول الاختبار النهائي للمقرر إذا تجاوزت نسبة غيابه <strong>25% من مجموع ساعات الاتصال الفعلية المحددة للمقرر</strong> (تشمل المحاضرات الحضورية في الفرع والمحاضرات الافتراضية المباشرة عبر Blackboard Collaborate).</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h2>كيف تحسب عدد المحاضرات المسموح بالغياب فيها بدقة؟</h2>
 <p>يتفاوت عدد المحاضرات المسموحة بحسب عدد الساعات الأسبوعية للمقرر وطول الفصل الدراسي (15 أسبوعاً):</p>
 <ul>
@@ -32,6 +63,37 @@ return array (
     'slug' => 'medical-excuse-submission-portal-approved-clinics-seu',
     'description' => 'خطوات رفع العذر الطبي في بوابة SEU، والجهات الصحية المعتمدة ومنصة صحتي، والشروط الصارمة لقبول التقرير الطبي لرفع الغياب.',
     'content' => '<p>تتيح الجامعة السعودية الإلكترونية لطلابها تقديم الأعذار الرسمية لتبرير الغياب عن المحاضرات أو الاختبارات الفصلية. ولكن الكثير من الطلاب تفاجأ برفض أعذارهم الطبية بسبب أخطاء شكلية أو عدم استيفاء الشروط المعتمدة من اللجنة الطبية بالجامعة.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>شروط التقرير الطبي المقبول في SEU</h2>
 <ul>
@@ -55,6 +117,37 @@ return array (
     'description' => 'دليل الاختبارات البديلة (الميد والفاينل) في SEU: متى تعقد، وكيفية التقديم، والشروط واللوائح الحاكمة لاختبارات التعويض.',
     'content' => '<p>عندما يتعذر على الطالب حضور الاختبار النصفي (Midterm) أو الاختبار النهائي (Final Exam) لظرف قاهر خارج عن إرادته، تمنحه الجامعة فرصة التقدم بطلب دخول <strong>"الاختبار البديل" (Alternative / Make-up Exam)</strong> لحفظ حقه في الدرجة دون اعتبار ذلك رسوباً.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h2>الضوابط العامة للاختبارات البديلة</h2>
 <ul>
     <li><strong>للاختبار النصفي (Midterm):</strong> يعقد الاختبار البديل عادة في الأسبوع التاسع أو العاشر بالتنسيق مع منسق المقرر، ويكون بنموذج مكافئ ومختلف كلياً عن نموذج الاختبار الأصلي.</li>
@@ -76,6 +169,37 @@ return array (
     'slug' => 'emergency-during-final-midterm-exam-protocol-seu',
     'description' => 'بروتوكول الطوارئ لطلاب الجامعة السعودية الإلكترونية: الإجراءات الفورية القانونية لحفظ حقك عند حدوث ظرف قاهر يوم الاختبار.',
     'content' => '<p>قد تحدث أسوأ السيناريوهات في صباح يوم الاختبار النهائي: تعطل السيارة على الطريق السريع، انقطاع مفاجئ للكهرباء، أو عارض صحي حاد ومفاجئ يمنعك من الوصول للجنة الامتحان. الارتباك في هذه الدقائق قد يضيع عليك الفصل؛ إليك الإجراءات الدقيقة المعتمدة نظاماً لحفظ حقك الأكاديمي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>بروتوكول الساعات الـ 24 الأولى بعد الظرف الطارئ</h2>
 <ol>
@@ -102,7 +226,38 @@ return array (
 </ul>
 
 <h2>فحص البيئة (Environment Check) الصحيح</h2>
-<p>عند بدء الاختبار، يطلب النظام إجراء فحص 360 درجة لمحيط الغرفة بالكاميرا. قم بتدوير اللابتوب ببطء لإظهار المكتب، والمكان المحيط، وأسطح الجدران للتأكد من خلوها من أي أوراق أو هواتف.</p>',
+<p>عند بدء الاختبار، يطلب النظام إجراء فحص 360 درجة لمحيط الغرفة بالكاميرا. قم بتدوير اللابتوب ببطء لإظهار المكتب، والمكان المحيط، وأسطح الجدران للتأكد من خلوها من أي أوراق أو هواتف.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   5 => 
   array (
@@ -110,6 +265,37 @@ return array (
     'slug' => 'grade-appeal-rechecking-request-fees-steps-seu',
     'description' => 'دليل التظلم على درجات الفاينل وإعادة التصحيح في الجامعة السعودية الإلكترونية: الشروط، الرسوم المستردة، ومتى تكسب درجات إضافية؟',
     'content' => '<p>بعد إعلان النتائج النهائية لكل فصل دراسي في SEU، قد يصدم الطالب بدرجة غير متوقعة في مقرر يثق تماماً أنه أدى فيه أداءً استثنائياً. في هذه الحالة، كفلت اللائحة للطالب حق التقدم بطلب <strong>"إعادة رصد وتصحيح ورقة الاختبار" (Grade Appeal / Rechecking)</strong> للتأكد من عدم وجود أي خطأ بشري أو تقني في الدرجة.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>متى يكون التظلم مجدياً حقاً؟</h2>
 <table class="table table-bordered text-center my-4">
@@ -163,7 +349,38 @@ return array (
 </ul>
 
 <h2>استراتيجية حصد الدرجات الذكية</h2>
-<p>إذا ضمنت حصد <strong>45 إلى 48 درجة من أصل 50 في أعمال السنة</strong>، فإنك تدخل قاعة الاختبار النهائي براحة نفسية هائلة؛ حيث تحتاج فقط لـ 12 درجة في الفاينل لتضمن النجاح، أو 37 درجة لتضمن تقدير A+ بجدارة!</p>',
+<p>إذا ضمنت حصد <strong>45 إلى 48 درجة من أصل 50 في أعمال السنة</strong>، فإنك تدخل قاعة الاختبار النهائي براحة نفسية هائلة؛ حيث تحتاج فقط لـ 12 درجة في الفاينل لتضمن النجاح، أو 37 درجة لتضمن تقدير A+ بجدارة!</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   7 => 
   array (
@@ -171,6 +388,37 @@ return array (
     'slug' => 'in-person-exam-center-rules-dress-code-id-seu',
     'description' => 'دليل دخول الاختبارات الحضورية في فروع SEU: شروط الزي الرسمي، إثبات الهوية المعتمد، والأجهزة والممنوعات في قاعات الفاينل.',
     'content' => '<p>تتطلب الاختبارات النهائية والمحوسبة التي تعقد في مراكز ومقرات الجامعة السعودية الإلكترونية بالمناطق (الرياض، جدة، الدمام، المدينة، أبها، وغيرها) التزاماً دقيقاً باللوائح التنظيمية والأمنية لضمان سير اللجان بسلاسة ومنع أي استبعاد للطالب من قاعة الاختبار.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>الوثائق الإلزامية لدخول قاعة الاختبار</h2>
 <ol>
@@ -195,6 +443,37 @@ return array (
 
 <h2>قاعدة اللائحة بخصوص التكليفات الأسبوعية</h2>
 <p>النظام الأساسي في SEU يقفل تسليم الواجبات عند الساعة 11:59 مساءً من يوم الموعد النهائي (Due Date). بعض الأساتذة يفعلون خيار <em>"السماح بالتسليم المتأخر مع خصم درجات" (Late Submission Penalty)</em>، بينما يغلقها آخرون تماماً.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>صيغة التواصل الرسمي الناجحة مع أستاذ المادة</h2>
 <div class="p-3 bg-light border my-3">
@@ -223,7 +502,38 @@ return array (
 </ul>
 
 <h2>كيف تتأكد من صحة الحساب الإجمالي؟</h2>
-<p>احرص على مراجعة عمود <em>"Total / Weighted Total"</em> ومطابقة درجاتك المسجلة مع خطة المنهج (Syllabus). إذا لاحظت عدم رصد كويز أو خصم غير مبرر، راسل أستاذ المقرر فوراً قبل إغلاق النظام ورصد الدرجة النهائية على البانر.</p>',
+<p>احرص على مراجعة عمود <em>"Total / Weighted Total"</em> ومطابقة درجاتك المسجلة مع خطة المنهج (Syllabus). إذا لاحظت عدم رصد كويز أو خصم غير مبرر، راسل أستاذ المقرر فوراً قبل إغلاق النظام ورصد الدرجة النهائية على البانر.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   10 => 
   array (
@@ -234,6 +544,37 @@ return array (
 
 <h2>السقف الأقصى للغياب بعذر رسمي</h2>
 <p>تنص اللوائح الجامعية المعتمدة في المملكة وفي SEU على ما يلي:</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 <ul>
     <li>الغياب بدون عذر مقبول: يجب ألا يتجاوز <strong>25%</strong> من مجموع ساعات المقرر، وإلا يصدر قرار الحرمان (DN) فوراً.</li>
     <li>الغياب بعذر مقبول ومعتمد من مجلس الكلية: يمكن رفع نسبة الغياب في الحالات القاهرة الاستثنائية إلى <strong>50%</strong> كحد أقصى مشروط.</li>
@@ -246,6 +587,37 @@ return array (
     'slug' => 'preparing-for-in-person-exams-working-students-seu',
     'description' => 'خطة إدارة الوقت والتحضير النفسي واللوجستي للاختبارات الحضورية لطلاب SEU الموظفين: إجازات الامتحانات والتنقل والتركيز.',
     'content' => '<p>يمثل أسبوع الاختبارات الحضورية التحدي الأكبر لطلاب الجامعة السعودية الإلكترونية الموظفين وربات البيوت؛ حيث تتزامن ضغوط العمل اليومية مع السفر أو التنقل لمقرات الفروع وخوض امتحانات مكثفة ومحوسبة تتطلب أعلى درجات اليقظة والتركيز.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>الخطوات اللوجستية قبل أسبوع الفاينل</h2>
 <ol>
@@ -269,7 +641,38 @@ return array (
 </ul>
 
 <h2>طريقة طلب لجنة خاصة</h2>
-<p>يجب رفع التقرير الطبي لعمادة شؤون الطلاب عبر البريد الرسمي أو البوابة قبل أسبوعين على الأقل من بدء فترة الاختبارات لتجهيز اللجنة والقاعة بما يتناسب مع الحالة.</p>',
+<p>يجب رفع التقرير الطبي لعمادة شؤون الطلاب عبر البريد الرسمي أو البوابة قبل أسبوعين على الأقل من بدء فترة الاختبارات لتجهيز اللجنة والقاعة بما يتناسب مع الحالة.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   13 => 
   array (
@@ -280,6 +683,37 @@ return array (
 
 <h2>1. المحاضرات المتزامنة (Synchronous Sessions)</h2>
 <p>وهي المحاضرات المباشرة التي يقدمها الدكتور عبر <strong>Blackboard Collaborate</strong> في وقت محدد بالجدول. يقوم السيرفر برصد:</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على القواعد الاحترافية للتواصل الأكاديمي وإتقان التعامل مع الفصول الافتراضية والبريد الجامعي في SEU.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 <ul>
     <li>وقت دخول الطالب بالدقيقة والثانية.</li>
     <li>وقت خروج الطالب أو انقطاع اتصاله.</li>
@@ -295,6 +729,37 @@ return array (
     'slug' => 'internet-disconnection-platform-crash-during-exam-action-seu',
     'description' => 'ماذا تفعل إذا تجمد جهازك أو انقطع النت أثناء اختبار إلكتروني في SEU؟ خطوات التوثيق الفني وإعادة فتح محاولة الاختبار فوراً.',
     'content' => '<p>لا شيء يثير الرعب في نفس الطالب أكثر من تجمد شاشة المتصفح فجأة أثناء حل الاختبار الإلكتروني أو ظهور شاشة بيضاء تفيد بانقطاع الاتصال بالسيرفر! الهدوء والسرعة في اتخاذ الإجراءات الصحيحة هو الفارق الوحيد بين ضياع الاختبار وبين استكماله بنجاح.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>الإجراءات الفورية عند تعطل الاختبار</h2>
 <ol>

@@ -25,6 +25,37 @@ return array (
 <div class="card p-4 bg-light border-primary text-center my-4">
     <h4 class="fw-bold text-primary">حوّل MATH 150 إلى أسهل مادة في جدولك</h4>
     <p>مع شروحات أكاديمية فخر CS لمقرر MATH 150، نقوم بتبسيط كافة أبواب المنطق والبراهين والمجموعات بأسلوب هندسي واضح وحل شامل لأصعب أفكار التمارين والاختبارات.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 150 (Discrete Mathematics)</span>
+                <h4 class="video-showcase-title">03 | MATH 150: Discrete Mathematics | 1.4 &amp; 1.5 Predicates &amp; Nested Quantifiers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/LoNI3pBRcEU?rel=0" title="03 | MATH 150: Discrete Mathematics | 1.4 &amp; 1.5 Predicates &amp; Nested Quantifiers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد درس المسندات والمكممات المتداخلة Predicates &amp; Nested Quantifiers وتطبيقاتها في اختبارات SEU.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
     <a href="/courses" class="btn btn-primary fw-bold">استكشف كورس MATH 150 المعتمد</a>
 </div>',
   ),
@@ -37,6 +68,37 @@ return array (
 
 <h2>ما هو المستوى الرياضي المطلوب فعلياً في STAT 101؟</h2>
 <p>مقرر STAT 101 <strong>لا يتطلب أي تفاضل وتكامل أو معادلات جبرية متقدمة</strong>. كل ما تحتاجه رياضياً هو:</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | STAT 101 (Principles of Statistics)</span>
+                <h4 class="video-showcase-title">01 | شرح STAT 101 | مقدمة في علم الإحصاء وأنواع البيانات ومستويات القياس | Chapter 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/bNUEn8agqeU?rel=0" title="01 | شرح STAT 101 | مقدمة في علم الإحصاء وأنواع البيانات ومستويات القياس | Chapter 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التأسيسي لمقرر STAT 101 للتعرف على تصنيفات البيانات ومستويات القياس ومفاتيح حل المسائل الإحصائية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 <ul>
     <li>الجمع والطرح والضرب والقسمة الأساسية.</li>
     <li>حساب الجذور والأسس والنسب المئوية بالآلة الحاسبة العلمية المعتمدة.</li>
@@ -76,6 +138,37 @@ return array (
 <div class="card p-4 bg-white border-primary shadow-sm text-center my-4">
     <h4 class="fw-bold text-primary">احترف Java OOP مع م. أحمد فخر الدين</h4>
     <p>كورس شامل يبدأ معك من الصفر في جافا، ويغطي كافة مفاهيم الـ OOP وتطبيقات اللاب وأسئلة الفاينل بأسلوب هندسي فريد وممتع.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 150 (Discrete Mathematics)</span>
+                <h4 class="video-showcase-title">02 | MATH 150: Discrete Mathematics | 1.2 &amp; 1.3 Logic Circuits, Equivalences &amp; Laws - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/Oi1fWTeCD74?rel=0" title="02 | MATH 150: Discrete Mathematics | 1.2 &amp; 1.3 Logic Circuits, Equivalences &amp; Laws - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح الدوائر المنطقية والمنطق الرياضي أساس التفكير الخوارزمي في كلية الحوسبة والمعلوماتية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
     <a href="/courses/course_details/oop" class="btn btn-primary fw-bold px-4">اشترك الآن في كورس CS140 (135 ريال فقط)</a>
 </div>',
   ),
@@ -88,6 +181,37 @@ return array (
 
 <h2>سر التميز في CS220: الرؤية البصرية (Visualization)</h2>
 <p>أكبر خطأ يقع فيه طلاب هياكل البيانات هو محاولة فهم هياكل مثل <strong>القوائم المترابطة (Linked Lists)</strong> أو <strong>المكدسات (Stacks)</strong> أو <strong>الأشجار الثنائية (Binary Trees)</strong> بمجرد قراءة أسطر الكود. هياكل البيانات هي "هندسة معمارية للذاكرة"؛ لا يمكنك إتقانها إلا إذا <strong>رسمت المؤشرات (Pointers / References) بيدك على الورق</strong>:</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 <ul>
     <li>ارسم صناديق العقد (Nodes) ومؤشرات الـ <code>next</code> والـ <code>prev</code> عند الإضافة والحذف.</li>
     <li>تتبع حركة المؤشر <code>head</code> و <code>tail</code> في كل خطوة لمعرفة أين يحدث خطأ الـ <code>NullPointerException</code>.</li>
@@ -117,6 +241,37 @@ return array (
 <div class="card p-4 bg-light border-primary text-center my-4">
     <h4 class="fw-bold text-primary">احترف الخوارزميات و Big O مع فخر CS</h4>
     <p>شرح هندسي عميق لأقوى مقرر في كلية الحوسبة؛ حل أصعب مسائل الـ Recurrence Relations والفرز مع تجهيز كامل لاختبارات الفاينل.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
     <a href="/courses/course_details/algorithms" class="btn btn-primary fw-bold">اشترك في كورس CS331 (145 ريال فقط)</a>
 </div>',
   ),
@@ -142,6 +297,37 @@ return array (
 <div class="card p-4 bg-light border-primary text-center my-4">
     <h4 class="fw-bold text-primary">تجاوز تعقيدات نظم التشغيل بسهولة</h4>
     <p>شرح تفصيلي لكافة مسائل Gantt Chart وخوارزميات الذاكرة والـ Deadlocks في كورس CS330 مع م. أحمد فخر الدين.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
     <a href="/courses/course_details/operating-systems" class="btn btn-primary fw-bold">اشترك في كورس CS330 (160 ريال فقط)</a>
 </div>',
   ),
@@ -162,6 +348,37 @@ return array (
 <div class="card p-4 bg-light border-primary text-center my-4">
     <h4 class="fw-bold text-primary">اضمن امتياز شبكات الحاسب IT210</h4>
     <p>شرح متكامل لنموذج OSI ومسائل الـ Subnetting من الصفر مع حلول عملية لاختبارات ولاب SEU مع م. أحمد فخر الدين.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
     <a href="/courses/course_details/computer-networks" class="btn btn-primary fw-bold">اشترك في كورس IT210 (135 ريال فقط)</a>
 </div>',
   ),
@@ -182,6 +399,37 @@ return array (
 <div class="card p-4 bg-light border-primary text-center my-4">
     <h4 class="fw-bold text-primary">احترف قواعد البيانات و SQL مع فخر CS</h4>
     <p>شرح تطبيقي يغطي تصميم الـ ERD والـ Normalization وحل مشاريع اللاب والواجبات واستعلامات الامتحانات بامتياز.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/ehwYuyINYUs?rel=0" title="01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد مقدمة قواعد البيانات ومفاهيم نظم إدارة قواعد البيانات DBMS لمقررات كلية الحوسبة والمعلوماتية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
     <a href="/courses/course_details/intro-database" class="btn btn-primary fw-bold">اشترك في كورس IT241 (135 ريال فقط)</a>
 </div>',
   ),
@@ -191,6 +439,37 @@ return array (
     'slug' => 'diagnostic-test-concept-understanding-vs-exam-technique-seu',
     'description' => 'اختبار تشخيصي ذاتي لطلاب SEU لتحديد سبب ضعف الدرجات: هل الخلل في الاستيعاب المفاهيمي أم في التعامل مع وقت الاختبار وتكتيكات الـ MCQ؟',
     'content' => '<p>كثيراً ما نسمع من الطالب المصدوم بعد خروج النتائج: <em>"لقد ذاكرت 50 ساعة وحفظت السلايدات بالكامل، ومع ذلك حصلت على درجة C في الميدتيرم!"</em>. هذه الظاهرة المؤلمة سببها خلط شائع بين <strong>"فهم المادة"</strong> وبين <strong>"تقنية التعامل مع الاختبار الأكاديمي" (Exam Technique)</strong>.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>الأسئلة التشخيصية الأربعة لتحديد مشكلتك بدقة</h2>
 <ol>
@@ -211,6 +490,37 @@ return array (
     'description' => 'استراتيجية التبديل المعرفي لطلاب كلية الحوسبة بـ SEU لدراسة مادتين معقدتين (مثل CS140 و MATH150) في نفس الفصل بنجاح وتفوق.',
     'content' => '<p>قد يضطر طالب كلية الحوسبة والمعلوماتية في بعض الفصول الدراسية لتسجيل مادتين ثقيلتين معاً تفرضان حملاً ذهنياً هائلاً، مثل دراسة <strong>البرمجة الكائنية (CS140) بالتزامن مع الرياضيات المتقطعة (MATH 150)</strong>. المذاكرة العشوائية في هذا الوضع تقود للاحتراق والارتباك السريع. إليك استراتيجية <strong>"التبديل المعرفي الذكي" (Context Switching)</strong> لحماية طاقتك الذهنية.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 150 (Discrete Mathematics)</span>
+                <h4 class="video-showcase-title">03 | MATH 150: Discrete Mathematics | 1.4 &amp; 1.5 Predicates &amp; Nested Quantifiers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/LoNI3pBRcEU?rel=0" title="03 | MATH 150: Discrete Mathematics | 1.4 &amp; 1.5 Predicates &amp; Nested Quantifiers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد درس المسندات والمكممات المتداخلة Predicates &amp; Nested Quantifiers وتطبيقاتها في اختبارات SEU.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h2>قواعد المذاكرة المتزامنة لمادتين ثقيلتين</h2>
 <ul>
     <li><strong>فصل الأيام وليس الساعات (Day-Splitting Technique):</strong> لا تحاول مذاكرة ساعتين كود جافا ثم الانتقال مباشرة لساعتين براهين رياضية في نفس المساء! هذا التداخل يسبب إجهاداً عصبياً كبيراً. خصص أيام الأحد والثلاثاء للبرمجة، وأيام الإثنين والأربعاء للرياضيات.</li>
@@ -228,6 +538,37 @@ return array (
 <h2>لماذا يفشل "الحفظ الحرفي" للنماذج السابقة في SEU؟</h2>
 <p>يقوم أساتذة المقررات في SEU سنوياً بتعديل بنوك الأسئلة بذكاء شديد: قد يأتي نفس السؤال بنصه ولكنه يغير كلمة واحدة فقط (مثلاً يغير كلمة <code>Valid</code> إلى <code>Invalid</code>، أو يغير معامل المقارنة في الكود من <code>&lt;</code> إلى <code>&lt;=</code>). الطالب الذي حفظ رمز الإجابة (مثلاً خيار B) سيختار B ويخسر الدرجة فوراً، بينما الطالب الفاهم سيحلل التغيير ويختار الإجابة الصحيحة في ثوانٍ.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h2>الخطوات الثلاث الصحيحة للمذاكرة من النماذج</h2>
 <ol>
     <li>لا تفتح النماذج إلا بعد إنهاء مذاكرة وفهم الفصل (Chapter) بالكامل أولاً.</li>
@@ -242,6 +583,37 @@ return array (
     'description' => 'فن التلخيص السريع للسلايدات الضخمة لمقررات كلية الحوسبة بـ SEU: تقنيات الخرائط الذهنية، استخراج الكلمات المفتاحية، وتوفير وقت الفاينل.',
     'content' => '<p>عندما يقترب موعد الاختبار النهائي، يجد طالب كلية الحوسبة نفسه أمام سيل جارف من السلايدات الإنجليزية (Slide Decks) التي يتجاوز مجموع صفحاتها 600 إلى 800 شريحة للمقرر الواحد! محاولة إعادة قراءة هذه الشرائح بالكامل ليلة الاختبار ضرب من المستحيل. الحل يكمن في بناء <strong>"ملخصات الطوارئ الشخصية" (Cheat Sheets & Mind Maps)</strong> طوال الفصل.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح عملي مبسط لأنظمة الترقيم والترميز في مقرر CS 001 لضمان الدرجة الكاملة في التكليفات والاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h2>قواعد التلخيص الهندسي الذكي</h2>
 <ul>
     <li><strong>قاعدة الـ 20/80 (مبدأ باريتو):</strong> 80% من أسئلة اختبارات SEU تأتي من 20% من المفاهيم المحورية في السلايدات (المقارنات، التعريفات الفاصلة، المزايا والعيوب، وأمثلة الكود). تجاهل الحشو الإنشائي وركز على هذه النقاط.</li>
@@ -255,6 +627,37 @@ return array (
     'slug' => 'maximizing-virtual-office-hours-with-instructors-seu',
     'description' => 'دليل طالب SEU للاستفادة القصوى من الساعات المكتبية لدكاترة الحوسبة: كيف تجهز أسئلتك البرمجية وتكسب دعم وتوجيه أستاذ المقرر.',
     'content' => '<p>تخصص الجامعة السعودية الإلكترونية لكل أستاذ مقرر عدداً من <strong>"الساعات المكتبية الافتراضية" (Virtual Office Hours)</strong> أسبوعياً عبر البلاك بورد. وللأسف، تمر معظم هذه الساعات والقاعة فارغة تماماً؛ لأن الطلاب يتكاسلون عن الحضور، ثم يبحثون عن إجابات لاستفساراتهم في قروبات التيليجرام العشوائية!</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>كيف تحول الساعات المكتبية إلى ميزة تنافسية كبرى؟</h2>
 <ol>
@@ -309,7 +712,38 @@ return array (
 </table>
 
 <h2>خطة الإنقاذ الفورية مع فخر CS</h2>
-<p>راجع ورقة الميدتيرم واعرف فصول الضعف. انضم فوراً لكورساتنا المكثفة لمراجعة الفاينل والتدرب على النماذج لنضمن لك التعويض الكامل في الاختبار النهائي وحماية معدلك التراكمي.</p>',
+<p>راجع ورقة الميدتيرم واعرف فصول الضعف. انضم فوراً لكورساتنا المكثفة لمراجعة الفاينل والتدرب على النماذج لنضمن لك التعويض الكامل في الاختبار النهائي وحماية معدلك التراكمي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   14 => 
   array (
@@ -328,6 +762,37 @@ return array (
 <div class="alert alert-info p-4 my-4">
     <h5 class="fw-bold">💻 نصيحة فخر CS الذهبية:</h5>
     <p class="mb-0">لا تقرأ أي سطر كود في السلايدات دون أن تفتح الـ IDE (سواء IntelliJ أو Eclipse أو VS Code) وتكتبه وتشغله بنفسك وتغير في متغيراته لترى ما سيحدث. هذا التمرين اليومي لمدة 30 دقيقة يضمن لك الـ A+ في كافة مقررات الكلية!</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 </div>',
   ),
 );

@@ -9,6 +9,37 @@ return array (
     'content' => '<h2>معادلة الموظف الطموح في الجامعة السعودية الإلكترونية</h2>
 <p>تشير الإحصائيات الرسمية في <strong>الجامعة السعودية الإلكترونية (SEU)</strong> إلى أن أكثر من 65% من طلابها هم موظفون في القطاعين الحكومي والخاص؛ التحقوا بالجامعة لتطوير مسارهم المهني، نيل الترقية، أو تغيير تخصصهم الوظيفي بالكامل. ورغم أن مرونة التعليم المدمج توفر حلاً مثالياً للموظف، إلا أن محاولة التوفيق بين 8 ساعات عمل وظيفي، التزامات أسرية، ومقررات جامعية مليئة بالسلايدات والواجبات قد تقود سريعاً إلى <strong>الاحتراق النفسي والمهني (Burnout)</strong> إذا لم تتبع استراتيجية ذكية لإدارة الطاقة قبل الوقت.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>الأركان الأربعة للتوازن بين الوظيفة والجامعة</h3>
 <ol>
     <li><strong>إدارة الطاقة الذهنية (Energy Management):</strong>
@@ -38,6 +69,37 @@ return array (
     'description' => 'جدول زمني أسبوعي مجرب ومفصل لطلاب SEU العاملين وأولياء الأمور لتنظيم المحاضرات ومنصة EF وتسليم التكليفات دون ضغط.',
     'content' => '<h2>نموذج الجدول الأسبوعي الواقعي (The Weekly Block Schedule)</h2>
 <p>النجاح في الجامعة السعودية الإلكترونية ليس مسألة حظ، بل هو نتيجة جدول زمني يحدد مسبقاً ماذا ستفعل في كل ساعة من أسبوعك. هذا الجدول مصمم خصيصاً للموظفين وربات البيوت وأصحاب المسؤوليات الكبرى، ويعتمد على تقسيم المهام الأكاديمية إلى كتل زمنية محددة تمنع التراكم وتضمن لك عطلة أسبوعية هادئة مع عائلتك.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>مخطط الكتل الأسبوعية المقترح (10 إلى 12 ساعة أسبوعياً)</h3>
 <table class="table table-bordered table-striped my-3">
@@ -101,6 +163,37 @@ return array (
     'content' => '<h2>خطة الطوارئ الأكاديمية: عندما تتبقى 72 ساعة فقط على الفاينل</h2>
 <p>مهما كانت أسباب تعثرك وتأخرك في المذاكرة حتى الأيام الثلاثة الأخيرة قبل الاختبار النهائي (سواء بسبب ضغط العمل أو ظروف طارئة)، فإن الاستسلام والذعر هما أسوأ خيار ممكن. في هذه اللحظات الحاسمة، لا وقت لقراءة السلايدات صفحة بصفحة؛ أنت بحاجة إلى <strong>خطة فرز عسكرية (Academic Triage)</strong> تركز بنسبة 100% على الـ 20% من المنهج التي تأتي منها 80% من درجات الاختبار النهائي!</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>جدول خطة الـ 72 ساعة المكثفة خطوة بخطوة</h3>
 <ol>
     <li><strong>اليوم الأول (ساعات 1 إلى 24) - إتقان المفاهيم والقوانين عالية الوزن:</strong>
@@ -132,6 +225,37 @@ return array (
     'description' => 'ترسانة التطبيقات والأدوات الرقمية لرفع تركيز وإنتاجية طالب SEU: تطبيقات تنظيم الملاحظات، حظر المشتتات، وتقنيات إدارة الوقت الحديثة.',
     'content' => '<h2>ترسانة الأدوات الرقمية لطالب الجامعة الإلكترونية</h2>
 <p>في بيئة دراسية تعتمد بالكامل على الشاشات والإنترنت، يصبح الهاتف والكمبيوتر أكبر سلاح للتفوق وفي نفس الوقت أكبر فخ للتشتت وإهدار الوقت على شبكات التواصل. الطالب الذكي في الجامعة السعودية الإلكترونية هو من يوظف <strong>تطبيقات الإنتاجية الذكية</strong> لبناء نظام عمل آلي يذكره بالمواعيد، ينظم ملاحظاته، ويعزل دماغه عن الإشعارات والمشتتات وقت المذاكرة المركزة.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>أفضل 5 تطبيقات لا غنى عنها لكل طالب في SEU</h3>
 <table class="table table-bordered table-striped my-3">
@@ -185,6 +309,37 @@ return array (
     'content' => '<h2>معضلة السلايدات المكونة من 80 شريحة وكيف تتغلب عليها</h2>
 <p>يفتح طالب كلية الحوسبة أو إدارة الأعمال ملف السلايدات الأسبوعي في البلاك بورد فيفاجأ بملف عرض تقديمي يضم أكثر من 70 إلى 90 شريحة باللغة الإنجليزية لكل محاضرة! القراءة السطحية لكل كلمة تستغرق 4 إلى 5 ساعات وتترك الطالب منهكاً ومشوشاً. الحقيقة الأكاديمية التي يعرفها خبراء الامتحانات هي أن <strong>أكثر من 60% من محتوى السلايدات هو حشو أمثلة وصور توضيحية ونصوص تمهيدية لا تدخل إطلاقاً في أسئلة الاختبارات الموضوعية!</strong></p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>المنهجية الرباعية لفلترة وتلخيص السلايدات في 45 دقيقة فقط</h3>
 <ol>
     <li><strong>قراءة شريحة أهداف الدرس (Learning Objectives):</strong> أول شريحة في أي عرض تحدد بالضبط المخرجات التعليمية التي سيختبرك فيها الأستاذ؛ استخدمها كقائمة تدقيق للمفاهيم التي يجب أن تبحث عنها داخل الملف.</li>
@@ -206,6 +361,37 @@ return array (
     'description' => 'دليل الاستخدام الأخلاقي للذكاء الاصطناعي (ChatGPT, Claude, Perplexity) في SEU: شرح المفاهيم، مراجعة الأكواد، وتجنب مخالفات الانتحال في SafeAssign.',
     'content' => '<h2>الذكاء الاصطناعي: معلمك الخصوصي أم فخ الانتحال الأكاديمي؟</h2>
 <p>أحدثت نماذج الذكاء الاصطناعي التوليدي (مثل ChatGPT, Claude, Microsoft Copilot, Perplexity) ثورة كبرى في التعليم العالي. أصبح بإمكان الطالب الحصول على شرح فوري لأي مسألة رياضيات معقدة أو تصحيح كود برمجي في أجزاء من الثانية. ولكن في <strong>الجامعة السعودية الإلكترونية</strong>، فإن الاستخدام الخاطئ أو غير الأخلاقي لهذه الأدوات (كنسخ نصوص الأبحاث والواجبات مباشرة) يرصده نظام SafeAssign ومكتشفات الذكاء الاصطناعي فوراً، مما يعرض الطالب للحرمان ولجان التأديب بتهمة الغش الأكاديمي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح عملي مبسط لأنظمة الترقيم والترميز في مقرر CS 001 لضمان الدرجة الكاملة في التكليفات والاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>كيف تستفيد من الذكاء الاصطناعي بطريقة أخلاقية وذكية؟</h3>
 <ul>
@@ -234,6 +420,37 @@ return array (
     'content' => '<h2>لماذا يسوف طالب التعليم الإلكتروني أكثر من غيره؟</h2>
 <p>في بيئة التعليم المدمج بالجامعة السعودية الإلكترونية، غياب الرقابة اليومية المباشرة يمنحك شعوراً زائفاً بأن "الوقت ما زال مبكراً". تجلس مساء السبت وتقول: "الواجب يغلق ليلة الأربعاء، سأبدأ فيه غداً"، وتتكرر هذه الجملة كل ليلة حتى تجد نفسك ليلة الأربعاء في تمام الساعة 11:30 مساءً أمام شاشة البلاك بورد وأنت في حالة ذعر عارم تحاول كتابة الواجب في نصف ساعة قبل إغلاق السيرفر!</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على القواعد الاحترافية للتواصل الأكاديمي وإتقان التعامل مع الفصول الافتراضية والبريد الجامعي في SEU.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>3 استراتيجيات نفسية مثبتة علمياً لكسر التسويف الأكاديمي</h3>
 <ol>
     <li><strong>قاعدة الدقائق الخمس (The 5-Minute Rule):</strong>
@@ -260,6 +477,37 @@ return array (
     'description' => 'كيف تتخلص من قلق الامتحانات والتوتر النفسي قبل اختبارات SEU المحوسبة والحضورية، تمارين التنفس، وبناء الثقة بالنفس داخل القاعة.',
     'content' => '<h2>قلق الاختبارات: كيف تحوله من عائق مدمر إلى طاقة تركيز إيجابية؟</h2>
 <p>تسارع دقات القلب، برودة الأطراف، والشعور المفاجئ بأن كل ما ذاكرته تبخر من عقلك بمجرد الجلوس أمام شاشة الاختبار في معمل الجامعة أو تشغيل متصفح ريسبوندس... هذه الأعراض شائعة جداً وتُعرف بـ <strong>قلق الاختبارات الأكاديمي (Test Anxiety)</strong>. القليل من التوتر أمر طبيعي ومفيد لتحفيز اليقظة؛ لكن عندما يتحول التوتر إلى هلع، فإنه يعطل الفص الجبهي في الدماغ المسؤول عن التفكير التحليلي واسترجاع الذاكرة.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>تقنيات السيطرة الفورية على التوتر قبل وداخل قاعة الاختبار</h3>
 <ul>
@@ -288,6 +536,37 @@ return array (
     'content' => '<h2>لا يوجد مستحيل في المسار الجامعي: من الإنذار إلى القمة</h2>
 <p>في كل فصل دراسي، نستقبل في <strong>أكاديمية فخر CS</strong> رسائل من طلاب يشعرون باليأس بعد حصولهم على إنذار أكاديمي أول أو ثانٍ وهبوط معدلهم إلى 1.60 أو 1.80 من 4.00. ظن هؤلاء الطلاب أن مسيرتهم انتهت وأن الفصل الأكاديمي مسألة وقت؛ ولكن مع وضع خطة علاجية حازمة وتغيير أسلوب المذاكرة، استطاع كثير منهم قلب الموازين بالكامل، ليس فقط برفع الإنذار، بل بالتخرج بمراتب الشرف والتكريم الرئاسي في الجامعة!</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>قصة ملهمة: كيف تحول معدل طالب موظف من 1.75 إلى 3.65 وتخرج بمرتبة الشرف؟</h3>
 <p>بدأ الطالب (خالد - موظف بنكي) سنته الأولى بتعثر في مادتي الرياضيات واللغة الإنجليزية بسبب انقطاعه عن الدراسة لمدة 12 عاماً وضغوط الدوام المسائي، فحصل على إنذار أكاديمي فوري بمعدل 1.75. كانت خطته العلاجية مع فخر CS قائمة على 3 خطوات:</p>
 <ol>
@@ -310,6 +589,37 @@ return array (
     'content' => '<h2>الإجازة الصيفية: الوقت الذهبي لصناعة الفارق في سوق العمل</h2>
 <p>بينما يقضي معظم الطلاب إجازة الصيف بين الفصول الدراسية في الاسترخاء وإهدار الوقت، يرى الطالب الطموح في هذه الأشهر الثلاثة فرصة ذهبية لا تعوض لبناء <strong>معرض أعماله التقني (Portfolio)</strong>، نيل شهادات احترافية تدعم سيرته الذاتية، أو الالتحاق بفرص <strong>التدريب التعاوني والصيفي (Internships)</strong> في الشركات الرائدة بالمملكة.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>أفضل 4 مسارات لاستغلال الإجازة الصيفية لطالب الحوسبة والأعمال</h3>
 <ul>
     <li><strong>1. بناء مشروع برمجي كامل ونشره على GitHub:</strong> اختر فكرة تطبيق حقيقي (مثل تطبيق إدارة مهام أو متجر إلكتروني مصغر) وطبق فيه مفاهيم البرمجة وقواعد البيانات، وانشر الكود على حسابك في GitHub ليكون إثباتاً عملياً لمهاراتك في المقابلات الوظيفية.</li>
@@ -331,6 +641,37 @@ return array (
     'description' => 'كيف تصنع سيرة ذاتية متوافقة مع أنظمة ATS وتبني حساب لينكد إن احترافي يجذب مسؤولي التوظيف في كبرى الشركات السعودية لخريجي SEU.',
     'content' => '<h2>السيرة الذاتية ولينكد إن: بوابتك لاقتناص الوظائف المرموقة</h2>
 <p>بعد سنوات من الجد والاجتهاد في الجامعة السعودية الإلكترونية، تصبح سيرتك الذاتية <strong>(CV / Resume)</strong> وحسابك على شبكة <strong>LinkedIn</strong> الواجهة المهنية الأولى التي يراك من خلالها مسؤولو التوظيف في الشركات الكبرى. استخدام نماذج قديمة مليئة بالألوان والزخارف أو كتابة مهام وظيفية عامة هو السبب الأول وراء تجاهل أنظمة الفرز الآلي <strong>(ATS - Applicant Tracking Systems)</strong> لملفك دون وصوله لمدير التوظيف.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>معايير كتابة السيرة الذاتية المتوافقة مع أنظمة ATS</h3>
 <table class="table table-bordered table-striped my-3">
@@ -382,6 +723,37 @@ return array (
     'content' => '<h2>الدليل النهائي للأسئلة الشائعة حول الجامعة السعودية الإلكترونية</h2>
 <p>يتكرر العديد من التساؤلات بين الطلاب المستجدين والراغبين في الالتحاق بالجامعة السعودية الإلكترونية حول طبيعة الدراسة، الاعتماد الأكاديمي، والأنظمة المالية والاختبارات. قمنا في <strong>أكاديمية فخر CS</strong> بجمع وإعداد إجابات حاسمة وموثقة لأشهر هذه الأسئلة بناءً على أحدث اللوائح الرسمية المعتمدة لعام 2026:</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>أهم 8 أسئلة وإجاباتها الرسمية الشافية</h3>
 <ol>
     <li><strong>س: هل شهادة الجامعة السعودية الإلكترونية معترف بها ومعتمدة في الخدمة المدنية والقطاع الخاص؟</strong>
@@ -423,6 +795,37 @@ return array (
     'description' => 'تعرف على أكاديمية فخر CS: خبرة أكثر من 15 عاماً للمهندس أحمد فخر الدين، أسلوب الشرح الهندسي الفريد، بنوك الأسئلة، وضمان استرجاع 30 يوماً.',
     'content' => '<h2>فلسفة فخر CS: تعليم هندسي تفاعلي يركز على الفهم والتفوق</h2>
 <p>في عالم مليء بالقنوات العشوائية والملخصات المبتورة والمصادر غير الموثوقة، انطلقت <strong>أكاديمية فخر CS (FakhrCS Academy)</strong> لتكون المنصة التعليمية المتخصصة الأولى والرائدة لطلاب الجامعة السعودية الإلكترونية (SEU)، لا سيما في كلية الحوسبة والمعلوماتية (CCI) والسنة الأولى المشتركة. لم نأتِ لنكرر قراءة السلايدات أو لتقديم شروحات نظرية مجردة، بل بنينا منصتنا على <strong>منهجية هندسية وتطبيقية فريدة</strong> يقودها <strong>المهندس أحمد فخر الدين</strong>، مهندس البرمجيات والمحاضر التقني بخبرة تتجاوز 15 عاماً في قطاع تكنولوجيا المعلومات والتدريس الأكاديمي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>7 مميزات تجعل فخر CS الخيار الذي يثق به آلاف الطلاب سنوياً</h3>
 <ol>

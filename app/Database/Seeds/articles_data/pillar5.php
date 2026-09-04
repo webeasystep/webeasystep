@@ -9,6 +9,37 @@ return array (
     'content' => '<h2>كلية الحوسبة والمعلوماتية (CCI): قاطرة التحول الرقمي في SEU</h2>
 <p>تُعد <strong>كلية الحوسبة والمعلوماتية (College of Computing and Informatics - CCI)</strong> في <strong>الجامعة السعودية الإلكترونية</strong> إحدى أضخم وأعرق كليات التقنية في المملكة العربية السعودية. تتميز الكلية بحصول برامجها على الاعتماد الأكاديمي الدولي <strong>ABET</strong>، وبتماشي خططها الدراسية مع أحدث المعايير العالمية لمنظمتي ACM و IEEE، مما يمنح خريجيها ميزة تنافسية كبرى في سوق العمل التقني المتسارع في ظل رؤية السعودية 2030 ومبادرات الذكاء الاصطناعي والأمن السيبراني.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/ehwYuyINYUs?rel=0" title="01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد مقدمة قواعد البيانات ومفاهيم نظم إدارة قواعد البيانات DBMS لمقررات كلية الحوسبة والمعلوماتية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>تخصصات البكالوريوس المتاحة في كلية الحوسبة والمعلوماتية</h3>
 <table class="table table-bordered table-striped my-3">
     <thead class="thead-dark">
@@ -58,6 +89,37 @@ return array (
     'description' => 'مقارنة شاملة بين تخصصي علوم الحاسب وتقنية المعلومات في الجامعة السعودية الإلكترونية: المواد، الفروق الجوهرية، الرواتب، وسوق العمل السعودي.',
     'content' => '<h2>الحيرة الأبدية لطلاب الحوسبة: CS أم IT؟</h2>
 <p>عندما تفتح بوابة التخصيص بعد السنة الأولى المشتركة في الجامعة السعودية الإلكترونية، يقف الطالب في حيرة كبرى أمام خيارين ذهبيين: <strong>علوم الحاسب (Computer Science)</strong> و <strong>تقنية المعلومات (Information Technology)</strong>. ورغم أن كلا التخصصين ينتميان لكلية الحوسبة والمعلوماتية ويشتركان في كثير من الأساسيات، إلا أن الفلسفة الأكاديمية ونوعية الوظائف اليومية تختلفان بشكل جوهري.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/o3OJc23xHqg?rel=0" title="04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة نظم التشغيل ومعمارية البرمجيات في مقرر CS 001 لفهم الهيكلية البرمجية بوضوح تام.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>جدول المقارنة الجوهرية بين التخصصين في SEU</h3>
 <table class="table table-bordered table-striped my-3">
@@ -112,6 +174,37 @@ return array (
     'content' => '<h2>مقرر البرمجة الكائنية (CS140 - Object-Oriented Programming)</h2>
 <p>يعد مقرر <strong>البرمجة كائنية التوجه بلغة جافا (CS140 / Java OOP)</strong> الركيزة البرمجية الأهم على الإطلاق في كلية الحوسبة والمعلوماتية بالجامعة السعودية الإلكترونية. يمثل هذا المقرر النقلة النوعية من أسلوب البرمجة الإجرائية البسيطة إلى بناء النظم والبرمجيات الاحترافية واسعة النطاق التي تعتمد عليها كبرى الشركات والمؤسسات العالمية.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 150 (Discrete Mathematics)</span>
+                <h4 class="video-showcase-title">02 | MATH 150: Discrete Mathematics | 1.2 &amp; 1.3 Logic Circuits, Equivalences &amp; Laws - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/Oi1fWTeCD74?rel=0" title="02 | MATH 150: Discrete Mathematics | 1.2 &amp; 1.3 Logic Circuits, Equivalences &amp; Laws - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح الدوائر المنطقية والمنطق الرياضي أساس التفكير الخوارزمي في كلية الحوسبة والمعلوماتية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>الأركان الأربعة الكبرى للبرمجة كائنية التوجه (Four Pillars of OOP)</h3>
 <ul>
     <li><strong>1. التغليف والكبسلة (Encapsulation):</strong>
@@ -148,6 +241,37 @@ return array (
     'description' => 'دليل مقرر CS220 (Data Structures - هياكل البيانات) في SEU: شرح القوائم المرتبطة، المكدسات، الطوابير، والأشجار الثنائية وحل تمارين الكود.',
     'content' => '<h2>لماذا تعد مادة هياكل البيانات (Data Structures) أهم مادة لمهندس البرمجيات؟</h2>
 <p>مقرر <strong>هياكل البيانات (CS220 - Data Structures)</strong> في الجامعة السعودية الإلكترونية هو المادة التي تفصل بين "المبرمج المبتدئ" و "مهندس البرمجيات المحترف". تكمن أهمية المقرر في أنه يعلمك كيفية تنظيم وتخزين وإدارة البيانات في ذاكرة الكمبيوتر (RAM) بأعلى كفاءة زمنية ومكانية، وهي المادة الأساسية التي تبنى عليها المقابلات التقنية لشركات التكنولوجيا الكبرى (Google, Microsoft, Amazon).</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>أبرز هياكل البيانات التي يغطيها منهج CS220 في SEU</h3>
 <table class="table table-bordered table-striped my-3">
@@ -212,6 +336,37 @@ return array (
     'content' => '<h2>مقرر تحليل وتصميم الخوارزميات (CS240 / Algorithms)</h2>
 <p>بعد دراسة هياكل البيانات، ينتقل طالب علوم الحاسب وتقنية المعلومات في الجامعة السعودية الإلكترونية إلى دراسة <strong>تحليل وتصميم الخوارزميات</strong>. يركز هذا المقرر المتقدم على الإجابة عن سؤال حاسم: "إذا كان لدينا خمس طرق لحل نفس المشكلة البرمجية، كيف نقيس رياضياً وهندسياً أي الطرق هي الأسرع والأقل استهلاكاً لموارد النظام؟".</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>ما هو مفهوم Big-O Notation وكيف يُحسب؟</h3>
 <p>يعد <strong>Big-O Notation</strong> المقياس المعياري الرياضي لوصف الحد الأعلى للتعقيد الزمني والمكاني للخوارزمية مع نمو حجم البيانات المدخلة ($n$).</p>
 <ul>
@@ -242,6 +397,37 @@ return array (
     'description' => 'دليل مقرر IT241 (Introduction to Database - مقدمة في قواعد البيانات) في SEU: تصميم مخططات ERD، استعلامات SQL، وقواعد الـ Normalization.',
     'content' => '<h2>مقرر نظم قواعد البيانات (IT241 - Introduction to Database)</h2>
 <p>تعتبر قواعد البيانات العمود الفقري لأي نظام رقمي أو تطبيق ويب في العالم اليوم؛ فلا يمكن لتطبيق بنكي، متجر إلكتروني، أو نظام مستشفى أن يعمل بدون قاعدة بيانات تدير حسابات المستخدمين والمعاملات. ويعد مقرر <strong>مقدمة في نظم قواعد البيانات (IT241)</strong> في الجامعة السعودية الإلكترونية أحد أكثر المقررات متعة وأقربها لاحتياجات سوق العمل الحقيقي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">02 | شرح IT244 | مستخدمو ومزايا وتاريخ قواعد البيانات | Module 1: Users &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/7h7PKQBoGSo?rel=0" title="02 | شرح IT244 | مستخدمو ومزايا وتاريخ قواعد البيانات | Module 1: Users &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح معمارية DBMS ومستخدمي قواعد البيانات مع م. أحمد فخر الدين للإلمام بالأسئلة النظرية والتطبيقية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>المراحل الثلاث الكبرى لبناء أي قاعدة بيانات علائقية</h3>
 <ol>
@@ -276,6 +462,37 @@ return array (
     'description' => 'دليل مقرر IT210 (Computer Networks - شبكات الحاسب) في الجامعة السعودية الإلكترونية: نموذج OSI، بروتوكولات TCP/IP، وحسابات Subnetting.',
     'content' => '<h2>مقرر شبكات الحاسب (IT210 - Computer Networks) في SEU</h2>
 <p>كيف تسافر رسالتك من تطبيق الواتساب في الرياض لتصل إلى سيرفر في كاليفورنيا في أجزاء من الثانية دون فقدان أي حرف؟ هذا هو السؤال الساحر الذي يجيب عنه مقرر <strong>شبكات الحاسب (IT210)</strong> في كلية الحوسبة والمعلوماتية بالجامعة السعودية الإلكترونية. المنهج مبني بتوافق تام مع شهادة سيسكو العالمية <strong>CCNA</strong>، مما يجعله مدخلاً ذهبياً لسوق أمن وشبكات المعلومات.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>النموذج المعياري لطبقات الشبكة (OSI 7-Layer Model)</h3>
 <table class="table table-bordered table-striped my-3">
@@ -342,6 +559,37 @@ return array (
     'content' => '<h2>مقرر نظم التشغيل (Operating Systems) في كلية الحوسبة</h2>
 <p>نظام التشغيل (مثل Windows, Linux, macOS) هو المدير التنفيذي لجهاز الكمبيوتر؛ فهو الوسيط الحيوي الذي يتحكم في توزيع المعالج وإدارة الذاكرة وتنظيم وحدات التخزين بين كافة البرامج التي تعمل في نفس اللحظة. ويعد مقرر <strong>نظم التشغيل (Operating Systems)</strong> من المقررات الهندسية المتقدمة التي تمنح الطالب فهماً عميقاً لما يحدث في كواليس الحوسبة.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>أبرز المحاور والوحدات التعليمية في مقرر نظم التشغيل</h3>
 <ul>
     <li><strong>إدارة العمليات والخيوط (Processes & Threads):</strong> دورة حياة العملية (Process States: New, Ready, Running, Waiting, Terminated)، وبنية كتلة التحكم بالعملية (PCB)، والفرق بين العملية والخيط البرمجي.</li>
@@ -370,6 +618,37 @@ return array (
     'content' => '<h2>مقرر تقنيات وبرمجة الويب في الجامعة السعودية الإلكترونية</h2>
 <p>يعد مقرر <strong>تقنيات الويب (Web Technologies)</strong> من أكثر المقررات المحبوبة لطلاب كلية الحوسبة والمعلوماتية؛ نظراً لأنه مقرر عملي بنسبة 100% يمنحك القدرة على بناء مواقع وتطبيقات ويب تفاعلية من الصفر. يتعلم الطالب في هذا المقرر بنية صفحات الإنترنت ومعايير الويب العالمية، وتطوير الواجهات الأمامية والربط مع الخوادم وقواعد البيانات.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>الثالوث الأساسي للواجهات الأمامية (Frontend Development)</h3>
 <ul>
     <li><strong>لغة HTML5:</strong> الهيكل العظمي للصفحة، استخدام العناصر الدلالية الحديثة (Semantic Tags: header, nav, section, article, footer) لتحسين إمكانية الوصول وتهيئة محركات البحث (SEO).</li>
@@ -394,6 +673,37 @@ return array (
     'content' => '<h2>مشروع التخرج: تتويج مسيرتك الهندسية والأكاديمية</h2>
 <p>يمثل <strong>مشروع التخرج (Senior Graduation Project)</strong> في كلية الحوسبة والمعلوماتية بالجامعة السعودية الإلكترونية المحطة الختامية الأهم التي تثبت فيها قدرتك على دمج كل ما تعلمته من برمجة، قواعد بيانات، شبكات، وهندسة برمجيات في تطبيق نظام حقيقي يحل مشكلة واقعية في المجتمع أو قطاع الأعمال. ينقسم المشروع عادة إلى مرحلتين عبر فصلين دراسيين: مشروع التخرج 1 (التحليل والتصميم) ومشروع التخرج 2 (التنفيذ والاختبار والمناقشة).</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 251 (Linear Algebra)</span>
+                <h4 class="video-showcase-title">01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/DmzPIsJaHmk?rel=0" title="01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح الجبر الخطي MATH 251 التأسيسي لتخصصات علوم الحاسب وهندسة البرمجيات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>المراحل الخمس الأساسية لإنجاز مشروع التخرج بنجاح</h3>
 <ol>
     <li><strong>اختيار فريق العمل المنسجم:</strong> اختر زملاء يمتلكون التزاماً حقيقياً وتنوعاً في المهارات (أحدهم بارع في كتابة التقارير والتحليل، وآخر في الواجهات، وثالث في البرمجة الخلفية).</li>
@@ -416,6 +726,37 @@ return array (
     'description' => 'دليل الشهادات المهنية الأعلى طلباً لخريجي CCI في سوق العمل السعودي: شهادات السحابة AWS/Azure، الشبكات CCNA، والأمن السيبراني ودعم صندوق هدف.',
     'content' => '<h2>الشهادات الاحترافية: جواز مرورك للرواتب العليا في السوق السعودي</h2>
 <p>في سوق التكنولوجيا المتسارع بالمملكة العربية السعودية، لم تعد الشهادة الجامعية وحدها كافية لتمييزك بين آلاف الخريجين. أصحاب العمل في الشركات الكبرى (مثل أرامكو، STC، علم، تحكم، والبنوك) يبحثون عن إثبات عملي لمهاراتك التخصصية من خلال <strong>الشهادات الاحترافية العالمية (Professional Certifications)</strong>. والخبر الرائع هو أن <strong>صندوق تنمية الموارد البشرية (هدف)</strong> يعوضك بنسبة 100% عن تكاليف اختبارات هذه الشهادات المعتمدة فور اجتيازك لها!</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح عملي مبسط لأنظمة الترقيم والترميز في مقرر CS 001 لضمان الدرجة الكاملة في التكليفات والاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>أقوى الشهادات الاحترافية الموصى بها حسب المسار التخصصي</h3>
 <table class="table table-bordered table-striped my-3">
@@ -464,6 +805,37 @@ return array (
     'content' => '<h2>تخصص علوم البيانات: نفط القرن الحادي والعشرين في SEU</h2>
 <p>يعد تخصص <strong>علوم البيانات (Data Science)</strong> من أحدث وأقوى البرامج الأكاديمية التي أطلقتها كلية الحوسبة والمعلوماتية في الجامعة السعودية الإلكترونية، استجابة للطلب الوطني المتصاعد على الكفاءات القادرة على استخلاص الرؤى الاستراتيجية من أطنان البيانات الرقمية التي تولدها الهيئات والشركات يومياً لدعم اتخاذ القرارات الذكية.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 251 (Linear Algebra)</span>
+                <h4 class="video-showcase-title">01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/DmzPIsJaHmk?rel=0" title="01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة حل أنظمة المعادلات الخطية في مقرر MATH 251 لفهم المصفوفات وطرق الحذف والتعويض بدقة.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>الأركان المعرفية والتقنية لتخصص علوم البيانات</h3>
 <ul>
     <li><strong>البرمجة وتحليل البيانات (Python & R):</strong> إتقان مكتبات التحليل الرياضي والمعالجة مثل NumPy, Pandas, و Matplotlib للرسم البياني.</li>
@@ -489,6 +861,37 @@ return array (
     'content' => '<h2>الأمن السيبراني في SEU: درع المملكة الرقمي الواعد</h2>
 <p>تحتل المملكة العربية السعودية المرتبة الثانية عالمياً في مؤشر الأمن السيبراني العالمي؛ ومع تزايد التهديدات الرقمية والهجمات السيبرانية المعقدة، أصبح تخصص <strong>الأمن السيبراني (Cybersecurity)</strong> في كلية الحوسبة والمعلوماتية بالجامعة السعودية الإلكترونية التخصص الأكثر طلباً وجاذبية للطلاب الراغبين في بناء مسار مهني استثنائي يحمي البنى التحتية الحيوية للوطن.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>خارطة المواد والمقررات التخصصية في الأمن السيبراني</h3>
 <ul>
     <li><strong>أساسيات أمن المعلومات والتشفير (Cryptography):</strong> خوارزميات التشفير المتماثل وغير المتماثل (AES, RSA)، التوقيع الرقمي، والبنية التحتية للمفاتيح العامة (PKI).</li>
@@ -510,6 +913,37 @@ return array (
     'description' => 'نصائح عملية لطالب كلية الحوسبة الجديد في SEU لتعلم البرمجة من الصفر، التفكير المنطقي، التغلب على الخوف من الأخطاء، وكتابة أول كود بنجاح.',
     'content' => '<h2>البرمجة ليست سحراً ولا حكراً على العباقرة!</h2>
 <p>يدخل كثير من الطلاب إلى كلية الحوسبة والمعلوماتية وهم لم يكتبوا في حياتهم سطراً برمجياً واحداً، فيصابون بالهلع عند رؤية شاشة بيئة التطوير السوداء ورسائل الأخطاء الحمراء (Syntax Errors). الرسالة التي نكررها دائماً في <strong>أكاديمية فخر CS</strong>: <strong>البرمجة مهارة مكتسبة مثل قيادة السيارة؛ لا تحتاج لعبقرية رياضية خارقة، بل تحتاج إلى ممارسة مستمرة وتفكير منطقي منظم خطوة بخطوة.</strong></p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/ehwYuyINYUs?rel=0" title="01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على الجانب التطبيقي لمقررات كلية الحوسبة والمعلوماتية من خلال محاضرة قواعد البيانات وأنظمة DBMS التأسيسية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>خطة التأسيس البرمجي لطالب الحوسبة من الصفر المطلق</h3>
 <ol>
@@ -539,6 +973,37 @@ return array (
     'description' => 'دليل تحميل وضبط أفضل برامج وبيئات التطوير لطلاب كلية الحوسبة بالجامعة السعودية الإلكترونية: VS Code, IntelliJ IDEA, NetBeans, و Packet Tracer.',
     'content' => '<h2>ترسانة الأدوات والبرمجيات لطالب الحوسبة والمعلوماتية</h2>
 <p>اختيار بيئة التطوير المتكاملة <strong>(Integrated Development Environment - IDE)</strong> المناسبة هو خطوتك الأولى لكتابة كود نظيف وتصحيح الأخطاء بسرعة وتوفير ساعات طويلة من البحث والارتباك. في الجامعة السعودية الإلكترونية، تعتمد الكلية برمجيات معينة في المعامل الحضورية والاختبارات العملية، لذا يتعين على الطالب ضبط هذه الأدوات على جهازه الشخصي منذ بداية الفصل الدراسي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/ehwYuyINYUs?rel=0" title="01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد مقدمة قواعد البيانات ومفاهيم نظم إدارة قواعد البيانات DBMS لمقررات كلية الحوسبة والمعلوماتية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>أفضل بيئات التطوير الموصى بها حسب المقرر الدراسي</h3>
 <table class="table table-bordered table-striped my-3">

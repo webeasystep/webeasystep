@@ -9,6 +9,37 @@ return array (
     'content' => '<h2>بلاك بورد الترا (Blackboard Learn Ultra): قاعتك الدراسية الرقمية</h2>
 <p>يعد نظام <strong>Blackboard Learn Ultra</strong> المحرك التشغيلي والقلب النابض للعملية التعليمية في <strong>الجامعة السعودية الإلكترونية (SEU)</strong>. فنظراً لأن الجامعة تطبق نموذج التعليم المدمج، فإن أكثر من 75% من تفاعلك الأكاديمي مع المقررات، الأساتذة، الواجبات، والمحاضرات يتم مباشرة عبر هذه المنصة المتطورة. ورغم الواجهة العصرية السلسة لنظام "ألترا"، إلا أن كثيراً من الطلاب الجدد يواجهون صعوبة في الوصول السريع لروابط الفصول الافتراضية أو تتبع درجاتهم ومواعيد التسليم.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على القواعد الاحترافية للتواصل الأكاديمي وإتقان التعامل مع الفصول الافتراضية والبريد الجامعي في SEU.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>أهم التبويبات والأقسام في واجهة Blackboard Ultra</h3>
 <table class="table table-bordered table-striped my-3">
     <thead class="thead-dark">
@@ -64,6 +95,37 @@ return array (
     'content' => '<h2>ما هو متصفح Respondus LockDown Browser وما أهميته؟</h2>
 <p>متصفح <strong>Respondus LockDown Browser</strong> هو متصفح أمني مخصص تعتمده <strong>الجامعة السعودية الإلكترونية (SEU)</strong> لإجراء الاختبارات الإلكترونية النصفية والكويزات عن بُعد عبر البلاك بورد. يقوم المتصفح فور تشغيله بإغلاق كامل لبيئة الكمبيوتر؛ حيث يمنع فتح أي تبويبات أو نوافذ أخرى، ويعطل مفاتيح النسخ واللصق والتقاط الشاشة، ويستخدم كاميرا الجهاز والمايكروفون (عبر تقنية <em>Respondus Monitor</em>) لمراقبة بيئة الاختبار والتأكد من النزاهة الأكاديمية.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>الرابط الرسمي والخطوات الصحيحة لتثبيت المتصفح</h3>
 <ol>
     <li><strong>تحميل النسخة المخصصة لجامعة SEU حصراً:</strong> لا تقم بتحميل المتصفح من روابط عشوائية على الإنترنت؛ فكل جامعة تملك كود ترخيص مدمج (Institution Server Code). ادخل إلى البلاك بورد الجامعي، وتوجه إلى لوحة الإعلانات أو كويز تجريبي واضغط على الرابط الرسمي الخاص بالجامعة السعودية الإلكترونية.</li>
@@ -118,6 +180,37 @@ return array (
     'content' => '<h2>ماذا تفعل إذا توقف متصفح الاختبارات فجأة وأنت في منتصف الحل؟</h2>
 <p>لا يوجد موقف يثير فزع الطالب الأكاديمي أكثر من تجمد شاشة متصفح <strong>Respondus LockDown Browser</strong> أو انقطاع الكاميرا فجأة وهو في الدقيقة الخمسين من اختبار منتصف الفصل أو الفاينل! أول وأهم قاعدة نكررها دائماً لطلابنا في منصة فخر CS هي: <strong>لا ترتبك ولا تفقد هدوءك إطلاقاً؛ فنظام البلاك بورد مصمم ليحفظ إجاباتك كل 5 ثوانٍ تلقائياً في السيرفر</strong>، وهناك بروتوكول رسمي محدد يمكنك اتباعه لاستئناف اختبارك وحفظ حقك كاملاً.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>خطوات الإنقاذ الفوري عند تجمد المتصفح أو تعطل الكاميرا</h3>
 <ol>
     <li><strong>الانتظار لمدة 60 ثانية دون الضغط العشوائي:</strong> في كثير من الأحيان، يكون التوقف ناتجاً عن هبوط لحظي في سرعة الإنترنت أو بطء استجابة السيرفر، وسرعان ما يستعيد المتصفح اتصاله ذاتياً بعد ثوانٍ قليلة.</li>
@@ -148,6 +241,37 @@ return array (
     'description' => 'دليل فهم نظام SafeAssign في الجامعة السعودية الإلكترونية، النسبة المسموحة للاقتباس، كيفية قراءة تقرير الأصالة وتفادي لجان التأديب.',
     'content' => '<h2>ما هو نظام SafeAssign وكيف يعمل في الجامعة السعودية الإلكترونية؟</h2>
 <p>يعد نظام <strong>SafeAssign</strong> أداة الفحص الأمني والأكاديمي المدمجة في منصة Blackboard، والتي تعتمدها <strong>الجامعة السعودية الإلكترونية (SEU)</strong> لمكافحة الانتحال والسرقة الأدبية (Plagiarism). يقوم النظام عند رفع أي واجب أو بحث بفحص كل جملة ومقارنتها بقاعدة بيانات ضخمة تضم: ملايين الأبحاث المنشورة في المجلات العلمية، المواقع والصفحات المؤرشفة على الإنترنت، والأهم من ذلك: <em>جميع التكليفات والواجبات التي سلمها طلاب الجامعة في كافة الفروع والسنوات السابقة</em>.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على القواعد الاحترافية للتواصل الأكاديمي وإتقان التعامل مع الفصول الافتراضية والبريد الجامعي في SEU.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>ما هي النسبة المسموحة للاقتباس في أبحاث وواجبات SEU؟</h3>
 <table class="table table-bordered table-striped my-3">
@@ -199,6 +323,37 @@ return array (
     'content' => '<h2>نظام بنر (Banner / SIS): بوابتك الإدارية والأكاديمية الرسمية</h2>
 <p>بينما يمثل نظام البلاك بورد قاعتك الدراسية اليومية، فإن نظام <strong>Banner (نظام معلومات الطلاب - SIS)</strong> هو السجل الإداري والأكاديمي والمالي الشامل لكل طالب في <strong>الجامعة السعودية الإلكترونية</strong>. عبر هذا النظام الرسمي، تقوم بتسجيل مقرراتك الفصلية، اختيار الشعب والفروع، دفع الرسوم عبر سداد، متابعة خطتك الدراسية، والاطلاع على كشف الدرجات الرسمي والمعدل التراكمي المعتمد.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>أهم الخدمات والعمليات المنفذة عبر نظام Banner</h3>
 <ul>
     <li><strong>تسجيل المقررات (Registration):</strong> اختيار المقررات والشعب المتاحة وفق خطتك الدراسية وساعاتك المسموحة، وتحديد مواعيد المحاضرات الحضورية التي تناسب وقتك.</li>
@@ -230,6 +385,37 @@ return array (
     'content' => '<h2>تطبيقات الجوال الرسمية لطلاب الجامعة السعودية الإلكترونية</h2>
 <p>في عصر التحول الرقمي، لا تحتاج للجلوس أمام شاشة الكمبيوتر في كل لحظة لمتابعة مستجدات دراستك الجامعية؛ حيث توفر <strong>الجامعة السعودية الإلكترونية (SEU)</strong> تطبيقين أساسيين على الهواتف الذكية (iOS و Android) يجعلان تجربتك الأكاديمية في متناول يدك: تطبيق الجامعة الرسمي (SEU App)، وتطبيق <strong>Blackboard Learn Mobile</strong> المخصص للفصول والمقررات.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>أبرز مزايا تطبيق الجامعة وتطبيق البلاك بورد على الجوال</h3>
 <ul>
     <li><strong>الإشعارات الفورية والتنبيهات المباشرة (Push Notifications):</strong> وصول تنبيه لحظي على شاشة هاتفك بمجرد نشر أستاذ المادة لإعلان جديد، أو رصد درجة اختبار، أو تحديد موعد تسليم وشيك.</li>
@@ -256,6 +442,37 @@ return array (
     'description' => 'كيفية تفعيل واستخدام حزمة Microsoft 365 المجانية لطلاب الجامعة السعودية الإلكترونية: تحميل Word و Excel ومساحة تخزين سحابي 1 تيرابايت.',
     'content' => '<h2>هدية الجامعة الأكاديمية: اشتراك Microsoft 365 مجاناً</h2>
 <p>تقدم <strong>الجامعة السعودية الإلكترونية</strong> لجميع طلابها المقيدين اشتراكاً رسمياً مجانياً في حزمة البرمجيات المكتبية والإنتاجية العالمية <strong>Microsoft 365 Education</strong>. تتيح لك هذه الميزة تحميل النسخ الأصلية الكاملة من برامج Word و Excel و PowerPoint و OneNote على ما يصل إلى 5 أجهزة مختلفة (كمبيوتر شخصي، لابتوب، جهاز لوحي، وهاتف ذكي)، بالإضافة إلى مساحة تخزين سحابية هائلة تبلغ <strong>1 تيرابايت (1000 جيجابايت)</strong> على منصة OneDrive.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>خطوات تفعيل وتثبيت حزمة أوفيس بحسابك الجامعي</h3>
 <ol>
@@ -286,6 +503,37 @@ return array (
     'description' => 'دليل حضور المحاضرات التفاعلية عن بُعد في SEU عبر منصتي Collaborate و Teams، ضبط المايك والكاميرا، وتسجيل الحضور التلقائي.',
     'content' => '<h2>منصات الفصول الافتراضية التفاعلية في الجامعة السعودية الإلكترونية</h2>
 <p>تعتمد الجامعة السعودية الإلكترونية في تقديم جلساتها التعليمية المباشرة عن بُعد على منصتين رائدتين: <strong>Blackboard Collaborate Ultra</strong> (المنصة المدمجة في المقررات)، ومنصة <strong>Microsoft Teams</strong> التابعة لحساب مايكروسوفت الجامعي. الحضور في هذه الجلسات إلزامي ومحدد بنسب غياب رسمية؛ حيث يُسجل حضورك إلكترونياً فور دخولك وتفاعلك مع القاعة الافتراضية.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>خطوات الانضمام للمحاضرة عبر Blackboard Collaborate</h3>
 <ol>
@@ -319,6 +567,37 @@ return array (
     'content' => '<h2>لماذا تشترط الجامعة تسليم الواجبات بصيغة PDF؟</h2>
 <p>تشترط عمادات المقررات في الجامعة السعودية الإلكترونية رفع معظم التكليفات والواجبات الأكاديمية بصيغة <strong>PDF (Portable Document Format)</strong>؛ وذلك لضمان ثبات التنسيق والجداول والخطوط والرسوم البيانية والمعادلات الرياضية تماماً كما كتبها الطالب، وحماية الملف من التعديل العرضي أو أخطاء التوافق بين إصدارات البرامج المختلفة، بالإضافة إلى توافق ملفات الـ PDF التام مع نظام الفحص الأكاديمي SafeAssign.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على القواعد الاحترافية للتواصل الأكاديمي وإتقان التعامل مع الفصول الافتراضية والبريد الجامعي في SEU.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>خطوات تحويل ملفات Word إلى PDF باحترافية وسرعة</h3>
 <ol>
     <li>بعد إتمام كتابة وتنسيق حلك في برنامج <strong>Microsoft Word</strong>، اضغط على قائمة <em>File / ملف</em>.</li>
@@ -343,6 +622,37 @@ return array (
     'description' => 'طريقة فتح تذكرة دعم فني في عمادة تقنية المعلومات لجامعة SEU، قنوات التواصل السريع، وحل مشاكل الدخول للبوابة والبلاك بورد.',
     'content' => '<h2>منظومة الدعم الفني والتقني في الجامعة السعودية الإلكترونية</h2>
 <p>توفر عمادة تقنية المعلومات في <strong>الجامعة السعودية الإلكترونية</strong> نظام دعم فني متكاملاً يخدم الطلاب وأعضاء هيئة التدريس على مدار الساعة لمعالجة أي صعوبات تقنية تتعلق بالحسابات الجامعية، البريد الإلكتروني، منصة البلاك بورد، نظام بنر، أو متصفح الاختبارات ريسبوندس.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/o3OJc23xHqg?rel=0" title="04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة نظم التشغيل ومعمارية البرمجيات في مقرر CS 001 لفهم الهيكلية البرمجية بوضوح تام.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>خطوات فتح تذكرة دعم فني عبر البوابة الرسمية</h3>
 <ol>
@@ -374,6 +684,37 @@ return array (
     'content' => '<h2>أهمية البريد الجامعي الرسمي لطالب SEU</h2>
 <p>يعد <strong>البريد الجامعي الرسمي</strong> القناة الرسمية الوحيدة والملزمة قانونياً وأكاديمياً للتواصل بين الطالب وإدارة الجامعة السعودية الإلكترونية وكلياتها وأعضاء هيئة التدريس. كافة الإشعارات الهامة المتعلقة برصد الدرجات، مواعيد الاختبارات النهائية، الرد على التظلمات، والإنذارات الأكاديمية تُرسل حصرياً إلى بريدك الجامعي المعتمد، ولا يعتد بأي تواصل يتم عبر البريد الشخصي (مثل Gmail أو Hotmail).</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>صيغة البريد الإلكتروني الجامعي المعتمدة</h3>
 <p>تتكون صيغة بريدك من الحرف الأول من كلمة Student متبوعاً برقمك الجامعي: <code>s[الرقم الجامعي]@seu.edu.sa</code> (مثال: <code>s240123456@seu.edu.sa</code>).</p>
 
@@ -399,6 +740,37 @@ return array (
     'description' => 'دليل طالب SEU لاستخدام المكتبة الرقمية السعودية SDL: الدخول بحساب الجامعة، البحث في قواعد البيانات العالمية، وتوثيق المصادر بالأبحاث.',
     'content' => '<h2>المكتبة الرقمية السعودية (SDL): كنزك المعرفي المجاني</h2>
 <p>تمنح <strong>الجامعة السعودية الإلكترونية</strong> طلابها وصولاً مجانياً كاملاً إلى <strong>المكتبة الرقمية السعودية (Saudi Digital Library - SDL)</strong>، التي تعد أضخم تجمع أكاديمي للكتب والأبحاث العلمية في العالم العربي والشرق الأوسط. تضم المكتبة ملايين المقالات العلمية المحكمة، والكتب الإلكترونية الكاملة، ورسائل الماجستير والدكتوراه الصادرة عن أعرق دور النشر العالمية (مثل IEEE, Springer, ScienceDirect, ProQuest).</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>كيف تسجل الدخول إلى المكتبة الرقمية عبر حساب الجامعة؟</h3>
 <ol>
@@ -429,6 +801,37 @@ return array (
     'content' => '<h2>نظام حجز مواعيد الاختبارات المحوسبة في فروع SEU</h2>
 <p>نظراً للأعداد الكبيرة لطلاب الجامعة السعودية الإلكترونية المنتشرين في مختلف الفروع، تعتمد عمادة القبول والاختبارات في بعض الفصول نظام <strong>حجز المواعيد والفترات الزمنية (Exam Slot Booking)</strong> للاختبارات النهائية والميدتيرم؛ حيث تفتح البوابة للطلاب لاختيار الموعد المناسب لظروفهم الوظيفية والأسرية ضمن الفترات المجدولة في فرعهم الأكاديمي.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>خطوات حجز موعد الاختبار عبر البوابة الأكاديمية</h3>
 <ol>
     <li>متابعة التقويم الأكاديمي لمعرفة موعد فتح بوابة حجز الاختبارات (يتم إعلانها عبر البريد الجامعي).</li>
@@ -456,6 +859,37 @@ return array (
     'description' => 'المواصفات الفنية الموصى بها لأجهزة اللابتوب وسرعة الإنترنت المناسبة لنظام التعليم المدمج ومتصفح ريسبوندس في الجامعة السعودية الإلكترونية.',
     'content' => '<h2>الأجهزة والعتاد التقني المطلوب للدراسة في الجامعة السعودية الإلكترونية</h2>
 <p>تعتمد دراستك في <strong>الجامعة السعودية الإلكترونية</strong> بالكامل على التكنولوجيا؛ من حضور المحاضرات الافتراضية عبر البلاك بورد، إلى كتابة الأكواد في معامل البرمجة، وخوض الاختبارات المؤمنة عبر متصفح Respondus LockDown Browser. امتلاك جهاز غير مناسب أو اتصال إنترنت ضعيف قد يكلفك انقطاع المحاضرات أو تعطل الاختبار، لذا فإن الاستثمار في لابتوب جيد هو خطوتك الأولى نحو النجاح الأكاديمي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>المواصفات الفنية الموصى بها لجهاز اللابتوب (Hardware Specifications)</h3>
 <table class="table table-bordered table-striped my-3">
@@ -511,6 +945,37 @@ return array (
     'description' => 'طريقة استعادة كلمة مرور الحساب الجامعي الموحد لـ SEU عند نسيانها أو قفل الحساب، وتحديث رقم الجوال المسجل ورموز التحقق.',
     'content' => '<h2>استعادة كلمة المرور الموحدة لجامعة SEU بخطوات ذاتية سريعة</h2>
 <p>تستخدم الجامعة السعودية الإلكترونية نظام الدخول الموحد <strong>(Single Sign-On - SSO)</strong>؛ مما يعني أن نفس اسم المستخدم وكلمة المرور تُستخدم للدخول على البلاك بورد، نظام بنر، البريد الجامعي، وبوابة الخدمات الطلابية. نسيان كلمة المرور قبل موعد محاضرة أو اختبار قد يسبب قلقاً كبيراً، ولكن الجامعة توفر بوابة خدمة ذاتية تتيح لك إعادة تعيين كلمة المرور في دقائق معدودة دون الحاجة لانتظار رد موظفي الدعم الفني.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>خطوات إعادة تعيين كلمة المرور عبر الخدمة الذاتية (Self-Service)</h3>
 <ol>

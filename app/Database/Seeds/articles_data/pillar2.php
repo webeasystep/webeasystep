@@ -9,6 +9,37 @@ return array (
     'content' => '<h2>لماذا يمثل اختبار ستيب (STEP) طوق النجاة لطلاب الجامعة السعودية الإلكترونية؟</h2>
 <p>يعد اختبار <strong>كفايات اللغة الإنجليزية (STEP - Standardized Test of English Proficiency)</strong> المقدم من المركز الوطني للقياس (قياس) الركيزة الأساسية للقبول والتفوق في <strong>الجامعة السعودية الإلكترونية (SEU)</strong>. لا يقتصر دور الاختبار على كونه مقياساً لغوياً، بل هو الأداة الرسمية المعتمدة لمعادلة مقرر اللغة الإنجليزية في السنة الأولى المشتركة. تحقيق درجة <strong>83 فأعلى</strong> يمنح الطالب إعفاءً كلياً من دراسة مقررات اللغة الإنجليزية ومن منصة EF، وترصد له درجة كاملة (A+) ومعدل 4.00 في المادة فوراً!</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <p>هذا الإعفاء يوفر عليك ما لا يقل عن 12 إلى 15 ساعة أسبوعياً من المتابعة والتدريب على المنصة، مما يتيح لك التفرغ الكامل لمادتي الرياضيات (MATH 001) والحاسب (CS 001) لضمان القبول في التخصص الذي ترغب فيه.</p>
 
 <h3>أقسام وتوزيع أسئلة اختبار STEP في مركز قياس</h3>
@@ -60,6 +91,37 @@ return array (
     'description' => 'تعرف على الشروط الرسمية وخطوات تقديم طلب معادلة مقررات اللغة الإنجليزية عبر البوابة الإلكترونية لجامعة SEU بالاختبارات القياسية المعتمدة.',
     'content' => '<h2>الشروط الرسمية لمعادلة اللغة الإنجليزية في SEU</h2>
 <p>تتيح عمادة السنة الأولى المشتركة في <strong>الجامعة السعودية الإلكترونية</strong> لطلابها المستجدين إمكانية معادلة مقررات اللغة الإنجليزية للتحضيري بناءً على درجاتهم في الاختبارات القياسية المعتمدة عالمياً ومحلياً (STEP, IELTS, TOEFL, Duolingo وفق اللوائح المحدثة). توفر هذه المعادلة على الطالب ساعات دراسية طويلة وتسقط عنه التزامات منصة التعلم الذاتي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>جدول الاختبارات المعيارية والدرجات المطلوبة للمعادلة</h3>
 <table class="table table-bordered table-striped my-3">
@@ -121,6 +183,37 @@ return array (
     'content' => '<h2>مقارنة دقيقة: أيهما تختار لمعادلة مقررات اللغة الإنجليزية؟</h2>
 <p>يقف طالب الجامعة السعودية الإلكترونية أمام عدة خيارات رسمية مقبولة لمعادلة اللغة الإنجليزية: اختبار كفايات اللغة الإنجليزية المحلي (STEP)، أو الاختبارات الدولية المعتمدة مثل الآيلتس (IELTS) والتوفل (TOEFL). ومع تفاوت الرسوم وطبيعة أقسام كل اختبار، يتكرر السؤال باستمرار: <strong>أيهما أسهل وأسرع لضمان المعادلة بدون تعقيد؟</strong></p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>جدول المقارنة الشاملة بين الاختبارات الثلاثة</h3>
 <table class="table table-bordered table-striped my-3">
     <thead class="thead-dark">
@@ -180,6 +273,37 @@ return array (
     'content' => '<h2>ما هي منصة EF English Live وما دورها في نظام SEU؟</h2>
 <p>تُعد منصة <strong>EF English Live</strong> البيئة التعليمية التفاعلية المعتمدة في الجامعة السعودية الإلكترونية لتدريس مقرر اللغة الإنجليزية المكثف في السنة الأولى المشتركة (للطلاب الذين لم يقدموا شهادة معادلة ستيب أو آيلتس). تهدف المنصة إلى تعزيز مهارات الطالب الذاتية من خلال وحدات تفاعلية، دروس قواعد وقراءة، وفصول محادثة جماعية وفردية مع معلمين أجانب معتمدين على مدار 24 ساعة.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <p>تعتبر الجامعة ساعات منصة EF معادلاً رسمياً للحضور الفعلي؛ والإخلال بالنسبة المطلوبة يعرض الطالب فوراً للحرمان الأكاديمي برسوب <strong>(DN - Denied)</strong> وإلغاء تسجيل المقرر بالكامل.</p>
 
 <h3>كيف يحسب نظام البلاك بورد وسيرفرات EF ساعات حضورك؟</h3>
@@ -215,6 +339,37 @@ return array (
     'description' => 'حساب دقيق لعدد ساعات الحضور المطلوبة أسبوعياً وفصلياً على منصة EF English لطلاب SEU لتفادي الحرمان وتحقيق الدرجة الكاملة في التقييم المستمر.',
     'content' => '<h2>المعادلة الحسابية لساعات الحضور الأسبوعية في منصة EF</h2>
 <p>تحدد عمادة السنة الأولى المشتركة في الجامعة السعودية الإلكترونية مع بداية كل فصل دراسي نصاباً إلزامياً من الساعات والأنشطة الرقمية التي يتعين على الطالب إنجازها عبر <strong>منصة EF English Live</strong>. يتراوح هذا النصاب في العادة بين <strong>3 إلى 4 ساعات أسبوعياً</strong> من النشاط التفاعلي المتواصل، أو ما يعادل إكمال وحدة تعليمية كاملة (Unit) مع حصة محادثة مباشرة كل أسبوع.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>جدول توزيع المهام والأنشطة الأسبوعية على منصة EF</h3>
 <table class="table table-bordered table-striped my-3">
@@ -264,6 +419,37 @@ return array (
     'description' => 'شروط وإجراءات معادلة مقرري CS 001 (Computer Essentials) و MATH 001 (Fundamentals of Mathematics) بالشهادات المهنية المعتمدة في SEU.',
     'content' => '<h2>هل يمكن معادلة مقررات غير اللغة الإنجليزية في الجامعة؟</h2>
 <p>تسعى <strong>الجامعة السعودية الإلكترونية</strong> دائماً إلى تشجيع طلابها على نيل الشهادات المهنية والاحترافية المعترف بها عالمياً وسوقياً؛ ولذلك أتاحت في لوائحها الأكاديمية إمكانية معادلة بعض المقررات التأسيسية للسنة الأولى المشتركة، وفي مقدمتها مقرر <strong>أساسيات الحاسب الآلي (CS 001)</strong> وبعض مقررات الحوسبة التخصصية لاحقاً، في حال كان الطالب حاصلاً على شهادات مهنية دولية معتمدة وسارية الصلاحية.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/o3OJc23xHqg?rel=0" title="04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة نظم التشغيل ومعمارية البرمجيات في مقرر CS 001 لفهم الهيكلية البرمجية بوضوح تام.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>أبرز الشهادات الاحترافية المقبولة لمعادلة مقرر الحاسب (CS 001)</h3>
 <table class="table table-bordered table-striped my-3">
@@ -321,6 +507,37 @@ return array (
     'content' => '<h2>قسم القواعد (Grammar) في اختبار ستيب: كنز الدرجات المضمونة</h2>
 <p>يمثل قسم القواعد والتراكيب اللغوية حوالي <strong>40% من مجموع أسئلة اختبار STEP</strong> في مركز قياس. والميزة الكبرى لهذا القسم مقارنة بقطاع الاستماع أو القراءة، هي أن القواعد تعتمد على <em>قوانين رياضية قطعية وثابتة</em>؛ فإذا رأيت دلالة زمنية معينة، فإن هناك شكلاً وحيداً للفعل هو الإجابة الصحيحة دون أدنى مجال للشك أو التأويل الشخصي.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>أهم 7 قواعد نحوية تتكرر باستمرار في تجميعات اختبار ستيب</h3>
 <ul>
     <li><strong>1. قاعدة التمييز بين المضارع التام والماضي البسيط:</strong>
@@ -366,6 +583,37 @@ return array (
     'description' => 'تكنيكات وحيل احترافية لقراءة واستخراج إجابات قطع الاستيعاب في اختبار STEP دون قراءة النص كاملاً وتوفير وقت الاختبار الثمين.',
     'content' => '<h2>فخ قطع القراءة الطويلة في اختبار ستيب وكيف تنجو منه</h2>
 <p>يمثل قسم <strong>فهم المقروء (Reading Comprehension)</strong> في اختبار STEP العائق الزمني الأكبر لدى معظم الطلاب؛ حيث يفاجأ المختبِر بوجود 5 إلى 7 نصوص تتفاوت بين نصوص علمية وتاريخية وسير ذاتية، مصحوبة بعشرات الأسئلة المتشعبة. الخطأ القاتل الذي يقع فيه أكثر من 80% من الطلاب هو البدء بقراءة النص كلمة بكلمة وترجمة كل جملة؛ فيمر الوقت سريعاً ويجد الطالب نفسه لم يكمل سوى نصين بينما بقيت نصوص أخرى دون قراءة!</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>الاستراتيجية العكسية الذكية: اقرأ الأسئلة أولاً!</h3>
 <ol>
@@ -416,6 +664,37 @@ return array (
     'content' => '<h2>طبيعة قسم الاستماع في اختبار STEP المحوسب</h2>
 <p>يمثل قسم <strong>الاستماع (Listening Comprehension)</strong> في اختبار كفايات اللغة الإنجليزية حوالي <strong>20% من الدرجة الإجمالية</strong>. يتميز هذا القسم بأن المقاطع الصوتية تعمل لمرة واحدة فقط في الغالبية العظمى من الأسئلة، ولا يمكن للطالب إعادة تشغيل المقطع أو إيقافه مؤقتاً. ورغم أن هذا القسم يثير رهبة البعض، إلا أن محادثاته في الغالب واقعية وقصيرة وتدور حول مواقف يومية في الجامعة أو السفر أو العمل.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>4 قواعد ذهبية لضمان الدرجة الكاملة في الاستماع</h3>
 <ol>
     <li><strong>قراءة السؤال والخيارات قبل بدء الصوت (Golden Rule):</strong> يمنحك النظام في بداية كل مقطع بضع ثوانٍ؛ استغلها فوراً في قراءة رأس السؤال والخيارات الأربعة بسرعة خاطفة. معرفة السؤال مسبقاً تجعل عقلك مبرمجاً على التقاط المعلومة المحددة فور نطقها في المحادثة وتجاهل باقي الكلام غير المهم.</li>
@@ -442,6 +721,37 @@ return array (
     'description' => 'مواعيد التقديم على معادلة المقررات في SEU للفصلين الأول والثاني، طريقة متابعة حالة الطلب في نظام الخدمات الطلابية وحل مشاكل الرفض.',
     'content' => '<h2>متى تفتح الجامعة السعودية الإلكترونية باب طلبات المعادلة؟</h2>
 <p>تفتح عمادة القبول وشؤون الطلاب وعمادة السنة الأولى المشتركة في <strong>الجامعة السعودية الإلكترونية</strong> فترة رسمية محددة لاستقبال طلبات معادلة المقررات الدراسية (اللغة الإنجليزية، المقررات العامة، أو الشهادات الاحترافية) عبر البوابة الأكاديمية (SIS / Banner). تتكرر هذه الفترة مرتين رئيسيتين خلال العام الجامعي وفق التقويم الأكاديمي المعتمد:</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>الفترات الزمنية الرسمية لتقديم طلبات المعادلة</h3>
 <table class="table table-bordered table-striped my-3">
@@ -487,6 +797,37 @@ return array (
     'content' => '<h2>عدم تحقيق درجة STEP في الترم الأول ليس نهاية المطاف!</h2>
 <p>يشعر كثير من طلاب السنة الأولى المشتركة بإحباط شديد إذا خاضوا اختبار STEP في الفصل الأول ولم يحققوا الدرجة المطلوبة للمعادلة (83 فأعلى) أو درجة الاجتياز الأدنى. لكن الحقيقة الأكاديمية المطمئنة هي أن <strong>نظام الجامعة يمنحك فرصة كاملة ومستمرة حتى نهاية السنة الأكاديمية</strong> لإعادة الاختبار وتقديم الدرجة الجديدة، بل ويمكنك أيضاً اجتياز المادة عبر استكمال متطلبات منصة EF بنجاح.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>خيارات وخطة الإنقاذ المتاحة أمامك للفصل الثاني</h3>
 <ol>
     <li><strong>الاستمرار في منصة EF وعدم التهاون في ساعاتها:</strong> إذا لم تحقق درجة STEP، فإن منصة EF تصبح مسارك الإجباري للنجاح. احرص على إكمال ساعاتك الأسبوعية أولاً بأول حتى لا تقع في فخ الحرمان (DN). فالنجاح في المنصة واجتياز اختباراتها التقويمية يضمن لك اجتياز المقرر بنجاح.</li>
@@ -508,6 +849,37 @@ return array (
     'description' => 'شرح استخدام منصة وتطبيق Oxford English لطلاب الجامعة السعودية الإلكترونية، متطلبات الأنشطة الرقمية وطرق أداء الاختبارات التقويمية.',
     'content' => '<h2>منظومة Oxford English الرقمية في الجامعة السعودية الإلكترونية</h2>
 <p>إلى جانب منصة EF، تعتمد بعض الأقسام والفصول في الجامعة السعودية الإلكترونية على منظومة <strong>Oxford English Online</strong> التابعة لمطبعة جامعة أكسفورد، سواء كمنصة مكملة أو كبرنامج تدريبي لطلاب مسارات معينة. تتضمن هذه المنصة بنية تعليمية ترتكز على القراءة التفاعلية، التدريبات النحوية المصورة، وبنوك الأسئلة التقويمية المستمرة (Formative Assessments).</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>أبرز مكونات تطبيق ومنصة Oxford الأكاديمية</h3>
 <ul>
@@ -537,6 +909,37 @@ return array (
     'content' => '<h2>قنوات التيليجرام: سلاح ذو حدين في الاستعداد لاختبار STEP</h2>
 <p>تزخر منصة تيليجرام بمئات القنوات والمجموعات المخصصة لاختبار كفايات اللغة الإنجليزية (STEP). ورغم أن بعض هذه القنوات يمثل كنزاً حقيقياً للنماذج المسربة والأسئلة الحديثة من قاعات قياس، إلا أن عدداً كبيراً منها يعج بالتشتت والشائعات والملفات القديمة التي تحتوي على إجابات خاطئة قد تضلل الطالب وتكلفه خسارة درجات ثمينة.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>معايير اختيار القنوات والمصادر الموثوقة</h3>
 <ul>
     <li><strong>القنوات التي تنشر الأسئلة مصحوبة بالتعليل النحوي:</strong> ابتعد عن القنوات التي تنشر صور الأسئلة مع دائرة على الخيار دون توضيح "لماذا هذه الإجابة صحيحة؟". الفهم هو ما يجعلك تحل السؤال حتى لو غير واضع الاختبار بعض الكلمات.</li>
@@ -564,6 +967,37 @@ return array (
     'description' => 'قصص واقعية وتجارب ملهمة لطلاب في الجامعة السعودية الإلكترونية حققوا درجات تفوق 85 في STEP من المحاولة الأولى، وخطة عملهم الدقيقة.',
     'content' => '<h2>دروس عملية من تجارب المتفوقين في اختبار STEP</h2>
 <p>الحديث مع الطلاب الذين تمكنوا من كسر حاجز الـ <strong>85 درجة في اختبار كفايات اللغة الإنجليزية (STEP)</strong> من المحاولة الأولى يوضح حقيقة جوهرية: هؤلاء الطلاب لم يكونوا جميعاً من خريجي المدارس العالمية أو متحدثين أصليين بالإنجليزية؛ بل اتبعوا <strong>نظام تدريب ذكي يركز على تكتيكات قياس</strong> وإدارة الوقت بصرامة شديدة.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>خلاصة تجارب الطلاب المتفوقين في 4 محاور رئيسية</h3>
 <ul>
@@ -594,6 +1028,37 @@ return array (
     'description' => 'شروط معادلة المقررات للطلاب المحولين من جامعات أخرى إلى SEU، معايير مطابقة الساعات وتوصيف المقررات المقبولة باللائحة.',
     'content' => '<h2>معادلة المقررات الأكاديمية السابقة في الجامعة السعودية الإلكترونية</h2>
 <p>يلتحق بالجامعة السعودية الإلكترونية عدد كبير من الطلاب الذين سبق لهم الدراسة في جامعات سعودية أو خارجية معترف بها، أو من حملة الدبلومات الراغبين في التجسير وإكمال البكالوريوس. وتتيح اللائحة التنفيذية لجامعة SEU إمكانية معادلة المقررات التي درسها الطالب واجتازها بنجاح، بشرط استيفاء المعايير الأكاديمية المحددة في لائحة المعادلات والتحويل الخارجي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>الشروط العامة لمعادلة المقررات من جامعات أخرى</h3>
 <table class="table table-bordered table-striped my-3">
@@ -648,6 +1113,37 @@ return array (
     'description' => 'خطة إدارة الوقت الذكية لطلاب SEU للجمع بين ساعات منصة EF English، التحضير لاختبار STEP، ومذاكرة مادتي MATH 001 و CS 001 بتوازن تام.',
     'content' => '<h2>معادلة إدارة الوقت الصعبة لطلاب السنة الأولى المشتركة</h2>
 <p>يجد طالب السنة الأولى المشتركة في الجامعة السعودية الإلكترونية نفسه أمام ضغوط دراسية متزامنة: متطلب الحضور الأسبوعي الإلزامي على منصة <strong>EF English Live</strong>، الرغبة في المذاكرة المركزة لاختبار <strong>STEP</strong> للتخلص من عبء اللغة، ومقررا <strong>MATH 001 (الرياضيات)</strong> و <strong>CS 001 (الحاسب)</strong> اللذان يتطلبان حل مسائل وتطبيقات ومشاريع مستمرة. بدون تنظيم دقيق، ينتهي الأمر بالطالب مستنزفاً ومشتتاً بين هذه المتطلبات المتعارضة.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>خطة التوازن الأسبوعي المقترحة (نظام 3 في 1)</h3>
 <table class="table table-bordered table-striped my-3">

@@ -9,6 +9,37 @@ return array (
     'content' => '<h2>نظام المعدل التراكمي في الجامعة السعودية الإلكترونية: كيف يُحسب من 4.00؟</h2>
 <p>تعتمد <strong>الجامعة السعودية الإلكترونية (SEU)</strong> نظام الساعات المعتمدة وسلم المعدل التراكمي الرباعي <strong>(4.00 GPA Scale)</strong> لقياس الأداء والتحصيل الأكاديمي لطلابها في مرحلة البكالوريوس. كثير من الطلاب الجدد يخلطون بين النسبة المئوية المباشرة والمعدل التراكمي الموزون بعدد الساعات؛ مما يجعلهم يخطئون في تقدير تأثير درجات بعض المواد في رفع معدلهم أو هبوطه.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>جدول سلم الدرجات والنقاط الرسمي المعتمد في SEU</h3>
 <table class="table table-bordered table-striped my-3">
     <thead class="thead-dark">
@@ -113,6 +144,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'content' => '<h2>بوابة التخصيص: كيف تتوزع المقاعد في كليات الجامعة؟</h2>
 <p>تمثل مرحلة <strong>التخصيص الأكاديمي (Major Allocation)</strong> بعد إنهاء السنة الأولى المشتركة في الجامعة السعودية الإلكترونية لحظة الحصاد لكل ما بذلته من جهد. كثير من الطلاب يعتقدون خطأً أن مجرد النجاح واجتياز مقررات التحضيري بدرجة 60% يضمن لهم التخصص الذي يرغبون فيه؛ ولكن الواقع الأكاديمي يعتمد على <strong>المفاضلة التنافسية الصارمة</strong> بناءً على الطاقة الاستيعابية لكل قسم والمعدل التراكمي المحقق.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>أهم كليات الجامعة ومعايير القبول في تخصصاتها</h3>
 <table class="table table-bordered table-striped my-3">
     <thead class="thead-dark">
@@ -162,6 +224,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'description' => 'كل ما يخص الإنذار الأكاديمي في الجامعة السعودية الإلكترونية: أسباب صدوره عند هبوط المعدل دون 2.00، عواقبه، وخطة عملية سريعة لرفعه وتجنب الفصل.',
     'content' => '<h2>ما هو الإنذار الأكاديمي (Academic Probation) في SEU؟</h2>
 <p>يعد <strong>الإنذار الأكاديمي</strong> إشعاراً رسمياً من عمادة القبول وشؤون الطلاب يُسجل في السجل الأكاديمي للطالب عندما يهبط <strong>معدله التراكمي (GPA) عن 2.00 من 4.00</strong> (وهو ما يعادل تقدير "جيد" والحد الأدنى للسلامة الأكاديمية في مرحلة البكالوريوس). لا يعني الإنذار الأكاديمي طرد الطالب من الجامعة، بل هو "جرس إنذار" وفرصة لتصحيح المسار قبل الوقوع في فخ الفصل الأكاديمي النهائي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>مستويات الإنذارات الأكاديمية وعواقب كل مستوى</h3>
 <table class="table table-bordered table-striped my-3">
@@ -218,6 +311,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'content' => '<h2>الفصل الأكاديمي وطي القيد: متى يحدث وما معناه؟</h2>
 <p>يصدر قرار <strong>الفصل الأكاديمي (Academic Dismissal / طي القيد)</strong> في الجامعة السعودية الإلكترونية عندما يستنفد الطالب الفرص النظامية لتحسين وضعه الدراسي؛ وتحديداً إذا حصل على <strong>ثلاثة إنذارات أكاديمية متتالية</strong> وظل معدله التراكمي دون 2.00 من 4.00، أو إذا تجاوز الحد الأقصى للمدة النظامية المسموح بها للتخرج دون إتمام متطلبات الخطة الدراسية.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <p>ورغم قسوة هذا القرار، إلا أن لائحة الدراسة والاختبارات في الجامعة وضعت باباً للأمل يُعرف بـ <strong>الفرصة الاستثنائية الأخيرة (طلب الاستعطاف / إعادة القيد)</strong> الذي يُرفع لمجلس الكلية واللجنة الدائمة للشؤون الطلابية.</p>
 
 <h3>شروط منح الطالب فرصة استثنائية رابعة لإعادة القيد</h3>
@@ -249,6 +373,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'description' => 'لائحة الغياب والحرمان في الجامعة السعودية الإلكترونية: الحد الأقصى للغياب (25%)، نظام تسجيل الحضور الآلي، وطريقة تقديم الأعذار الطبية المقبولة.',
     'content' => '<h2>لائحة الحضور والغياب في نموذج التعليم المدمج</h2>
 <p>تطبق الجامعة السعودية الإلكترونية سياسة حضور وغياب إلكترونية صارمة للغاية؛ نظراً لأن الحضور جزء لا يتجزأ من العملية التعليمية في نموذجها المدمج. يعتقد بعض الطلاب خطأً أن التعليم الإلكتروني يتيح لهم التغيب دون قيد؛ لكن الحقيقة أن تجاوزك للنسبة النظامية للغياب يقودك مباشرة إلى الحرمان برسوب <strong>(DN - Denied)</strong>، مما يعني صفر نقطة في المعدل ورسوباً فورياً في المقرر.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>النسب الرسمية للغياب وخطوات إنذارات الحرمان</h3>
 <table class="table table-bordered table-striped my-3">
@@ -301,6 +456,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'content' => '<h2>الفرق بين الاعتذار عن مقرر، تأجيل الفصل، والانسحاب النهائي</h2>
 <p>يتعرض الطالب الجامعي لظروف وظيفية أو أسرية أو صحية طارئة قد تحول دون قدرته على مواصلة الدراسة في فصل دراسي معين. وفي مثل هذه الحالات، تتيح <strong>الجامعة السعودية الإلكترونية</strong> خيارات نظامية تهدف لحماية معدل الطالب من الانهيار الأكاديمي، شريطة تقديم الطلب في المواعيد المحددة رسمياً في التقويم الأكاديمي.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>مقارنة بين الخيارات الأكاديمية الثلاثة المتاحة</h3>
 <table class="table table-bordered table-striped my-3">
     <thead class="thead-dark">
@@ -349,6 +535,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'description' => 'تفاصيل رسوم الساعات الدراسية في SEU لمرحلة البكالوريوس، رقم مفوتر سداد (054)، خطوات السداد الإلكتروني وتأكيد التسجيل الأكاديمي.',
     'content' => '<h2>كم تبلغ رسوم الدراسة في الجامعة السعودية الإلكترونية لمرحلة البكالوريوس؟</h2>
 <p>تعد <strong>الجامعة السعودية الإلكترونية</strong> جامعة حكومية تقدم تعليماً برسوم رمزية مدعومة مقارنة بالجامعات الخاصة والأهلية؛ حيث يُحاسب الطالب في مرحلة البكالوريوس بنظام <strong>الساعة المعتمدة (Credit Hour)</strong>. تبلغ تكلفة الساعة الدراسية المعتمدة حالياً <strong>265 ريالاً سعودياً</strong> لجميع كليات مرحلة البكالوريوس، بالإضافة إلى ضريبة القيمة المضافة لغير السعوديين وفق الأنظمة السارية.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>حساب التكلفة التقديرية للفصل الدراسي الواحد</h3>
 <table class="table table-bordered table-striped my-3">
@@ -411,6 +628,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'content' => '<h2>مبادرة الإعفاء من الرسوم الدراسية لمستفيدي الضمان الاجتماعي</h2>
 <p>انطلاقاً من دورها المجتمعي وحرصها على إتاحة التعليم العالي لكافة فئات المجتمع، تقدم <strong>الجامعة السعودية الإلكترونية</strong> مبادرة الإعفاء الكامل من الرسوم الدراسية لطلاب مرحلة البكالوريوس المسجلين كمستفيدين رئيسيين أو تابعين في نظام <strong>الضمان الاجتماعي المطور</strong> بوزارة الموارد البشرية والتنمية الاجتماعية.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>شروط وضوابط الحصول على الإعفاء المالي</h3>
 <ul>
     <li>أن يكون الطالب أو الطالبة سعودي الجنسية أو من أم سعودية ومسجلاً رسمياً في نظام الضمان الاجتماعي المطور.</li>
@@ -441,6 +689,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'description' => 'شرح سياسة إعادة المقررات في الجامعة السعودية الإلكترونية: شروط الإعادة، كيفية استبدال درجات F و D، وتأثير النقاط على رفع المعدل التراكمي.',
     'content' => '<h2>سياسة إعادة المقررات الدراسية في الجامعة السعودية الإلكترونية</h2>
 <p>يواجه بعض الطلاب عثرات أكاديمية قد تقودهم للرسوب في مقرر معين بتقدير <strong>(F)</strong> أو النجاح بالحد الأدنى بتقدير <strong>(D أو D+)</strong>. وفي هذه الحالة، تتيح اللائحة الأكاديمية لجامعة SEU للطالب الحق في <strong>إعادة تسجيل ودراسة المقرر</strong> لتحسين مستواه ورفع معدله التراكمي، ولكن وفق قواعد ومعادلات حسابية محددة يجب فهمها جيداً.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>قواعد وضوابط إعادة المقررات الأكاديمية</h3>
 <ul>
@@ -487,6 +766,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'content' => '<h2>التحويل بين فروع الجامعة السعودية الإلكترونية</h2>
 <p>تمتلك الجامعة السعودية الإلكترونية شبكة واسعة من الفروع تغطي كافة مناطق المملكة (الرياض، جدة، الدمام، المدينة المنورة، أبها، القصيم، تبوك، الأحساء، جازان، نجران، حائل). ونظراً لتغير الظروف الوظيفية أو السكنية لكثير من الطلاب، تتيح الجامعة خدمة <strong>التحويل بين الفروع</strong> إلكترونياً قبل بداية كل فصل دراسي رئيسي.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>شروط ومعايير قبول طلب التحويل بين الفروع</h3>
 <ul>
     <li>توفر التخصص الدراسي للطالب والشعبة المعتمدة في الفرع المراد التحويل إليه.</li>
@@ -517,6 +827,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'content' => '<h2>التحويل الداخلي بين كليات وتخصصات SEU</h2>
 <p>قد يبدأ الطالب دراسته في تخصص معين، ثم يكتشف بعد دراسة فصوله الأولى ميولاً وشغفاً بتخصص آخر؛ مثل الرغبة في التحويل من كلية إدارة الأعمال إلى كلية الحوسبة والمعلوماتية (علوم حاسب أو أمن سيبراني)، أو العكس. تتيح الجامعة خدمة <strong>التحويل الداخلي بين التخصصات والكليات</strong> مرة واحدة خلال المسيرة الجامعية للطالب وفق ضوابط تنظيمية واضحة.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>الشروط العامة للتحويل من تخصص إلى تخصص آخر</h3>
 <ul>
     <li>إنهاء السنة الأولى المشتركة واجتياز كافة مقرراتها التأسيسية ومتطلب اللغة الإنجليزية بنجاح.</li>
@@ -542,6 +883,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'description' => 'شروط استحقاق مرتبة الشرف الأولى والثانية عند التخرج من الجامعة السعودية الإلكترونية، وأهميتها التنافسية في التوظيف والترقيات وسوق العمل.',
     'content' => '<h2>أوسمة التفوق الأكاديمي: مراتب الشرف في جامعة SEU</h2>
 <p>تمنح الجامعة السعودية الإلكترونية خريجي مرحلة البكالوريوس المتفوقين أوسمة تقديرية رسمية تُدون في وثيقة التخرج والسجل الأكاديمي تحت مسمى <strong>مرتبة الشرف الأولى (First Class Honors)</strong> و <strong>مرتبة الشرف الثانية (Second Class Honors)</strong>. تمثل مرتبة الشرف بطاقة تزكية رفيعة المستوى تمنح الخريج أولوية مطلقة في المفاضلات الوظيفية بالقطاعين الحكومي والخاص وفي برامج الابتعاث والدراسات العليا.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>شروط ومعايير استحقاق مراتب الشرف عند التخرج</h3>
 <table class="table table-bordered table-striped my-3">
@@ -585,6 +957,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'content' => '<h2>حق التظلم الأكاديمي وإعادة رصد الدرجات في SEU</h2>
 <p>تكفل لوائح الجامعة السعودية الإلكترونية للطالب حقه في التظلم والمطالبة بـ <strong>مراجعة رصد درجات الاختبار النهائي</strong> إذا شعر بوجود خطأ مادي أو جمعي في رصد نتيجته، أو في حال وجود خلل تقني أثناء تسليم الاختبار المحوسب. يتم هذا الإجراء عبر تقديم طلب رسمي تدرسه لجنة تدقيق الدرجات بالكلية لضمان العدالة والشفافية الأكاديمية المطلقة.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>ضوابط وشروط تقديم طلب إعادة مراجعة الدرجة</h3>
 <ul>
     <li>أن يُقدم الطلب خلال المدة النظامية المحددة في التقويم الأكاديمي (عادة خلال أسبوع واحد إلى أسبوعين فقط من إعلان النتائج النهائية).</li>
@@ -613,6 +1016,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'description' => 'كم عدد الساعات المسموح بتسجيلها في الفصل الدراسي بالجامعة السعودية الإلكترونية؟ حدود العبء الدراسي حسب المعدل التراكمي وفصل التخرج.',
     'content' => '<h2>قواعد العبء الدراسي (Course Load) في الجامعة السعودية الإلكترونية</h2>
 <p>يحدد نظام الدراسة في الجامعة السعودية الإلكترونية نطاقاً معيارياً لعدد <strong>الساعات المعتمدة (Credit Hours)</strong> التي يُسمح للطالب بتسجيلها في الفصل الدراسي الواحد. يهدف هذا النظام إلى ضمان التوازن بين قدرة الطالب الأكاديمية ومتطلبات المقررات، وحمايته من الإرهاق الذي قد يؤدي إلى هبوط معدله التراكمي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>جدول حدود الساعات المعتمدة وفق المعدل التراكمي وحالة الطالب</h3>
 <table class="table table-bordered table-striped my-3">
@@ -660,6 +1094,37 @@ $$\\text{المعدل التراكمي (GPA)} = \\frac{\\sum (\\text{نقاط ا
     'description' => 'شروط وإجراءات التقدم لاختبار بديل في SEU عند التغيب عن الاختبار النهائي لظرف قهري أو صحي، مواعيد الاختبارات البديلة وطريقة قبول العذر.',
     'content' => '<h2>الاختبارات البديلة (Make-up Exams) في الجامعة السعودية الإلكترونية</h2>
 <p>التغيب عن الاختبار النهائي يضع الطالب في خطر الرسوب المباشر برصد درجة صفر في الفاينل ورسوب في المقرر. ومع ذلك، تقديراً من الجامعة للظروف الطارئة والقاهرة التي قد تمنع الطالب من الحضور في الموعد المحدد، وضعت اللائحة تنظيماً رسمياً يتيح للطالب التقدم بطلب <strong>اختبار بديل نهائي (Make-up Exam)</strong> معتمد من مجلس الكلية المعنية.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>شروط وضوابط قبول العذر وعقد الاختبار البديل</h3>
 <ul>

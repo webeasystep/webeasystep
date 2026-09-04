@@ -17,6 +17,37 @@ return array (
 
 <h2>كيف تتعامل مع SafeAssign في الواجبات البرمجية؟</h2>
 <p>في مقررات البرمجة (مثل CS140 و IT241)، قد تتشابه أسماء الدوال والمتغيرات الأساسية (مثل <code>public static void main</code>)، وهو ما يرفع النسبة آلياً. لحماية نفسك:</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/ehwYuyINYUs?rel=0" title="01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد مقدمة قواعد البيانات ومفاهيم نظم إدارة قواعد البيانات DBMS لمقررات كلية الحوسبة والمعلوماتية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 <ol>
     <li>قم بتغيير أسماء المتغيرات المعرفة إلى أسماء ذات دلالة فريدة بأسلوبك الخاص.</li>
     <li>أضف تعليقات توضيحية (Comments) بأسلوبك تشرح فيها منطق كل دالة (Function) كتبتها.</li>
@@ -39,7 +70,38 @@ return array (
 </ul>
 
 <h2>نصائح لتهيئة لابتوب الاختبارات</h2>
-<p>تأكد دائماً من تثبيت أحدث حزمة تطوير جافا (JDK 17 أو JDK 21 المعتمدة بالكلية) وضبط مسار المتغيرات البيئية (Path Variable) والتأكد من عمل الكومبايلر دون الحاجة للاتصال بالإنترنت أثناء لجان المعامل.</p>',
+<p>تأكد دائماً من تثبيت أحدث حزمة تطوير جافا (JDK 17 أو JDK 21 المعتمدة بالكلية) وضبط مسار المتغيرات البيئية (Path Variable) والتأكد من عمل الكومبايلر دون الحاجة للاتصال بالإنترنت أثناء لجان المعامل.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">02 | شرح IT244 | مستخدمو ومزايا وتاريخ قواعد البيانات | Module 1: Users &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/7h7PKQBoGSo?rel=0" title="02 | شرح IT244 | مستخدمو ومزايا وتاريخ قواعد البيانات | Module 1: Users &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح معمارية DBMS ومستخدمي قواعد البيانات مع م. أحمد فخر الدين للإلمام بالأسئلة النظرية والتطبيقية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   2 => 
   array (
@@ -47,6 +109,37 @@ return array (
     'slug' => 'managing-seu-studies-via-ipad-and-mobile-best-apps',
     'description' => 'كيف تحول جهازك اللوحي وجوالك إلى مكتبة دراسية متنقلة في الجامعة السعودية الإلكترونية: تطبيقات تدوين السلايدات وإدارة الواجبات.',
     'content' => '<p>تعتمد فلسفة التعليم المدمج في SEU على إمكانية التعلم في أي وقت ومن أي مكان (Anytime, Anywhere). امتلاكك لجهاز آيباد أو تابلت حديث وجوال ذكي يمكن أن يحول أوقات فراغك وأوقات التنقل وساعات الاستراحة في العمل إلى جلسات مذاكرة عالية الإنتاجية.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>أهم التطبيقات لطلاب التعليم المدمج</h2>
 <ol>
@@ -73,6 +166,37 @@ return array (
 <div class="card p-4 bg-light border-primary text-center my-4">
     <h4 class="fw-bold text-primary">كورسات فخر CS مصممة لظروف الطالب الموظف</h4>
     <p>فيديوهات مركزة ومباشرة تشرح لك جوهر المقرر في دقائق معدودة، ومتاحة للمشاهدة 24/7 بسرعة مضاعفة تناسب جدولك المشغول.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 251 (Linear Algebra)</span>
+                <h4 class="video-showcase-title">01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/DmzPIsJaHmk?rel=0" title="01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح الجبر الخطي MATH 251 التأسيسي لتخصصات علوم الحاسب وهندسة البرمجيات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
     <a href="/courses" class="btn btn-primary fw-bold">استكشف المقررات المتاحة للموظفين</a>
 </div>',
   ),
@@ -82,6 +206,37 @@ return array (
     'slug' => 'activate-seu-student-email-github-pack-jetbrains-discounts',
     'description' => 'دليل المزايا والاشتراكات المجانية لبريد طالب SEU: تفعيل GitHub Student Developer Pack المجاني، اشتراكات JetBrains، ومايكروسوفت أوفيس 365.',
     'content' => '<p>بريدك الجامعي الرسمي الذي ينتهي بنطاق <code>@seu.edu.sa</code> ليس مجرد وسيلة لاستقبال إعلانات الكلية، بل هو بطاقتك السحرية للحصول على أدوات برمجية وبرامج احترافية مجانية واشتراكات تزيد قيمتها السوقية عن <strong>10,000 ريال سنوياً!</strong></p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>أهم الباقات المجانية لطلاب كلية الحوسبة</h2>
 <ol>
@@ -97,6 +252,37 @@ return array (
     'slug' => 'writing-professional-computing-reports-latex-word-ieee-seu',
     'description' => 'دليل كتابة وتنسيق التقارير الهندسية لمشاريع حوسبة SEU: التوثيق بنظام IEEE، تنسيق الجداول والأكواد، واستخدام LaTeX للحصول على امتياز.',
     'content' => '<p>في المستويات المتقدمة ومشاريع التخرج بكلية الحوسبة والمعلوماتية، يشكل شكل وتنسيق التقرير العلمي للبحث والمشروع ما لا يقل عن 30% من الدرجة النهائية. تقديم تقرير مشوه التنسيق، بجداول مائلة وأكواد غير منسقة ومراجع عشوائية، يترك انطباعاً سيئاً جداً لدى المحكمين مهما كان كودك ممتازاً.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 150 (Discrete Mathematics)</span>
+                <h4 class="video-showcase-title">02 | MATH 150: Discrete Mathematics | 1.2 &amp; 1.3 Logic Circuits, Equivalences &amp; Laws - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/Oi1fWTeCD74?rel=0" title="02 | MATH 150: Discrete Mathematics | 1.2 &amp; 1.3 Logic Circuits, Equivalences &amp; Laws - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح الدوائر المنطقية والمنطق الرياضي أساس التفكير الخوارزمي في كلية الحوسبة والمعلوماتية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>قواعد كتابة التقرير التقني الاحترافي</h2>
 <ul>
@@ -114,6 +300,37 @@ return array (
 
 <h2>تطبيق تقنية Pomodoro المعدلة للمبرمجين</h2>
 <p>تقنية بومودورو التقليدية تعتمد على 25 دقيقة عمل تليها 5 دقائق راحة. ولكن في المواد البرمجية والرياضية المعقدة، 25 دقيقة قد تكون قصيرة جداً للوصول إلى "حالة التدفق" (Flow State). التعديل الذهبي لطلاب الحوسبة هو:</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 <ul>
     <li><strong>50 دقيقة تركيز تام:</strong> هاتف مقفل، متصفح مغلق عدا صفحة الكود، وتفرغ كامل لحل المسألة أو كتابة الفئة البرمجية.</li>
     <li><strong>10 دقائق راحة حركية:</strong> الابتعاد تماماً عن الشاشات، شرب الماء، والمشي الخفيف لتجديد الدورة الدموية للدماغ.</li>
@@ -126,6 +343,37 @@ return array (
     'slug' => 'troubleshooting-blackboard-collaborate-audio-video-issues-seu',
     'description' => 'دليل حل المشاكل التقنية في فصول البلاك بورد الافتراضية لطلاب SEU: انقطاع الصوت، تعطل الميكروفون، وبطء البث وطريقة معالجتها.',
     'content' => '<p>تعتبر الفصول الافتراضية عبر <strong>Blackboard Collaborate Ultra</strong> ركيزة التعليم المباشر في الجامعة السعودية الإلكترونية. مواجهة مشاكل تقنية كعدم سماع صوت الدكتور، أو تعطل المايكروفون عند طلب المشاركة، أو التقطيع المستمر في الصورة يسبب توتراً كبيراً وقد يؤدي لاحتسابك غائباً.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>خطوات الصيانة السريعة أثناء المحاضرة</h2>
 <ol>
@@ -142,6 +390,37 @@ return array (
     'description' => 'قاعدة النسخ الاحتياطي الثلاثية لطلاب الحوسبة: كيف تحمي مشاريع التخرج وأكواد اللاب من التلف أو ضياع الجهاز قبل موعد الديدلاين.',
     'content' => '<p>لا توجد مأساة أكاديمية تفوق احتراق القرص الصلب للابتوب أو إصابته بفيروس الفدية ليلة تسليم مشروع التخرج أو واجب مادة برمجية تزن 15 درجة! الاعتماد على حفظ الملفات على سطح المكتب فقط إهمال تقني لا يليق بطالب في كلية الحوسبة والمعلوماتية.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h2>قاعدة النسخ الاحتياطي الذهبية (3-2-1 Rule)</h2>
 <ul>
     <li><strong>3 نسخ من البيانات:</strong> النسخة الأصلية للعمل، ونسخة احتياطية محلية، ونسخة احتياطية سحابية.</li>
@@ -155,6 +434,37 @@ return array (
     'slug' => 'professional-email-etiquette-with-professors-and-deanship-seu',
     'description' => 'فن المراسلة الأكاديمية الرسمية في SEU: كيف تكتب إيميل رسمي مؤثر للدكتور والعمادة يضمن رداً سريعاً وحلولاً لمشاكلك الأكاديمية.',
     'content' => '<p>البريد الإلكتروني الجامعي في SEU هو القناة القانونية والرسمية الوحيدة للتواصل الأكاديمي. إرسال رسائل غير منسقة، أو بدون عنوان، أو بصيغة غير لائقة عبر البريد الشخصي غالباً ما يؤدي لتجاهل الرسالة أو تصنيفها كرسائل غير مرغوب فيها (Spam)، مما يعطل مصالحك الأكاديمية لأسابيع.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>عناصر البريد الأكاديمي المكتمل</h2>
 <ol>

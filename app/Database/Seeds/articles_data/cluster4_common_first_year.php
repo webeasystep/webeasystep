@@ -10,6 +10,37 @@ return array (
 
 <h2>معايير المفاضلة على مقاعد كلية الحوسبة</h2>
 <p>لا يتم التخصيص عشوائياً، بل عبر مفاضلة إلكترونية صارمة تعتمد على العناصر التالية:</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 251 (Linear Algebra)</span>
+                <h4 class="video-showcase-title">01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/DmzPIsJaHmk?rel=0" title="01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح الجبر الخطي MATH 251 التأسيسي لتخصصات علوم الحاسب وهندسة البرمجيات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 <ol>
     <li><strong>المعدل التراكمي (GPA) للسنة الأولى:</strong> يشكل العامل الحاسم الأساسي في ترتيب الطلاب؛ كلما ارتفع معدلك فوق 3.50 من 4.00، كلما كانت فرصتك شبه مضمونة في الحصول على رغبتك الأولى.</li>
     <li><strong>درجة مقرر الرياضيات (MATH 001):</strong> نظراً للطبيعة الرياضية لتخصصات الحوسبة، تعطي لجنة التخصيص وزناً تفضيلياً للطالب الحاصل على A أو A+ في الرياضيات التحضيرية عند تساوي المعدلات.</li>
@@ -38,7 +69,38 @@ return array (
 </ul>
 
 <h2>متى يجب تقديم الدرجة في البوابة؟</h2>
-<p>ترتبط درجات قياس إلكترونياً بنظام الجامعة عبر السجل المدني، ولكن يلزم التأكد من ظهور الدرجة في شاشة "Test Scores" بالبانر قبل بداية فترة التخصيص بنهاية الفصل الدراسي الثاني أو الصيفي كحد أقصى.</p>',
+<p>ترتبط درجات قياس إلكترونياً بنظام الجامعة عبر السجل المدني، ولكن يلزم التأكد من ظهور الدرجة في شاشة "Test Scores" بالبانر قبل بداية فترة التخصيص بنهاية الفصل الدراسي الثاني أو الصيفي كحد أقصى.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   2 => 
   array (
@@ -81,7 +143,38 @@ return array (
 </table>
 
 <h2>أيهما أسهل للطالب السعودي؟</h2>
-<p>يعتبر اختبار <strong>STEP</strong> هو الخيار الأسهل والأقل تكلفة مادياً (تكلفته 150 إلى 200 ريال مقارنة بأكثر من 1,100 ريال للآيلتس)؛ كما أنه اختبار خيارات متعددة (MCQ) بدون أقسام تحدث وكتابة مقالية معقدة، وتتوفر له مئات التجميعات ونماذج التدريب المجانية.</p>',
+<p>يعتبر اختبار <strong>STEP</strong> هو الخيار الأسهل والأقل تكلفة مادياً (تكلفته 150 إلى 200 ريال مقارنة بأكثر من 1,100 ريال للآيلتس)؛ كما أنه اختبار خيارات متعددة (MCQ) بدون أقسام تحدث وكتابة مقالية معقدة، وتتوفر له مئات التجميعات ونماذج التدريب المجانية.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   3 => 
   array (
@@ -89,6 +182,37 @@ return array (
     'slug' => 'ef-english-platform-weekly-hours-balance-math-cs-seu',
     'description' => 'طريقة تنظيم الساعات المطلوبة في منصة إنجليزي إي إف (EF) في SEU، واستراتيجية إنهاء المستويات والأنشطة الأسبوعية دون استنزاف وقتك.',
     'content' => '<p>تشكل منصة <strong>EF English Live</strong> عبئاً زمنياً كبيراً على طلاب السنة الأولى المشتركة في SEU؛ حيث تشترط الجامعة قضاء عدد ساعات محدد أسبوعياً وإكمال الوحدات التدريبية واختبارات التقدم للحصول على درجات أعمال السنة وتفادي الحرمان.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>معادلة إدارة وقت منصة EF بذكاء</h2>
 <ol>
@@ -114,7 +238,38 @@ return array (
 </ul>
 
 <h2>أهمية حصد الدرجة الكاملة في COMM و CI</h2>
-<p>بينما يشتد التنافس والصعوبة في الماث والحاسب، تعتبر مادتا مهارات الاتصال والمهارات الأكاديمية "منجم درجات" سهلاً ومضموناً. التفريط في أي درجة في هذين المقررين يقلل من فرصتك في الوصول لمعدل 3.90+ في المفاضلة النهائية.</p>',
+<p>بينما يشتد التنافس والصعوبة في الماث والحاسب، تعتبر مادتا مهارات الاتصال والمهارات الأكاديمية "منجم درجات" سهلاً ومضموناً. التفريط في أي درجة في هذين المقررين يقلل من فرصتك في الوصول لمعدل 3.90+ في المفاضلة النهائية.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   5 => 
   array (
@@ -122,6 +277,37 @@ return array (
     'slug' => 'academic-shock-new-prep-year-students-seu-adaptation',
     'description' => 'كيف تتكيف مع نمط التعليم المدمج في SEU وتتجاوز صدمة التحول من التلقين المدرسي إلى التعلم الرقمي الذاتي واللغة الإنجليزية.',
     'content' => '<p>ينتقل الطالب المستجد من بيئة المدرسة التقليدية القائمة على التلقين المباشر وكتب الوزارة المحددة باللغة العربية، ليفاجأ في أول أسبوع له بالجامعة السعودية الإلكترونية ببيئة تقنية بالكامل: سلايدات ضخمة باللغة الإنجليزية، محاضرات افتراضية عبر البلاك بورد، تكليفات برمجية، واستقلالية تامة في البحث والمذاكرة. هذه النقلة تسمى في علم الاجتماع التربوي بـ <strong>"الصدمة الأكاديمية" (Academic Culture Shock)</strong>.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> نموذج لشروحات السنة الأولى المشتركة المعتمدة: شاهد كيف يتم تبسيط أصعب مفاهيم الرياضيات خطوة بخطوة مع المهندس أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>مفاتيح التأقلم السريع مع نظام SEU</h2>
 <ol>
@@ -148,6 +334,37 @@ return array (
 <div class="card p-4 bg-light border-primary text-center my-4">
     <h4 class="fw-bold text-primary">اختصر نصف وقت مذاكرة الماث والحاسب</h4>
     <p>مع شروحات م. أحمد فخر الدين المركزة لمادتي MATH 001 و CS 001، ستفهم أصعب القوانين والمفاهيم في دقائق معدودة، مما يوفر وقتك لمنصة الإنجليزي وباقي التزاماتك.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
     <a href="/courses/course_details/seu-math-001-fundamentals-of-mathematics" class="btn btn-primary fw-bold">اشترك في كورس MATH 001 (99 ريال فقط)</a>
 </div>',
   ),
@@ -157,6 +374,37 @@ return array (
     'slug' => 'what-happens-if-failed-english-step-prep-year-seu',
     'description' => 'الفرص الاستثنائية والخيارات النظامية المتاحة لطلاب SEU عند عدم تحقيق درجة STEP المطلوبة بنهاية السنة الأولى المشتركة.',
     'content' => '<p>عدم تحقيق الدرجة المطلوبة في اختبار كفايات اللغة الإنجليزية (STEP) بنهاية الفصل الدراسي الثاني للسنة الأولى المشتركة ليس نهاية المطاف، فالجامعة توفر قنوات نظامية وفرصاً إضافية لمنح الطلاب فرصة استدراك أوضاعهم قبل إصدار قرارات طي القيد.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>الخيارات والفرص المتاحة للطالب المتعثر في اللغة</h2>
 <ol>
@@ -171,6 +419,37 @@ return array (
     'slug' => 'cs001-computer-equivalency-cambridge-mos-certificates-seu',
     'description' => 'شروط وإجراءات معادلة مقرر CS 001 (Computer Essentials - أساسيات الحاسب) بالشهادات الاحترافية المعتمدة (MOS, Cambridge) في بوابة الجامعة السعودية الإلكترونية.',
     'content' => '<p>إذا كنت حاصلاً على شهادات مهنية دولية معتمدة في تقنية المعلومات وتطبيقات الحاسب قبل دخولك للجامعة السعودية الإلكترونية، يمكنك الاستفادة من لائحة المعادلات الأكاديمية للحصول على إعفاء رسمي من دراسة مقرر <strong>أساسيات الحاسب (CS 001)</strong> وحصد درجاته دون الحاجة لحضور المحاضرات.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/o3OJc23xHqg?rel=0" title="04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة نظم التشغيل ومعمارية البرمجيات في مقرر CS 001 لفهم الهيكلية البرمجية بوضوح تام.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>الشهادات الاحترافية المعتمدة لمعادلة CS 001</h2>
 <ul>
@@ -201,7 +480,38 @@ return array (
 </ul>
 
 <h2>نصيحة تكتيكية للراغبين بالتحويل</h2>
-<p>سجل في فصلك الأول مواد عامة ومشتركة تحتسب في كلية الحوسبة (مثل مقررات الثقافة والإحصاء واللغة)، وركز كل طاقتك للحصول على معدل 4.00 ليتم قبول طلب تحويلك فوراً في أول دورة تحويل بين الفصول.</p>',
+<p>سجل في فصلك الأول مواد عامة ومشتركة تحتسب في كلية الحوسبة (مثل مقررات الثقافة والإحصاء واللغة)، وركز كل طاقتك للحصول على معدل 4.00 ليتم قبول طلب تحويلك فوراً في أول دورة تحويل بين الفصول.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 251 (Linear Algebra)</span>
+                <h4 class="video-showcase-title">01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/DmzPIsJaHmk?rel=0" title="01 | MATH 251: Linear Algebra | 1.1 Introduction to Systems of Linear Equations - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح الجبر الخطي MATH 251 التأسيسي لتخصصات علوم الحاسب وهندسة البرمجيات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+',
   ),
   10 => 
   array (
@@ -212,6 +522,37 @@ return array (
 
 <h2>1. تطبيق Notion (أداة إدارة الحياة الجامعية الشاملة)</h2>
 <p>يتيح لك بناء لوحة تحكم كاملة للمقررات، وتتبع مواعيد تسليم الواجبات، وتدوين الملاحظات البرمجية والرياضية. يمكنك تفعيل الخطة التعليمية المجانية (Pro) ببريدك الجامعي الرسمي.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/o3OJc23xHqg?rel=0" title="04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة نظم التشغيل ومعمارية البرمجيات في مقرر CS 001 لفهم الهيكلية البرمجية بوضوح تام.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>2. تطبيق GoodNotes أو Notability (لحفظ وتدوين السلايدات على الآيباد)</h2>
 <p>إذا كنت تستخدم جهاز آيباد، فهذه التطبيقات مثالية لتحميل سلايدات الـ PDF من البلاك بورد وحل التمارين وتظليل النقاط الهامة أثناء المحاضرات المباشرة.</p>
@@ -239,6 +580,37 @@ return array (
 <div class="card p-4 bg-light border-primary text-center my-4">
     <h4 class="fw-bold text-primary">وفّر وقتك واضمن فل مارك COMM 001</h4>
     <p>شروحات مهارات الاتصال مع فخر CS تلخص لك الكتاب في نقاط مباشرة وأمثلة اختبارات عملية تضمن لك A+ بسهولة.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على القواعد الاحترافية للتواصل الأكاديمي وإتقان التعامل مع الفصول الافتراضية والبريد الجامعي في SEU.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
     <a href="/courses/course_details/seu-comm-001-communication-skills" class="btn btn-primary fw-bold">اشترك في كورس COMM 001 (99 ريال فقط)</a>
 </div>',
   ),
@@ -248,6 +620,37 @@ return array (
     'slug' => 'ci001-academic-skills-critical-thinking-research-seu',
     'description' => 'دليل التميز في مقرر CI 001 (Academic Skills - المهارات الأكاديمية والتفكير النقدي): كيفية كتابة البحث المصغر وتوثيق المراجع وتجنب الانتحال في سيف أساين.',
     'content' => '<p>يهدف مقرر <strong>المهارات الأكاديمية (CI 001)</strong> إلى تحويل الطالب من قارئ سلبي إلى باحث أكاديمي ناقد قادر على فحص مصداقية المعلومات، والبحث في قواعد البيانات العلمية، وصياغة الأوراق البحثية بالتوثيق العلمي المعتمد.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>أهم مهارات اجتياز CI 001 بامتياز</h2>
 <ol>
@@ -263,6 +666,37 @@ return array (
     'description' => 'دليل تشجيعي وعملي لخريجي الثانوية الأدبية لاجتياز مواد ماث 001 وحاسب 001 في الجامعة السعودية الإلكترونية والتفوق بجدارة.',
     'content' => '<p>يشعر الكثير من طلاب السنة الأولى المشتركة في SEU القادمين من المسارات الأدبية أو الشرعية أو الإنسانية بالخوف الشديد من مواجهة مقرري <strong>أساسيات الرياضيات (MATH 001)</strong> و<strong>أساسيات الحاسب (CS 001)</strong>، متوهمين أن هذه المقررات حكر على خريجي المسارات العلمية. الحقيقة الأكاديمية تثبت أن مئات الطلاب الأدبيين يتفوقون سنوياً ويحصدون تقديرات A+ عند اتباع المنهجية الصحيحة.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التأسيسي العملي لخواص الأعداد الحقيقية في مقرر MATH 001 للتغلب على صعوبات الرياضيات والتفوق بدرجة A+.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h2>كيف تتغلب على فوبيا الرياضيات من الصفر؟</h2>
 <ul>
     <li><strong>ابدأ من العمليات الحسابية والكسور والأسس البسيطة:</strong> منهج MATH 001 يبدأ من الصفر تماماً (مراجعة الأعداد والعمليات والكسور الجبرية)، ولا يفترض أنك عبقري تفاضل وتكامل مسبقاً.</li>
@@ -276,6 +710,37 @@ return array (
     'slug' => 'academic-calendar-timeline-common-year-milestones-seu',
     'description' => 'دليل المواعيد والمحطات المفصلية في مسيرة طالب تحضيري SEU: أسبوع الحذف، اختبارات الميد، إغلاق منصة الإنجليزي، وفتح التخصيص.',
     'content' => '<p>النجاح في السنة الأولى المشتركة بالجامعة السعودية الإلكترونية يرتبط ارتباطاً وثيقاً بوعيك بالتقويم الأكاديمي الرسمي. فوات موعد واحد قد يحرمك من فرصة الاعتذار، أو يؤخر تسجيلك، أو يفوت عليك فرصة التخصيص في كليتك المفضلة.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h2>المحطات المفصلية الأربع في السنة التحضيرية</h2>
 <ol>

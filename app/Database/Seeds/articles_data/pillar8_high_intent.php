@@ -9,6 +9,37 @@ return array (
     'content' => '<h2>لماذا يعتبر مقرر MATH 001 التحدي الأكبر لطلاب السنة الأولى المشتركة في SEU؟</h2>
 <p>يواجه معظم طلاب <strong>السنة الأولى المشتركة</strong> في <strong>الجامعة السعودية الإلكترونية</strong> تحدياً كبيراً مع مقرر <strong>MATH 001 (مقدمة في الرياضيات / ريض 001)</strong>. فالمنهج يُدرّس باللغة الإنجليزية، والوقت المتاح في المحاضرات الافتراضية والحضورية لا يكفي لحل عشرات الأفكار والمسائل المعقدة التي تفاجئ الطلاب في اختبارات الميدتيرم والفاينل تحت رقابة متصفح Respondus LockDown.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التأسيسي العملي لخواص الأعداد الحقيقية في مقرر MATH 001 للتغلب على صعوبات الرياضيات والتفوق بدرجة A+.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <p>يلجأ الكثير من الطلاب للبحث عن <em>"مدرس خصوصي ماث 001 الجامعة السعودية الإلكترونية"</em>، ولكنهم يصطدمون بأسعار باهظة (تتراوح بين 1500 إلى 2500 ريال للترم) وشروحات تقليدية لا تركز على طبيعة بنوك أسئلة الجامعة المعتمدة. من هنا ابتكرت منصة <strong>فخر CS</strong> بإشراف المهندس أحمد فخر الدين كورس <strong>MATH 001</strong> التفاعلي الشامل ليكون البديل الأقوى والأوفر والأكثر فاعلية.</p>
 
 <h3>مقارنة شاملة: الدروس الخصوصية التقليدية مقابل كورس MATH 001 في فخر CS</h3>
@@ -76,6 +107,37 @@ return array (
     'content' => '<h2>أهمية مقرر CS 001 لطلاب السنة الأولى المشتركة في SEU</h2>
 <p>مقرر <strong>Computer Essentials (CS 001 / عال 001)</strong> هو المادة التقنية الأساسية لجميع طلاب السنة الأولى المشتركة في الجامعة السعودية الإلكترونية. لا يقتصر المقرر على المفاهيم النظرية، بل يتضمن واجبات أسبوعية ومشاريع فصلية على تطبيقات مايكروسوفت أوفيس والتفكير الخوارزمي، والتي تمثل جزءاً جوهرياً من درجات أعمال السنة (50 درجة).</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/o3OJc23xHqg?rel=0" title="04 | شرح CS001 | نظم التشغيل ومعمارية البرمجيات | Module 1: OS &amp; Software - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد محاضرة نظم التشغيل ومعمارية البرمجيات في مقرر CS 001 لفهم الهيكلية البرمجية بوضوح تام.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <p>كثير من الطلاب يفقدون درجات ثمينة بسبب أخطاء بسيطة في تسليم المشاريع أو تشابه الملفات عبر نظام SafeAssign، أو بسبب الأسئلة متعددة الخيارات الخادعة في اختبارات البلاك بورد. يقدم <strong>كورس CS 001 في فخر CS</strong> تغطية هندسية متكاملة تجمع بين الفهم العميق والتطبيق العملي لضمان الدرجة الكاملة.</p>
 
 <h3>محاور كورس أساسيات الحاسب CS 001 في فخر CS</h3>
@@ -103,6 +165,37 @@ return array (
     'content' => '<h2>عقدة البرمجة الكائنية (OOP - Java) في كلية الحاسب SEU وكيف تحلها</h2>
 <p>يُعد مقرر <strong>Object-Oriented Programming (CS140 / البرمجة الكائنية)</strong> بلغة <strong>Java</strong> المقرر المحوري الأهم في كلية الحوسبة والمعلوماتية بالجامعة السعودية الإلكترونية. انتقال الطالب من البرمجة الإجرائية البسيطة إلى مفاهيم الكائنات والكلاسات يسبب صدمة للكثيرين، خاصة مع طبيعة الاختبارات التي تركز على تتبع الأكواد المعقدة (Code Tracing) واكتشاف الأخطاء البرمجية (Debugging).</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/ehwYuyINYUs?rel=0" title="01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على الجانب التطبيقي لمقررات كلية الحوسبة والمعلوماتية من خلال محاضرة قواعد البيانات وأنظمة DBMS التأسيسية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <p>في <strong>منصة فخر CS</strong>، يقدم المهندس أحمد فخر الدين شرحاً تطبيقياً مباشراً داخل بيئة التطوير (IDE)، حيث يكتب الكود أمامك سطراً بسطر ويوضح حركة المتغيرات في الذاكرة (Stack & Heap) بأسلوب هندسي لا يترك مجالاً للغموض.</p>
 
 <h3>الأعمدة الأربعة للبرمجة الكائنية في كورس فخر CS</h3>
@@ -128,6 +221,37 @@ return array (
     'description' => 'كورس CS220 (Data Structures - هياكل البيانات) لطلاب كلية الحوسبة SEU مع م. أحمد فخر الدين: شرح الـ Linked Lists والأشجار ومسائل الكود بـ 145 ريال.',
     'content' => '<h2>لماذا يعتبر مقرر هياكل البيانات (Data Structures) حجر الزاوية لكل مهندس برمجيات؟</h2>
 <p>مقرر <strong>Data Structures (CS220 / CS240)</strong> في الجامعة السعودية الإلكترونية هو المادة التي تفصل بين المبرمج الهاوي ومهندس البرمجيات المحترف؛ ففهم كيفية تخزين البيانات واسترجاعها بأعلى كفاءة في الذاكرة هو الأساس الذي تُبنى عليه كافة الأنظمة الكبرى وأسئلة المقابلات الوظيفية في كبرى الشركات التقنية السعودية (أرامكو، علم، STC، وغيرها).</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <p>تكمن صعوبة المادة في التعامل مع المؤشرات وعناوين الذاكرة وعمليات الحذف والإضافة في القوائم والأشجار؛ لذا صممنا كورس هياكل البيانات في فخر CS معتمداً على <strong>الرسوم التوضيحية المتحركة والتتبع البرمجي الدقيق</strong> لكل خوارزمية.</p>
 
@@ -155,6 +279,37 @@ return array (
     'description' => 'كورس IT241 (Introduction to Database) في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين: تصميم ERD، الـ Normalization، واستعلامات SQL بـ 135 ريال.',
     'content' => '<h2>مقرر نظم قواعد البيانات (IT241): القلب النابض لأي تطبيق عصري</h2>
 <p>يعد مقرر <strong>Introduction to Database Systems (IT241)</strong> من أكثر المقررات متعة وأهمية لطلاب كلية الحوسبة والمعلوماتية في الجامعة السعودية الإلكترونية. فهو يجمع بين الجانب التحليلي النظري لتصميم العلاقات بين الجداول، والتطبيق العملي المباشر لكتابة استعلامات لغة <strong>SQL</strong> على خوادم قواعد البيانات.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/ehwYuyINYUs?rel=0" title="01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد مقدمة قواعد البيانات ومفاهيم نظم إدارة قواعد البيانات DBMS لمقررات كلية الحوسبة والمعلوماتية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <p>يتعثر كثير من الطلاب في رسم مخططات الكيانات والعلاقات (ERD) بطريقة صحيحة، أو في فهم قواعد التطبيع (Normalization) وتفادي تكرار البيانات. في هذا الكورس، نبسط لك كل قاعدة بأمثلة من واقع الأنظمة التجارية الحقيقية.</p>
 
@@ -189,6 +344,37 @@ return array (
     'content' => '<h2>عقدة حسابات الـ Subnetting في مقرر شبكات الحاسب وكيف تتغلب عليها</h2>
 <p>مقرر <strong>Computer Networks (IT210)</strong> هو أحد أعمدة كلية الحوسبة والمعلوماتية في الجامعة السعودية الإلكترونية. ورغم متعة فهم كيفية اتصال الأجهزة عبر الإنترنت، إلا أن الطلاب يصطدمون عادة بالمسائل الحسابية المعقدة لتقسيم عناوين الشبكات (<strong>IP Subnetting & VLSM</strong>) والتي تشكل نسبة كبيرة من درجات اختبارات الميد والفاينل.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <p>في كورس شبكات الحاسب على <strong>منصة فخر CS</strong>، يبتكر المهندس أحمد فخر الدين طريقة حسابية ذهنية سريعة تمكنك من استخراج عنوان الشبكة (Network ID)، عنوان البث (Broadcast IP)، وأول وآخر جهاز متاح (Host Range) في أقل من 60 ثانية بدون الحاجة لآلة حاسبة.</p>
 
 <h3>المحاور الرئيسية لكورس شبكات الحاسب</h3>
@@ -216,6 +402,37 @@ return array (
     'content' => '<h2>لماذا تعتبر مواد المهارات العامة فرصتك الذهبية لرفع المعدل التراكمي إلى 4.00؟</h2>
 <p>يستهين بعض طلاب السنة الأولى المشتركة بمقرري <strong>مهارات الاتصال (COMM 001 / اتص 001)</strong> و<strong>المهارات الأكاديمية (CI 001 / مهك 001)</strong> معتقدين أنها مواد نظرية سهلة الحفظ، ليفاجأوا في الاختبارات بأسئلة مواقف وسيناريوهات دقيقة تفقدهم درجات مؤثرة تهبط بالمعدل التراكمي في مرحلة حرجة تسبق تخصيص الكليات.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على القواعد الاحترافية للتواصل الأكاديمي وإتقان التعامل مع الفصول الافتراضية والبريد الجامعي في SEU.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <p>في الحقيقة، هذه المواد هي "بوابتك السحرية" لضمان <strong>A+ كاملة</strong> ترفع بها نقاطك التراكمية في المفاضلة الأكاديمية؛ بشرط فهم فلسفة الأسئلة وطريقة التقييم في الجامعة السعودية الإلكترونية.</p>
 
 <h3>ماذا يقدم لك كورس مهارات الاتصال في فخر CS؟</h3>
@@ -241,6 +458,37 @@ return array (
     'description' => 'مقارنة شاملة بين مصادر دراسة مناهج SEU: اليوتيوب العشوائي، المذكرات غير المحدثة، ومنظومة فخر CS الأكاديمية المتخصصة في كورسات وباقات الجامعة.',
     'content' => '<h2>حيرة الاختيار بين مصادر شروحات الجامعة السعودية الإلكترونية</h2>
 <p>مع بداية كل فصل، يجد طالب SEU نفسه غارقاً في عشرات قنوات التيليجرام والروابط المجانية ومجموعات الواتساب، ويقع في حيرة حقيقية: <em>هل أعتمد على ملخصات الطلاب السابقة؟ هل أبحث عن فيديوهات يوتيوب عامة؟ أم أشترك في منصة متخصصة؟</em></p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | COMM 001 (Communication Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/nEJOqVfDClE?rel=0" title="01 | شرح COMM001 | وسائل التواصل الإلكتروني ونظام البلاك بورد | Unit 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> دليلك المرئي لاحتراف بيئة البلاك بورد والتواصل الأكاديمي الفعال في الجامعة السعودية الإلكترونية مع م. أحمد فخر الدين.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <p>الحقيقة التي يكتشفها معظم الطلاب متأخراً هي أن <strong>الوقت هو أثمن ما يملكه طالب SEU</strong>؛ فالمحاضرات تمضي سريعاً والتكاليف تتراكم، والاعتماد على شرح قديم أو مذكرة غير مدققة يكلفك إعادة الترم وضياع رسوم المادة. في <strong>منصة فخر CS</strong>، نحن نكرس خبرتنا الطويلة لنكون الشريك الأكاديمي الموثوق لطالب SEU.</p>
 
@@ -300,6 +548,37 @@ return array (
     'content' => '<h2>خطة الإنقاذ الأكاديمي السريعة لليالي اختبارات SEU الحاسمة</h2>
 <p>إذا داهمك الوقت واقتربت اختبارات الميدتيرم أو الفاينل وأنت تشعر بعدم الجاهزية أو تراكمت عليك سلايدات المقررات، فلا داعي للقلق أو الاستسلام لدرجات متدنية؛ فـ <strong>كورسات المراجعة المكثفة (Crash Courses) في منصة فخر CS</strong> صُممت خصيصاً كخطة إنقاذ سريعة وفعالة تعتمد على <em>مبدأ باريتو (قاعدة 80/20)</em> لتركز على 80% من أسئلة الامتحانات المتكررة في 20% فقط من وقت المذاكرة.</p>
 
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التطبيقي من مقرر CI 001 لإتقان استراتيجيات إدارة الذاكرة والاسترجاع السريع للمعلومات أثناء الاختبارات.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
+
 <h3>ماذا تتضمن مراجعات ليلة الاختبار في فخر CS؟</h3>
 <ul>
     <li><strong>كبسولات الشرح السريع:</strong> مقاطع فيديو مكثفة تلخص كل وحدة دراسية في 20 إلى 30 دقيقة فقط، مركزة على القوانين والمفاهيم التي لا يخلو منها أي امتحان.</li>
@@ -323,6 +602,37 @@ return array (
     'description' => 'دورة شرح لغة البرمجة C++ لطلاب كلية الحوسبة والمعلوماتية في SEU: بناء المنطق البرمجي، التحكم في الذاكرة والمؤشرات Pointers، وحل المسائل البرمجية.',
     'content' => '<h2>لماذا تمثل لغة C++ الأساس المتين لكل مهندس حاسب وطالب تقني؟</h2>
 <p>تعتبر لغة <strong>C++</strong> من أقوى لغات البرمجة وأكثرها انتشاراً في تدريس علوم الحاسب؛ فهي لغة تجمع بين قوة الأداء والتحكم المباشر في موارد النظام والذاكرة. إتقانك للغة C++ يمنحك أساساً برمجياً ومنطقياً راسخاً يجعل تعلم أي لغة برمجة لاحقة (مثل Java، Python، أو C#) مسألة أيام معدودة وبديهية للغاية.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <p>يقدم كورس <strong>C++ في منصة فخر CS</strong> رحلة برمجية شيقة تبدأ معك من الصفر التام دون أي افتراض لمعرفة مسبقة، لتنتقل خطوة بخطوة نحو حل المسائل البرمجية المعقدة وفهم إدارة الذاكرة بامتياز.</p>
 

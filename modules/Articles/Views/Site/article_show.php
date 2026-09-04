@@ -267,6 +267,156 @@ $dateFormatted = date('d M Y', strtotime($article->created_at));
     body.dark-mode .related-title {
         color: #f8fafc !important;
     }
+
+    /* ============================================
+       ARTICLE VIDEO SHOWCASE COMPONENT
+       ============================================ */
+    .article-video-showcase {
+        background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        padding: 24px;
+        margin: 35px 0;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+        position: relative;
+        overflow: hidden;
+    }
+    .article-video-showcase::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #e50914, #ff5722, #136ad5);
+    }
+    .video-showcase-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 18px;
+    }
+    .video-showcase-title-box {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+    .video-icon-badge {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #e50914, #b20710);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 18px;
+        box-shadow: 0 4px 14px rgba(229, 9, 20, 0.35);
+        flex-shrink: 0;
+    }
+    .video-showcase-sub {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #e50914;
+        display: block;
+        margin-bottom: 2px;
+    }
+    .video-showcase-title {
+        font-size: 1.12rem !important;
+        font-weight: 700 !important;
+        color: #1a202c !important;
+        margin: 0 !important;
+        line-height: 1.4 !important;
+    }
+    .btn-yt-subscribe {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #ff0000;
+        color: #ffffff !important;
+        padding: 8px 18px;
+        border-radius: 25px;
+        font-size: 0.88rem;
+        font-weight: 700;
+        text-decoration: none !important;
+        transition: all 0.25s ease;
+        box-shadow: 0 4px 12px rgba(255, 0, 0, 0.25);
+    }
+    .btn-yt-subscribe:hover {
+        background-color: #cc0000;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(255, 0, 0, 0.35);
+        color: #ffffff !important;
+    }
+    .video-wrapper-16by9 {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+        border-radius: 14px;
+        background: #000;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    .video-wrapper-16by9 iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    .video-showcase-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid #e2e8f0;
+    }
+    .video-showcase-tip {
+        font-size: 0.92rem;
+        color: #4a5568;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .video-showcase-link {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #136ad5;
+        text-decoration: none !important;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.2s ease;
+    }
+    .video-showcase-link:hover {
+        color: #0b5cbf;
+    }
+
+    body.dark-mode .article-video-showcase {
+        background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%) !important;
+        border-color: #334155 !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+    }
+    body.dark-mode .video-showcase-title {
+        color: #f8fafc !important;
+    }
+    body.dark-mode .video-showcase-footer {
+        border-top-color: #334155 !important;
+    }
+    body.dark-mode .video-showcase-tip {
+        color: #94a3b8 !important;
+    }
+    body.dark-mode .video-showcase-link {
+        color: #38bdf8 !important;
+    }
+    body.dark-mode .video-showcase-link:hover {
+        color: #7dd3fc !important;
+    }
 </style>
 
 <div class="article-single-section">

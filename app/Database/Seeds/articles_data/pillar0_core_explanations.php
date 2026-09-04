@@ -1,12 +1,44 @@
 <?php
 
-return [
-    [
-        'title' => 'شروحات الجامعة السعودية الإلكترونية (SEU): دليلك الشامل لأفضل شروحات المقررات والتفوق بـ A+',
-        'slug' => 'seu-courses-explanations-complete-guide',
-        'description' => 'تبحث عن أفضل شروحات الجامعة السعودية الإلكترونية؟ اكتشف دليلك المتكامل لشروحات مواد السنة الأولى المشتركة وكلية الحوسبة والمعلوماتية في منصة فخر CS.',
-        'content' => '<h2>لماذا يحتاج طالب SEU إلى شروحات متخصصة واحترافية؟</h2>
+return array (
+  0 => 
+  array (
+    'title' => 'شروحات الجامعة السعودية الإلكترونية (SEU): دليلك الشامل لأفضل شروحات المقررات والتفوق بـ A+',
+    'slug' => 'seu-courses-explanations-complete-guide',
+    'description' => 'تبحث عن أفضل شروحات الجامعة السعودية الإلكترونية؟ اكتشف دليلك المتكامل لشروحات مواد السنة الأولى المشتركة وكلية الحوسبة والمعلوماتية في منصة فخر CS.',
+    'content' => '<h2>لماذا يحتاج طالب SEU إلى شروحات متخصصة واحترافية؟</h2>
 <p>تعتمد الدراسة في <strong>الجامعة السعودية الإلكترونية (SEU)</strong> على نموذج التعليم المدمج (Blended Learning)؛ حيث تُقدّم النسبة الأكبر من المحاضرات والأنشطة عبر الفصول الافتراضية، مما يضع على عاتق الطالب مسؤولية ضخمة في التعلم الذاتي، واستيعاب سلايدات المقررات الإنجليزية المكثفة، وحل الواجبات والمشاريع الأسبوعية في مواعيد صارمة على نظام البلاك بورد.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">02 | شرح IT244 | مستخدمو ومزايا وتاريخ قواعد البيانات | Module 1: Users &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/7h7PKQBoGSo?rel=0" title="02 | شرح IT244 | مستخدمو ومزايا وتاريخ قواعد البيانات | Module 1: Users &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد شرح معمارية DBMS ومستخدمي قواعد البيانات مع م. أحمد فخر الدين للإلمام بالأسئلة النظرية والتطبيقية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <p>يواجه معظم الطلاب — خاصة الموظفين وأصحاب الالتزامات الأسرية — صعوبة حقيقية في ملاحقة رتم المحاضرات السريع أو فك طلاسم المسائل الرياضية والأكواد البرمجية بمفردهم. من هنا تأتي ضرورة الاستعانة بـ <strong>شروحات الجامعة السعودية الإلكترونية</strong> المتخصصة، والمصممة خصيصاً لتتوافق 100% مع مفردات ومعايير الجامعة لعام 2026، لتختصر مئات الساعات وتقدم زبدة المنهج بأسلوب هندسي تطبيقي يركز على ما تحتاجه للوصول إلى تقدير <strong>A+</strong>.</p>
 
@@ -109,13 +141,45 @@ return [
         </div>
     </div>
 </div>',
-    ],
-    [
-        'title' => 'أفضل موقع شروحات الجامعة السعودية الإلكترونية لعام 2026: منصة فخر CS خيارك الأول',
-        'slug' => 'best-platform-seu-courses-explanations-fakhr-cs',
-        'description' => 'لماذا تعد منصة فخر CS أفضل موقع شروحات لمقررات الجامعة السعودية الإلكترونية؟ شروحات تفاعلية، تجميعات محلولة، ودعم أكاديمي مستمر حتى يوم الاختبار.',
-        'content' => '<h2>ما الذي يجعل منصة فخر CS تتصدر منصات شروحات الجامعة السعودية الإلكترونية؟</h2>
+  ),
+  1 => 
+  array (
+    'title' => 'أفضل موقع شروحات الجامعة السعودية الإلكترونية لعام 2026: منصة فخر CS خيارك الأول',
+    'slug' => 'best-platform-seu-courses-explanations-fakhr-cs',
+    'description' => 'لماذا تعد منصة فخر CS أفضل موقع شروحات لمقررات الجامعة السعودية الإلكترونية؟ شروحات تفاعلية، تجميعات محلولة، ودعم أكاديمي مستمر حتى يوم الاختبار.',
+    'content' => '<h2>ما الذي يجعل منصة فخر CS تتصدر منصات شروحات الجامعة السعودية الإلكترونية؟</h2>
 <p>عندما يبحث طالب الجامعة السعودية الإلكترونية عن <strong>أفضل موقع شروحات لمقررات SEU</strong>، فإنه يبحث عن معادلة واضحة: <em>معلم متمكن يفهم فخاخ أسئلة الجامعة</em>، <em>محتوى يختصر الوقت والجهد</em>، و<em>دعم مستمر يجيب على كل تساؤل حتى ليلة الامتحان</em>. تأسست منصة <strong>فخر CS</strong> على يد <strong>المهندس أحمد فخر الدين</strong> لتلبي هذه التطلعات وتكون المرجع الأكاديمي الأول لكل طالب طموح.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CS 001 (Computer Essentials)</span>
+                <h4 class="video-showcase-title">03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/t6JaKSg-9_I?rel=0" title="03 | شرح CS001 | أنظمة الترقيم والترميز وأنواع الحواسيب | Module 1 - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> تعرف على أسلوب تدريس مقررات الحاسب في السنة المشتركة من خلال محاضرة أساسيات CS 001 والأنظمة الرقمية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <h3>الركائز الأربع التي تميز منصة فخر CS عن أي بديل آخر</h3>
 
@@ -146,13 +210,45 @@ return [
         <i class="fas fa-play-circle ml-2"></i> تصفح شروحات المقررات وابدأ الآن
     </a>
 </div>',
-    ],
-    [
-        'title' => 'شروحات مواد السنة الأولى المشتركة في الجامعة السعودية الإلكترونية: الرياضيات، الحاسب، والإنجليزي',
-        'slug' => 'common-year-courses-explanations-seu',
-        'description' => 'دليلك لأفضل شروحات مواد السنة التحضيرية في SEU: شرح MATH 001 و CS 001 و COMM 001 مع ملخصات القوانين وتجميعات الميد والفاينل الشاملة.',
-        'content' => '<h2>شروحات السنة الأولى المشتركة: بوابتك للمعدل الكامل 4.00 والتخصيص</h2>
+  ),
+  2 => 
+  array (
+    'title' => 'شروحات مواد السنة الأولى المشتركة في الجامعة السعودية الإلكترونية: الرياضيات، الحاسب، والإنجليزي',
+    'slug' => 'common-year-courses-explanations-seu',
+    'description' => 'دليلك لأفضل شروحات مواد السنة التحضيرية في SEU: شرح MATH 001 و CS 001 و COMM 001 مع ملخصات القوانين وتجميعات الميد والفاينل الشاملة.',
+    'content' => '<h2>شروحات السنة الأولى المشتركة: بوابتك للمعدل الكامل 4.00 والتخصيص</h2>
 <p>تُمثّل <strong>السنة الأولى المشتركة (السنة التحضيرية سابقاً)</strong> في <strong>الجامعة السعودية الإلكترونية (SEU)</strong> المرحلة الأكثر حساسية في مسيرتك الجامعية بأكملها؛ فمعدلك التراكمي في هذه السنة هو المعيار الوحيد الذي يحدد قبولك في التخصص الذي تحلم به (علوم الحاسب، الأمن السيبراني، تقنية المعلومات، أو علوم البيانات).</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | MATH 001 (Fundamentals of Mathematics)</span>
+                <h4 class="video-showcase-title">03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/2pY330V-4Hk?rel=0" title="03 | شرح MATH 001 | ضرب وقسمة وخواص الأعداد الحقيقية | 1.4 &amp; 1.5 Real Numbers - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التأسيسي العملي لخواص الأعداد الحقيقية في مقرر MATH 001 للتغلب على صعوبات الرياضيات والتفوق بدرجة A+.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <p>يتفاجأ الكثير من الطلاب الجدد بنظام الدراسة باللغة الإنجليزية، والاعتماد الكبير على الاختبارات المحوسبة بمتصفح ريسبوندس، وتوزيع الدرجات الذي يتطلب الحصول على أعلى الدرجات في أعمال الفصل (50 درجة) واختبار نهاية الفصل (50 درجة). تقدم منصة <strong>فخر CS</strong> باقة شروحات متكاملة ومصممة هندسياً لتضمن لك التفوق في كافة مواد السنة المشتركة.</p>
 
@@ -217,13 +313,45 @@ return [
         <i class="fas fa-gift ml-2"></i> اشترك في باقة السنة التحضيرية الآن
     </a>
 </div>',
-    ],
-    [
-        'title' => 'شروحات مواد كلية الحوسبة والمعلوماتية (CCI) في الجامعة السعودية الإلكترونية: البرمجة، الشبكات، وقواعد البيانات',
-        'slug' => 'computing-college-courses-explanations-seu',
-        'description' => 'أقوى شروحات كلية الحوسبة والمعلوماتية في SEU: شرح البرمجة الكائنية OOP جافا، هياكل البيانات Data Structures، الخوارزميات، وشبكات الحاسب.',
-        'content' => '<h2>تحديات كلية الحوسبة والمعلوماتية (CCI) وكيف تتغلب عليها بالشروحات الهندسية</h2>
+  ),
+  3 => 
+  array (
+    'title' => 'شروحات مواد كلية الحوسبة والمعلوماتية (CCI) في الجامعة السعودية الإلكترونية: البرمجة، الشبكات، وقواعد البيانات',
+    'slug' => 'computing-college-courses-explanations-seu',
+    'description' => 'أقوى شروحات كلية الحوسبة والمعلوماتية في SEU: شرح البرمجة الكائنية OOP جافا، هياكل البيانات Data Structures، الخوارزميات، وشبكات الحاسب.',
+    'content' => '<h2>تحديات كلية الحوسبة والمعلوماتية (CCI) وكيف تتغلب عليها بالشروحات الهندسية</h2>
 <p>بمجرد إنهاء السنة الأولى المشتركة والانتقال إلى <strong>كلية الحوسبة والمعلوماتية</strong> بأقسامها المتنوعة (علوم الحاسب CS، تقنية المعلومات IT، علوم البيانات Data Science، والأمن السيبراني Cybersecurity)، يواجه الطالب قفزة معرفية هائلة؛ فالمنهج لم يعد يعتمد على الحفظ السطحي، بل على <strong>التفكير المنطقي، كتابة الأكواد وتتبعها، وتصميم الأنظمة الحاسوبية</strong>.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | IT241 (Introduction to Database) / IT244</span>
+                <h4 class="video-showcase-title">01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/ehwYuyINYUs?rel=0" title="01 | شرح IT244 | مقدمة قواعد البيانات ومفاهيم DBMS | Module 1: Databases &amp; DBMS - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد مقدمة قواعد البيانات ومفاهيم نظم إدارة قواعد البيانات DBMS لمقررات كلية الحوسبة والمعلوماتية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <p>تتطلب هذه المقررات معلماً ممارساً للبرمجة في سوق العمل ينقل لك الخبرة العملية الحقيقية؛ وهذا ما يقدمه <strong>المهندس أحمد فخر الدين</strong> عبر شروحات تفاعلية تُبنى من الصفر وحتى الاحتراف الأكاديمي والمهني.</p>
 
@@ -267,13 +395,45 @@ return [
         <i class="fas fa-laptop-code ml-2"></i> تصفح كورسات كلية الحوسبة الآن
     </a>
 </div>',
-    ],
-    [
-        'title' => 'كيف تختار أفضل شروحات الجامعة السعودية الإلكترونية وتتجنب المذكرات القديمة والشروحات العشوائية؟',
-        'slug' => 'how-to-choose-best-seu-explanations-avoid-old-notes',
-        'description' => 'معايير اختيار أفضل شروحات الجامعة السعودية الإلكترونية لعام 2026: كيف تميز بين الشرح الهندسي المحدث والمذكرات العشوائية المليئة بالأخطاء.',
-        'content' => '<h2>فخ المذكرات المجانية وقنوات التيليجرام العشوائية في SEU</h2>
+  ),
+  4 => 
+  array (
+    'title' => 'كيف تختار أفضل شروحات الجامعة السعودية الإلكترونية وتتجنب المذكرات القديمة والشروحات العشوائية؟',
+    'slug' => 'how-to-choose-best-seu-explanations-avoid-old-notes',
+    'description' => 'معايير اختيار أفضل شروحات الجامعة السعودية الإلكترونية لعام 2026: كيف تميز بين الشرح الهندسي المحدث والمذكرات العشوائية المليئة بالأخطاء.',
+    'content' => '<h2>فخ المذكرات المجانية وقنوات التيليجرام العشوائية في SEU</h2>
 <p>مع بداية كل فصل دراسي جديد في <strong>الجامعة السعودية الإلكترونية (SEU)</strong>، تمتلئ مجموعات وقنوات التيليجرام والواتساب بمئات الملفات والمذكرات التي يُروَّج لها بأنها "ملخصات شاملة" أو "تسريبات اختبارات". وللأسف، يقع مئات الطلاب سنوياً ضحية لهذه المصادر غير الموثوقة، ليكتشفوا ليلة الاختبار أو داخل قاعة الامتحان أن المذكرات تحتوي على معلومات قديمة ملغاة، أو إجابات خاطئة، أو تفوت أجزاء محورية من تحديثات منهج عام 2026.</p>
+
+<div class="article-video-showcase">
+    <div class="video-showcase-header">
+        <div class="video-showcase-title-box">
+            <div class="video-icon-badge">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+                <span class="video-showcase-sub">📺 محاضرة مسجلة وتطبيق عملي | CI 001 (Academic Skills)</span>
+                <h4 class="video-showcase-title">01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU</h4>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-yt-subscribe" title="اشترك في قناة المهندس أحمد فخر الدين">
+            <i class="fa-brands fa-youtube"></i> اشترك في القناة
+        </a>
+    </div>
+    <div class="video-wrapper-16by9">
+        <iframe src="https://www.youtube-nocookie.com/embed/orT8dtZQn34?rel=0" title="01 | شرح CI001 | مهارات إدارة الذاكرة وتطبيقاتها الدراسية | الوحدة الأولى - SEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-showcase-footer">
+        <p class="video-showcase-tip">
+            <span>💡</span> <strong>إرشاد تطبيقي:</strong> شاهد هذا الشرح التوجيهي لإتقان مهارات الحفظ وإدارة الذاكرة للتفوق في كافة اختبارات السنة الأولى المشتركة والجامعة السعودية الإلكترونية.
+        </p>
+        <a href="https://www.youtube.com/channel/UCiRey122pO1U8KBnNyehzHg" target="_blank" rel="noopener noreferrer" class="video-showcase-link">
+            <span>زيارة القناة ومتابعة باقي المحاضرات</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
+</div>
+
+
 
 <p>إن الاعتماد على مصدر تعليمي ضعيف لا يضيع درجاتك فحسب، بل يهدد معدلك التراكمي ويعرضك للإنذار الأكاديمي أو الرسوب وإعادة المادة بتكلفة مالية ووقت ضائع.</p>
 
@@ -342,5 +502,5 @@ return [
         <i class="fas fa-star ml-2"></i> استكشف باقة السنة الأولى المشتركة المعتمدة
     </a>
 </div>',
-    ],
-];
+  ),
+);
