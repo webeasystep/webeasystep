@@ -218,6 +218,19 @@
 
     <!-- Critical CSS - Inline for fastest FCP/LCP -->
     <style>
+        /* Critical Web Fonts */
+        @font-face {
+            font-family: 'Alexandria-Medium';
+            src: url('<?= base_url('site/fonts/alex/Alexandria-Medium.woff2') ?>') format('woff2');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Alexandria-Regular';
+            src: url('<?= base_url('site/fonts/alex/Alexandria-Regular.woff2') ?>') format('woff2');
+            font-display: swap;
+        }
+
         /* Critical Above-the-fold styles */
         *,
         *::before,
@@ -304,14 +317,24 @@
             font-size: 1.25rem
         }
 
-        /* Hero section */
+        /* Hero section - Exact padding to eliminate CLS */
         .untree_co-hero {
             background-size: cover;
             background-position: center;
             position: relative;
             min-height: 550px;
+            padding-top: 80px;
+            padding-bottom: 60px;
             display: flex;
             align-items: center
+        }
+
+        @media (max-width: 767.98px) {
+            .untree_co-hero {
+                min-height: 480px;
+                padding-top: 59px;
+                padding-bottom: 40px;
+            }
         }
 
         .untree_co-hero.compact-hero,
@@ -344,8 +367,14 @@
             color: #fff
         }
 
-        /* Navbar placeholder */
+        /* Navbar critical layout - position absolute prevents CLS on load */
         .site-nav {
+            position: absolute;
+            width: 100%;
+            z-index: 9;
+            top: 0;
+            padding-top: 3px;
+            padding-bottom: 1px;
             background: linear-gradient(135deg, #136ad5, #0d5bbd)
         }
 
@@ -434,10 +463,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css">
     </noscript>
 
-    <link rel="preload" href="<?= base_url() ?>site/css/style_rtl.css?v=2.11" as="style"
+    <link rel="preload" href="<?= base_url() ?>site/css/style_rtl.css?v=2.12" as="style"
         onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="<?= base_url() ?>site/css/style_rtl.css?v=2.11">
+        <link rel="stylesheet" href="<?= base_url() ?>site/css/style_rtl.css?v=2.12">
     </noscript>
 
     <link rel="preload" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=2.2" as="style"

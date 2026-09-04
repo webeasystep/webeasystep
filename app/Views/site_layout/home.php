@@ -7,15 +7,15 @@
                 <div class="col-12">
                     <div class="row justify-content-center ">
                         <div class="col-lg-8 text-center ">
-                            <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">
+                            <h1 class="mb-4 heading text-white">
                                 كل ما يحتاجه طالب الجامعة السعودية الإلكترونية... في مكان واحد.
                             </h1>
 
-                            <p class="mb-4 text-white" style="font-size: 1.1rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="200">
+                            <p class="mb-4 text-white" style="font-size: 1.1rem; line-height: 1.6;">
                                 شروحات مبسطة، مراجعات مركزة، حلول الهوموركات، تجميعات الاختبارات، واختبارات تدريبية؛ لتوفر وقتك، وتنظم مذاكرتك، وتدخل الاختبار بثقة.
                             </p>
 
-                            <p class="mb-0" data-aos="fade-up" data-aos-delay="300">
+                            <p class="mb-0">
                                 <a href="#courses" class="btn btn-primary btn-lg" style="padding: 15px 40px; font-weight: bold;">اختر مادتك واضمن تفوقك الآن</a>
                             </p>
                         </div>
@@ -29,9 +29,9 @@
         <div class="container">
             <div class="row justify-content-center text-center mb-4">
                 <div class="col-lg-8">
-                    <span class="badge badge-primary text-uppercase mb-3 px-4 py-2" style="letter-spacing: 1px; font-size: 0.8rem;">التخصص هو سر قوتنا</span>
+                    <span class="badge text-uppercase mb-3 px-4 py-2" style="letter-spacing: 1px; font-size: 0.85rem; background-color: #0d5cb6; color: #ffffff; font-weight: 600;">التخصص هو سر قوتنا</span>
                     <h2 class="mb-3" style="font-size: 2rem; font-weight: 800; color: #1a202c;">ليه FakhrCS هي اختيار طلاب SEU الأول؟</h2>
-                    <p class="text-muted mb-0" style="font-size: 1.1rem; line-height: 1.7;">
+                    <p class="text-muted mb-0" style="font-size: 1.1rem; line-height: 1.7; color: #475569;">
                         بينما يشرح الآخرون "بشكل عام"، شروحاتنا مصممة بدقة لتتوافق مع معايير ومناهج الجامعة السعودية الإلكترونية.<br>
                         <strong class="text-dark">نحن شركاء تفوقك الأكاديمي، من السنة الأولى المشتركة وحتى التخرج.</strong>
                     </p>
@@ -126,23 +126,23 @@
                                         ?>
                                         <img src="<?= thumb($course['image'], 400, 200) ?>" alt="<?= $courseAlt ?>" class="course-img" width="400" height="200" loading="lazy" decoding="async">
                                         <?php if($isOpen): ?>
-                                            <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
+                                            <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #047857; font-weight: 600;">مفتوح للحجز</span>
                                         <?php else: ?>
-                                            <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #ef4444;">مغلق الحجز</span>
+                                            <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #b91c1c; font-weight: 600;">مغلق الحجز</span>
                                         <?php endif; ?>
                                     <?= $isOpen ? '</a>' : '</div>' ?>
                                 <?php else: ?>
                                     <?php if ($isOpen): ?><a href="<?= $courseUrl ?>" class="course-card-image d-block" style="background: <?= $gradient ?>; text-decoration: none;"><?php else: ?><div class="course-card-image" style="background: <?= $gradient ?>;"><?php endif; ?>
                                         <div class="course-icon"><i class="fas <?= $icon ?>"></i></div>
                                         <?php if($isOpen): ?>
-                                            <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #20b080;">مفتوح للحجز</span>
+                                            <span class="course-badge badge-open" style="background-color: #d4f8e8; color: #047857; font-weight: 600;">مفتوح للحجز</span>
                                         <?php else: ?>
-                                            <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #ef4444;">مغلق الحجز</span>
+                                            <span class="course-badge badge-closed" style="background-color: #fee2e2; color: #b91c1c; font-weight: 600;">مغلق الحجز</span>
                                         <?php endif; ?>
                                     <?= $isOpen ? '</a>' : '</div>' ?>
                                 <?php endif; ?>
                                 <div class="course-card-body d-flex flex-column">
-                                    <h5 class="course-title"><?= esc($course['course_title']) ?></h5>
+                                    <h3 class="course-title"><?= esc($course['course_title']) ?></h3>
                                     <div class="course-codes mb-auto"><?= esc($course['short_desc'] ?? '') ?></div>
 
                                     <div class="course-instructor mb-3 mt-3 text-muted" style="font-size: 0.95rem; font-weight: 500;">
@@ -173,7 +173,7 @@
                                             <?php endif; ?>
                                         </div>
                                         <?php if(isset($course['is_open']) && $course['is_open'] == 1): ?>
-                                            <a href="javascript:void(0);" onclick="addToCart('course', <?= $course['id'] ?>);" class="btn btn-subscribe" style="padding: 10px 15px;">أضف للسلة</a>
+                                            <button type="button" onclick="addToCart('course', <?= $course['id'] ?>);" class="btn btn-subscribe" style="padding: 10px 15px;">أضف للسلة</button>
                                         <?php else: ?>
                                             <button type="button" class="btn btn-subscribe" style="padding: 10px 15px; background: #6c757d; border-color: #6c757d;" onclick="handleSubscribe('<?= esc($course['course_title']) ?>')">أعلمني عند التوفر</button>
                                         <?php endif; ?>
@@ -227,7 +227,7 @@
                         <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
                             <i class="fas fa-undo fa-lg" style="color: #ffffff;"></i>
                         </div>
-                        <h4 style="font-size: 1.2rem; font-weight: 700; color: #1a202c;" class="mb-3">"هل ممكن أضيّع فلوسي زي المرة اللي فاتت؟"</h4>
+                        <h3 style="font-size: 1.2rem; font-weight: 700; color: #1a202c;" class="mb-3">"هل ممكن أضيّع فلوسي زي المرة اللي فاتت؟"</h3>
                         <p style="color: #555; line-height: 1.7;">مفهوم قلقك، خصوصاً لو جربت كورس قبل كده وما أفادكش. عشان كده حاطين ضمان استرداد كامل خلال أول 30 يوم، من غير أي أسئلة. لو حسيت إن الشرح ما سدّش الفجوة اللي كنت حاسس بيها، فلوسك ترجعلك بالكامل.</p>
                     </div>
                 </div>
@@ -237,7 +237,7 @@
                         <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
                             <i class="fas fa-check-circle fa-lg" style="color: #ffffff;"></i>
                         </div>
-                        <h4 style="font-size: 1.2rem; font-weight: 700; color: #1a202c;" class="mb-3">"هل فعلاً الشرح ده يطابق منهج جامعتي بالظبط، ولا شرح عام؟"</h4>
+                        <h3 style="font-size: 1.2rem; font-weight: 700; color: #1a202c;" class="mb-3">"هل فعلاً الشرح ده يطابق منهج جامعتي بالظبط، ولا شرح عام؟"</h3>
                         <p style="color: #555; line-height: 1.7;">كل مادة عندنا مكتوب عليها الكود الرسمي (زي ريض 001 / عال 001)، ومبنية حرفياً على مفردات ومعايير SEU. جرب بنفسك المحاضرة الأولى وشوف الفرق قبل ما تقرر.</p>
                     </div>
                 </div>
@@ -247,7 +247,7 @@
                         <div class="icon-wrap bg-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 60px; height: 60px;">
                             <i class="fas fa-brain fa-lg" style="color: #ffffff;"></i>
                         </div>
-                        <h4 style="font-size: 1.2rem; font-weight: 700; color: #1a202c;" class="mb-3">"أساسي ضعيف... هل فعلاً هفهم؟"</h4>
+                        <h3 style="font-size: 1.2rem; font-weight: 700; color: #1a202c;" class="mb-3">"أساسي ضعيف... هل فعلاً هفهم؟"</h3>
                         <p style="color: #555; line-height: 1.7;">مفيش عندنا "افتراض إنك عارف". كل شرح بيبدأ من الصفر، خطوة بخطوة، من غير ما نفترض إنك "المفروض تعرف ده". الهدف إنك تحس بالفهم أول مرة — مش إنك تحفظ وتنسى بعد أسبوع.</p>
                     </div>
                 </div>
@@ -275,7 +275,7 @@
     <div class="untree_co-section py-4 bg-primary text-white text-center">
         <div class="container">
             <h2 class="text-white mb-3">ابدأ رحلة الـ A+ والاحتراف الحقيقي الآن</h2>
-            <p class="mb-4 text-white-50">انضم لنخبة طلاب الجامعة السعودية الإلكترونية وابدأ رحلة التفوق الآن.</p>
+            <p class="mb-4 text-white" style="opacity: 0.9;">انضم لنخبة طلاب الجامعة السعودية الإلكترونية وابدأ رحلة التفوق الآن.</p>
             <a href="#courses" class="btn btn-light btn-lg font-weight-bold">تصفح المواد واضمن مقعدك</a>
         </div>
     </div>
@@ -292,7 +292,7 @@
                     <div class="modal-icon mb-4">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h4 class="modal-title mb-3" id="subscribeModalLabel">سنقوم بتنبيهك عند فتح باب الحجز 🔔</h4>
+                    <h3 class="modal-title mb-3" id="subscribeModalLabel">سنقوم بتنبيهك عند فتح باب الحجز 🔔</h3>
                     <p class="modal-message mb-4">
                         سجل بريدك الإلكتروني الآن وسنقوم بإرسال إشعار لك فور إتاحة هذه المادة للتسجيل.<br>
                         <strong class="text-success">انضم لقائمة الانتظار لتكون أول من يعلم!</strong>
@@ -310,7 +310,7 @@
                         <div class="success-icon mb-3">
                             <i class="fas fa-check-circle"></i>
                         </div>
-                        <h5 class="text-success">تم حجز مكانك في القائمة! 🎉</h5>
+                        <h4 class="text-success">تم حجز مكانك في القائمة! 🎉</h4>
                         <p class="text-muted">سنرسل لك كود الخصم فور الانطلاق</p>
                     </div>
                 </div>

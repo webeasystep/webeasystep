@@ -2897,9 +2897,9 @@ body.dark-mode .untree_co-hero .heading {
 /* Original price with strikethrough */
 .price-original {
     font-size: 1rem;
-    font-weight: 500;
-    color: #718096;
-    /* Improved contrast from #a0aec0 */
+    font-weight: 600;
+    color: var(--text-muted, #475569);
+    /* WCAG AA Compliant contrast (> 4.5:1) */
     text-decoration: line-through;
     margin-left: 8px;
 }
@@ -3130,10 +3130,14 @@ body.dark-mode .theme-toggle-btn .theme-icon-dark {
     --bg-secondary: #f7fafc;
     --text-primary: #1a202c;
     --text-secondary: #4a5568;
-    --text-muted: #718096;
+    --text-muted: #475569;
     --border-color: #e2e8f0;
     --card-bg: #ffffff;
     --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+.text-muted {
+    color: var(--text-muted, #475569) !important;
 }
 
 /* ============================================
@@ -3387,6 +3391,10 @@ body.dark-mode .course-footer {
 
 body.dark-mode .price-amount {
     color: var(--text-primary);
+}
+
+body.dark-mode .price-original {
+    color: var(--text-muted);
 }
 
 body.dark-mode .course-badge {
@@ -4637,7 +4645,7 @@ body:not(.dark-mode) .consumer-page-hero .consumer-page-subtitle strong {
     --danger-color: #ef4444;
     --text-primary: #1a202c;
     --text-secondary: #4a5568;
-    --text-muted: #718096;
+    --text-muted: #475569;
     --text-light: #a0aec0;
     --bg-primary: #ffffff;
     --bg-secondary: #f7fafc;

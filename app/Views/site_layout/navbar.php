@@ -79,6 +79,18 @@
                     <li <?= str_contains(urldecode(current_url()), 'السنة-الاولى-المشتركة') || str_contains(current_url(), 'preparatory') ? 'class="active"' : '' ?>>
                         <a href="<?= site_url('الجامعة-السعودية-الالكترونية-السنة-الاولى-المشتركة-التحضيرية') ?>">السنة الأولى المشتركة (التحضيرية)</a>
                     </li>
+                    <li <?= str_contains(current_url(), 'student-benefits') ? 'class="active"' : '' ?>>
+                        <a href="<?= site_url('student-benefits') ?>">مميزات الاشتراك</a>
+                    </li>
+                    <li>
+                        <a href="#" role="button" data-toggle="modal" data-target="#courseRequestModal" onclick="$('body').removeClass('offcanvas-menu');">اطلب مقرر</a>
+                    </li>
+                    <li <?= str_contains(current_url(), 'faqs') ? 'class="active"' : '' ?>>
+                        <a href="<?= site_url('faqs') ?>">الأسئلة الشائعة</a>
+                    </li>
+                    <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
+                        <a href="<?= site_url('terms-conditions') ?>">الشروط والأحكام</a>
+                    </li>
 
                     <?php if ($isLoggedIn): ?>
                         <!-- User Navigation Links -->
@@ -142,32 +154,6 @@
                             </a>
                         </li>
                     <?php endif; ?>
-
-                    <li class="has-children <?= (str_contains(current_url(), 'student-benefits') || str_contains(current_url(), 'terms-conditions')) ? 'active' : '' ?>">
-                        <a href="#">صفحات أخرى</a>
-                        <ul class="dropdown">
-                            <li <?= str_contains(current_url(), 'student-benefits') ? 'class="active"' : '' ?>>
-                                <a href="<?= site_url('student-benefits') ?>">
-                                    <span class="icon-book mr-1"></span>مميزات الاشتراك
-                                </a>
-                            </li>
-                            <li <?= str_contains(current_url(), 'faqs') ? 'class="active"' : '' ?>>
-                                <a href="<?= site_url('faqs') ?>">
-                                    <span class="icon-question mr-1"></span>الأسئلة الشائعة
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-toggle="modal" data-target="#courseRequestModal" style="font-weight: bold;">
-                                    <span class="icon-pencil mr-1"></span>اطلب مقرر
-                                </a>
-                            </li>
-                            <li <?= str_contains(current_url(), 'terms-conditions') ? 'class="active"' : '' ?>>
-                                <a href="<?= site_url('terms-conditions') ?>">
-                                    <span class="icon-document mr-1"></span>الشروط والأحكام
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
 
                     <li class="cart-nav-item <?= current_url() == site_url('cart') ? 'active' : '' ?>">
                         <a href="<?= site_url('cart') ?>" class="cart-link" aria-label="سلة المشتريات" title="سلة المشتريات">
@@ -248,6 +234,23 @@
     }
     body.dark-mode .cart-badge {
         border-color: #1e293b;
+    }
+
+    /* ===== MAIN MENU RESPONSIVE SPACING ===== */
+    .site-nav .site-navigation .site-menu > li > a {
+        white-space: nowrap !important;
+    }
+    @media (min-width: 992px) and (max-width: 1250px) {
+        .site-nav .site-navigation .site-menu > li > a {
+            padding: 8px 7px !important;
+            font-size: 13px !important;
+        }
+    }
+    @media (min-width: 1251px) {
+        .site-nav .site-navigation .site-menu > li > a {
+            padding: 10px 11px !important;
+            font-size: 14px !important;
+        }
     }
 </style>
 
