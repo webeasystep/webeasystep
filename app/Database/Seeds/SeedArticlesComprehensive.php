@@ -44,6 +44,14 @@ class SeedArticlesComprehensive extends Seeder
         $p7 = require __DIR__ . '/articles_data/pillar7.php';
         $p8 = require __DIR__ . '/articles_data/pillar8_high_intent.php';
 
-        return array_merge($p0, $p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8);
+        $c1 = require __DIR__ . '/articles_data/cluster1_registration_banner.php';
+        $c2 = require __DIR__ . '/articles_data/cluster2_gpa_recovery.php';
+        $c3 = require __DIR__ . '/articles_data/cluster3_exams_attendance.php';
+        $c4 = require __DIR__ . '/articles_data/cluster4_common_first_year.php';
+        $c5 = require __DIR__ . '/articles_data/cluster5_cci_careers_tracks.php';
+        $c6 = require __DIR__ . '/articles_data/cluster6_course_coping_strategies.php';
+        $c7 = require __DIR__ . '/articles_data/cluster7_tech_blended_learning.php';
+
+        return array_merge($p0, $p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8, $c1, $c2, $c3, $c4, $c5, $c6, $c7);
     }
 }
