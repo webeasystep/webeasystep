@@ -154,8 +154,8 @@ $courseIndex = 0;
                                                 <i class="fas fa-play ml-1"></i> مشاهدة
                                             </a>
                                         <?php else: ?>
-                                            <a href="<?= $courseUrl ?>#first-unit" class="btn btn-course-preview" title="معاينة محتوى الكورس والوحدة الأولى">
-                                                <i class="fas fa-eye"></i> معاينة
+                                            <a href="<?= $courseUrl ?>#first-unit" class="btn btn-course-preview" title="شاهد أول موديول مجاناً">
+                                                <i class="fas fa-play-circle"></i> شاهد أول موديول مجاناً
                                             </a>
                                             <?php if ($isOpen): ?>
                                                 <button type="button" onclick="addToCart('course', <?= $course['id'] ?>);" class="btn btn-primary btn-course-details">

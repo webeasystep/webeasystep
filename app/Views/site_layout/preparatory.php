@@ -77,7 +77,7 @@
                                         <i class="fas fa-cart-plus ml-2"></i> اشترك في الباقة الآن
                                     </button>
                                     <button type="button" class="btn btn-bundle-preview w-100" id="btnPreviewBundle">
-                                        <i class="fas fa-eye ml-1"></i> معاينة الشروحات
+                                        <i class="fas fa-play-circle ml-1"></i> شاهد أول موديول مجاناً
                                     </button>
                                 </div>
                             </div>
@@ -171,8 +171,8 @@
                                                 <i class="fas fa-hand-point-down ml-1 text-warning"></i> جرّب أول موديول مجاناً من هنا!
                                             </div>
                                         <?php endif; ?>
-                                        <a href="<?= $courseUrl ?>#first-unit" class="btn btn-course-preview <?= ($courseIndex === 1) ? 'first-preview-btn' : '' ?>" title="معاينة محتوى الكورس والوحدة الأولى">
-                                            <i class="fas fa-eye"></i> معاينة
+                                        <a href="<?= $courseUrl ?>#first-unit" class="btn btn-course-preview <?= ($courseIndex === 1) ? 'first-preview-btn' : '' ?>" title="شاهد أول موديول مجاناً">
+                                            <i class="fas fa-play-circle"></i> شاهد أول موديول مجاناً
                                         </a>
                                         <?php if($isOpen): ?>
                                             <button class="btn btn-primary btn-course-enroll" onclick="addToCart('course', <?= $course['id'] ?>)">
@@ -206,7 +206,7 @@
                     </div>
                     <div>
                         <h5 class="modal-title font-weight-bold mb-0" id="bundlePreviewGuideModalLabel">
-                            معاينة شروحات السنة التحضيرية
+                            شاهد أول موديول مجاناً في المقررات
                         </h5>
                         <small class="text-muted">تجربة مجانية كاملة قبل الاشتراك</small>
                     </div>
@@ -231,7 +231,7 @@
                     </div>
                     <div class="d-inline-flex align-items-center demo-preview-box">
                         <span class="btn btn-course-preview demo-btn">
-                            <i class="fas fa-eye"></i> معاينة
+                            <i class="fas fa-play-circle"></i> شاهد أول موديول مجاناً
                         </span>
                         <span class="demo-pointer-hand animated-bounce-x"><i class="fas fa-hand-point-right text-warning mr-2"></i></span>
                         <span class="text-muted mr-1" style="font-size: 0.85rem;">اضغط هنا لفتح أول موديول فوراً</span>
@@ -239,7 +239,7 @@
                 </div>
 
                 <p class="text-muted text-center mb-0" style="font-size: 0.9rem;">
-                    اختر أي مقرر ترغب بتجربته واضغط على زر <strong>(معاينة)</strong> لبدء المشاهدة فوراً.
+                    اختر أي مقرر ترغب بتجربته واضغط على زر <strong>(شاهد أول موديول مجاناً)</strong> لبدء المشاهدة فوراً.
                 </p>
             </div>
             <div class="modal-footer border-0 pt-0 justify-content-center">
