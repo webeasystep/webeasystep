@@ -204,8 +204,8 @@
                                                     </div>
                                                     <div class="course-card-actions">
                                                         <a href="<?= $courseUrl ?>#first-unit" class="btn btn-course-preview"
-                                                            title="معاينة محتوى الكورس والوحدة الأولى">
-                                                            <i class="fas fa-eye"></i> معاينة
+                                                            title="تجربة مجانية">
+                                                            <i class="fas fa-play-circle"></i> تجربة مجانية
                                                         </a>
                                                         <?php if (isset($course['is_open']) && $course['is_open'] == 1): ?>
                                                             <button type="button"

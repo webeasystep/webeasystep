@@ -283,10 +283,10 @@
                             <a href="#first-unit"
                                onclick="scrollToFirstUnit(event);"
                                class="btn btn-outline-light btn-lg"
-                               title="شاهد أول موديول مجاناً"
+                               title="تجربة مجانية"
                                style="font-weight: 600; border-radius: var(--radius-md); border: 2px solid rgba(255,255,255,0.9); color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; padding-left: 1.2rem; padding-right: 1.2rem;">
                                 <i class="fas fa-play-circle"></i>
-                                شاهد أول موديول مجاناً
+                                تجربة مجانية
                             </a>
                         </div>
                         <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">دفع آمن عبر بايبال (PayPal)</small>
@@ -455,10 +455,10 @@
                                 <a href="#first-unit"
                                    onclick="scrollToFirstUnit(event);"
                                    class="btn btn-outline-light btn-lg"
-                                   title="شاهد أول موديول مجاناً"
+                                   title="تجربة مجانية"
                                    style="font-weight: 600; border-radius: var(--radius-md); border: 2px solid rgba(255,255,255,0.9); color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; padding-left: 1.2rem; padding-right: 1.2rem;">
                                     <i class="fas fa-play-circle"></i>
-                                    شاهد أول موديول مجاناً
+                                    تجربة مجانية
                                 </a>
                             </div>
                             <small style="color: rgba(255,255,255,0.8); margin-top: 0.75rem;">شراء آمن بضمان استرجاع الأموال</small>
