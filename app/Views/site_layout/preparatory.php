@@ -1,356 +1,6 @@
 <?= $this->extend('site_layout/template'); ?>
 <?= $this->section('content'); ?>
 
-<style>
-    .prep-page-wrapper {
-        background-color: #f8fafc;
-        padding-top: 25px;
-        padding-bottom: 50px;
-    }
-    
-    /* Compact Breadcrumb & Title Bar */
-    .prep-header-bar {
-        margin-bottom: 25px;
-    }
-    .prep-breadcrumb {
-        font-size: 0.85rem;
-        color: #64748b;
-        margin-bottom: 8px;
-    }
-    .prep-breadcrumb a {
-        color: #136ad5;
-        text-decoration: none;
-    }
-    .prep-title {
-        font-size: 1.85rem;
-        font-weight: 800;
-        color: #0f172a;
-        margin-bottom: 6px;
-    }
-    .prep-subtitle {
-        font-size: 0.95rem;
-        color: #64748b;
-        margin-bottom: 0;
-    }
-
-    /* Full-Width High-Conversion Bundle Hero Card */
-    .bundle-promo-card {
-        background: #ffffff;
-        border-radius: 18px;
-        border: 2px solid #136ad5;
-        box-shadow: 0 10px 30px rgba(19, 106, 213, 0.08);
-        overflow: hidden;
-        margin-bottom: 35px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .bundle-promo-card:hover {
-        box-shadow: 0 15px 40px rgba(19, 106, 213, 0.14);
-        transform: translateY(-2px);
-    }
-    .bundle-badge-top {
-        display: inline-flex;
-        align-items: center;
-        background: linear-gradient(135deg, #ec661f, #ff8c42);
-        color: #ffffff;
-        padding: 5px 14px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 700;
-        margin-bottom: 12px;
-    }
-    .bundle-promo-title {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #0f172a;
-        margin-bottom: 8px;
-    }
-    .bundle-promo-desc {
-        color: #475569;
-        font-size: 0.92rem;
-        line-height: 1.6;
-        margin-bottom: 16px;
-    }
-    .bundle-chips-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 12px;
-    }
-    .bundle-chip {
-        background: #eff6ff;
-        color: #1d4ed8;
-        border: 1px solid #bfdbfe;
-        border-radius: 20px;
-        padding: 4px 12px;
-        font-size: 0.82rem;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-    }
-    .bundle-price-box {
-        background: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 100%);
-        border-radius: 14px;
-        padding: 24px 20px;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-        border: 1px solid #bae6fd;
-    }
-    .bundle-price-original {
-        color: #94a3b8;
-        text-decoration: line-through;
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 2px;
-    }
-    .bundle-price-current {
-        font-size: 2.2rem;
-        font-weight: 900;
-        color: #136ad5;
-        line-height: 1.1;
-        margin-bottom: 6px;
-    }
-    .bundle-save-tag {
-        display: inline-block;
-        background: #dcfce7;
-        color: #15803d;
-        border-radius: 12px;
-        padding: 3px 10px;
-        font-size: 0.8rem;
-        font-weight: 700;
-        margin-bottom: 16px;
-    }
-    .btn-bundle-cta {
-        background: linear-gradient(135deg, #136ad5 0%, #0b5cbf 100%);
-        color: #ffffff;
-        border: none;
-        border-radius: 12px;
-        padding: 12px 20px;
-        font-weight: 700;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 6px 18px rgba(19, 106, 213, 0.25);
-    }
-    .btn-bundle-cta:hover {
-        background: linear-gradient(135deg, #0b5cbf 0%, #094794 100%);
-        color: #ffffff;
-        transform: translateY(-1px);
-        box-shadow: 0 8px 22px rgba(19, 106, 213, 0.35);
-    }
-
-    /* Compact Courses Section */
-    .section-header-compact {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #e2e8f0;
-        padding-bottom: 12px;
-    }
-    .section-header-compact h2 {
-        font-size: 1.25rem;
-        font-weight: 800;
-        color: #1e293b;
-        margin: 0;
-    }
-    .section-header-compact .count-badge {
-        background: #e2e8f0;
-        color: #475569;
-        border-radius: 20px;
-        padding: 3px 12px;
-        font-size: 0.82rem;
-        font-weight: 600;
-    }
-
-    /* Course Card Aesthetics */
-    .prep-course-card {
-        background: #ffffff;
-        border-radius: 14px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        border: 1px solid #e2e8f0;
-    }
-    .prep-course-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        border-color: #cbd5e1;
-    }
-    .prep-course-image {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 2 / 1;
-        overflow: hidden;
-        background-color: #0f172a;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .prep-course-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: top center;
-        display: block;
-        transition: transform 0.5s ease;
-    }
-    .prep-course-card:hover .prep-course-image img {
-        transform: scale(1.04);
-    }
-    .prep-course-body {
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 auto;
-    }
-    .prep-course-title {
-        font-size: 1.05rem;
-        font-weight: 700;
-        color: #1e293b;
-        margin-bottom: 6px;
-        line-height: 1.4;
-    }
-    .prep-course-code {
-        font-size: 0.8rem;
-        color: #64748b;
-        margin-bottom: 12px;
-    }
-    .prep-course-instructor {
-        font-size: 0.85rem;
-        color: #64748b;
-        margin-bottom: 14px;
-        margin-top: auto;
-    }
-    .prep-course-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-top: 1px solid #f1f5f9;
-        padding-top: 12px;
-        margin-top: auto;
-    }
-    .prep-course-price {
-        font-size: 1.15rem;
-        font-weight: 800;
-        color: #0f172a;
-    }
-    .btn-course-enroll {
-        padding: 6px 14px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        border-radius: 8px;
-    }
-
-    /* ============================================
-       DARK MODE - PREPARATORY YEAR PAGE
-       ============================================ */
-    body.dark-mode .prep-page-wrapper {
-        background-color: #0b1329 !important;
-    }
-    body.dark-mode .prep-breadcrumb {
-        color: #94a3b8 !important;
-    }
-    body.dark-mode .prep-breadcrumb a {
-        color: #60a5fa !important;
-    }
-    body.dark-mode .prep-breadcrumb span {
-        color: #cbd5e1 !important;
-    }
-    body.dark-mode .prep-title {
-        color: #f8fafc !important;
-    }
-    body.dark-mode .prep-subtitle {
-        color: #94a3b8 !important;
-    }
-    body.dark-mode .badge-light {
-        background-color: #1e293b !important;
-        border-color: #334155 !important;
-        color: #cbd5e1 !important;
-    }
-    
-    /* Bundle Promo Card Dark Mode */
-    body.dark-mode .bundle-promo-card {
-        background: #1e293b !important;
-        border-color: #3b82f6 !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
-    }
-    body.dark-mode .bundle-promo-title {
-        color: #f8fafc !important;
-    }
-    body.dark-mode .bundle-promo-desc {
-        color: #cbd5e1 !important;
-    }
-    body.dark-mode .bundle-chip {
-        background: rgba(59, 130, 246, 0.15) !important;
-        color: #93c5fd !important;
-        border-color: rgba(59, 130, 246, 0.35) !important;
-    }
-    body.dark-mode .bundle-promo-card .text-muted {
-        color: #94a3b8 !important;
-    }
-    body.dark-mode .bundle-price-box {
-        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
-        border-color: #334155 !important;
-    }
-    body.dark-mode .bundle-price-original {
-        color: #64748b !important;
-    }
-    body.dark-mode .bundle-price-current {
-        color: #60a5fa !important;
-    }
-    body.dark-mode .bundle-save-tag {
-        background: rgba(34, 197, 94, 0.2) !important;
-        color: #4ade80 !important;
-    }
-
-    /* Section Header Dark Mode */
-    body.dark-mode .section-header-compact {
-        border-bottom-color: #334155 !important;
-    }
-    body.dark-mode .section-header-compact h2 {
-        color: #f8fafc !important;
-    }
-    body.dark-mode .section-header-compact .count-badge {
-        background: #334155 !important;
-        color: #cbd5e1 !important;
-    }
-
-    /* Course Cards Dark Mode */
-    body.dark-mode .prep-course-card {
-        background: #1e293b !important;
-        border-color: #334155 !important;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-    }
-    body.dark-mode .prep-course-card:hover {
-        border-color: #3b82f6 !important;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45) !important;
-    }
-    body.dark-mode .prep-course-title a,
-    body.dark-mode .prep-course-title .text-dark {
-        color: #f8fafc !important;
-    }
-    body.dark-mode .prep-course-code {
-        color: #94a3b8 !important;
-    }
-    body.dark-mode .prep-course-instructor {
-        color: #94a3b8 !important;
-    }
-    body.dark-mode .prep-course-footer {
-        border-top-color: #334155 !important;
-    }
-    body.dark-mode .prep-course-price {
-        color: #f8fafc !important;
-    }
-    body.dark-mode .prep-course-price svg {
-        fill: #f8fafc !important;
-    }
-</style>
-
 <div class="prep-page-wrapper">
     <div class="container">
         
@@ -422,9 +72,14 @@
                                         <span class="bundle-save-tag"><i class="fas fa-tags ml-1"></i> توفير <?= number_format($saving) ?> <?= riyal_icon('12px', '#15803d') ?> فوراً</span>
                                     </div>
                                 <?php endif; ?>
-                                <button class="btn btn-bundle-cta" onclick="addToCart('bundle', <?= $bundle->id ?>)">
-                                    <i class="fas fa-cart-plus ml-2"></i> اشترك في الباقة الآن
-                                </button>
+                                <div class="bundle-btn-actions d-flex flex-column" style="gap: 10px; margin-top: 14px;">
+                                    <button class="btn btn-bundle-cta w-100" onclick="addToCart('bundle', <?= $bundle->id ?>)">
+                                        <i class="fas fa-cart-plus ml-2"></i> اشترك في الباقة الآن
+                                    </button>
+                                    <button type="button" class="btn btn-bundle-preview w-100" id="btnPreviewBundle">
+                                        <i class="fas fa-eye ml-1"></i> معاينة الشروحات
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -433,7 +88,7 @@
         <?php endif; ?>
 
         <!-- 2. Individual Courses Grid (Immediately Below with Compact Section Header) -->
-        <div class="section-header-compact" data-aos="fade-up">
+        <div class="section-header-compact" id="individual-courses-section" data-aos="fade-up">
             <h2><i class="fas fa-book-open text-primary ml-2"></i> المقررات الفردية للسنة الأولى المشتركة</h2>
             <span class="count-badge"><?= !empty($courses) ? count($courses) : 0 ?> مقررات</span>
         </div>
@@ -510,8 +165,13 @@
                                         <?php endif; ?>
                                     </div>
                                     
-                                    <div class="prep-course-actions d-flex align-items-center" style="gap: 6px;">
-                                        <a href="<?= $courseUrl ?>#first-unit" class="btn btn-course-preview btn-course-enroll" title="معاينة محتوى الكورس والوحدة الأولى">
+                                    <div class="prep-course-actions d-flex align-items-center position-relative" style="gap: 6px;">
+                                        <?php if ($courseIndex === 1): ?>
+                                            <div class="preview-guide-badge d-none" id="previewGuideBadge">
+                                                <i class="fas fa-hand-point-down ml-1 text-warning"></i> جرّب أول موديول مجاناً من هنا!
+                                            </div>
+                                        <?php endif; ?>
+                                        <a href="<?= $courseUrl ?>#first-unit" class="btn btn-course-preview <?= ($courseIndex === 1) ? 'first-preview-btn' : '' ?>" title="معاينة محتوى الكورس والوحدة الأولى">
                                             <i class="fas fa-eye"></i> معاينة
                                         </a>
                                         <?php if($isOpen): ?>
@@ -534,5 +194,127 @@
 
     </div>
 </div>
+
+<!-- Modal Guide for Previewing Courses -->
+<div class="modal fade" id="bundlePreviewGuideModal" tabindex="-1" role="dialog" aria-labelledby="bundlePreviewGuideModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 520px;">
+        <div class="modal-content preview-guide-modal-content">
+            <div class="modal-header border-0 pb-0">
+                <div class="d-flex align-items-center" style="gap: 12px;">
+                    <div class="guide-modal-icon-badge">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div>
+                        <h5 class="modal-title font-weight-bold mb-0" id="bundlePreviewGuideModalLabel">
+                            معاينة شروحات السنة التحضيرية
+                        </h5>
+                        <small class="text-muted">تجربة مجانية كاملة قبل الاشتراك</small>
+                    </div>
+                </div>
+                <button type="button" class="close text-muted" data-dismiss="modal" aria-label="Close" style="font-size: 1.5rem; outline: none;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pt-3 pb-4">
+                <div class="guide-modal-alert mb-3">
+                    <p class="mb-0">
+                        <strong class="d-block mb-1" style="font-size: 1.05rem;">
+                            <i class="fas fa-gift ml-1 text-warning"></i> أول موديول (الوحدة الأولى) مجاني في جميع المقررات!
+                        </strong>
+                        تقدر تشوف وتدرس محتوى الوحدة الأولى بالكامل لأي مقرر لتجربة أسلوب الشرح وجودة الدروس مجاناً بدون الحاجة للاشتراك المسبق.
+                    </p>
+                </div>
+
+                <div class="guide-modal-card-demo p-3 rounded-lg text-center mb-3">
+                    <div class="text-muted mb-2" style="font-size: 0.88rem;">
+                        ابحث عن هذا الزر في بطاقة أي مقرر أدناه:
+                    </div>
+                    <div class="d-inline-flex align-items-center demo-preview-box">
+                        <span class="btn btn-course-preview demo-btn">
+                            <i class="fas fa-eye"></i> معاينة
+                        </span>
+                        <span class="demo-pointer-hand animated-bounce-x"><i class="fas fa-hand-point-right text-warning mr-2"></i></span>
+                        <span class="text-muted mr-1" style="font-size: 0.85rem;">اضغط هنا لفتح أول موديول فوراً</span>
+                    </div>
+                </div>
+
+                <p class="text-muted text-center mb-0" style="font-size: 0.9rem;">
+                    اختر أي مقرر ترغب بتجربته واضغط على زر <strong>(معاينة)</strong> لبدء المشاهدة فوراً.
+                </p>
+            </div>
+            <div class="modal-footer border-0 pt-0 justify-content-center">
+                <button type="button" class="btn btn-primary px-4 py-2" data-dismiss="modal" id="btnStartExploreCourses" style="border-radius: 12px; font-weight: 700;">
+                    <i class="fas fa-arrow-down ml-1"></i> تصفح المقررات وجرّب الآن
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const btnPreviewBundle = document.getElementById('btnPreviewBundle');
+    const coursesSection = document.getElementById('individual-courses-section');
+    const guideBadge = document.getElementById('previewGuideBadge');
+    const firstPreviewBtn = document.querySelector('.first-preview-btn');
+
+    function highlightFirstCoursePreview() {
+        if (firstPreviewBtn) {
+            firstPreviewBtn.classList.add('preview-pulse-highlight');
+            if (guideBadge) {
+                guideBadge.classList.remove('d-none');
+            }
+
+            const removeHighlight = function() {
+                firstPreviewBtn.classList.remove('preview-pulse-highlight');
+                if (guideBadge) guideBadge.classList.add('d-none');
+                firstPreviewBtn.removeEventListener('click', removeHighlight);
+                firstPreviewBtn.removeEventListener('mouseenter', removeHighlight);
+            };
+
+            firstPreviewBtn.addEventListener('click', removeHighlight);
+            firstPreviewBtn.addEventListener('mouseenter', removeHighlight);
+
+            setTimeout(removeHighlight, 9000);
+        }
+    }
+
+    if (btnPreviewBundle) {
+        btnPreviewBundle.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // 1. Smooth scroll down to individual courses
+            if (coursesSection) {
+                const nav = document.querySelector('.site-nav') || document.querySelector('header') || document.querySelector('.navbar');
+                const navOffset = nav ? nav.offsetHeight : 70;
+                const topPos = coursesSection.getBoundingClientRect().top + window.pageYOffset - navOffset - 20;
+                window.scrollTo({
+                    top: Math.max(0, topPos),
+                    behavior: 'smooth'
+                });
+            }
+
+            // 2. Open Guide Modal
+            setTimeout(function() {
+                if (typeof $ !== 'undefined' && typeof $('#bundlePreviewGuideModal').modal === 'function') {
+                    $('#bundlePreviewGuideModal').modal('show');
+                }
+            }, 350);
+        });
+    }
+
+    if (typeof $ !== 'undefined') {
+        $('#bundlePreviewGuideModal').on('hidden.bs.modal', function () {
+            highlightFirstCoursePreview();
+        });
+    }
+    const btnStart = document.getElementById('btnStartExploreCourses');
+    if (btnStart) {
+        btnStart.addEventListener('click', function() {
+            setTimeout(highlightFirstCoursePreview, 250);
+        });
+    }
+});
+</script>
 
 <?= $this->endSection(); ?>

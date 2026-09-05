@@ -227,7 +227,7 @@ body.dark-mode .course-header-meta-strip .meta-separator {
         margin: 1.75rem auto;
         transition: all 0.3s ease;}
 
-.modal-title::before {
+#videoModal .modal-title::before {
         content: '▶';
         font-size: 1.2rem;
         opacity: 0.8;}

@@ -1,12 +1,5 @@
 <?=$this->extend('site_layout/template');?>
 <?= $this->section('content') ?>
-<style>
-    body {
-        margin: 0;
-        direction: rtl !important;
-        text-align: right !important;;
-    }
-</style>
 <header class="jumbotron bg-img-1">
     <div class="container">
         <h1> طلب حذف حساب من التطبيق "ع الطلب"</h1>

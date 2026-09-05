@@ -463,16 +463,16 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css">
     </noscript>
 
-    <link rel="preload" href="<?= base_url() ?>site/css/style_rtl.css?v=2.12" as="style"
+    <link rel="preload" href="<?= base_url() ?>site/css/style_rtl.css?v=2.16" as="style"
         onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="<?= base_url() ?>site/css/style_rtl.css?v=2.12">
+        <link rel="stylesheet" href="<?= base_url() ?>site/css/style_rtl.css?v=2.16">
     </noscript>
 
-    <link rel="preload" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=2.2" as="style"
+    <link rel="preload" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=2.6" as="style"
         onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=2.2">
+        <link rel="stylesheet" href="<?= base_url() ?>site/css/dark-mode-overrides.css?v=2.6">
     </noscript>
 
     <!-- Fonts - with display swap for better performance -->
